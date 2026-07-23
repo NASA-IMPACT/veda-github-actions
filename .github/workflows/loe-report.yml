@@ -1,0 +1,128 @@
+name: LOE Capacity Report
+
+# VEDA GitHub Actions test station — LOE PI-change seed.
+# Reads the test project board, joins each Objective issue's LOE/FTE table (issue body)
+# with its Program Increment + Start/End dates (board fields), and writes a per-PI capacity
+# report to a `loe-report/<pi>` branch (+ run summary + artifact). The public Netlify
+# dashboard reads `loe-report/all-pis` at runtime.
+#
+# Board data lives in a Projects v2 board the default GITHUB_TOKEN cannot read, so this uses a
+# classic PAT (scopes: repo + read:org + project) stored as the repo secret PROJECT_TOKEN.
+on:
+  workflow_dispatch:
+    inputs:
+      pi:
+        description: 'Program Increment to report on'
+        type: choice
+        required: true
+        default: 'All PIs'
+        options:
+          - 'All PIs'
+          - 'PI 26.4'
+          - 'PI 27.2'
+  schedule:
+    - cron: '0 13 * * 1'   # Mondays 13:00 UTC
+  # Optional test hook: re-run when an Objective issue changes. Left OFF by default so the
+  # 50-issue seed run doesn't trigger a run-storm; uncomment to exercise issue-driven runs.
+  # issues:
+  #   types: [opened, edited, closed, reopened]
+
+permissions:
+  contents: write        # push the report to the per-PI branch
+
+env:
+  POC_PROJECT_OWNER: kyle-lesinger
+  POC_PROJECT_NUMBER: '2'
+
+jobs:
+  loe-report:
+    name: Build LOE capacity report
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}   # for `gh project` (needs project + read:org)
+    steps:
+      - name: "1 · Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so per-PI branches can be based/pushed
+
+      - name: "2 · Set up Python 3.12"
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: "3 · Resolve PI filter + target branch"
+        id: cfg
+        run: |
+          PI_INPUT="${{ github.event.inputs.pi }}"
+          if [ "$PI_INPUT" = "All PIs" ]; then PI_INPUT=""; fi        # dropdown default / other triggers
+          LABEL="${PI_INPUT:-all PIs}"
+          SLUG="$(echo "${PI_INPUT:-all-pis}" | tr ' ' '-' | tr -cd 'A-Za-z0-9._-')"
+          echo "pi=$PI_INPUT"                >> "$GITHUB_OUTPUT"
+          echo "label=$LABEL"                >> "$GITHUB_OUTPUT"
+          echo "slug=$SLUG"                  >> "$GITHUB_OUTPUT"
+          echo "branch=loe-report/$SLUG"     >> "$GITHUB_OUTPUT"
+          echo "Event: $GITHUB_EVENT_NAME | PI: '$LABEL' | target branch: loe-report/$SLUG"
+
+      - name: "4 · Verify PROJECT_TOKEN is present"
+        run: |
+          if [ -z "${{ secrets.PROJECT_TOKEN }}" ]; then
+            echo "::error::PROJECT_TOKEN secret not set (classic PAT: repo + read:org + project)."
+            exit 1
+          fi
+          echo "PROJECT_TOKEN present."
+
+      - name: "5 · Fetch project items (PI + Start/End + issue bodies)"
+        run: |
+          gh project item-list "$POC_PROJECT_NUMBER" --owner "$POC_PROJECT_OWNER" \
+            --format json --limit 800 > items.json
+          echo "Items on board: $(jq '.items | length' items.json)"
+
+      - name: "6 · Filter to Objective tickets (visibility)"
+        run: |
+          jq -r '.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))
+                 | "  #\(.content.number)  [\(.["program Increment"] // "no PI")]  \(.content.title)"' items.json
+          echo "Objective tickets: $(jq '[.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))] | length' items.json)"
+
+      - name: "7 · Generate LOE capacity report (per PI, raw + weighted FTE)"
+        run: |
+          echo "PI filter: '${{ steps.cfg.outputs.label }}'"
+          python .github/scripts/generate_loe_report.py \
+            --project-json items.json \
+            --pi "${{ steps.cfg.outputs.pi }}" \
+            --out-dir reports \
+            --now "$(date -u +%FT%TZ)"
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash for the branch step
+
+      - name: "8 · Publish report to the run summary"
+        run: cat reports/loe_summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "9 · Commit report to the per-PI branch"
+        run: |
+          BR="${{ steps.cfg.outputs.branch }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Continue the per-PI branch if it exists (so commits accumulate), else start it from main.
+          # -f: step 7 regenerated reports/ (tracked files), dirtying the tree; the fresh report is
+          # stashed in $RUNNER_TEMP/out, so force the switch and re-copy it below.
+          git fetch origin "$BR" || true
+          if git rev-parse --verify --quiet "origin/$BR"; then
+            git checkout -f -B "$BR" "origin/$BR"
+          else
+            git checkout -f -B "$BR"
+          fi
+          rm -rf reports && mkdir reports && cp -R "$RUNNER_TEMP/out/." reports/
+          git add -f reports
+          if git diff --cached --quiet; then
+            echo "No report changes for $BR."
+          else
+            git commit -m "LOE report — ${{ steps.cfg.outputs.label }} (run ${{ github.run_id }})"
+            git push origin "$BR"
+            echo "Report pushed to branch: $BR"
+          fi
+
+      - name: "10 · Upload report as build artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: loe-report-${{ steps.cfg.outputs.slug }}
+          path: reports/

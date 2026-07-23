@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Node / Vite (dashboard)
+loe-dashboard/node_modules/
+loe-dashboard/dist/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Env / secrets
+.env
+.env.local
+*.pem
+
+# Logs
+*.log
+
+# Reports + board tracking are *.csv / *.json — ignore those globally, then
+# re-include the ones we DO track: the Action commits reports/, and the seed
+# tracking files (sample_issues/created_issues/project_items) stay in the repo.
+*.csv
+*.json
+!reports/*.csv
+!seed/*.json
+
+# Dashboard build config + bundled snapshot data (explicit re-includes past the
+# global *.json/*.csv ignore; node_modules json is already excluded above).
+!loe-dashboard/package.json
+!loe-dashboard/package-lock.json
+!loe-dashboard/tsconfig.json
+!loe-dashboard/tsconfig.node.json
+!loe-dashboard/public/data/*.csv
