@@ -1,0 +1,72 @@
+{
+  "board_title": "VEDA Actions Test — FTE (offline fixture)",
+  "roots": [
+    {
+      "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 101,
+      "title": "[Platform]-[Objective 1]: COG pipeline hardening",
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/101",
+      "state": "OPEN",
+      "prs": [
+        {"number": 900, "title": "Umbrella: pipeline hardening tracking", "url": "https://github.com/kyle-lesinger/veda-subissue-seed/pull/900", "state": "OPEN", "repo": "kyle-lesinger/veda-subissue-seed"}
+      ],
+      "children": [
+        {
+          "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 102,
+          "title": "L1: ingestion API refactor",
+          "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/102",
+          "state": "OPEN", "prs": [],
+          "children": [
+            {
+              "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 103,
+              "title": "L2: retry + backoff",
+              "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/103",
+              "state": "OPEN", "prs": [],
+              "children": [
+                {
+                  "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 104,
+                  "title": "L3: jitter strategy",
+                  "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/104",
+                  "state": "OPEN", "prs": [],
+                  "children": [
+                    {
+                      "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 105,
+                      "title": "L4: config surface",
+                      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/105",
+                      "state": "OPEN", "prs": [],
+                      "children": [
+                        {
+                          "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 106,
+                          "title": "L5: env var plumbing (leaf)",
+                          "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/106",
+                          "state": "CLOSED", "prs": [
+                            {"number": 910, "title": "Add BACKOFF_JITTER env var", "url": "https://github.com/kyle-lesinger/veda-subissue-seed/pull/910", "state": "MERGED", "repo": "kyle-lesinger/veda-subissue-seed"}
+                          ],
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 107,
+              "title": "L2: cross-repo data model (other repo)",
+              "url": "https://github.com/kyle-lesinger/other-owned-repo/issues/107",
+              "state": "OPEN", "prs": [
+                {"number": 42, "title": "Shared schema v2", "url": "https://github.com/kyle-lesinger/other-owned-repo/pull/42", "state": "CLOSED", "repo": "kyle-lesinger/other-owned-repo"}
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "owner": "kyle-lesinger", "name": "veda-subissue-seed", "number": 201,
+      "title": "[Comms]-[Objective 2]: Disaster dashboard redesign",
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/201",
+      "state": "OPEN", "prs": [], "children": []
+    }
+  ]
+}

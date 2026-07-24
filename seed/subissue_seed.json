@@ -1,0 +1,205 @@
+{
+  "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+  "repos": [
+    "Disasters-Learning-Portal/disasters-aws-conversion",
+    "kyle-lesinger/veda-subissue-seed"
+  ],
+  "project": {
+    "owner": "Disasters-Learning-Portal",
+    "number": 5
+  },
+  "args": {
+    "objectives": 1,
+    "depth": 5,
+    "branch": 1,
+    "hop_repo": "kyle-lesinger/veda-subissue-seed",
+    "hop_at_depth": 3
+  },
+  "issues": [
+    {
+      "local": 0,
+      "number": 79,
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/issues/79",
+      "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "depth": 0,
+      "path": "O1",
+      "kind": "root",
+      "parent_local": null,
+      "is_objective": true,
+      "gets_pr": false,
+      "pr_state": null,
+      "node_id": "I_kwDOP3rUq88AAAABKCV1NA",
+      "db_id": 4968510772,
+      "item_id": "PVTI_lADODdLRP84BMP5Rzgz-EKk"
+    },
+    {
+      "local": 1,
+      "number": 80,
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/issues/80",
+      "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "depth": 1,
+      "path": "O1.L1",
+      "kind": "spine",
+      "parent_local": 0,
+      "is_objective": false,
+      "gets_pr": true,
+      "pr_state": "MERGED",
+      "node_id": "I_kwDOP3rUq88AAAABKCV1vg",
+      "db_id": 4968510910,
+      "item_id": null
+    },
+    {
+      "local": 2,
+      "number": 81,
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/issues/81",
+      "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "depth": 2,
+      "path": "O1.L2",
+      "kind": "spine",
+      "parent_local": 1,
+      "is_objective": false,
+      "gets_pr": true,
+      "pr_state": "OPEN",
+      "node_id": "I_kwDOP3rUq88AAAABKCV2Pw",
+      "db_id": 4968511039,
+      "item_id": null
+    },
+    {
+      "local": 3,
+      "number": 1,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/1",
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "depth": 3,
+      "path": "O1.L3",
+      "kind": "spine",
+      "parent_local": 2,
+      "is_objective": false,
+      "gets_pr": true,
+      "pr_state": "CLOSED",
+      "node_id": "I_kwDOTiSvS88AAAABKCV2xg",
+      "db_id": 4968511174,
+      "item_id": null
+    },
+    {
+      "local": 4,
+      "number": 2,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/2",
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "depth": 4,
+      "path": "O1.L4",
+      "kind": "spine",
+      "parent_local": 3,
+      "is_objective": false,
+      "gets_pr": true,
+      "pr_state": "MERGED",
+      "node_id": "I_kwDOTiSvS88AAAABKCV3VA",
+      "db_id": 4968511316,
+      "item_id": null
+    },
+    {
+      "local": 5,
+      "number": 3,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/issues/3",
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "depth": 5,
+      "path": "O1.L5",
+      "kind": "spine",
+      "parent_local": 4,
+      "is_objective": false,
+      "gets_pr": true,
+      "pr_state": "OPEN",
+      "node_id": "I_kwDOTiSvS88AAAABKCV30A",
+      "db_id": 4968511440,
+      "item_id": null
+    }
+  ],
+  "links": [
+    {
+      "parent_local": 0,
+      "child_local": 1,
+      "parent": 79,
+      "child": 80,
+      "parent_repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "child_repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "method": "addSubIssue"
+    },
+    {
+      "parent_local": 1,
+      "child_local": 2,
+      "parent": 80,
+      "child": 81,
+      "parent_repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "child_repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "method": "addSubIssue"
+    },
+    {
+      "parent_local": 2,
+      "child_local": 3,
+      "parent": 81,
+      "child": 1,
+      "parent_repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "child_repo": "kyle-lesinger/veda-subissue-seed",
+      "method": "addSubIssue"
+    },
+    {
+      "parent_local": 3,
+      "child_local": 4,
+      "parent": 1,
+      "child": 2,
+      "parent_repo": "kyle-lesinger/veda-subissue-seed",
+      "child_repo": "kyle-lesinger/veda-subissue-seed",
+      "method": "addSubIssue"
+    },
+    {
+      "parent_local": 4,
+      "child_local": 5,
+      "parent": 2,
+      "child": 3,
+      "parent_repo": "kyle-lesinger/veda-subissue-seed",
+      "child_repo": "kyle-lesinger/veda-subissue-seed",
+      "method": "addSubIssue"
+    }
+  ],
+  "prs": [
+    {
+      "closes": 80,
+      "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "state_target": "MERGED",
+      "number": 82,
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/pull/82",
+      "branch": "seed/close-80"
+    },
+    {
+      "closes": 81,
+      "repo": "Disasters-Learning-Portal/disasters-aws-conversion",
+      "state_target": "OPEN",
+      "number": 83,
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/pull/83",
+      "branch": "seed/close-81"
+    },
+    {
+      "closes": 1,
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "state_target": "CLOSED",
+      "number": 4,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/pull/4",
+      "branch": "seed/close-1"
+    },
+    {
+      "closes": 2,
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "state_target": "MERGED",
+      "number": 5,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/pull/5",
+      "branch": "seed/close-2"
+    },
+    {
+      "closes": 3,
+      "repo": "kyle-lesinger/veda-subissue-seed",
+      "state_target": "OPEN",
+      "number": 6,
+      "url": "https://github.com/kyle-lesinger/veda-subissue-seed/pull/6",
+      "branch": "seed/close-3"
+    }
+  ]
+}
