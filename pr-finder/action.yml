@@ -33,6 +33,14 @@ inputs:
     description: "Comma-separated objective title substrings to include (empty = all objectives on the board)."
     required: false
     default: ""
+  pi:
+    description: 'Only objectives in this Program Increment board field, e.g. "PI 27.2" (prefix optional). Empty = all.'
+    required: false
+    default: ""
+  sprint:
+    description: 'Only objectives in this Sprint board field (prefix optional). Empty = all.'
+    required: false
+    default: ""
   out-dir:
     description: "Directory to write pr_finder.csv, pr_finder.md, pr_finder.html."
     required: false
@@ -95,6 +103,8 @@ runs:
           --max-depth "${{ inputs.max-depth }}" \
           --max-api-calls "${{ inputs.max-api-calls }}" \
           --only-objectives "${{ inputs.only-objectives }}" \
+          --pi "${{ inputs.pi }}" \
+          --sprint "${{ inputs.sprint }}" \
           --out-dir "${{ inputs.out-dir }}" \
           --now "$(date -u +%FT%TZ)"
 

@@ -27,6 +27,16 @@ on:
         type: string
         required: false
         default: ''
+      pi:
+        description: 'Program Increment board field, e.g. "PI 27.2" (prefix optional; empty = all)'
+        type: string
+        required: false
+        default: ''
+      sprint:
+        description: 'Sprint board field (prefix optional; empty = all)'
+        type: string
+        required: false
+        default: ''
   schedule:
     - cron: '0 13 * * 1'   # Mondays 13:00 UTC
 
@@ -51,6 +61,8 @@ jobs:
           token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
           max-depth: ${{ github.event.inputs.max-depth || '5' }}
           only-objectives: ${{ github.event.inputs.only-objectives || '' }}
+          pi: ${{ github.event.inputs.pi || '' }}
+          sprint: ${{ github.event.inputs.sprint || '' }}
           out-dir: reports
 
       - name: "3 · Report summary"

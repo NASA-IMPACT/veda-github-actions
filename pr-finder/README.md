@@ -39,6 +39,8 @@ jobs:
 | `max-depth` | | `5` | Sub-issue levels to crawl below each objective (`0`–`5`). |
 | `max-api-calls` | | `400` | GraphQL request budget; if hit, the report is flagged `truncated` (not failed). |
 | `only-objectives` | | `""` | Comma-separated objective-title substrings to include (empty = all). |
+| `pi` | | `""` | Only objectives in this **Program Increment** board field, e.g. `PI 27.2` (the `PI ` prefix is optional). Empty = all. |
+| `sprint` | | `""` | Only objectives in this **Sprint** board field (prefix optional). Empty = all. |
 | `out-dir` | | `reports` | Where to write `pr_finder.csv` / `.md` / `.html`. |
 
 ### Outputs

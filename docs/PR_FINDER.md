@@ -15,6 +15,12 @@ the pull requests that **close** those issues.
 ## How the crawl works
 - **Objective detection:** a board item is an objective if its issue title contains `"objective"`
   (case-insensitive) — same rule as the FTE report. Seed root titles must include the word.
+- **Sprint / PI filtering:** `--pi` / `--sprint` (action inputs `pi` / `sprint`, or the workflow's
+  manual-dispatch inputs) keep only objectives whose **Program Increment** / **Sprint** board field
+  matches. Case/space-insensitive and the `PI `/`Sprint ` prefix is optional (`27.2` == `PI 27.2`);
+  handles both single-select and iteration fields; warns if the board has no such field; filters
+  AND together. Board items are read with `--limit 2000` so large boards (e.g. 1,000+ items) aren't
+  truncated before filtering.
 - **Traversal:** iterative **BFS by level** over the GraphQL `subIssues` connection, alias-batched
   (≤20 parents per request). It never deep-nests a single query (that blows up GraphQL node cost),
   and it paginates `subIssues` / `closedByPullRequestsReferences` via `pageInfo`.

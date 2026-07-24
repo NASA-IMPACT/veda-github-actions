@@ -160,12 +160,46 @@ def get_board_title(owner, number):
         return f"project #{number}"
 
 
-def read_objectives(owner, number, only_objectives, limit=800):
-    """Return objective refs from the board. Reads ONLY content.url + content.title,
-    so any extra board fields are ignored (tolerant of concurrent schema changes)."""
+def _norm_field_val(s):
+    """Normalize a board field value / filter for comparison: drop a leading label word
+    (PI/Sprint/Iteration) and all spaces, lowercase. So 'PI 27.2' == '27.2'."""
+    s = (s or "").strip().lower()
+    s = re.sub(r"^(pi|sprint|iteration|cycle)\s+", "", s)
+    return s.replace(" ", "")
+
+
+def _field_title(v):
+    """Value of a board field cell — iteration fields are dicts (title), the rest strings."""
+    if isinstance(v, dict):
+        return v.get("title") or v.get("name") or ""
+    if isinstance(v, (str, int, float)):
+        return str(v)
+    return ""
+
+
+def _pi_of(item):
+    for k, v in item.items():
+        nk = re.sub(r"[^a-z0-9]", "", k.lower())
+        if nk == "pi" or "programincrement" in nk:
+            return _field_title(v)
+    return None
+
+
+def _sprint_of(item):
+    for k, v in item.items():
+        nk = re.sub(r"[^a-z0-9]", "", k.lower())
+        if ("sprint" in nk or nk == "iteration") and "point" not in nk:  # skip 'Sprint Points'
+            return _field_title(v)
+    return None
+
+
+def read_objectives(owner, number, only_objectives, pi="", sprint="", limit=2000):
+    """Return objective refs from the board. Reads content.url + content.title, and —
+    only when a --pi/--sprint filter is set — the Program Increment / Sprint board fields.
+    Any other board fields are ignored (tolerant of concurrent schema changes)."""
     data = gh_json(["project", "item-list", str(number), "--owner", owner,
                     "--format", "json", "--limit", str(limit)])
-    objs = []
+    objs, saw_pi, saw_sprint = [], False, False
     for it in data.get("items", []):
         content = it.get("content") or {}
         if content.get("type") not in (None, "Issue"):
@@ -173,6 +207,16 @@ def read_objectives(owner, number, only_objectives, limit=800):
         title = content.get("title") or ""
         if not is_objective(title):
             continue
+        if pi.strip():
+            val = _pi_of(it)
+            saw_pi = saw_pi or val is not None
+            if _norm_field_val(val) != _norm_field_val(pi):
+                continue
+        if sprint.strip():
+            val = _sprint_of(it)
+            saw_sprint = saw_sprint or val is not None
+            if _norm_field_val(val) != _norm_field_val(sprint):
+                continue
         ref = parse_issue_url(content.get("url") or "")
         if not ref:
             sys.stderr.write(f"[pr-finder] skip un-parseable objective url: {content.get('url')}\n")
@@ -183,6 +227,10 @@ def read_objectives(owner, number, only_objectives, limit=800):
     if only_objectives.strip():
         wanted = [s.strip().lower() for s in only_objectives.split(",") if s.strip()]
         objs = [o for o in objs if any(w in o["title"].lower() for w in wanted)]
+    if pi.strip() and not saw_pi:
+        sys.stderr.write("[pr-finder] warning: --pi set but no 'Program Increment' field on the board\n")
+    if sprint.strip() and not saw_sprint:
+        sys.stderr.write("[pr-finder] warning: --sprint set but no 'Sprint' field on the board\n")
     objs.sort(key=lambda o: o["number"] or 0)
     return objs
 
@@ -554,6 +602,8 @@ def main():
     ap.add_argument("--max-api-calls", type=int, default=400, help="GraphQL request budget")
     ap.add_argument("--batch-size", type=int, default=20, help="aliases per GraphQL request")
     ap.add_argument("--only-objectives", default="", help="comma list of objective title substrings")
+    ap.add_argument("--pi", default="", help="only objectives in this Program Increment board field (e.g. 'PI 27.2'); prefix optional")
+    ap.add_argument("--sprint", default="", help="only objectives in this Sprint board field; prefix optional")
     ap.add_argument("--only-with-prs", action="store_true", help="omit CSV rows for issues with no PR")
     ap.add_argument("--tree-json", help="offline: pre-crawled {board_title,roots} tree")
     ap.add_argument("--out-dir", default="reports")
@@ -572,7 +622,8 @@ def main():
     else:
         owner, number = resolve_owner_number(args)
         board_title = get_board_title(owner, number)
-        objectives = read_objectives(owner, number, args.only_objectives)
+        objectives = read_objectives(owner, number, args.only_objectives,
+                                     pi=args.pi, sprint=args.sprint)
         max_depth = max(0, min(5, args.max_depth))
         budget = [0]
         roots = crawl_all(objectives, max_depth, args.max_api_calls, args.batch_size, budget, stats)
