@@ -521,7 +521,7 @@ def render_html(roots, stats, board_title, now):
     for root in roots:
         num = root["number"]
         head = esc(root["title"])
-        numlink = (f" <a class='num' href='{esc(root['url'])}'>#{num}</a>"
+        numlink = (f" <a class='num' target='_blank' rel='noopener' href='{esc(root['url'])}'>#{num}</a>"
                    if root.get("url") else f" <span class='num'>#{num}</span>")
         P.append(f"<section class='objective'><h2>{head}{numlink}</h2>")
         prs = objective_prs(root)
@@ -531,8 +531,8 @@ def render_html(roots, stats, board_title, now):
         P.append("<ul class='pr-list'>")
         for pr in prs:
             repo_hash = f"{pr['repo']}#{pr['number']}" if pr.get("repo") else f"#{pr['number']}"
-            link = (f"<a href='{esc(pr['url'])}'>{esc(repo_hash)}</a>" if pr.get("url")
-                    else esc(repo_hash))
+            link = (f"<a target='_blank' rel='noopener' href='{esc(pr['url'])}'>{esc(repo_hash)}</a>"
+                    if pr.get("url") else esc(repo_hash))
             closes = ", ".join(f"#{c}" for c in pr["closes"])
             P.append(f"<li>{link} <span class='pr-title'>{esc(pr['title'])}</span> "
                      f"{_state_tag(pr['state'])} "

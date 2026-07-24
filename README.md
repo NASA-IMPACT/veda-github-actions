@@ -6,7 +6,8 @@ Actions and board seed data without touching production. First module: the **FTE
 diff. Intentionally open — it will grow to host other VEDA Actions experiments.
 
 > ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
-> 📊 **Dashboard:** https://veda-github-actions.netlify.app
+> 📊 **FTE Dashboard:** https://veda-github-actions.netlify.app
+> 🔀 **PR Finder Dashboard:** https://veda-pr-dashboard.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
@@ -42,6 +43,10 @@ action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a l
 | `seed/` | recreate the demo: sample issues → real issues → board fields → populate |
 | `fte-dashboard/` | React SPA (Netlify) — Capacity Matrix + what-if editor |
 | `docs/FTE_SEED.md` | data model, board fields, gotchas |
+| `pr-finder/` | **2nd reusable action** (`uses: .../pr-finder@v1`): crawl objectives' sub-issue trees (5 levels, cross-org) → closing PRs (CSV + MD + USWDS HTML) |
+| `.github/workflows/pr-finder.yml` | self-consumer that publishes the PR report to the `pr-finder/report` branch |
+| `pr-dashboard/` | static Netlify site rendering the PR report — [live](https://veda-pr-dashboard.netlify.app) |
+| `docs/PR_FINDER.md` | PR Finder data model, seed harness, gotchas |
 
 ## Quickstart
 
