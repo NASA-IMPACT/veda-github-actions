@@ -1,0 +1,8 @@
+{
+  "objectives": 54,
+  "issues_crawled": 567,
+  "prs_found": 158,
+  "max_depth_reached": 5,
+  "api_calls": 59,
+  "truncated": false
+}
