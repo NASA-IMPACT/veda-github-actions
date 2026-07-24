@@ -2,7 +2,7 @@
 
 _1 objectives · 6 issues crawled · 5 closing PRs · depth 5_
 
-_Generated: 2026-07-24T13:08:22Z_
+_Generated: 2026-07-24T15:12:27Z_
 
 ## [Seed]-[Objective 1]: COG pipeline hardening [#79](https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/issues/79)
 - [Disasters-Learning-Portal/disasters-aws-conversion#82](https://github.com/Disasters-Learning-Portal/disasters-aws-conversion/pull/82) — Close #80 (seed) · **OPEN**  _(closes #80)_
