@@ -39,7 +39,9 @@
     // Live source: the report published by .github/workflows/pr-finder.yml to the
     // `pr-finder/report` branch. raw.githubusercontent sends CORS `*` (same pattern the
     // FTE dashboard uses in fte-dashboard/src/data.ts). Falls back to the bundled snapshot.
-    var RAW = "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/pr-finder/report/reports/pr_finder.html";
+    // Canonical /refs/heads/ form — required so the slashed branch name (pr-finder/report)
+    // resolves on raw.githubusercontent (the plain .../pr-finder/report/... form 404s).
+    var RAW = "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/refs/heads/pr-finder/report/reports/pr_finder.html";
     var SNAPSHOT = "./pr_finder.html";
     var statusEl = document.getElementById("status");
     var frame = document.getElementById("report");
