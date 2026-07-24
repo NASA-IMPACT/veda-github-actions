@@ -11,6 +11,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # Both dashboards share this repo on `main`; skip this site's build unless fte-dashboard/ changed.
+  # `git diff --quiet` exits 0 (unchanged → Netlify skips) or 1 (changed → Netlify builds).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- fte-dashboard/"
 
 # SPA fallback: serve index.html for client-side routes.
 [[redirects]]

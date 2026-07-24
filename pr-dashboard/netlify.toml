@@ -6,6 +6,10 @@
 # Netlify reads THIS netlify.toml (inside the base dir), so it never touches the root one.
 [build]
   publish = "."
+  # Both dashboards share this repo on `main`; skip this site's build unless pr-dashboard/ changed.
+  # (Report data comes from the pr-finder/report branch at runtime, so it needs no redeploy.)
+  # `git diff --quiet` exits 0 (unchanged → Netlify skips) or 1 (changed → Netlify builds).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- pr-dashboard/"
 
 # Serve index.html for any path (the shell fetches the live report at runtime).
 [[redirects]]
