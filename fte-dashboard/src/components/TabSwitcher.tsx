@@ -1,4 +1,4 @@
-export type Tab = "matrix" | "dashboard";
+export type Tab = "matrix" | "trends" | "dashboard";
 
 interface Props {
   active: Tab;
@@ -7,6 +7,7 @@ interface Props {
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: "matrix", label: "Capacity Matrix", icon: "▦" },
+  { id: "trends", label: "Trends", icon: "📈" },
   { id: "dashboard", label: "What-if Dashboard", icon: "🛠" },
 ];
 

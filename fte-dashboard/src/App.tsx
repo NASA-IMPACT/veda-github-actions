@@ -5,6 +5,7 @@ import PersonView from "./components/PersonView";
 import RoleView from "./components/RoleView";
 import AllocationsTable from "./components/AllocationsTable";
 import MatrixView from "./components/MatrixView";
+import TrendsView from "./components/TrendsView";
 import TabSwitcher, { type Tab } from "./components/TabSwitcher";
 import { computeHeadline, computePersonAggs, computeRoleAggs, validateBaseline } from "./compute";
 import { allocationsToCsv, downloadCsv, personsToCsv, rolesToCsv } from "./csv";
@@ -90,10 +91,13 @@ export default function App() {
         onReset={reset}
         onExport={onExport}
         showEditControls={activeTab === "dashboard"}
+        showPiFilter={activeTab !== "trends"}
       />
 
       {activeTab === "matrix" ? (
         <MatrixView allocations={filtered} overKeys={overKeys} showPi={showPi} />
+      ) : activeTab === "trends" ? (
+        <TrendsView allocations={allocations} />
       ) : (
         <>
           <HeadlineCards headline={headline} context={dataset.context} />

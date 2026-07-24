@@ -12,6 +12,8 @@ interface Props {
   onExport: (kind: "alloc" | "person" | "role") => void;
   /** Reset/Export/what-if controls are only meaningful on the editable dashboard tab. */
   showEditControls: boolean;
+  /** The PI selector is hidden on the Trends tab (which inherently spans all PIs). */
+  showPiFilter: boolean;
 }
 
 export default function Header({
@@ -25,6 +27,7 @@ export default function Header({
   onReset,
   onExport,
   showEditControls,
+  showPiFilter,
 }: Props) {
   return (
     <header className="topbar">
@@ -51,17 +54,21 @@ export default function Header({
         )}
       </div>
       <div className="controls" style={{ width: "100%", marginTop: 4 }}>
-        <label className="sub" htmlFor="pi">
-          Program Increment&nbsp;
-        </label>
-        <select id="pi" autoComplete="off" value={piFilter} onChange={(e) => onPiChange(e.target.value)}>
-          <option value="ALL">All PIs</option>
-          {pis.map((pi) => (
-            <option key={pi} value={pi}>
-              {pi}
-            </option>
-          ))}
-        </select>
+        {showPiFilter && (
+          <>
+            <label className="sub" htmlFor="pi">
+              Program Increment&nbsp;
+            </label>
+            <select id="pi" autoComplete="off" value={piFilter} onChange={(e) => onPiChange(e.target.value)}>
+              <option value="ALL">All PIs</option>
+              {pis.map((pi) => (
+                <option key={pi} value={pi}>
+                  {pi}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
         <div className="spacer" />
         {showEditControls && (
           <>
