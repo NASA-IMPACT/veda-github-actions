@@ -1,0 +1,93 @@
+name: PR Finder
+
+# Dogfoods the reusable `pr-finder` action (the same way a consuming repo would import it),
+# then PUBLISHES the report to the `pr-finder/report` branch (the pr-dashboard Netlify site
+# fetches pr_finder.html from there at runtime) and uploads it as a build artifact.
+#
+# A consuming repo would use just:
+#   - uses: NASA-IMPACT/veda-github-actions/pr-finder@v1
+#     with:
+#       project-url: https://github.com/orgs/THEIR-ORG/projects/5
+#       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+on:
+  workflow_dispatch:
+    inputs:
+      board-url:
+        description: 'Projects v2 board URL to crawl'
+        type: string
+        required: false
+        default: 'https://github.com/orgs/Disasters-Learning-Portal/projects/5'
+      max-depth:
+        description: 'Sub-issue crawl depth (0-5)'
+        type: string
+        required: false
+        default: '5'
+      only-objectives:
+        description: 'Comma-separated objective title substrings (empty = all)'
+        type: string
+        required: false
+        default: ''
+  schedule:
+    - cron: '0 13 * * 1'   # Mondays 13:00 UTC
+
+permissions:
+  contents: write          # publish the report to the pr-finder/report branch
+
+jobs:
+  pr-finder:
+    name: Crawl objectives → find closing PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: "1 · Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the report branch can be based/pushed
+
+      - name: "2 · Find PRs under each objective (reusable action — same import a consumer would use)"
+        id: find
+        uses: ./pr-finder
+        with:
+          project-url: ${{ github.event.inputs.board-url || 'https://github.com/orgs/Disasters-Learning-Portal/projects/5' }}
+          token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+          max-depth: ${{ github.event.inputs.max-depth || '5' }}
+          only-objectives: ${{ github.event.inputs.only-objectives || '' }}
+          out-dir: reports
+
+      - name: "3 · Report summary"
+        run: |
+          echo "objectives=${{ steps.find.outputs.objectives }} issues=${{ steps.find.outputs.issues-crawled }} prs=${{ steps.find.outputs.prs-found }} truncated=${{ steps.find.outputs.truncated }}"
+
+      - name: "4 · Upload report (csv + md + html)"
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-finder-report
+          path: reports/
+
+      - name: "5 · Publish report to the pr-finder/report branch"
+        run: |
+          BR="pr-finder/report"
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash before switching branches
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BR" || true
+          if git rev-parse --verify --quiet "origin/$BR"; then
+            git checkout -f -B "$BR" "origin/$BR"
+          else
+            git checkout -f -B "$BR"
+          fi
+          rm -rf reports && mkdir reports && cp -R "$RUNNER_TEMP/out/." reports/
+          git add -f reports
+          if git diff --cached --quiet; then
+            echo "No report changes for $BR."
+          else
+            git commit -m "PR Finder report (run ${{ github.run_id }})"
+            git push origin "$BR"
+            echo "Report pushed to branch: $BR"
+          fi
+
+      - name: "6 · Restore the default checkout"
+        # Step 5 switched the tree to pr-finder/report (which has no pr-finder/ action). The
+        # local `uses: ./pr-finder` runs a post-cleanup that re-resolves from the workspace,
+        # so put the run's commit back before the job's post phase.
+        if: always()
+        run: git checkout -f "${{ github.sha }}" 2>/dev/null || git checkout -f main

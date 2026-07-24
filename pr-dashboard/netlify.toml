@@ -1,0 +1,14 @@
+# Netlify config for the PR Finder dashboard (Pattern B: its own site, isolated from
+# fte-dashboard). In the Netlify UI, create a NEW site from this repo with:
+#   Base directory:   pr-dashboard
+#   Build command:    (leave empty — static, no build)
+#   Publish directory: pr-dashboard   (i.e. "." relative to the base)
+# Netlify reads THIS netlify.toml (inside the base dir), so it never touches the root one.
+[build]
+  publish = "."
+
+# Serve index.html for any path (the shell fetches the live report at runtime).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

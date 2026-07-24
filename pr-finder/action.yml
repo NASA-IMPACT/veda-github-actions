@@ -1,0 +1,110 @@
+name: "PR Finder"
+description: "Crawl each Objective's sub-issue tree (to 5 levels, cross-repo) on a GitHub Projects v2 board and report the PRs that close them (CSV + Markdown + USWDS HTML)."
+author: "NASA-IMPACT"
+branding:
+  icon: "git-pull-request"
+  color: "blue"
+
+# Import from another repo:
+#   - uses: NASA-IMPACT/veda-github-actions/pr-finder@v1
+#     with:
+#       project-url: https://github.com/orgs/YOUR-ORG/projects/5
+#       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+# It reads the board's Objective issues, walks each one's sub-issue hierarchy down to
+# `max-depth` levels (across repos/orgs, read-only), collects the PRs that CLOSE those
+# issues, and writes pr_finder.csv / pr_finder.md / pr_finder.html to `out-dir`.
+# Publishing/committing the result is left to the caller.
+inputs:
+  project-url:
+    description: "Projects v2 board URL, e.g. https://github.com/orgs/ORG/projects/5 or /users/USER/projects/2"
+    required: true
+  token:
+    description: "Token with Projects v2 + issue read access (classic PAT repo+read:org+project, fine-grained, or a GitHub App token)."
+    required: true
+  max-depth:
+    description: "How many sub-issue levels to crawl below each objective (0-5)."
+    required: false
+    default: "5"
+  max-api-calls:
+    description: "GraphQL request budget; if hit, the report is flagged `truncated` instead of failing."
+    required: false
+    default: "400"
+  only-objectives:
+    description: "Comma-separated objective title substrings to include (empty = all objectives on the board)."
+    required: false
+    default: ""
+  out-dir:
+    description: "Directory to write pr_finder.csv, pr_finder.md, pr_finder.html."
+    required: false
+    default: "reports"
+
+outputs:
+  report-dir:
+    description: "Directory containing the generated report files."
+    value: ${{ inputs.out-dir }}
+  objectives:
+    description: "Number of Objective tickets crawled."
+    value: ${{ steps.run.outputs.objectives }}
+  issues-crawled:
+    description: "Number of issues visited across all sub-issue trees."
+    value: ${{ steps.run.outputs.issues }}
+  prs-found:
+    description: "Number of distinct closing PRs found."
+    value: ${{ steps.run.outputs.prs }}
+  truncated:
+    description: "true if a depth/budget limit was hit before the crawl finished."
+    value: ${{ steps.run.outputs.truncated }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Set up Python 3.12"
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: "Parse project owner + number from project-url"
+      id: proj
+      shell: bash
+      run: |
+        URL="${{ inputs.project-url }}"
+        OWNER="$(printf '%s' "$URL" | sed -E 's#.*/(orgs|users)/([^/]+)/projects/.*#\2#')"
+        NUMBER="$(printf '%s' "$URL" | sed -E 's#.*/projects/([0-9]+).*#\1#')"
+        if [ -z "$OWNER" ] || [ -z "$NUMBER" ]; then
+          echo "::error::Could not parse owner/number from project-url '$URL' (expected .../orgs|users/<owner>/projects/<n>)."
+          exit 1
+        fi
+        echo "owner=$OWNER"   >> "$GITHUB_OUTPUT"
+        echo "number=$NUMBER" >> "$GITHUB_OUTPUT"
+        echo "Board: owner=$OWNER number=$NUMBER"
+
+    - name: "Crawl sub-issues + find closing PRs"
+      id: run
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}       # needs project + read:org + repo
+        GITHUB_TOKEN: ${{ inputs.token }}
+      run: |
+        if [ -z "${{ inputs.token }}" ]; then
+          echo "::error::'token' input is empty (needs Projects v2 + issue read: classic PAT repo+read:org+project, or an App token)."
+          exit 1
+        fi
+        python "${{ github.action_path }}/generate_pr_finder.py" \
+          --owner "${{ steps.proj.outputs.owner }}" \
+          --number "${{ steps.proj.outputs.number }}" \
+          --max-depth "${{ inputs.max-depth }}" \
+          --max-api-calls "${{ inputs.max-api-calls }}" \
+          --only-objectives "${{ inputs.only-objectives }}" \
+          --out-dir "${{ inputs.out-dir }}" \
+          --now "$(date -u +%FT%TZ)"
+
+        STATS="${{ inputs.out-dir }}/pr_finder_stats.json"
+        {
+          echo "objectives=$(jq -r '.objectives' "$STATS")"
+          echo "issues=$(jq -r '.issues_crawled' "$STATS")"
+          echo "prs=$(jq -r '.prs_found' "$STATS")"
+          echo "truncated=$(jq -r '.truncated' "$STATS")"
+        } >> "$GITHUB_OUTPUT"
+
+        echo "### PR Finder" >> "$GITHUB_STEP_SUMMARY"
+        cat "${{ inputs.out-dir }}/pr_finder.md" >> "$GITHUB_STEP_SUMMARY" || true
