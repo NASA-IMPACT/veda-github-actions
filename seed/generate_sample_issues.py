@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministically generate N varied "Objective" issues for the LOE POC.
+"""Deterministically generate N varied "Objective" issues for the FTE POC.
 
 PI and the objective window (Start/End) live on the PROJECT BOARD, not in the
 issue body. So each generated record has:
@@ -7,11 +7,11 @@ issue body. So each generated record has:
   - project: {pi, pi_start, pi_end, start, end}  -> used to set project fields
              and to drive offline report testing
 
-Writes loe-poc/sample_issues.json (schema: number,title,url,state,body,labels,
+Writes seed/sample_issues.json (schema: number,title,url,state,body,labels,
 project). Seeded for reproducibility so reports diff cleanly across runs.
 
 Variety: 2 real PIs (26.4 current, 27.2 next), 1-5 people/ticket, mixed roles &
-FTE, ~30% partial-window objectives, a few empty LOE tables, a few edge rows
+FTE, ~30% partial-window objectives, a few empty FTE tables, a few edge rows
 (invalid role / non-numeric FTE).
 """
 import argparse

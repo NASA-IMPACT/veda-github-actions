@@ -1,9 +1,9 @@
 {
-  "name": "loe-dashboard",
+  "name": "fte-dashboard",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Interactive LOE / FTE capacity dashboard for the disasters-aws-conversion project. Reads the latest capacity reports and lets PMs visualize and run what-if scenarios.",
+  "description": "Interactive FTE capacity dashboard for the disasters-aws-conversion project. Reads the latest capacity reports and lets PMs visualize and run what-if scenarios.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

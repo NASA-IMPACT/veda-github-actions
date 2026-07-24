@@ -1,9 +1,9 @@
-# Netlify build config for the LOE Capacity Dashboard (loe-dashboard/).
+# Netlify build config for the FTE Capacity Dashboard (fte-dashboard/).
 # Connect Netlify to this repo on the `main` branch — these settings drive the build.
 # The site is a static SPA that fetches report CSVs at runtime from the public
-# loe-report/all-pis branch (see loe-dashboard/src/data.ts). No env vars or secrets needed.
+# fte-report/all-pis branch (see fte-dashboard/src/data.ts). No env vars or secrets needed.
 [build]
-  base = "loe-dashboard"
+  base = "fte-dashboard"
   command = "npm run build"
   publish = "dist"
 

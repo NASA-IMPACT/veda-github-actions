@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Create real GitHub issues from loe-poc/sample_issues.json via the `gh` CLI.
+"""Create real GitHub issues from seed/sample_issues.json via the `gh` CLI.
 
 Each created issue is labeled so the whole batch is easy to find and clean up.
 Use --dry-run first to preview. Requires `gh` to be authenticated.
 
 Examples:
-  python loe-poc/create_issues.py --dry-run
-  python loe-poc/create_issues.py --limit 5
-  python loe-poc/create_issues.py               # create all
+  python seed/create_issues.py --dry-run
+  python seed/create_issues.py --limit 5
+  python seed/create_issues.py               # create all
 Cleanup:
   gh issue list --label poc-loe --state open --json number -q '.[].number' \\
     | xargs -I{} gh issue close {}

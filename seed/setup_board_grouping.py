@@ -8,10 +8,10 @@ script:
   1. Creates the three SINGLE_SELECT fields (idempotent — reuses a field if it already
      exists), with options taken from the demo assignment.
   2. Sets each demo item's value from the deterministic `project` block in
-     loe-poc/sample_issues.json. Mapping is by creation order:
+     seed/sample_issues.json. Mapping is by creation order:
      sample_issues.json[i] <-> created_issues.json[i] (issue 10+i), same as setup_project.py.
 
-Only the three board fields are touched — issue titles/bodies are left alone (so the LOE
+Only the three board fields are touched — issue titles/bodies are left alone (so the FTE
 tables / report numbers are unchanged). The grouping values are index-deterministic, so
 they're stable regardless of the sample's random draws.
 

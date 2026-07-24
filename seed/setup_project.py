@@ -7,7 +7,7 @@ For each issue (zipped by creation order: sample_issues.json[i] <-> created_issu
   3. gh project item-edit -> set Program Increment (single-select), Start Date, End Date
 
 Field IDs/options are discovered at runtime. Progress is persisted to
-loe-poc/project_items.json so the script is resumable/idempotent (already-wired
+seed/project_items.json so the script is resumable/idempotent (already-wired
 issues are skipped). Use --dry-run to preview and --limit N to do a batch.
 """
 import argparse

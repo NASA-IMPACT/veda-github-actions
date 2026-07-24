@@ -20,8 +20,8 @@ Options:
   --pi "PI 26.4"        only report this PI ("calculate by PI"); default = all
   --out-dir, --now
 
-Writes reports/loe_allocations.csv, loe_by_person.csv, loe_by_role.csv,
-loe_summary.md. Standard library only; deterministic ordering for clean diffs.
+Writes reports/fte_allocations.csv, fte_by_person.csv, fte_by_role.csv,
+fte_summary.md. Standard library only; deterministic ordering for clean diffs.
 """
 import argparse
 import csv
@@ -76,7 +76,7 @@ def is_open(state):
     return (state or "open").lower() == "open"
 
 
-# ---- body parsing (LOE table always; PI/dates only as a fallback) ----
+# ---- body parsing (FTE table always; PI/dates only as a fallback) ----
 
 def find_field(body, key):
     m = re.search(rf"^\s*[-*]?\s*{key}\s*:\s*(.+?)\s*$", body or "", re.IGNORECASE | re.MULTILINE)
@@ -109,10 +109,11 @@ def is_separator_row(cells):
     return any(cells) and all(re.fullmatch(r":?-{1,}:?", c or "") for c in cells)
 
 
-def extract_loe_rows(body):
+def extract_fte_rows(body):
     lines = (body or "").splitlines()
     start = next((i + 1 for i, ln in enumerate(lines)
-                  if re.match(r"^\s*#{1,6}\s*LOE\b", ln, re.IGNORECASE)), None)
+                  # Matches the issue-body section header, which stays "## LOE/FTE" in tickets.
+                  if re.match(r"^\s*#{1,6}\s*(?:LOE/)?FTE\b", ln, re.IGNORECASE)), None)
     if start is None:
         return None
     rows = []
@@ -281,7 +282,7 @@ def pi_fraction(obj_start, obj_end, pi_start, pi_end):
 
 
 def new_pi_bucket():
-    return {"window": "", "objectives": [], "allocations": [], "missing_loe": [], "partial": [],
+    return {"window": "", "objectives": [], "allocations": [], "missing_fte": [], "partial": [],
             "by_person": defaultdict(lambda: {"fte": 0.0, "wfte": 0.0, "issues": set(), "roles": set()}),
             "by_role": defaultdict(lambda: {"fte": 0.0, "wfte": 0.0, "people": set(), "count": 0})}
 
@@ -305,12 +306,12 @@ def build_report(issues, pi_filter=None):
         if frac < 1.0:
             b["partial"].append(iss)
 
-        rows = extract_loe_rows(iss["body"])
+        rows = extract_fte_rows(iss["body"])
         allocs, warns = parse_table(rows) if rows is not None else ([], [])
         for w in warns:
             warnings.append(f"#{iss['number']} ({pi_id}): {w}")
         if not allocs:
-            b["missing_loe"].append(iss)
+            b["missing_fte"].append(iss)
             continue
         for a in allocs:
             wfte = r2(a["fte"] * frac)
@@ -339,7 +340,7 @@ def d2s(d):
 
 
 def write_csvs(rep, out_dir):
-    with open(os.path.join(out_dir, "loe_allocations.csv"), "w", newline="", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "fte_allocations.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "pi_window", "issue_number", "issue_title", "issue_url",
                     "project", "initiative", "team",
@@ -352,7 +353,7 @@ def write_csvs(rep, out_dir):
                             a["person"], a["role"], r2(a["fte"]),
                             d2s(a["obj_start"]), d2s(a["obj_end"]), r2(a["fraction"]), r2(a["wfte"])])
 
-    with open(os.path.join(out_dir, "loe_by_person.csv"), "w", newline="", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "fte_by_person.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "person", "total_fte", "weighted_fte", "num_objectives", "roles", "over_allocated"])
         for pi_id, b in rep["pis"]:
@@ -362,7 +363,7 @@ def write_csvs(rep, out_dir):
                 w.writerow([pi_id, person, r2(d["fte"]), r2(d["wfte"]), len(d["issues"]), roles,
                             str(d["fte"] > OVER_ALLOCATION_THRESHOLD).lower()])
 
-    with open(os.path.join(out_dir, "loe_by_role.csv"), "w", newline="", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, "fte_by_role.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "role", "total_fte", "weighted_fte", "num_people", "num_allocations"])
         for pi_id, b in rep["pis"]:
@@ -373,19 +374,19 @@ def write_csvs(rep, out_dir):
 
 def render_summary(rep, now):
     total_fte = sum(a["fte"] for _, b in rep["pis"] for a in b["allocations"])
-    missing = sum(len(b["missing_loe"]) for _, b in rep["pis"])
+    missing = sum(len(b["missing_fte"]) for _, b in rep["pis"])
     partial = sum(len(b["partial"]) for _, b in rep["pis"])
     over_pairs = sum(len(over(b)) for _, b in rep["pis"])
 
     scope = f" — PI filter: {rep['pi_filter']}" if rep.get("pi_filter") else ""
-    L = ["# LOE / FTE Capacity Report" + scope, "", f"_Generated: {now}_",
+    L = ["# FTE Capacity Report" + scope, "", f"_Generated: {now}_",
          "_Raw FTE summed per person **per PI**; > 1.0 = over-allocated. "
          "Weighted FTE adjusts for objectives that cover only part of the PI._", ""]
     L += ["## Headline",
           f"- **Open Objective tickets:** {len(rep['objectives'])}",
           f"- **Program Increments (PIs):** {len(rep['pis'])}",
           f"- **Partial-window objectives:** {partial}",
-          f"- **Missing / empty LOE:** {missing}",
+          f"- **Missing / empty FTE:** {missing}",
           f"- **Total allocated FTE (raw):** {r2(total_fte)}",
           f"- **Over-allocated (person, PI) pairs:** {over_pairs}", ""]
 
@@ -396,7 +397,7 @@ def render_summary(rep, now):
         L += [f"## {pi_id}{window}",
               f"- Objectives: {len(b['objectives'])} | People: {len(b['by_person'])} "
               f"| Raw FTE: {r2(pi_raw)} | Weighted FTE: {r2(pi_w)} "
-              f"| Partial: {len(b['partial'])} | Missing LOE: {len(b['missing_loe'])}", ""]
+              f"| Partial: {len(b['partial'])} | Missing FTE: {len(b['missing_fte'])}", ""]
         ov = over(b)
         L.append("**Over-allocated this PI:** " +
                  (", ".join(f"{p} ({r2(f)})" for p, f in ov) if ov else "_none_"))
@@ -426,7 +427,7 @@ def render_summary(rep, now):
             n = iss["number"]
             link = f"[#{n}]({iss['url']})" if iss.get("url") else f"#{n}"
             e = per_obj.get(n)
-            extra = f"{len(e['people'])} ppl · {r2(e['fte'])} FTE" if e else "⚠️ no LOE table"
+            extra = f"{len(e['people'])} ppl · {r2(e['fte'])} FTE" if e else "⚠️ no FTE table"
             L.append(f"- {link} — {iss['title']} — {extra}")
         L.append("")
 
@@ -452,7 +453,7 @@ def main():
     os.makedirs(args.out_dir, exist_ok=True)
     write_csvs(rep, args.out_dir)
     summary = render_summary(rep, args.now)
-    with open(os.path.join(args.out_dir, "loe_summary.md"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(args.out_dir, "fte_summary.md"), "w", encoding="utf-8") as fh:
         fh.write(summary + "\n")
     print(summary)
 

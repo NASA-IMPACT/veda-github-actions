@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Close or DELETE the POC demo issues created by create_issues.py.
 
-Tracks the exact issues via loe-poc/created_issues.json (written at creation
+Tracks the exact issues via seed/created_issues.json (written at creation
 time); can also target every issue carrying the `poc-loe` label as a fallback.
 Safe by default: prints what it would do unless --close or --delete is given.
 
 Examples:
-  python loe-poc/cleanup_issues.py                 # dry-run: list tracked issues
-  python loe-poc/cleanup_issues.py --by-label      # dry-run against poc-loe label
-  python loe-poc/cleanup_issues.py --close         # close the tracked issues
-  python loe-poc/cleanup_issues.py --delete        # permanently delete them
+  python seed/cleanup_issues.py                 # dry-run: list tracked issues
+  python seed/cleanup_issues.py --by-label      # dry-run against poc-loe label
+  python seed/cleanup_issues.py --close         # close the tracked issues
+  python seed/cleanup_issues.py --delete        # permanently delete them
 """
 import argparse
 import json

@@ -1,18 +1,18 @@
-# LOE / FTE Capacity Report
+# FTE Capacity Report
 
-_Generated: 2026-07-23T23:44:30Z_
+_Generated: 2026-07-24T01:51:55Z_
 _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adjusts for objectives that cover only part of the PI._
 
 ## Headline
 - **Open Objective tickets:** 50
 - **Program Increments (PIs):** 2
 - **Partial-window objectives:** 12
-- **Missing / empty LOE:** 4
+- **Missing / empty FTE:** 4
 - **Total allocated FTE (raw):** 66.9
 - **Over-allocated (person, PI) pairs:** 28
 
 ## PI 26.4 — 2026-07-12 to 2026-10-17
-- Objectives: 31 | People: 16 | Raw FTE: 41.5 | Weighted FTE: 36.21 | Partial: 9 | Missing LOE: 2
+- Objectives: 31 | People: 16 | Raw FTE: 41.5 | Weighted FTE: 36.21 | Partial: 9 | Missing FTE: 2
 
 **Over-allocated this PI:** Nadia Hassan (4.7), Bob Martinez (4.05), Alice Nguyen (3.75), Taylor Brooks (3.4), Devon Lee (3.35), Carla Diaz (3.15), Liam Walsh (2.4), Owen Clark (2.4), Priya Patel (2.25), Sam Okoro (2.0), Sofia Rossi (1.8), Elena Petrova (1.8), Yuki Tanaka (1.75), Morgan Reyes (1.7), Jordan Kim (1.55), Rae Thompson (1.45)
 
@@ -55,7 +55,7 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#5](https://github.com/NASA-IMPACT/veda-github-actions/issues/5) — [Backend]-[Objective 5]: CSDA catalog automation — 4 ppl · 1.85 FTE
 - [#6](https://github.com/NASA-IMPACT/veda-github-actions/issues/6) — [Jupyterhub]-[Objective 6]: Stakeholder reporting portal — 3 ppl · 1.4 FTE
 - [#7](https://github.com/NASA-IMPACT/veda-github-actions/issues/7) — [Jupyterhub]-[Objective 7]: Notebook environment upgrade — 5 ppl · 3.35 FTE
-- [#8](https://github.com/NASA-IMPACT/veda-github-actions/issues/8) — [Jupyterhub]-[Objective 8]: Reprojection service scaling — ⚠️ no LOE table
+- [#8](https://github.com/NASA-IMPACT/veda-github-actions/issues/8) — [Jupyterhub]-[Objective 8]: Reprojection service scaling — ⚠️ no FTE table
 - [#9](https://github.com/NASA-IMPACT/veda-github-actions/issues/9) — [PM]-[Objective 9]: Auth & access control — 4 ppl · 1.6 FTE
 - [#10](https://github.com/NASA-IMPACT/veda-github-actions/issues/10) — [Frontend]-[Objective 10]: Data QA automation — 1 ppl · 0.25 FTE
 - [#11](https://github.com/NASA-IMPACT/veda-github-actions/issues/11) — [Designer]-[Objective 11]: Tile server migration — 2 ppl · 0.9 FTE
@@ -68,7 +68,7 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#18](https://github.com/NASA-IMPACT/veda-github-actions/issues/18) — [Geospatial]-[Objective 18]: STAC catalog buildout — 2 ppl · 1.15 FTE
 - [#19](https://github.com/NASA-IMPACT/veda-github-actions/issues/19) — [Geospatial]-[Objective 19]: Imagery mosaicking — 1 ppl · 0.8 FTE
 - [#20](https://github.com/NASA-IMPACT/veda-github-actions/issues/20) — [Frontend]-[Objective 20]: Latency profiling — 1 ppl · 0.25 FTE
-- [#21](https://github.com/NASA-IMPACT/veda-github-actions/issues/21) — [ML]-[Objective 21]: Nodata standardization — ⚠️ no LOE table
+- [#21](https://github.com/NASA-IMPACT/veda-github-actions/issues/21) — [ML]-[Objective 21]: Nodata standardization — ⚠️ no FTE table
 - [#22](https://github.com/NASA-IMPACT/veda-github-actions/issues/22) — [Designer]-[Objective 22]: Hurricane track ingestion — 4 ppl · 2.55 FTE
 - [#23](https://github.com/NASA-IMPACT/veda-github-actions/issues/23) — [Designer]-[Objective 23]: Access log analytics — 1 ppl · 0.5 FTE
 - [#24](https://github.com/NASA-IMPACT/veda-github-actions/issues/24) — [PM]-[Objective 24]: Model retraining harness — 5 ppl · 2.8 FTE
@@ -81,7 +81,7 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#31](https://github.com/NASA-IMPACT/veda-github-actions/issues/31) — [Data Curator]-[Objective 31]: COG pipeline hardening — 4 ppl · 2.4 FTE
 
 ## PI 27.2 — 2026-10-18 to 2027-01-16
-- Objectives: 19 | People: 16 | Raw FTE: 25.4 | Weighted FTE: 23.81 | Partial: 3 | Missing LOE: 2
+- Objectives: 19 | People: 16 | Raw FTE: 25.4 | Weighted FTE: 23.81 | Partial: 3 | Missing FTE: 2
 
 **Over-allocated this PI:** Morgan Reyes (3.25), Elena Petrova (2.7), Bob Martinez (2.2), Nadia Hassan (2.05), Taylor Brooks (2.05), Sofia Rossi (1.9), Alice Nguyen (1.75), Priya Patel (1.7), Sam Okoro (1.55), Liam Walsh (1.5), Carla Diaz (1.4), Devon Lee (1.2)
 
@@ -122,7 +122,7 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#34](https://github.com/NASA-IMPACT/veda-github-actions/issues/34) — [Backend]-[Objective 34]: Flood extent model — 1 ppl · 0.5 FTE
 - [#35](https://github.com/NASA-IMPACT/veda-github-actions/issues/35) — [ML]-[Objective 35]: CSDA catalog automation — 2 ppl · 0.8 FTE
 - [#36](https://github.com/NASA-IMPACT/veda-github-actions/issues/36) — [PM]-[Objective 36]: Stakeholder reporting portal — 2 ppl · 0.9 FTE
-- [#37](https://github.com/NASA-IMPACT/veda-github-actions/issues/37) — [Geospatial]-[Objective 37]: Notebook environment upgrade — ⚠️ no LOE table
+- [#37](https://github.com/NASA-IMPACT/veda-github-actions/issues/37) — [Geospatial]-[Objective 37]: Notebook environment upgrade — ⚠️ no FTE table
 - [#38](https://github.com/NASA-IMPACT/veda-github-actions/issues/38) — [Geospatial]-[Objective 38]: Reprojection service scaling — 3 ppl · 1.7 FTE
 - [#39](https://github.com/NASA-IMPACT/veda-github-actions/issues/39) — [ML]-[Objective 39]: Auth & access control — 5 ppl · 3.0 FTE
 - [#40](https://github.com/NASA-IMPACT/veda-github-actions/issues/40) — [ML]-[Objective 40]: Data QA automation — 5 ppl · 2.1 FTE
@@ -131,7 +131,7 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#43](https://github.com/NASA-IMPACT/veda-github-actions/issues/43) — [ML]-[Objective 43]: Alerting pipeline — 1 ppl · 0.4 FTE
 - [#44](https://github.com/NASA-IMPACT/veda-github-actions/issues/44) — [Geospatial]-[Objective 44]: Cloud cost monitoring — 5 ppl · 2.4 FTE
 - [#45](https://github.com/NASA-IMPACT/veda-github-actions/issues/45) — [Comms]-[Objective 45]: Wildfire severity model — 3 ppl · 0.45 FTE
-- [#46](https://github.com/NASA-IMPACT/veda-github-actions/issues/46) — [Geospatial]-[Objective 46]: Public API documentation — ⚠️ no LOE table
+- [#46](https://github.com/NASA-IMPACT/veda-github-actions/issues/46) — [Geospatial]-[Objective 46]: Public API documentation — ⚠️ no FTE table
 - [#47](https://github.com/NASA-IMPACT/veda-github-actions/issues/47) — [Designer]-[Objective 47]: Onboarding revamp — 1 ppl · 0.6 FTE
 - [#48](https://github.com/NASA-IMPACT/veda-github-actions/issues/48) — [Geospatial]-[Objective 48]: STAC catalog buildout — 4 ppl · 1.2 FTE
 - [#49](https://github.com/NASA-IMPACT/veda-github-actions/issues/49) — [Backend]-[Objective 49]: Imagery mosaicking — 5 ppl · 3.8 FTE

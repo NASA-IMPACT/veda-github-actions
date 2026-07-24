@@ -1,6 +1,6 @@
-// Data models mirroring the columns emitted by .github/scripts/generate_loe_report.py.
+// Data models mirroring the columns emitted by .github/scripts/generate_fte_report.py.
 
-/** One row of loe_allocations.csv — the atomic unit and the what-if edit surface. */
+/** One row of fte_allocations.csv — the atomic unit and the what-if edit surface. */
 export interface Allocation {
   /** Stable client id (does not come from CSV); used as React key + edit target. */
   id: string;
@@ -31,7 +31,7 @@ export interface Allocation {
   weighted_fte: number;
 }
 
-/** One row of loe_by_person.csv (also the shape produced by computePersonAggs). */
+/** One row of fte_by_person.csv (also the shape produced by computePersonAggs). */
 export interface PersonAgg {
   pi: string;
   person: string;
@@ -42,7 +42,7 @@ export interface PersonAgg {
   over_allocated: boolean;
 }
 
-/** One row of loe_by_role.csv (also the shape produced by computeRoleAggs). */
+/** One row of fte_by_role.csv (also the shape produced by computeRoleAggs). */
 export interface RoleAgg {
   pi: string;
   role: string;
@@ -52,11 +52,11 @@ export interface RoleAgg {
   num_allocations: number;
 }
 
-/** Headline stats parsed from loe_summary.md (report context, not recomputed live). */
+/** Headline stats parsed from fte_summary.md (report context, not recomputed live). */
 export interface ReportContext {
   generatedAt: string | null;
   openObjectives: number | null;
-  missingLoe: number | null;
+  missingFte: number | null;
   partialWindow: number | null;
 }
 

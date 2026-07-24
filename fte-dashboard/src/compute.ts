@@ -1,5 +1,5 @@
 // What-if recompute engine. Mirrors the aggregation in
-// .github/scripts/generate_loe_report.py so the browser reproduces the Python
+// .github/scripts/generate_fte_report.py so the browser reproduces the Python
 // generator's numbers exactly from the atomic allocation rows.
 import type { Allocation, PersonAgg, RoleAgg } from "./types";
 

@@ -1,4 +1,4 @@
-# LOE capacity report — seed & data model
+# FTE capacity report — seed & data model
 
 The first test module. Reports team staffing capacity from **Objective** issues + a
 **Projects v2** board. FTE is summed per person **per Program Increment (PI)**; > 1.0 =
@@ -25,11 +25,11 @@ Tracking files (`created_issues.json`, `project_items.json`) stay in `seed/`. Bo
 project **`kyle-lesinger/projects/2`** (isolated from the org project list).
 
 ## Generator + workflow
-`.github/scripts/generate_loe_report.py` (stdlib) accepts `--project-json` (board JSON),
+`.github/scripts/generate_fte_report.py` (stdlib) accepts `--project-json` (board JSON),
 `--issues-json` (offline sample), or `--from-dir`; `--pi "PI 26.4"` filters. It emits
-`loe_allocations.csv` (with `project,initiative,team`), `loe_by_person.csv`, `loe_by_role.csv`,
-and `loe_summary.md`. The workflow `loe-report.yml` runs it against the board and publishes to
-`loe-report/<pi>` (+ artifact + run summary). Adding a board field ⇒ no code change: the parser
+`fte_allocations.csv` (with `project,initiative,team`), `fte_by_person.csv`, `fte_by_role.csv`,
+and `fte_summary.md`. The workflow `fte-report.yml` runs it against the board and publishes to
+`fte-report/<pi>` (+ artifact + run summary). Adding a board field ⇒ no code change: the parser
 reads any field generically via `_item_field(it, "<name>")`.
 
 ## Reconciliation invariant (tested)
@@ -42,7 +42,7 @@ Project / Team is **deterministic** (seeded + index-based) so reports diff clean
   `GITHUB_TOKEN` cannot read Projects v2. `unknown owner type` from `gh project` ⇒ missing `read:org`.
 - **GraphQL rate limit is 5,000/hr** — a full reseed makes 150+ board mutations; space them out or
   you'll get throttled (the Action's board read will then fail until the hour resets).
-- Dashboard reads the **public** `loe-report/all-pis` branch at runtime (`loe-dashboard/src/data.ts`
+- Dashboard reads the **public** `fte-report/all-pis` branch at runtime (`fte-dashboard/src/data.ts`
   `RAW_BASE`), with the bundled `public/data/` snapshot as fallback.
 
 Full dashboard internals: source repo `Disasters-Learning-Portal/disasters-aws-conversion`, PR #74.

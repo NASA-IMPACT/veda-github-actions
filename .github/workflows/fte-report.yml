@@ -1,10 +1,10 @@
-name: LOE Capacity Report
+name: FTE Capacity Report
 
-# VEDA GitHub Actions test station — LOE PI-change seed.
+# VEDA GitHub Actions test station — FTE PI-change seed.
 # Reads the test project board, joins each Objective issue's LOE/FTE table (issue body)
 # with its Program Increment + Start/End dates (board fields), and writes a per-PI capacity
-# report to a `loe-report/<pi>` branch (+ run summary + artifact). The public Netlify
-# dashboard reads `loe-report/all-pis` at runtime.
+# report to a `fte-report/<pi>` branch (+ run summary + artifact). The public Netlify
+# dashboard reads `fte-report/all-pis` at runtime.
 #
 # Board data lives in a Projects v2 board the default GITHUB_TOKEN cannot read, so this uses a
 # classic PAT (scopes: repo + read:org + project) stored as the repo secret PROJECT_TOKEN_FOR_BOARD_READS.
@@ -38,8 +38,8 @@ env:
   # DASHBOARD_URL: ""    # set once the Netlify site is connected; add it to the PR body below
 
 jobs:
-  loe-report:
-    name: Build LOE capacity report
+  fte-report:
+    name: Build FTE capacity report
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}   # for `gh project` (needs project + read:org)
@@ -64,8 +64,8 @@ jobs:
           echo "pi=$PI_INPUT"                >> "$GITHUB_OUTPUT"
           echo "label=$LABEL"                >> "$GITHUB_OUTPUT"
           echo "slug=$SLUG"                  >> "$GITHUB_OUTPUT"
-          echo "branch=loe-report/$SLUG"     >> "$GITHUB_OUTPUT"
-          echo "Event: $GITHUB_EVENT_NAME | PI: '$LABEL' | target branch: loe-report/$SLUG"
+          echo "branch=fte-report/$SLUG"     >> "$GITHUB_OUTPUT"
+          echo "Event: $GITHUB_EVENT_NAME | PI: '$LABEL' | target branch: fte-report/$SLUG"
 
       - name: "4 · Verify PROJECT_TOKEN_FOR_BOARD_READS is present"
         run: |
@@ -87,10 +87,10 @@ jobs:
                  | "  #\(.content.number)  [\(.["program Increment"] // "no PI")]  \(.content.title)"' items.json
           echo "Objective tickets: $(jq '[.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))] | length' items.json)"
 
-      - name: "7 · Generate LOE capacity report (per PI, raw + weighted FTE)"
+      - name: "7 · Generate FTE capacity report (per PI, raw + weighted FTE)"
         run: |
           echo "PI filter: '${{ steps.cfg.outputs.label }}'"
-          python .github/scripts/generate_loe_report.py \
+          python .github/scripts/generate_fte_report.py \
             --project-json items.json \
             --pi "${{ steps.cfg.outputs.pi }}" \
             --out-dir reports \
@@ -98,7 +98,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash for the branch step
 
       - name: "8 · Publish report to the run summary"
-        run: cat reports/loe_summary.md >> "$GITHUB_STEP_SUMMARY"
+        run: cat reports/fte_summary.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: "9 · Commit report to the per-PI branch"
         run: |
@@ -119,7 +119,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No report changes for $BR."
           else
-            git commit -m "LOE report — ${{ steps.cfg.outputs.label }} (run ${{ github.run_id }})"
+            git commit -m "FTE report — ${{ steps.cfg.outputs.label }} (run ${{ github.run_id }})"
             git push origin "$BR"
             echo "Report pushed to branch: $BR"
           fi
@@ -127,7 +127,7 @@ jobs:
       - name: "10 · Upload report as build artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: loe-report-${{ steps.cfg.outputs.slug }}
+          name: fte-report-${{ steps.cfg.outputs.slug }}
           path: reports/
 
       - name: "11 · Open/refresh the living PR to main"
@@ -143,9 +143,9 @@ jobs:
           if [ -n "$existing" ]; then
             echo "PR #$existing already open for $BR — new commits refresh it automatically."
           else
-            body="$(printf 'Automated LOE/FTE capacity report for **%s** (run %s).\n\n📋 **Project board:** %s\n\nReport files are in `reports/` on this branch. The public dashboard reads `loe-report/all-pis` live. Merge to snapshot this report into `main`, or leave open as a living view.' "${{ steps.cfg.outputs.label }}" "${{ github.run_id }}" "$BOARD_URL")"
+            body="$(printf 'Automated LOE/FTE capacity report for **%s** (run %s).\n\n📋 **Project board:** %s\n\nReport files are in `reports/` on this branch. The public dashboard reads `fte-report/all-pis` live. Merge to snapshot this report into `main`, or leave open as a living view.' "${{ steps.cfg.outputs.label }}" "${{ github.run_id }}" "$BOARD_URL")"
             gh pr create --head "$BR" --base main \
-              --title "LOE report — ${{ steps.cfg.outputs.label }}" \
+              --title "FTE report — ${{ steps.cfg.outputs.label }}" \
               --body "$body"
             echo "Opened a PR from $BR to main."
           fi

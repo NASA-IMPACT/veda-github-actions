@@ -29,7 +29,7 @@ export default function Header({
   return (
     <header className="topbar">
       <div>
-        <h1>LOE / FTE Capacity Dashboard</h1>
+        <h1>FTE Capacity Dashboard</h1>
         <div className="sub">
           Raw FTE summed per person per PI; <strong>&gt; 1.0 = over-allocated</strong>. Weighted FTE adjusts for
           objectives that cover only part of the PI.
@@ -37,7 +37,7 @@ export default function Header({
       </div>
       <div className="spacer" />
       <div className="controls">
-        <span className={`badge ${source}`} title={source === "live" ? "Fetched from the loe-report/all-pis branch" : "Using the snapshot bundled with the site"}>
+        <span className={`badge ${source}`} title={source === "live" ? "Fetched from the fte-report/all-pis branch" : "Using the snapshot bundled with the site"}>
           {source === "live" ? "● live" : "● snapshot"}
         </span>
         {generatedAt && <span className="badge" title="Report generation time">as of {generatedAt}</span>}

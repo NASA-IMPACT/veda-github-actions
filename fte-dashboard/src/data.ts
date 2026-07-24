@@ -1,20 +1,20 @@
-// Loads the latest LOE report data.
+// Loads the latest FTE report data.
 //
-// Primary source: the public `loe-report/all-pis` branch on GitHub (raw URLs), which
+// Primary source: the public `fte-report/all-pis` branch on GitHub (raw URLs), which
 // always holds the newest "All PIs" report. If that branch/file is unavailable (e.g. it
 // has not been seeded yet, or offline), fall back to the snapshot bundled in public/data/.
 import Papa from "papaparse";
 import type { Allocation, Dataset, PersonAgg, ReportContext, RoleAgg } from "./types";
 
 const RAW_BASE =
-  "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/loe-report/all-pis/reports";
+  "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/fte-report/all-pis/reports";
 const LOCAL_BASE = "data"; // resolved against the site root -> public/data/
 
 const FILES = {
-  allocations: "loe_allocations.csv",
-  persons: "loe_by_person.csv",
-  roles: "loe_by_role.csv",
-  summary: "loe_summary.md",
+  allocations: "fte_allocations.csv",
+  persons: "fte_by_person.csv",
+  roles: "fte_by_role.csv",
+  summary: "fte_summary.md",
 } as const;
 
 async function fetchText(base: string, file: string): Promise<string> {
@@ -85,7 +85,7 @@ function parseSummary(md: string): ReportContext {
   return {
     generatedAt: gen ? gen[1].trim() : null,
     openObjectives: num(/Open Objective tickets:\*\*\s*(\d+)/),
-    missingLoe: num(/Missing \/ empty LOE:\*\*\s*(\d+)/),
+    missingFte: num(/Missing \/ empty FTE:\*\*\s*(\d+)/),
     partialWindow: num(/Partial-window objectives:\*\*\s*(\d+)/),
   };
 }
