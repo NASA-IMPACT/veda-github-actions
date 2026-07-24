@@ -29,10 +29,13 @@ on:
 
 permissions:
   contents: write        # push the report to the per-PI branch
+  pull-requests: write   # open/refresh the living PR to main
 
 env:
   POC_PROJECT_OWNER: kyle-lesinger
   POC_PROJECT_NUMBER: '2'
+  BOARD_URL: "https://github.com/users/kyle-lesinger/projects/2"
+  # DASHBOARD_URL: ""    # set once the Netlify site is connected; add it to the PR body below
 
 jobs:
   loe-report:
@@ -126,3 +129,23 @@ jobs:
         with:
           name: loe-report-${{ steps.cfg.outputs.slug }}
           path: reports/
+
+      - name: "11 · Open/refresh the living PR to main"
+        run: |
+          BR="${{ steps.cfg.outputs.branch }}"
+          git fetch origin main "$BR" --quiet || true
+          # Only PR when the per-PI branch has report commits ahead of main.
+          if [ "$(git rev-list --count "origin/main..origin/$BR" 2>/dev/null || echo 0)" = "0" ]; then
+            echo "$BR has no commits ahead of main — nothing to PR."
+            exit 0
+          fi
+          existing="$(gh pr list --head "$BR" --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            echo "PR #$existing already open for $BR — new commits refresh it automatically."
+          else
+            body="$(printf 'Automated LOE/FTE capacity report for **%s** (run %s).\n\n📋 **Project board:** %s\n\nReport files are in `reports/` on this branch. The public dashboard reads `loe-report/all-pis` live. Merge to snapshot this report into `main`, or leave open as a living view.' "${{ steps.cfg.outputs.label }}" "${{ github.run_id }}" "$BOARD_URL")"
+            gh pr create --head "$BR" --base main \
+              --title "LOE report — ${{ steps.cfg.outputs.label }}" \
+              --body "$body"
+            echo "Opened a PR from $BR to main."
+          fi
