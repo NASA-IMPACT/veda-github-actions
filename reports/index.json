@@ -1,5 +1,18 @@
 [
   {
+    "slug": "pi-26.4",
+    "pi": "PI 26.4",
+    "sprint": "",
+    "generated": "2026-07-24T15:23:58Z",
+    "board_title": "IMPACT Project Board",
+    "files": {
+      "csv": "pr_finder_pi-26.4.csv",
+      "md": "pr_finder_pi-26.4.md",
+      "html": "pr_finder_pi-26.4.html",
+      "stats": "pr_finder_pi-26.4_stats.json"
+    }
+  },
+  {
     "slug": "pi-26.3",
     "pi": "PI 26.3",
     "sprint": "",
