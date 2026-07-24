@@ -38,7 +38,7 @@ rounded per-allocation, so it reconciles to the cent). Sample assignment of PI /
 Project / Team is **deterministic** (seeded + index-based) so reports diff cleanly across runs.
 
 ## Gotchas
-- **`PROJECT_TOKEN`** (repo secret) = **classic PAT** `repo` + `read:org` + `project`. The default
+- **`PROJECT_TOKEN_FOR_BOARD_READS`** (repo secret) = **classic PAT** `repo` + `read:org` + `project`. The default
   `GITHUB_TOKEN` cannot read Projects v2. `unknown owner type` from `gh project` ⇒ missing `read:org`.
 - **GraphQL rate limit is 5,000/hr** — a full reseed makes 150+ board mutations; space them out or
   you'll get throttled (the Action's board read will then fail until the hour resets).

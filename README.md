@@ -38,7 +38,7 @@ python seed/setup_board_grouping.py       # set Project / Initiative / Team
 ```
 Then add the token secret and run the Action:
 ```bash
-gh secret set PROJECT_TOKEN --repo NASA-IMPACT/veda-github-actions   # classic PAT: repo+read:org+project
+gh secret set PROJECT_TOKEN_FOR_BOARD_READS --repo NASA-IMPACT/veda-github-actions   # classic PAT: repo+read:org+project
 gh workflow run loe-report.yml -f pi="All PIs"
 ```
 
