@@ -8,11 +8,37 @@ diff. Intentionally open — it will grow to host other VEDA Actions experiments
 > ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
 > 📊 **Dashboard:** _Netlify — add the URL here once the site is connected._
 
+## Use this action in another repo
+The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
+it at a Projects v2 board and give it a project-read token. Only **two required inputs**; the repo,
+owner, and project number are derived:
+
+```yaml
+# .github/workflows/fte.yml in the consuming repo
+jobs:
+  fte:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: NASA-IMPACT/veda-github-actions@v1
+        id: report
+        with:
+          project-url: https://github.com/orgs/YOUR-ORG/projects/5   # your board
+          token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}        # PAT: repo+read:org+project (or an App token)
+          # pi: "PI 27.2"        # optional — default is all PIs
+      # report CSVs + summary are now in ${{ steps.report.outputs.report-dir }} (default: reports/)
+```
+
+The action reads the board, joins each Objective's `## LOE/FTE` table with its PI/dates, and writes
+`fte_allocations.csv` (+ `by_person`, `by_role`, `fte_summary.md`). **Publishing the result is the
+caller's choice** — this repo's own [`fte-report.yml`](.github/workflows/fte-report.yml) dogfoods the
+action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a living PR.
+
 ## What's here
 | Path | Role |
 |---|---|
-| `.github/workflows/fte-report.yml` | the Action: read the board → join each Objective's FTE table with its PI/dates → write a per-PI report to `fte-report/<pi>` (+ artifact + run summary) |
-| `.github/scripts/generate_fte_report.py` | the generator (Python **stdlib only**) |
+| `action.yml` | **the reusable action** (composite): board → report files. Minimal inputs (`project-url`, `token`). |
+| `.github/workflows/fte-report.yml` | thin self-consumer of the action (`uses: ./`) that publishes to `fte-report/<pi>` (+ artifact + PR) |
+| `.github/scripts/generate_fte_report.py` | the generator the action runs (Python **stdlib only**) |
 | `seed/` | recreate the demo: sample issues → real issues → board fields → populate |
 | `fte-dashboard/` | React SPA (Netlify) — Capacity Matrix + what-if editor |
 | `docs/FTE_SEED.md` | data model, board fields, gotchas |

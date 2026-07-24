@@ -1,13 +1,14 @@
 name: FTE Capacity Report
 
-# VEDA GitHub Actions test station — FTE PI-change seed.
-# Reads the test project board, joins each Objective issue's LOE/FTE table (issue body)
-# with its Program Increment + Start/End dates (board fields), and writes a per-PI capacity
-# report to a `fte-report/<pi>` branch (+ run summary + artifact). The public Netlify
-# dashboard reads `fte-report/all-pis` at runtime.
+# VEDA GitHub Actions test station — this workflow DOGFOODS the reusable action in `action.yml`
+# (the same way another repo would import it), then publishes the result to a `fte-report/<pi>`
+# branch + opens a living PR. The public Netlify dashboard reads `fte-report/all-pis` at runtime.
 #
-# Board data lives in a Projects v2 board the default GITHUB_TOKEN cannot read, so this uses a
-# classic PAT (scopes: repo + read:org + project) stored as the repo secret PROJECT_TOKEN_FOR_BOARD_READS.
+# Another repo would use just:
+#   - uses: NASA-IMPACT/veda-github-actions@v1
+#     with:
+#       project-url: https://github.com/orgs/THEIR-ORG/projects/5
+#       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
 on:
   workflow_dispatch:
     inputs:
@@ -19,11 +20,12 @@ on:
         options:
           - 'All PIs'
           - 'PI 26.4'
+          - 'PI 27.1'
           - 'PI 27.2'
   schedule:
     - cron: '0 13 * * 1'   # Mondays 13:00 UTC
-  # Optional test hook: re-run when an Objective issue changes. Left OFF by default so the
-  # 50-issue seed run doesn't trigger a run-storm; uncomment to exercise issue-driven runs.
+  # Optional test hook: re-run when an Objective issue changes. Left OFF by default so a seed
+  # run doesn't trigger a run-storm; uncomment to exercise issue-driven runs.
   # issues:
   #   types: [opened, edited, closed, reopened]
 
@@ -32,29 +34,20 @@ permissions:
   pull-requests: write   # open/refresh the living PR to main
 
 env:
-  POC_PROJECT_OWNER: kyle-lesinger
-  POC_PROJECT_NUMBER: '2'
+  # This station's own board. A consuming repo would point this at THEIR project instead.
   BOARD_URL: "https://github.com/users/kyle-lesinger/projects/2"
-  # DASHBOARD_URL: ""    # set once the Netlify site is connected; add it to the PR body below
 
 jobs:
   fte-report:
     name: Build FTE capacity report
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}   # for `gh project` (needs project + read:org)
     steps:
       - name: "1 · Checkout repository"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0   # full history so per-PI branches can be based/pushed
 
-      - name: "2 · Set up Python 3.12"
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: "3 · Resolve PI filter + target branch"
+      - name: "2 · Resolve PI filter + target branch"
         id: cfg
         run: |
           PI_INPUT="${{ github.event.inputs.pi }}"
@@ -67,47 +60,21 @@ jobs:
           echo "branch=fte-report/$SLUG"     >> "$GITHUB_OUTPUT"
           echo "Event: $GITHUB_EVENT_NAME | PI: '$LABEL' | target branch: fte-report/$SLUG"
 
-      - name: "4 · Verify PROJECT_TOKEN_FOR_BOARD_READS is present"
-        run: |
-          if [ -z "${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}" ]; then
-            echo "::error::PROJECT_TOKEN_FOR_BOARD_READS secret not set (classic PAT: repo + read:org + project)."
-            exit 1
-          fi
-          echo "PROJECT_TOKEN_FOR_BOARD_READS present."
+      - name: "3 · Generate the report (reusable action — same import a consumer would use)"
+        uses: ./
+        with:
+          project-url: ${{ env.BOARD_URL }}
+          token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+          pi: ${{ steps.cfg.outputs.pi }}
+          out-dir: reports
 
-      - name: "5 · Fetch project items (PI + Start/End + issue bodies)"
-        run: |
-          gh project item-list "$POC_PROJECT_NUMBER" --owner "$POC_PROJECT_OWNER" \
-            --format json --limit 800 > items.json
-          echo "Items on board: $(jq '.items | length' items.json)"
-
-      - name: "6 · Filter to Objective tickets (visibility)"
-        run: |
-          jq -r '.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))
-                 | "  #\(.content.number)  [\(.["program Increment"] // "no PI")]  \(.content.title)"' items.json
-          echo "Objective tickets: $(jq '[.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))] | length' items.json)"
-
-      - name: "7 · Generate FTE capacity report (per PI, raw + weighted FTE)"
-        run: |
-          echo "PI filter: '${{ steps.cfg.outputs.label }}'"
-          python .github/scripts/generate_fte_report.py \
-            --project-json items.json \
-            --pi "${{ steps.cfg.outputs.pi }}" \
-            --out-dir reports \
-            --now "$(date -u +%FT%TZ)"
-          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash for the branch step
-
-      - name: "8 · Publish report to the run summary"
-        run: cat reports/fte_summary.md >> "$GITHUB_STEP_SUMMARY"
-
-      - name: "9 · Commit report to the per-PI branch"
+      - name: "4 · Publish report to the per-PI branch"
         run: |
           BR="${{ steps.cfg.outputs.branch }}"
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash before switching branches
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Continue the per-PI branch if it exists (so commits accumulate), else start it from main.
-          # -f: step 7 regenerated reports/ (tracked files), dirtying the tree; the fresh report is
-          # stashed in $RUNNER_TEMP/out, so force the switch and re-copy it below.
+          # Continue the per-PI branch if it exists (commits accumulate), else start it from main.
           git fetch origin "$BR" || true
           if git rev-parse --verify --quiet "origin/$BR"; then
             git checkout -f -B "$BR" "origin/$BR"
@@ -124,17 +91,18 @@ jobs:
             echo "Report pushed to branch: $BR"
           fi
 
-      - name: "10 · Upload report as build artifact"
+      - name: "5 · Upload report as build artifact"
         uses: actions/upload-artifact@v4
         with:
           name: fte-report-${{ steps.cfg.outputs.slug }}
           path: reports/
 
-      - name: "11 · Open/refresh the living PR to main"
+      - name: "6 · Open/refresh the living PR to main"
+        env:
+          GH_TOKEN: ${{ github.token }}   # default token has pull-requests: write (see permissions)
         run: |
           BR="${{ steps.cfg.outputs.branch }}"
           git fetch origin main "$BR" --quiet || true
-          # Only PR when the per-PI branch has report commits ahead of main.
           if [ "$(git rev-list --count "origin/main..origin/$BR" 2>/dev/null || echo 0)" = "0" ]; then
             echo "$BR has no commits ahead of main — nothing to PR."
             exit 0

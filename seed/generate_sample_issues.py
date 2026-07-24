@@ -23,8 +23,24 @@ import random
 # Real Program Increments from the Disasters Learning Portal board.
 PIS = [
     ("PI 26.4", datetime.date(2026, 7, 12), datetime.date(2026, 10, 17)),
-    ("PI 27.2", datetime.date(2026, 10, 18), datetime.date(2027, 1, 16)),
+    ("PI 27.1", datetime.date(2026, 10, 18), datetime.date(2027, 1, 16)),
+    ("PI 27.2", datetime.date(2027, 1, 17), datetime.date(2027, 4, 17)),
 ]
+
+# --- Trend / alert shaping (deterministic) -----------------------------------
+# The Trends tab needs a clear worsening story across the 3 PIs. We deterministically
+# give each person a raw FTE per PI: a growing set is pushed over 1.0 (over-allocated),
+# everyone else rises modestly, and objective counts rise — so demand + over-allocation
+# climb 26.4 -> 27.1 -> 27.2, team utilization crosses 100% in 27.2, and Backend demand
+# (only 2 people) exceeds its supply in 27.2 (an emerging bottleneck).
+PI_OBJ_COUNTS = [12, 16, 20]                        # objectives per PI (rising)
+OVER_BY_PI = [
+    {"Sofia Rossi"},                                                                 # 26.4: 1 over
+    {"Sofia Rossi", "Alice Nguyen", "Bob Martinez"},                                 # 27.1: 3 over
+    {"Sofia Rossi", "Alice Nguyen", "Bob Martinez", "Nadia Hassan", "Yuki Tanaka"},  # 27.2: 5 over
+]
+OVER_FTE = [1.15, 1.30, 1.45]                       # raw FTE for an over-allocated person (worsening)
+HEALTHY_FTE = [0.45, 0.68, 0.85]                    # baseline FTE for everyone else (rising)
 
 ROSTER = [
     ("Alice Nguyen", "PM"), ("Sofia Rossi", "PM"),
@@ -97,19 +113,11 @@ def body_for(topic, rows):
     return "\n".join(parts + rows)
 
 
-def make_rows(rng, kind):
-    if kind == "empty":
-        return ["|  |  |  |  |"]
-    n = rng.randint(1, 5)
-    rows = []
-    for name, role in rng.sample(ROSTER, n):
-        alt = SECOND_ROLE.get(name)
-        eff_role = alt if alt and rng.random() < 0.4 else role
-        rows.append(f"| {name} | {eff_role} | {rng.choice(FTES)} | — |")
-    if kind == "edge":
-        bad = rng.choice(BAD_ROWS)
-        rows.append(f"| {bad[0]} | {bad[1]} | {bad[2]} | — |")
-    return rows
+def target_fte(person, pi_idx):
+    """Deterministic raw FTE for a person in a PI, shaped for the trend/alert story."""
+    if person in OVER_BY_PI[pi_idx]:
+        return OVER_FTE[pi_idx]
+    return round(HEALTHY_FTE[pi_idx], 2)
 
 
 def partial_window(rng, pi_start, pi_end):
@@ -122,40 +130,55 @@ def partial_window(rng, pi_start, pi_end):
 
 
 def generate(count, seed):
+    """`count` is ignored — PI_OBJ_COUNTS drives the total. Deterministic given seed."""
     rng = random.Random(seed)
-    empties = {8, 21, 37, 46}
-    edges = {13, 29, 44}
-    assignments = sorted(rng.choices(range(len(PIS)), weights=[0.6, 0.4], k=count))
-
     issues = []
-    for i in range(1, count + 1):
-        pi_title, pi_start, pi_end = PIS[assignments[i - 1]]
-        topic = TOPICS[(i - 1) % len(TOPICS)]
-        team = rng.choice(TEAM_TAGS)
-        title = f"[{team}]-[Objective {i}]: {topic}"
-        # Board grouping fields — deterministic by index so the rng stream stays intact.
-        initiative = INITIATIVES[(i - 1) % len(INITIATIVES)]
-        project = PROJECTS[(i - 1) % len(PROJECTS)]
-        board_team = TEAMS[(i - 1) % len(TEAMS)]
+    obj_num = 0
+    for pi_idx, (pi_title, pi_start, pi_end) in enumerate(PIS):
+        # 1. Each person's target raw FTE for this PI, split into 1-2 allocation "chunks".
+        chunks = []  # (person, role, fte)
+        for person, role in ROSTER:
+            total = target_fte(person, pi_idx)
+            n = 2 if total > 0.7 else 1
+            per = round(total / n, 2)
+            for k in range(n):
+                # multi-role people put their 2nd chunk under their alternate role (feeds the matrix)
+                use_role = SECOND_ROLE[person] if (k == 1 and person in SECOND_ROLE) else role
+                chunks.append((person, use_role, per))
+        rng.shuffle(chunks)
 
-        if (i not in empties) and (rng.random() < 0.30):
-            obj_start, obj_end = partial_window(rng, pi_start, pi_end)
-        else:
-            obj_start, obj_end = pi_start, pi_end
+        # 2. Pack chunks round-robin into this PI's objectives (rising count per PI).
+        n_obj = PI_OBJ_COUNTS[pi_idx]
+        buckets = [[] for _ in range(n_obj)]
+        for j, ch in enumerate(chunks):
+            buckets[j % n_obj].append(ch)
 
-        kind = "empty" if i in empties else ("edge" if i in edges else "normal")
-        body = body_for(topic, make_rows(rng, kind))
-        url = f"https://github.com/NASA-IMPACT/veda-github-actions/issues/{i}"
-        issues.append({
-            "number": i, "title": title, "url": url, "state": "open",
-            "body": body, "labels": ["Objective", "poc-loe"],
-            "project": {
-                "pi": pi_title,
-                "pi_start": pi_start.isoformat(), "pi_end": pi_end.isoformat(),
-                "start": obj_start.isoformat(), "end": obj_end.isoformat(),
-                "initiative": initiative, "project": project, "team": board_team,
-            },
-        })
+        # 3. Emit one issue per objective.
+        for bucket in buckets:
+            obj_num += 1
+            topic = TOPICS[(obj_num - 1) % len(TOPICS)]
+            team_tag = TEAM_TAGS[(obj_num - 1) % len(TEAM_TAGS)]
+            title = f"[{team_tag}]-[Objective {obj_num}]: {topic}"
+            initiative = INITIATIVES[(obj_num - 1) % len(INITIATIVES)]
+            project = PROJECTS[(obj_num - 1) % len(PROJECTS)]
+            board_team = TEAMS[(obj_num - 1) % len(TEAMS)]
+            rows = [f"| {p} | {r} | {f} | — |" for (p, r, f) in bucket] or ["|  |  |  |  |"]
+            body = body_for(topic, rows)
+            if rng.random() < 0.25:
+                obj_start, obj_end = partial_window(rng, pi_start, pi_end)
+            else:
+                obj_start, obj_end = pi_start, pi_end
+            issues.append({
+                "number": obj_num, "title": title,
+                "url": f"https://github.com/NASA-IMPACT/veda-github-actions/issues/{obj_num}",
+                "state": "open", "body": body, "labels": ["Objective", "poc-loe"],
+                "project": {
+                    "pi": pi_title,
+                    "pi_start": pi_start.isoformat(), "pi_end": pi_end.isoformat(),
+                    "start": obj_start.isoformat(), "end": obj_end.isoformat(),
+                    "initiative": initiative, "project": project, "team": board_team,
+                },
+            })
     return issues
 
 

@@ -50,7 +50,8 @@ DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 # Learning Portal iteration config.
 PI_WINDOWS = {
     "PI 26.4": (datetime.date(2026, 7, 12), datetime.date(2026, 10, 17)),
-    "PI 27.2": (datetime.date(2026, 10, 18), datetime.date(2027, 1, 16)),
+    "PI 27.1": (datetime.date(2026, 10, 18), datetime.date(2027, 1, 16)),
+    "PI 27.2": (datetime.date(2027, 1, 17), datetime.date(2027, 4, 17)),
 }
 
 

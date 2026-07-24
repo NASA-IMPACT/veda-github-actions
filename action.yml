@@ -1,0 +1,87 @@
+name: "FTE Capacity Report"
+description: "Generate an FTE/LOE capacity report from Objective issues on a GitHub Projects v2 board."
+author: "NASA-IMPACT"
+branding:
+  icon: "bar-chart-2"
+  color: "blue"
+
+# Import from another repo:
+#   - uses: NASA-IMPACT/veda-github-actions@v1
+#     with:
+#       project-url: https://github.com/orgs/YOUR-ORG/projects/5
+#       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+# It reads the board, joins each Objective issue's "## LOE/FTE" table (issue body) with its
+# Program Increment + Start/End dates (board fields), and writes the report CSVs + summary to
+# `out-dir`. Publishing/committing the result is left to the caller.
+inputs:
+  project-url:
+    description: "Projects v2 board URL, e.g. https://github.com/orgs/ORG/projects/5 or /users/USER/projects/2"
+    required: true
+  token:
+    description: "Token with Projects v2 read access (classic PAT repo+read:org+project, fine-grained, or a GitHub App token)."
+    required: true
+  pi:
+    description: 'Only report this Program Increment (e.g. "PI 27.2"). Empty = all PIs.'
+    required: false
+    default: ""
+  out-dir:
+    description: "Directory to write fte_allocations.csv, fte_by_person.csv, fte_by_role.csv, fte_summary.md."
+    required: false
+    default: "reports"
+
+outputs:
+  report-dir:
+    description: "Directory containing the generated report files."
+    value: ${{ inputs.out-dir }}
+  objectives:
+    description: "Number of Objective tickets found on the board."
+    value: ${{ steps.fetch.outputs.objectives }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Set up Python 3.12"
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: "Parse project owner + number from project-url"
+      id: proj
+      shell: bash
+      run: |
+        URL="${{ inputs.project-url }}"
+        OWNER="$(printf '%s' "$URL" | sed -E 's#.*/(orgs|users)/([^/]+)/projects/.*#\2#')"
+        NUMBER="$(printf '%s' "$URL" | sed -E 's#.*/projects/([0-9]+).*#\1#')"
+        if [ -z "$OWNER" ] || [ -z "$NUMBER" ]; then
+          echo "::error::Could not parse owner/number from project-url '$URL' (expected .../orgs|users/<owner>/projects/<n>)."
+          exit 1
+        fi
+        echo "owner=$OWNER"   >> "$GITHUB_OUTPUT"
+        echo "number=$NUMBER" >> "$GITHUB_OUTPUT"
+        echo "Board: owner=$OWNER number=$NUMBER"
+
+    - name: "Fetch project items (PI + Start/End + issue bodies)"
+      id: fetch
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}   # needs project + read:org
+      run: |
+        if [ -z "${{ inputs.token }}" ]; then
+          echo "::error::'token' input is empty (needs Projects v2 read: classic PAT repo+read:org+project, or an App token)."
+          exit 1
+        fi
+        gh project item-list "${{ steps.proj.outputs.number }}" --owner "${{ steps.proj.outputs.owner }}" \
+          --format json --limit 800 > "${{ runner.temp }}/items.json"
+        echo "Items on board: $(jq '.items | length' "${{ runner.temp }}/items.json")"
+        echo "objectives=$(jq '[.items[] | select(.content.title // "" | ascii_downcase | contains("objective"))] | length' "${{ runner.temp }}/items.json")" >> "$GITHUB_OUTPUT"
+
+    - name: "Generate FTE capacity report"
+      shell: bash
+      run: |
+        python "${{ github.action_path }}/.github/scripts/generate_fte_report.py" \
+          --project-json "${{ runner.temp }}/items.json" \
+          --pi "${{ inputs.pi }}" \
+          --out-dir "${{ inputs.out-dir }}" \
+          --now "$(date -u +%FT%TZ)"
+        echo "### FTE Capacity Report" >> "$GITHUB_STEP_SUMMARY"
+        cat "${{ inputs.out-dir }}/fte_summary.md" >> "$GITHUB_STEP_SUMMARY" || true
