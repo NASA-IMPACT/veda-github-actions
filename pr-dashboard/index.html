@@ -14,7 +14,9 @@
     header{background:var(--blue-warm-70v);color:#fff;padding:.6rem 1.25rem;display:flex;
       align-items:center;gap:1rem;flex-wrap:wrap}
     header h1{font-size:1.05rem;margin:0;font-weight:700}
-    header .src{font-size:.8rem;color:#c9d5e5}
+    header label{font-size:.8rem;color:#c9d5e5}
+    header select{font-size:.85rem;padding:.2rem .4rem;border-radius:.2rem;border:1px solid #ffffff55;
+      background:#fff;color:var(--base-ink);max-width:60vw}
     header .spacer{flex:1}
     header a.btn{color:#fff;border:1px solid #ffffff66;border-radius:.2rem;padding:.2rem .6rem;
       font-size:.8rem;text-decoration:none;cursor:pointer;background:transparent}
@@ -28,45 +30,80 @@
 <body>
   <header>
     <h1>PR Finder</h1>
-    <span class="src" id="src">live report</span>
+    <label for="picker">Report</label>
+    <select id="picker" aria-label="Choose a PI / Sprint report"></select>
     <span class="spacer"></span>
     <a class="btn" id="refresh">Refresh</a>
   </header>
-  <div id="status">Loading the latest report…</div>
+  <div id="status">Loading reports…</div>
   <iframe id="report" title="PR Finder report"></iframe>
 
   <script>
-    // Live source: the report published by .github/workflows/pr-finder.yml to the
-    // `pr-finder/report` branch. raw.githubusercontent sends CORS `*` (same pattern the
-    // FTE dashboard uses in fte-dashboard/src/data.ts). Falls back to the bundled snapshot.
-    // Canonical /refs/heads/ form — required so the slashed branch name (pr-finder/report)
-    // resolves on raw.githubusercontent (the plain .../pr-finder/report/... form 404s).
-    var RAW = "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/refs/heads/pr-finder/report/reports/pr_finder.html";
-    var SNAPSHOT = "./pr_finder.html";
+    // Reports are named by PI/Sprint and accumulate on the `pr-finder/report` branch, indexed by
+    // reports/index.json (published by .github/workflows/pr-finder.yml). raw.githubusercontent needs
+    // the /refs/heads/ form for the slashed branch name. Falls back to the bundled snapshot.
+    var LIVE = "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/refs/heads/pr-finder/report/reports";
+    var SNAP = ".";                 // bundled files sit next to this page
     var statusEl = document.getElementById("status");
     var frame = document.getElementById("report");
-    var srcEl = document.getElementById("src");
+    var picker = document.getElementById("picker");
+    var state = { base: LIVE, live: true, entries: [] };
 
-    function showSnapshot(reason){
-      statusEl.className = "warn";
-      statusEl.textContent = "Showing the bundled snapshot (" + reason + ").";
-      srcEl.textContent = "bundled snapshot";
-      frame.src = SNAPSHOT;   // same-origin file served as text/html by Netlify
+    function labelFor(e){
+      var bits = [];
+      if (e.pi) bits.push(e.pi); else if (e.slug && e.slug !== "all") bits.push(e.slug);
+      if (e.sprint) bits.push(e.sprint);
+      if (!bits.length) bits.push("All objectives");
+      if (e.generated && e.generated !== "unknown") bits.push(String(e.generated).slice(0, 10));
+      return bits.join(" · ");
+    }
+
+    function loadReport(entry){
+      var html = (entry.files && entry.files.html) || "";
+      if (!html) { statusEl.textContent = "Selected report has no HTML file."; return; }
+      fetch(state.base + "/" + html + "?t=" + Date.now(), { cache: "no-store" })
+        .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then(function(t){ frame.srcdoc = t; })
+        .catch(function(e){ statusEl.className = "warn";
+          statusEl.textContent = "Could not load report: " + e.message; });
+    }
+
+    function fillPicker(){
+      picker.innerHTML = "";
+      state.entries.forEach(function(e, i){
+        var o = document.createElement("option");
+        o.value = String(i); o.textContent = labelFor(e); picker.appendChild(o);
+      });
+      picker.style.display = state.entries.length > 1 ? "" : "none";
+      if (state.entries.length) loadReport(state.entries[0]);
+    }
+
+    function useIndex(entries, base, live){
+      state.entries = Array.isArray(entries) ? entries : [];
+      state.base = base; state.live = live;
+      if (!state.entries.length){ statusEl.className = "warn";
+        statusEl.textContent = "No reports found."; return; }
+      statusEl.className = live ? "" : "warn";
+      statusEl.textContent = (live ? "Live from pr-finder/report" : "Showing the bundled snapshot")
+        + " · " + state.entries.length + " report" + (state.entries.length === 1 ? "" : "s");
+      fillPicker();
     }
 
     function load(){
-      statusEl.className = "";
-      statusEl.textContent = "Loading the latest report…";
-      fetch(RAW + "?t=" + Date.now(), { cache: "no-store" })
-        .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-        .then(function(html){
-          frame.srcdoc = html;   // render the self-contained report inline
-          statusEl.textContent = "Live from the pr-finder/report branch.";
-          srcEl.textContent = "live · pr-finder/report";
-        })
-        .catch(function(e){ showSnapshot("live fetch failed: " + e.message); });
+      statusEl.className = ""; statusEl.textContent = "Loading reports…";
+      fetch(LIVE + "/index.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(function(j){ useIndex(j, LIVE, true); })
+        .catch(function(){
+          fetch(SNAP + "/index.snapshot.json?t=" + Date.now(), { cache: "no-store" })
+            .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+            .then(function(j){ useIndex(j, SNAP, false); })
+            .catch(function(e){ statusEl.className = "warn";
+              statusEl.textContent = "No live index and no bundled snapshot (" + e.message + ")."; });
+        });
     }
 
+    picker.addEventListener("change", function(){ loadReport(state.entries[+picker.value]); });
     document.getElementById("refresh").addEventListener("click", load);
     load();
   </script>

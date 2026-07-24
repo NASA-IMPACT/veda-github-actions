@@ -40,3 +40,4 @@ fte-dashboard/dist/
 !fte-dashboard/tsconfig.json
 !fte-dashboard/tsconfig.node.json
 !fte-dashboard/public/data/*.csv
+!pr-dashboard/index.snapshot.json

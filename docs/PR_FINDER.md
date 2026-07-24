@@ -5,12 +5,16 @@ one's **sub-issue hierarchy down to N levels** (default 5, across repos/orgs, re
 the pull requests that **close** those issues.
 
 ## Outputs (`out-dir`, default `reports/`)
+Files are named by a PI/Sprint **slug** — `pr_finder_pi-27.2_sprint-5.*`, `pr_finder_pi-27.2.*`,
+`pr_finder_sprint-5.*`, or `pr_finder_all.*` when unfiltered. `<base>` below = `pr_finder_<slug>`.
 | File | What |
 |---|---|
-| `pr_finder.csv` | one row per (issue, closing-PR): `objective_number, objective_title, objective_repo, issue_number, issue_title, issue_repo, depth, pr_number, pr_title, pr_repo, pr_state, pr_url`. Issues with no PR still get a row (blank `pr_*`) unless `--only-with-prs`. |
-| `pr_finder.md` | GitHub-flavored: an `H2` per objective, then an unordered list of its PRs. Also appended to the Actions Step Summary. |
-| `pr_finder.html` | self-contained, [USWDS](https://designsystem.digital.gov/)-styled (inline CSS, opens offline). |
-| `pr_finder_stats.json` | `{objectives, issues_crawled, prs_found, max_depth_reached, api_calls, truncated}` — the action reads this for its step outputs. |
+| `<base>.csv` | one row per (issue, closing-PR): `objective_number, objective_title, objective_repo, issue_number, issue_title, issue_repo, depth, pr_number, pr_title, pr_repo, pr_state, pr_url`. Issues with no PR still get a row (blank `pr_*`) unless `--only-with-prs`. |
+| `<base>.md` | GitHub-flavored: an `H2` per objective, then an unordered list of its PRs. Also appended to the Actions Step Summary. |
+| `<base>.html` | self-contained, [USWDS](https://designsystem.digital.gov/)-styled (inline CSS, opens offline). |
+| `<base>_stats.json` | `{objectives, issues_crawled, prs_found, max_depth_reached, api_calls, truncated}`. |
+| `pr_finder_manifest.json` | **fixed name** — `{slug, pi, sprint, generated, board_title, files, stats}`; the action/dashboard read this to locate the slugged files. |
+| `index.json` | on the `pr-finder/report` branch only — the accumulated list of every published report (dedup by slug, newest first), driving the dashboard's report picker. |
 
 ## How the crawl works
 - **Objective detection:** a board item is an objective if its issue title contains `"objective"`

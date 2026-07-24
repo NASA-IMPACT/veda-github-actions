@@ -1,8 +1,8 @@
 name: PR Finder
 
 # Dogfoods the reusable `pr-finder` action (the same way a consuming repo would import it),
-# then PUBLISHES the report to the `pr-finder/report` branch (the pr-dashboard Netlify site
-# fetches pr_finder.html from there at runtime) and uploads it as a build artifact.
+# then PUBLISHES the report to the `pr-finder/report` branch (accumulating by PI/sprint into
+# reports/index.json, which the pr-dashboard Netlify site reads) and uploads it as a build artifact.
 #
 # A consuming repo would use just:
 #   - uses: NASA-IMPACT/veda-github-actions/pr-finder@v1
@@ -75,24 +75,38 @@ jobs:
           name: pr-finder-report
           path: reports/
 
-      - name: "5 · Publish report to the pr-finder/report branch"
+      - name: "5 · Publish report to the pr-finder/report branch (accumulate by PI/sprint)"
         run: |
           BR="pr-finder/report"
-          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash before switching branches
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash this run before switching branches
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin "$BR" || true
           if git rev-parse --verify --quiet "origin/$BR"; then
-            git checkout -f -B "$BR" "origin/$BR"
+            git checkout -f -B "$BR" "origin/$BR"        # continue history: prior PIs/sprints persist
           else
             git checkout -f -B "$BR"
           fi
-          rm -rf reports && mkdir reports && cp -R "$RUNNER_TEMP/out/." reports/
+          mkdir -p reports
+          # Keep only slugged reports + the index on this branch (drop main's FTE samples / old fixed names).
+          find reports -maxdepth 1 -type f \
+            ! -name 'pr_finder_*.csv' ! -name 'pr_finder_*.md' ! -name 'pr_finder_*.html' \
+            ! -name 'pr_finder_*_stats.json' ! -name 'index.json' -delete 2>/dev/null || true
+          # Copy in THIS run's slugged files (new content wins for the same slug).
+          MAN="$RUNNER_TEMP/out/pr_finder_manifest.json"
+          for k in csv md html stats; do
+            f="$(jq -r ".files.$k" "$MAN")"; cp "$RUNNER_TEMP/out/$f" "reports/$f"
+          done
+          # Upsert this run's entry into reports/index.json (dedupe by slug, newest first).
+          [ -f reports/index.json ] || echo '[]' > reports/index.json
+          ENTRY="$(jq -c '{slug,pi,sprint,generated,board_title,files}' "$MAN")"
+          jq --argjson e "$ENTRY" '(map(select(.slug != $e.slug))) + [$e] | sort_by(.generated) | reverse' \
+            reports/index.json > reports/index.json.tmp && mv reports/index.json.tmp reports/index.json
           git add -f reports
           if git diff --cached --quiet; then
             echo "No report changes for $BR."
           else
-            git commit -m "PR Finder report (run ${{ github.run_id }})"
+            git commit -m "PR Finder report — $(jq -r .slug "$MAN") (run ${{ github.run_id }})"
             git push origin "$BR"
             echo "Report pushed to branch: $BR"
           fi

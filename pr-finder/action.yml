@@ -12,7 +12,7 @@ branding:
 #       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
 # It reads the board's Objective issues, walks each one's sub-issue hierarchy down to
 # `max-depth` levels (across repos/orgs, read-only), collects the PRs that CLOSE those
-# issues, and writes pr_finder.csv / pr_finder.md / pr_finder.html to `out-dir`.
+# issues, and writes PI/sprint-slugged pr_finder_<slug>.csv/.md/.html (+ pr_finder_manifest.json) to `out-dir`.
 # Publishing/committing the result is left to the caller.
 inputs:
   project-url:
@@ -42,7 +42,7 @@ inputs:
     required: false
     default: ""
   out-dir:
-    description: "Directory to write pr_finder.csv, pr_finder.md, pr_finder.html."
+    description: "Directory to write pr_finder_<slug>.{csv,md,html} + pr_finder_manifest.json."
     required: false
     default: "reports"
 
@@ -108,13 +108,14 @@ runs:
           --out-dir "${{ inputs.out-dir }}" \
           --now "$(date -u +%FT%TZ)"
 
-        STATS="${{ inputs.out-dir }}/pr_finder_stats.json"
+        # Report filenames are PI/sprint-slugged; the fixed manifest maps to them + holds stats.
+        MAN="${{ inputs.out-dir }}/pr_finder_manifest.json"
         {
-          echo "objectives=$(jq -r '.objectives' "$STATS")"
-          echo "issues=$(jq -r '.issues_crawled' "$STATS")"
-          echo "prs=$(jq -r '.prs_found' "$STATS")"
-          echo "truncated=$(jq -r '.truncated' "$STATS")"
+          echo "objectives=$(jq -r '.stats.objectives' "$MAN")"
+          echo "issues=$(jq -r '.stats.issues_crawled' "$MAN")"
+          echo "prs=$(jq -r '.stats.prs_found' "$MAN")"
+          echo "truncated=$(jq -r '.stats.truncated' "$MAN")"
         } >> "$GITHUB_OUTPUT"
 
         echo "### PR Finder" >> "$GITHUB_STEP_SUMMARY"
-        cat "${{ inputs.out-dir }}/pr_finder.md" >> "$GITHUB_STEP_SUMMARY" || true
+        cat "${{ inputs.out-dir }}/$(jq -r '.files.md' "$MAN")" >> "$GITHUB_STEP_SUMMARY" || true

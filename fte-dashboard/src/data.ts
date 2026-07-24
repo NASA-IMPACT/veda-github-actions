@@ -10,11 +10,12 @@ const RAW_BASE =
   "https://raw.githubusercontent.com/NASA-IMPACT/veda-github-actions/fte-report/all-pis/reports";
 const LOCAL_BASE = "data"; // resolved against the site root -> public/data/
 
+// Report files are PI-slugged; the dashboard loads the all-PIs aggregate (fte-report/all-pis branch).
 const FILES = {
-  allocations: "fte_allocations.csv",
-  persons: "fte_by_person.csv",
-  roles: "fte_by_role.csv",
-  summary: "fte_summary.md",
+  allocations: "fte_allocations_all-pis.csv",
+  persons: "fte_by_person_all-pis.csv",
+  roles: "fte_by_role_all-pis.csv",
+  summary: "fte_summary_all-pis.md",
 } as const;
 
 async function fetchText(base: string, file: string): Promise<string> {

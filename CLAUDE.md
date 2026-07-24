@@ -50,8 +50,9 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
 - `fte-dashboard/` — Vite React SPA; **root** `netlify.toml` (base=`fte-dashboard`, build, publish `dist`).
   Fetches report CSVs at runtime from the `fte-report/all-pis` branch.
 - `pr-dashboard/` — static shell (no build); `pr-dashboard/netlify.toml` (base=`pr-dashboard`,
-  publish `.`). Fetches `pr_finder.html` at runtime from the `pr-finder/report` branch (published by
-  `.github/workflows/pr-finder.yml`); falls back to the bundled `pr-dashboard/pr_finder.html` snapshot.
+  publish `.`). Reads `reports/index.json` from the `pr-finder/report` branch (accumulated, PI/sprint-named
+  reports published by `.github/workflows/pr-finder.yml`) into a report picker; falls back to the bundled
+  `pr-dashboard/index.snapshot.json` + snapshot HTML.
 
 ## Gotchas
 - **Issue-triggered run-storms:** the FTE action deployed in another repo with `on: issues:` runs on

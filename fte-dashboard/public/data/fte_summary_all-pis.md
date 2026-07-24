@@ -1,6 +1,6 @@
 # FTE Capacity Report
 
-_Generated: 2026-07-24T02:45:13Z_
+_Generated: 2026-07-24T14:57:41Z_
 _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adjusts for objectives that cover only part of the PI._
 
 ## Headline

@@ -28,7 +28,7 @@ jobs:
           # max-depth: "5"            # optional (0-5, default 5)
           # only-objectives: ""       # optional: comma-separated title substrings
           # out-dir: reports          # optional
-      # report is now in ${{ steps.find.outputs.report-dir }}: pr_finder.csv / .md / .html
+      # report is now in ${{ steps.find.outputs.report-dir }}: pr_finder_<slug>.csv/.md/.html (+ pr_finder_manifest.json)
 ```
 
 ### Inputs
@@ -41,7 +41,7 @@ jobs:
 | `only-objectives` | | `""` | Comma-separated objective-title substrings to include (empty = all). |
 | `pi` | | `""` | Only objectives in this **Program Increment** board field, e.g. `PI 27.2` (the `PI ` prefix is optional). Empty = all. |
 | `sprint` | | `""` | Only objectives in this **Sprint** board field (prefix optional). Empty = all. |
-| `out-dir` | | `reports` | Where to write `pr_finder.csv` / `.md` / `.html`. |
+| `out-dir` | | `reports` | Where to write the PI/sprint-slugged `pr_finder_<slug>.{csv,md,html}` + `pr_finder_manifest.json`. |
 
 ### Outputs
 `report-dir`, `objectives`, `issues-crawled`, `prs-found`, `truncated`.
@@ -52,7 +52,7 @@ export GH_TOKEN=<PAT repo+read:org+project>
 python pr-finder/generate_pr_finder.py \
   --project-url https://github.com/users/kyle-lesinger/projects/2 \
   --max-depth 5 --out-dir reports
-open reports/pr_finder.html
+open reports/pr_finder_all.html   # filename carries the PI/sprint slug (see --pi/--sprint)
 ```
 Offline against a canned tree (no network):
 ```bash
@@ -63,7 +63,7 @@ The board is flat by default — see [`docs/PR_FINDER.md`](../docs/PR_FINDER.md)
 
 ## Output examples
 
-**`pr_finder.md`** (an `H2` per objective, then a list of its PRs):
+**`pr_finder_<slug>.md`** (an `H2` per objective, then a list of its PRs):
 ```markdown
 # PR Finder — VEDA Actions Test — FTE
 
@@ -78,14 +78,14 @@ _2 objectives · 8 issues crawled · 3 closing PRs · depth 5_
 - _No closing PRs found_
 ```
 
-**`pr_finder.csv`** (one row per issue/closing-PR):
+**`pr_finder_<slug>.csv`** (one row per issue/closing-PR):
 ```csv
 objective_number,objective_title,objective_repo,issue_number,issue_title,issue_repo,depth,pr_number,pr_title,pr_repo,pr_state,pr_url
 101,[Platform]-[Objective 1]: COG pipeline hardening,kyle-lesinger/veda-subissue-seed,106,L5: env var plumbing (leaf),kyle-lesinger/veda-subissue-seed,5,910,Add BACKOFF_JITTER env var,kyle-lesinger/veda-subissue-seed,MERGED,https://github.com/kyle-lesinger/veda-subissue-seed/pull/910
 101,[Platform]-[Objective 1]: COG pipeline hardening,kyle-lesinger/veda-subissue-seed,107,L2: cross-repo data model,kyle-lesinger/veda-subissue-seed,2,42,Shared schema v2,kyle-lesinger/other-owned-repo,CLOSED,https://github.com/kyle-lesinger/other-owned-repo/pull/42
 ```
 
-**`pr_finder.html`** — a USWDS-styled page: a summary box (objectives · issues crawled · closing PRs
+**`pr_finder_<slug>.html`** — a USWDS-styled page: a summary box (objectives · issues crawled · closing PRs
 · max depth, with a `truncated` warning tag when a limit was hit), then per objective an `H2` and an
 unordered list of PRs, each with a colored state tag (🟩 MERGED · 🟥 CLOSED · 🟦 OPEN) linking to the PR.
 

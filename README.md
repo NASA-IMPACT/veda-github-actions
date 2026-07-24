@@ -30,7 +30,7 @@ jobs:
 ```
 
 The action reads the board, joins each Objective's `## LOE/FTE` table with its PI/dates, and writes
-`fte_allocations.csv` (+ `by_person`, `by_role`, `fte_summary.md`). **Publishing the result is the
+PI-slugged `fte_allocations_<slug>.csv` (+ `by_person`, `by_role`, `fte_summary_<slug>.md`; slug = `pi-26.4` or `all-pis`). **Publishing the result is the
 caller's choice** — this repo's own [`fte-report.yml`](.github/workflows/fte-report.yml) dogfoods the
 action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a living PR.
 
@@ -55,7 +55,7 @@ action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a l
 python seed/generate_sample_issues.py
 python .github/scripts/generate_fte_report.py \
   --issues-json seed/sample_issues.json --out-dir reports --now "$(date -u +%FT%TZ)"
-# → reports/fte_allocations.csv (+ fte_by_person.csv, fte_by_role.csv, fte_summary.md)
+# → reports/fte_allocations_all-pis.csv (+ fte_by_person_all-pis.csv, fte_by_role_all-pis.csv, fte_summary_all-pis.md, fte_manifest.json)
 ```
 
 **Against the live board (recreate the seed once):**

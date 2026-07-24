@@ -6,9 +6,11 @@ objective's **sub-issue hierarchy down to N levels deep** (default 5) across rep
 (read-only) and collects the pull requests that **close** those issues (GraphQL
 `closedByPullRequestsReferences` — closing PRs only, not mere cross-references).
 
-Output (to --out-dir): `pr_finder.csv` (one row per issue/closing-PR), `pr_finder.md`
-(GitHub-flavored: an H2 per objective, then an unordered list of its PRs), and
-`pr_finder.html` (self-contained, USWDS-styled). Plus `pr_finder_stats.json` for the action.
+Output (to --out-dir), named by a PI/Sprint slug (e.g. `pr_finder_pi-27.2_sprint-5.*`, or
+`pr_finder_all.*` when unfiltered): `<base>.csv` (one row per issue/closing-PR), `<base>.md`
+(GitHub-flavored: an H2 per objective, then a list of its PRs), `<base>.html` (self-contained,
+USWDS-styled), `<base>_stats.json`, plus a fixed `pr_finder_manifest.json` (slug + file map + stats)
+so the action/dashboard can locate the slugged files.
 
 Traversal is an iterative BFS by level with GraphQL alias-batching (<=20 parents per
 request) — never a single deep-nested query (which would blow up GraphQL node cost).
@@ -456,8 +458,20 @@ def objective_prs(root):
     return prs
 
 
-def write_csv(roots, out_dir, only_with_prs):
-    with open(os.path.join(out_dir, "pr_finder.csv"), "w", newline="", encoding="utf-8") as fh:
+def fname_slug(pi="", sprint=""):
+    """Filename slug from the PI/Sprint filters: 'pi-27.2_sprint-5', 'pi-27.2', 'sprint-5', or 'all'.
+    Strips a leading PI/Sprint label so both 'PI 27.2' and '27.2' → 'pi-27.2'."""
+    parts = []
+    for label, val in (("pi", pi), ("sprint", sprint)):
+        v = re.sub(r"^(pi|sprint|iteration)\s+", "", (val or "").strip(), flags=re.IGNORECASE)
+        v = re.sub(r"[^A-Za-z0-9._-]+", "-", v).strip("-").lower()
+        if v:
+            parts.append(f"{label}-{v}")
+    return "_".join(parts) or "all"
+
+
+def write_csv(roots, path, only_with_prs):
+    with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["objective_number", "objective_title", "objective_repo",
                     "issue_number", "issue_title", "issue_repo", "depth",
@@ -635,14 +649,25 @@ def main():
     finalize_stats(roots, stats)
 
     os.makedirs(args.out_dir, exist_ok=True)
-    write_csv(roots, args.out_dir, args.only_with_prs)
+    slug = fname_slug(args.pi, args.sprint)
+    base = f"pr_finder_{slug}"
+    files = {"csv": base + ".csv", "md": base + ".md",
+             "html": base + ".html", "stats": base + "_stats.json"}
+
     md = render_markdown(roots, stats, board_title, args.now)
-    with open(os.path.join(args.out_dir, "pr_finder.md"), "w", encoding="utf-8") as fh:
+    write_csv(roots, os.path.join(args.out_dir, files["csv"]), args.only_with_prs)
+    with open(os.path.join(args.out_dir, files["md"]), "w", encoding="utf-8") as fh:
         fh.write(md + "\n")
-    with open(os.path.join(args.out_dir, "pr_finder.html"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(args.out_dir, files["html"]), "w", encoding="utf-8") as fh:
         fh.write(render_html(roots, stats, board_title, args.now) + "\n")
-    with open(os.path.join(args.out_dir, "pr_finder_stats.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(args.out_dir, files["stats"]), "w", encoding="utf-8") as fh:
         json.dump(stats, fh, indent=2)
+
+    # Fixed-name metadata so the action/workflow/dashboard can locate the slugged files.
+    manifest = {"slug": slug, "pi": args.pi, "sprint": args.sprint, "generated": args.now,
+                "board_title": board_title, "files": files, "stats": stats}
+    with open(os.path.join(args.out_dir, "pr_finder_manifest.json"), "w", encoding="utf-8") as fh:
+        json.dump(manifest, fh, indent=2)
 
     print(md)
 

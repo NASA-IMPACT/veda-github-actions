@@ -84,4 +84,5 @@ runs:
           --out-dir "${{ inputs.out-dir }}" \
           --now "$(date -u +%FT%TZ)"
         echo "### FTE Capacity Report" >> "$GITHUB_STEP_SUMMARY"
-        cat "${{ inputs.out-dir }}/fte_summary.md" >> "$GITHUB_STEP_SUMMARY" || true
+        # Report filenames are PI-slugged; the fixed manifest maps to the summary file.
+        cat "${{ inputs.out-dir }}/$(jq -r '.files.summary' "${{ inputs.out-dir }}/fte_manifest.json")" >> "$GITHUB_STEP_SUMMARY" || true

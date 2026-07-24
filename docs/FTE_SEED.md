@@ -27,8 +27,9 @@ project **`kyle-lesinger/projects/2`** (isolated from the org project list).
 ## Generator + workflow
 `.github/scripts/generate_fte_report.py` (stdlib) accepts `--project-json` (board JSON),
 `--issues-json` (offline sample), or `--from-dir`; `--pi "PI 26.4"` filters. It emits
-`fte_allocations.csv` (with `project,initiative,team`), `fte_by_person.csv`, `fte_by_role.csv`,
-and `fte_summary.md`. The workflow `fte-report.yml` runs it against the board and publishes to
+PI-slugged `fte_allocations_<slug>.csv` (with `project,initiative,team`), `fte_by_person_<slug>.csv`,
+`fte_by_role_<slug>.csv`, and `fte_summary_<slug>.md` (slug = `pi-26.4`, or `all-pis` when unfiltered),
+plus a fixed `fte_manifest.json`. The workflow `fte-report.yml` runs it against the board and publishes to
 `fte-report/<pi>` (+ artifact + run summary). Adding a board field ⇒ no code change: the parser
 reads any field generically via `_item_field(it, "<name>")`.
 

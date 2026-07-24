@@ -20,8 +20,9 @@ Options:
   --pi "PI 26.4"        only report this PI ("calculate by PI"); default = all
   --out-dir, --now
 
-Writes reports/fte_allocations.csv, fte_by_person.csv, fte_by_role.csv,
-fte_summary.md. Standard library only; deterministic ordering for clean diffs.
+Writes PI-slugged reports/fte_allocations_<slug>.csv, fte_by_person_<slug>.csv,
+fte_by_role_<slug>.csv, fte_summary_<slug>.md (slug = pi-26.4, or all-pis when unfiltered),
+plus a fixed fte_manifest.json (slug + file map). Standard library only; deterministic ordering.
 """
 import argparse
 import csv
@@ -67,6 +68,13 @@ def parse_date(s):
 
 def norm_pi(s):
     return re.sub(r"^pi\s*", "", (s or "").strip().lower()).replace(" ", "")
+
+
+def fname_slug(pi):
+    """Filename slug from the PI filter: 'PI 26.4' → 'pi-26.4'; empty → 'all-pis'."""
+    v = re.sub(r"^pi\s+", "", (pi or "").strip(), flags=re.IGNORECASE)
+    v = re.sub(r"[^A-Za-z0-9._-]+", "-", v).strip("-").lower()
+    return f"pi-{v}" if v else "all-pis"
 
 
 def is_objective(title):
@@ -340,8 +348,8 @@ def d2s(d):
     return d.isoformat() if d else ""
 
 
-def write_csvs(rep, out_dir):
-    with open(os.path.join(out_dir, "fte_allocations.csv"), "w", newline="", encoding="utf-8") as fh:
+def write_csvs(rep, out_dir, files):
+    with open(os.path.join(out_dir, files["allocations"]), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "pi_window", "issue_number", "issue_title", "issue_url",
                     "project", "initiative", "team",
@@ -354,7 +362,7 @@ def write_csvs(rep, out_dir):
                             a["person"], a["role"], r2(a["fte"]),
                             d2s(a["obj_start"]), d2s(a["obj_end"]), r2(a["fraction"]), r2(a["wfte"])])
 
-    with open(os.path.join(out_dir, "fte_by_person.csv"), "w", newline="", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, files["persons"]), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "person", "total_fte", "weighted_fte", "num_objectives", "roles", "over_allocated"])
         for pi_id, b in rep["pis"]:
@@ -364,7 +372,7 @@ def write_csvs(rep, out_dir):
                 w.writerow([pi_id, person, r2(d["fte"]), r2(d["wfte"]), len(d["issues"]), roles,
                             str(d["fte"] > OVER_ALLOCATION_THRESHOLD).lower()])
 
-    with open(os.path.join(out_dir, "fte_by_role.csv"), "w", newline="", encoding="utf-8") as fh:
+    with open(os.path.join(out_dir, files["roles"]), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["pi", "role", "total_fte", "weighted_fte", "num_people", "num_allocations"])
         for pi_id, b in rep["pis"]:
@@ -452,10 +460,20 @@ def main():
     issues = load_issues(args)
     rep = build_report(issues, pi_filter=args.pi)
     os.makedirs(args.out_dir, exist_ok=True)
-    write_csvs(rep, args.out_dir)
+
+    slug = fname_slug(args.pi)
+    files = {"allocations": f"fte_allocations_{slug}.csv", "persons": f"fte_by_person_{slug}.csv",
+             "roles": f"fte_by_role_{slug}.csv", "summary": f"fte_summary_{slug}.md"}
+    write_csvs(rep, args.out_dir, files)
     summary = render_summary(rep, args.now)
-    with open(os.path.join(args.out_dir, "fte_summary.md"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(args.out_dir, files["summary"]), "w", encoding="utf-8") as fh:
         fh.write(summary + "\n")
+
+    # Fixed-name metadata so the action/dashboard can locate the slugged files.
+    manifest = {"slug": slug, "pi": args.pi or "", "generated": args.now, "files": files}
+    with open(os.path.join(args.out_dir, "fte_manifest.json"), "w", encoding="utf-8") as fh:
+        json.dump(manifest, fh, indent=2)
+
     print(summary)
 
 
