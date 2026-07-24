@@ -66,8 +66,15 @@ jobs:
           out-dir: reports
 
       - name: "3 · Report summary"
+        env:
+          DASHBOARD_URL: "https://veda-pr-dashboard.netlify.app"
         run: |
           echo "objectives=${{ steps.find.outputs.objectives }} issues=${{ steps.find.outputs.issues-crawled }} prs=${{ steps.find.outputs.prs-found }} truncated=${{ steps.find.outputs.truncated }}"
+          {
+            echo ""
+            echo "📊 **PR Finder dashboard →** ${DASHBOARD_URL}"
+            echo "_${{ steps.find.outputs.objectives }} objectives · ${{ steps.find.outputs.issues-crawled }} issues · ${{ steps.find.outputs.prs-found }} closing PRs · truncated=${{ steps.find.outputs.truncated }}_"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: "4 · Upload report (csv + md + html)"
         uses: actions/upload-artifact@v4

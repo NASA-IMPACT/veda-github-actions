@@ -1,5 +1,7 @@
 # PR Finder action
 
+> 🔀 **Live dashboard →** https://veda-pr-dashboard.netlify.app — pick any published PI/Sprint report.
+
 Crawl each **Objective** issue on a GitHub Projects v2 board down through its **sub-issue tree
 (up to 5 levels, across repos/orgs)** and report the pull requests that **close** those issues —
 as a CSV, a GitHub-flavored Markdown list, and a self-contained [USWDS](https://designsystem.digital.gov/)-styled HTML page.

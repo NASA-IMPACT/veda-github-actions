@@ -16,6 +16,10 @@ Files are named by a PI/Sprint **slug** — `pr_finder_pi-27.2_sprint-5.*`, `pr_
 | `pr_finder_manifest.json` | **fixed name** — `{slug, pi, sprint, generated, board_title, files, stats}`; the action/dashboard read this to locate the slugged files. |
 | `index.json` | on the `pr-finder/report` branch only — the accumulated list of every published report (dedup by slug, newest first), driving the dashboard's report picker. |
 
+**Re-run behavior:** the filename is the slug (no timestamp), so re-running the **same** PI/sprint
+**overwrites** its report + `index.json` entry; a **different** PI/sprint is **added**. Each run's
+commit diff carries only what changed.
+
 ## How the crawl works
 - **Objective detection:** a board item is an objective if its issue title contains `"objective"`
   (case-insensitive) — same rule as the FTE report. Seed root titles must include the word.
