@@ -1,0 +1,19 @@
+# Netlify build config for the FTE Capacity Dashboard.
+#
+# This file is base-relative: connect a Netlify site to the repo with **base directory =
+# fte-dashboard**, and Netlify reads this file (command/publish are resolved inside this folder).
+# There is deliberately NO root-level netlify.toml — a root config (and its `base`) applies to
+# EVERY site connected to the repo, which would hijack other dashboards. Each dashboard owns its
+# own <app>/netlify.toml and its own independent Netlify site.
+#
+# The site is a static SPA that fetches report CSVs at runtime from the public
+# fte-report/all-pis branch (see src/data.ts). No env vars or secrets needed.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback: serve index.html for client-side routes.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

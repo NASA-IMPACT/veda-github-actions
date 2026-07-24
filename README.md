@@ -82,12 +82,20 @@ python seed/cleanup_issues.py --delete    # remove the demo issues (dry-run with
 Delete/recreate the board in the GitHub UI for a fully clean slate.
 
 ## Dashboard + Netlify
-Static Vite + React SPA. Connect a Netlify site to this repo on `main` (**base** `fte-dashboard`,
-**publish** `dist` — see `netlify.toml`). Because the repo is public, the deployed SPA fetches
-`fte-report/all-pis` at runtime, so new reports appear on reload with **no redeploy**. Local dev:
+Static Vite + React SPA. Its build config lives in **`fte-dashboard/netlify.toml`** (base-relative:
+build `npm run build`, publish `dist`). Connect a Netlify site to this repo on `main` with
+**base directory = `fte-dashboard`**; Netlify reads that folder's `netlify.toml`. Because the repo is
+public, the deployed SPA fetches `fte-report/all-pis` at runtime, so new reports appear on reload with
+**no redeploy**. Local dev:
 ```bash
 cd fte-dashboard && npm ci && npm run dev
 ```
+
+**One independent site per dashboard.** This repo is a test station for many Actions, so each
+dashboard is its **own** Netlify site: give it its own `<app>/netlify.toml` and connect a new site
+with **base directory = that folder**. Keep **no `netlify.toml` at the repo root** — Netlify applies
+a root config (and its `base` key) to *every* site connected to the repo, which would hijack the
+others into building the wrong app.
 
 ---
 Ported from `Disasters-Learning-Portal/disasters-aws-conversion` (PR #74). See `docs/FTE_SEED.md`.
