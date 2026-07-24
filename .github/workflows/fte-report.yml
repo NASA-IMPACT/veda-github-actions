@@ -36,6 +36,7 @@ permissions:
 env:
   # This station's own board. A consuming repo would point this at THEIR project instead.
   BOARD_URL: "https://github.com/users/kyle-lesinger/projects/2"
+  DASHBOARD_URL: "https://veda-github-actions.netlify.app"   # live FTE dashboard (Netlify, prod=main)
 
 jobs:
   fte-report:
@@ -111,7 +112,7 @@ jobs:
           if [ -n "$existing" ]; then
             echo "PR #$existing already open for $BR — new commits refresh it automatically."
           else
-            body="$(printf 'Automated LOE/FTE capacity report for **%s** (run %s).\n\n📋 **Project board:** %s\n\nReport files are in `reports/` on this branch. The public dashboard reads `fte-report/all-pis` live. Merge to snapshot this report into `main`, or leave open as a living view.' "${{ steps.cfg.outputs.label }}" "${{ github.run_id }}" "$BOARD_URL")"
+            body="$(printf 'Automated LOE/FTE capacity report for **%s** (run %s).\n\n📊 **Dashboard:** %s — interactive view of the latest all-PIs report; it reads `fte-report/all-pis` live, so it always reflects the newest run.\n📋 **Project board:** %s\n\nReport files are in `reports/` on this branch. Merge to snapshot this report into `main`, or leave open as a living view.' "${{ steps.cfg.outputs.label }}" "${{ github.run_id }}" "$DASHBOARD_URL" "$BOARD_URL")"
             gh pr create --head "$BR" --base main \
               --title "FTE report — ${{ steps.cfg.outputs.label }}" \
               --body "$body"

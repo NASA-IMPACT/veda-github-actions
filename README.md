@@ -6,7 +6,7 @@ Actions and board seed data without touching production. First module: the **FTE
 diff. Intentionally open — it will grow to host other VEDA Actions experiments.
 
 > ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
-> 📊 **Dashboard:** _Netlify — add the URL here once the site is connected._
+> 📊 **Dashboard:** https://veda-github-actions.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
