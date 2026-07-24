@@ -1,12 +1,12 @@
 # FTE Capacity Report
 
-_Generated: 2026-07-24T01:54:17Z_
+_Generated: 2026-07-24T02:54:12Z_
 _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adjusts for objectives that cover only part of the PI._
 
 ## Headline
 - **Open Objective tickets:** 50
 - **Program Increments (PIs):** 2
-- **Partial-window objectives:** 12
+- **Partial-window objectives:** 28
 - **Missing / empty FTE:** 4
 - **Total allocated FTE (raw):** 66.9
 - **Over-allocated (person, PI) pairs:** 28
@@ -80,41 +80,41 @@ _Raw FTE summed per person **per PI**; > 1.0 = over-allocated. Weighted FTE adju
 - [#30](https://github.com/NASA-IMPACT/veda-github-actions/issues/30) — [PM]-[Objective 30]: Incident runbook automation — 1 ppl · 0.25 FTE
 - [#31](https://github.com/NASA-IMPACT/veda-github-actions/issues/31) — [Data Curator]-[Objective 31]: COG pipeline hardening — 4 ppl · 2.4 FTE
 
-## PI 27.2 — 2026-10-18 to 2027-01-16
-- Objectives: 19 | People: 16 | Raw FTE: 25.4 | Weighted FTE: 23.81 | Partial: 3 | Missing FTE: 2
+## PI 27.2 — 2027-01-17 to 2027-04-17
+- Objectives: 19 | People: 16 | Raw FTE: 25.4 | Weighted FTE: 0.0 | Partial: 19 | Missing FTE: 2
 
 **Over-allocated this PI:** Morgan Reyes (3.25), Elena Petrova (2.7), Bob Martinez (2.2), Nadia Hassan (2.05), Taylor Brooks (2.05), Sofia Rossi (1.9), Alice Nguyen (1.75), Priya Patel (1.7), Sam Okoro (1.55), Liam Walsh (1.5), Carla Diaz (1.4), Devon Lee (1.2)
 
 | Person | Raw FTE | Weighted FTE | Objectives | Roles | Over-allocated |
 | --- | --- | --- | --- | --- | --- |
-| Alice Nguyen | 1.75 | 1.75 | 2 | Backend | ⚠️ yes |
-| Bob Martinez | 2.2 | 2.2 | 4 | Backend | ⚠️ yes |
-| Carla Diaz | 1.4 | 1.4 | 3 | Geospatial | ⚠️ yes |
-| Devon Lee | 1.2 | 1.2 | 4 | Frontend | ⚠️ yes |
-| Elena Petrova | 2.7 | 2.46 | 6 | Designer | ⚠️ yes |
-| Jordan Kim | 0.4 | 0.15 | 2 | Designer | no |
-| Liam Walsh | 1.5 | 1.5 | 3 | Data Curator | ⚠️ yes |
-| Morgan Reyes | 3.25 | 3.25 | 5 | Jupyterhub | ⚠️ yes |
-| Nadia Hassan | 2.05 | 2.02 | 5 | Backend | ⚠️ yes |
-| Owen Clark | 0.5 | 0.5 | 1 | Geospatial | no |
-| Priya Patel | 1.7 | 1.51 | 4 | PM;Data Curator | ⚠️ yes |
-| Rae Thompson | 0.9 | 0.83 | 3 | Frontend | no |
-| Sam Okoro | 1.55 | 1.55 | 3 | Data Curator;ML | ⚠️ yes |
-| Sofia Rossi | 1.9 | 1.52 | 3 | PM | ⚠️ yes |
-| Taylor Brooks | 2.05 | 1.69 | 4 | Comms | ⚠️ yes |
-| Yuki Tanaka | 0.35 | 0.28 | 2 | ML | no |
+| Alice Nguyen | 1.75 | 0.0 | 2 | Backend | ⚠️ yes |
+| Bob Martinez | 2.2 | 0.0 | 4 | Backend | ⚠️ yes |
+| Carla Diaz | 1.4 | 0.0 | 3 | Geospatial | ⚠️ yes |
+| Devon Lee | 1.2 | 0.0 | 4 | Frontend | ⚠️ yes |
+| Elena Petrova | 2.7 | 0.0 | 6 | Designer | ⚠️ yes |
+| Jordan Kim | 0.4 | 0.0 | 2 | Designer | no |
+| Liam Walsh | 1.5 | 0.0 | 3 | Data Curator | ⚠️ yes |
+| Morgan Reyes | 3.25 | 0.0 | 5 | Jupyterhub | ⚠️ yes |
+| Nadia Hassan | 2.05 | 0.0 | 5 | Backend | ⚠️ yes |
+| Owen Clark | 0.5 | 0.0 | 1 | Geospatial | no |
+| Priya Patel | 1.7 | 0.0 | 4 | PM;Data Curator | ⚠️ yes |
+| Rae Thompson | 0.9 | 0.0 | 3 | Frontend | no |
+| Sam Okoro | 1.55 | 0.0 | 3 | Data Curator;ML | ⚠️ yes |
+| Sofia Rossi | 1.9 | 0.0 | 3 | PM | ⚠️ yes |
+| Taylor Brooks | 2.05 | 0.0 | 4 | Comms | ⚠️ yes |
+| Yuki Tanaka | 0.35 | 0.0 | 2 | ML | no |
 
 | Role | Raw FTE | Weighted FTE | People | Allocations |
 | --- | --- | --- | --- | --- |
-| PM | 2.2 | 1.82 | 2 | 4 |
-| Frontend | 2.1 | 2.03 | 2 | 7 |
-| Backend | 6.0 | 5.97 | 3 | 11 |
-| Geospatial | 1.9 | 1.9 | 2 | 4 |
-| Data Curator | 4.05 | 3.86 | 3 | 8 |
-| Comms | 2.05 | 1.69 | 1 | 4 |
-| ML | 0.75 | 0.68 | 2 | 3 |
-| Designer | 3.1 | 2.61 | 2 | 8 |
-| Jupyterhub | 3.25 | 3.25 | 1 | 5 |
+| PM | 2.2 | 0.0 | 2 | 4 |
+| Frontend | 2.1 | 0.0 | 2 | 7 |
+| Backend | 6.0 | 0.0 | 3 | 11 |
+| Geospatial | 1.9 | 0.0 | 2 | 4 |
+| Data Curator | 4.05 | 0.0 | 3 | 8 |
+| Comms | 2.05 | 0.0 | 1 | 4 |
+| ML | 0.75 | 0.0 | 2 | 3 |
+| Designer | 3.1 | 0.0 | 2 | 8 |
+| Jupyterhub | 3.25 | 0.0 | 1 | 5 |
 
 ### Objectives (click to open)
 - [#32](https://github.com/NASA-IMPACT/veda-github-actions/issues/32) — [Jupyterhub]-[Objective 32]: S3 ingestion API v2 — 3 ppl · 0.9 FTE
