@@ -117,3 +117,10 @@ jobs:
               --body "$body"
             echo "Opened a PR from $BR to main."
           fi
+
+      - name: "7 · Restore the default checkout"
+        # Step 4 switched the working tree to the fte-report/<pi> branch (which has no action.yml).
+        # The local `uses: ./` action runs a post-cleanup (setup-python) that re-resolves action.yml
+        # from the workspace, so put main's tree back before the job's post phase.
+        if: always()
+        run: git checkout -f "${{ github.sha }}" 2>/dev/null || git checkout -f main
