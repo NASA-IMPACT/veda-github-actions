@@ -22,8 +22,12 @@ on:
           - 'PI 26.4'
           - 'PI 27.1'
           - 'PI 27.2'
-  schedule:
-    - cron: '0 13 * * 1'   # Mondays 13:00 UTC
+  # Manual-only by design: this report is run on demand via the "Run workflow" button (with the
+  # PI dropdown above), not on a timer. The weekly schedule below is intentionally disabled so it
+  # doesn't push commits / refresh the living PR / trigger Netlify previews unattended — uncomment
+  # to restore the Monday auto-run.
+  # schedule:
+  #   - cron: '0 13 * * 1'   # Mondays 13:00 UTC
   # Optional test hook: re-run when an Objective issue changes. Left OFF by default so a seed
   # run doesn't trigger a run-storm; uncomment to exercise issue-driven runs.
   # issues:
