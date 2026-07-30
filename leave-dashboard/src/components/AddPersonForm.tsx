@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { Person, Status } from "../types";
 import { STATUS_LABEL, STATUS_ORDER } from "../colors";
 import { buildOverrideFile, Draft, draftValid, newDraft } from "../drafts";
@@ -12,13 +12,13 @@ interface Props {
   teams: string[];
   people: Person[];
   pi: string;
+  drafts: Draft[];
+  setDrafts: (updater: Draft[] | ((ds: Draft[]) => Draft[])) => void;
   onClose: () => void;
   onPreview: (drafts: Draft[]) => void;
 }
 
-export default function AddPersonForm({ teams, people, pi, onClose, onPreview }: Props) {
-  const [drafts, setDrafts] = useState<Draft[]>([newDraft("existing")]);
-
+export default function AddPersonForm({ teams, people, pi, drafts, setDrafts, onClose, onPreview }: Props) {
   const byName = useMemo(() => {
     const m = new Map<string, Person>();
     people.forEach((p) => m.set(p.name.trim().toLowerCase(), p));
@@ -50,11 +50,14 @@ export default function AddPersonForm({ teams, people, pi, onClose, onPreview }:
   return (
     <div className="overlay" onClick={onClose}>
       <div className="modal panel" onClick={(e) => e.stopPropagation()}>
-        <h2>Add leave</h2>
+        <div className="modal-head">
+          <h2>Add leave</h2>
+          <button className="modal-x" onClick={onClose} aria-label="Close" title="Close (your entries are kept)">×</button>
+        </div>
         <p className="hint">
           Everyone below goes into <b>one</b> pull request (<code>{filename.replace("leave/overrides/", "")}</code>).
           Add dates to an <b>existing person</b>, or create a <b>new</b> one (and a new team if needed).
-          Use <b>Preview</b> to see them on the calendar first.
+          Use <b>Preview</b> to see them on the calendar first. <b>Closing keeps your entries</b> — reopen “Add person” to continue.
         </p>
 
         {drafts.map((d, i) => {
@@ -144,7 +147,9 @@ export default function AddPersonForm({ teams, people, pi, onClose, onPreview }:
         <div className="urlbox">{json}</div>
 
         <div className="foot">
+          <button className="btn" onClick={() => setDrafts([newDraft("existing")])}>Reset</button>
           <button className="btn" onClick={() => navigator.clipboard?.writeText(json)}>Copy JSON</button>
+          <button className="btn" onClick={onClose}>Close</button>
           <button className="btn" disabled={!validCount} onClick={() => onPreview(drafts.filter(draftValid))}>
             👁 Preview on calendar
           </button>

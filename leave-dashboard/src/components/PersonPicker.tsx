@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { Person } from "../types";
 import { personColor } from "../colors";
+import { useClickAway } from "../useClickAway";
 
 interface Props {
   people: Person[];
@@ -12,6 +13,8 @@ interface Props {
 export default function PersonPicker({ people, selected, onChange }: Props) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+  useClickAway(ref, () => setOpen(false), open);
 
   const groups = useMemo(() => {
     const byTeam = new Map<string, Person[]>();
@@ -39,12 +42,16 @@ export default function PersonPicker({ people, selected, onChange }: Props) {
     selected.size === people.length ? "All people" : `${selected.size} of ${people.length} people`;
 
   return (
-    <div className="control">
+    <div className="control" ref={ref}>
       <button className="btn" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
         👥 {label} ▾
       </button>
       {open && (
-        <div className="popover panel" onMouseLeave={() => setOpen(false)}>
+        <div className="popover panel">
+          <div className="pop-head">
+            <span>{selected.size} selected</span>
+            <button className="pop-done" onClick={() => setOpen(false)}>Done</button>
+          </div>
           <input
             className="search"
             placeholder="Search people or teams…"

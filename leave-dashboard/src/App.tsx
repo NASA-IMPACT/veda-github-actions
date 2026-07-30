@@ -6,7 +6,7 @@ import {
   indexByDate, MONTH_NAMES, monthsBetween, sameMonth, toISO, visiblePeople,
 } from "./compute";
 import { STATUS_ORDER } from "./colors";
-import { Draft, draftToPerson } from "./drafts";
+import { Draft, draftToPerson, newDraft } from "./drafts";
 import { exportNodeToPng } from "./exportImage";
 import { decodeHash, encodeHash } from "./urlState";
 import Header from "./components/Header";
@@ -28,6 +28,8 @@ export default function App() {
   const [threshold, setThreshold] = useState(0.3);
   const [addOpen, setAddOpen] = useState(false);
   const [preview, setPreview] = useState<Person[]>([]);
+  // Add-leave form lives here (not inside the modal) so closing/previewing never loses it.
+  const [drafts, setDrafts] = useState<Draft[]>(() => [newDraft("existing")]);
   const [exporting, setExporting] = useState(false);
   const [copied, setCopied] = useState(false);
   const exportRef = useRef<HTMLDivElement>(null);
@@ -182,9 +184,12 @@ export default function App() {
 
       {preview.length > 0 && (
         <div className="warnbanner" style={{ background: "#eef6ff", borderColor: "#bcdcff", color: "#1a4480" }}>
-          👁 Previewing <b>{preview.length}</b> unsaved {preview.length === 1 ? "person" : "people"} (not yet in a PR).{" "}
-          <button className="btn" style={{ padding: "0.1rem 0.5rem", marginLeft: "0.4rem" }} onClick={() => setPreview([])}>
-            Clear preview
+          👁 Previewing <b>{preview.length}</b> unsaved {preview.length === 1 ? "person" : "people"} (not yet in a PR). Your entries are kept.{" "}
+          <button className="btn" style={{ padding: "0.1rem 0.6rem", marginLeft: "0.4rem" }} onClick={() => setAddOpen(true)}>
+            ✎ Edit entries
+          </button>{" "}
+          <button className="btn" style={{ padding: "0.1rem 0.6rem" }} onClick={() => setPreview([])}>
+            Remove preview from calendar
           </button>
         </div>
       )}
@@ -250,6 +255,8 @@ export default function App() {
           teams={effectiveTeams}
           people={effectivePeople}
           pi={ds.doc.meta.pi}
+          drafts={drafts}
+          setDrafts={setDrafts}
           onClose={() => setAddOpen(false)}
           onPreview={applyPreview}
         />
