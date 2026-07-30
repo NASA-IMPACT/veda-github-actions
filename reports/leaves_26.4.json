@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-07-30T13:33:58Z",
+    "generated": "2026-07-30T14:14:27Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -12,6 +12,7 @@
       "2i2c",
       "DSE - Manage",
       "DevSeed",
+      "Disasters",
       "MSFC",
       "UAH"
     ],
@@ -19,6 +20,7 @@
       "2i2c": 7,
       "DSE - Manage": 6,
       "DevSeed": 31,
+      "Disasters": 3,
       "MSFC": 1,
       "UAH": 25
     },
@@ -2111,6 +2113,198 @@
       "team": "DevSeed",
       "role": "VEDA - Data Services",
       "leaves": []
+    },
+    {
+      "slug": "jacob-reed",
+      "name": "Jacob Reed",
+      "team": "Disasters",
+      "role": "",
+      "leaves": [
+        {
+          "date": "2026-08-07",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        }
+      ]
+    },
+    {
+      "slug": "ronan-lucey",
+      "name": "Ronan Lucey",
+      "team": "Disasters",
+      "role": "",
+      "leaves": [
+        {
+          "date": "2026-07-30",
+          "status": "other",
+          "out": false,
+          "weight": 0.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "other",
+          "out": false,
+          "weight": 0.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-03",
+          "status": "other",
+          "out": false,
+          "weight": 0.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-04",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        }
+      ]
+    },
+    {
+      "slug": "shanna-mcclain",
+      "name": "Shanna McClain",
+      "team": "Disasters",
+      "role": "",
+      "leaves": [
+        {
+          "date": "2026-08-10",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        }
+      ]
     },
     {
       "slug": "chris-phillips",
