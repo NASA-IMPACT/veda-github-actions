@@ -1,0 +1,61 @@
+[
+  {
+    "person": "Ronan Lucey",
+    "slug": "ronan-lucey",
+    "team": "Disasters",
+    "role": "",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "date": "2026-08-04"
+      },
+      {
+        "status": "planned_time_off",
+        "date": "2026-08-14"
+      },
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-17",
+        "end": "2026-08-21"
+      },
+      {
+        "status": "other",
+        "start": "2026-07-30",
+        "end": "2026-08-03"
+      }
+    ]
+  },
+  {
+    "person": "Shanna McClain",
+    "slug": "shanna-mcclain",
+    "team": "Disasters",
+    "role": "",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-10",
+        "end": "2026-08-14"
+      },
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-17",
+        "end": "2026-08-21"
+      }
+    ]
+  },
+  {
+    "person": "Jacob Reed",
+    "slug": "jacob-reed",
+    "team": "Disasters",
+    "role": "",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "date": "2026-08-07"
+      }
+    ]
+  }
+]
