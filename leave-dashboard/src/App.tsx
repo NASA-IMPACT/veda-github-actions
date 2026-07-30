@@ -8,6 +8,7 @@ import {
 import { STATUS_ORDER } from "./colors";
 import { Draft, draftToPerson, newDraft } from "./drafts";
 import { exportNodeToPng } from "./exportImage";
+import { applyTheme, getInitialTheme } from "./theme";
 import { decodeHash, encodeHash } from "./urlState";
 import Header from "./components/Header";
 import PersonPicker from "./components/PersonPicker";
@@ -33,7 +34,10 @@ export default function App() {
   const [exporting, setExporting] = useState(false);
   const [copied, setCopied] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme);
   const exportRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => applyTheme(theme), [theme]);
 
   useEffect(() => {
     loadDataset()
@@ -209,6 +213,8 @@ export default function App() {
         onNext={() => setMonth(months[idx + 1])}
         refreshing={refreshing}
         onRefresh={refresh}
+        theme={theme}
+        onToggleTheme={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
       />
 
       {ds.doc.warnings.length > 0 && (
@@ -216,7 +222,7 @@ export default function App() {
       )}
 
       {preview.length > 0 && (
-        <div className="warnbanner" style={{ background: "#eef6ff", borderColor: "#bcdcff", color: "#1a4480" }}>
+        <div className="warnbanner" style={{ background: "var(--info-bg)", borderColor: "var(--info-line)", color: "var(--info-ink)" }}>
           👁 Previewing <b>{preview.length}</b> unsaved {preview.length === 1 ? "person" : "people"} (not yet in a PR). Your entries are kept.{" "}
           <button className="btn" style={{ padding: "0.1rem 0.6rem", marginLeft: "0.4rem" }} onClick={() => setAddOpen(true)}>
             ✎ Edit entries

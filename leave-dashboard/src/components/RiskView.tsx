@@ -85,7 +85,11 @@ export default function RiskView(props: Props) {
                   const pct = cov?.out_pct ?? 0;
                   const flag = pct >= threshold && (cov?.out_count ?? 0) > 0;
                   const alpha = pct === 0 ? 0 : Math.min(0.15 + pct * 0.85, 1);
-                  const bg = flag ? "var(--red)" : `rgba(214, 69, 69, ${alpha.toFixed(2)})`;
+                  // Derive the shade from --red (via color-mix) so it tracks the theme instead of a
+                  // fixed light-mode rgba; higher OUT fraction → more opaque red over the cell.
+                  const bg = flag
+                    ? "var(--red)"
+                    : `color-mix(in srgb, var(--red) ${Math.round(alpha * 100)}%, transparent)`;
                   const title = cov && cov.out_count + cov.limited.length > 0
                     ? `${team} · ${c.iso}\n${cov.out_count}/${cov.team_size} out (${Math.round(pct * 100)}%)`
                       + (cov.people_out.length ? `\nOut: ${cov.people_out.map(nameOf).join(", ")}` : "")

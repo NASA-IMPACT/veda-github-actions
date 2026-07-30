@@ -1,5 +1,6 @@
 import type { MonthKey } from "../compute";
 import { MONTH_NAMES } from "../compute";
+import type { Theme } from "../theme";
 
 interface Props {
   source: "live" | "snapshot";
@@ -13,6 +14,8 @@ interface Props {
   onNext: () => void;
   refreshing: boolean;
   onRefresh: () => void;
+  theme: Theme;
+  onToggleTheme: () => void;
 }
 
 function relativeTime(iso: string): string {
@@ -30,7 +33,7 @@ function relativeTime(iso: string): string {
 }
 
 export default function Header(props: Props) {
-  const { source, generated, view, onView, month, canPrev, canNext, onPrev, onNext, refreshing, onRefresh } = props;
+  const { source, generated, view, onView, month, canPrev, canNext, onPrev, onNext, refreshing, onRefresh, theme, onToggleTheme } = props;
   return (
     <div className="header">
       <div>
@@ -51,6 +54,14 @@ export default function Header(props: Props) {
         </div>
       </div>
       <div className="monthnav">
+        <button
+          className="btn iconbtn"
+          onClick={onToggleTheme}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
         <div className="seg" role="tablist" aria-label="View">
           <button className={view === "calendar" ? "active" : ""} onClick={() => onView("calendar")}>
             Calendar
