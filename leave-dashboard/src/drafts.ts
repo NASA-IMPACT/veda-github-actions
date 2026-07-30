@@ -10,14 +10,20 @@ export interface DraftEntry {
   note: string;
 }
 export interface Draft {
+  mode: "existing" | "new";
   name: string;
   team: string;
   role: string;
+  slug?: string; // set when an existing person is chosen (so the override merges onto them)
   entries: DraftEntry[];
 }
 
-export function newDraft(): Draft {
-  return { name: "", team: "", role: "", entries: [{ start: "", end: "", status: "planned_time_off", note: "" }] };
+export function newDraft(mode: "existing" | "new" = "existing"): Draft {
+  return { mode, name: "", team: "", role: "", entries: [{ start: "", end: "", status: "planned_time_off", note: "" }] };
+}
+
+export function draftSlug(d: Draft): string {
+  return d.slug || slugify(d.name);
 }
 
 export function slugify(s: string): string {
@@ -57,7 +63,7 @@ export function draftToPerson(d: Draft): Person {
     }
   }
   leaves.sort((a, b) => a.date.localeCompare(b.date));
-  return { slug: slugify(d.name), name: d.name.trim(), team: d.team.trim(), role: d.role.trim(), leaves };
+  return { slug: draftSlug(d), name: d.name.trim(), team: d.team.trim(), role: d.role.trim(), leaves };
 }
 
 // One draft -> the override JSON object the generator understands.
@@ -75,7 +81,7 @@ export function draftToOverride(d: Draft, pi: string) {
       if (e.note) o.note = e.note;
       return o;
     });
-  return { person: d.name.trim(), slug: slugify(d.name), team: d.team.trim(), role: d.role.trim(), pi, entries };
+  return { person: d.name.trim(), slug: draftSlug(d), team: d.team.trim(), role: d.role.trim(), pi, entries };
 }
 
 // The override FILE for a batch: a single object for one person, else an array — so all the
@@ -83,7 +89,7 @@ export function draftToOverride(d: Draft, pi: string) {
 export function buildOverrideFile(drafts: Draft[], pi: string): { filename: string; json: string } {
   const valid = drafts.filter(draftValid);
   const docs = valid.map((d) => draftToOverride(d, pi));
-  const first = valid[0] ? slugify(valid[0].name) : "person";
+  const first = valid[0] ? draftSlug(valid[0]) : "person";
   const filename =
     docs.length <= 1
       ? `leave/overrides/${first}.json`

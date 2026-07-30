@@ -1,12 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Dataset, Person, Status } from "./types";
 import { loadDataset } from "./data";
 import type { MonthKey, PersonLeave } from "./compute";
 import {
-  indexByDate, monthsBetween, sameMonth, toISO, visiblePeople,
+  indexByDate, MONTH_NAMES, monthsBetween, sameMonth, toISO, visiblePeople,
 } from "./compute";
 import { STATUS_ORDER } from "./colors";
 import { Draft, draftToPerson } from "./drafts";
+import { exportNodeToPng } from "./exportImage";
+import { decodeHash, encodeHash } from "./urlState";
 import Header from "./components/Header";
 import PersonPicker from "./components/PersonPicker";
 import Filters from "./components/Filters";
@@ -26,19 +28,48 @@ export default function App() {
   const [threshold, setThreshold] = useState(0.3);
   const [addOpen, setAddOpen] = useState(false);
   const [preview, setPreview] = useState<Person[]>([]);
+  const [exporting, setExporting] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const exportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadDataset()
       .then((d) => {
         setDs(d);
-        setSelSlugs(new Set(d.doc.people.map((p) => p.slug)));
-        setSelTeams(new Set(d.doc.meta.teams));
-        setThreshold(d.coverage.risk_threshold_default ?? 0.3);
+        // Restore a shared view from the URL hash, else fall back to sensible defaults.
+        const url = decodeHash(window.location.hash);
+        const realSlugs = new Set(d.doc.people.map((p) => p.slug));
+        const teamSet = new Set(d.doc.meta.teams);
+        setSelSlugs(url.people ? new Set(url.people.filter((s) => realSlugs.has(s))) : realSlugs);
+        setSelTeams(url.teams ? new Set(url.teams.filter((t) => teamSet.has(t))) : teamSet);
+        setStatuses(new Set(url.statuses ?? STATUS_ORDER));
+        setThreshold(url.risk ?? d.coverage.risk_threshold_default ?? 0.3);
+        if (url.view) setView(url.view);
         const months = monthsBetween(d.doc.meta.span.start, d.doc.meta.span.end);
-        setMonth(months[0] ?? { year: d.doc.meta.year, month: 6 });
+        setMonth(url.month ?? months[0] ?? { year: d.doc.meta.year, month: 6 });
       })
       .catch((e) => setError(String(e)));
   }, []);
+
+  // Keep the URL hash in sync with the current view so it can be copied/shared.
+  useEffect(() => {
+    if (!ds || !month) return;
+    const realSlugs = ds.doc.people.map((p) => p.slug);
+    const selReal = realSlugs.filter((s) => selSlugs.has(s));
+    const hash = encodeHash({
+      view, month, risk: threshold,
+      people: selReal.length === realSlugs.length ? null : selReal,
+      teams: selTeams.size === ds.doc.meta.teams.length ? null : [...selTeams],
+      statuses: statuses.size === STATUS_ORDER.length ? null : [...statuses],
+    });
+    window.history.replaceState(null, "", hash || window.location.pathname + window.location.search);
+  }, [ds, view, month, threshold, selSlugs, selTeams, statuses]);
+
+  function copyLink() {
+    navigator.clipboard?.writeText(window.location.href);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1500);
+  }
 
   const months = useMemo<MonthKey[]>(
     () => (ds ? monthsBetween(ds.doc.meta.span.start, ds.doc.meta.span.end) : []),
@@ -86,6 +117,22 @@ export default function App() {
       setMonth({ year: d.getFullYear(), month: d.getMonth() });
     }
     setAddOpen(false);
+  }
+
+  async function exportPng() {
+    if (!exportRef.current || !month) return;
+    setExporting(true); // reveals the capture-only caption
+    // Let React paint the caption before rasterizing (two frames to be safe).
+    await new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));
+    try {
+      const scope = visible.length === effectivePeople.length ? "all" : `${visible.length}-people`;
+      const name = `team-leave-${MONTH_NAMES[month.month].toLowerCase()}-${month.year}-${scope}.png`;
+      await exportNodeToPng(exportRef.current, name);
+    } catch (e) {
+      console.error("PNG export failed", e);
+    } finally {
+      setExporting(false);
+    }
   }
 
   // People appearing in the current month (for the per-person legend).
@@ -152,6 +199,14 @@ export default function App() {
           onStatuses={setStatuses}
         />
         <button className="btn primary" onClick={() => setAddOpen(true)}>＋ Add person</button>
+        <button className="btn" onClick={copyLink} title="Copy a link that reopens this exact filtered view">
+          {copied ? "✓ Link copied" : "🔗 Copy link"}
+        </button>
+        {view === "calendar" && (
+          <button className="btn" onClick={exportPng} disabled={exporting}>
+            {exporting ? "Exporting…" : "⬇ Export PNG"}
+          </button>
+        )}
 
         <div className="stat-cards">
           <div className="stat panel"><div className="n">{visible.length}</div><div className="l">People</div></div>
@@ -162,10 +217,21 @@ export default function App() {
       </div>
 
       {view === "calendar" ? (
-        <>
+        <div ref={exportRef} className="export-target">
+          {exporting && (
+            <div className="export-cap">
+              <div className="ec-title">Team Out-of-Office &amp; Leave</div>
+              <div className="ec-sub">
+                {MONTH_NAMES[month.month]} {month.year} · {visible.length}{" "}
+                {visible.length === 1 ? "person" : "people"}
+                {selTeams.size < effectiveTeams.length ? ` · ${selTeams.size} teams` : ""}
+                {preview.length > 0 ? " · includes unsaved preview" : ""}
+              </div>
+            </div>
+          )}
           <MonthCalendar month={month} byDate={byDate} today={toISO(new Date())} />
           <Legend people={peopleInView} />
-        </>
+        </div>
       ) : (
         <RiskView
           days={ds.coverage.days}
@@ -182,6 +248,7 @@ export default function App() {
       {addOpen && (
         <AddPersonForm
           teams={effectiveTeams}
+          people={effectivePeople}
           pi={ds.doc.meta.pi}
           onClose={() => setAddOpen(false)}
           onPreview={applyPreview}

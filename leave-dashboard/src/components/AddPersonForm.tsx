@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import type { Status } from "../types";
+import type { Person, Status } from "../types";
 import { STATUS_LABEL, STATUS_ORDER } from "../colors";
 import { buildOverrideFile, Draft, draftValid, newDraft } from "../drafts";
 
@@ -10,13 +10,20 @@ const BASE_BRANCH = "main";
 
 interface Props {
   teams: string[];
+  people: Person[];
   pi: string;
   onClose: () => void;
   onPreview: (drafts: Draft[]) => void;
 }
 
-export default function AddPersonForm({ teams, pi, onClose, onPreview }: Props) {
-  const [drafts, setDrafts] = useState<Draft[]>([newDraft()]);
+export default function AddPersonForm({ teams, people, pi, onClose, onPreview }: Props) {
+  const [drafts, setDrafts] = useState<Draft[]>([newDraft("existing")]);
+
+  const byName = useMemo(() => {
+    const m = new Map<string, Person>();
+    people.forEach((p) => m.set(p.name.trim().toLowerCase(), p));
+    return m;
+  }, [people]);
 
   function patch(i: number, p: Partial<Draft>) {
     setDrafts((ds) => ds.map((d, j) => (j === i ? { ...d, ...p } : d)));
@@ -28,6 +35,13 @@ export default function AddPersonForm({ teams, pi, onClose, onPreview }: Props) 
       ),
     );
   }
+  // Existing-person mode: typing/selecting a known name locks their slug/team/role so the
+  // override merges onto that person (you're adding new leave dates, not a duplicate).
+  function pickExisting(i: number, value: string) {
+    const p = byName.get(value.trim().toLowerCase());
+    if (p) patch(i, { name: p.name, team: p.team, role: p.role, slug: p.slug });
+    else patch(i, { name: value, slug: undefined, team: "", role: "" });
+  }
 
   const { filename, json } = useMemo(() => buildOverrideFile(drafts, pi), [drafts, pi]);
   const validCount = drafts.filter(draftValid).length;
@@ -36,36 +50,69 @@ export default function AddPersonForm({ teams, pi, onClose, onPreview }: Props) 
   return (
     <div className="overlay" onClick={onClose}>
       <div className="modal panel" onClick={(e) => e.stopPropagation()}>
-        <h2>Add {drafts.length > 1 ? "people" : "a person"}</h2>
+        <h2>Add leave</h2>
         <p className="hint">
           Everyone below goes into <b>one</b> pull request (<code>{filename.replace("leave/overrides/", "")}</code>).
-          Assign an existing team or type a brand-new one. Use <b>Preview</b> to see them on the calendar first.
+          Add dates to an <b>existing person</b>, or create a <b>new</b> one (and a new team if needed).
+          Use <b>Preview</b> to see them on the calendar first.
         </p>
 
         {drafts.map((d, i) => {
-          const isNewTeam = d.team.trim().length > 0 && !teams.includes(d.team.trim());
+          const known = d.mode === "existing" ? byName.get(d.name.trim().toLowerCase()) : undefined;
+          const isNewTeam = d.mode === "new" && d.team.trim().length > 0 && !teams.includes(d.team.trim());
           return (
             <div key={i} className="panel" style={{ padding: "0.7rem 0.8rem", marginBottom: "0.7rem" }}>
-              <div className="field two" style={{ gridTemplateColumns: "1.3fr 1fr auto", alignItems: "end" }}>
-                <div>
-                  <label>Name</label>
-                  <input value={d.name} onChange={(e) => patch(i, { name: e.target.value })} placeholder="Jane Doe" />
-                </div>
-                <div>
-                  <label>Role (optional)</label>
-                  <input value={d.role} onChange={(e) => patch(i, { role: e.target.value })} placeholder="Engineer" />
+              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
+                <div className="seg">
+                  <button className={d.mode === "existing" ? "active" : ""}
+                    onClick={() => patch(i, { mode: "existing", slug: undefined, name: "", team: "", role: "" })}>
+                    Existing person
+                  </button>
+                  <button className={d.mode === "new" ? "active" : ""}
+                    onClick={() => patch(i, { mode: "new", slug: undefined, name: "", team: "", role: "" })}>
+                    New person
+                  </button>
                 </div>
                 {drafts.length > 1 && (
-                  <button className="rm" title="Remove person"
+                  <button className="rm" title="Remove" style={{ marginLeft: "auto" }}
                     onClick={() => setDrafts((ds) => ds.filter((_, j) => j !== i))}>×</button>
                 )}
               </div>
-              <div className="field">
-                <label>Team</label>
-                <input list="teamlist" value={d.team} onChange={(e) => patch(i, { team: e.target.value })}
-                  placeholder="DevSeed — or a new team name" />
-                {isNewTeam && <div className="newteam">＋ New team “{d.team.trim()}” will be created</div>}
-              </div>
+
+              {d.mode === "existing" ? (
+                <div className="field">
+                  <label>Person</label>
+                  <input list={`people-${i}`} value={d.name}
+                    onChange={(e) => pickExisting(i, e.target.value)}
+                    placeholder="Start typing a name…" />
+                  <datalist id={`people-${i}`}>
+                    {people.map((p) => <option key={p.slug} value={p.name}>{p.team}</option>)}
+                  </datalist>
+                  {known
+                    ? <div className="newteam" style={{ color: "var(--blue-ink)" }}>↳ {known.team}{known.role ? ` · ${known.role}` : ""} — adding new leave dates</div>
+                    : d.name.trim() && <div className="newteam" style={{ color: "var(--red)" }}>Not on the sheet — switch to “New person”, or pick a match.</div>}
+                </div>
+              ) : (
+                <>
+                  <div className="field two" style={{ gridTemplateColumns: "1.3fr 1fr" }}>
+                    <div>
+                      <label>Name</label>
+                      <input value={d.name} onChange={(e) => patch(i, { name: e.target.value })} placeholder="Jane Doe" />
+                    </div>
+                    <div>
+                      <label>Role (optional)</label>
+                      <input value={d.role} onChange={(e) => patch(i, { role: e.target.value })} placeholder="Engineer" />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label>Team</label>
+                    <input list="teamlist" value={d.team} onChange={(e) => patch(i, { team: e.target.value })}
+                      placeholder="DevSeed — or a new team name" />
+                    {isNewTeam && <div className="newteam">＋ New team “{d.team.trim()}” will be created</div>}
+                  </div>
+                </>
+              )}
+
               <div className="field">
                 <label>Leave</label>
                 {d.entries.map((e, k) => (
@@ -92,7 +139,7 @@ export default function AddPersonForm({ teams, pi, onClose, onPreview }: Props) 
           {teams.map((t) => <option key={t} value={t} />)}
         </datalist>
 
-        <button className="btn" onClick={() => setDrafts((ds) => [...ds, newDraft()])}>＋ Add another person</button>
+        <button className="btn blue" onClick={() => setDrafts((ds) => [...ds, newDraft("existing")])}>＋ Add another person</button>
 
         <div className="urlbox">{json}</div>
 
