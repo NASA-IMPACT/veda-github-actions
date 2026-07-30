@@ -11,10 +11,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  # Skip this site's build unless leave-dashboard/ changed. Netlify: ignore exits 0 → skip, non-0 → build.
-  # Guard the first/PR-preview case where CACHED_COMMIT_REF == COMMIT_REF (or is empty): force a build
-  # then, so deploy previews aren't skipped. Only skip when two DISTINCT commits show no leave-dashboard/ diff.
-  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && [ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- leave-dashboard/"
+  # No `ignore` filter: always build & publish on a push so merged changes reliably go live.
+  # A folder-scoped `git diff` ignore previously skipped PRODUCTION builds whenever Netlify passed
+  # equal CACHED_COMMIT_REF/COMMIT_REF (e.g. after a canceled deploy), silently dropping merged
+  # code. A leave-dashboard rebuild is cheap and idempotent, so we prefer guaranteed deploys.
 
 # SPA fallback: serve index.html for client-side routes.
 [[redirects]]
