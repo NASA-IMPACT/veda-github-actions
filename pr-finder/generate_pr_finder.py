@@ -524,9 +524,24 @@ CSS = """
   --blue-60v:#005ea2; --blue-warm-70v:#1a4480; --base-lightest:#f0f0f0;
   --base-lighter:#dfe1e2; --base:#71767a; --base-ink:#1b1b1b;
   --green-cool-40v:#00a91c; --red-50v:#d83933; --gold-20v:#ffbe2e;
+  --page-bg:#fff;
+}
+/* Dark mode: honored when the pr-dashboard shell injects data-theme onto <html>, and (standalone,
+   no shell) via the prefers-color-scheme fallback below. Tag colors stay fixed — they are data. */
+:root[data-theme="dark"]{
+  --base-lightest:#1b2330; --base-lighter:#2a333f; --base:#9aa4ad;
+  --base-ink:#e6edf3; --blue-warm-70v:#8fb8e6; --page-bg:#0f141b;
+}
+:root[data-theme="dark"] a{color:#4d9fd6}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --base-lightest:#1b2330; --base-lighter:#2a333f; --base:#9aa4ad;
+    --base-ink:#e6edf3; --blue-warm-70v:#8fb8e6; --page-bg:#0f141b;
+  }
+  :root:not([data-theme="light"]) a{color:#4d9fd6}
 }
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--base-ink);line-height:1.5;
+body{margin:0;background:var(--page-bg);color:var(--base-ink);line-height:1.5;
   font-family:"Source Sans Pro","Public Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .wrap{max-width:960px;margin:0 auto;padding:2rem 1.25rem 4rem}
 h1{font-size:1.9rem;margin:0 0 1rem;font-weight:700}
@@ -554,7 +569,7 @@ ul.pr-list li.empty{list-style:none;color:var(--base);font-style:italic;margin-l
 .tag-merged{background:var(--green-cool-40v)}
 .tag-closed{background:var(--red-50v)}
 .tag-open{background:var(--blue-60v)}
-.tag-warn{background:var(--gold-20v);color:var(--base-ink)}
+.tag-warn{background:var(--gold-20v);color:#1b1b1b}
 """
 
 

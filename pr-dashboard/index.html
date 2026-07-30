@@ -3,28 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
   <title>PR Finder — Dashboard</title>
+  <script>
+    // Set the theme before first paint so there's no flash of the wrong palette. Default: dark.
+    (function () {
+      try {
+        var t = localStorage.getItem("pr-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
   <style>
     :root{ --blue-60v:#005ea2; --blue-warm-70v:#1a4480; --base-lightest:#f0f0f0;
-           --base-lighter:#dfe1e2; --base:#71767a; --base-ink:#1b1b1b; --gold-20v:#ffbe2e; }
+           --base-lighter:#dfe1e2; --base:#71767a; --base-ink:#1b1b1b; --gold-20v:#ffbe2e;
+           --page-bg:#fff; --warn-bg:#fef2c0; --warn-ink:#5c4a00; }
+    :root[data-theme="dark"]{ --base-lightest:#1b2330; --base-lighter:#2a333f; --base:#9aa4ad;
+           --base-ink:#e6edf3; --page-bg:#0f141b; --warn-bg:#3a2f10; --warn-ink:#f2d98a; }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
-    body{display:flex;flex-direction:column;background:#fff;color:var(--base-ink);
+    body{display:flex;flex-direction:column;background:var(--page-bg);color:var(--base-ink);
       font-family:"Source Sans Pro","Public Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
     header{background:var(--blue-warm-70v);color:#fff;padding:.6rem 1.25rem;display:flex;
       align-items:center;gap:1rem;flex-wrap:wrap}
     header h1{font-size:1.05rem;margin:0;font-weight:700}
     header label{font-size:.8rem;color:#c9d5e5}
     header select{font-size:.85rem;padding:.2rem .4rem;border-radius:.2rem;border:1px solid #ffffff55;
-      background:#fff;color:var(--base-ink);max-width:60vw}
+      background:#fff;color:#1b1b1b;max-width:60vw}
     header .spacer{flex:1}
     header a.btn{color:#fff;border:1px solid #ffffff66;border-radius:.2rem;padding:.2rem .6rem;
       font-size:.8rem;text-decoration:none;cursor:pointer;background:transparent}
     header a.btn:hover{background:#ffffff1a}
+    header a.btn.iconbtn{font-size:.95rem;line-height:1;padding:.15rem .45rem}
     #status{padding:.4rem 1.25rem;font-size:.82rem;color:var(--base);background:var(--base-lightest);
       border-bottom:1px solid var(--base-lighter)}
-    #status.warn{background:#fef2c0;color:#5c4a00}
-    iframe{flex:1;width:100%;border:0}
+    #status.warn{background:var(--warn-bg);color:var(--warn-ink)}
+    iframe{flex:1;width:100%;border:0;background:var(--page-bg)}
   </style>
 </head>
 <body>
@@ -33,6 +49,7 @@
     <label for="picker">Report</label>
     <select id="picker" aria-label="Choose a PI / Sprint report"></select>
     <span class="spacer"></span>
+    <a class="btn iconbtn" id="theme-toggle" role="button" tabindex="0" title="Toggle light / dark mode" aria-label="Toggle light / dark mode">☀️</a>
     <a class="btn" id="refresh">Refresh</a>
   </header>
   <div id="status">Loading reports…</div>
@@ -47,7 +64,43 @@
     var statusEl = document.getElementById("status");
     var frame = document.getElementById("report");
     var picker = document.getElementById("picker");
-    var state = { base: LIVE, live: true, entries: [] };
+    var state = { base: LIVE, live: true, entries: [], reportHtml: "" };
+
+    // ── Theme: the report renders in an iframe (a styling boundary), so we inject dark overrides +
+    // a postMessage listener into the report HTML before assigning srcdoc. This themes historical
+    // reports too (they predate the generator's dark CSS) and lets a toggle re-theme the live iframe
+    // without a reload. Older reports reference USWDS vars, so overriding those vars cascades; the
+    // body background was hardcoded, so we override it directly.
+    var THEME_KEY = "pr-theme";
+    var THEME_CSS =
+      '<style id="__pr_theme">' +
+      ':root[data-theme="dark"]{--base-lightest:#1b2330;--base-lighter:#2a333f;--base:#9aa4ad;' +
+      '--base-ink:#e6edf3;--blue-warm-70v:#8fb8e6;}' +
+      '[data-theme="dark"] body{background:#0f141b;color:#e6edf3}' +
+      '[data-theme="dark"] a{color:#4d9fd6}' +
+      '[data-theme="dark"] .tag-warn{color:#1b1b1b}' +
+      '</style>' +
+      '<script>window.addEventListener("message",function(e){var t=e&&e.data&&e.data.theme;' +
+      'if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);});<\/script>';
+
+    function currentTheme() {
+      try { return localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark"; }
+      catch (e) { return "dark"; }
+    }
+    function themeReport(htmlText, theme) {
+      var out = htmlText.replace(/<html/i, '<html data-theme="' + theme + '"');
+      return out.indexOf("</head>") !== -1
+        ? out.replace("</head>", THEME_CSS + "</head>")
+        : THEME_CSS + out;
+    }
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+      var b = document.getElementById("theme-toggle");
+      if (b) b.textContent = theme === "dark" ? "☀️" : "🌙";
+      // Re-theme the live report iframe without reloading it.
+      if (frame.contentWindow) frame.contentWindow.postMessage({ theme: theme }, "*");
+    }
 
     function labelFor(e){
       var bits = [];
@@ -63,7 +116,7 @@
       if (!html) { statusEl.textContent = "Selected report has no HTML file."; return; }
       fetch(state.base + "/" + html + "?t=" + Date.now(), { cache: "no-store" })
         .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-        .then(function(t){ frame.srcdoc = t; })
+        .then(function(t){ state.reportHtml = t; frame.srcdoc = themeReport(t, currentTheme()); })
         .catch(function(e){ statusEl.className = "warn";
           statusEl.textContent = "Could not load report: " + e.message; });
     }
@@ -105,6 +158,13 @@
 
     picker.addEventListener("change", function(){ loadReport(state.entries[+picker.value]); });
     document.getElementById("refresh").addEventListener("click", load);
+
+    var toggle = document.getElementById("theme-toggle");
+    toggle.textContent = currentTheme() === "dark" ? "☀️" : "🌙";
+    toggle.addEventListener("click", function(){
+      applyTheme(currentTheme() === "dark" ? "light" : "dark");
+    });
+
     load();
   </script>
 </body>
