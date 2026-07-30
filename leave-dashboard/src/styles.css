@@ -76,6 +76,22 @@ body {
 .badge.snapshot .dot {
   background: var(--amber);
 }
+.linkbtn {
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  padding: 0.08rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+.linkbtn:hover:not(:disabled) {
+  background: #eef4ff;
+}
+.linkbtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 
 /* ---------- month nav / view toggle ---------- */
 .monthnav {
@@ -476,13 +492,15 @@ button {
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
 }
+/* Fixed-width columns + margins (NOT flex `gap`) so the team legend renders identically in the
+   html-to-image PNG export, which doesn't reliably honor flex/grid gap (was "smooshed"). */
 .legend-teams {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem 2rem;
 }
 .legend-team {
-  min-width: 8rem;
+  width: 11rem;
+  margin: 0 1.25rem 0.9rem 0;
 }
 .legend-team .lt-name {
   font-size: 0.72rem;
@@ -490,15 +508,22 @@ button {
   letter-spacing: 0.04em;
   color: var(--muted);
   font-weight: 700;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 .legend-team .lt-count {
   opacity: 0.65;
 }
 .legend-team .items {
-  flex-direction: column;
-  gap: 0.28rem;
-  align-items: flex-start;
+  display: block;
+}
+.legend-team .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+.legend-team .item .sw {
+  margin-right: 0.45rem;
+  flex: none;
 }
 .legend .item {
   display: inline-flex;

@@ -32,6 +32,7 @@ export default function App() {
   const [drafts, setDrafts] = useState<Draft[]>(() => [newDraft("existing")]);
   const [exporting, setExporting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const exportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -72,6 +73,36 @@ export default function App() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1500);
   }
+
+  // Re-fetch the report WITHOUT resetting the user's filters/month, and reveal any newly-added
+  // people/teams so a just-merged person becomes visible. Keeps current data if the fetch fails.
+  const knownSlugsRef = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    if (ds) knownSlugsRef.current = new Set(ds.doc.people.map((p) => p.slug));
+  }, [ds]);
+  async function refresh() {
+    setRefreshing(true);
+    try {
+      const d = await loadDataset();
+      const added = d.doc.people.map((p) => p.slug).filter((s) => !knownSlugsRef.current.has(s));
+      setDs(d);
+      if (added.length) {
+        setSelSlugs((s) => new Set([...s, ...added]));
+        setSelTeams((t) => new Set([...t, ...d.doc.meta.teams]));
+      }
+    } catch {
+      /* keep the data we already have */
+    } finally {
+      setRefreshing(false);
+    }
+  }
+  const refreshRef = useRef(refresh);
+  refreshRef.current = refresh;
+  useEffect(() => {
+    const onVis = () => { if (document.visibilityState === "visible") refreshRef.current(); };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
 
   const months = useMemo<MonthKey[]>(
     () => (ds ? monthsBetween(ds.doc.meta.span.start, ds.doc.meta.span.end) : []),
@@ -176,6 +207,8 @@ export default function App() {
         canNext={idx < months.length - 1}
         onPrev={() => setMonth(months[idx - 1])}
         onNext={() => setMonth(months[idx + 1])}
+        refreshing={refreshing}
+        onRefresh={refresh}
       />
 
       {ds.doc.warnings.length > 0 && (

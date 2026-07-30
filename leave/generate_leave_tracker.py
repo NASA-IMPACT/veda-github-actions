@@ -388,7 +388,14 @@ def merge_person_override(dataset, by_slug, known_statuses, ov, fn):
     touched = set()
     new_records = []
     for entry in ov.get("entries", []):
-        for rec in expand_entry(entry, ov.get("include_weekends", False)):
+        # A hand-edited/prefilled override may have a bad date or shape — skip that ENTRY (not the
+        # whole person/file) with a warning so one typo never breaks the report.
+        try:
+            recs = expand_entry(entry, ov.get("include_weekends", False))
+        except (ValueError, KeyError, TypeError) as e:
+            dataset["warnings"].append(f"override {fn}: bad entry {entry!r} — skipped ({e})")
+            continue
+        for rec in recs:
             if rec["status"] not in known_statuses:
                 dataset["warnings"].append(
                     f"override {fn}: unknown status {rec['status']!r} on {rec['date']}")
@@ -414,18 +421,33 @@ def apply_overrides(dataset, overrides_dir, color_map):
     for fn in sorted(os.listdir(overrides_dir)):
         if not fn.endswith(".json"):
             continue
-        with open(os.path.join(overrides_dir, fn), encoding="utf-8") as fh:
-            doc = json.load(fh)
+        # A malformed override file must never abort the whole run — skip it with a warning so the
+        # report always regenerates from the valid overrides + the xlsx.
+        try:
+            with open(os.path.join(overrides_dir, fn), encoding="utf-8") as fh:
+                doc = json.load(fh)
+        except (json.JSONDecodeError, OSError) as e:
+            dataset["warnings"].append(f"override {fn}: unreadable JSON — skipped ({e})")
+            continue
         # A file may hold a single person, a list of people, or {"people": [...]} — so one
         # PR can add several people at once.
         if isinstance(doc, list):
             people = doc
         elif isinstance(doc, dict) and isinstance(doc.get("people"), list):
             people = doc["people"]
-        else:
+        elif isinstance(doc, dict):
             people = [doc]
+        else:
+            dataset["warnings"].append(f"override {fn}: not an object/array — skipped")
+            continue
         for ov in people:
-            merge_person_override(dataset, by_slug, known_statuses, ov, fn)
+            if not isinstance(ov, dict):
+                dataset["warnings"].append(f"override {fn}: entry is not an object — skipped")
+                continue
+            try:
+                merge_person_override(dataset, by_slug, known_statuses, ov, fn)
+            except Exception as e:  # never let one person's override break the report
+                dataset["warnings"].append(f"override {fn}: {ov.get('person', '?')} — skipped ({e})")
     dataset["teams"] = sorted({p["team"] for p in dataset["people"]})
 
 
