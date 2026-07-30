@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-07-30T15:09:24Z",
+    "generated": "2026-07-30T15:44:30Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -2290,6 +2290,46 @@
       "team": "DevSeed",
       "role": "VEDA - Dashboard",
       "leaves": [
+        {
+          "date": "2026-07-27",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-07-28",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "override"
+        },
         {
           "date": "2026-10-19",
           "status": "unavailable",

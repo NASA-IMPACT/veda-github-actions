@@ -295,11 +295,12 @@
       "date": "2026-07-27",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
-        "chuck-daniels"
+        "chuck-daniels",
+        "vitor-george"
       ],
       "limited": []
     },
@@ -330,43 +331,6 @@
     },
     {
       "date": "2026-07-28",
-      "team": "DevSeed",
-      "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
-      "people_out": [
-        "chuck-daniels"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-07-29",
-      "team": "2i2c",
-      "team_size": 7,
-      "out_count": 0,
-      "out_weight": 1.0,
-      "out_pct": 0.1429,
-      "people_out": [],
-      "limited": [
-        "april-johnson",
-        "chris-holdgraf"
-      ]
-    },
-    {
-      "date": "2026-07-29",
-      "team": "DSE - Manage",
-      "team_size": 6,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1667,
-      "people_out": [
-        "brianna-pagan"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-07-29",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 2,
@@ -374,7 +338,46 @@
       "out_pct": 0.0645,
       "people_out": [
         "chuck-daniels",
-        "simi-damani"
+        "vitor-george"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-07-29",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1429,
+      "people_out": [],
+      "limited": [
+        "april-johnson",
+        "chris-holdgraf"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [
+        "brianna-pagan"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-07-29",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 3,
+      "out_weight": 3.0,
+      "out_pct": 0.0968,
+      "people_out": [
+        "chuck-daniels",
+        "simi-damani",
+        "vitor-george"
       ],
       "limited": []
     },
@@ -407,12 +410,13 @@
       "date": "2026-07-30",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.0,
-      "out_pct": 0.0645,
+      "out_count": 3,
+      "out_weight": 3.0,
+      "out_pct": 0.0968,
       "people_out": [
         "chuck-daniels",
-        "simi-damani"
+        "simi-damani",
+        "vitor-george"
       ],
       "limited": []
     },
@@ -455,11 +459,12 @@
       "date": "2026-07-31",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
-        "chuck-daniels"
+        "chuck-daniels",
+        "vitor-george"
       ],
       "limited": []
     },
