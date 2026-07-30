@@ -5,6 +5,22 @@ Turns the team leave-tracker spreadsheet into normalized data + an interactive N
 dashboard: [`leave-dashboard/`](../leave-dashboard/); workflow:
 [`.github/workflows/leave-tracker.yml`](../.github/workflows/leave-tracker.yml).
 
+## How updates reach the live dashboard (the whole flow)
+There are exactly **two kinds of change**, and each has one automatic path — no manual steps:
+
+| You change… | What happens | Result |
+|---|---|---|
+| **Dashboard app** (`leave-dashboard/**`) | Merge to `main` → Netlify builds (`netlify.toml` has **no build-ignore**, so it always publishes) | New UI live in ~1 min |
+| **Data** — a person / leave / new team (`leave/overrides/**`) or a new workbook (`leave/source/**`) | Merge to `main` → the **Leave Tracker workflow auto-runs** (push trigger) → regenerates the report on the `leave-tracker/report` branch → the dashboard fetches it at runtime | New data live in ~1 min, no redeploy |
+
+So: **just merge the PR.** The dashboard's *Add-person* button opens exactly such an override PR.
+The **PI is inferred from the workbook filename** (`… 26.4.xlsx` → `26.4`), so nothing needs configuring
+when a new PI workbook is dropped in. To force a refresh (or override the PI), run it by hand:
+`gh workflow run leave-tracker.yml` — or GitHub → Actions → **Leave Tracker** → **Run workflow**.
+
+> The `leave-tracker/report` branch is **machine-managed / publish-only** — never open a PR from it
+> into `main` (that just dumps generated report files onto `main`).
+
 ## The source is a color-coded calendar (not a table)
 `leave/source/DSE Leave Tracker - 26.4.xlsx` is a matrix: **one team tab per team**, a **person per
 row**, a **day per column**, and a person's status on a day is the **cell FILL COLOR** — the day cells

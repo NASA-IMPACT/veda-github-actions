@@ -555,6 +555,13 @@ def main():
     if not args.xlsx and not args.from_json:
         ap.error("one of --xlsx or --from-json is required")
 
+    # Reproducible: with no --pi, infer it from the xlsx filename ("… 26.4.xlsx" -> "26.4"), so
+    # the workflow needs no inputs and a new PI is picked up just by dropping a new workbook.
+    if not args.pi and args.xlsx:
+        m = re.search(r"(\d{2}\.\d+)", os.path.basename(args.xlsx))
+        if m:
+            args.pi = m.group(1)
+
     year = pi_year(args.pi, args.now, args.year)
     color_map = _active_color_map(args)
 
