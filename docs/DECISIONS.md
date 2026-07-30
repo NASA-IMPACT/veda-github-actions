@@ -2,6 +2,27 @@
 
 Short ADRs for non-obvious choices. Newest first.
 
+## Dashboards — light/dark mode via `data-theme` + CSS vars, default dark
+
+All three dashboards already themed through CSS custom properties, so dark mode is additive: light
+values in `:root`, a `:root[data-theme="dark"]` override block, and an attribute on `<html>`
+(`data-theme`) to switch. **Default is dark**; a manual toggle persists per-app in `localStorage`
+(`fte-/leave-/pr-theme`). A tiny inline **no-FOUC script** in each `index.html` sets the attribute
+before first paint. **Only chrome adapts** — the person/status palettes and USWDS PR tag colors are
+*data*, so they stay fixed (inverting them would destroy meaning).
+
+**pr-dashboard was the hard case: the report renders in an iframe (`srcdoc`), a styling boundary the
+shell CSS can't cross.** Rather than only regenerate reports, the shell **injects** dark var overrides
++ a `postMessage` listener into the report HTML and sets `data-theme` on its `<html>` before assigning
+`srcdoc`. This themes **historical** reports on the `pr-finder/report` branch (which predate the dark
+CSS) and lets the toggle re-theme the *live* iframe via `postMessage` — no reload. The generator and
+the bundled snapshot additionally carry a `:root[data-theme="dark"]` block + a `prefers-color-scheme`
+fallback so standalone/newly generated report files are theme-aware on their own.
+
+**leave-dashboard export matches the on-screen theme** — `exportImage.ts` reads the resolved `--bg`
+instead of a hardcoded white, so a dark-mode PNG exports dark. The risk heatmap uses
+`color-mix(in srgb, var(--red) …%, transparent)` so its shading tracks the theme.
+
 ## Leave Tracker — parse cell FILL COLOR, overrides as PRs, live % risk
 
 **The leave xlsx is a color-coded matrix; status = cell fill, not text.** Each team tab is a

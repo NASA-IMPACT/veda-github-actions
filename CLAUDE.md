@@ -62,6 +62,26 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   **Add-person** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
   hold several people → one PR) with an in-app **preview** before the PR.
 
+## Theming (light/dark — all three dashboards)
+Each dashboard themes through **CSS custom properties**: light values live in `:root`, a
+`:root[data-theme="dark"]` block overrides them, and an attribute on `<html>` (`data-theme`) switches
+modes. **Default is dark**; a manual toggle is remembered in `localStorage` under a per-app key
+(`fte-theme` / `leave-theme` / `pr-theme`). Each `index.html` has a tiny inline **no-FOUC script** that
+sets the attribute before first paint + `<meta name="color-scheme" content="dark light">`.
+- **Only chrome adapts. Data colors stay fixed** — the person/status palettes (`leave-dashboard/src/colors.ts`)
+  and the USWDS PR tag colors (merged/closed/open) carry meaning and must NOT invert.
+- **React apps** (fte, leave): `src/theme.ts` holds `getInitialTheme()`/`applyTheme()`; `App` owns the
+  state, `Header` renders the sun/moon toggle. Recharts (fte Trends) grid/axis/tooltip colors point at
+  the theme vars. `leave` PNG **export matches the theme** (`exportImage.ts` reads the resolved `--bg`,
+  not a hardcoded white); `RiskView` heatmap uses `color-mix(... var(--red) ...)` so it tracks the theme.
+- **pr-dashboard crosses the iframe boundary.** The shell loads report HTML into an iframe via `srcdoc`,
+  so before assigning it, the shell **injects** dark var overrides + a `postMessage` listener into the
+  report HTML and sets `data-theme` on its `<html>`. This themes **historical** reports (they predate the
+  dark CSS) and lets the toggle re-theme the live iframe via `postMessage` (no reload). The generator
+  (`pr-finder/generate_pr_finder.py` `CSS`) and the bundled snapshot (`pr-dashboard/pr_finder_all.html`)
+  also carry a `:root[data-theme="dark"]` block + a `prefers-color-scheme: dark` fallback for standalone
+  reports — **keep those two in sync** (the snapshot duplicates the generator's CSS).
+
 ## Gotchas
 - **Issue-triggered run-storms:** the FTE action deployed in another repo with `on: issues:` runs on
   every issue open/edit/close. This repo's `fte-report.yml` keeps that trigger **commented out** on
@@ -80,3 +100,5 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
 `seed/seed_subissue_tree.py`, `seed/cleanup_subissue_tree.py`,
 `.github/workflows/{fte-report,pr-finder,leave-tracker}.yml`,
 `docs/{FTE_SEED,PR_FINDER,LEAVE_TRACKER}.md`, `docs/DECISIONS.md`.
+Theming: `{fte,leave}-dashboard/src/theme.ts`, each `*/src/styles.css` (`:root[data-theme="dark"]`),
+each `index.html` (no-FOUC script), `leave-dashboard/src/exportImage.ts`.
