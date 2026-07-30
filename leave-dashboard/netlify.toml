@@ -11,9 +11,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  # Both dashboards share this repo on `main`; skip this site's build unless leave-dashboard/ changed.
-  # `git diff --quiet` exits 0 (unchanged → Netlify skips) or 1 (changed → Netlify builds).
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- leave-dashboard/"
+  # Skip this site's build unless leave-dashboard/ changed. Netlify: ignore exits 0 → skip, non-0 → build.
+  # Guard the first/PR-preview case where CACHED_COMMIT_REF == COMMIT_REF (or is empty): force a build
+  # then, so deploy previews aren't skipped. Only skip when two DISTINCT commits show no leave-dashboard/ diff.
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && [ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- leave-dashboard/"
 
 # SPA fallback: serve index.html for client-side routes.
 [[redirects]]
