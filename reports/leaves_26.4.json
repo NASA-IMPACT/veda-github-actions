@@ -1,0 +1,2536 @@
+{
+  "meta": {
+    "pi": "26.4",
+    "year": 2026,
+    "generated": "2026-07-30T13:33:58Z",
+    "source_file": "DSE Leave Tracker - 26.4.xlsx",
+    "span": {
+      "start": "2026-07-06",
+      "end": "2026-10-25"
+    },
+    "teams": [
+      "2i2c",
+      "DSE - Manage",
+      "DevSeed",
+      "MSFC",
+      "UAH"
+    ],
+    "team_size": {
+      "2i2c": 7,
+      "DSE - Manage": 6,
+      "DevSeed": 31,
+      "MSFC": 1,
+      "UAH": 25
+    },
+    "risk_threshold_default": 0.3,
+    "categories": {
+      "unavailable": {
+        "color": "FFFF0000",
+        "out": true,
+        "weight": 1.0
+      },
+      "holiday": {
+        "color": "FFE6B8AF",
+        "out": true,
+        "weight": 1.0
+      },
+      "planned_time_off": {
+        "color": "FFD9D2E9",
+        "out": true,
+        "weight": 1.0
+      },
+      "limited": {
+        "color": "FFFFFF00",
+        "out": false,
+        "weight": 0.5
+      },
+      "work_travel": {
+        "color": "FFFFF2CC",
+        "out": false,
+        "weight": 0.0
+      },
+      "wfh": {
+        "color": "FFD9EAD3",
+        "out": false,
+        "weight": 0.0
+      },
+      "other": {
+        "color": "FFC9DAF8",
+        "out": false,
+        "weight": 0.0
+      }
+    }
+  },
+  "people": [
+    {
+      "slug": "angus-hollands",
+      "name": "Angus Hollands",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": [
+        {
+          "date": "2026-08-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "april-johnson",
+      "name": "April Johnson",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub - LEAD",
+      "leaves": [
+        {
+          "date": "2026-07-27",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-28",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-29",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-30",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-01",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-02",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-05",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "chris-holdgraf",
+      "name": "Chris Holdgraf",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": [
+        {
+          "date": "2026-07-27",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-28",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-01",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-02",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-03",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-04",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-05",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-06",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-07",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-08",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-10",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "georgiana-dolocan",
+      "name": "Georgiana Dolocan",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": [
+        {
+          "date": "2026-08-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "jenny-wong",
+      "name": "Jenny Wong",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": []
+    },
+    {
+      "slug": "jim-colliander",
+      "name": "Jim Colliander",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": []
+    },
+    {
+      "slug": "yuvi-panda",
+      "name": "Yuvi Panda",
+      "team": "2i2c",
+      "role": "VEDA - JupyterHub",
+      "leaves": [
+        {
+          "date": "2026-08-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "brian-freitag",
+      "name": "Brian Freitag",
+      "team": "DSE - Manage",
+      "role": "DSE Lead (NASA Civil Servant)",
+      "leaves": [
+        {
+          "date": "2026-07-13",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-14",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-15",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-14",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-15",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-16",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-17",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-18",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "brianna-pagan",
+      "name": "Brianna Pagan",
+      "team": "DSE - Manage",
+      "role": "DSE Technical Lead (DevSeed)",
+      "leaves": [
+        {
+          "date": "2026-07-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "buddy-aswin",
+      "name": "Buddy Aswin",
+      "team": "DSE - Manage",
+      "role": "DSE Deputy (NASA Civil Servant)",
+      "leaves": [
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "chelsea-aaron",
+      "name": "Chelsea Aaron",
+      "team": "DSE - Manage",
+      "role": "DSE Communications (UAH)",
+      "leaves": [
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "ryan-carmichael",
+      "name": "Ryan Carmichael",
+      "team": "DSE - Manage",
+      "role": "DSE Project Manager",
+      "leaves": [
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "taylor-dupre",
+      "name": "Taylor DuPre",
+      "team": "DSE - Manage",
+      "role": "DSE Project Coordinator (Barrios)",
+      "leaves": [
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "aimee-barciauskas",
+      "name": "Aimee Barciauskas",
+      "team": "DevSeed",
+      "role": "VEDA - ODD - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "alex-mandel",
+      "name": "Alex Mandel",
+      "team": "DevSeed",
+      "role": "VEDA - Science Support - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "alexandra-kirk",
+      "name": "Alexandra Kirk",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "alice-ruhl",
+      "name": "Alice Ruhl",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": "Pod week",
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "alison-ziel",
+      "name": "Alison Ziel",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "anthony-boyd",
+      "name": "Anthony Boyd",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "anthony-lukach",
+      "name": "Anthony Lukach",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "chuck-daniels",
+      "name": "Chuck Daniels",
+      "team": "DevSeed",
+      "role": "VEDA - Science Support",
+      "leaves": [
+        {
+          "date": "2026-07-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-31",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-05",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "drishtie-patel",
+      "name": "Drishtie Patel",
+      "team": "DevSeed",
+      "role": "VEDA - AI / ML / floating  - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "emma-paz",
+      "name": "Emma Paz",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-08-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "fanny-casal",
+      "name": "Fanny Casal",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-07-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-11",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "gjore-milevski",
+      "name": "Gjore Milevski",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard - LEAD",
+      "leaves": [
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "hanbyul-jo",
+      "name": "Hanbyul Jo",
+      "team": "DevSeed",
+      "role": "VEDA - JupyterHub",
+      "leaves": []
+    },
+    {
+      "slug": "henry-rodman",
+      "name": "Henry Rodman",
+      "team": "DevSeed",
+      "role": "VEDA - ODD / MAAP",
+      "leaves": [
+        {
+          "date": "2026-07-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-08",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-13",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "isayah-vidito",
+      "name": "Isayah Vidito",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": [
+        {
+          "date": "2026-07-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "jamison-french",
+      "name": "Jamison French",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "jennifer-tran",
+      "name": "Jennifer Tran",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services -LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "kiri-carini",
+      "name": "Kiri Carini",
+      "team": "DevSeed",
+      "role": "COMMS",
+      "leaves": []
+    },
+    {
+      "slug": "kyle-barron",
+      "name": "Kyle Barron",
+      "team": "DevSeed",
+      "role": "VEDA - ODD",
+      "leaves": []
+    },
+    {
+      "slug": "lane-goodman",
+      "name": "Lane Goodman",
+      "team": "DevSeed",
+      "role": "VEDA - Design / floating",
+      "leaves": []
+    },
+    {
+      "slug": "lilly-thomas",
+      "name": "Lilly Thomas",
+      "team": "DevSeed",
+      "role": "VEDA - AI / ML / floating",
+      "leaves": []
+    },
+    {
+      "slug": "max-jones",
+      "name": "Max Jones",
+      "team": "DevSeed",
+      "role": "VEDA - ODD",
+      "leaves": [
+        {
+          "date": "2026-08-13",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-14",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-24",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-25",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-08",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-11",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "saadiq-mohiuddin",
+      "name": "Saadiq Mohiuddin",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "sandra-hoang",
+      "name": "Sandra Hoang",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "sanjay-bhangar",
+      "name": "Sanjay Bhangar",
+      "team": "DevSeed",
+      "role": "VEDA - JupyterHub - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "sean-harkins",
+      "name": "Sean Harkins",
+      "team": "DevSeed",
+      "role": "VEDA - ODD",
+      "leaves": []
+    },
+    {
+      "slug": "simi-damani",
+      "name": "Simi Damani",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-07-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": "half day",
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-29",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": "half day",
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-30",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-12",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": "half day",
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-31",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "tarashish-mishra",
+      "name": "Tarashish Mishra",
+      "team": "DevSeed",
+      "role": "VEDA - JupyterHub",
+      "leaves": []
+    },
+    {
+      "slug": "vincent-sarago",
+      "name": "Vincent Sarago",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "vitor-george",
+      "name": "Vitor George",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "zac-deziel",
+      "name": "Zac Deziel",
+      "team": "DevSeed",
+      "role": "VEDA - Data Services",
+      "leaves": []
+    },
+    {
+      "slug": "chris-phillips",
+      "name": "Chris Phillips",
+      "team": "MSFC",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "aaron-serre",
+      "name": "Aaron Serre",
+      "team": "UAH",
+      "role": "VEDA (GRA)",
+      "leaves": []
+    },
+    {
+      "slug": "abdelhak-maroune",
+      "name": "Abdelhak Maroune",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "ajinkya-kulkarni",
+      "name": "Ajinkya Kulkarni",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "andrew-blackford",
+      "name": "Andrew Blackford",
+      "team": "UAH",
+      "role": "AQ",
+      "leaves": []
+    },
+    {
+      "slug": "ashish-gautam",
+      "name": "Ashish Gautam",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "ashlyn-shirey",
+      "name": "Ashlyn Shirey",
+      "team": "UAH",
+      "role": "GHGC/AQ",
+      "leaves": []
+    },
+    {
+      "slug": "bernad-benson",
+      "name": "Bernad Benson",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "bibek-adhikari",
+      "name": "Bibek Adhikari",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "harshini-girish",
+      "name": "Harshini Girish",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "jeanne-le-roux",
+      "name": "Jeanne' le Roux",
+      "team": "UAH",
+      "role": "AQ - LEAD",
+      "leaves": [
+        {
+          "date": "2026-07-23",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-07-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-08",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-11",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "josie-nelson",
+      "name": "Josie Nelson",
+      "team": "UAH",
+      "role": "AQ",
+      "leaves": []
+    },
+    {
+      "slug": "kyle-lesinger",
+      "name": "Kyle Lesinger",
+      "team": "UAH",
+      "role": "Disasters - LEAD",
+      "leaves": [
+        {
+          "date": "2026-08-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-05",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "paridhi-parajuli",
+      "name": "Paridhi Parajuli",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": [
+        {
+          "date": "2026-08-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-05",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "pooja-khanal",
+      "name": "Pooja Khanal",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "raj-dangol",
+      "name": "Raj Dangol",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "rajat-shinde",
+      "name": "Rajat Shinde",
+      "team": "UAH",
+      "role": "MAAP - VEDA Science Support - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "ram-rimal",
+      "name": "Ram Rimal",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "sandesh-pandey",
+      "name": "Sandesh Pandey",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "sanjog-thapa",
+      "name": "Sanjog Thapa",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "sheyenne-kirkland",
+      "name": "Sheyenne Kirkland",
+      "team": "UAH",
+      "role": "GHGC - LEAD",
+      "leaves": [
+        {
+          "date": "2026-09-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-05",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-08",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "shwetha-herga",
+      "name": "Shwetha Herga",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": []
+    },
+    {
+      "slug": "sid-chaudhary",
+      "name": "Sid Chaudhary",
+      "team": "UAH",
+      "role": "DSE - Data Integration",
+      "leaves": []
+    },
+    {
+      "slug": "sijan-bhattarai",
+      "name": "Sijan Bhattarai",
+      "team": "UAH",
+      "role": "DSE - Developer",
+      "leaves": [
+        {
+          "date": "2026-08-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
+      "slug": "slesa-adhikari",
+      "name": "Slesa Adhikari",
+      "team": "UAH",
+      "role": "DSE - Developer - LEAD",
+      "leaves": []
+    },
+    {
+      "slug": "vidhi-bhatia",
+      "name": "Vidhi Bhatia",
+      "team": "UAH",
+      "role": "DSE - Developer (GRA)",
+      "leaves": []
+    }
+  ],
+  "warnings": []
+}
