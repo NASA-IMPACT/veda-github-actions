@@ -36,6 +36,15 @@ export default function TrendsView({ allocations }: { allocations: Allocation[] 
   const barColor = (util: number) =>
     util >= 100 ? "var(--red)" : util >= 80 ? "var(--amber)" : "var(--blue)";
 
+  // Recharts' default grid/axis/tooltip colors are hardcoded grays; point them at the theme vars so
+  // both light and dark modes read correctly.
+  const axisLabel = { fontSize: 11, fill: "var(--muted)" } as const;
+  const tooltipProps = {
+    contentStyle: { background: "var(--card)", border: "1px solid var(--line)", borderRadius: 8 },
+    labelStyle: { color: "var(--ink)" },
+    itemStyle: { color: "var(--ink)" },
+  } as const;
+
   if (t.pis.length < 2) {
     return (
       <div className="panel">
@@ -72,11 +81,11 @@ export default function TrendsView({ allocations }: { allocations: Allocation[] 
         </p>
         <ResponsiveContainer width="100%" height={330}>
           <ComposedChart data={g1} margin={{ top: 8, right: 16, left: 4, bottom: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="pi" tick={{ fontSize: 12 }} />
-            <YAxis yAxisId="fte" tick={{ fontSize: 11 }} label={{ value: "FTE", angle: -90, position: "insideLeft", fontSize: 11 }} />
-            <YAxis yAxisId="cnt" orientation="right" allowDecimals={false} tick={{ fontSize: 11 }} label={{ value: "# over", angle: 90, position: "insideRight", fontSize: 11 }} />
-            <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--line)" />
+            <XAxis dataKey="pi" tick={{ fontSize: 12, fill: "var(--muted)" }} stroke="var(--line)" />
+            <YAxis yAxisId="fte" tick={{ fontSize: 11, fill: "var(--muted)" }} stroke="var(--line)" label={{ value: "FTE", angle: -90, position: "insideLeft", ...axisLabel }} />
+            <YAxis yAxisId="cnt" orientation="right" allowDecimals={false} tick={{ fontSize: 11, fill: "var(--muted)" }} stroke="var(--line)" label={{ value: "# over", angle: 90, position: "insideRight", ...axisLabel }} />
+            <Tooltip {...tooltipProps} />
             <Legend />
             <ReferenceLine yAxisId="fte" y={t.capacity} stroke="var(--ink)" strokeDasharray="6 3" label={{ value: `capacity ${t.capacity}`, fontSize: 11, position: "insideTopRight" }} />
             <Bar yAxisId="fte" dataKey="demand" name="Demand FTE" radius={[3, 3, 0, 0]} isAnimationActive={false}>
@@ -97,10 +106,10 @@ export default function TrendsView({ allocations }: { allocations: Allocation[] 
         </p>
         <ResponsiveContainer width="100%" height={340}>
           <LineChart data={g2} margin={{ top: 8, right: 16, left: 4, bottom: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="pi" tick={{ fontSize: 12 }} />
-            <YAxis tick={{ fontSize: 11 }} label={{ value: "FTE", angle: -90, position: "insideLeft", fontSize: 11 }} />
-            <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--line)" />
+            <XAxis dataKey="pi" tick={{ fontSize: 12, fill: "var(--muted)" }} stroke="var(--line)" />
+            <YAxis tick={{ fontSize: 11, fill: "var(--muted)" }} stroke="var(--line)" label={{ value: "FTE", angle: -90, position: "insideLeft", ...axisLabel }} />
+            <Tooltip {...tooltipProps} />
             <Legend />
             {t.roles.map((r) => {
               const bottleneck = t.bottleneckRoles.has(r);

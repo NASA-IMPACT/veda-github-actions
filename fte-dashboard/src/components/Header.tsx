@@ -1,4 +1,5 @@
 import type { BaselineCheck } from "../compute";
+import type { Theme } from "../theme";
 
 interface Props {
   pis: string[];
@@ -10,6 +11,8 @@ interface Props {
   edited: boolean;
   onReset: () => void;
   onExport: (kind: "alloc" | "person" | "role") => void;
+  theme: Theme;
+  onToggleTheme: () => void;
   /** Reset/Export/what-if controls are only meaningful on the editable dashboard tab. */
   showEditControls: boolean;
   /** The PI selector is hidden on the Trends tab (which inherently spans all PIs). */
@@ -26,6 +29,8 @@ export default function Header({
   edited,
   onReset,
   onExport,
+  theme,
+  onToggleTheme,
   showEditControls,
   showPiFilter,
 }: Props) {
@@ -40,6 +45,15 @@ export default function Header({
       </div>
       <div className="spacer" />
       <div className="controls">
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={onToggleTheme}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
         <span className={`badge ${source}`} title={source === "live" ? "Fetched from the fte-report/all-pis branch" : "Using the snapshot bundled with the site"}>
           {source === "live" ? "● live" : "● snapshot"}
         </span>

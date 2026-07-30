@@ -10,6 +10,7 @@ import TabSwitcher, { type Tab } from "./components/TabSwitcher";
 import { computeHeadline, computePersonAggs, computeRoleAggs, validateBaseline } from "./compute";
 import { allocationsToCsv, downloadCsv, personsToCsv, rolesToCsv } from "./csv";
 import { loadDataset } from "./data";
+import { applyTheme, getInitialTheme } from "./theme";
 import type { Allocation, Dataset } from "./types";
 
 export default function App() {
@@ -18,6 +19,9 @@ export default function App() {
   const [allocations, setAllocations] = useState<Allocation[]>([]);
   const [piFilter, setPiFilter] = useState("ALL");
   const [activeTab, setActiveTab] = useState<Tab>("matrix"); // Capacity Matrix is the default view
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => applyTheme(theme), [theme]);
 
   useEffect(() => {
     loadDataset()
@@ -90,6 +94,8 @@ export default function App() {
         edited={edited}
         onReset={reset}
         onExport={onExport}
+        theme={theme}
+        onToggleTheme={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
         showEditControls={activeTab === "dashboard"}
         showPiFilter={activeTab !== "trends"}
       />
