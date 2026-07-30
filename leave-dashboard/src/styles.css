@@ -366,9 +366,18 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: default;
+  transition: opacity 0.12s ease;
 }
 .bar.limited {
   opacity: 0.62;
+}
+/* Hovering a person spotlights all their bars across the calendar and fades everyone else. The
+   :not(.match) selector outranks .bar.limited, so limited bars dim correctly too. */
+.cal.dimming .bar:not(.match) {
+  opacity: 0.1;
+}
+.cal.dimming .bar.match {
+  box-shadow: 0 0 0 2px rgba(20, 30, 45, 0.35);
 }
 .bar .n {
   position: relative;
