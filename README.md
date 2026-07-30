@@ -5,10 +5,12 @@ Actions and board seed data without touching production. First module: the **FTE
 (team staffing per Program Increment), so we can experiment with **PI changes** and see the report
 diff. Intentionally open — it will grow to host other VEDA Actions experiments.
 
-> ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
-> 📊 **FTE Dashboard:** https://veda-github-actions.netlify.app
-> 🔀 **PR Finder Dashboard:** https://veda-pr-dashboard.netlify.app
-> 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
+## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
+
+### APPS !!!
+### 📊**FTE Dashboard:** https://veda-github-actions.netlify.app
+### 🔀 **PR Finder Dashboard:** https://veda-pr-dashboard.netlify.app
+### 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
