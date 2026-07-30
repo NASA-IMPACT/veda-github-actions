@@ -1,0 +1,71 @@
+[
+  {
+    "person": "Alexandra Kirk",
+    "slug": "alexandra-kirk",
+    "team": "DevSeed",
+    "role": "VEDA - Data Services - LEAD",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-03",
+        "end": "2026-08-05"
+      }
+    ]
+  },
+  {
+    "person": "Alice Ruhl",
+    "slug": "alice-ruhl",
+    "team": "DevSeed",
+    "role": "VEDA - Dashboard",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-03",
+        "end": "2026-08-31"
+      }
+    ]
+  },
+  {
+    "person": "Fanny Casal",
+    "slug": "fanny-casal",
+    "team": "DevSeed",
+    "role": "VEDA - Dashboard",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-11",
+        "end": "2026-08-14"
+      }
+    ]
+  },
+  {
+    "person": "Simi Damani",
+    "slug": "simi-damani",
+    "team": "DevSeed",
+    "role": "VEDA - Dashboard",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "planned_time_off",
+        "start": "2026-08-28",
+        "end": "2026-08-31"
+      }
+    ]
+  },
+  {
+    "person": "Andrew Blackford",
+    "slug": "andrew-blackford",
+    "team": "UAH",
+    "role": "AQ",
+    "pi": "26.4",
+    "entries": [
+      {
+        "status": "limited",
+        "date": "2026-08-21"
+      }
+    ]
+  }
+]
