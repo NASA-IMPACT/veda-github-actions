@@ -8,6 +8,7 @@ diff. Intentionally open — it will grow to host other VEDA Actions experiments
 > ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
 > 📊 **FTE Dashboard:** https://veda-github-actions.netlify.app
 > 🔀 **PR Finder Dashboard:** https://veda-pr-dashboard.netlify.app
+> 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
@@ -47,6 +48,10 @@ action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a l
 | `.github/workflows/pr-finder.yml` | self-consumer that publishes the PR report to the `pr-finder/report` branch |
 | `pr-dashboard/` | static Netlify site rendering the PR report — [live](https://veda-pr-dashboard.netlify.app) |
 | `docs/PR_FINDER.md` | PR Finder data model, seed harness, gotchas |
+| `leave/` | **3rd reusable action** (`uses: .../leave@v1`): parse a color-coded leave `.xlsx` (status = cell fill) → `leaves_<slug>.{csv,json}` + coverage (stdlib, no token) |
+| `.github/workflows/leave-tracker.yml` | self-consumer that publishes the leave report to the `leave-tracker/report` branch |
+| `leave-dashboard/` | React SPA (Netlify) — calendar of who's out, person-picker, team-risk heatmap, add-person-via-PR — [live](https://veda-leave-dashboard.netlify.app) |
+| `docs/LEAVE_TRACKER.md` | Leave Tracker data model, color map, overrides, gotchas |
 
 ## Quickstart
 

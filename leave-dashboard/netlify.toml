@@ -1,0 +1,22 @@
+# Netlify build config for the Leave Tracker Dashboard.
+#
+# Pattern B (base-relative): connect a Netlify site to the repo with **base directory =
+# leave-dashboard**, and Netlify reads this file (command/publish resolve inside this folder).
+# There is deliberately NO root-level netlify.toml — a root config's `base` would apply to EVERY
+# site connected to the repo and hijack the other dashboards. Each dashboard owns its own
+# <app>/netlify.toml and its own independent Netlify site.
+#
+# The site is a static SPA that fetches report JSON at runtime from the public
+# leave-tracker/report branch (see src/data.ts). No env vars or secrets needed.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # Both dashboards share this repo on `main`; skip this site's build unless leave-dashboard/ changed.
+  # `git diff --quiet` exits 0 (unchanged → Netlify skips) or 1 (changed → Netlify builds).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- leave-dashboard/"
+
+# SPA fallback: serve index.html for client-side routes.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,24 @@
+{
+  "name": "leave-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interactive leave/PTO dashboard: a filterable calendar of who's out, build-your-own calendar by person, and high-risk team coverage. Reads the latest leave reports from the leave-tracker/report branch.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.9"
+  }
+}
