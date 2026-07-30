@@ -2,6 +2,36 @@
 
 Short ADRs for non-obvious choices. Newest first.
 
+## Leave Tracker — parse cell FILL COLOR, overrides as PRs, live % risk
+
+**The leave xlsx is a color-coded matrix; status = cell fill, not text.** Each team tab is a
+person×day grid where a person's status is encoded by the cell background color (day cells hold no
+text). A CSV export loses all of it. So the generator reads the `.xlsx` directly with stdlib
+`zipfile` + `xml.etree` (no `openpyxl`, no pip deps): resolve `cellXfs → fills → fgColor` per cell,
+map ARGB → category via an overridable table. `FF999999` gray = weekend shading (ignored); notes come
+from `xl/threadedComments/*` (the legacy `comments1.xml` holds only Excel boilerplate). Dates are
+reconstructed from the header rows — month labels are sparse (carried forward) and the month advances
+when the day-number wraps, since a weekend can sit under the previous month's merged label.
+
+**OUT = unavailable + PTO + holiday (weight 1.0); limited = 0.5; WFH/Work-Travel = available.** The
+generator precomputes per-team-per-day `out_count`/`out_weight`/`out_pct`; the dashboard applies the
+high-risk **% threshold live** (slider), so moving it never needs a regen.
+
+**Add a person via a prefilled PR, not a backend.** A static Netlify site can't open a PR itself, so
+the "Add person" form builds a `github.com/.../new/main?filename=leave/overrides/<slug>.json&value=…`
+URL — GitHub creates one file on a fresh branch and offers a PR. **One file per person** avoids
+append/merge conflicts; a file may also hold an **array of people**, so everyone added in one sitting
+lands in **one PR**. Typing a team not on the sheet **creates a new team** (a new group everywhere).
+Overrides merge *after* the xlsx and win per (person, date); `{"status":"available"}` is a tombstone.
+The form also renders an **in-app preview** (drafts injected as `source:"draft"` people) so you can
+see the additions on the calendar before opening the PR — a Netlify deploy-preview of an overrides
+PR would still show old data, since the report is regenerated only on merge.
+
+**Third action in a subfolder (`leave/`), no token.** Like `pr-finder/`, the generator is co-located
+so `${{ github.action_path }}/generate_leave_tracker.py` resolves without `..`. Unlike the other two
+it needs no `gh`/network — it's a pure local parse — so the workflow is manual-only (`workflow_dispatch`)
+and publishes to the `leave-tracker/report` branch (accumulate by PI slug, upsert `index.json`).
+
 ## PR Finder — crawl objectives' sub-issue trees → closing PRs
 
 **Second action ships in a subfolder (`pr-finder/`), not the repo root.**

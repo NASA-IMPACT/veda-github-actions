@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "pi": "sample",
+    "year": 2026,
+    "span": { "start": "2026-07-06", "end": "2026-07-17" },
+    "source_file": "leaves_sample.json"
+  },
+  "people": [
+    {
+      "slug": "ada-lovelace", "name": "Ada Lovelace", "team": "Alpha", "role": "Engineer",
+      "leaves": [
+        { "date": "2026-07-13", "status": "unavailable", "out": true,  "weight": 1.0, "note": null,        "source": "xlsx" },
+        { "date": "2026-07-14", "status": "unavailable", "out": true,  "weight": 1.0, "note": "conference", "source": "xlsx" }
+      ]
+    },
+    {
+      "slug": "alan-turing", "name": "Alan Turing", "team": "Alpha", "role": "Lead",
+      "leaves": []
+    },
+    {
+      "slug": "grace-hopper", "name": "Grace Hopper", "team": "Beta", "role": "Engineer",
+      "leaves": [
+        { "date": "2026-07-08", "status": "limited",     "out": false, "weight": 0.5, "note": "half day", "source": "xlsx" },
+        { "date": "2026-07-09", "status": "wfh",         "out": false, "weight": 0.0, "note": null,       "source": "xlsx" }
+      ]
+    },
+    {
+      "slug": "katherine-johnson", "name": "Katherine Johnson", "team": "Beta", "role": "Engineer",
+      "leaves": [
+        { "date": "2026-07-13", "status": "planned_time_off", "out": true, "weight": 1.0, "note": null, "source": "xlsx" }
+      ]
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,11 @@
+{
+  "FFFF0000": "unavailable",
+  "FFF4CCCC": "unavailable",
+  "FFFFFF00": "limited",
+  "FFFCE5CD": "limited",
+  "FFE6B8AF": "holiday",
+  "FFD9D2E9": "planned_time_off",
+  "FFFFF2CC": "work_travel",
+  "FFD9EAD3": "wfh",
+  "FFC9DAF8": "other"
+}

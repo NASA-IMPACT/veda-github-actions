@@ -1,0 +1,101 @@
+name: "Leave Tracker"
+description: "Parse a color-coded leave-tracker .xlsx into normalized leave CSV/JSON + a per-team coverage rollup (who's out, high-risk teams)."
+author: "NASA-IMPACT"
+branding:
+  icon: "calendar"
+  color: "blue"
+
+# Import from another repo:
+#   - uses: NASA-IMPACT/veda-github-actions/leave@v1
+#     with:
+#       xlsx-path: leave/source/DSE Leave Tracker - 26.4.xlsx
+#       pi: "26.4"
+# The leave status lives in CELL FILL COLORS (the day cells hold no text); this reads the
+# workbook with the Python standard library only (no openpyxl) and writes PI-slugged
+# leaves_<slug>.{csv,json} + leave_coverage_<slug>.json (+ leave_manifest.json) to `out-dir`.
+# Publishing/committing the result is left to the caller (see .github/workflows/leave-tracker.yml).
+inputs:
+  xlsx-path:
+    description: "Path to the leave-tracker .xlsx (checked into the repo, or fetched before this step)."
+    required: false
+    default: "leave/source/DSE Leave Tracker - 26.4.xlsx"
+  pi:
+    description: 'Program Increment label, e.g. "26.4" (drives the filename slug + year inference).'
+    required: false
+    default: ""
+  year:
+    description: "Override the inferred calendar year (else derived from `pi`)."
+    required: false
+    default: ""
+  teams:
+    description: "Comma-separated team tabs to include (empty = all tabs except Conferences/Meetings/LEAVE TEMPLATE)."
+    required: false
+    default: ""
+  overrides-dir:
+    description: "Directory of per-person override JSON files layered on top of the xlsx."
+    required: false
+    default: "leave/overrides"
+  colors:
+    description: "Optional JSON file of color->category overrides (defaults to the built-in map)."
+    required: false
+    default: ""
+  risk-threshold:
+    description: "Default fraction of a team OUT that flags a high-risk day (0-1); the dashboard slider overrides this live."
+    required: false
+    default: "0.30"
+  out-dir:
+    description: "Directory to write leaves_<slug>.{csv,json}, leave_coverage_<slug>.json + leave_manifest.json."
+    required: false
+    default: "reports"
+
+outputs:
+  report-dir:
+    description: "Directory containing the generated report files."
+    value: ${{ inputs.out-dir }}
+  people:
+    description: "Number of people found across the team tabs."
+    value: ${{ steps.run.outputs.people }}
+  teams:
+    description: "Number of team tabs parsed."
+    value: ${{ steps.run.outputs.teams }}
+  leave-days:
+    description: "Total person-days flagged OUT (unavailable + PTO + holiday)."
+    value: ${{ steps.run.outputs.leave-days }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Set up Python 3.12"
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: "Parse the leave tracker"
+      id: run
+      shell: bash
+      run: |
+        if [ ! -f "${{ inputs.xlsx-path }}" ]; then
+          echo "::error::xlsx not found at '${{ inputs.xlsx-path }}'."
+          exit 1
+        fi
+        python "${{ github.action_path }}/generate_leave_tracker.py" \
+          --xlsx "${{ inputs.xlsx-path }}" \
+          --pi "${{ inputs.pi }}" \
+          --year "${{ inputs.year }}" \
+          --teams "${{ inputs.teams }}" \
+          --overrides-dir "${{ inputs.overrides-dir }}" \
+          --colors "${{ inputs.colors }}" \
+          --risk-threshold "${{ inputs.risk-threshold }}" \
+          --out-dir "${{ inputs.out-dir }}" \
+          --now "$(date -u +%FT%TZ)"
+
+        # Filenames are PI-slugged; the fixed manifest maps to them + holds stats.
+        MAN="${{ inputs.out-dir }}/leave_manifest.json"
+        {
+          echo "people=$(jq -r '.stats.people' "$MAN")"
+          echo "teams=$(jq -r '.stats.teams' "$MAN")"
+          echo "leave-days=$(jq -r '.stats.leave_days' "$MAN")"
+        } >> "$GITHUB_OUTPUT"
+
+        echo "### Leave Tracker" >> "$GITHUB_STEP_SUMMARY"
+        jq -r '.stats | "**\(.people)** people · **\(.teams)** teams · **\(.leave_days)** out-days · \(.span_start) → \(.span_end)" + (if .warnings>0 then " · ⚠️ \(.warnings) warnings" else "" end)' "$MAN" >> "$GITHUB_STEP_SUMMARY"

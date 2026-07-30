@@ -6,9 +6,11 @@ __pycache__/
 venv/
 env/
 
-# Node / Vite (dashboard)
+# Node / Vite (dashboards)
 fte-dashboard/node_modules/
 fte-dashboard/dist/
+leave-dashboard/node_modules/
+leave-dashboard/dist/
 
 # OS / IDE
 .DS_Store
@@ -16,6 +18,9 @@ fte-dashboard/dist/
 .idea/
 *.swp
 *~
+
+# Transient Playwright MCP artifacts (browser snapshots/screenshots)
+.playwright-mcp/
 
 # Env / secrets
 .env
@@ -41,3 +46,14 @@ fte-dashboard/dist/
 !fte-dashboard/tsconfig.node.json
 !fte-dashboard/public/data/*.csv
 !pr-dashboard/index.snapshot.json
+
+# Leave Tracker: action data (color map, fixtures, per-person override PRs) + dashboard
+# config and bundled snapshot — re-included past the global *.json ignore.
+!leave/colors.json
+!leave/fixtures/*.json
+!leave/overrides/*.json
+!leave-dashboard/package.json
+!leave-dashboard/package-lock.json
+!leave-dashboard/tsconfig.json
+!leave-dashboard/tsconfig.node.json
+!leave-dashboard/public/data/*.json

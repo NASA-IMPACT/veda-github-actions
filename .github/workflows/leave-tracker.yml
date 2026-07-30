@@ -1,0 +1,109 @@
+name: Leave Tracker
+
+# Manual-only (no cron), matching this repo's convention. Parses the committed leave-tracker
+# xlsx and publishes the normalized report to the `leave-tracker/report` branch, which the
+# Netlify dashboard reads at runtime.
+on:
+  workflow_dispatch:
+    inputs:
+      xlsx-path:
+        description: "Path to the leave-tracker xlsx"
+        type: string
+        required: false
+        default: "leave/source/DSE Leave Tracker - 26.4.xlsx"
+      pi:
+        description: "Program Increment label (e.g. 26.4)"
+        type: string
+        required: false
+        default: "26.4"
+      year:
+        description: "Override inferred year (blank = derive from PI)"
+        type: string
+        required: false
+        default: ""
+      risk-threshold:
+        description: "Default fraction of a team OUT to flag (0-1)"
+        type: string
+        required: false
+        default: "0.30"
+
+permissions:
+  contents: write          # publish the report to the leave-tracker/report branch
+
+env:
+  DASHBOARD_URL: "https://veda-leave-dashboard.netlify.app"
+
+jobs:
+  leave-tracker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "1 · Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # full history so the report branch can be based/pushed
+
+      - name: "2 · Parse the leave tracker (reusable action)"
+        id: run
+        uses: ./leave
+        with:
+          xlsx-path: ${{ github.event.inputs.xlsx-path }}
+          pi: ${{ github.event.inputs.pi }}
+          year: ${{ github.event.inputs.year }}
+          risk-threshold: ${{ github.event.inputs.risk-threshold }}
+          out-dir: reports
+
+      - name: "3 · Job summary"
+        run: |
+          echo "people=${{ steps.run.outputs.people }} teams=${{ steps.run.outputs.teams }} leave-days=${{ steps.run.outputs.leave-days }}"
+          {
+            echo ""
+            echo "🗓️ **Leave dashboard →** ${DASHBOARD_URL}"
+            echo "_${{ steps.run.outputs.people }} people · ${{ steps.run.outputs.teams }} teams · ${{ steps.run.outputs.leave-days }} out-days_"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "4 · Upload report artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: leave-tracker-report
+          path: reports/
+
+      - name: "5 · Publish report to the leave-tracker/report branch (accumulate by PI)"
+        run: |
+          BR="leave-tracker/report"
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"   # stash before switching branches
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BR" || true
+          if git rev-parse --verify --quiet "origin/$BR"; then
+            git checkout -f -B "$BR" "origin/$BR"        # continue history: prior PIs persist
+          else
+            git checkout -f -B "$BR"
+          fi
+          mkdir -p reports
+          # Keep only slugged leave reports + the index (drop main's other samples / fixed names).
+          find reports -maxdepth 1 -type f \
+            ! -name 'leaves_*.csv' ! -name 'leaves_*.json' ! -name 'leave_coverage_*.json' \
+            ! -name 'index.json' -delete 2>/dev/null || true
+          # Copy in THIS run's slugged files (new content wins for the same slug), incl. the manifest.
+          MAN="$RUNNER_TEMP/out/leave_manifest.json"
+          cp "$MAN" "reports/leave_manifest.json"
+          for k in csv json coverage; do
+            f="$(jq -r ".files.$k" "$MAN")"; cp "$RUNNER_TEMP/out/$f" "reports/$f"
+          done
+          # Upsert this run's entry into reports/index.json (dedupe by slug, newest first).
+          [ -f reports/index.json ] || echo '[]' > reports/index.json
+          ENTRY="$(jq -c '{slug,pi,year,generated,files,stats}' "$MAN")"
+          jq --argjson e "$ENTRY" '(map(select(.slug != $e.slug))) + [$e] | sort_by(.generated) | reverse' \
+            reports/index.json > reports/index.json.tmp && mv reports/index.json.tmp reports/index.json
+          git add -f reports
+          if git diff --cached --quiet; then
+            echo "No report changes for $BR."
+          else
+            git commit -m "Leave tracker report — $(jq -r .slug "$MAN") (run ${{ github.run_id }})"
+            git push origin "$BR"
+            echo "Report pushed to branch: $BR"
+          fi
+
+      - name: "6 · Restore the default checkout"
+        if: always()
+        run: git checkout -f "${{ github.sha }}" 2>/dev/null || git checkout -f main

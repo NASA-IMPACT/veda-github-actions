@@ -1,14 +1,15 @@
 # Project Guide — veda-github-actions
 
 A **test station for VEDA GitHub Actions + Projects-v2 board seeds** — a safe place to iterate on
-reusable Actions and board seed data. It ships **two reusable composite actions** plus seed tooling
+reusable Actions and board seed data. It ships **three reusable composite actions** plus seed tooling
 and Netlify dashboards.
 
-## The two actions (one repo can expose many via subfolders)
+## The three actions (one repo can expose many via subfolders)
 | Action | Path | What it does |
 |---|---|---|
 | **FTE Capacity Report** | root `action.yml` → `uses: NASA-IMPACT/veda-github-actions@v1` | Reads a board's Objective issues, joins each issue's `## LOE/FTE` body table with its PI/date board fields, writes CSVs + `fte_summary.md`. |
 | **PR Finder** | `pr-finder/` → `uses: NASA-IMPACT/veda-github-actions/pr-finder@v1` | Crawls each Objective's **sub-issue tree (to 5 levels, cross-repo/org)** and lists the PRs that **close** those issues → CSV + H2-per-objective Markdown + USWDS HTML. |
+| **Leave Tracker** | `leave/` → `uses: NASA-IMPACT/veda-github-actions/leave@v1` | Parses a **color-coded leave-tracker `.xlsx`** (status = cell FILL COLOR, no text) into `leaves_<slug>.{csv,json}` + `leave_coverage_<slug>.json` (who's out, high-risk teams). No token/network. |
 
 ## Hard conventions (non-obvious)
 - **Generators are stdlib-only Python 3.12 + the `gh` CLI as a subprocess.** No `requests`, no pip
@@ -53,6 +54,13 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   publish `.`). Reads `reports/index.json` from the `pr-finder/report` branch (accumulated, PI/sprint-named
   reports published by `.github/workflows/pr-finder.yml`) into a report picker; falls back to the bundled
   `pr-dashboard/index.snapshot.json` + snapshot HTML.
+- `leave-dashboard/` — Vite React SPA; `leave-dashboard/netlify.toml` (base=`leave-dashboard`, build,
+  publish `dist`). Reads `leave_manifest.json` → `leaves_<slug>.json` + `leave_coverage_<slug>.json` at
+  runtime from the `leave-tracker/report` branch (slashed → raw URL needs the `/refs/heads/` form); falls
+  back to the bundled `leave-dashboard/public/data/` snapshot. Month **calendar** of who's out, a
+  **person multi-select** ("build a calendar"), a **team-risk heatmap** with a live % threshold, and an
+  **Add-person** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
+  hold several people → one PR) with an in-app **preview** before the PR.
 
 ## Gotchas
 - **Issue-triggered run-storms:** the FTE action deployed in another repo with `on: issues:` runs on
@@ -62,8 +70,13 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
 - **Shared working directory:** if multiple agents/sessions share this checkout, `git commit` lands on
   whatever branch is currently checked out — watch which branch HEAD is on before committing.
 - **Cross-repo sub-issue REST fallback** posts to the *parent's* repo with the *child's* `databaseId`.
+- **Leave status = cell FILL COLOR, not text.** A CSV export of the leave xlsx is blank; the generator
+  parses fills with stdlib `zipfile`+`xml.etree`. `FF999999` gray = weekend (ignore); notes live in
+  `xl/threadedComments/*`, not `comments1.xml`. OUT = unavailable+PTO+holiday; limited = 0.5.
 
 ## Key files
 `action.yml`, `pr-finder/action.yml`, `pr-finder/generate_pr_finder.py`,
-`.github/scripts/generate_fte_report.py`, `seed/seed_subissue_tree.py`, `seed/cleanup_subissue_tree.py`,
-`.github/workflows/{fte-report,pr-finder}.yml`, `docs/{FTE_SEED,PR_FINDER}.md`, `docs/DECISIONS.md`.
+`.github/scripts/generate_fte_report.py`, `leave/generate_leave_tracker.py`, `leave/action.yml`,
+`seed/seed_subissue_tree.py`, `seed/cleanup_subissue_tree.py`,
+`.github/workflows/{fte-report,pr-finder,leave-tracker}.yml`,
+`docs/{FTE_SEED,PR_FINDER,LEAVE_TRACKER}.md`, `docs/DECISIONS.md`.
