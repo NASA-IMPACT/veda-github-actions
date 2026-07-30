@@ -73,6 +73,14 @@ The dashboard's **Add person** button builds a prefilled GitHub PR that creates 
 backend), and can **preview** the additions on the calendar before you open the PR.
 
 ## Dashboard (Pattern B)
+Features: a **month calendar** of who's out, a **person multi-select** ("build a calendar"), team/status
+filters, and a **team-risk heatmap** with a live % threshold. Plus: **Export PNG** (3× render of the
+current calendar + legend), **Copy link** (encodes the filtered view — people/teams/statuses/month/
+view/threshold — in the URL hash so it reopens exactly), and an **Add-person** modal that toggles
+between **existing person** (autocompletes a name → merges new leave dates onto their slug) and
+**new person** (with a brand-new team), batching everyone into one prefilled PR and previewing them
+on the calendar first.
+
 `leave-dashboard/` is its own Netlify site (base dir = `leave-dashboard`, its own `netlify.toml`). At
 runtime it fetches `leave_manifest.json` → the slugged JSONs from the `leave-tracker/report` branch —
 the branch name is slashed, so the raw URL needs the **`/refs/heads/`** form:

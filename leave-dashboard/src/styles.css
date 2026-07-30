@@ -118,6 +118,14 @@ button {
 .btn.primary:hover:not(:disabled) {
   background: #1d4fd0;
 }
+.btn.blue {
+  color: var(--blue);
+  border-color: var(--blue);
+  font-weight: 700;
+}
+.btn.blue:hover:not(:disabled) {
+  background: #eef4ff;
+}
 .iconbtn {
   width: 2rem;
   height: 2rem;
@@ -406,6 +414,25 @@ button {
   outline-offset: -2px;
   font-weight: 800;
   color: #fff;
+}
+
+/* ---------- export ---------- */
+.export-target {
+  background: var(--bg);
+}
+.export-cap {
+  padding: 0.2rem 0.2rem 0.85rem;
+}
+.export-cap .ec-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.export-cap .ec-sub {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
 }
 
 /* ---------- legend ---------- */
