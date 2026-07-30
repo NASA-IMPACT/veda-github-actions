@@ -476,6 +476,30 @@ button {
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
 }
+.legend-teams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+.legend-team {
+  min-width: 8rem;
+}
+.legend-team .lt-name {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.legend-team .lt-count {
+  opacity: 0.65;
+}
+.legend-team .items {
+  flex-direction: column;
+  gap: 0.28rem;
+  align-items: flex-start;
+}
 .legend .item {
   display: inline-flex;
   align-items: center;

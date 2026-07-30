@@ -1,9 +1,19 @@
 name: Leave Tracker
 
-# Manual-only (no cron), matching this repo's convention. Parses the committed leave-tracker
-# xlsx and publishes the normalized report to the `leave-tracker/report` branch, which the
-# Netlify dashboard reads at runtime.
+# Parses the committed leave-tracker xlsx and publishes the normalized report to the
+# `leave-tracker/report` branch, which the Netlify dashboard reads at runtime.
+#
+# HARDENED FLOW (simple + reproducible): this AUTO-RUNS whenever the source workbook or an
+# override file changes on `main` (e.g. an "Add person" PR merges), so the dashboard updates
+# with no manual step. The PI is inferred from the xlsx filename, so no inputs are required.
+# You can still trigger it by hand (workflow_dispatch) to force a refresh or override the PI.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "leave/overrides/**"
+      - "leave/source/**"
+      - ".github/workflows/leave-tracker.yml"
   workflow_dispatch:
     inputs:
       xlsx-path:
@@ -12,10 +22,10 @@ on:
         required: false
         default: "leave/source/DSE Leave Tracker - 26.4.xlsx"
       pi:
-        description: "Program Increment label (e.g. 26.4)"
+        description: "Program Increment label (blank = inferred from the xlsx filename)"
         type: string
         required: false
-        default: "26.4"
+        default: ""
       year:
         description: "Override inferred year (blank = derive from PI)"
         type: string
@@ -29,6 +39,11 @@ on:
 
 permissions:
   contents: write          # publish the report to the leave-tracker/report branch
+
+# One report run at a time; a newer override supersedes an in-flight run.
+concurrency:
+  group: leave-tracker-report
+  cancel-in-progress: true
 
 env:
   DASHBOARD_URL: "https://veda-leave-dashboard.netlify.app"
@@ -46,10 +61,13 @@ jobs:
         id: run
         uses: ./leave
         with:
-          xlsx-path: ${{ github.event.inputs.xlsx-path }}
+          # On `push` github.event.inputs.* are empty strings, so fall back to defaults here
+          # (an empty xlsx-path would otherwise fail the file check). pi stays blank on purpose —
+          # the generator infers it from the xlsx filename.
+          xlsx-path: ${{ github.event.inputs.xlsx-path || 'leave/source/DSE Leave Tracker - 26.4.xlsx' }}
           pi: ${{ github.event.inputs.pi }}
           year: ${{ github.event.inputs.year }}
-          risk-threshold: ${{ github.event.inputs.risk-threshold }}
+          risk-threshold: ${{ github.event.inputs.risk-threshold || '0.30' }}
           out-dir: reports
 
       - name: "3 · Job summary"
