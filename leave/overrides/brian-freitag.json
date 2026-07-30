@@ -1,0 +1,14 @@
+{
+  "person": "Brian Freitag",
+  "slug": "brian-freitag",
+  "team": "DSE - Manage",
+  "role": "DSE Lead (NASA Civil Servant)",
+  "pi": "26.4",
+  "entries": [
+    {
+      "status": "planned_time_off",
+      "start": "2026-08-10",
+      "end": "2026-08-13"
+    }
+  ]
+}
