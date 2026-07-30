@@ -99,3 +99,17 @@ runs:
 
         echo "### Leave Tracker" >> "$GITHUB_STEP_SUMMARY"
         jq -r '.stats | "**\(.people)** people · **\(.teams)** teams · **\(.leave_days)** out-days · \(.span_start) → \(.span_end)" + (if .warnings>0 then " · ⚠️ \(.warnings) warnings" else "" end)' "$MAN" >> "$GITHUB_STEP_SUMMARY"
+
+        # A run never fails on a bad override (they're skipped) — but list the skipped ones loudly so
+        # a malformed Add-person PR is obvious in the job summary.
+        WARN="$(jq -r '.stats.warnings' "$MAN")"
+        if [ "$WARN" != "0" ] && [ "$WARN" != "null" ]; then
+          {
+            echo ""
+            echo "<details><summary>⚠️ $WARN skipped/ignored — click for details</summary>"
+            echo ""
+            jq -r '.warnings[] | "- " + .' "${{ inputs.out-dir }}/$(jq -r '.files.json' "$MAN")"
+            echo ""
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+        fi
