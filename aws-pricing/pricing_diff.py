@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""Diff two AWS pricing snapshots and write an impossible-to-miss change report.
+"""Diff AWS pricing snapshots and write an impossible-to-miss change report.
 
-Compares an OLD pricing_<region>.json against a NEW one, computes the % change of every price, and
-writes a Markdown report (PRICING_CHANGES.md) plus a machine-readable summary. Any price that moves
-more than --threshold percent (default 1%) is a **SPIKE** and is shouted at the top of the report
-with 🚨 banners and giant headers so it's impossible to miss in a PR. Standard library only.
+Compares OLD prices against NEW ones, computes the % change of every price, and writes a Markdown
+report (PRICING_CHANGES.md) plus a machine-readable summary. Any price that moves more than
+--threshold percent (default 1%) is a **SPIKE** and is shouted at the top with 🚨 banners and giant
+headers so it's impossible to miss in a PR. Standard library only.
 
-Used by the weekly "AWS pricing review" job (GitHub Action or a Jules scheduled task): fetch fresh
-prices, diff against the committed snapshot, and open a PR whose body is this report.
+Two modes:
+  • single region:  --old <snapshot.json> --new <fresh.json>
+  • many regions:   --regions us-east-1,us-west-2,eu-west-1 --old-dir <dir> --new-dir <dir>
+                    (reads pricing_<region>.json from each dir; a missing OLD = a new baseline)
 
-  python aws-pricing/pricing_diff.py --old <snapshot.json> --new <fresh.json> \
-    --out-md PRICING_CHANGES.md --out-summary summary.json [--threshold 1.0] [--demo-spike]
-
---demo-spike injects a synthetic +7.3% move into the NEW data so you can test the alert formatting
-without waiting for a real price change.
+--demo-spike injects a synthetic +7.3% / -4.2% move into the (first) NEW snapshot so you can test the
+alert formatting without waiting for a real price change.
 """
 import argparse
 import json
+import os
 import sys
 
 
@@ -49,7 +49,6 @@ def flatten(doc):
 
 
 def fmt(v):
-    """Money-ish formatting that keeps precision for tiny per-request rates."""
     if v is None:
         return "—"
     if v == 0:
@@ -62,7 +61,7 @@ def fmt(v):
 
 
 def diff(old, new, threshold):
-    """Return (spikes, minor, added, removed) lists, each sorted by |%| descending."""
+    """Return (spikes, minor, added, removed), each sorted by |%| descending."""
     fo, fn = flatten(old), flatten(new)
     spikes, minor, added, removed = [], [], [], []
     for key in sorted(set(fo) | set(fn)):
@@ -91,52 +90,69 @@ def row(r):
     return f"| {arrow(r['pct'])} | **{r['key']}** | {fmt(r['old'])} | {fmt(r['new'])} | **{r['pct']:+.2f}%** |"
 
 
-def build_md(old, new, spikes, minor, added, removed, threshold):
-    region = new.get("label", new.get("region", "?"))
-    o_gen = (old.get("generated") or "?")[:10]
-    n_gen = (new.get("generated") or "?")[:10]
+TABLE_HEAD = ["| | Item | Old | New | Change |", "|:--:|---|---:|---:|:--:|"]
+
+
+def diff_pair(label, old, new, threshold):
+    """Diff one region -> a result dict (old may be None = first baseline)."""
+    if old is None:
+        return {"label": label, "o_gen": "—", "n_gen": (new.get("generated") or "?")[:10],
+                "spikes": [], "minor": [], "added": [], "removed": [], "new_baseline": True}
+    spikes, minor, added, removed = diff(old, new, threshold)
+    return {"label": label, "o_gen": (old.get("generated") or "?")[:10],
+            "n_gen": (new.get("generated") or "?")[:10],
+            "spikes": spikes, "minor": minor, "added": added, "removed": removed,
+            "new_baseline": False}
+
+
+def region_block(reg, threshold):
+    if reg["new_baseline"]:
+        return [f"## {reg['label']} — 🆕 new baseline saved (nothing to compare yet)", ""]
+    if not (reg["spikes"] or reg["minor"] or reg["added"] or reg["removed"]):
+        return [f"## {reg['label']} — ✅ no changes ({reg['o_gen']} → {reg['n_gen']})", ""]
+    L = [f"## {reg['label']} · {reg['o_gen']} → {reg['n_gen']}", ""]
+    if reg["spikes"]:
+        L += [f"**🚨 {len(reg['spikes'])} spike(s) over {threshold:g}%:**", *TABLE_HEAD,
+              *[row(r) for r in reg["spikes"]], ""]
+    if reg["minor"]:
+        L += [f"<details><summary>{len(reg['minor'])} change(s) under {threshold:g}%</summary>", "",
+              *TABLE_HEAD, *[row(r) for r in reg["minor"]], "", "</details>", ""]
+    if reg["added"]:
+        L += ["Newly listed: " + ", ".join(f"{k} ({fmt(v)})" for k, v in reg["added"]), ""]
+    if reg["removed"]:
+        L += ["No longer listed: " + ", ".join(f"{k} (was {fmt(v)})" for k, v in reg["removed"]), ""]
+    return L
+
+
+def all_spikes(regions):
+    return sorted(((r["label"], s) for r in regions for s in r["spikes"]),
+                  key=lambda x: abs(x[1]["pct"]), reverse=True)
+
+
+def changed(regions):
+    return any(r["new_baseline"] or r["spikes"] or r["minor"] or r["added"] or r["removed"]
+               for r in regions)
+
+
+def build_md(regions, threshold):
+    sp = all_spikes(regions)
     L = []
-    if spikes:
-        top = spikes[0]
+    if sp:
+        lbl, top = sp[0]
+        nregs = len({l for l, _ in sp})
         L += [
-            "# 🚨🚨🚨 AWS PRICE SPIKE ALERT 🚨🚨🚨",
-            "",
-            f"## ‼️ {len(spikes)} price change(s) exceed the {threshold:g}% threshold — REVIEW BEFORE MERGING ‼️",
-            "",
-            f"> # {arrow(top['pct'])} BIGGEST MOVE: {top['key']} &nbsp; **{top['pct']:+.2f}%**",
-            f"> ## {fmt(top['old'])} → {fmt(top['new'])}",
-            "",
-            "| | Item | Old | New | Change |",
-            "|:--:|---|---:|---:|:--:|",
-            *[row(r) for r in spikes],
-            "",
-            "---",
-            "",
+            "# 🚨🚨🚨 AWS PRICE SPIKE ALERT 🚨🚨🚨", "",
+            f"## ‼️ {len(sp)} price change(s) over {threshold:g}% across {nregs} region(s) — "
+            "REVIEW BEFORE MERGING ‼️", "",
+            f"> # {arrow(top['pct'])} BIGGEST MOVE: {top['key']} ({lbl}) &nbsp; **{top['pct']:+.2f}%**",
+            f"> ## {fmt(top['old'])} → {fmt(top['new'])}", "", "---", "",
         ]
-    elif minor or added or removed:
+    elif changed(regions):
         L += [f"# ✅ Weekly AWS pricing update — no spikes over {threshold:g}%", ""]
     else:
         L += ["# ✅ Weekly AWS pricing update — no changes", ""]
-
-    L += [f"**Region:** {region} · **Data:** {o_gen} → {n_gen}", ""]
-
-    if minor:
-        L += [
-            f"<details{' open' if not spikes else ''}><summary>Other changes under {threshold:g}% "
-            f"({len(minor)})</summary>",
-            "",
-            "| | Item | Old | New | Change |",
-            "|:--:|---|---:|---:|:--:|",
-            *[row(r) for r in minor],
-            "",
-            "</details>",
-            "",
-        ]
-    if added:
-        L += ["**Newly listed:** " + ", ".join(f"{k} ({fmt(v)})" for k, v in added), ""]
-    if removed:
-        L += ["**No longer listed:** " + ", ".join(f"{k} (was {fmt(v)})" for k, v in removed), ""]
-
+    for reg in regions:
+        L += region_block(reg, threshold)
     L += [
         "---",
         "_On-Demand list prices from AWS's public Price List Bulk API. Approximate — exclude Free "
@@ -145,12 +161,12 @@ def build_md(old, new, spikes, minor, added, removed, threshold):
     return "\n".join(L) + "\n"
 
 
-def title(spikes, minor, added, removed, n_gen):
-    date = (n_gen or "")[:10]
-    if spikes:
-        t = spikes[0]
-        return f"🚨 AWS pricing SPIKE {t['pct']:+.1f}% ({t['key']}) — weekly review {date}"
-    if minor or added or removed:
+def build_title(regions, date):
+    sp = all_spikes(regions)
+    if sp:
+        lbl, t = sp[0]
+        return f"🚨 AWS pricing SPIKE {t['pct']:+.1f}% ({t['key']}, {lbl}) — weekly review {date}"
+    if changed(regions):
         return f"AWS weekly pricing update — {date} (no spikes)"
     return f"AWS weekly pricing — no changes {date}"
 
@@ -169,41 +185,64 @@ def demo_spike(new):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--old", required=True, help="previous pricing_<region>.json (the committed snapshot)")
-    ap.add_argument("--new", required=True, help="freshly generated pricing_<region>.json")
+    ap.add_argument("--old", help="single mode: previous pricing_<region>.json")
+    ap.add_argument("--new", help="single mode: freshly generated pricing_<region>.json")
+    ap.add_argument("--regions", help="multi mode: comma-separated regions (needs --old-dir/--new-dir)")
+    ap.add_argument("--old-dir", help="multi mode: dir of committed pricing_<region>.json baselines")
+    ap.add_argument("--new-dir", help="multi mode: dir of freshly generated pricing_<region>.json")
     ap.add_argument("--threshold", type=float, default=1.0, help="spike threshold in %% (default 1.0)")
     ap.add_argument("--out-md", default="PRICING_CHANGES.md")
     ap.add_argument("--out-summary", default="pricing_changes_summary.json")
-    ap.add_argument("--demo-spike", action="store_true", help="inject a synthetic spike into --new (testing)")
+    ap.add_argument("--demo-spike", action="store_true", help="inject a synthetic spike (testing)")
     args = ap.parse_args()
 
-    old, new = load(args.old), load(args.new)
-    if args.demo_spike:
-        new = demo_spike(new)
+    regions = []
+    if args.regions:
+        want = [r.strip() for r in args.regions.split(",") if r.strip()]
+        loaded = []  # (label, old, new)
+        for r in want:
+            new = load(os.path.join(args.new_dir, f"pricing_{r}.json"))
+            old_path = os.path.join(args.old_dir, f"pricing_{r}.json")
+            old = load(old_path) if os.path.isfile(old_path) else None
+            loaded.append((new.get("label", r), old, new))
+        if args.demo_spike and loaded:
+            # inject into the first region that has a baseline (so the spike is comparable)
+            i = next((j for j, (_, o, _) in enumerate(loaded) if o is not None), 0)
+            demo_spike(loaded[i][2])
+        for label, old, new in loaded:
+            regions.append(diff_pair(label, old, new, args.threshold))
+    elif args.old and args.new:
+        new = load(args.new)
+        if args.demo_spike:
+            new = demo_spike(new)
+        old = load(args.old)
+        regions.append(diff_pair(new.get("label", new.get("region", "?")), old, new, args.threshold))
+    else:
+        ap.error("give either --old/--new (single) or --regions/--old-dir/--new-dir (multi)")
 
-    spikes, minor, added, removed = diff(old, new, args.threshold)
-    md = build_md(old, new, spikes, minor, added, removed, args.threshold)
+    date = max((r["n_gen"] for r in regions), default="")[:10]
     with open(args.out_md, "w", encoding="utf-8") as fh:
-        fh.write(md)
+        fh.write(build_md(regions, args.threshold))
 
-    total = len(spikes) + len(minor) + len(added) + len(removed)
-    top = spikes[0] if spikes else None
+    sp = all_spikes(regions)
+    total = sum(len(r["spikes"]) + len(r["minor"]) + len(r["added"]) + len(r["removed"]) for r in regions)
     summary = {
-        "changed": total > 0,
-        "spikes": len(spikes),
+        "changed": changed(regions),
+        "spikes": len(sp),
         "changes": total,
         "threshold": args.threshold,
-        "max_pct": round(top["pct"], 3) if top else 0.0,
-        "max_item": top["key"] if top else "",
-        "title": title(spikes, minor, added, removed, new.get("generated", "")),
+        "max_pct": round(sp[0][1]["pct"], 3) if sp else 0.0,
+        "max_item": f"{sp[0][1]['key']} ({sp[0][0]})" if sp else "",
+        "title": build_title(regions, date),
     }
     with open(args.out_summary, "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2)
 
-    print(f"pricing-diff: {len(spikes)} spike(s) >{args.threshold:g}%, {len(minor)} minor, "
-          f"{len(added)} added, {len(removed)} removed", file=sys.stderr)
-    if top:
-        print(f"  biggest: {top['key']} {top['pct']:+.2f}% ({fmt(top['old'])} → {fmt(top['new'])})", file=sys.stderr)
+    print(f"pricing-diff: {len(sp)} spike(s) >{args.threshold:g}% across "
+          f"{len(regions)} region(s), {total} total change(s)", file=sys.stderr)
+    if sp:
+        lbl, t = sp[0]
+        print(f"  biggest: {t['key']} ({lbl}) {t['pct']:+.2f}% ({fmt(t['old'])} → {fmt(t['new'])})", file=sys.stderr)
 
 
 if __name__ == "__main__":

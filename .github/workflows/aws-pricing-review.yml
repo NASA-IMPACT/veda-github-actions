@@ -1,17 +1,18 @@
 name: AWS Pricing Review
 
-# Weekly price-change review. Every Monday EVENING it fetches fresh AWS On-Demand prices, diffs them
-# against the committed snapshot, and — if anything changed — opens a PR that updates the snapshot and
-# whose body is an impossible-to-miss change report. Any price moving >1% is a SPIKE and is shouted at
-# the top of the PR (loud title + 🚨 banner). A plain weekly price-diff — no external agent needed.
+# Weekly price-change review. Every Monday EVENING it fetches fresh AWS On-Demand prices for several
+# regions, diffs each against the committed snapshot, and — if anything changed — opens a PR that
+# updates the snapshots and whose body is an impossible-to-miss change report. Any price moving >1% is
+# a SPIKE, shouted at the top of the PR (loud title + 🚨 banner). A plain price-diff — no external
+# agent needed.
 on:
   workflow_dispatch:
     inputs:
-      region:
-        description: 'Region to review'
+      regions:
+        description: 'Regions to review (comma-separated)'
         type: string
         required: false
-        default: 'us-west-2'
+        default: 'us-east-1,us-west-2,eu-west-1'
       demo_spike:
         description: 'Inject a synthetic spike to test the alert formatting (do not merge the PR)'
         type: boolean
@@ -30,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      REGION: ${{ github.event.inputs.region || 'us-west-2' }}
+      REGIONS: ${{ github.event.inputs.regions || 'us-east-1,us-west-2,eu-west-1' }}
     steps:
       - name: "1 · Checkout"
         uses: actions/checkout@v4
@@ -45,17 +46,17 @@ jobs:
       - name: "3 · Fetch fresh prices (live public bulk API, no creds)"
         run: |
           python3 aws-pricing/generate_aws_pricing.py \
-            --region "$REGION" --out-dir "$RUNNER_TEMP/new" \
+            --region "$REGIONS" --out-dir "$RUNNER_TEMP/new" \
             --now "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-      - name: "4 · Diff vs committed snapshot → change report"
+      - name: "4 · Diff each region vs its committed snapshot → change report"
         id: diff
         run: |
           DEMO=""
           if [ "${{ github.event.inputs.demo_spike }}" = "true" ]; then DEMO="--demo-spike"; fi
           python3 aws-pricing/pricing_diff.py \
-            --old "cost-dashboard/public/data/pricing_${REGION}.json" \
-            --new "$RUNNER_TEMP/new/pricing_${REGION}.json" \
+            --regions "$REGIONS" \
+            --old-dir cost-dashboard/public/data --new-dir "$RUNNER_TEMP/new" \
             --threshold 1.0 --out-md PRICING_CHANGES.md \
             --out-summary "$RUNNER_TEMP/summary.json" $DEMO
           echo "changed=$(jq -r .changed "$RUNNER_TEMP/summary.json")" >> "$GITHUB_OUTPUT"
@@ -72,17 +73,17 @@ jobs:
           TITLE="${{ steps.diff.outputs.title }}"
           [ "$DEMO" = "true" ] && TITLE="[DEMO — do not merge] $TITLE"
 
-          # Update the bundled snapshot + keep a dated copy of the report in cost-reports/.
-          cp "$RUNNER_TEMP/new/pricing_${REGION}.json" "cost-dashboard/public/data/pricing_${REGION}.json"
-          cp "$RUNNER_TEMP/new/index.json" "cost-dashboard/public/data/index.json" 2>/dev/null || true
+          # Refresh every reviewed region's bundled snapshot + keep a dated copy of the report.
+          cp "$RUNNER_TEMP/new/"pricing_*.json cost-dashboard/public/data/
+          cp "$RUNNER_TEMP/new/index.json" cost-dashboard/public/data/ 2>/dev/null || true
           mkdir -p cost-reports
           cp PRICING_CHANGES.md "cost-reports/weekly-${DATE}.md"
 
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BR"
-          git add -f "cost-dashboard/public/data/pricing_${REGION}.json" \
-                     "cost-dashboard/public/data/index.json" "cost-reports/weekly-${DATE}.md"
+          git add -f cost-dashboard/public/data/pricing_*.json \
+                     cost-dashboard/public/data/index.json "cost-reports/weekly-${DATE}.md"
           if git diff --cached --quiet; then
             echo "Nothing to commit."; exit 0
           fi
@@ -101,4 +102,4 @@ jobs:
 
       - name: "6 · No changes → say so"
         if: steps.diff.outputs.changed != 'true'
-        run: echo "No AWS price changes for ${REGION} this week — no PR opened." >> "$GITHUB_STEP_SUMMARY"
+        run: echo "No AWS price changes across ${REGIONS} this week — no PR opened." >> "$GITHUB_STEP_SUMMARY"
