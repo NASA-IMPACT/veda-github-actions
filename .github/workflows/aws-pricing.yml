@@ -84,7 +84,7 @@ jobs:
       - name: "7 · Dashboard link in job summary"
         if: always()
         env:
-          DASHBOARD_URL: "https://veda-cost-dashboard.netlify.app"
+          DASHBOARD_URL: "https://veda-aws-dashboard.netlify.app"
         run: |
           {
             echo "### 💵 AWS Cost Calculator"
