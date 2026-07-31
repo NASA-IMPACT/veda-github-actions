@@ -61,8 +61,24 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   **person multi-select** ("build a calendar"), a **team-risk heatmap** with a live % threshold, and an
   **Add-person** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
   hold several people → one PR) with an in-app **preview** before the PR.
+- `dse-hub/` — Vite React SPA; `dse-hub/netlify.toml` (base=`dse-hub`, build, publish `dist`); live at
+  `veda-dse-hub.netlify.app`. A **tabbed hub** (header tabs + subtabs via `src/tabs.ts`): **Meetings →
+  Meeting Tracker** (List / month **Calendar** with sprint bands / **Categories** views; search + team +
+  sprint/PI filters; timezone-aware times) and **Sprints & PIs → PI Roadmap**. **USWDS palette, light-only**
+  (no dark theme). **No generator/Action** — data is hand-entered JSON bundled at BUILD via
+  `import.meta.glob` (no runtime fetch). Source of truth = compact **`data/meetings.json` + `data/pis.json`**
+  arrays; adds/edits (meetings **and** PIs) stage in an in-app **Changes cart** → **one prefilled new-file
+  PR** creating `dse-hub/data/changes/<ts>.json` (array of `ChangeDoc`), which the loaders **merge** over the
+  canonical arrays at load (upsert by id, newest `ts` wins) — token-free, conflict-free (unique filenames),
+  same idea as leave-dashboard overrides. `dse-hub/scripts/compact.mjs` +
+  `.github/workflows/dse-hub-compact.yml` fold change files back into the canonical arrays on merge.
+  **Recurrence** (`src/meetings/recurrence.ts`): weekly/monthly/sprint/sprint-week/tbd → real dates against
+  the sprint calendar in `data/pis.json` (whose dates are **placeholders** — 3-week sprints from 2026-07-13;
+  replace with the real PI schedule). **Timezone**: per-meeting `schedule.tz` + a global **view-tz** header
+  picker (`src/TzContext.tsx`, `localStorage dse-hub:viewTz`) converts all times via `src/tz.ts` (stdlib
+  `Intl`, two-pass DST). See `docs/DSE_HUB.md`.
 
-## Theming (light/dark — all three dashboards)
+## Theming (light/dark — the fte / leave / pr dashboards; dse-hub is USWDS light-only)
 Each dashboard themes through **CSS custom properties**: light values live in `:root`, a
 `:root[data-theme="dark"]` block overrides them, and an attribute on `<html>` (`data-theme`) switches
 modes. **Default is dark**; a manual toggle is remembered in `localStorage` under a per-app key
@@ -93,6 +109,10 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 - **Leave status = cell FILL COLOR, not text.** A CSV export of the leave xlsx is blank; the generator
   parses fills with stdlib `zipfile`+`xml.etree`. `FF999999` gray = weekend (ignore); notes live in
   `xl/threadedComments/*`, not `comments1.xml`. OUT = unavailable+PTO+holiday; limited = 0.5.
+- **Root `.gitignore` has `*.json`.** `git add <dir>` **silently skips** needed JSON — each dashboard's
+  `package.json`/`tsconfig*.json`, `dse-hub/data/*.json`, `leave-dashboard/public/data/*.json`. You must
+  **`git add -f`** them (that's how the sibling dashboards' JSON got committed). A `dse-hub` change touching
+  data won't be in the commit unless force-added.
 
 ## Key files
 `action.yml`, `pr-finder/action.yml`, `pr-finder/generate_pr_finder.py`,
@@ -102,3 +122,7 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 `docs/{FTE_SEED,PR_FINDER,LEAVE_TRACKER}.md`, `docs/DECISIONS.md`.
 Theming: `{fte,leave}-dashboard/src/theme.ts`, each `*/src/styles.css` (`:root[data-theme="dark"]`),
 each `index.html` (no-FOUC script), `leave-dashboard/src/exportImage.ts`.
+DSE Hub: `dse-hub/src/{App,tabs,tz,TzContext,ChangesContext,changes,changesData}.{tsx,ts}`,
+`dse-hub/src/meetings/{MeetingTracker,MeetingCalendar,recurrence,drafts,data}.{tsx,ts}`,
+`dse-hub/src/pi/{PiRoadmap,data,pi}.{tsx,ts}`, `dse-hub/data/{meetings,pis}.json`,
+`dse-hub/scripts/compact.mjs`, `.github/workflows/dse-hub-compact.yml`, `docs/DSE_HUB.md`.
