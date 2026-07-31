@@ -50,9 +50,12 @@ const meetingMap = new Map(meetings.map((m) => [m.id, m]));
 const piMap = new Map(pis.map((p) => [p.id, p]));
 
 for (const doc of allDocs) {
-  if (doc.op !== "upsert") continue;
-  if (doc.kind === "meeting" && doc.data?.id) meetingMap.set(doc.data.id, doc.data);
-  if (doc.kind === "pi" && doc.data?.id) piMap.set(doc.data.id, doc.data);
+  const id = doc.data?.id;
+  if (!id) continue;
+  const target = doc.kind === "meeting" ? meetingMap : doc.kind === "pi" ? piMap : null;
+  if (!target) continue;
+  if (doc.op === "upsert") target.set(id, doc.data);
+  else if (doc.op === "delete") target.delete(id);
 }
 
 // ---- sort ----

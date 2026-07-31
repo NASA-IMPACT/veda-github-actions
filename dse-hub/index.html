@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Light-only app: pin native controls (<select> popups, date picker, scrollbars) to light so a
+         dark-mode OS doesn't render them as dark. (Team/Category use a custom light Combobox because
+         the native <datalist> popup ignores color-scheme in Chrome.) -->
+    <meta name="color-scheme" content="light" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23005ea2'/%3E%3Crect x='2.5' y='3' width='11' height='2' fill='white'/%3E%3Crect x='2.5' y='6.5' width='3' height='3' fill='%2373b3e7'/%3E%3Crect x='6.5' y='6.5' width='3' height='3' fill='white'/%3E%3Crect x='10.5' y='6.5' width='3' height='3' fill='%23fa9441'/%3E%3C/svg%3E"

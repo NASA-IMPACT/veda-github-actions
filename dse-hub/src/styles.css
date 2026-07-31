@@ -1,6 +1,9 @@
 /* DSE Hub — USWDS-flavored palette as CSS variables (light theme; structured so a dark theme can
    be layered later). No component library — hand-rolled, matching the leave-dashboard approach. */
 :root {
+  /* Light-only app: keep native controls (datalist/select popups, date picker, scrollbars) light
+     so a dark-mode OS doesn't render them as dark, misaligned dropdowns. */
+  color-scheme: light;
   /* USWDS-ish tokens */
   --primary: #005ea2;
   --primary-dark: #1a4480;
@@ -22,9 +25,14 @@
   --warning: #ffbe2e;
   --error: #d54309;
 
-  --radius: 8px;
-  --shadow: 0 1px 2px rgba(27, 27, 27, 0.08), 0 6px 18px rgba(27, 27, 27, 0.08);
-  --shadow-lg: 0 12px 40px rgba(27, 27, 27, 0.18);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --field-border: #d3dae4;
+  --shadow-sm: 0 1px 2px rgba(27, 43, 60, 0.05);
+  --shadow: 0 1px 2px rgba(27, 43, 60, 0.04), 0 10px 28px rgba(27, 43, 60, 0.07);
+  --shadow-lg: 0 20px 55px rgba(27, 43, 60, 0.16);
   --font: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -49,10 +57,10 @@ a { color: var(--primary); }
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
   background: var(--primary-darker);
   color: var(--white);
-  height: 56px;
+  height: 60px;
 }
 .hub-brand { display: flex; align-items: baseline; gap: 0.35rem; font-weight: 700; }
 .hub-logo {
@@ -92,18 +100,18 @@ a { color: var(--primary); }
 .hub-subtabs button:hover { color: var(--ink); }
 .hub-subtabs button.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
 
-.hub-main { flex: 1; padding: 1.25rem; max-width: 1200px; width: 100%; margin: 0 auto; }
+.hub-main { flex: 1; padding: 1.75rem 1.5rem; max-width: 1240px; width: 100%; margin: 0 auto; }
 
 /* ---------- Toolbar ---------- */
 .toolbar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.4rem; }
 .search {
   position: relative; display: flex; align-items: center; flex: 1 1 280px; min-width: 240px;
-  background: var(--white); border: 1px solid var(--base-light); border-radius: var(--radius);
-  padding: 0 0.6rem; height: 40px;
+  background: var(--white); border: 1px solid var(--field-border); border-radius: var(--radius);
+  padding: 0 0.75rem; height: 44px;
 }
-.search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-lighter); }
-.search-ico { opacity: 0.5; font-size: 0.9rem; }
-.search input { flex: 1; border: 0; outline: 0; font: inherit; font-size: 0.95rem; padding: 0 0.5rem; background: transparent; }
+.search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-lighter); }
+.search-ico { opacity: 0.5; font-size: 0.95rem; }
+.search input { flex: 1; border: 0; outline: 0; font: inherit; font-size: 1rem; padding: 0 0.5rem; background: transparent; }
 .search-x { border: 0; background: transparent; cursor: pointer; font-size: 1.1rem; color: var(--base); }
 
 .seg { display: inline-flex; background: var(--base-lightest); border-radius: var(--radius); padding: 3px; }
@@ -114,19 +122,23 @@ a { color: var(--primary); }
 .seg button.active { background: var(--white); color: var(--ink); box-shadow: var(--shadow); font-weight: 600; }
 
 .btn {
-  border: 1px solid var(--base-light); background: var(--white); color: var(--ink);
-  font: inherit; font-size: 0.9rem; padding: 0.5rem 0.85rem; border-radius: var(--radius);
-  cursor: pointer; height: 40px; display: inline-flex; align-items: center; gap: 0.35rem;
+  border: 1px solid var(--field-border); background: var(--white); color: var(--ink);
+  font: inherit; font-size: 0.95rem; padding: 0.55rem 1rem; border-radius: var(--radius);
+  cursor: pointer; height: 44px; display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, transform 0.1s;
 }
-.btn:hover { border-color: var(--base); }
+.btn:hover { border-color: var(--base); box-shadow: var(--shadow-sm); }
+.btn:active { transform: translateY(1px); }
 .btn.primary { background: var(--primary); border-color: var(--primary); color: var(--white); font-weight: 600; }
-.btn.primary:hover { background: var(--primary-dark); }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); box-shadow: var(--shadow); }
+.btn.danger { color: var(--error); border-color: var(--field-border); }
+.btn.danger:hover { background: #fdecea; border-color: var(--error); box-shadow: none; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; }
 .add-btn { margin-left: auto; }
 
 .control { position: relative; }
 .popover {
-  position: absolute; z-index: 30; top: 44px; left: 0; min-width: 200px; max-height: 320px;
+  position: absolute; z-index: 30; top: 48px; left: 0; min-width: 200px; max-height: 320px;
   overflow: auto; padding: 0.4rem;
 }
 .popover .actions { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
@@ -247,31 +259,56 @@ a { color: var(--primary); }
 .team-badge { color: var(--white); font-size: 0.72rem; font-weight: 700; padding: 0.12rem 0.45rem; border-radius: 4px; }
 .popover-card .mdetail { border-top: 0; padding: 0 0.9rem 0.9rem; }
 
-.modal { max-width: 620px; width: 100%; padding: 1.1rem 1.2rem; max-height: 88vh; overflow: auto; }
-.modal-head { display: flex; align-items: center; justify-content: space-between; }
-.modal-head h2 { margin: 0; font-size: 1.2rem; }
-.modal-x { border: 0; background: transparent; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--base); }
-.hint { font-size: 0.85rem; color: var(--base); background: var(--base-lightest); padding: 0.55rem 0.7rem; border-radius: 6px; margin: 0.5rem 0 0.9rem; }
+.modal { max-width: 720px; width: 100%; padding: 1.75rem 1.9rem 1.6rem; max-height: 90vh; overflow: auto; border-radius: var(--radius-lg); }
+.modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+.modal-head h2 { margin: 0; font-size: 1.55rem; letter-spacing: -0.01em; }
+.modal-x { border: 0; background: transparent; font-size: 1.6rem; line-height: 1; cursor: pointer; color: var(--base-light); width: 38px; height: 38px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
+.modal-x:hover { background: var(--base-lightest); color: var(--ink); }
+.hint { font-size: 0.95rem; line-height: 1.5; color: var(--base-dark); background: var(--primary-lighter); border: 1px solid #cfe1f4; padding: 0.8rem 1rem; border-radius: var(--radius); margin: 0.4rem 0 1.4rem; }
 .hint code, .jsonlabel code { background: var(--white); padding: 0.05rem 0.3rem; border-radius: 4px; border: 1px solid var(--base-lighter); font-size: 0.85em; }
 
-.field { margin-bottom: 0.7rem; }
-.field.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-.field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--base-dark); margin-bottom: 0.2rem; }
+.field { margin-bottom: 1.05rem; }
+.field.two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--base-dark); margin-bottom: 0.35rem; }
 .field .opt { color: var(--base-light); font-weight: 400; }
 .field input, .field select, .field textarea {
-  width: 100%; font: inherit; font-size: 0.9rem; padding: 0.45rem 0.55rem;
-  border: 1px solid var(--base-light); border-radius: 6px; background: var(--white);
+  width: 100%; font: inherit; font-size: 1rem; padding: 0.7rem 0.8rem; min-height: 46px;
+  border: 1px solid var(--field-border); border-radius: var(--radius); background: #fcfdfe;
+  color: var(--ink); transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-lighter); }
+.field textarea { min-height: 72px; line-height: 1.5; }
+.field input::placeholder, .field textarea::placeholder { color: var(--base-light); }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--base-light); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--primary); background: var(--white); box-shadow: 0 0 0 4px var(--primary-lighter); }
 .times { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .times-dash { color: var(--base); font-size: 1rem; line-height: 1; flex-shrink: 0; }
+
+/* ---------- Combobox (custom light autocomplete; replaces native <datalist>) ---------- */
+.combo { position: relative; }
+.combo .combo-input { padding-right: 2.1rem; }
+.combo-caret {
+  position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);
+  border: 0; background: transparent; color: var(--base); font-size: 0.7rem; line-height: 1;
+  cursor: pointer; padding: 0.3rem; border-radius: var(--radius-sm);
+}
+.combo-caret:hover { color: var(--primary); }
+.combo-menu {
+  position: absolute; z-index: 45; top: calc(100% + 4px); left: 0; right: 0;
+  max-height: 260px; overflow-y: auto; padding: 0.3rem; display: flex; flex-direction: column; gap: 1px;
+}
+.combo-option {
+  width: 100%; text-align: left; background: transparent; border: 0; border-radius: var(--radius-sm);
+  font: inherit; font-size: 0.95rem; padding: 0.5rem 0.6rem; cursor: pointer; color: var(--ink);
+}
+.combo-option:hover, .combo-option.active { background: var(--primary-lighter); color: var(--primary-darker); }
+.combo-option.selected { font-weight: 600; }
 
 /* ---------- Pill time picker ---------- */
 .tp-wrap { position: relative; display: inline-block; }
 .tp-pill {
-  border: 1px solid var(--base-light); background: var(--white); color: var(--base);
-  font: inherit; font-size: 0.88rem; padding: 0.35rem 0.65rem; border-radius: 20px;
-  cursor: pointer; white-space: nowrap;
+  border: 1px solid var(--field-border); background: var(--white); color: var(--base);
+  font: inherit; font-size: 0.95rem; padding: 0.55rem 0.9rem; border-radius: var(--radius-pill);
+  cursor: pointer; white-space: nowrap; transition: border-color 0.15s, background 0.15s;
 }
 .tp-pill.has-value { color: var(--ink); border-color: var(--primary); background: var(--primary-lighter); font-weight: 600; }
 .tp-pill:hover { border-color: var(--primary); }
@@ -288,17 +325,18 @@ a { color: var(--primary); }
 .tp-option.selected { background: var(--primary); color: var(--white); font-weight: 600; }
 .tp-clear { color: var(--base); font-size: 0.8rem; border-bottom: 1px solid var(--base-lighter); margin-bottom: 0.2rem; padding-bottom: 0.35rem; }
 
-.sched { border: 1px solid var(--base-lighter); border-radius: var(--radius); padding: 0.7rem 0.8rem 0.4rem; margin-bottom: 0.9rem; }
-.sched legend { font-size: 0.82rem; font-weight: 700; color: var(--primary-dark); padding: 0 0.3rem; }
+.sched { border: 1px solid var(--base-lighter); border-radius: var(--radius); padding: 1rem 1.1rem 0.5rem; margin-bottom: 1.3rem; background: #f8fafc; }
+.sched legend { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); padding: 0.15rem 0.65rem; background: var(--white); border: 1px solid var(--base-lighter); border-radius: var(--radius-pill); }
 
 .daypicker { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-.daypicker .day { border: 1px solid var(--base-light); background: var(--white); border-radius: 6px; padding: 0.35rem 0.55rem; font: inherit; font-size: 0.82rem; cursor: pointer; }
+.daypicker .day { border: 1px solid var(--field-border); background: var(--white); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font: inherit; font-size: 0.9rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.daypicker .day:hover { border-color: var(--primary); }
 .daypicker .day.on { background: var(--primary); border-color: var(--primary); color: var(--white); font-weight: 600; }
 
-.jsonlabel { display: block; font-size: 0.78rem; color: var(--base); margin-bottom: 0.25rem; }
-.urlbox { background: #0f1b2d; color: #cfe2ff; border-radius: 6px; padding: 0.6rem 0.7rem; font-size: 0.75rem; max-height: 160px; overflow: auto; margin: 0 0 0.9rem; white-space: pre-wrap; word-break: break-word; }
+.jsonlabel { display: block; font-size: 0.82rem; color: var(--base); margin-bottom: 0.3rem; }
+.urlbox { background: #0f1b2d; color: #cfe2ff; border-radius: var(--radius-sm); padding: 0.75rem 0.9rem; font-size: 0.78rem; max-height: 170px; overflow: auto; margin: 0 0 1.1rem; white-space: pre-wrap; word-break: break-word; }
 
-.foot { display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; }
+.foot { display: flex; gap: 0.6rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 0.4rem; }
 .foot .primary { text-decoration: none; }
 
 /* ---------- Calendar reMINDer-style additions ---------- */
@@ -431,8 +469,18 @@ a { color: var(--primary); }
 .row-sprint { padding-left: 1.3rem; }
 
 /* Edit button inside the shared meeting detail */
-.mdetail-actions { margin-top: 0.6rem; display: flex; justify-content: flex-end; }
-.mdetail-actions .btn { height: 32px; font-size: 0.82rem; padding: 0.3rem 0.7rem; }
+.mdetail-actions { margin-top: 0.7rem; display: flex; justify-content: flex-end; gap: 0.5rem; }
+.mdetail-actions .btn { height: 34px; font-size: 0.85rem; padding: 0.3rem 0.75rem; }
+
+/* Press-and-hold delete: a red fill sweeps across in `--hold-ms`; releasing snaps it back to 0. */
+.hold-btn { position: relative; overflow: hidden; touch-action: none; user-select: none; }
+.hold-btn .hold-fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: var(--error); opacity: 0.22; transition: width 0s linear;
+}
+.hold-btn.holding { border-color: var(--error); }
+.hold-btn.holding .hold-fill { width: 100%; transition: width var(--hold-ms, 2000ms) linear; }
+.hold-btn .hold-label { position: relative; z-index: 1; }
 
 /* ============ Changes cart ============ */
 .changes-btn {

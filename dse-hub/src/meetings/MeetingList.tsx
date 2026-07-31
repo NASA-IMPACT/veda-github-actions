@@ -12,6 +12,7 @@ interface Props {
   today: string;
   draftIds: Set<string>;
   onEdit?: (m: Meeting) => void;
+  onDelete?: (m: Meeting) => void;
 }
 
 // Compact "when" line for the collapsed card: the human schedule text, plus the next real date.
@@ -25,7 +26,7 @@ function whenSummary(m: Meeting, today: string, pi: PiCalendar | null, viewTz: s
   return { text: m.schedule.text, next };
 }
 
-export default function MeetingList({ meetings, pi, today, draftIds, onEdit }: Props) {
+export default function MeetingList({ meetings, pi, today, draftIds, onEdit, onDelete }: Props) {
   const { tz: viewTz } = useViewTz();
 
   if (!meetings.length) {
@@ -72,7 +73,11 @@ export default function MeetingList({ meetings, pi, today, draftIds, onEdit }: P
                     )}
                   </div>
                   <div className="mcard-body">
-                    <MeetingDetail meeting={m} onEdit={onEdit ? () => onEdit(m) : undefined} />
+                    <MeetingDetail
+                      meeting={m}
+                      onEdit={onEdit ? () => onEdit(m) : undefined}
+                      onDelete={onDelete ? () => onDelete(m) : undefined}
+                    />
                   </div>
                   <span className="mcard-hint">Hover / focus for details</span>
                 </article>
