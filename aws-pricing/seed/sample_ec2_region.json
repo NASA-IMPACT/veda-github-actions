@@ -1,0 +1,106 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonEC2",
+  "version": "TEST-EC2",
+  "publicationDate": "2026-07-30T00:00:00Z",
+  "products": {
+    "EC2M5L": {
+      "sku": "EC2M5L",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "instanceType": "m5.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used",
+        "licenseModel": "No License required",
+        "vcpu": "2",
+        "memory": "8 GiB"
+      }
+    },
+    "EC2M5L_UNUSED": {
+      "sku": "EC2M5L_UNUSED",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "instanceType": "m5.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "UnusedCapacityReservation",
+        "licenseModel": "No License required",
+        "vcpu": "2",
+        "memory": "8 GiB"
+      }
+    },
+    "EC2M5L_WIN": {
+      "sku": "EC2M5L_WIN",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "instanceType": "m5.large",
+        "operatingSystem": "Windows",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used",
+        "licenseModel": "No License required",
+        "vcpu": "2",
+        "memory": "8 GiB"
+      }
+    },
+    "EC2M5METAL": {
+      "sku": "EC2M5METAL",
+      "productFamily": "Compute Instance (bare metal)",
+      "attributes": {
+        "instanceType": "m5.metal",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used",
+        "licenseModel": "No License required",
+        "vcpu": "96",
+        "memory": "384 GiB"
+      }
+    },
+    "EBSGP3": {
+      "sku": "EBSGP3",
+      "productFamily": "Storage",
+      "attributes": {
+        "volumeApiName": "gp3",
+        "volumeType": "General Purpose"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "EC2M5L": {
+        "EC2M5L.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "EC2M5L",
+          "priceDimensions": {
+            "EC2M5L.JRTCKXETXF.6YS6EN2CT7": {
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.096 per On Demand Linux m5.large Instance Hour",
+              "pricePerUnit": { "USD": "0.0960000000" }
+            }
+          }
+        }
+      },
+      "EBSGP3": {
+        "EBSGP3.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "EBSGP3",
+          "priceDimensions": {
+            "EBSGP3.JRTCKXETXF.6YS6EN2CT7": {
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.08 per GB-month of General Purpose (gp3) provisioned storage",
+              "pricePerUnit": { "USD": "0.0800000000" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -77,6 +77,17 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   replace with the real PI schedule). **Timezone**: per-meeting `schedule.tz` + a global **view-tz** header
   picker (`src/TzContext.tsx`, `localStorage dse-hub:viewTz`) converts all times via `src/tz.ts` (stdlib
   `Intl`, two-pass DST). See `docs/DSE_HUB.md`.
+- `cost-dashboard/` — Vite React SPA; `cost-dashboard/netlify.toml` (base=`cost-dashboard`, build,
+  publish `dist`). An **AWS cost calculator**: add EC2/S3/RDS/Lambda resources (each with an editable
+  **name**), tune inputs, get a live per-card + **grand total** (monthly & annual) + **CSV export**.
+  Reads `index.json` → `pricing_<region>.json` at runtime from the **`aws-pricing/data`** branch
+  (commit-SHA raw URL to dodge the ~5 min CDN cache → branch path → bundled `public/data/` snapshot).
+  Prices are **On-Demand only**, pulled with **no AWS creds** from the public Price List Bulk API by
+  `aws-pricing/generate_aws_pricing.py` (stdlib urllib; streams the ~473 MB EC2 region file; offline
+  golden test `aws-pricing/test_generate.py` proves the filters reject decoy SKUs) and published by
+  `.github/workflows/aws-pricing.yml` (weekly + dispatch; regions accumulate). A "Where these prices
+  come from" panel hyperlinks every service to its AWS pricing page + raw price list + version. See
+  `docs/AWS_PRICING.md`.
 
 ## Theming (light/dark — the fte / leave / pr dashboards; dse-hub is USWDS light-only)
 Each dashboard themes through **CSS custom properties**: light values live in `:root`, a

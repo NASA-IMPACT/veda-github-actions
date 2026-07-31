@@ -11,6 +11,8 @@ diff. Intentionally open — it will grow to host other VEDA Actions experiments
 ### 📊**FTE Dashboard:** https://veda-github-actions.netlify.app
 ### 🔀 **PR Finder Dashboard:** https://veda-pr-dashboard.netlify.app
 ### 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
+### 🧭 **DSE Hub:** https://veda-dse-hub.netlify.app
+### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-cost-dashboard.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point

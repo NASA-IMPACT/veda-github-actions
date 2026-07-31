@@ -1,0 +1,24 @@
+{
+  "name": "cost-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AWS cost calculator: add EC2 / S3 / RDS / Lambda resources, tune input params, get a live monthly total. On-Demand prices are pulled straight from AWS's public Price List Bulk API (published to the aws-pricing/data branch); every number links back to its AWS source.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.9"
+  }
+}

@@ -57,3 +57,12 @@ leave-dashboard/dist/
 !leave-dashboard/tsconfig.json
 !leave-dashboard/tsconfig.node.json
 !leave-dashboard/public/data/*.json
+
+# AWS Cost Calculator: generator fixtures + golden, dashboard config + bundled snapshot —
+# re-included past the global *.json ignore.
+!aws-pricing/seed/*.json
+!cost-dashboard/package.json
+!cost-dashboard/package-lock.json
+!cost-dashboard/tsconfig.json
+!cost-dashboard/tsconfig.node.json
+!cost-dashboard/public/data/*.json

@@ -1,0 +1,81 @@
+{
+  "currency": "USD",
+  "ebs": {
+    "gp3": 0.08
+  },
+  "ec2": {
+    "instances": {
+      "m5.large": {
+        "hourlyUSD": 0.096,
+        "memoryGiB": 8.0,
+        "vcpu": 2
+      }
+    }
+  },
+  "generated": "2026-07-30T12:00:00Z",
+  "label": "US West (Oregon)",
+  "lambda": {
+    "gbSecondUsd": 1.66667e-05,
+    "requestUsd": 2e-07
+  },
+  "rds": {
+    "instances": {
+      "PostgreSQL|db.m5.large": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.178,
+        "instanceType": "db.m5.large"
+      },
+      "SQL Server|db.m5.large": {
+        "engine": "SQL Server",
+        "hourlyUSD": 0.5,
+        "instanceType": "db.m5.large"
+      }
+    },
+    "storage": {
+      "gp3": 0.115
+    }
+  },
+  "region": "us-west-2",
+  "s3": {
+    "dataTransferOutSource": "static-fallback",
+    "dataTransferOutUsdPerGB": 0.09,
+    "getPer1k": 0.0004,
+    "putPer1k": 0.005,
+    "standardStorageUsdPerGBMonth": 0.023
+  },
+  "sourceVersions": {
+    "ec2": "TEST-EC2",
+    "lambda": "TEST-LAMBDA",
+    "rds": "TEST-RDS",
+    "s3": "TEST-S3"
+  },
+  "sources": {
+    "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
+    "services": {
+      "ec2": {
+        "offerCode": "AmazonEC2",
+        "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
+        "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
+        "version": "TEST-EC2"
+      },
+      "lambda": {
+        "offerCode": "AWSLambda",
+        "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
+        "pricingPage": "https://aws.amazon.com/lambda/pricing/",
+        "version": "TEST-LAMBDA"
+      },
+      "rds": {
+        "offerCode": "AmazonRDS",
+        "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
+        "pricingPage": "https://aws.amazon.com/rds/pricing/",
+        "version": "TEST-RDS"
+      },
+      "s3": {
+        "offerCode": "AmazonS3",
+        "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
+        "pricingPage": "https://aws.amazon.com/s3/pricing/",
+        "version": "TEST-S3"
+      }
+    }
+  }
+}
