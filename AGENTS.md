@@ -22,21 +22,20 @@ This repo is a test station for VEDA GitHub Actions + Netlify dashboards. Full c
 updates it — and if any price moved **more than 1%**, make that **impossible to miss**.
 
 **Do exactly this:**
-1. Fetch fresh prices (heavy EC2 file ~473 MB; takes ~1–2 min):
+1. Fetch fresh prices for the default regions (heavy EC2 files; ~1–2 min each):
    ```bash
-   python3 aws-pricing/generate_aws_pricing.py --region us-west-2 \
+   python3 aws-pricing/generate_aws_pricing.py --region us-east-1,us-west-2,eu-west-1 \
      --out-dir /tmp/new --now "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
    ```
-2. Diff against the committed snapshot and generate the change report:
+2. Diff each region against its committed snapshot and generate the combined report:
    ```bash
-   python3 aws-pricing/pricing_diff.py \
-     --old cost-dashboard/public/data/pricing_us-west-2.json \
-     --new /tmp/new/pricing_us-west-2.json \
+   python3 aws-pricing/pricing_diff.py --regions us-east-1,us-west-2,eu-west-1 \
+     --old-dir cost-dashboard/public/data --new-dir /tmp/new \
      --threshold 1.0 --out-md PRICING_CHANGES.md --out-summary /tmp/summary.json
    ```
 3. If `/tmp/summary.json` has `"changed": false`, **do nothing** (no PR).
 4. Otherwise, in the PR:
-   - Update `cost-dashboard/public/data/pricing_us-west-2.json` (and `index.json`) with the fresh files.
+   - Update each reviewed region's `cost-dashboard/public/data/pricing_<region>.json` (and `index.json`).
    - Save the report to `cost-reports/weekly-<YYYY-MM-DD>.md`.
    - **Use `PRICING_CHANGES.md` as the PR body verbatim** — it already contains the loud 🚨 spike
      banner and giant headers. Do not soften or summarize it away.

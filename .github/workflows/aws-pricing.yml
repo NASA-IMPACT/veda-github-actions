@@ -11,7 +11,7 @@ on:
         description: 'Region(s) to pull, comma-separated (e.g. us-west-2,us-east-1)'
         type: string
         required: false
-        default: 'us-west-2'
+        default: 'us-east-1,us-west-2,eu-west-1'
   schedule:
     - cron: '0 13 * * 1'   # Mondays 13:00 UTC (prices change rarely; weekly is plenty)
 
@@ -23,7 +23,7 @@ jobs:
     name: Pull AWS On-Demand prices → publish JSON
     runs-on: ubuntu-latest
     env:
-      REGIONS: ${{ github.event.inputs.regions || 'us-west-2' }}
+      REGIONS: ${{ github.event.inputs.regions || 'us-east-1,us-west-2,eu-west-1' }}
     steps:
       - name: "1 · Checkout repository"
         uses: actions/checkout@v4
