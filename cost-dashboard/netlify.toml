@@ -1,0 +1,21 @@
+# Netlify build config for the AWS Cost Calculator dashboard.
+#
+# Pattern B (base-relative): connect a Netlify site to the repo with **base directory =
+# cost-dashboard**, and Netlify reads this file (command/publish resolve inside this folder).
+# There is deliberately NO root-level netlify.toml — a root config's `base` would apply to EVERY
+# site connected to the repo and hijack the other dashboards. Each dashboard owns its own
+# <app>/netlify.toml and its own independent Netlify site.
+#
+# The site is a static SPA that fetches On-Demand pricing JSON at runtime from the public
+# aws-pricing/data branch (see src/data.ts). No env vars or secrets needed.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # No `ignore` filter: always build & publish on a push so merged changes reliably go live.
+  # A cost-dashboard rebuild is cheap and idempotent, so we prefer guaranteed deploys.
+
+# SPA fallback: serve index.html for client-side routes.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

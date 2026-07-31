@@ -1,0 +1,119 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonS3",
+  "version": "TEST-S3",
+  "publicationDate": "2026-07-30T00:00:00Z",
+  "products": {
+    "S3STD": {
+      "sku": "S3STD",
+      "productFamily": "Storage",
+      "attributes": {
+        "storageClass": "General Purpose",
+        "volumeType": "Standard"
+      }
+    },
+    "S3ANNO": {
+      "sku": "S3ANNO",
+      "productFamily": "Storage",
+      "attributes": {
+        "storageClass": "General Purpose",
+        "volumeType": "Annotations"
+      }
+    },
+    "S3PUT": {
+      "sku": "S3PUT",
+      "productFamily": "API Request",
+      "attributes": {
+        "group": "S3-API-Tier1",
+        "groupDescription": "PUT, COPY, POST, or LIST requests"
+      }
+    },
+    "S3PUT_ANNO": {
+      "sku": "S3PUT_ANNO",
+      "productFamily": "API Request",
+      "attributes": {
+        "group": "S3-API-Tier1",
+        "groupDescription": "Annotation PUT requests"
+      }
+    },
+    "S3GET": {
+      "sku": "S3GET",
+      "productFamily": "API Request",
+      "attributes": {
+        "group": "S3-API-Tier2",
+        "groupDescription": "GET and all other requests"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "S3STD": {
+        "S3STD.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "S3STD",
+          "priceDimensions": {
+            "S3STD.JRTCKXETXF.T1": {
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "51200",
+              "description": "$0.023 per GB - first 50 TB / month of storage used",
+              "pricePerUnit": { "USD": "0.0230000000" }
+            },
+            "S3STD.JRTCKXETXF.T2": {
+              "unit": "GB-Mo",
+              "beginRange": "51200",
+              "endRange": "512000",
+              "description": "$0.022 per GB - next 450 TB / month of storage used",
+              "pricePerUnit": { "USD": "0.0220000000" }
+            }
+          }
+        }
+      },
+      "S3PUT": {
+        "S3PUT.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "S3PUT",
+          "priceDimensions": {
+            "S3PUT.JRTCKXETXF.R1": {
+              "unit": "Requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.005 per 1,000 PUT, COPY, POST, or LIST requests",
+              "pricePerUnit": { "USD": "0.0000050000" }
+            }
+          }
+        }
+      },
+      "S3PUT_ANNO": {
+        "S3PUT_ANNO.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "S3PUT_ANNO",
+          "priceDimensions": {
+            "S3PUT_ANNO.JRTCKXETXF.R1": {
+              "unit": "Requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "annotation decoy — must be rejected",
+              "pricePerUnit": { "USD": "0.0900000000" }
+            }
+          }
+        }
+      },
+      "S3GET": {
+        "S3GET.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "S3GET",
+          "priceDimensions": {
+            "S3GET.JRTCKXETXF.R1": {
+              "unit": "Requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.0004 per 1,000 GET and all other requests",
+              "pricePerUnit": { "USD": "0.0000004000" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

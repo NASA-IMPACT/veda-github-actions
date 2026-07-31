@@ -1,0 +1,112 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AWSLambda",
+  "version": "TEST-LAMBDA",
+  "publicationDate": "2026-07-30T00:00:00Z",
+  "products": {
+    "LAMBDAREQ": {
+      "sku": "LAMBDAREQ",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "usagetype": "USW2-Request"
+      }
+    },
+    "LAMBDAREQ_GLOBAL": {
+      "sku": "LAMBDAREQ_GLOBAL",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "usagetype": "Global-Request"
+      }
+    },
+    "LAMBDADUR": {
+      "sku": "LAMBDADUR",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "usagetype": "USW2-Lambda-GB-Second"
+      }
+    },
+    "LAMBDADUR_GLOBAL": {
+      "sku": "LAMBDADUR_GLOBAL",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "usagetype": "Global-Lambda-GB-Second"
+      }
+    },
+    "LAMBDADUR_ARM": {
+      "sku": "LAMBDADUR_ARM",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "usagetype": "USW2-Lambda-GB-Second-ARM"
+      }
+    },
+    "LAMBDADUR_MICROVM": {
+      "sku": "LAMBDADUR_MICROVM",
+      "productFamily": "Serverless",
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "usagetype": "USW2-Lambda-GB-Second-MicroVM"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "LAMBDAREQ": {
+        "LAMBDAREQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "LAMBDAREQ",
+          "priceDimensions": {
+            "LAMBDAREQ.JRTCKXETXF.R1": {
+              "unit": "Requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.20 per 1M requests",
+              "pricePerUnit": { "USD": "0.0000002000" }
+            }
+          }
+        }
+      },
+      "LAMBDADUR": {
+        "LAMBDADUR.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "LAMBDADUR",
+          "priceDimensions": {
+            "LAMBDADUR.JRTCKXETXF.T1": {
+              "unit": "seconds",
+              "beginRange": "0",
+              "endRange": "6000000000",
+              "description": "First tier GB-second",
+              "pricePerUnit": { "USD": "0.0000166667" }
+            },
+            "LAMBDADUR.JRTCKXETXF.T2": {
+              "unit": "seconds",
+              "beginRange": "6000000000",
+              "endRange": "15000000000",
+              "description": "Second tier GB-second",
+              "pricePerUnit": { "USD": "0.0000150000" }
+            }
+          }
+        }
+      },
+      "LAMBDADUR_ARM": {
+        "LAMBDADUR_ARM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "LAMBDADUR_ARM",
+          "priceDimensions": {
+            "LAMBDADUR_ARM.JRTCKXETXF.T1": {
+              "unit": "seconds",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "ARM decoy (cheaper) — must be excluded so x86 wins",
+              "pricePerUnit": { "USD": "0.0000133334" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

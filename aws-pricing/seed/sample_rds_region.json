@@ -1,0 +1,120 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonRDS",
+  "version": "TEST-RDS",
+  "publicationDate": "2026-07-30T00:00:00Z",
+  "products": {
+    "RDSPG_LIC": {
+      "sku": "RDSPG_LIC",
+      "productFamily": "Database Instance",
+      "attributes": {
+        "databaseEngine": "PostgreSQL",
+        "instanceType": "db.m5.large",
+        "deploymentOption": "Single-AZ",
+        "licenseModel": "License included"
+      }
+    },
+    "RDSPG_NOLIC": {
+      "sku": "RDSPG_NOLIC",
+      "productFamily": "Database Instance",
+      "attributes": {
+        "databaseEngine": "PostgreSQL",
+        "instanceType": "db.m5.large",
+        "deploymentOption": "Single-AZ",
+        "licenseModel": "No license required"
+      }
+    },
+    "RDSPG_MAZ": {
+      "sku": "RDSPG_MAZ",
+      "productFamily": "Database Instance",
+      "attributes": {
+        "databaseEngine": "PostgreSQL",
+        "instanceType": "db.m5.large",
+        "deploymentOption": "Multi-AZ",
+        "licenseModel": "No license required"
+      }
+    },
+    "RDSSQL": {
+      "sku": "RDSSQL",
+      "productFamily": "Database Instance",
+      "attributes": {
+        "databaseEngine": "SQL Server",
+        "instanceType": "db.m5.large",
+        "deploymentOption": "Single-AZ",
+        "licenseModel": "License included"
+      }
+    },
+    "RDSGP3": {
+      "sku": "RDSGP3",
+      "productFamily": "Database Storage",
+      "attributes": {
+        "volumeType": "General Purpose-GP3",
+        "deploymentOption": "Single-AZ"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "RDSPG_LIC": {
+        "RDSPG_LIC.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RDSPG_LIC",
+          "priceDimensions": {
+            "RDSPG_LIC.JRTCKXETXF.H1": {
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "license-included decoy — No-license row must win",
+              "pricePerUnit": { "USD": "0.9990000000" }
+            }
+          }
+        }
+      },
+      "RDSPG_NOLIC": {
+        "RDSPG_NOLIC.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RDSPG_NOLIC",
+          "priceDimensions": {
+            "RDSPG_NOLIC.JRTCKXETXF.H1": {
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.178 per db.m5.large PostgreSQL instance hour (Single-AZ)",
+              "pricePerUnit": { "USD": "0.1780000000" }
+            }
+          }
+        }
+      },
+      "RDSSQL": {
+        "RDSSQL.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RDSSQL",
+          "priceDimensions": {
+            "RDSSQL.JRTCKXETXF.H1": {
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.500 per db.m5.large SQL Server instance hour (License included)",
+              "pricePerUnit": { "USD": "0.5000000000" }
+            }
+          }
+        }
+      },
+      "RDSGP3": {
+        "RDSGP3.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RDSGP3",
+          "priceDimensions": {
+            "RDSGP3.JRTCKXETXF.S1": {
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "description": "$0.115 per GB-month of General Purpose (gp3) RDS storage",
+              "pricePerUnit": { "USD": "0.1150000000" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
