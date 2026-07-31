@@ -1,0 +1,105 @@
+name: AWS Pricing Review
+
+# Weekly price-change review. Every Monday EVENING it fetches fresh AWS On-Demand prices, diffs them
+# against the committed snapshot, and — if anything changed — opens a PR that updates the snapshot and
+# whose body is an impossible-to-miss change report. Any price moving >1% is a SPIKE and is shouted at
+# the top of the PR (loud title + 🚨 banner). This is the deterministic engine; a Jules scheduled task
+# can run the same two scripts (see AGENTS.md) to author the PR with its own review.
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Region to review'
+        type: string
+        required: false
+        default: 'us-west-2'
+      demo_spike:
+        description: 'Inject a synthetic spike to test the alert formatting (do not merge the PR)'
+        type: boolean
+        required: false
+        default: false
+  schedule:
+    - cron: '0 0 * * 2'   # 00:00 UTC Tue = Monday evening in the US (~7pm CT / 6pm CST)
+
+permissions:
+  contents: write          # push the review branch
+  pull-requests: write     # open/update the review PR
+
+jobs:
+  review:
+    name: Diff prices → open review PR (spikes shouted)
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REGION: ${{ github.event.inputs.region || 'us-west-2' }}
+    steps:
+      - name: "1 · Checkout"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "2 · Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: "3 · Fetch fresh prices (live public bulk API, no creds)"
+        run: |
+          python3 aws-pricing/generate_aws_pricing.py \
+            --region "$REGION" --out-dir "$RUNNER_TEMP/new" \
+            --now "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+      - name: "4 · Diff vs committed snapshot → change report"
+        id: diff
+        run: |
+          DEMO=""
+          if [ "${{ github.event.inputs.demo_spike }}" = "true" ]; then DEMO="--demo-spike"; fi
+          python3 aws-pricing/pricing_diff.py \
+            --old "cost-dashboard/public/data/pricing_${REGION}.json" \
+            --new "$RUNNER_TEMP/new/pricing_${REGION}.json" \
+            --threshold 1.0 --out-md PRICING_CHANGES.md \
+            --out-summary "$RUNNER_TEMP/summary.json" $DEMO
+          echo "changed=$(jq -r .changed "$RUNNER_TEMP/summary.json")" >> "$GITHUB_OUTPUT"
+          echo "title=$(jq -r .title "$RUNNER_TEMP/summary.json")" >> "$GITHUB_OUTPUT"
+          echo "spikes=$(jq -r .spikes "$RUNNER_TEMP/summary.json")" >> "$GITHUB_OUTPUT"
+          cat PRICING_CHANGES.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "5 · Open / update the review PR (only if something changed)"
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          DATE="$(date -u +%Y-%m-%d)"
+          BR="aws-pricing/review-${DATE}"
+          DEMO="${{ github.event.inputs.demo_spike }}"
+          TITLE="${{ steps.diff.outputs.title }}"
+          [ "$DEMO" = "true" ] && TITLE="[DEMO — do not merge] $TITLE"
+
+          # Update the bundled snapshot + keep a dated copy of the report in cost-reports/.
+          cp "$RUNNER_TEMP/new/pricing_${REGION}.json" "cost-dashboard/public/data/pricing_${REGION}.json"
+          cp "$RUNNER_TEMP/new/index.json" "cost-dashboard/public/data/index.json" 2>/dev/null || true
+          mkdir -p cost-reports
+          cp PRICING_CHANGES.md "cost-reports/weekly-${DATE}.md"
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BR"
+          git add -f "cost-dashboard/public/data/pricing_${REGION}.json" \
+                     "cost-dashboard/public/data/index.json" "cost-reports/weekly-${DATE}.md"
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."; exit 0
+          fi
+          git commit -m "AWS weekly pricing review — ${DATE}"
+          git push -f origin "$BR"
+
+          BODY="$RUNNER_TEMP/body.md"
+          { [ "$DEMO" = "true" ] && echo "> 🧪 **This is a demo run — do not merge.**" && echo; cat PRICING_CHANGES.md; } > "$BODY"
+          NUM="$(gh pr list --head "$BR" --state open --json number -q '.[0].number')"
+          if [ -z "$NUM" ]; then
+            gh pr create --base main --head "$BR" --title "$TITLE" --body-file "$BODY"
+          else
+            gh pr edit "$NUM" --title "$TITLE" --body-file "$BODY"
+            echo "Updated existing PR #$NUM"
+          fi
+
+      - name: "6 · No changes → say so"
+        if: steps.diff.outputs.changed != 'true'
+        run: echo "No AWS price changes for ${REGION} this week — no PR opened." >> "$GITHUB_STEP_SUMMARY"
