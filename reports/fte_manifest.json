@@ -1,0 +1,11 @@
+{
+  "slug": "all-pis",
+  "pi": "",
+  "generated": "2026-07-27T13:50:37Z",
+  "files": {
+    "allocations": "fte_allocations_all-pis.csv",
+    "persons": "fte_by_person_all-pis.csv",
+    "roles": "fte_by_role_all-pis.csv",
+    "summary": "fte_summary_all-pis.md"
+  }
+}
