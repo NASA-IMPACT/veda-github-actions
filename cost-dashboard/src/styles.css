@@ -11,6 +11,7 @@
   --s3: #3f9c35;
   --rds: #2e73b8;
   --lambda: #c8511b;
+  --estimate: #7d5ba6;
   --ok: #1a8754;
   --shadow: 0 1px 2px rgba(16, 25, 31, 0.06), 0 4px 16px rgba(16, 25, 31, 0.06);
   --radius: 12px;
@@ -90,6 +91,7 @@ body {
 .add-btn[data-service="s3"] { border-left-color: var(--s3); }
 .add-btn[data-service="rds"] { border-left-color: var(--rds); }
 .add-btn[data-service="lambda"] { border-left-color: var(--lambda); }
+.add-btn[data-service="estimate"] { border-left-color: var(--estimate); }
 .ghost-btn {
   border: 1px solid var(--line); background: transparent; color: var(--muted);
   font-size: 13px; padding: 8px 12px; border-radius: 8px; cursor: pointer;
@@ -132,6 +134,7 @@ body {
 .card[data-service="s3"] { border-left-color: var(--s3); }
 .card[data-service="rds"] { border-left-color: var(--rds); }
 .card[data-service="lambda"] { border-left-color: var(--lambda); }
+.card[data-service="estimate"] { border-left-color: var(--estimate); }
 
 .card-head {
   display: flex; align-items: center; gap: 12px;
@@ -145,6 +148,7 @@ body {
 .card[data-service="s3"] .badge { background: var(--s3); }
 .card[data-service="rds"] .badge { background: var(--rds); }
 .card[data-service="lambda"] .badge { background: var(--lambda); }
+.card[data-service="estimate"] .badge { background: var(--estimate); }
 .card-title { font-weight: 600; font-size: 14px; color: var(--ink); white-space: nowrap; }
 .name-input {
   flex: 1; min-width: 130px; max-width: 340px;
@@ -245,6 +249,7 @@ span.field-input input { flex: 1; border: 1px solid var(--line); border-radius: 
 .chip[data-service="s3"] { border-left-color: var(--s3); }
 .chip[data-service="rds"] { border-left-color: var(--rds); }
 .chip[data-service="lambda"] { border-left-color: var(--lambda); }
+.chip[data-service="estimate"] { border-left-color: var(--estimate); }
 .summary-right { margin-left: auto; text-align: right; }
 .grand { display: block; font-size: 34px; font-weight: 800; color: var(--orange); font-variant-numeric: tabular-nums; line-height: 1.05; }
 .grand small { font-size: 15px; color: #c4ccd6; font-weight: 600; margin-left: 2px; }

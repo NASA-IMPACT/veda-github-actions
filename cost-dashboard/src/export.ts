@@ -25,6 +25,8 @@ export function configSummary(r: Resource): string {
         `${r.params.storageGB} GB ${r.params.storageType}`;
     case "lambda":
       return `${r.params.requests.toLocaleString()} reqs/mo, ${r.params.durationMs} ms, ${r.params.memoryMB} MB`;
+    case "estimate":
+      return `${r.params.category} — flat monthly estimate`;
   }
 }
 

@@ -10,7 +10,15 @@ export const SERVICE_LABEL: Record<Service, string> = {
   s3: "S3 — object storage",
   rds: "RDS — managed database",
   lambda: "Lambda — serverless functions",
+  estimate: "Estimate — flat monthly figure",
 };
+
+// Presets for the flat "Estimate" line item — supporting services we don't price live but that still
+// belong in the total. "Other" lets you name anything via the card's name field.
+export const ESTIMATE_CATEGORIES = [
+  "CloudFront", "Amplify", "Secrets Manager", "Route 53", "CloudWatch",
+  "SNS / SQS", "KMS", "WAF", "Data transfer", "Other",
+];
 
 export function costOf(r: Resource, p: PricingDoc): Cost {
   const b: LineItem[] = [];
@@ -76,6 +84,14 @@ export function costOf(r: Resource, p: PricingDoc): Cost {
       });
     }
     return total(b);
+  }
+
+  if (r.service === "estimate") {
+    const amount = Math.max(0, r.params.monthlyUSD || 0);
+    return total(
+      [{ label: `${r.params.category || "Other"} — flat monthly estimate`, amount }],
+      "Manual estimate — a flat figure you entered, not from live AWS pricing.",
+    );
   }
 
   // lambda

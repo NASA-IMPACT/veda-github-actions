@@ -36,5 +36,7 @@ export function makeResource(service: Service, p: PricingDoc): Resource {
       params: { instanceKey: pickRds(p), count: 1, hours: DEFAULT_HOURS,
                 storageType: firstKey(Object.keys(p.rds.storage), "gp3"), storageGB: 20 },
     };
+  if (service === "estimate")
+    return { id, name, service, params: { category: "CloudFront", monthlyUSD: 10 } };
   return { id, name, service, params: { requests: 1000000, durationMs: 200, memoryMB: 512 } };
 }
