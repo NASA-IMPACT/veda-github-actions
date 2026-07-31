@@ -1,0 +1,24 @@
+{
+  "name": "dse-hub",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "DSE Hub — a tabbed hub app for the VEDA Data Services & Enablement group. First tab: Meetings → Meeting Tracker, a searchable, date-aware registry of team meetings. GitHub-only datastore (one JSON file per meeting), updated via approved PRs.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.9"
+  }
+}
