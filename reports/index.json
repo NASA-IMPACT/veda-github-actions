@@ -1,0 +1,19 @@
+{
+  "defaultRegion": "us-west-2",
+  "generated": "2026-07-31T13:00:07Z",
+  "hoursPerMonth": 730,
+  "regions": {
+    "us-west-2": {
+      "file": "pricing_us-west-2.json",
+      "generated": "2026-07-31T12:59:58Z",
+      "label": "US West (Oregon)",
+      "sourceVersions": {
+        "ec2": "20260728175247",
+        "lambda": "20260717075216",
+        "rds": "20260729234248",
+        "s3": "20260728131000"
+      }
+    }
+  },
+  "schemaVersion": 1
+}
