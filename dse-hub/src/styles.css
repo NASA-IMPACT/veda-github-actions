@@ -204,7 +204,9 @@ a { color: var(--primary); }
 .dow > div { padding: 0.4rem 0.5rem; text-align: left; }
 .dow .we { color: var(--base-light); }
 .week { display: grid; grid-template-columns: repeat(7, 1fr); }
-.cell { min-height: 104px; border-top: 1px solid var(--base-lighter); border-left: 1px solid var(--base-lighter); padding: 0.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
+/* min-height fits the max content (day number + 3 chips + a "+N more") so every week row is the
+   same height and the grid stays evenly spaced regardless of how many meetings a day has. */
+.cell { min-height: 128px; border-top: 1px solid var(--base-lighter); border-left: 1px solid var(--base-lighter); padding: 0.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
 .cell:nth-child(7n + 1) { border-left: 0; }
 .cell.weekend { background: #fbfcfe; }
 .cell.out-month { background: var(--base-lightest); }
@@ -369,7 +371,7 @@ a { color: var(--primary); }
   .cal-tray { width: 100%; }
   .field.two { grid-template-columns: 1fr; }
   .add-btn { margin-left: 0; }
-  .cell { min-height: 78px; }
+  .cell { min-height: 108px; }
 }
 
 /* ============ Sprints & PIs ============ */
