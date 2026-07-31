@@ -104,7 +104,7 @@ export function buildHtml(resources: Resource[], p: PricingDoc, name: string, ex
   .lines{margin-top:6px}
   .li{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#5a6572}
   .b{font-size:11px;font-weight:800;color:#fff;padding:2px 7px;border-radius:5px;background:#5a6572}
-  .b-ec2{background:#ff9900;color:#232f3e}.b-s3{background:#3f9c35}.b-rds{background:#2e73b8}.b-lambda{background:#c8511b}
+  .b-ec2{background:#ff9900;color:#232f3e}.b-s3{background:#3f9c35}.b-rds{background:#2e73b8}.b-lambda{background:#c8511b}.b-estimate{background:#7d5ba6}
   .total{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#232f3e;color:#fff;border-radius:12px;margin-top:16px}
   .total .g{font-size:26px;font-weight:800;color:#ff9900}
   .note{font-size:12px;color:#5a6572;margin:14px 2px}
