@@ -1,4 +1,4 @@
-# AGENTS.md — guide for coding agents (Jules, etc.)
+# AGENTS.md — guide for coding agents
 
 This repo is a test station for VEDA GitHub Actions + Netlify dashboards. Full context is in
 `CLAUDE.md`; app-specific docs are in `docs/`.
@@ -48,6 +48,6 @@ updates it — and if any price moved **more than 1%**, make that **impossible t
 **Rules:** On-Demand prices only; they are approximate. Keep the report's alarm formatting loud — the
 whole point is that a >1% move is obvious at a glance. One PR per run; if a same-day PR exists, update it.
 
-> A GitHub Action (`.github/workflows/aws-pricing-review.yml`) does the same thing deterministically
-> as a fallback/engine — you can mirror its steps. Test the alert formatting with its `demo_spike`
-> input (or `pricing_diff.py --demo-spike`), which injects a synthetic +7.3% move.
+> This runs automatically every Monday evening via `.github/workflows/aws-pricing-review.yml` (a plain
+> price-diff — no external agent required). Test the alert formatting with its `demo_spike` input (or
+> `pricing_diff.py --demo-spike`), which injects a synthetic +7.3% move.

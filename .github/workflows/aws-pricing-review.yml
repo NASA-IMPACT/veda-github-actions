@@ -3,8 +3,7 @@ name: AWS Pricing Review
 # Weekly price-change review. Every Monday EVENING it fetches fresh AWS On-Demand prices, diffs them
 # against the committed snapshot, and — if anything changed — opens a PR that updates the snapshot and
 # whose body is an impossible-to-miss change report. Any price moving >1% is a SPIKE and is shouted at
-# the top of the PR (loud title + 🚨 banner). This is the deterministic engine; a Jules scheduled task
-# can run the same two scripts (see AGENTS.md) to author the PR with its own review.
+# the top of the PR (loud title + 🚨 banner). A plain weekly price-diff — no external agent needed.
 on:
   workflow_dispatch:
     inputs:
