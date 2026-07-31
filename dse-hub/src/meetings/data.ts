@@ -11,10 +11,11 @@ export function loadMeetings(): Meeting[] {
     if (m && m.id && m.name && m.team) map.set(m.id, m);
   }
   for (const d of allChangeDocs()) {
-    if (d.kind === "meeting" && d.op === "upsert") {
-      const m = d.data as Meeting;
-      if (m && m.id) map.set(m.id, m);
-    }
+    if (d.kind !== "meeting") continue;
+    const m = d.data as Meeting;
+    if (!m || !m.id) continue;
+    if (d.op === "delete") map.delete(m.id);
+    else map.set(m.id, m);
   }
   return [...map.values()].sort((a, b) => a.team.localeCompare(b.team) || a.name.localeCompare(b.name));
 }

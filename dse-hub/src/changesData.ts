@@ -2,8 +2,9 @@ import type { Meeting, Pi } from "./types";
 
 export interface ChangeDoc {
   kind: "meeting" | "pi";
-  op: "upsert";
+  op: "upsert" | "delete";
   ts: string;
+  // For "delete", data still carries the removed record so loaders/compact can read its `id`.
   data: Meeting | Pi;
   label: string;
 }

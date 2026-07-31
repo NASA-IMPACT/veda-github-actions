@@ -5,10 +5,19 @@ import { formatRangeInTz } from "../tz";
 import { toISO } from "../calendar";
 import { nextOccurrence } from "./recurrence";
 import { piCalendar } from "./data";
+import HoldToDelete from "./HoldToDelete";
 
 // The full, expanded content for a meeting — reused as the hover body of a list card and as the
 // body of the calendar popover, so both show the same complete information.
-export default function MeetingDetail({ meeting, onEdit }: { meeting: Meeting; onEdit?: () => void }) {
+export default function MeetingDetail({
+  meeting,
+  onEdit,
+  onDelete,
+}: {
+  meeting: Meeting;
+  onEdit?: () => void;
+  onDelete?: () => void;
+}) {
   const { schedule, join } = meeting;
   const { tz: viewTz } = useViewTz();
   const today = toISO(new Date());
@@ -77,9 +86,10 @@ export default function MeetingDetail({ meeting, onEdit }: { meeting: Meeting; o
         </div>
       )}
       </dl>
-      {onEdit && (
+      {(onEdit || onDelete) && (
         <div className="mdetail-actions">
-          <button className="btn" onClick={onEdit}>✎ Edit meeting</button>
+          {onEdit && <button className="btn" onClick={onEdit}>✎ Edit meeting</button>}
+          {onDelete && <HoldToDelete onComplete={onDelete} />}
         </div>
       )}
     </>

@@ -3,7 +3,13 @@ import type { JoinMethod, Meeting, Weekday } from "../types";
 import { JOIN_LABEL, JOIN_ORDER } from "../colors";
 import { buildMeetingFile, draftToMeeting, draftValid, MeetingDraft } from "./drafts";
 import TimePicker from "./TimePicker";
+import Combobox from "./Combobox";
 import { TZ_OPTIONS } from "../tz";
+
+const CATEGORY_OPTIONS = [
+  "Sprint Planning", "Sprint Review", "Check In", "Tag Up", "Standup", "Sync",
+  "Team Lead Sync", "Portal Design", "Backlog Grooming", "Retro", "Project Office",
+];
 
 const WEEK_ORDER: Weekday[] = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
 const WEEK_LABEL: Record<Weekday, string> = {
@@ -60,8 +66,7 @@ export default function AddMeetingForm({ mode, editId, draft, setDraft, teams, o
         <div className="field two">
           <div>
             <label>Team</label>
-            <input list="teamlist" value={draft.team} onChange={(e) => patch({ team: e.target.value })} placeholder="Disasters — or a new team" />
-            <datalist id="teamlist">{teams.map((t) => <option key={t} value={t} />)}</datalist>
+            <Combobox value={draft.team} onChange={(v) => patch({ team: v })} options={teams} placeholder="Disasters — or a new team" />
           </div>
           <div>
             <label>Meeting name</label>
@@ -72,17 +77,12 @@ export default function AddMeetingForm({ mode, editId, draft, setDraft, teams, o
         <div className="field two">
           <div>
             <label>Category <span className="opt">(optional)</span></label>
-            <input
-              list="catlist"
+            <Combobox
               value={draft.category}
-              onChange={(e) => patch({ category: e.target.value })}
+              onChange={(v) => patch({ category: v })}
+              options={CATEGORY_OPTIONS}
               placeholder="Sprint Planning, Check In, …"
             />
-            <datalist id="catlist">
-              {["Sprint Planning","Sprint Review","Check In","Tag Up","Standup","Sync","Team Lead Sync","Portal Design","Backlog Grooming","Retro","Project Office"].map((c) => (
-                <option key={c} value={c} />
-              ))}
-            </datalist>
           </div>
           <div>
             <label>Purpose <span className="opt">(optional)</span></label>

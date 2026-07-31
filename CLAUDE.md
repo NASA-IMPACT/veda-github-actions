@@ -67,9 +67,9 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   sprint/PI filters; timezone-aware times) and **Sprints & PIs → PI Roadmap**. **USWDS palette, light-only**
   (no dark theme). **No generator/Action** — data is hand-entered JSON bundled at BUILD via
   `import.meta.glob` (no runtime fetch). Source of truth = compact **`data/meetings.json` + `data/pis.json`**
-  arrays; adds/edits (meetings **and** PIs) stage in an in-app **Changes cart** → **one prefilled new-file
-  PR** creating `dse-hub/data/changes/<ts>.json` (array of `ChangeDoc`), which the loaders **merge** over the
-  canonical arrays at load (upsert by id, newest `ts` wins) — token-free, conflict-free (unique filenames),
+  arrays; adds/edits/**deletes** (meetings **and** PIs) stage in an in-app **Changes cart** → **one prefilled
+  new-file PR** creating `dse-hub/data/changes/<ts>.json` (array of `ChangeDoc`, `op: upsert|delete`), which the
+  loaders **merge** over the canonical arrays at load (upsert/delete by id, newest `ts` wins) — token-free, conflict-free (unique filenames),
   same idea as leave-dashboard overrides. `dse-hub/scripts/compact.mjs` +
   `.github/workflows/dse-hub-compact.yml` fold change files back into the canonical arrays on merge.
   **Recurrence** (`src/meetings/recurrence.ts`): weekly/monthly/sprint/sprint-week/tbd → real dates against
