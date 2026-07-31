@@ -1,0 +1,39 @@
+[
+  {
+    "id": "pi-26-4",
+    "name": "PI 26.4",
+    "tz": "America/Chicago",
+    "goal": "",
+    "boardUrl": "",
+    "sprints": [
+      {
+        "index": 1,
+        "name": "Sprint 1",
+        "start": "2026-07-13",
+        "end": "2026-08-02",
+        "goal": ""
+      },
+      {
+        "index": 2,
+        "name": "Sprint 2",
+        "start": "2026-08-03",
+        "end": "2026-08-23",
+        "goal": ""
+      },
+      {
+        "index": 3,
+        "name": "Sprint 3",
+        "start": "2026-08-24",
+        "end": "2026-09-13",
+        "goal": ""
+      },
+      {
+        "index": 4,
+        "name": "Sprint 4",
+        "start": "2026-09-14",
+        "end": "2026-10-04",
+        "goal": ""
+      }
+    ]
+  }
+]

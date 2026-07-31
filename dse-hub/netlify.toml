@@ -1,0 +1,11 @@
+# Pattern B: this dashboard is its own Netlify site, connected to the repo with
+# base directory = dse-hub (set in the Netlify UI). Netlify reads THIS netlify.toml.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: serve index.html for any path (tabs/subtabs are client-side via the URL hash).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,35 @@
+name: DSE Hub — compact change files
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dse-hub/data/changes/**"
+  workflow_dispatch:
+
+jobs:
+  compact:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Apply changes and compact
+        run: node dse-hub/scripts/compact.mjs
+
+      - name: Commit compacted canonicals (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dse-hub/data/meetings.json dse-hub/data/pis.json dse-hub/data/changes/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "chore: compact dse-hub change docs into canonical files [skip ci]"
+            git push
+          fi

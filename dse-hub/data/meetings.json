@@ -1,0 +1,627 @@
+[
+  {
+    "id": "aq-weekly-air4us-portal-design-check-in",
+    "team": "AQ",
+    "name": "Weekly AIR4US portal design check in",
+    "category": "Portal Design",
+    "schedule": {
+      "tz": "America/Chicago",
+      "text": "TBD",
+      "rule": {
+        "freq": "tbd"
+      }
+    }
+  },
+  {
+    "id": "content-management-tinacms-weekly-standup",
+    "team": "Content Management",
+    "name": "TinaCMS Weekly Standup",
+    "category": "Standup",
+    "organizer": "@Abdelhak",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:30",
+      "end": "11:00",
+      "text": "Tuesdays, 10:30-11AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TU"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/sur-pbhi-tvi"
+    }
+  },
+  {
+    "id": "dashboard-weekly-check-in",
+    "team": "Dashboard",
+    "name": "Weekly Check In",
+    "category": "Check In",
+    "organizer": "@Simi Damani",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "09:30",
+      "end": "10:00",
+      "text": "Thursdays, 9:30-10:00AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TH"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/jgp-dsoj-hta"
+    }
+  },
+  {
+    "id": "data-services-sprint-planning",
+    "team": "Data Services",
+    "name": "Sprint Planning",
+    "category": "Sprint Planning",
+    "organizer": "@Saadiq Mohiuddin",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:00",
+      "end": "12:00",
+      "text": "1st Monday of Sprint, 11-Noon",
+      "rule": {
+        "freq": "sprint",
+        "byday": "MO",
+        "setpos": [
+          1
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/pgr-byny-kdz"
+    }
+  },
+  {
+    "id": "data-services-weekly-tag-up",
+    "team": "Data Services",
+    "name": "Weekly Tag Up",
+    "category": "Tag Up",
+    "organizer": "@Saadiq Mohiuddin",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "14:00",
+      "end": "14:15",
+      "text": "Mondays/Wednesdays, 2-2:15",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "MO",
+          "WE"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/trf-ctnx-zht"
+    }
+  },
+  {
+    "id": "disasters-bi-weekly-portal-design",
+    "team": "Disasters",
+    "name": "Bi-weekly Portal Design",
+    "category": "Portal Design",
+    "organizer": "@Taylor DuPre",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "Every other Wednesday, 10-11AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "WE"
+        ],
+        "interval": 2,
+        "anchor": "2026-07-15"
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "disasters-new-component-discussion",
+    "team": "Disasters",
+    "name": "New Component Discussion",
+    "category": "Sync",
+    "organizer": "@Kyle Lesinger",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "Mondays, 10-11AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "MO"
+        ]
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "disasters-portal-design-and-implementation-internal",
+    "team": "Disasters",
+    "name": "Portal Design and Implementation Internal",
+    "category": "Portal Design",
+    "organizer": "@Kyle Lesinger",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "Tuesday (weekly for now), 10-11AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TU"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/hcr-smrs-fug"
+    }
+  },
+  {
+    "id": "disasters-weekly-migration-tag-up",
+    "team": "Disasters",
+    "name": "Weekly Migration Tag-Up",
+    "category": "Tag Up",
+    "organizer": "@Kyle Lesinger",
+    "notes": "Garrett Layne owns the invite",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:00",
+      "end": "12:00",
+      "text": "Thursdays, 11-Noon",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TH"
+        ]
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "dse-all-sprint-review",
+    "team": "DSE All",
+    "name": "Sprint Review",
+    "category": "Sprint Review",
+    "organizer": "@Taylor DuPre",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "13:00",
+      "end": "15:00",
+      "text": "Last Thursday of Sprint, 1-3PM",
+      "rule": {
+        "freq": "sprint",
+        "byday": "TH",
+        "setpos": [
+          -1
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/yju-fmar-typ"
+    }
+  },
+  {
+    "id": "dse-team-leads-team-lead-sync",
+    "team": "DSE Team Leads",
+    "name": "Team Lead Sync",
+    "category": "Team Lead Sync",
+    "organizer": "@Taylor DuPre",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "First Tuesday of Sprint, 10-11AM",
+      "rule": {
+        "freq": "sprint",
+        "byday": "TU",
+        "setpos": [
+          1
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/ytu-fvfj-mnu"
+    }
+  },
+  {
+    "id": "earth-gov-monthly-check-in",
+    "team": "Earth.gov",
+    "name": "Monthly Check-In",
+    "category": "Check In",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "09:00",
+      "end": "10:00",
+      "text": "Last Wednesday of the month, 9-10AM",
+      "rule": {
+        "freq": "monthly",
+        "byday": "WE",
+        "setpos": -1
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "eie-eie-akd-agent-backend-sync-biweekly",
+    "team": "EIE",
+    "name": "EIE/AKD Agent & Backend Sync - Biweekly",
+    "category": "Sync",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:30",
+      "end": "11:00",
+      "text": "Tuesdays, 10:30-11:00AM (biweekly)",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TU"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/ncr-jcdw-mqo"
+    }
+  },
+  {
+    "id": "eie-weekly-check-in",
+    "team": "EIE",
+    "name": "Weekly Check In",
+    "category": "Check In",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:30",
+      "end": "11:30",
+      "text": "Thursdays, 10:30-11:30AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TH"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/qri-ywom-cry"
+    }
+  },
+  {
+    "id": "ghgc-aq-sprint-planning",
+    "team": "GHGC & AQ",
+    "name": "Sprint Planning",
+    "category": "Sprint Planning",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "13:00",
+      "end": "14:00",
+      "text": "First Monday of each sprint, 1-2 PM",
+      "rule": {
+        "freq": "sprint",
+        "byday": "MO",
+        "setpos": [
+          1
+        ]
+      }
+    },
+    "join": {
+      "method": "hybrid",
+      "url": "https://meet.google.com/vxm-javn-xhj",
+      "note": "In person in 3098"
+    }
+  },
+  {
+    "id": "ghgc-project-office-meeting",
+    "team": "GHGC",
+    "name": "Project Office Meeting",
+    "category": "Project Office",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "First Wednesday of each sprint, 10-11am CST",
+      "rule": {
+        "freq": "sprint",
+        "byday": "WE",
+        "setpos": [
+          1
+        ]
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "jupyterhub-2i2c-sprint-planning",
+    "team": "JupyterHub",
+    "name": "2i2c Sprint Planning",
+    "category": "Sprint Planning",
+    "organizer": "@April Johnson",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:30",
+      "text": "Every other Tuesday & Wednesday, 10-11:30AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TU",
+          "WE"
+        ],
+        "interval": 2,
+        "anchor": "2026-07-14"
+      }
+    },
+    "join": {
+      "method": "other"
+    }
+  },
+  {
+    "id": "jupyterhub-check-in-sprint-planning",
+    "team": "JupyterHub",
+    "name": "Check In & Sprint Planning",
+    "category": "Sprint Planning",
+    "organizer": "@April Johnson and @batpad",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "09:00",
+      "end": "09:45",
+      "text": "Every other Tuesday, 9-9:45AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "TU"
+        ],
+        "interval": 2,
+        "anchor": "2026-07-14"
+      }
+    },
+    "join": {
+      "method": "other"
+    }
+  },
+  {
+    "id": "maap-backlog-grooming",
+    "team": "MAAP",
+    "name": "Backlog Grooming",
+    "category": "Backlog Grooming",
+    "organizer": "@Jamison",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "12:00",
+      "end": "12:50",
+      "text": "3rd week of sprint, ~Wed 12-12:50pm",
+      "rule": {
+        "freq": "sprint-week",
+        "week": 3,
+        "byday": "WE"
+      }
+    },
+    "join": {
+      "method": "other"
+    }
+  },
+  {
+    "id": "maap-meeting-with-jpl",
+    "team": "MAAP",
+    "name": "Meeting with JPL",
+    "category": "Sync",
+    "organizer": "@Zac Deziel and @Alex M",
+    "notes": "Owned by @Rishi Verma",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "15:00",
+      "end": "16:00",
+      "text": "Every Monday 3pm-4pm",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "MO"
+        ]
+      }
+    },
+    "join": {
+      "method": "teams"
+    }
+  },
+  {
+    "id": "maap-retro",
+    "team": "MAAP",
+    "name": "Retro",
+    "category": "Retro",
+    "organizer": "@Zac Deziel",
+    "schedule": {
+      "tz": "America/Chicago",
+      "text": "Once per PI - schedule TBD",
+      "rule": {
+        "freq": "tbd"
+      }
+    }
+  },
+  {
+    "id": "maap-sprint-planning",
+    "team": "MAAP",
+    "name": "Sprint Planning",
+    "category": "Sprint Planning",
+    "organizer": "@Jamison",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "14:05",
+      "end": "14:30",
+      "text": "1st Monday of Sprint, 2:05-2:30PM",
+      "rule": {
+        "freq": "sprint",
+        "byday": "MO",
+        "setpos": [
+          1
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/rrb-ojuk-nom"
+    }
+  },
+  {
+    "id": "maap-weekly-tag-up",
+    "team": "MAAP",
+    "name": "Weekly Tag Up",
+    "category": "Tag Up",
+    "organizer": "@Jamison",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "14:05",
+      "end": "14:35",
+      "text": "2nd/3rd Mondays of Sprint, 2:05-2:35PM",
+      "rule": {
+        "freq": "sprint",
+        "byday": "MO",
+        "setpos": [
+          2,
+          3
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/jsh-safi-rpr"
+    }
+  },
+  {
+    "id": "odd-sprint-planning-weekly-check-in",
+    "team": "ODD",
+    "name": "Sprint Planning + Weekly Check In",
+    "category": "Sprint Planning",
+    "organizer": "@aimeeb",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:30",
+      "end": "12:15",
+      "text": "Mondays, 11:30-12:15PM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "MO"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/kwx-axcs-afw"
+    }
+  },
+  {
+    "id": "plugins-review",
+    "team": "PLUGINS",
+    "name": "Review",
+    "category": "Sprint Review",
+    "organizer": "@Sijan",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:30",
+      "end": "12:00",
+      "text": "Wednesday of third week, 11:30-12:00",
+      "rule": {
+        "freq": "sprint-week",
+        "week": 3,
+        "byday": "WE"
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/qwe-hazb-bvq"
+    }
+  },
+  {
+    "id": "plugins-sprint-planning",
+    "team": "PLUGINS",
+    "name": "Sprint Planning",
+    "category": "Sprint Planning",
+    "organizer": "@Sijan",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "10:00",
+      "end": "11:00",
+      "text": "Monday of first week, 10-11",
+      "rule": {
+        "freq": "sprint-week",
+        "week": 1,
+        "byday": "MO"
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/ngd-owja-xtz"
+    }
+  },
+  {
+    "id": "plugins-sync-check-in",
+    "team": "PLUGINS",
+    "name": "Sync - Check In",
+    "category": "Check In",
+    "organizer": "@Sijan",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:00",
+      "end": "12:00",
+      "text": "Wednesday of second week, 11-12",
+      "rule": {
+        "freq": "sprint-week",
+        "week": 2,
+        "byday": "WE"
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/xqr-fwhc-goq"
+    }
+  },
+  {
+    "id": "science-support-weekly-check-in",
+    "team": "Science Support",
+    "name": "Weekly Check In",
+    "category": "Check In",
+    "organizer": "@Alex M",
+    "schedule": {
+      "tz": "America/Chicago",
+      "start": "11:00",
+      "end": "11:25",
+      "text": "Mondays, 11-11:25AM",
+      "rule": {
+        "freq": "weekly",
+        "byday": [
+          "MO"
+        ]
+      }
+    },
+    "join": {
+      "method": "google_meet",
+      "url": "https://meet.google.com/dta-sgwu-kcq"
+    }
+  }
+]
