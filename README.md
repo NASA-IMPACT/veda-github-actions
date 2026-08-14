@@ -13,7 +13,7 @@ diff. Intentionally open — it will grow to host other VEDA Actions experiments
 ### 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
 ### 🧭 **DSE Hub:** https://veda-dse-hub.netlify.app
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
-### 🛰️ **Algorithm Catalog:** _(Netlify site pending — base dir `algorithm-catalog`)_
+### 🛰️ **Algorithm Catalog:** https://veda-algorithm-catalog.netlify.app
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
