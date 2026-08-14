@@ -1,0 +1,59 @@
+name: Algorithm Catalog — validate
+
+# THE STANDARDS GATE.
+#
+# The rules live once in algorithm-catalog/src/rules.ts (which the form enforces while you type)
+# and are mirrored in scripts/validate_data.py. This workflow is the third layer: it re-checks
+# every committed request/event/algorithm on the PR, and runs the parity test that proves the two
+# copies of the rules still agree. A submission that slips past the form still cannot land.
+#
+# No install step anywhere in the `validate` job — both scripts are stdlib-only Python 3.
+
+on:
+  pull_request:
+    paths:
+      - "algorithm-catalog/**"
+  push:
+    branches: [main]
+    paths:
+      - "algorithm-catalog/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Data + rules parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cross-checks algorithms/events/hazards/requests: hazard + product references resolve,
+      # thumbnails exist on disk, STAC names and dates and bboxes obey the same rules as the form.
+      - name: Validate committed data
+        run: python3 algorithm-catalog/scripts/validate_data.py
+
+      # Runs one fixture table through BOTH rule implementations and fails if they disagree, so
+      # rules.ts and validate_data.py can never silently drift apart.
+      - name: Rules parity (rules.ts vs validate_data.py)
+        run: python3 algorithm-catalog/scripts/rules_parity_test.py
+
+  build:
+    name: Typecheck + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: algorithm-catalog
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - run: npm run build

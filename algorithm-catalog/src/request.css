@@ -1,0 +1,696 @@
+/* ============================================================================================
+ * Request form styles — everything here is scoped to the submission half of the app.
+ *
+ * Shared house classes (.btn .panel .field .hint .overlay .modal .foot .jsonlabel .urlbox .opt
+ * .rm .seg .control .popover) live in src/styles.css and are REUSED, not redefined. Everything
+ * genuinely new is prefixed .req- so the two files can never collide.
+ *
+ * Colors come from the USWDS custom properties in src/styles.css. Each var() carries a literal
+ * USWDS fallback so this file still renders correctly on its own (and while styles.css is being
+ * written alongside it) — the fallback is the same token value, never a new brand color.
+ * ============================================================================================ */
+
+.req-form {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+/* --- intro ---------------------------------------------------------------------------------- */
+
+.req-intro {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 0.6rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.req-intro h2 {
+  grid-column: 1;
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.req-intro p {
+  grid-column: 1;
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.92rem;
+  color: var(--base, #565c65);
+}
+
+.req-cartnote {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 0.8rem;
+  color: var(--primary-dark, #1a4480);
+  background: var(--primary-lighter, #d9e8f6);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  max-width: 15rem;
+}
+
+/* --- sections ------------------------------------------------------------------------------- */
+
+.req-section {
+  padding: 1rem 1.1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.req-section > h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--primary-darker, #162e51);
+  border-bottom: 2px solid var(--base-lighter, #dfe1e2);
+  padding-bottom: 0.4rem;
+}
+
+.req-help {
+  font-size: 0.8rem;
+  color: var(--base, #565c65);
+  margin: 0.25rem 0 0.55rem;
+  line-height: 1.45;
+}
+
+.req-help code,
+.req-issues code {
+  background: var(--base-lightest, #f0f0f0);
+  border-radius: 4px;
+  padding: 0.05rem 0.28rem;
+  font-size: 0.9em;
+}
+
+.req-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.req-muted {
+  color: var(--base-light, #a9aeb1);
+}
+
+/* --- inline violations ---------------------------------------------------------------------- */
+
+.req-issues {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.req-issues li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.3rem 0.45rem;
+  border-radius: 5px;
+  border-left: 3px solid currentColor;
+}
+
+.req-issue-icon {
+  flex: 0 0 auto;
+}
+
+.req-issue-rule {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 4px;
+  padding: 0.02rem 0.3rem;
+}
+
+/* The two severity treatments. Nothing else in the app should use these two names. */
+.req-error {
+  color: var(--error, #d54309);
+  background: #fdeeea;
+}
+
+.req-warn {
+  color: #8a6100; /* readable text on the amber wash; --warning itself fails contrast as text */
+  background: #fff5d6;
+  border-color: var(--warning, #ffbe2e);
+}
+
+.req-warn .req-issue-icon,
+.req-summary.req-warn {
+  color: #8a6100;
+}
+
+.req-okay {
+  color: var(--success, #00a91c);
+  background: #ecf6ec;
+}
+
+.req-flash {
+  color: var(--primary-dark, #1a4480);
+  background: var(--primary-lighter, #d9e8f6);
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error, #d54309) !important;
+}
+
+/* --- hazards -------------------------------------------------------------------------------- */
+
+.req-hazards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.req-haz {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 2px solid var(--base-lighter, #dfe1e2);
+  background: var(--white, #ffffff);
+  color: var(--base-dark, #3d4551);
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.req-haz:hover {
+  border-color: var(--base-light, #a9aeb1);
+}
+
+.req-haz.is-on {
+  font-weight: 600;
+}
+
+.req-haz-token {
+  font-size: 0.68rem;
+  opacity: 0.65;
+  background: transparent;
+}
+
+/* --- repeatable rows ------------------------------------------------------------------------ */
+
+.req-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.req-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- selected-product filter + per-algorithm groups ------------------------------------------ */
+
+/* The filter box only appears once the selection is big enough to need it, so it needs its own
+   breathing room above the groups rather than relying on a neighbour's margin. */
+.req-prod-search {
+  margin: 0.75rem 0 1rem;
+  max-width: 100%;
+}
+
+.req-prod-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.req-prod-group {
+  border-left: 3px solid var(--base-lighter);
+  padding-left: 0.7rem;
+}
+
+/* Header row: algorithm name, count, then "Remove all" pushed to the right. Without the flex
+   these three run together as one string ("Landsat 8/93 productsRemove all"). */
+.req-prod-group-hd {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.req-prod-group-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--base-dark);
+}
+
+.req-prod-group-n {
+  font-size: 0.78rem;
+  color: var(--base-mid);
+}
+
+.req-group-clear {
+  margin-left: auto;
+  font-size: 0.78rem;
+}
+
+/* --- product chips -------------------------------------------------------------------------- */
+
+.req-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Standalone note under the optional tile inputs. */
+.req-tile-note {
+  margin-top: -0.2rem;
+}
+
+.req-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--base-lighter, #dfe1e2);
+  border-radius: 6px;
+  background: var(--white, #ffffff);
+  padding: 0.22rem 0.25rem 0.22rem 0.55rem;
+  font-size: 0.82rem;
+  box-shadow: var(--shadow, 0 1px 2px rgba(27, 27, 27, 0.08));
+}
+
+.req-chip-manual {
+  border-style: dashed;
+}
+
+.req-chip-alg {
+  color: var(--base, #565c65);
+  font-size: 0.75rem;
+}
+
+.req-chip-alg::after {
+  content: " ›";
+  color: var(--base-light, #a9aeb1);
+}
+
+.req-chip-prod {
+  color: var(--ink, #1b1b1b);
+  font-weight: 600;
+}
+
+.req-badge {
+  font-size: 0.63rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 3px;
+  padding: 0.08rem 0.3rem;
+}
+
+.req-badge-auto {
+  background: var(--primary-lighter, #d9e8f6);
+  color: var(--primary-dark, #1a4480);
+}
+
+.req-badge-manual {
+  background: #efe6f7;
+  color: #54278f;
+}
+
+.req-badge-warn {
+  background: #fff5d6;
+  color: #8a6100;
+}
+
+.req-chip-x {
+  border: 0;
+  background: transparent;
+  color: var(--base, #565c65);
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+}
+
+.req-chip-x:hover {
+  color: var(--error, #d54309);
+}
+
+/* --- product picker popover ------------------------------------------------------------------ */
+
+/* The picker is anchored here and overflows into the sections BELOW it in the DOM. Those
+   sections are later siblings, so without lifting this anchor into its own stacking layer the
+   Review panel (and its dark JSON box) paints straight over the open popover. Lifting the
+   anchor — not just the popover — is what actually fixes it, because the popover's z-index
+   only competes inside its parent's layer. */
+.req-addwrap {
+  display: inline-block;
+  position: relative;
+  z-index: 60;
+}
+
+.req-picker {
+  width: min(560px, 92vw);
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  z-index: 200;
+  background: var(--white);
+  box-shadow: var(--shadow-lg, 0 12px 40px rgba(27, 27, 27, 0.18));
+}
+
+.req-picker-head {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--base-lighter, #dfe1e2);
+}
+
+.req-picker-search {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--base-light, #a9aeb1);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.req-picker-search:focus {
+  outline: 0;
+  border-color: var(--primary, #005ea2);
+  box-shadow: 0 0 0 3px var(--primary-lighter, #d9e8f6);
+}
+
+.req-picker-body {
+  flex: 1;
+  overflow: auto;
+  padding: 0.4rem;
+}
+
+.req-picker-group {
+  margin-bottom: 0.5rem;
+}
+
+.req-picker-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.3rem;
+  position: sticky;
+  top: 0;
+  background: var(--white, #ffffff);
+  border-bottom: 1px dashed var(--base-lighter, #dfe1e2);
+}
+
+.req-picker-meta {
+  font-size: 0.7rem;
+  color: var(--base-light, #a9aeb1);
+}
+
+.req-picker-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  border-radius: 5px;
+  padding: 0.28rem 0.35rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.req-picker-row:hover:not(:disabled) {
+  background: var(--base-lightest, #f0f0f0);
+}
+
+.req-picker-row.is-added {
+  cursor: default;
+  color: var(--base-light, #a9aeb1);
+}
+
+.req-picker-plus {
+  flex: 0 0 1rem;
+  color: var(--primary, #005ea2);
+}
+
+.req-picker-row.is-added .req-picker-plus {
+  color: var(--success, #00a91c);
+}
+
+.req-picker-name {
+  font-weight: 600;
+}
+
+.req-picker-token {
+  font-size: 0.72rem;
+  color: var(--base, #565c65);
+  background: var(--base-lightest, #f0f0f0);
+  border-radius: 3px;
+  padding: 0.02rem 0.28rem;
+}
+
+.req-picker-haz {
+  margin-left: auto;
+  font-size: 0.68rem;
+  color: var(--base-light, #a9aeb1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40%;
+}
+
+.req-picker-foot {
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  border-top: 1px solid var(--base-lighter, #dfe1e2);
+  font-size: 0.73rem;
+  color: var(--base, #565c65);
+  background: var(--base-lightest, #f0f0f0);
+}
+
+.req-picker-empty {
+  margin: 0.3rem 0;
+  font-size: 0.85rem;
+  color: var(--base-light, #a9aeb1);
+}
+
+/* --- "What this will run" -------------------------------------------------------------------- */
+
+.req-whatruns {
+  margin-top: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg, #f4f6f9);
+}
+
+.req-whatruns > summary {
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-dark, #1a4480);
+  list-style: revert;
+}
+
+.req-whatruns-n {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--base-light, #a9aeb1);
+}
+
+.req-runblock {
+  margin-top: 0.6rem;
+  border-top: 1px dashed var(--base-lighter, #dfe1e2);
+  padding-top: 0.5rem;
+}
+
+.req-runblock-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.3rem;
+}
+
+.req-runtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.req-runtable th {
+  text-align: left;
+  font-weight: 500;
+  vertical-align: top;
+  width: 14rem;
+  padding: 0.15rem 0.5rem 0.15rem 0;
+  white-space: nowrap;
+}
+
+.req-runtable td {
+  padding: 0.15rem 0;
+  word-break: break-word;
+}
+
+.req-req {
+  margin-left: 0.35rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--error, #d54309);
+}
+
+.req-runval {
+  background: var(--white, #ffffff);
+  border: 1px solid var(--base-lighter, #dfe1e2);
+  border-radius: 3px;
+  padding: 0.02rem 0.3rem;
+}
+
+/* --- submit bar ------------------------------------------------------------------------------ */
+
+.req-submitbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.req-summarywrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.req-summary {
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+}
+
+/* Pristine form: no colour, no alarm — nothing is wrong until the user has typed something. */
+.req-neutral {
+  font-weight: 400;
+  color: var(--base, #565c65);
+  background: var(--base-lightest, #f0f0f0);
+}
+
+.req-submitbar .foot {
+  flex: 1;
+}
+
+/* --- cart modal ------------------------------------------------------------------------------ */
+
+.req-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.req-modal-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.req-modal-x {
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--base, #565c65);
+}
+
+.req-cart-list {
+  list-style: none;
+  margin: 0.6rem 0 0.4rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.req-cart-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--base-lighter, #dfe1e2);
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+}
+
+.req-cart-label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: var(--ink, #1b1b1b);
+}
+
+.req-cart-sub {
+  font-size: 0.75rem;
+  color: var(--base, #565c65);
+}
+
+.req-cart-remove {
+  border: 0;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--base, #565c65);
+}
+
+.req-cart-remove:hover {
+  color: var(--error, #d54309);
+}
+
+.req-cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+.req-linkbtn {
+  border: 0;
+  background: transparent;
+  color: var(--primary-dark, #1a4480);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0;
+}
+
+/* --- narrow screens -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .req-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .req-cartnote {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    max-width: none;
+  }
+
+  .req-runtable th {
+    width: 9rem;
+    white-space: normal;
+  }
+}

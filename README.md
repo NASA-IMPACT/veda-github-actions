@@ -3,7 +3,7 @@
 **A test station for reusable VEDA GitHub Actions, Projects-v2 board seeds, and Netlify dashboards.**
 One repo where we iterate safely on reusable Actions, their seed/generator tooling, and the SPAs that
 render the output — without touching production. It currently ships **three composite actions**, an
-**AWS pricing data generator**, and **five dashboards**. Intentionally open — it grows to host new
+**AWS pricing data generator**, and **six dashboards**. Intentionally open — it grows to host new
 VEDA Actions experiments.
 
 ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
@@ -14,6 +14,7 @@ VEDA Actions experiments.
 ### 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
 ### 🧭 **DSE Hub:** https://veda-dse-hub.netlify.app
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
+### 🛰️ **Algorithm Catalog:** https://veda-algorithm-catalog.netlify.app
 
 ## Reusable actions
 Each action is a **composite** you import with `uses:`. One repo exposes many via subfolders.
@@ -40,14 +41,15 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 | Leave Dashboard | [`leave-dashboard/`](leave-dashboard/) | Calendar of who's out, person-picker, team-risk heatmap, add-person-via-PR. |
 | DSE Hub | [`dse-hub/`](dse-hub/) | Tabbed hub: meeting tracker (list / calendar / categories, timezone-aware) + PI roadmap; edits stage in a Changes cart → one prefilled PR. |
 | AWS Cost Calculator | [`cost-dashboard/`](cost-dashboard/) | EC2/S3/RDS/Lambda cost calculator on live AWS On-Demand prices + CSV export. |
+| Algorithm Catalog | [`algorithm-catalog/`](algorithm-catalog/) | Filter the NASA Disasters product algorithms by hazard / sensor / product / date / event, and submit an activation request as a prefilled PR; CI gates the `YYYYMM_Hazard_Location` event-name standard. |
 
 ## Repo layout
 | Path | Role |
 |---|---|
 | [`action.yml`](action.yml), [`pr-finder/`](pr-finder/), [`leave/`](leave/) | the three reusable composite actions |
 | [`.github/scripts/`](.github/scripts/), [`aws-pricing/`](aws-pricing/), [`seed/`](seed/) | generators + seed/bootstrap tooling (stdlib Python) |
-| [`.github/workflows/`](.github/workflows/) | self-consumer workflows that run each action/generator and publish to a report branch |
-| `*-dashboard/`, [`dse-hub/`](dse-hub/) | the Netlify SPAs above |
+| [`.github/workflows/`](.github/workflows/) | self-consumer workflows that run each action/generator and publish to a report branch, plus the Algorithm Catalog **standards gate** ([`algorithm-catalog-validate.yml`](.github/workflows/algorithm-catalog-validate.yml)) |
+| `*-dashboard/`, [`dse-hub/`](dse-hub/), [`algorithm-catalog/`](algorithm-catalog/) | the Netlify SPAs above |
 | [`docs/`](docs/) | per-module deep-dives |
 
 ## Per-module docs
@@ -56,6 +58,7 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 - **Leave Tracker** — color map, overrides, gotchas: [`docs/LEAVE_TRACKER.md`](docs/LEAVE_TRACKER.md)
 - **DSE Hub** — tabs, recurrence, timezone, Changes cart: [`docs/DSE_HUB.md`](docs/DSE_HUB.md)
 - **AWS pricing generator** — Price List API pull, weekly review: [`docs/AWS_PRICING.md`](docs/AWS_PRICING.md)
+- **Algorithm Catalog** — data model, the two entry modes, standards enforcement, gotchas: [`docs/ALGORITHM_CATALOG.md`](docs/ALGORITHM_CATALOG.md)
 - **Design decisions log**: [`docs/DECISIONS.md`](docs/DECISIONS.md)
 
 ## Conventions (non-obvious)

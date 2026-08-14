@@ -88,6 +88,20 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   `.github/workflows/aws-pricing.yml` (weekly + dispatch; regions accumulate). A "Where these prices
   come from" panel hyperlinks every service to its AWS pricing page + raw price list + version. See
   `docs/AWS_PRICING.md`.
+- `algorithm-catalog/` — Vite React SPA; `algorithm-catalog/netlify.toml` (base=`algorithm-catalog`,
+  build, publish `dist`). A catalog of the **NASA Disasters product algorithms** (from
+  `Disasters-Learning-Portal/disasters-product-algorithms@dev`). **HDS (NASA Horizon Design System)
+  over USWDS, light-only.** Three tabs: **📝 Submit** (the request form, default landing),
+  **🌀 Events** (event catalog = canonical `events.json` + submitted requests), **🛰 Algorithms**
+  (filter by hazard / sensor / product / modality / date / event / AOI, via two entry modes —
+  "start from hazard" vs "start from sensor & product" — sharing one filter state). **No
+  generator/Action** — data is hand-curated `data/{algorithms,events,hazards}.json` bundled at BUILD
+  (plus `data/requests/*.json` overlaid via `import.meta.glob`, dse-hub's merge pattern). Submitting
+  opens a **prefilled new-file PR** (`new/main?filename=&value=`), same as leave-dashboard/dse-hub.
+  **The standard is enforced automatically**: `src/rules.ts` holds the rules (the
+  `YYYYMM_Hazard_Location` regex is lifted verbatim from upstream `dps/_validate.sh:29-36`),
+  mirrored 1:1 in `scripts/validate_data.py`, kept honest by `scripts/rules_parity_test.py`, and
+  gated in CI by `.github/workflows/algorithm-catalog-validate.yml`. See `docs/ALGORITHM_CATALOG.md`.
 
 ## Theming (light/dark — the fte / leave / pr dashboards; dse-hub is USWDS light-only)
 Each dashboard themes through **CSS custom properties**: light values live in `:root`, a
@@ -123,7 +137,28 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 - **Root `.gitignore` has `*.json`.** `git add <dir>` **silently skips** needed JSON — each dashboard's
   `package.json`/`tsconfig*.json`, `dse-hub/data/*.json`, `leave-dashboard/public/data/*.json`. You must
   **`git add -f`** them (that's how the sibling dashboards' JSON got committed). A `dse-hub` change touching
-  data won't be in the commit unless force-added.
+  data won't be in the commit unless force-added. **Exception: `algorithm-catalog/` has explicit `!`
+  negation lines** in the root `.gitignore`, so a plain `git add algorithm-catalog/` does pick its JSON
+  up — prefer that route for new apps. Check with `git check-ignore --no-index -v <path>` (plain
+  `git check-ignore` lies about already-tracked files).
+- **Netlify base dir: blank fails GREEN, and "Deploy Preview canceled" is usually correct.** With no
+  base directory, Netlify reads no `netlify.toml` (there is none at the repo root, by design), logs
+  `Detected 0 framework(s)` / `Starting to deploy site from '/'`, uploads the raw repo, and reports a
+  **successful** deploy that 404s — there is no "base directory not found" error. Set base dir in the UI;
+  leave build command and publish dir EMPTY (`publish` in the toml is relative to the base dir, the UI
+  field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
+  implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
+  on all six sites** — that is expected, and it happens with or without an `ignore` filter.
+- **STAC event names need EXACTLY 2 underscores, and the catalog is deliberately stricter than
+  upstream here.** Upstream `dps/_validate.sh:29-36` ends its regex with `.+`, so the LOCATION slot
+  swallows extra underscores: `202501_Tropical_Cyclone_CA` passes there but silently parses as
+  hazard=`Tropical`, location=`Cyclone_CA`, and writes a wrong `HAZARD` GeoTIFF tag.
+  `algorithm-catalog/src/rules.ts` ends with `_[^_]+$` instead, so 3+ underscores is a hard **error**
+  (rule `underscore-count`) and the form won't submit. This also rejects `202501_Flood_CA_extra`,
+  which upstream `tests/integration/test_dps_validate.sh:41-48` explicitly accepts — a knowing
+  divergence, and the safe direction: everything we accept, DPS accepts too. Multi-word hazards and
+  locations are CamelCase (`TropicalCyclone`, `WinterWx`). The catalog serializes hazard **ids**
+  (= those tokens), never display labels.
 
 ## Key files
 `action.yml`, `pr-finder/action.yml`, `pr-finder/generate_pr_finder.py`,
@@ -137,3 +172,7 @@ DSE Hub: `dse-hub/src/{App,tabs,tz,TzContext,ChangesContext,changes,changesData}
 `dse-hub/src/meetings/{MeetingTracker,MeetingCalendar,recurrence,drafts,data}.{tsx,ts}`,
 `dse-hub/src/pi/{PiRoadmap,data,pi}.{tsx,ts}`, `dse-hub/data/{meetings,pis}.json`,
 `dse-hub/scripts/compact.mjs`, `.github/workflows/dse-hub-compact.yml`, `docs/DSE_HUB.md`.
+Algorithm Catalog: `algorithm-catalog/src/{types,rules,data,tabs,App}.{ts,tsx}`,
+`algorithm-catalog/src/{filters,catalog,events,request}/`, `algorithm-catalog/data/*.json`,
+`algorithm-catalog/scripts/{validate_data.py,rules_parity_test.py,compact.mjs}`,
+`.github/workflows/algorithm-catalog-{validate,compact}.yml`, `docs/ALGORITHM_CATALOG.md`.

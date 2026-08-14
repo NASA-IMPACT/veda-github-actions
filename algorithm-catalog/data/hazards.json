@@ -1,0 +1,82 @@
+[
+  {
+    "id": "Fire",
+    "label": "Fire",
+    "token": "Fire",
+    "color": "#d54309",
+    "icon": "🔥",
+    "aliases": ["Wildfire", "Wildfires", "Burn"]
+  },
+  {
+    "id": "Flood",
+    "label": "Flood",
+    "token": "Flood",
+    "color": "#0076d6",
+    "icon": "🌊",
+    "aliases": ["Flooding", "Inundation"]
+  },
+  {
+    "id": "Earthquake",
+    "label": "Earthquake",
+    "token": "Earthquake",
+    "color": "#7e4c00",
+    "icon": "🌐",
+    "aliases": ["Quake", "Seismic"]
+  },
+  {
+    "id": "TropicalCyclone",
+    "label": "Tropical Cyclone",
+    "token": "TropicalCyclone",
+    "color": "#5e517a",
+    "icon": "🌀",
+    "aliases": ["Hurricane", "Typhoon", "TropicalStorm", "Cyclone"]
+  },
+  {
+    "id": "Storm",
+    "label": "Severe Storm",
+    "token": "Storm",
+    "color": "#3f57a6",
+    "icon": "⛈️",
+    "aliases": ["SevereStorm", "Tornado", "Hail"]
+  },
+  {
+    "id": "Landslide",
+    "label": "Landslide",
+    "token": "Landslide",
+    "color": "#6f3331",
+    "icon": "⛰️",
+    "aliases": ["Mudslide", "Debris", "DebrisFlow"]
+  },
+  {
+    "id": "Heat",
+    "label": "Heat",
+    "token": "Heat",
+    "color": "#c05600",
+    "icon": "🌡️",
+    "aliases": ["Heatwave", "ExtremeHeat"]
+  },
+  {
+    "id": "WinterWx",
+    "label": "Winter Weather",
+    "token": "WinterWx",
+    "color": "#0081a1",
+    "icon": "❄️",
+    "aliases": ["Winter", "Snow", "Ice", "Blizzard"]
+  },
+  {
+    "id": "Volcano",
+    "label": "Volcano",
+    "token": "Volcano",
+    "color": "#5c1349",
+    "icon": "🌋",
+    "aliases": ["Eruption", "Volcanic", "Ash"]
+  },
+  {
+    "id": "Drought",
+    "label": "Drought",
+    "token": "Drought",
+    "color": "#a08a3a",
+    "icon": "🏜️",
+    "aliases": ["WaterStress"]
+  }
+]
