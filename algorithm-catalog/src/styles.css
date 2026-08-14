@@ -1,0 +1,485 @@
+/* ============================================================================================
+ * Algorithm Catalog — the whole stylesheet, minus the request form (src/request.css).
+ *
+ * Theming is HDS (NASA Horizon Design System) laid over the USWDS skeleton the sibling dashboards
+ * use: NASA brand blue/red for anything branded, USWDS greys and state colors for everything
+ * structural. LIGHT ONLY — there is deliberately no [data-theme] block and no no-FOUC script in
+ * index.html. It is still structured the way the themed dashboards are (every color is a custom
+ * property on :root, nothing hardcodes a hex outside this block), so a dark theme could be layered
+ * later by adding a single :root[data-theme="dark"] override — no component would need to change.
+ *
+ * The one thing that must NOT be themed is data color. Hazard colors come from data/hazards.json
+ * and modality accents from src/colors.ts; both carry meaning and are applied inline. House rule:
+ * "Only chrome adapts. Data colors stay fixed."
+ * ============================================================================================ */
+
+:root {
+  /* --- Brand: NASA (HDS) ------------------------------------------------------------------ */
+  --primary: #0b3d91; /* NASA blue */
+  --primary-dark: #061f4a;
+  --primary-darker: #041534;
+  --primary-light: #105bd8;
+  --primary-lighter: #d9e8f6;
+  --secondary: #dd361c; /* NASA red — active-tab underline, badges, never body text */
+
+  /* --- USWDS greys, kept verbatim from the sibling dashboards ------------------------------ */
+  --ink: #1b1b1b;
+  --base-dark: #3d4551;
+  --base: #565c65;
+  --base-mid: #71767a;
+  --base-light: #a9aeb1;
+  --base-lighter: #dfe1e2;
+  --base-lightest: #f0f0f0;
+  --white: #ffffff;
+  --bg: #f4f6f9;
+
+  /* --- State ------------------------------------------------------------------------------- */
+  --success: #00a91c;
+  --warning: #ffbe2e;
+  --error: #d54309;
+
+  /* --- Shape ------------------------------------------------------------------------------- */
+  --radius: 8px;
+  --shadow: 0 1px 2px rgba(27, 27, 27, 0.08), 0 6px 18px rgba(27, 27, 27, 0.08);
+  --shadow-lg: 0 12px 40px rgba(27, 27, 27, 0.18);
+
+  /* --- Type: HDS ---------------------------------------------------------------------------
+     No @font-face and no Google Fonts <link>. This repo's habit is zero external dependencies at
+     runtime, and a CDN font would make the app fail differently offline than online. Inter /
+     Public Sans / DM Mono are used when the reader has them; otherwise each stack falls all the
+     way through to the platform UI font, which is what most readers will actually see. */
+  --font-display: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+
+code, pre { font-family: var(--font-mono); }
+
+a { color: var(--primary); }
+
+/* One visible focus ring for the whole app. Never removed — only replaced with this. */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 3px var(--primary-lighter);
+}
+
+.app { min-height: 100%; display: flex; flex-direction: column; }
+
+/* ============ Header ============ */
+.hub-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 0 1.25rem; height: 56px;
+  background: var(--primary-dark); color: var(--white);
+}
+.hub-brand { display: flex; align-items: center; gap: 0.45rem; font-weight: 700; flex-shrink: 0; }
+.hub-logo {
+  background: var(--white); color: var(--primary);
+  padding: 0.05rem 0.4rem; border-radius: 5px; font-size: 1rem; line-height: 1.5;
+}
+.hub-title { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0.01em; }
+
+.hub-tabs { display: flex; gap: 0.15rem; height: 100%; flex: 1; }
+.hub-tabs button {
+  background: transparent; border: 0; color: rgba(255, 255, 255, 0.82);
+  font: inherit; font-size: 0.95rem; padding: 0 0.9rem; cursor: pointer;
+  border-bottom: 3px solid transparent; display: flex; align-items: center; gap: 0.4rem;
+}
+.hub-tabs button:hover { color: var(--white); background: rgba(255, 255, 255, 0.07); }
+.hub-tabs button.active { color: var(--white); border-bottom-color: var(--secondary); font-weight: 600; }
+.tab-icon { font-size: 0.95rem; }
+
+.hub-right { display: flex; align-items: center; gap: 0.4rem; margin-left: auto; flex-shrink: 0; }
+.cart-btn {
+  background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.92); font: inherit; font-size: 0.85rem;
+  padding: 0.28rem 0.65rem; border-radius: 5px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;
+}
+.cart-btn:hover { background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.55); }
+.cart-badge {
+  background: var(--secondary); color: var(--white);
+  font-size: 0.72rem; font-weight: 700; padding: 0.05rem 0.4rem; border-radius: 20px; line-height: 1.5;
+}
+
+.hub-main { flex: 1; padding: 1.25rem; max-width: 1280px; width: 100%; margin: 0 auto; }
+
+/* ============ House controls (shared with request.css) ============ */
+.toolbar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+
+.search {
+  position: relative; display: flex; align-items: center; flex: 1 1 300px; min-width: 240px;
+  background: var(--white); border: 1px solid var(--base-light); border-radius: var(--radius);
+  padding: 0 0.6rem; height: 40px;
+}
+.search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-lighter); }
+.search-ico { opacity: 0.5; font-size: 0.9rem; }
+.search input {
+  flex: 1; border: 0; outline: 0; font: inherit; font-size: 0.95rem;
+  padding: 0 0.5rem; background: transparent; color: inherit;
+}
+.search-x { border: 0; background: transparent; cursor: pointer; font-size: 1.2rem; color: var(--base); line-height: 1; }
+
+.seg { display: inline-flex; background: var(--base-lightest); border-radius: var(--radius); padding: 3px; }
+.seg button {
+  border: 0; background: transparent; font: inherit; font-size: 0.9rem; padding: 0.45rem 0.9rem;
+  border-radius: 6px; cursor: pointer; color: var(--base);
+}
+.seg button.active { background: var(--white); color: var(--primary); box-shadow: var(--shadow); font-weight: 600; }
+
+.btn {
+  border: 1px solid var(--base-light); background: var(--white); color: var(--ink);
+  font: inherit; font-size: 0.9rem; padding: 0.5rem 0.85rem; border-radius: var(--radius);
+  cursor: pointer; height: 40px; display: inline-flex; align-items: center; gap: 0.35rem;
+  white-space: nowrap; text-decoration: none;
+}
+.btn:hover { border-color: var(--base); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: var(--white); font-weight: 600; }
+.btn.primary:hover { background: var(--primary-darker); border-color: var(--primary-darker); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+/* A picker whose selection is a strict subset — i.e. it is actually filtering something out. */
+.btn.narrowed { border-color: var(--primary); background: var(--primary-lighter); color: var(--primary-dark); font-weight: 600; }
+.reset-btn { margin-left: auto; }
+
+.panel { background: var(--white); border: 1px solid var(--base-lighter); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+.control { position: relative; }
+.popover {
+  position: absolute; z-index: 30; top: 44px; left: 0; min-width: 230px; max-height: 340px;
+  overflow: auto; padding: 0.4rem;
+}
+.popover .pop-search {
+  width: 100%; font: inherit; font-size: 0.88rem; padding: 0.35rem 0.5rem; margin-bottom: 0.35rem;
+  border: 1px solid var(--base-light); border-radius: 6px; background: var(--white); color: inherit;
+}
+.popover .pop-search:focus { outline: 0; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-lighter); }
+.popover .actions { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
+.popover .actions button {
+  flex: 1; border: 1px solid var(--base-lighter); background: var(--base-lightest);
+  border-radius: 6px; padding: 0.3rem; font: inherit; font-size: 0.8rem; cursor: pointer; color: var(--base-dark);
+}
+.popover .actions button:hover { border-color: var(--base-light); }
+.popover .row {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.35rem;
+  border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+}
+.popover .row:hover { background: var(--base-lightest); }
+.pop-group { border-top: 1px solid var(--base-lighter); margin-top: 0.25rem; padding-top: 0.25rem; }
+.pop-group:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+.row-group-name { font-weight: 700; }
+.row-child { padding-left: 1.3rem; }
+.pop-empty { margin: 0.4rem 0.35rem; font-size: 0.85rem; color: var(--base-light); }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex-shrink: 0; }
+
+.field { margin-bottom: 0.7rem; }
+.field.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--base-dark); margin-bottom: 0.2rem; }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: 0.9rem; padding: 0.45rem 0.55rem;
+  border: 1px solid var(--base-light); border-radius: 6px; background: var(--white); color: inherit;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: 0; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-lighter);
+}
+.opt { color: var(--base-light); font-weight: 400; }
+
+.hint {
+  font-size: 0.82rem; color: var(--base); background: var(--base-lightest);
+  padding: 0.55rem 0.7rem; border-radius: 6px; margin: 0.5rem 0 0; line-height: 1.45;
+}
+.hint code, .jsonlabel code {
+  background: var(--white); padding: 0.05rem 0.3rem; border-radius: 4px;
+  border: 1px solid var(--base-lighter); font-size: 0.85em;
+}
+.linkbtn {
+  border: 0; background: transparent; color: var(--primary); text-decoration: underline;
+  cursor: pointer; font: inherit; font-size: 0.82rem; padding: 0;
+}
+.count { font-variant-numeric: tabular-nums; color: var(--base); }
+.empty { color: var(--base); padding: 2.5rem 1rem; text-align: center; max-width: 42rem; margin: 0 auto; }
+
+/* Remove-a-row button (request form repeatables). */
+.rm {
+  border: 1px solid var(--base-light); background: var(--white); color: var(--error);
+  width: 34px; height: 38px; border-radius: 6px; cursor: pointer; font-size: 1.15rem;
+  line-height: 1; flex: 0 0 auto;
+}
+.rm:hover { background: #fdecea; border-color: var(--error); }
+
+/* ============ Overlay / modal ============ */
+.overlay {
+  position: fixed; inset: 0; background: rgba(4, 21, 52, 0.5);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 3rem 1rem; z-index: 100; overflow: auto;
+}
+.modal { max-width: 640px; width: 100%; padding: 1.1rem 1.2rem; max-height: 88vh; overflow: auto; }
+.modal.wide { max-width: 860px; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.modal-head h2 { margin: 0; font-size: 1.25rem; }
+.modal-x {
+  border: 0; background: transparent; font-size: 1.6rem; line-height: 1;
+  cursor: pointer; color: var(--base); flex-shrink: 0;
+}
+.modal-x:hover { color: var(--ink); }
+
+.jsonlabel { display: block; font-size: 0.78rem; color: var(--base); margin-bottom: 0.25rem; }
+.urlbox {
+  background: var(--primary-darker); color: #cfe2ff; border-radius: 6px; padding: 0.6rem 0.7rem;
+  font-size: 0.75rem; max-height: 200px; overflow: auto; margin: 0 0 0.9rem;
+  white-space: pre-wrap; word-break: break-word;
+}
+.foot { display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 1rem; }
+
+/* ============ Algorithms: entry modes + filters ============ */
+.mode-row { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+.mode-note { margin: 0; font-size: 0.85rem; color: var(--base); flex: 1 1 320px; }
+
+.filterbar { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.pillrow { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.hpill {
+  border: 1px solid var(--base-light); border-left-width: 4px; background: var(--white);
+  color: var(--base-dark); font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem;
+  border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.hpill:hover { box-shadow: var(--shadow); }
+.hpill.on { color: var(--white); font-weight: 600; border-left-width: 1px; }
+
+.context {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; padding: 0.9rem 1rem;
+}
+.context-col { display: flex; flex-direction: column; }
+.context-col .field { margin-bottom: 0.35rem; }
+.daterange .field.two { margin-bottom: 0.35rem; }
+
+.chosen { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.hchip {
+  display: inline-flex; align-items: center; gap: 0.32rem; color: var(--white);
+  font-size: 0.82rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px;
+  line-height: 1.4;
+}
+.hchip.sm { font-size: 0.74rem; padding: 0.12rem 0.48rem; font-weight: 500; }
+/* The "+N more" counter is chrome, not a hazard, so it takes grey rather than a hazard color. */
+.hchip.more { background: var(--base-lightest); color: var(--base-dark); font-weight: 600; }
+.hchip-x {
+  border: 0; background: transparent; color: inherit; cursor: pointer;
+  font-size: 1rem; line-height: 1; padding: 0 0 0 0.15rem; opacity: 0.8;
+}
+.hchip-x:hover { opacity: 1; }
+
+.used-flag {
+  background: var(--secondary); color: var(--white); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.03em; padding: 0.08rem 0.4rem; border-radius: 4px;
+  white-space: nowrap;
+}
+
+.count-strip {
+  display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  margin: 1rem 0 0.7rem; font-size: 0.85rem; color: var(--base);
+}
+.count-note { display: inline-flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+
+/* ============ Algorithm cards ============ */
+.agrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 0.9rem; }
+
+.acard {
+  display: flex; flex-direction: column; text-align: left; font: inherit; color: inherit;
+  background: var(--white); border: 1px solid var(--base-lighter); border-left: 4px solid var(--base-light);
+  border-radius: var(--radius); box-shadow: var(--shadow); cursor: pointer; overflow: hidden;
+  padding: 0; transition: box-shadow 0.15s, transform 0.15s;
+}
+.acard:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+
+.acard-thumb-wrap { position: relative; }
+.acard-thumb { display: block; width: 100%; height: 132px; object-fit: cover; background: var(--base-lightest); }
+/* The fallback when public/thumbs/<id>.png is missing — a flat modality block, never a broken image. */
+.acard-thumb-fallback { display: flex; align-items: center; justify-content: center; font-size: 2.4rem; }
+.acard-used { position: absolute; top: 0.5rem; right: 0.5rem; }
+
+.acard-body { padding: 0.8rem 0.95rem 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.acard-top { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.acard-title { margin: 0; font-size: 1.1rem; line-height: 1.25; flex: 1 1 auto; }
+.acard-vendor { margin: 0; font-size: 0.85rem; color: var(--base); }
+
+/* The description is the card's substance, so it gets body-copy sizing and near-body color — not
+   the micro-copy grey used for labels. Clamped to 3 lines to keep the grid rows even; the full
+   text is one click away in AlgorithmDetail (and in the title attribute). */
+.acard-desc {
+  margin: 0; font-size: 0.9rem; line-height: 1.45; color: var(--base-dark);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3;
+  overflow: hidden;
+}
+
+/* A labelled block inside the card ("Suited to", "Products") — the icon rows were unreadable
+   without a heading saying what they were. */
+.acard-group { display: flex; flex-direction: column; gap: 0.28rem; }
+.acard-group-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--base-mid);
+}
+.acard-body .acard-group:last-child { margin-top: auto; padding-top: 0.1rem; }
+
+.mbadge {
+  display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.7rem; font-weight: 700;
+  padding: 0.12rem 0.45rem; border-radius: 20px; white-space: nowrap;
+}
+.proto-badge {
+  background: var(--warning); color: #3d2600; font-size: 0.68rem; font-weight: 700;
+  padding: 0.1rem 0.4rem; border-radius: 4px; white-space: nowrap;
+}
+.prod-badge {
+  background: var(--success); color: var(--white); font-size: 0.68rem; font-weight: 700;
+  padding: 0.1rem 0.4rem; border-radius: 4px;
+}
+.vendor-badge {
+  background: var(--base-lightest); color: var(--base-dark); font-size: 0.75rem;
+  padding: 0.12rem 0.5rem; border-radius: 20px;
+}
+
+.acard-facts { display: flex; gap: 1.4rem; margin: 0; }
+.acard-facts dt { font-size: 0.68rem; color: var(--base-mid); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+.acard-facts dd { margin: 0.05rem 0 0; font-size: 0.92rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.acard-hazards { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+.acard-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.pchip {
+  background: var(--base-lightest); color: var(--base-dark); border: 1px solid var(--base-lighter);
+  font-size: 0.8rem; padding: 0.15rem 0.5rem; border-radius: 4px; line-height: 1.4;
+}
+.pchip.more { background: transparent; border-style: dashed; color: var(--base); }
+.pchip.none { background: transparent; border: 0; color: var(--base-light); font-style: italic; }
+
+/* ============ Algorithm detail ============ */
+.detail-badges { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin: 0.7rem 0; }
+.detail-desc { margin: 0.6rem 0 1rem; font-size: 0.95rem; line-height: 1.5; color: var(--base-dark); }
+.detail-grid {
+  display: grid; grid-template-columns: 140px 1fr; gap: 0.3rem 0.8rem;
+  margin: 0 0 1.1rem; font-size: 0.88rem;
+}
+.detail-grid dt { color: var(--base); font-weight: 600; }
+.detail-grid dd { margin: 0; }
+.detail-h {
+  margin: 1.2rem 0 0.5rem; font-size: 1rem; color: var(--primary-dark);
+  border-bottom: 1px solid var(--base-lighter); padding-bottom: 0.3rem;
+}
+
+.prod-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.prod {
+  border: 1px solid var(--base-lighter); border-left: 3px solid var(--base-lighter);
+  border-radius: 6px; padding: 0.5rem 0.65rem;
+}
+.prod.matched { border-left-color: var(--primary); background: #f7fafd; }
+.prod-head { display: flex; align-items: baseline; gap: 0.45rem; flex-wrap: wrap; font-size: 0.9rem; }
+.prod-head code { font-size: 0.8rem; color: var(--base); }
+.prod-note { margin: 0.25rem 0; font-size: 0.82rem; color: var(--base); }
+.prod-hazards { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.35rem; }
+.match-flag {
+  margin-left: auto; background: var(--primary-lighter); color: var(--primary-dark);
+  font-size: 0.68rem; font-weight: 700; padding: 0.08rem 0.4rem; border-radius: 4px;
+}
+
+.inputs-wrap { overflow-x: auto; }
+.inputs { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.inputs th {
+  text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em;
+  color: var(--base-mid); border-bottom: 1px solid var(--base-lighter); padding: 0.35rem 0.5rem;
+}
+.inputs td { border-bottom: 1px solid var(--base-lightest); padding: 0.45rem 0.5rem; vertical-align: top; }
+.inputs code { font-size: 0.8rem; }
+.in-label { font-size: 0.82rem; color: var(--base-dark); }
+.in-doc { font-size: 0.78rem; color: var(--base); margin-top: 0.15rem; max-width: 34rem; }
+.req { color: var(--error); }
+
+/* ============ Event catalog ============ */
+.events-dates { max-width: 420px; margin-top: 0.7rem; }
+.elist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0.8rem; }
+
+.ecard {
+  width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: var(--white); border: 1px solid var(--base-lighter); border-left: 4px solid var(--primary);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 0.8rem 0.9rem;
+  display: flex; flex-direction: column; gap: 0.4rem; height: 100%;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.ecard:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+.ecard-top { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+.ecard-name { margin: 0; font-size: 1rem; line-height: 1.25; flex: 1 1 auto; }
+.ecard-meta { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--base); }
+.ecard-meta code { font-size: 0.78rem; background: var(--base-lightest); padding: 0.05rem 0.35rem; border-radius: 4px; }
+.ecard-when { font-variant-numeric: tabular-nums; }
+.ecard-hazards { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.ecard-locations { margin: 0; font-size: 0.85rem; color: var(--base-dark); }
+.ecard-layers { margin: auto 0 0; font-size: 0.78rem; color: var(--base-mid); font-variant-numeric: tabular-nums; }
+
+/* `published` = in data/events.json. `submitted` = filed through this app, not yet merged. The
+   distinction is load-bearing, so it is a color AND a word, never color alone. */
+.src-badge {
+  font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+  padding: 0.1rem 0.42rem; border-radius: 4px; white-space: nowrap;
+}
+.src-badge.published { background: var(--primary-lighter); color: var(--primary-dark); }
+.src-badge.submitted { background: var(--warning); color: #3d2600; }
+.upd-badge { font-size: 0.7rem; color: var(--base); background: var(--base-lightest); padding: 0.1rem 0.4rem; border-radius: 4px; }
+
+.stac { background: var(--base-lightest); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.82rem; }
+.coverage {
+  margin: 0.9rem 0 0; font-size: 0.88rem; color: var(--base-dark); line-height: 1.5;
+  background: var(--primary-lighter); border-radius: 6px; padding: 0.6rem 0.75rem;
+}
+
+.lchips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.lchip {
+  font: inherit; font-size: 0.8rem; border: 1px solid var(--base-light); background: var(--white);
+  color: var(--ink); border-radius: 20px; padding: 0.22rem 0.6rem; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+}
+.lchip:hover { box-shadow: var(--shadow); }
+/* Layers no algorithm here produces. Greyed, no pointer, no hover — inert on purpose. */
+.lchip.ext {
+  background: var(--base-lightest); border-color: var(--base-lighter); color: var(--base-mid);
+  cursor: default; box-shadow: none;
+}
+
+.sub-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.sub-row { border: 1px solid var(--base-lighter); border-radius: 6px; padding: 0.5rem 0.65rem; }
+.sub-head { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; font-size: 0.88rem; }
+.sub-notes { margin: 0.3rem 0 0; font-size: 0.83rem; color: var(--base); }
+
+/* ============ Responsive ============ */
+@media (max-width: 760px) {
+  .hub-header { height: auto; flex-wrap: wrap; gap: 0.5rem; padding: 0.5rem 0.8rem; }
+  .hub-tabs { order: 3; width: 100%; flex-basis: 100%; overflow-x: auto; }
+  .hub-tabs button { padding: 0.5rem 0.6rem; font-size: 0.88rem; }
+  .hub-right { margin-left: auto; }
+  .hub-main { padding: 0.85rem; }
+
+  .field.two { grid-template-columns: 1fr; }
+  .reset-btn { margin-left: 0; }
+  .toolbar { gap: 0.45rem; }
+  .search { flex-basis: 100%; }
+
+  .context { grid-template-columns: 1fr; padding: 0.75rem; }
+  .agrid, .elist { grid-template-columns: 1fr; }
+  .detail-grid { grid-template-columns: 1fr; gap: 0.1rem 0; }
+  .detail-grid dt { margin-top: 0.5rem; }
+  .overlay { padding: 1rem 0.6rem; }
+  .modal { padding: 0.9rem; max-height: 92vh; }
+  .mode-row .seg { width: 100%; }
+  .mode-row .seg button { flex: 1; padding: 0.45rem 0.4rem; font-size: 0.85rem; }
+}

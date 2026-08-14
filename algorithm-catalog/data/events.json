@@ -1,0 +1,109 @@
+[
+  {
+    "id": "202501_Fire_CA",
+    "name": "California Wildfires January 2025",
+    "stacName": "202501_Fire_CA",
+    "start": "2025-01-10",
+    "end": "2025-01-31",
+    "hazards": ["Fire"],
+    "locations": ["Los Angeles, CA"],
+    "bbox": "-118.95,33.70,-117.65,34.35",
+    "layers": [
+      { "algorithm": "landsat", "product": "true" },
+      { "algorithm": "landsat", "product": "colorIR" },
+      { "algorithm": "landsat", "product": "nat" },
+      { "algorithm": "landsat", "product": "nbr" },
+      { "algorithm": "sentinel2", "product": "true" },
+      { "algorithm": "sentinel2", "product": "colorIR" },
+      { "algorithm": "sentinel2", "product": "swir" },
+      { "algorithm": "sentinel2", "product": "nbr" }
+    ],
+    "externalLayers": [
+      "opera dist-s1",
+      "opera dist-hls-veg-anom-max",
+      "opera dist-hls-status",
+      "aviris3 dnbr",
+      "aviris3 earlylook",
+      "aviris3 charash",
+      "aviris3 pca",
+      "sentinel2 dnbr",
+      "sentinel 1_2 burnseverity",
+      "ecostress LST",
+      "optisar",
+      "sentinel-1 damage",
+      "sentinel-1 asf change detection",
+      "planet truecolor",
+      "firms hot spots",
+      "feds fire perimeter"
+    ]
+  },
+  {
+    "id": "202606_Earthquake_Venezuela",
+    "name": "Venezuela Earthquake June 2026",
+    "stacName": "202606_Earthquake_Venezuela",
+    "start": "2026-06-26",
+    "end": "2026-07-14",
+    "hazards": ["Earthquake"],
+    "locations": ["Valencia, Venezuela", "Caracas, Venezuela"],
+    "bbox": "-68.30,10.10,-66.70,10.65",
+    "layers": [
+      { "algorithm": "blackmarble", "product": "hdnightlights" },
+      { "algorithm": "landsat", "product": "true" },
+      { "algorithm": "landsat", "product": "colorIR" },
+      { "algorithm": "satellogic", "product": "truecolor" },
+      { "algorithm": "satellogic", "product": "ndvi" },
+      { "algorithm": "sentinel2", "product": "true" },
+      { "algorithm": "sentinel2", "product": "colorIR" }
+    ],
+    "externalLayers": [
+      "nisar_gunw",
+      "opera_unw",
+      "opera_coh",
+      "opera_rng",
+      "opera_wrp",
+      "skysat_trueColor",
+      "skysat_colorIR",
+      "skysat_NDVI",
+      "sentinel-1_urbanBackscatterChange",
+      "sentinel-1_damagedStructures",
+      "landslideProxyHeatmap",
+      "sentinel-2_urbanChangeAnalysis",
+      "vantor_trueColor"
+    ]
+  },
+  {
+    "id": "202604_Typhoon_Sinlaku",
+    "name": "Typhoon Sinlaku April 2026",
+    "stacName": "202604_Typhoon_Sinlaku",
+    "start": "2026-04-14",
+    "end": "2026-04-29",
+    "hazards": ["TropicalCyclone", "Flood"],
+    "locations": ["Guam", "CNMI"],
+    "bbox": "144.55,13.20,145.90,15.30",
+    "layers": [
+      { "algorithm": "blackmarble", "product": "hdnightlights" },
+      { "algorithm": "blackmarble", "product": "hdnightlightscolored" },
+      { "algorithm": "capella", "product": "sigma0" },
+      { "algorithm": "iceye", "product": "sigma0" },
+      { "algorithm": "landsat", "product": "colorIR" },
+      { "algorithm": "landsat", "product": "true" },
+      { "algorithm": "landsat", "product": "mndwi" },
+      { "algorithm": "landsat", "product": "ndvi" },
+      { "algorithm": "satellogic", "product": "truecolor" },
+      { "algorithm": "satellogic", "product": "colorir" },
+      { "algorithm": "sentinel2", "product": "colorIR" },
+      { "algorithm": "sentinel2", "product": "true" },
+      { "algorithm": "sentinel2", "product": "mndwi" },
+      { "algorithm": "sentinel2", "product": "ndvi" },
+      { "algorithm": "umbra", "product": "sigma" }
+    ],
+    "externalLayers": [
+      "gpm_precipAccumulation",
+      "skysat_colorIR",
+      "skysat_trueColor",
+      "ISS_NTL",
+      "luminosityLost",
+      "LHASA_nowcast"
+    ]
+  }
+]

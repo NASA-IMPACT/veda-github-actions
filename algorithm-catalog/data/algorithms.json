@@ -1,0 +1,1220 @@
+[
+  {
+    "id": "landsat",
+    "algorithmName": "landsat-8-9",
+    "version": "dev",
+    "title": "Landsat 8/9",
+    "modality": "optical",
+    "status": "production",
+    "vendor": "USGS / NASA",
+    "resolution": "30 m (15 m panchromatic)",
+    "temporalStart": "2013-02-11",
+    "temporalStartApprox": true,
+    "spatialSelector": "granule-file",
+    "resources": {
+      "ramMin": 64,
+      "coresMin": 8,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/landsat.png",
+    "thumbCredit": "NASA Earth Observatory",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/landsat/algorithm_config.yaml",
+    "description": "Process Landsat 8/9 Collection 2 Level-2 granule archives (.tar/.zip) into Cloud Optimized GeoTIFF disaster-response products with reprojection and activation-event metadata tags. The widest product range of any algorithm in the catalog. You supply the granule yourself, so there is no download step.",
+    "keywords": [
+      "landsat",
+      "cog",
+      "disasters",
+      "flood",
+      "fire",
+      "ndvi",
+      "water-extent"
+    ],
+    "products": [
+      {
+        "id": "true",
+        "label": "True color",
+        "folder": "trueColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Volcano",
+          "WinterWx",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Fire",
+          "Earthquake",
+          "Flood",
+          "Landslide",
+          "Volcano"
+        ]
+      },
+      {
+        "id": "pan",
+        "label": "Panchromatic",
+        "folder": "panchromatic",
+        "hazards": [
+          "Earthquake",
+          "Fire",
+          "Flood",
+          "Volcano"
+        ],
+        "note": "Band 8, 15 m — useful for sharpening.",
+        "primaryHazards": []
+      },
+      {
+        "id": "nat",
+        "label": "Natural color",
+        "folder": "naturalColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Volcano",
+          "Landslide"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "colorIR",
+        "label": "Color infrared",
+        "folder": "colorInfrared",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Landslide",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Fire",
+          "Landslide"
+        ]
+      },
+      {
+        "id": "ndvi",
+        "label": "NDVI",
+        "folder": "ndvi",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Drought",
+          "Fire",
+          "Landslide",
+          "Heat"
+        ],
+        "primaryHazards": [
+          "Drought",
+          "Heat"
+        ]
+      },
+      {
+        "id": "ndwi",
+        "label": "NDWI",
+        "folder": "ndwi",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Drought"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "mndwi",
+        "label": "MNDWI",
+        "folder": "mndwi",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Flood",
+          "TropicalCyclone"
+        ]
+      },
+      {
+        "id": "evi",
+        "label": "EVI",
+        "folder": "evi",
+        "hazards": [
+          "Drought",
+          "Fire",
+          "Heat",
+          "Landslide"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "nbr",
+        "label": "NBR (burn ratio)",
+        "folder": "nbr",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [
+          "Fire"
+        ]
+      },
+      {
+        "id": "we",
+        "label": "Water extent",
+        "folder": "waterExtent",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "note": "One COG per we_nstd threshold value.",
+        "primaryHazards": [
+          "Flood"
+        ]
+      }
+    ],
+    "inputs": [
+      {
+        "name": "file_path_of_raw_data",
+        "label": "Raw data file",
+        "type": "File",
+        "required": true,
+        "doc": "A Landsat Collection 2 Level-2 granule archive (.tar or .zip)."
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "YYYYMM_Hazard_Location"
+      },
+      {
+        "name": "products",
+        "label": "Products",
+        "type": "string",
+        "required": false,
+        "doc": "Space-separated list (true pan nat colorIR ndvi ndwi mndwi evi nbr we) or 'all'.",
+        "default": "true"
+      },
+      {
+        "name": "source_label",
+        "label": "Source",
+        "type": "string",
+        "required": true,
+        "doc": "Data origin (required), e.g. USGS, NASA, NOAA."
+      },
+      {
+        "name": "dst_crs",
+        "label": "Target CRS",
+        "type": "string",
+        "required": false,
+        "doc": "native (default, no warp) | EPSG:3857 | EPSG:4326.",
+        "default": "native"
+      },
+      {
+        "name": "merge",
+        "label": "Merge by date/product",
+        "type": "boolean",
+        "required": false,
+        "doc": "Mosaic tiles by date and product.",
+        "default": "true"
+      },
+      {
+        "name": "mask",
+        "label": "Cloud mask",
+        "type": "boolean",
+        "required": false,
+        "doc": "Generate and apply a cloud mask.",
+        "default": "true"
+      },
+      {
+        "name": "process_date",
+        "label": "Process date (optional)",
+        "type": "string",
+        "required": false,
+        "doc": "Only process this date, YYYYMMDD; blank for all dates.",
+        "default": ""
+      },
+      {
+        "name": "process_tile",
+        "label": "Process tile (optional)",
+        "type": "string",
+        "required": false,
+        "doc": "Only process this WRS-2 path/row, e.g. 171035.",
+        "default": ""
+      },
+      {
+        "name": "we_nstd",
+        "label": "Water-extent std devs",
+        "type": "string",
+        "required": false,
+        "doc": "Space-separated std-dev thresholds; only used when products includes 'we'.",
+        "default": "1 1.5"
+      },
+      {
+        "name": "compression_level",
+        "label": "COG compression level",
+        "type": "int",
+        "required": false,
+        "doc": "ZSTD level 1-22.",
+        "default": "22"
+      },
+      {
+        "name": "nodata",
+        "label": "No-data value (optional)",
+        "type": "string",
+        "required": false,
+        "doc": "Override the auto-detected no-data value.",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "id": "sentinel2",
+    "algorithmName": "disasters-sentinel2-process",
+    "version": "dev",
+    "title": "Sentinel-2",
+    "modality": "optical",
+    "status": "production",
+    "vendor": "Copernicus / CDSE",
+    "resolution": "10–20 m",
+    "temporalStart": "2015-06-23",
+    "temporalStartApprox": true,
+    "spatialSelector": "mgrs-tile",
+    "resources": {
+      "ramMin": 64,
+      "coresMin": 8,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/sentinel2.png",
+    "thumbCredit": "NASA Earth Observatory / Copernicus",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/sentinel2/algorithm_config.yaml",
+    "description": "Download Sentinel-2 L2A/L1C scenes from the Copernicus Data Space by MGRS tile and date, then process into Cloud Optimized GeoTIFF disaster-response products. Fully self-serve: it fetches its own imagery, so you only need a tile and a date. Copernicus credentials are read from MAAP secrets at run time and are never job inputs.",
+    "keywords": [
+      "sentinel-2",
+      "cog",
+      "disasters",
+      "flood",
+      "fire",
+      "ndvi",
+      "water-extent"
+    ],
+    "products": [
+      {
+        "id": "true",
+        "label": "True color",
+        "folder": "trueColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Volcano",
+          "WinterWx",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Volcano",
+          "WinterWx"
+        ]
+      },
+      {
+        "id": "nat",
+        "label": "Natural color",
+        "folder": "naturalColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Volcano",
+          "Landslide"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "swir",
+        "label": "Shortwave infrared",
+        "folder": "shortwaveInfrared",
+        "hazards": [
+          "Fire",
+          "Volcano",
+          "Flood"
+        ],
+        "note": "Cuts through smoke — the workhorse band for active fire.",
+        "primaryHazards": [
+          "Fire",
+          "Volcano"
+        ]
+      },
+      {
+        "id": "colorIR",
+        "label": "Color infrared",
+        "folder": "colorInfrared",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Landslide",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Fire",
+          "Flood"
+        ]
+      },
+      {
+        "id": "ndvi",
+        "label": "NDVI",
+        "folder": "ndvi",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Drought",
+          "Fire",
+          "Landslide",
+          "Heat"
+        ],
+        "primaryHazards": [
+          "Drought",
+          "Heat"
+        ]
+      },
+      {
+        "id": "ndwi",
+        "label": "NDWI",
+        "folder": "ndwi",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Drought"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "mndwi",
+        "label": "MNDWI",
+        "folder": "mndwi",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Drought"
+        ],
+        "primaryHazards": [
+          "Flood",
+          "TropicalCyclone"
+        ]
+      },
+      {
+        "id": "nbr",
+        "label": "NBR (burn ratio)",
+        "folder": "nbr",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [
+          "Fire"
+        ]
+      },
+      {
+        "id": "we",
+        "label": "Water extent",
+        "folder": "waterExtent",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "note": "One COG per we_nstd threshold value.",
+        "primaryHazards": [
+          "Flood",
+          "TropicalCyclone"
+        ]
+      }
+    ],
+    "inputs": [
+      {
+        "name": "tile",
+        "label": "MGRS tile(s)",
+        "type": "string",
+        "required": true,
+        "doc": "Sentinel-2 MGRS tile ID(s), e.g. T17RLN (space-separated for several).",
+        "default": "T17RLN T17RLM"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "202601_KyleWx_US"
+      },
+      {
+        "name": "download_date",
+        "label": "Download date (optional)",
+        "type": "string",
+        "required": false,
+        "doc": "One YYYYMMDD, or a start end pair. Blank = the recent-scenes default (~past 10 days).",
+        "default": "20251231"
+      },
+      {
+        "name": "level",
+        "label": "Processing level",
+        "type": "string",
+        "required": false,
+        "doc": "2 = L2A (surface reflectance), 1 = L1C (top-of-atmosphere).",
+        "default": "1"
+      },
+      {
+        "name": "products",
+        "label": "Products",
+        "type": "string",
+        "required": false,
+        "doc": "Space-separated list (true nat swir colorIR ndvi ndwi mndwi nbr we) or 'all'.",
+        "default": "true swir"
+      },
+      {
+        "name": "we_nstd",
+        "label": "Water-extent std devs",
+        "type": "string",
+        "required": false,
+        "doc": "NIR std-dev thresholds; only used when products includes 'we'.",
+        "default": "1"
+      },
+      {
+        "name": "merge",
+        "label": "Merge by date/product",
+        "type": "boolean",
+        "required": false,
+        "doc": "Mosaic scenes by date and product.",
+        "default": "true"
+      },
+      {
+        "name": "mask",
+        "label": "Cloud mask",
+        "type": "boolean",
+        "required": false,
+        "doc": "Generate and apply a cloud mask (L2A only).",
+        "default": "false"
+      }
+    ]
+  },
+  {
+    "id": "satellogic",
+    "algorithmName": "satellogic",
+    "version": "dev",
+    "title": "Satellogic",
+    "modality": "optical",
+    "status": "production",
+    "vendor": "Satellogic (NASA CSDA)",
+    "resolution": "~1 m",
+    "temporalStart": "2020-11-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "vendor-scene",
+    "resources": {
+      "ramMin": 32,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/satellogic.png",
+    "thumbCredit": "NASA Earth Observatory",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/satellogic/algorithm_config.yaml",
+    "description": "Process very-high-resolution Satellogic optical scenes from the CSDA vendor bucket into COG disaster products. Sub-metre detail makes this the choice for structure-level damage assessment. You select a scene by date — the AOI is whatever the vendor tasked.",
+    "keywords": [
+      "satellogic",
+      "cog",
+      "disasters",
+      "flood",
+      "fire",
+      "ndvi",
+      "ndwi",
+      "evi"
+    ],
+    "products": [
+      {
+        "id": "truecolor",
+        "label": "True color",
+        "folder": "trueColor",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Fire",
+          "Flood",
+          "Landslide",
+          "Volcano",
+          "Storm"
+        ],
+        "primaryHazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Landslide"
+        ]
+      },
+      {
+        "id": "colorir",
+        "label": "Color infrared",
+        "folder": "colorInfrared",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Fire",
+          "Earthquake",
+          "Landslide"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "ndvi",
+        "label": "NDVI",
+        "folder": "ndvi",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Drought",
+          "Fire",
+          "Landslide"
+        ],
+        "primaryHazards": [
+          "Drought"
+        ]
+      },
+      {
+        "id": "ndwi",
+        "label": "NDWI",
+        "folder": "ndwi",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone"
+        ],
+        "primaryHazards": []
+      },
+      {
+        "id": "evi",
+        "label": "EVI",
+        "folder": "evi",
+        "hazards": [
+          "Drought",
+          "Heat",
+          "Fire"
+        ],
+        "primaryHazards": []
+      }
+    ],
+    "inputs": [
+      {
+        "name": "date",
+        "label": "Target date",
+        "type": "string",
+        "required": true,
+        "doc": "Target acquisition date 'YYYY-MM-DD HH:MM:SS' (comma-separated for multi-date). Discover valid dates with the list-dates algorithm."
+      },
+      {
+        "name": "product",
+        "label": "Product",
+        "type": "string",
+        "required": false,
+        "doc": "One of truecolor, colorir, ndvi, ndwi, evi.",
+        "default": "truecolor"
+      },
+      {
+        "name": "level",
+        "label": "Processing level",
+        "type": "string",
+        "required": false,
+        "doc": "L1D or L1B.",
+        "default": "L1D"
+      },
+      {
+        "name": "visualize",
+        "label": "Visualize",
+        "type": "boolean",
+        "required": false,
+        "doc": "Apply gamma stretch (RGB composites only).",
+        "default": "false"
+      },
+      {
+        "name": "gamma",
+        "label": "Gamma",
+        "type": "float",
+        "required": false,
+        "doc": "Gamma value when visualize is on.",
+        "default": "0.7"
+      },
+      {
+        "name": "filter_size",
+        "label": "Lee filter window size",
+        "type": "int",
+        "required": false,
+        "doc": "Lee filter window in pixels; must be 3, 5 or 7 (indices only).",
+        "default": "5"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "YYYYMM_Hazard_Location"
+      }
+    ]
+  },
+  {
+    "id": "umbra",
+    "algorithmName": "disasters-umbra-process",
+    "version": "dev",
+    "title": "Umbra SAR",
+    "modality": "sar",
+    "status": "production",
+    "vendor": "Umbra (NASA CSDA)",
+    "resolution": "0.25–1 m",
+    "temporalStart": "2021-06-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "vendor-scene",
+    "resources": {
+      "ramMin": 32,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/umbra.png",
+    "thumbCredit": "NASA / JPL-Caltech",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/umbra/algorithm_config.yaml",
+    "description": "Radiometrically calibrate Umbra SAR scenes into dB backscatter COGs with an always-on NaN-aware Lee speckle filter. SAR sees through cloud and at night, which is what makes it the first useful imagery during a hurricane or a night-time earthquake.",
+    "keywords": [
+      "umbra",
+      "sar",
+      "cog",
+      "disasters",
+      "flood",
+      "sigma0",
+      "calibration"
+    ],
+    "products": [
+      {
+        "id": "sigma",
+        "label": "Sigma-naught (σ⁰)",
+        "folder": "sigma0",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Earthquake",
+          "Storm",
+          "Landslide",
+          "Volcano"
+        ],
+        "note": "The default calibration — normalized to ground area.",
+        "primaryHazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Earthquake",
+          "Storm"
+        ]
+      },
+      {
+        "id": "beta",
+        "label": "Beta-naught (β⁰)",
+        "folder": "beta0",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Earthquake"
+        ],
+        "note": "Normalized to slant range.",
+        "primaryHazards": []
+      },
+      {
+        "id": "gamma",
+        "label": "Gamma-naught (γ⁰)",
+        "folder": "gamma0",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Earthquake"
+        ],
+        "note": "Normalized to the incidence-angle plane.",
+        "primaryHazards": []
+      }
+    ],
+    "inputs": [
+      {
+        "name": "date",
+        "label": "Target date",
+        "type": "string",
+        "required": true,
+        "doc": "Target acquisition date 'YYYY-MM-DD HH:MM:SS'. Discover valid dates with the list-dates algorithm."
+      },
+      {
+        "name": "product",
+        "label": "Product",
+        "type": "string",
+        "required": false,
+        "doc": "One of sigma, beta, gamma.",
+        "default": "sigma"
+      },
+      {
+        "name": "bucket",
+        "label": "Vendor bucket",
+        "type": "string",
+        "required": false,
+        "doc": "CSDA vendor S3 bucket.",
+        "default": "csda-data-vendor-umbra"
+      },
+      {
+        "name": "prefix",
+        "label": "Bucket prefix",
+        "type": "string",
+        "required": false,
+        "doc": "Key prefix within the bucket.",
+        "default": "disasters"
+      },
+      {
+        "name": "filter_size",
+        "label": "Lee filter window size",
+        "type": "int",
+        "required": false,
+        "doc": "Lee speckle-filter window in pixels; must be 3, 5 or 7.",
+        "default": "5"
+      },
+      {
+        "name": "dst_crs",
+        "label": "Target CRS",
+        "type": "string",
+        "required": false,
+        "doc": "native | EPSG:3857 | EPSG:4326.",
+        "default": "native"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "YYYYMM_Hazard_Location"
+      },
+      {
+        "name": "source_label",
+        "label": "Source",
+        "type": "string",
+        "required": true,
+        "doc": "Data origin, e.g. CSDA, Umbra."
+      },
+      {
+        "name": "compression_level",
+        "label": "COG compression level",
+        "type": "int",
+        "required": false,
+        "doc": "ZSTD level 1-22.",
+        "default": "22"
+      },
+      {
+        "name": "nodata",
+        "label": "No-data value (optional)",
+        "type": "string",
+        "required": false,
+        "doc": "Override the auto-detected no-data value.",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "id": "capella",
+    "algorithmName": "capella",
+    "version": "dev",
+    "title": "Capella SAR",
+    "modality": "sar",
+    "status": "production",
+    "vendor": "Capella Space (NASA CSDA)",
+    "resolution": "0.5–1 m",
+    "temporalStart": "2020-12-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "vendor-scene",
+    "resources": {
+      "ramMin": 32,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/capella.png",
+    "thumbCredit": "NASA / JPL-Caltech",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/capella/algorithm_config.yaml",
+    "description": "Process Capella SAR scenes into sigma-naught COGs with a Lee speckle filter. Cloud- and night-independent, like Umbra. Single-product by design — the product selector was removed upstream, so sigma-naught is always what you get.",
+    "keywords": [
+      "capella",
+      "sar",
+      "sigma0",
+      "cog",
+      "disasters",
+      "flood"
+    ],
+    "products": [
+      {
+        "id": "sigma0",
+        "label": "Sigma-naught (σ⁰)",
+        "folder": "sigma0",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Earthquake",
+          "Storm",
+          "Landslide",
+          "Volcano"
+        ],
+        "note": "The only product; hardcoded upstream.",
+        "primaryHazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Earthquake",
+          "Storm"
+        ]
+      }
+    ],
+    "inputs": [
+      {
+        "name": "date",
+        "label": "Target date",
+        "type": "string",
+        "required": true,
+        "doc": "Target acquisition date, YYYYMMDDHHMMSS. Closest matching scene is selected. Discover valid dates with the list-dates algorithm."
+      },
+      {
+        "name": "filter_size",
+        "label": "Lee filter window size",
+        "type": "int",
+        "required": false,
+        "doc": "Lee speckle-filter window in pixels; must be 3, 5 or 7.",
+        "default": "5"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "YYYYMM_Hazard_Location"
+      },
+      {
+        "name": "source_label",
+        "label": "Source",
+        "type": "string",
+        "required": true,
+        "doc": "Data origin, e.g. Capella Space, CSDA."
+      }
+    ]
+  },
+  {
+    "id": "blackmarble",
+    "algorithmName": "disasters-blackmarble-process",
+    "version": "dev",
+    "title": "Black Marble (Suomi-NPP)",
+    "modality": "nightlights",
+    "status": "production",
+    "vendor": "NASA LAADS — VIIRS / Suomi-NPP (VNP46A2)",
+    "resolution": "500 m",
+    "temporalStart": "2012-01-19",
+    "temporalStartApprox": false,
+    "spatialSelector": "bbox",
+    "resources": {
+      "ramMin": 16,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/blackmarble.png",
+    "thumbCredit": "NASA Earth Observatory / NASA Black Marble",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/blackmarble/algorithm_config.yaml",
+    "description": "BRDF-corrected VIIRS nighttime lights, sharpened with Landsat and OSM roads, over a bounding box and date. The standard product for mapping power outages after an earthquake or hurricane — where the lights went out is where the damage is. Its 2012-01-19 start date is enforced upstream.",
+    "keywords": [
+      "black-marble",
+      "viirs",
+      "nighttime-lights",
+      "landsat",
+      "osm",
+      "cog",
+      "disasters"
+    ],
+    "products": [
+      {
+        "id": "hdnightlights",
+        "label": "HD nighttime lights",
+        "folder": "hdnightlights",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Fire",
+          "WinterWx",
+          "Flood"
+        ],
+        "note": "BRDF-corrected VNP46A2, sharpened to Landsat + OSM.",
+        "primaryHazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "WinterWx"
+        ]
+      },
+      {
+        "id": "hdnightlightscolored",
+        "label": "HD nighttime lights (colored)",
+        "folder": "hdnightlightscolored",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Fire",
+          "WinterWx",
+          "Flood"
+        ],
+        "note": "Companion colored raster — the blue/yellow outage rendering.",
+        "primaryHazards": []
+      }
+    ],
+    "inputs": [
+      {
+        "name": "bbox",
+        "label": "Bounding box",
+        "type": "string",
+        "required": true,
+        "doc": "WGS84 'min_lon,min_lat,max_lon,max_lat'. Latitude span must be at least 0.05°.",
+        "default": "-122.55,37.69,-122.32,37.81"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "202601_KyleWx_US"
+      },
+      {
+        "name": "date",
+        "label": "Date",
+        "type": "string",
+        "required": true,
+        "doc": "Acquisition date YYYY-MM-DD. Must be on or after 2012-01-19.",
+        "default": "2023-06-15"
+      },
+      {
+        "name": "config",
+        "label": "Config profile",
+        "type": "string",
+        "required": false,
+        "doc": "Processing profile, e.g. fast.",
+        "default": "fast"
+      },
+      {
+        "name": "osm_source",
+        "label": "OSM source",
+        "type": "string",
+        "required": false,
+        "doc": "Where road vectors come from.",
+        "default": "overpass"
+      },
+      {
+        "name": "wgs84",
+        "label": "Also export WGS84",
+        "type": "boolean",
+        "required": false,
+        "doc": "Emit a secondary WGS84 export.",
+        "default": "false"
+      },
+      {
+        "name": "earthdata_secret_name",
+        "label": "Earthdata secret name",
+        "type": "string",
+        "required": false,
+        "doc": "MAAP secret holding the Earthdata token — handled for you.",
+        "default": "EARTHDATA_TOKEN"
+      }
+    ]
+  },
+  {
+    "id": "blackmarble_noaa",
+    "algorithmName": "disasters-blackmarble-noaa-process",
+    "version": "dev",
+    "title": "Black Marble (NOAA-20)",
+    "modality": "nightlights",
+    "status": "production",
+    "vendor": "NASA LAADS — VIIRS / NOAA-20 (VJ146A2)",
+    "resolution": "500 m",
+    "temporalStart": "2018-01-19",
+    "temporalStartApprox": false,
+    "spatialSelector": "bbox",
+    "resources": {
+      "ramMin": 16,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/blackmarble_noaa.png",
+    "thumbCredit": "NASA Earth Observatory / NASA Black Marble",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/dps/blackmarble_noaa/algorithm_config.yaml",
+    "description": "The NOAA-20 (JPSS-1) counterpart to Black Marble, using VJ146A2. Registered as a separate algorithm rather than a toggle because the two platforms have different coverage windows and write to different output folders. Pair it with Suomi-NPP for a second nightly overpass. Its 2018-01-19 start date is enforced upstream.",
+    "keywords": [
+      "black-marble",
+      "viirs",
+      "vj146a2",
+      "noaa-20",
+      "jpss-1",
+      "nighttime-lights",
+      "cog",
+      "disasters"
+    ],
+    "products": [
+      {
+        "id": "hdnightlights",
+        "label": "HD nighttime lights",
+        "folder": "hdnightlightsnoaa20",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Fire",
+          "WinterWx",
+          "Flood"
+        ],
+        "note": "BRDF-corrected VJ146A2 from NOAA-20.",
+        "primaryHazards": []
+      },
+      {
+        "id": "hdnightlightscolored",
+        "label": "HD nighttime lights (colored)",
+        "folder": "hdnightlightscolorednoaa20",
+        "hazards": [
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Fire",
+          "WinterWx",
+          "Flood"
+        ],
+        "primaryHazards": []
+      }
+    ],
+    "inputs": [
+      {
+        "name": "bbox",
+        "label": "Bounding box",
+        "type": "string",
+        "required": true,
+        "doc": "WGS84 'min_lon,min_lat,max_lon,max_lat'. Latitude span must be at least 0.05°.",
+        "default": "-122.55,37.69,-122.32,37.81"
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX.",
+        "default": "202601_KyleWx_US"
+      },
+      {
+        "name": "date",
+        "label": "Date",
+        "type": "string",
+        "required": true,
+        "doc": "Acquisition date YYYY-MM-DD. Must be on or after 2018-01-19.",
+        "default": "2023-06-15"
+      },
+      {
+        "name": "config",
+        "label": "Config profile",
+        "type": "string",
+        "required": false,
+        "doc": "Processing profile, e.g. fast.",
+        "default": "fast"
+      },
+      {
+        "name": "osm_source",
+        "label": "OSM source",
+        "type": "string",
+        "required": false,
+        "doc": "Where road vectors come from.",
+        "default": "overpass"
+      },
+      {
+        "name": "wgs84",
+        "label": "Also export WGS84",
+        "type": "boolean",
+        "required": false,
+        "doc": "Emit a secondary WGS84 export.",
+        "default": "false"
+      },
+      {
+        "name": "earthdata_secret_name",
+        "label": "Earthdata secret name",
+        "type": "string",
+        "required": false,
+        "doc": "MAAP secret holding the Earthdata token — handled for you.",
+        "default": "EARTHDATA_TOKEN"
+      }
+    ]
+  },
+  {
+    "id": "iceye",
+    "algorithmName": "",
+    "version": "dev",
+    "title": "ICEYE SAR",
+    "modality": "sar",
+    "status": "prototype",
+    "vendor": "ICEYE (NASA CSDA)",
+    "resolution": "0.25–3 m",
+    "temporalStart": "2018-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "vendor-scene",
+    "resources": {
+      "ramMin": 32,
+      "coresMin": 4,
+      "outdirMax": 20
+    },
+    "thumb": "/thumbs/iceye.png",
+    "thumbCredit": "NASA / JPL-Caltech",
+    "configUrl": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/blob/dev/src/iceye/iceye_v2.py",
+    "description": "PROTOTYPE — not yet a registered DPS algorithm. Calibration code exists (retrieve_iceye_resources, sigmaCalib, lee_filter) and the CSDA vendor bucket is wired, but there is no dps/iceye/algorithm_config.yaml and the package is excluded from packaging. Exercised only through a testing notebook. Listed here because activations do request ICEYE backscatter; treat it as a request for manual processing.",
+    "keywords": [
+      "iceye",
+      "sar",
+      "sigma0",
+      "prototype",
+      "disasters",
+      "flood"
+    ],
+    "products": [
+      {
+        "id": "sigma0",
+        "label": "Sigma-naught (σ⁰)",
+        "folder": "sigma0",
+        "hazards": [
+          "TropicalCyclone",
+          "Flood",
+          "Earthquake",
+          "Storm"
+        ],
+        "note": "Prototype — produced via notebook, not DPS.",
+        "primaryHazards": []
+      }
+    ],
+    "inputs": [
+      {
+        "name": "date",
+        "label": "Target date",
+        "type": "string",
+        "required": true,
+        "doc": "Target acquisition date. Prototype: no DPS job exists, this is processed by hand."
+      },
+      {
+        "name": "activation_event",
+        "label": "Activation event",
+        "type": "string",
+        "required": true,
+        "doc": "Activation event, e.g. 202511_Flood_TX."
+      }
+    ]
+  }
+]

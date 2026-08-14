@@ -13,6 +13,7 @@ diff. Intentionally open — it will grow to host other VEDA Actions experiments
 ### 🗓️ **Leave Dashboard:** https://veda-leave-dashboard.netlify.app
 ### 🧭 **DSE Hub:** https://veda-dse-hub.netlify.app
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
+### 🛰️ **Algorithm Catalog:** _(Netlify site pending — base dir `algorithm-catalog`)_
 
 ## Use this action in another repo
 The report is a **reusable composite action** (`action.yml`). Any repo can import it — just point
@@ -56,6 +57,9 @@ action (`uses: ./`) and then publishes to a `fte-report/<pi>` branch + opens a l
 | `.github/workflows/leave-tracker.yml` | self-consumer that publishes the leave report to the `leave-tracker/report` branch |
 | `leave-dashboard/` | React SPA (Netlify) — calendar of who's out, person-picker, team-risk heatmap, add-person-via-PR — [live](https://veda-leave-dashboard.netlify.app) |
 | `docs/LEAVE_TRACKER.md` | Leave Tracker data model, color map, overrides, gotchas |
+| `algorithm-catalog/` | React SPA (Netlify) — filter the NASA Disasters product algorithms by hazard / date / event / sensor / product, and submit a new activation request as a prefilled PR. **No Action** — hand-curated JSON bundled at build. |
+| `.github/workflows/algorithm-catalog-validate.yml` | **the standards gate**: fails a PR whose event name isn't `YYYYMM_Hazard_Location` (same regex DPS enforces), plus typecheck + build |
+| `docs/ALGORITHM_CATALOG.md` | Algorithm Catalog data model, the two entry modes, standards enforcement, gotchas |
 
 ## Quickstart
 
