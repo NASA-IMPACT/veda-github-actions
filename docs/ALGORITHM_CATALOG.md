@@ -94,6 +94,13 @@ Hazard colors and the `auto`/`manual` product badges carry meaning and are fixed
     `algorithm-catalog/algorithm-catalog/dist`.
   Deploy after the merge lands on `main`, so the base dir exists on the built branch. Netlify
   auto-installs **Node 24** here, matching CI — no `NODE_VERSION` var needed.
+- **"Deploy Preview canceled" on a PR is usually correct, not broken.** Because the site has a base
+  directory, Netlify applies an implicit skip when the commit/PR touched nothing under
+  `algorithm-catalog/` — so a README- or docs-only PR cancels the preview on all six sites. This
+  happens whether or not `netlify.toml` sets an `ignore` filter, so omitting `ignore` does **not**
+  mean "build on every push". **A deploy preview for this app requires the PR to change a file
+  inside `algorithm-catalog/`.** Before debugging Netlify settings, check whether the PR actually
+  touched the base dir (`git diff --name-only main... -- algorithm-catalog/`).
 
 ## Run / test
 ```bash

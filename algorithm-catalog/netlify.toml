@@ -9,9 +9,15 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  # No `ignore` filter: always build & publish on a push so merged changes reliably go live.
-  # (A folder-scoped `git diff` ignore previously skipped PRODUCTION builds on the older
-  # dashboards whenever Netlify passed equal CACHED_COMMIT_REF/COMMIT_REF.)
+  # No explicit `ignore` filter. The older dashboards set one (a folder-scoped `git diff`) and it
+  # bit them: it skipped PRODUCTION builds whenever Netlify passed equal CACHED_COMMIT_REF and
+  # COMMIT_REF, silently dropping merged code. The three newest sites dropped it.
+  #
+  # Omitting it does NOT mean "build on every push". Because this site has a BASE DIRECTORY set,
+  # Netlify already applies its own implicit check and skips the build when a commit or PR touched
+  # nothing under algorithm-catalog/. That is why a README-only PR shows "Deploy Preview canceled"
+  # on all six sites — expected, not a misconfiguration. To get a deploy preview for this app, the
+  # PR has to change a file inside algorithm-catalog/.
 
 # SPA: serve index.html for any path (tabs are client-side via the URL hash).
 [[redirects]]
