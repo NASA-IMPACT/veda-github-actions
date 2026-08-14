@@ -1,0 +1,20 @@
+# Pattern B: this dashboard is its own Netlify site, connected to the repo with
+# base directory = algorithm-catalog (set in the Netlify UI). Netlify reads THIS netlify.toml.
+# There is deliberately NO root-level netlify.toml — a root config's `base` would apply to EVERY
+# site connected to the repo and hijack the other dashboards. Each dashboard owns its own
+# <app>/netlify.toml and its own independent Netlify site.
+#
+# All data is committed JSON under data/, bundled at BUILD time — no runtime fetch, no env vars,
+# no secrets. Approved PRs are what update it (Netlify rebuilds on merge).
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # No `ignore` filter: always build & publish on a push so merged changes reliably go live.
+  # (A folder-scoped `git diff` ignore previously skipped PRODUCTION builds on the older
+  # dashboards whenever Netlify passed equal CACHED_COMMIT_REF/COMMIT_REF.)
+
+# SPA: serve index.html for any path (tabs are client-side via the URL hash).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

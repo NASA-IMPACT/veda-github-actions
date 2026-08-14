@@ -66,3 +66,14 @@ leave-dashboard/dist/
 !cost-dashboard/tsconfig.json
 !cost-dashboard/tsconfig.node.json
 !cost-dashboard/public/data/*.json
+
+# Algorithm Catalog: dashboard config + the committed catalog data (algorithms/events/hazards)
+# and the submitted request files — re-included past the global *.json ignore. Unlike dse-hub
+# (which relies on `git add -f`), these negations mean a plain `git add algorithm-catalog/`
+# picks the data up, so a future contributor can't silently drop it from a commit.
+!algorithm-catalog/package.json
+!algorithm-catalog/package-lock.json
+!algorithm-catalog/tsconfig.json
+!algorithm-catalog/tsconfig.node.json
+!algorithm-catalog/data/*.json
+!algorithm-catalog/data/requests/*.json

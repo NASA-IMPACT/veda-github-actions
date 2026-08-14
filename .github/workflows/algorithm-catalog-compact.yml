@@ -1,0 +1,42 @@
+name: Algorithm Catalog — compact request files
+
+# Mirrors dse-hub-compact.yml. Submissions arrive as uniquely-named files under
+# algorithm-catalog/data/requests/ (that uniqueness is what makes two people submitting at the same
+# time conflict-free). Once merged, this folds them into the canonical data and deletes the folded
+# files, so data/requests/ stays small no matter how many activations get filed.
+#
+# [skip ci] on the commit stops this push from re-triggering the validate workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "algorithm-catalog/data/requests/**"
+  workflow_dispatch:
+
+jobs:
+  compact:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Apply requests and compact
+        run: node algorithm-catalog/scripts/compact.mjs
+
+      - name: Commit compacted canonicals (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add algorithm-catalog/data/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "chore: compact algorithm-catalog requests into canonical data [skip ci]"
+            git push
+          fi
