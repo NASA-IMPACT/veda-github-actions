@@ -79,9 +79,21 @@ Hazard colors and the `auto`/`manual` product badges carry meaning and are fixed
 - **Thumbnails are committed binaries** in `public/thumbs/` (600×400 PNG, ≤150 KB, sources and NASA
   credit lines in `public/thumbs/CREDITS.md`). `validate_data.py` fails if an algorithm's `thumb` has
   no file on disk, so a new algorithm needs its PNG in the same PR.
-- Netlify: set **base directory = `algorithm-catalog`**; the first deploy fails if run before
-  `algorithm-catalog/` exists on the built branch ("base directory not found") — **deploy after the
-  merge lands on `main`**.
+- **Netlify: base directory = `algorithm-catalog` is the ONLY field to set in the UI** — leave build
+  command and publish directory EMPTY so `algorithm-catalog/netlify.toml` is the single source
+  (`command = "npm run build"`, `publish = "dist"`, both resolved relative to the base dir).
+  Two ways this goes wrong, both ending in a 404 on `/`:
+  - **Base directory left blank** — this fails *silently*, not with "base directory not found".
+    Netlify looks for `netlify.toml` at the REPO ROOT, where there deliberately isn't one (a root
+    config's `base` would hijack all six sites), so it logs `Detected 0 framework(s)` /
+    `No build steps found` / `Starting to deploy site from '/'`, uploads ~192 raw repo files, and
+    reports a green deploy that serves no `index.html`. **Read the log for `from '/'`** — a correct
+    deploy says `from 'algorithm-catalog/dist'` and uploads ~13 files.
+  - **Publish directory also filled in** — `publish` in `netlify.toml` is relative to the base dir
+    (`dist`), but the UI field is relative to the repo root. Setting both yields
+    `algorithm-catalog/algorithm-catalog/dist`.
+  Deploy after the merge lands on `main`, so the base dir exists on the built branch. Netlify
+  auto-installs **Node 24** here, matching CI — no `NODE_VERSION` var needed.
 
 ## Run / test
 ```bash
