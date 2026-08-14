@@ -99,3 +99,51 @@ Netlify reads the `netlify.toml` inside that base, so sites are fully isolated (
 site with routing). `pr-dashboard/` is static (no build) — it fetches the report from the
 `pr-finder/report` branch at runtime (mirroring how `fte-dashboard` fetches CSVs from `fte-report/all-pis`),
 with a bundled snapshot fallback.
+
+**The base directory is the load-bearing setting, and getting it wrong fails green.** With it blank,
+Netlify looks for `netlify.toml` at the repo root — where we deliberately have none — so it runs no
+build and publishes the repo root, producing a **successful** deploy that serves a 404. There is no
+"base directory not found" error to catch it. Set base dir in the UI and leave build command and
+publish directory EMPTY, so the in-dir `netlify.toml` is the single source (its `publish` is relative
+to the base dir; the UI field is relative to the repo root — filling both yields `<app>/<app>/dist`).
+
+**Setting a base directory also gives you free per-app build skipping**, which is why the three newest
+sites carry no `ignore` filter. Netlify skips a build when the commit/PR touched nothing under the base
+dir, so a docs-only PR legitimately shows "Deploy Preview canceled" on every site. The older dashboards'
+explicit folder-scoped `git diff` ignore was worse than nothing: it also skipped **production** builds
+whenever Netlify passed equal `CACHED_COMMIT_REF`/`COMMIT_REF`, silently dropping merged code.
+
+## Algorithm Catalog — enforce the standard the upstream repo never could
+
+`disasters-product-algorithms` has no hazard field at all: hazard is a free-text token in slot 2 of an
+`activation_event` string, validated only by a shape regex. Nothing ever checked the *vocabulary*, which
+is why `Fire`/`Wildfire`, `Quake`/`Earthquake` and `Storm`/`TropicalStorm`/`Hurricane` all coexist in
+production data today. The catalog is the first place that vocabulary is written down, so it also has to
+be the place that enforces it.
+
+**One rule set, three enforcement points, mechanically kept in sync.** `src/rules.ts` is the source of
+truth; `scripts/validate_data.py` mirrors it line-for-line (stdlib-only, so CI needs no install step);
+`scripts/rules_parity_test.py` compares the two as *source text* and fails on any drift — including a
+newly exported constant the Python doesn't know about. Enforced live in the form (submit disabled while
+any error stands), over the committed data, and in CI on every PR. A shared rule set that is merely
+*documented* as duplicated will drift; this one cannot.
+
+**Deliberately stricter than upstream: exactly two underscores.** Upstream's regex ends `_.+$`, so the
+location slot swallows extras — `202501_Tropical_Cyclone_CA` passes there while silently parsing as
+hazard `Tropical`, which then becomes the GeoTIFF `HAZARD` tag. Ours ends `_[^_]+$`. This knowingly
+rejects `202501_Flood_CA_extra`, an explicit upstream pass case
+(`tests/integration/test_dps_validate.sh:41-48`). Diverging in this direction is safe: **every name we
+accept, DPS accepts too** — we only refuse ones that mis-slot the hazard. The cost is that multi-word
+*locations* also need CamelCase (`202512_Hurricane_GulfOfMexico`), so the error message quotes back what
+the name would otherwise have been read as.
+
+**Two hazard lists per product, because discovery and defaults want opposite things.** `hazards` is
+broad and drives the Algorithms-tab filter, where a false negative (missing a product that would have
+helped) is worse than a false positive. `primaryHazards` is a sparse subset and drives the Submit form's
+auto-selection, where the reverse is true — auto-selecting from the broad list proposed 28 products for
+a single hazard, which is noise, not a starting point. The validator enforces `primaryHazards ⊆ hazards`.
+
+**`.gitignore` negations instead of `git add -f`.** dse-hub relies on contributors remembering to
+force-add its JSON past the global `*.json` ignore. This app adds explicit `!` lines instead, so a plain
+`git add algorithm-catalog/` is correct and no future contributor (or agent) can silently drop the data
+from a commit. Prefer this route for new apps.

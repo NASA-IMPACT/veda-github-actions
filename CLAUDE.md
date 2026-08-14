@@ -141,6 +141,14 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   negation lines** in the root `.gitignore`, so a plain `git add algorithm-catalog/` does pick its JSON
   up — prefer that route for new apps. Check with `git check-ignore --no-index -v <path>` (plain
   `git check-ignore` lies about already-tracked files).
+- **Netlify base dir: blank fails GREEN, and "Deploy Preview canceled" is usually correct.** With no
+  base directory, Netlify reads no `netlify.toml` (there is none at the repo root, by design), logs
+  `Detected 0 framework(s)` / `Starting to deploy site from '/'`, uploads the raw repo, and reports a
+  **successful** deploy that 404s — there is no "base directory not found" error. Set base dir in the UI;
+  leave build command and publish dir EMPTY (`publish` in the toml is relative to the base dir, the UI
+  field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
+  implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
+  on all six sites** — that is expected, and it happens with or without an `ignore` filter.
 - **STAC event names need EXACTLY 2 underscores, and the catalog is deliberately stricter than
   upstream here.** Upstream `dps/_validate.sh:29-36` ends its regex with `.+`, so the LOCATION slot
   swallows extra underscores: `202501_Tropical_Cyclone_CA` passes there but silently parses as

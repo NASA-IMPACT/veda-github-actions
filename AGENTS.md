@@ -7,12 +7,20 @@ This repo is a test station for VEDA GitHub Actions + Netlify dashboards. Full c
 - **Python 3.12, standard library only** for all generators (no `pip install`, no `requests`, no
   `boto3`). AWS pricing is pulled from AWS's **public** Price List Bulk API — **no credentials**.
 - **Node 18+** for the dashboards (`cost-dashboard/`, `fte-dashboard/`, …): `cd <dir> && npm ci`.
+  CI and Netlify both run **Node 24** (Netlify auto-installs it; no `NODE_VERSION` var needed).
 - Quick checks: `python3 aws-pricing/test_generate.py` (offline golden test),
   `cd cost-dashboard && npm run typecheck && npm run build`.
+- Algorithm Catalog checks (stdlib-only, no install): `python3 algorithm-catalog/scripts/validate_data.py`
+  and `python3 algorithm-catalog/scripts/rules_parity_test.py`, then
+  `cd algorithm-catalog && npm run typecheck && npm run build`.
 
 ## Conventions
 - Match surrounding style; keep generators stdlib-only and deterministic (they take `--now`).
 - Netlify "Pattern B": each dashboard owns its `<dir>/netlify.toml`; there is **no** root netlify.toml.
+  The **base directory** is set in the Netlify UI, and build command + publish directory are left EMPTY.
+  A blank base dir fails *silently* — green deploy, 404 site, `Starting to deploy site from '/'` in the log.
+- **`algorithm-catalog/src/rules.ts` and `scripts/validate_data.py` are mirrors.** Edit one → edit the
+  other → run `scripts/rules_parity_test.py`. It fails on drift, including a new exported constant.
 
 ---
 
