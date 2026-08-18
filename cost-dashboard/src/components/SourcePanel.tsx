@@ -2,8 +2,10 @@
 // plus the exact bulk-file URL and the AWS-published version stamp for this region's data.
 import type { PricingDoc, Service } from "../types";
 
-const ORDER: Service[] = ["ec2", "s3", "rds", "lambda"];
-const SHORT: Record<Service, string> = { ec2: "EC2", s3: "S3", rds: "RDS", lambda: "Lambda" };
+// Only the live-priced services have an AWS source row ("estimate" is a manual flat figure).
+type PricedService = Exclude<Service, "estimate">;
+const ORDER: PricedService[] = ["ec2", "s3", "rds", "lambda"];
+const SHORT: Record<PricedService, string> = { ec2: "EC2", s3: "S3", rds: "RDS", lambda: "Lambda" };
 
 function fmtVersion(v: string): string {
   // AWS versions look like "20260728175247" (YYYYMMDDHHMMSS) → "2026-07-28".

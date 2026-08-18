@@ -9,7 +9,7 @@ import { buildHtml, buildMarkdown, ghNewFileUrl, slugName, REPORT_DIR } from "./
 import { ResourceCard } from "./components/ResourceCard";
 import { SourcePanel } from "./components/SourcePanel";
 
-const ADD: Service[] = ["ec2", "s3", "rds", "lambda"];
+const ADD: Service[] = ["ec2", "s3", "rds", "lambda", "estimate"];
 const WORKFLOW_URL =
   "https://github.com/NASA-IMPACT/veda-github-actions/actions/workflows/aws-pricing.yml";
 

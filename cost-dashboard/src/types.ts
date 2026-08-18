@@ -67,7 +67,7 @@ export interface Dataset {
 
 // ---- the "resource cart" (what the user builds) ----
 
-export type Service = "ec2" | "s3" | "rds" | "lambda";
+export type Service = "ec2" | "s3" | "rds" | "lambda" | "estimate";
 
 export interface Ec2Params {
   instanceType: string;
@@ -94,13 +94,20 @@ export interface LambdaParams {
   durationMs: number;
   memoryMB: number;
 }
+// A flat, user-entered monthly figure for services we don't price live (CloudFront, Amplify, Secrets
+// Manager, …). It just contributes its `monthlyUSD` to the grand total so the picture stays complete.
+export interface EstimateParams {
+  category: string;
+  monthlyUSD: number;
+}
 
 // `name` is a user label so a cart with several EC2s stays legible ("Disasters Hub API", "worker").
 export type Resource =
   | { id: string; name: string; service: "ec2"; params: Ec2Params }
   | { id: string; name: string; service: "s3"; params: S3Params }
   | { id: string; name: string; service: "rds"; params: RdsParams }
-  | { id: string; name: string; service: "lambda"; params: LambdaParams };
+  | { id: string; name: string; service: "lambda"; params: LambdaParams }
+  | { id: string; name: string; service: "estimate"; params: EstimateParams };
 
 export interface LineItem {
   label: string;

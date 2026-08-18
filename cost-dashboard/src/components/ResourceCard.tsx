@@ -1,7 +1,7 @@
 // One resource in the cart: a per-service input form + its live monthly subtotal + a breakdown.
 import { useMemo } from "react";
 import type { PricingDoc, Resource } from "../types";
-import { SERVICE_LABEL, costOf } from "../compute";
+import { SERVICE_LABEL, costOf, ESTIMATE_CATEGORIES } from "../compute";
 import { money, rate } from "../format";
 
 interface Props {
@@ -149,6 +149,17 @@ export function ResourceCard({ resource, pricing, onChange, onRemove }: Props) {
             <Num label="Requests / month" value={resource.params.requests} min={0} step={100000} onChange={(n) => set({ requests: n })} />
             <Num label="Avg duration" value={resource.params.durationMs} min={0} step={10} onChange={(n) => set({ durationMs: n })} suffix="ms" />
             <Num label="Memory" value={resource.params.memoryMB} min={128} step={64} onChange={(n) => set({ memoryMB: n })} suffix="MB" />
+          </>
+        )}
+
+        {resource.service === "estimate" && (
+          <>
+            <Sel label="Service" value={resource.params.category}
+                 onChange={(v) => set({ category: v })}
+                 options={ESTIMATE_CATEGORIES.map((c) => ({ value: c, label: c }))} />
+            <Num label="Est. monthly cost" value={resource.params.monthlyUSD} min={0} step={1}
+                 onChange={(n) => set({ monthlyUSD: n })} suffix="$/mo"
+                 hint="Rough flat figure — added to the total" />
           </>
         )}
       </div>
