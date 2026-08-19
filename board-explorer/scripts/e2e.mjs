@@ -2,7 +2,7 @@
 //
 //   npm run dev                                    # in another terminal
 //   node scripts/e2e.mjs                           # defaults to http://localhost:5183
-//   node scripts/e2e.mjs https://veda-board-explorer.netlify.app
+//   node scripts/e2e.mjs https://veda-projectboard-dashboard.netlify.app
 //   SHOTS=1 node scripts/e2e.mjs                   # also write screenshots to scripts/shots/
 //
 // Playwright is deliberately NOT a devDependency — this app's package.json stays React-only so

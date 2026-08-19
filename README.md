@@ -15,7 +15,7 @@ VEDA Actions experiments.
 ### 🧭 **DSE Hub:** https://veda-dse-hub.netlify.app
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
 ### 🛰️ **Algorithm Catalog:** https://veda-algorithm-catalog.netlify.app
-### 📋 **Board Explorer:** https://veda-board-explorer.netlify.app
+### 📋 **Board Explorer:** https://veda-projectboard-dashboard.netlify.app
 
 ## Reusable actions
 Each action is a **composite** you import with `uses:`. One repo exposes many via subfolders.

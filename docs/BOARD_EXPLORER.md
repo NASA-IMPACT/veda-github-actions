@@ -3,7 +3,8 @@
 A Vite + React + TS app that makes a GitHub Projects v2 board **searchable, filterable and
 scannable**. Its own Netlify site (Pattern B, base dir = `board-explorer`). Light/dark, default dark.
 
-Live board it mirrors: <https://github.com/orgs/Disasters-Learning-Portal/projects/5> (408 items).
+**Live:** <https://veda-projectboard-dashboard.netlify.app>
+Board it mirrors: <https://github.com/orgs/Disasters-Learning-Portal/projects/5> (~410 items).
 
 ## Why it exists
 GitHub's Projects UI hides its filter vocabulary behind one opaque box, has no free-text search
