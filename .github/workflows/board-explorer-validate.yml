@@ -1,0 +1,45 @@
+name: Board Explorer checks
+
+# PR gate for board-explorer/. Everything here is offline: the golden test runs the generator's
+# flattener against a canned GraphQL bundle, and the query-grammar suite runs against the
+# committed board snapshot. No token, no network, no browser.
+on:
+  pull_request:
+    paths:
+      - "board-explorer/**"
+      - ".github/workflows/board-explorer*.yml"
+  push:
+    branches: [main]
+    paths:
+      - "board-explorer/**"
+      - ".github/workflows/board-explorer*.yml"
+
+jobs:
+  generator:
+    name: Generator golden test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Stdlib-only Python, so there is deliberately no install step.
+      - name: Flattener golden test
+        run: python3 board-explorer/scripts/test_generate.py
+
+  app:
+    name: Query grammar + typecheck + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: board-explorer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: board-explorer/package-lock.json
+      - run: npm ci
+      # Node strips the TypeScript types itself — no test framework, no extra dependency.
+      - name: Query grammar + CSV test
+        run: node scripts/test_search.ts
+      - run: npm run typecheck
+      - run: npm run build

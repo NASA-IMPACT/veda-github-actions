@@ -1,0 +1,14 @@
+{
+  "boards": {
+    "disasters-learning-portal-5": {
+      "file": "board_disasters-learning-portal-5.json",
+      "generated": "2026-08-19T14:56:49Z",
+      "items": 408,
+      "title": "Disasters Learning Portal",
+      "url": "https://github.com/orgs/Disasters-Learning-Portal/projects/5"
+    }
+  },
+  "defaultBoard": "disasters-learning-portal-5",
+  "generated": "2026-08-19T14:56:49Z",
+  "schemaVersion": 1
+}

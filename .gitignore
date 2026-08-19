@@ -77,3 +77,15 @@ leave-dashboard/dist/
 !algorithm-catalog/tsconfig.node.json
 !algorithm-catalog/data/*.json
 !algorithm-catalog/data/requests/*.json
+
+# Board Explorer: dashboard config, the bundled board snapshot the app falls back to, and the
+# generator's offline fixture + golden — re-included past the global *.json ignore, the same way
+# algorithm-catalog does it, so a plain `git add board-explorer/` picks everything up and nobody
+# can silently ship the app without its data. (Verify with `git check-ignore --no-index -v <path>`;
+# plain `git check-ignore` lies about already-tracked files.)
+!board-explorer/package.json
+!board-explorer/package-lock.json
+!board-explorer/tsconfig.json
+!board-explorer/tsconfig.node.json
+!board-explorer/public/data/*.json
+!board-explorer/scripts/fixtures/*.json
