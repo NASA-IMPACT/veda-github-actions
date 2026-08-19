@@ -1,0 +1,26 @@
+# Pattern B: this dashboard is its own Netlify site, connected to the repo with
+# base directory = board-explorer (set in the Netlify UI). Netlify reads THIS netlify.toml.
+# There is deliberately NO root-level netlify.toml — a root config's `base` would apply to EVERY
+# site connected to the repo and hijack the other dashboards. Each dashboard owns its own
+# <app>/netlify.toml and its own independent Netlify site.
+#
+# Board data is fetched at RUNTIME from the `board-explorer/data` branch (src/data.ts), so a
+# board refresh does not need a redeploy — the scheduled sync workflow is what updates it. The
+# committed public/data/ snapshot only serves as the fallback when that branch is unreachable.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # No explicit `ignore` filter. The older dashboards set one (a folder-scoped `git diff`) and it
+  # bit them: it skipped PRODUCTION builds whenever Netlify passed equal CACHED_COMMIT_REF and
+  # COMMIT_REF, silently dropping merged code. The newer sites dropped it.
+  #
+  # Omitting it does NOT mean "build on every push". Because this site has a BASE DIRECTORY set,
+  # Netlify already applies its own implicit check and skips the build when a commit or PR touched
+  # nothing under board-explorer/. That is why a README-only PR shows "Deploy Preview canceled"
+  # on all the sites — expected, not a misconfiguration.
+
+# SPA: serve index.html for any path (view + filter state is client-side, in the URL hash).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

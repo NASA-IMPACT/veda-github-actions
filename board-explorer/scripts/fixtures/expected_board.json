@@ -1,0 +1,323 @@
+{
+  "board": {
+    "closed": false,
+    "number": 7,
+    "owner": "Test-Org",
+    "owner_type": "org",
+    "public": true,
+    "short_description": "A board used by the offline golden test.",
+    "title": "Fixture Board",
+    "url": "https://github.com/orgs/Test-Org/projects/7"
+  },
+  "fields": [
+    {
+      "id": "F_status",
+      "name": "Status",
+      "options": [
+        {
+          "color": "GREEN",
+          "name": "Todo"
+        },
+        {
+          "color": "YELLOW",
+          "name": "In Progress"
+        },
+        {
+          "color": "PURPLE",
+          "name": "Done"
+        }
+      ],
+      "type": "single_select"
+    },
+    {
+      "id": "F_sprint",
+      "iterations": [
+        {
+          "duration": 14,
+          "startDate": "2026-01-05",
+          "title": "Sprint 0"
+        },
+        {
+          "duration": 14,
+          "startDate": "2026-01-19",
+          "title": "Sprint 1"
+        }
+      ],
+      "name": "Sprint",
+      "type": "iteration"
+    },
+    {
+      "id": "F_points",
+      "name": "Points",
+      "type": "number"
+    },
+    {
+      "id": "F_notes",
+      "name": "Notes",
+      "type": "text"
+    },
+    {
+      "id": "F_start",
+      "name": "Start Date",
+      "type": "date"
+    }
+  ],
+  "generated": "2026-01-21T00:00:00Z",
+  "items": [
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "hubot",
+      "body_excerpt": "Compare SQS and Kafka for the dead-letter path.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-01-20T08:00:00Z",
+      "draft": true,
+      "fields": {
+        "Status": "Todo"
+      },
+      "id": "PVTI_draft_item",
+      "issue_type": null,
+      "kind": "draft",
+      "labels": [],
+      "milestone": null,
+      "number": null,
+      "repo": "",
+      "state": "open",
+      "state_reason": null,
+      "title": "Spike: evaluate queue backends",
+      "updated": "2026-01-20T08:00:00Z",
+      "url": ""
+    },
+    {
+      "archived": true,
+      "assignees": [],
+      "author": "octocat",
+      "body_excerpt": "Initial scaffolding.",
+      "closed": "2025-12-20T08:00:00Z",
+      "comments": 0,
+      "created": "2025-12-01T08:00:00Z",
+      "draft": false,
+      "fields": {
+        "Sprint": {
+          "duration": 14,
+          "startDate": "2026-01-05",
+          "title": "Sprint 0"
+        }
+      },
+      "id": "PVTI_archived_issue",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 1,
+      "repo": "Test-Org/repo-a",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Bootstrap the repo",
+      "updated": "2025-12-20T08:00:00Z",
+      "url": "https://github.com/Test-Org/repo-a/issues/1"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "hubot",
+      "body_excerpt": "Superseded by the new exporter.",
+      "closed": "2026-01-15T09:00:00Z",
+      "comments": 0,
+      "created": "2026-01-02T09:00:00Z",
+      "draft": false,
+      "fields": {
+        "Status": "Done"
+      },
+      "id": "PVTI_closed_issue",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 9,
+      "repo": "Test-Org/repo-a",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "title": "Drop the legacy exporter",
+      "updated": "2026-01-15T09:00:00Z",
+      "url": "https://github.com/Test-Org/repo-a/issues/9"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "octocat",
+        "hubot"
+      ],
+      "author": "octocat",
+      "body_excerpt": "The ingest pipeline drops records when S3 throttles. Add retries and a dead-letter path.",
+      "closed": null,
+      "comments": 4,
+      "created": "2026-01-06T10:00:00Z",
+      "draft": false,
+      "fields": {
+        "Notes": "needs review from infra",
+        "Points": 5,
+        "Sprint": {
+          "duration": 14,
+          "startDate": "2026-01-19",
+          "title": "Sprint 1"
+        },
+        "Start Date": "2026-01-19",
+        "Status": "In Progress"
+      },
+      "id": "PVTI_open_issue",
+      "issue_type": "Bug",
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "infra"
+      ],
+      "milestone": "Q1 hardening",
+      "number": 12,
+      "parent": {
+        "number": 2,
+        "title": "Reliability epic",
+        "url": "https://github.com/Test-Org/repo-a/issues/2"
+      },
+      "repo": "Test-Org/repo-a",
+      "state": "open",
+      "state_reason": null,
+      "sub": {
+        "completed": 1,
+        "total": 3
+      },
+      "title": "Harden the ingest pipeline",
+      "updated": "2026-01-20T10:00:00Z",
+      "url": "https://github.com/Test-Org/repo-a/issues/12"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "octocat"
+      ],
+      "author": "octocat",
+      "body_excerpt": "Closes #12.",
+      "closed": "2026-01-12T12:00:00Z",
+      "comments": 2,
+      "created": "2026-01-10T12:00:00Z",
+      "diff": {
+        "additions": 120,
+        "deletions": 8,
+        "files": 4
+      },
+      "draft": false,
+      "fields": {
+        "Status": "Done"
+      },
+      "id": "PVTI_merged_pr",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [
+        "infra"
+      ],
+      "milestone": null,
+      "number": 30,
+      "repo": "Test-Org/repo-b",
+      "review_decision": "approved",
+      "state": "merged",
+      "state_reason": null,
+      "title": "Add retry to the S3 writer",
+      "updated": "2026-01-12T12:00:00Z",
+      "url": "https://github.com/Test-Org/repo-b/pull/30"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "hubot",
+      "body_excerpt": "Closing in favour of #30.",
+      "closed": "2026-01-13T12:00:00Z",
+      "comments": 1,
+      "created": "2026-01-11T12:00:00Z",
+      "diff": {
+        "additions": 3,
+        "deletions": 400,
+        "files": 11
+      },
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_closed_pr",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [],
+      "milestone": null,
+      "number": 31,
+      "repo": "Test-Org/repo-b",
+      "review_decision": null,
+      "state": "closed",
+      "state_reason": null,
+      "title": "Abandoned refactor",
+      "updated": "2026-01-13T12:00:00Z",
+      "url": "https://github.com/Test-Org/repo-b/pull/31"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "octocat",
+      "body_excerpt": "Not ready.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-01-18T12:00:00Z",
+      "diff": {
+        "additions": 40,
+        "deletions": 0,
+        "files": 2
+      },
+      "draft": true,
+      "fields": {},
+      "id": "PVTI_draft_pr",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [],
+      "milestone": null,
+      "number": 32,
+      "repo": "Test-Org/repo-b",
+      "review_decision": "review_required",
+      "state": "open",
+      "state_reason": null,
+      "title": "WIP: dead-letter queue",
+      "updated": "2026-01-18T12:00:00Z",
+      "url": "https://github.com/Test-Org/repo-b/pull/32"
+    }
+  ],
+  "labels": [
+    {
+      "color": "d73a4a",
+      "name": "bug"
+    },
+    {
+      "color": "0e8a16",
+      "name": "infra"
+    }
+  ],
+  "people": [
+    {
+      "avatar": "https://avatars.example/hubot",
+      "login": "hubot",
+      "name": "hubot"
+    },
+    {
+      "avatar": "https://avatars.example/octocat",
+      "login": "octocat",
+      "name": "Mona Lisa"
+    }
+  ],
+  "repos": [
+    "Test-Org/repo-a",
+    "Test-Org/repo-b"
+  ],
+  "schemaVersion": 1,
+  "stats": {
+    "closed": 4,
+    "drafts": 1,
+    "issues": 3,
+    "items": 7,
+    "open": 3,
+    "prs": 3
+  }
+}

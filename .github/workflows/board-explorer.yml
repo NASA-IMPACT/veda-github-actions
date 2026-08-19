@@ -1,0 +1,112 @@
+name: Board Explorer sync
+
+# Mirrors a GitHub Projects v2 board into JSON on the `board-explorer/data` branch, which the
+# Board Explorer Netlify site fetches at runtime.
+#
+# Why a mirror at all: Projects v2 cannot be read without a token (the default GITHUB_TOKEN can't
+# either — it lacks read:project), and a static site cannot hold one. So the read happens here,
+# with PROJECT_TOKEN_FOR_BOARD_READS, and the app only ever reads public JSON.
+on:
+  workflow_dispatch:
+    inputs:
+      board-url:
+        description: 'Projects v2 board URL to mirror'
+        type: string
+        required: false
+        default: 'https://github.com/orgs/Disasters-Learning-Portal/projects/5'
+      body-chars:
+        description: 'How much of each item body to keep for search'
+        type: string
+        required: false
+        default: '600'
+  schedule:
+    # A board is a live planning surface, unlike the weekly reports in this repo — four refreshes
+    # a day keeps the dashboard close to the truth without hammering the GraphQL API.
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write          # publish the export to the board-explorer/data branch
+
+concurrency:
+  group: board-explorer-sync
+  cancel-in-progress: true
+
+env:
+  DASHBOARD_URL: "https://veda-board-explorer.netlify.app"
+
+jobs:
+  sync:
+    name: Mirror the board to JSON
+    runs-on: ubuntu-latest
+    steps:
+      - name: "1 · Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the data branch can be based/pushed
+
+      - name: "2 · Export the board"
+        env:
+          # The generator shells out to `gh`, which reads either of these. A classic PAT needs
+          # repo + read:org + project; the default GITHUB_TOKEN cannot read Projects v2.
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+        run: |
+          python3 board-explorer/scripts/generate_board_export.py \
+            --project-url "${{ github.event.inputs.board-url || 'https://github.com/orgs/Disasters-Learning-Portal/projects/5' }}" \
+            --body-chars "${{ github.event.inputs.body-chars || '600' }}" \
+            --out-dir reports \
+            --now "$(date -u +%Y-%m-%dT%H:%M:%SZ)" | tee "$RUNNER_TEMP/summary.txt"
+
+      - name: "3 · Job summary"
+        run: |
+          {
+            echo "📋 **Board Explorer →** ${DASHBOARD_URL}"
+            echo ""
+            echo '```'
+            cat "$RUNNER_TEMP/summary.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "4 · Upload the export as an artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: board-export
+          path: reports/
+
+      - name: "5 · Publish to the board-explorer/data branch"
+        run: |
+          BR="board-explorer/data"
+          # Stash this run's output AND the generator before switching branches — the data branch
+          # carries neither, and the checkout would clobber reports/.
+          mkdir -p "$RUNNER_TEMP/out" && cp -R reports/. "$RUNNER_TEMP/out/"
+          cp board-explorer/scripts/generate_board_export.py "$RUNNER_TEMP/gen.py"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BR" || true
+          if git rev-parse --verify --quiet "origin/$BR"; then
+            git checkout -f -B "$BR" "origin/$BR"   # continue history: other boards persist
+          else
+            git checkout -f -B "$BR"
+          fi
+          mkdir -p reports
+          # Keep only board exports + the index (drop anything inherited from main).
+          find reports -maxdepth 1 -type f \
+            ! -name 'board_*.json' ! -name 'index.json' -delete 2>/dev/null || true
+          # Copy in THIS run's board file (same board overwrites; a new board adds).
+          cp "$RUNNER_TEMP/out/"board_*.json reports/
+          # Rebuild index.json from EVERY board file now on the branch (no network).
+          python3 "$RUNNER_TEMP/gen.py" --reindex-only reports --now "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git add -f reports          # the root .gitignore has a global *.json
+          if git diff --cached --quiet; then
+            echo "No board changes for $BR."
+          else
+            git commit -m "Board Explorer export (run ${{ github.run_id }})"
+            git push origin "$BR"
+            echo "Published to branch: $BR"
+          fi
+
+      - name: "6 · Restore the default checkout"
+        # Step 5 left the tree on the data branch; put the run's commit back so the job's post
+        # phase resolves against the same tree it started from.
+        if: always()
+        run: git checkout -f "${{ github.sha }}" 2>/dev/null || git checkout -f main

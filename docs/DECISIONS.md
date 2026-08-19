@@ -2,6 +2,53 @@
 
 Short ADRs for non-obvious choices. Newest first.
 
+## Board Explorer — mirror the board to a branch; one query string is the source of truth
+
+**Mirror in CI, not a token in the browser.** Projects v2 cannot be read anonymously, and the
+default `GITHUB_TOKEN` can't read it either (no `read:project`). The alternative to a mirror was
+having each viewer paste their own PAT into localStorage — always-live, but it puts a
+`repo`-scoped credential in a static page and asks every reader to mint one. So a scheduled Action
+reads the board with `PROJECT_TOKEN_FOR_BOARD_READS` and publishes JSON to `board-explorer/data`;
+the app only ever fetches public JSON, works for private boards, and costs the reader nothing. The
+price is freshness, bounded by the 6-hourly cron, and the header states `live`/`snapshot` and the
+generation time rather than pretending to be real-time.
+
+**GraphQL, not `gh project item-list`.** The two older board readers here use the `gh` CLI's
+flattened output, which is simpler and was the right call for them. It exposes no state, no
+`merged`, no label colours, no avatars, no milestone, no timestamps and no sub-issue progress —
+i.e. most of what this app renders. So this generator writes its own ProjectV2 query. It still
+reuses `pr-finder`'s `gh_graphql()`/`sanitize()` and `aws-pricing`'s `write_json`/`--reindex-only`.
+
+**Board fields are discovered, not hardcoded**, and GitHub's *built-in* columns are dropped from
+the field list because their values arrive off `content` and are already top-level item keys —
+keeping them would give the UI a second, permanently empty picker for Assignees, Labels, Milestone
+and friends.
+
+**Draftness is a flag, not a state.** `state` is `open | closed | merged`. A draft PR is still an
+*open* PR on GitHub, so folding draft into the state enum would make `is:open` skip it.
+
+**One query string is the single source of truth — a deliberate departure from
+`algorithm-catalog/src/filters/filter.ts`.** That app's rule is "state starts fully selected; a
+facet narrows only as a strict subset", which suits a small closed vocabulary (10 hazards, 4
+modalities). This board has 33 sprints, 23 labels and 22 people, where "select everything, then
+untick 21 things to see one" is the wrong gesture — and where an empty facet meaning
+"unconstrained" is exactly what `label:bug` already means in GitHub's grammar. So the pickers,
+quick pills and chips all read their state out of the parsed query and write changes back into it.
+The box and the chips cannot drift apart, and the shareable URL is just the query.
+
+**Comma is OR, a repeated qualifier is AND** — GitHub's documented semantics, and load-bearing.
+Each token becomes its own group and matching needs a hit in *every* group, so `label:a,b` is
+either, `label:a label:b` is both, and `is:open is:closed` is a contradiction returning nothing.
+An early implementation flattened the groups, which silently turned that contradiction into
+"everything"; the e2e suite now pins it.
+
+**Label chips keep their hue and adapt only their lightness.** The house rule is "only chrome
+adapts, data colours stay fixed", but a raw GitHub label hex is often illegible on the opposite
+background (`#0e8a16` on near-black, `#fbca04` on white). The hue is what identifies the label, so
+it is held fixed while the text is mixed toward the theme's `--ink` until it is readable — the same
+move `leave-dashboard`'s RiskView makes with `color-mix(… var(--red) …)`. The e2e asserts the chip
+background is byte-identical across themes while the text colour changes.
+
 ## Dashboards — light/dark mode via `data-theme` + CSS vars, default dark
 
 All three dashboards already themed through CSS custom properties, so dark mode is additive: light

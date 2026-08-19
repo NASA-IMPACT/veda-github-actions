@@ -102,12 +102,25 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   `YYYYMM_Hazard_Location` regex is lifted verbatim from upstream `dps/_validate.sh:29-36`),
   mirrored 1:1 in `scripts/validate_data.py`, kept honest by `scripts/rules_parity_test.py`, and
   gated in CI by `.github/workflows/algorithm-catalog-validate.yml`. See `docs/ALGORITHM_CATALOG.md`.
+- `board-explorer/` — Vite React SPA; `board-explorer/netlify.toml` (base=`board-explorer`, build,
+  publish `dist`). Makes a **Projects v2 board searchable**: free-text search plus **GitHub's own
+  Projects filter grammar made clickable**, over **Table / By-assignee / Timeline** views. Reads
+  `index.json` → `board_<slug>.json` at runtime from the **`board-explorer/data`** branch
+  (commit-SHA raw URL → branch path → bundled `public/data/` snapshot), published 6-hourly by
+  `.github/workflows/board-explorer.yml` from `board-explorer/scripts/generate_board_export.py`
+  (stdlib Python + `gh`; **raw ProjectV2 GraphQL**, NOT `gh project item-list`, which exposes no
+  state/merged/label-colours/avatars/timestamps/sub-issue-progress). **Board fields are discovered,
+  never hardcoded** — one filter picker per field; GitHub's built-in columns are dropped since their
+  values already ride on each item. **ONE query string is the source of truth**: pickers/pills/chips
+  read from it and write back into it (a deliberate departure from algorithm-catalog's
+  "fully-selected = unfiltered" model — wrong for 33 sprints and 22 people). **Comma = OR, repeated
+  qualifier = AND**, so `is:open is:closed` correctly returns nothing. See `docs/BOARD_EXPLORER.md`.
 
-## Theming (light/dark — the fte / leave / pr dashboards; dse-hub is USWDS light-only)
+## Theming (light/dark — the fte / leave / pr / board-explorer dashboards; dse-hub + algorithm-catalog are light-only)
 Each dashboard themes through **CSS custom properties**: light values live in `:root`, a
 `:root[data-theme="dark"]` block overrides them, and an attribute on `<html>` (`data-theme`) switches
 modes. **Default is dark**; a manual toggle is remembered in `localStorage` under a per-app key
-(`fte-theme` / `leave-theme` / `pr-theme`). Each `index.html` has a tiny inline **no-FOUC script** that
+(`fte-theme` / `leave-theme` / `pr-theme` / `board-theme`). Each `index.html` has a tiny inline **no-FOUC script** that
 sets the attribute before first paint + `<meta name="color-scheme" content="dark light">`.
 - **Only chrome adapts. Data colors stay fixed** — the person/status palettes (`leave-dashboard/src/colors.ts`)
   and the USWDS PR tag colors (merged/closed/open) carry meaning and must NOT invert.
@@ -137,10 +150,12 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 - **Root `.gitignore` has `*.json`.** `git add <dir>` **silently skips** needed JSON — each dashboard's
   `package.json`/`tsconfig*.json`, `dse-hub/data/*.json`, `leave-dashboard/public/data/*.json`. You must
   **`git add -f`** them (that's how the sibling dashboards' JSON got committed). A `dse-hub` change touching
-  data won't be in the commit unless force-added. **Exception: `algorithm-catalog/` has explicit `!`
-  negation lines** in the root `.gitignore`, so a plain `git add algorithm-catalog/` does pick its JSON
-  up — prefer that route for new apps. Check with `git check-ignore --no-index -v <path>` (plain
-  `git check-ignore` lies about already-tracked files).
+  data won't be in the commit unless force-added. **Exception: `algorithm-catalog/` and `board-explorer/`
+  have explicit `!` negation lines** in the root `.gitignore`, so a plain `git add <app>/` does pick their
+  JSON up — prefer that route for new apps. **`git check-ignore` misleads twice:** plain `git check-ignore`
+  lies about already-tracked files, and even `--no-index -v` **exits 0 when ANY rule matches, negations
+  included** — so an exit-status test calls a correctly re-included file "IGNORED". Read the rule it prints
+  (a leading `!` = included); the unambiguous check is `git add --dry-run <dir>`.
 - **Netlify base dir: blank fails GREEN, and "Deploy Preview canceled" is usually correct.** With no
   base directory, Netlify reads no `netlify.toml` (there is none at the repo root, by design), logs
   `Detected 0 framework(s)` / `Starting to deploy site from '/'`, uploads the raw repo, and reports a
@@ -148,7 +163,7 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   leave build command and publish dir EMPTY (`publish` in the toml is relative to the base dir, the UI
   field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
   implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
-  on all six sites** — that is expected, and it happens with or without an `ignore` filter.
+  on all seven sites** — that is expected, and it happens with or without an `ignore` filter.
 - **STAC event names need EXACTLY 2 underscores, and the catalog is deliberately stricter than
   upstream here.** Upstream `dps/_validate.sh:29-36` ends its regex with `.+`, so the LOCATION slot
   swallows extra underscores: `202501_Tropical_Cyclone_CA` passes there but silently parses as
@@ -176,3 +191,8 @@ Algorithm Catalog: `algorithm-catalog/src/{types,rules,data,tabs,App}.{ts,tsx}`,
 `algorithm-catalog/src/{filters,catalog,events,request}/`, `algorithm-catalog/data/*.json`,
 `algorithm-catalog/scripts/{validate_data.py,rules_parity_test.py,compact.mjs}`,
 `.github/workflows/algorithm-catalog-{validate,compact}.yml`, `docs/ALGORITHM_CATALOG.md`.
+Board Explorer: `board-explorer/src/{types,data,search,filter,urlState,colors,csv,theme,App}.{ts,tsx}`,
+`board-explorer/src/components/{FilterBar,MultiPicker,Chips,ItemDetail,Header}.tsx`,
+`board-explorer/src/views/{Table,Assignee,Timeline}View.tsx`,
+`board-explorer/scripts/{generate_board_export.py,test_generate.py,test_search.ts,e2e.mjs}`,
+`.github/workflows/board-explorer{,-validate}.yml`, `docs/BOARD_EXPLORER.md`.

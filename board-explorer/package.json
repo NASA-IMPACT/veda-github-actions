@@ -1,0 +1,24 @@
+{
+  "name": "board-explorer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Board Explorer — a searchable, filterable view of a GitHub Projects v2 board. Free-text search plus GitHub's own filter vocabulary made clickable, over Table / By Assignee / Timeline views. Data is mirrored to the board-explorer/data branch by a scheduled Action and fetched at runtime.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.9"
+  }
+}
