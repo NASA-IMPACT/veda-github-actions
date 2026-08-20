@@ -1,0 +1,280 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import TypeBadge from "../components/TypeBadge.astro";
+import TagChip from "../components/TagChip.astro";
+
+interface Props {
+  entry: CollectionEntry<"catalog">;
+}
+const { entry } = Astro.props;
+const {
+  title,
+  description,
+  type,
+  tags,
+  limitations,
+  repo,
+  homepage,
+  devSuggestion,
+  author,
+  dateAdded,
+  solves,
+} = entry.data;
+const dateStr = dateAdded.toISOString().slice(0, 10);
+---
+
+<BaseLayout title={`${title} · veda-app-catalog`} description={description}>
+  <main class="wrap entry" data-pagefind-body>
+    <a class="entry__back" href="/">← All entries</a>
+
+    <header class="entry__head">
+      <TypeBadge type={type} />
+      <h1 class="entry__title" data-pagefind-meta="title">{title}</h1>
+      <p class="entry__desc" data-pagefind-meta="description">{description}</p>
+
+      {/* Facets Pagefind indexes for filtered search */}
+      <span class="visually-hidden" data-pagefind-filter="type">{type}</span>
+      {tags.map((t) => <span class="visually-hidden" data-pagefind-filter="tag">{t}</span>)}
+
+      <div class="entry__meta">
+        {homepage && <a class="entry__cta" href={homepage} rel="noopener">Open the app ↗</a>}
+        <a
+          class:list={["entry__cta", homepage && "entry__cta--ghost"]}
+          href={repo}
+          rel="noopener">View source ↗</a
+        >
+        <span class="entry__by">by {author} · added {dateStr}</span>
+      </div>
+
+      {
+        tags.length > 0 && (
+          <div class="entry__tags">
+            {tags.map((t) => (
+              <TagChip tag={t} />
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    {
+      solves && (
+        <section class="solves" aria-labelledby="solves-h">
+          <h2 id="solves-h" class="solves__title">◎ What it solves</h2>
+          <p class="solves__text">{solves}</p>
+        </section>
+      )
+    }
+
+    {/* Limitations & risks — required (>=1), rendered prominently before the docs body. */}
+    <section id="limitations" class="limits" aria-labelledby="limits-h" data-pagefind-ignore="all">
+      <h2 id="limits-h" class="limits__title">⚠ Limitations &amp; Risks</h2>
+      <p class="limits__note">
+        Every catalog entry must acknowledge at least one limitation or risk.
+      </p>
+      <ul class="limits__list">
+        {limitations.map((l) => <li>{l}</li>)}
+      </ul>
+    </section>
+
+    <article class="prose">
+      <slot />
+    </article>
+
+    {
+      devSuggestion && (
+        <section class="tip" aria-labelledby="tip-h">
+          <h2 id="tip-h" class="tip__title">🛠 Developer&rsquo;s suggestion</h2>
+          <p class="tip__text">{devSuggestion.text}</p>
+          {devSuggestion.alias && (
+            <pre class="tip__alias"><code>{devSuggestion.alias}</code></pre>
+          )}
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>
+
+<style>
+  .entry {
+    max-width: 780px;
+    padding-top: 28px;
+  }
+  .entry__back {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  .entry__head {
+    margin: 14px 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .entry__title {
+    margin: 4px 0 0;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: -0.03em;
+  }
+  .entry__desc {
+    margin: 0;
+    font-size: 1.08rem;
+    color: var(--ink-2);
+  }
+  .entry__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .entry__cta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    background: var(--ink);
+    color: var(--paper-2);
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+  .entry__cta:hover {
+    background: var(--accent-ink);
+    text-decoration: none;
+  }
+  .entry__cta--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .entry__cta--ghost:hover {
+    background: transparent;
+    color: var(--accent-ink);
+    border-color: var(--ink-3);
+  }
+  .entry__by {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+  }
+  .entry__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .solves {
+    margin: 26px 0;
+    background: color-mix(in srgb, var(--focus) 7%, var(--paper-2));
+    border: 1px solid color-mix(in srgb, var(--focus) 26%, transparent);
+    border-left: 4px solid var(--focus);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .solves__title {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    color: #1f5a54;
+  }
+  .solves__text {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .limits {
+    margin: 26px 0;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-line);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .limits__title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--warn-ink);
+  }
+  .limits__note {
+    margin: 4px 0 10px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-3);
+  }
+  .limits__list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--ink);
+  }
+
+  /* developer's suggestion (tip) */
+  .tip {
+    margin: 26px 0;
+    background: #e8f1ef;
+    border: 1px solid #a9cfc9;
+    border-left: 4px solid var(--focus);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .tip__title {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    color: #1f5a54;
+  }
+  .tip__text {
+    margin: 0;
+    color: var(--ink);
+  }
+  .tip__alias {
+    margin: 12px 0 0;
+    background: #14130f;
+    color: #f4f1ea;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 0.84rem;
+  }
+
+  /* docs body */
+  .prose {
+    margin-top: 28px;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .prose :global(h2) {
+    margin: 28px 0 10px;
+    font-size: 1.3rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 6px;
+  }
+  .prose :global(h3) {
+    margin: 22px 0 8px;
+    font-size: 1.08rem;
+  }
+  .prose :global(p) {
+    color: var(--ink-2);
+  }
+  .prose :global(a) {
+    color: var(--accent-ink);
+    text-decoration: underline;
+  }
+  .prose :global(ul) {
+    color: var(--ink-2);
+  }
+  .prose :global(pre) {
+    background: #14130f;
+    color: #f4f1ea;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 0.86rem;
+  }
+  .prose :global(code) {
+    font-size: 0.9em;
+  }
+  .prose :global(:not(pre) > code) {
+    background: var(--line-2);
+    padding: 0.1em 0.4em;
+    border-radius: 5px;
+  }
+</style>

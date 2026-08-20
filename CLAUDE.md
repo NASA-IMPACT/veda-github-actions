@@ -115,6 +115,16 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   read from it and write back into it (a deliberate departure from algorithm-catalog's
   "fully-selected = unfiltered" model — wrong for 33 sprints and 22 people). **Comma = OR, repeated
   qualifier = AND**, so `is:open is:closed` correctly returns nothing. See `docs/BOARD_EXPLORER.md`.
+- `app-catalog/` — **the front door to this repo, and the ONLY app here that is not Vite+React.**
+  **Astro 5 (static, no adapter) + `@astrojs/mdx` + Pagefind 1.x, Node 24 (`.nvmrc`)**;
+  `app-catalog/netlify.toml` (base=`app-catalog`, build, publish `dist`). One entry = one MDX file in
+  `src/content/catalog/`; filename = slug = route. **`src/content.config.ts` is the single source of
+  truth** for entry fields (Zod) and owns `ENTRY_TYPES` + `TYPE_HUES`. Modelled on
+  `NASA-IMPACT/odsi-app-catalog`. **Two fields are REQUIRED and build-gated: `limitations` (min 1)
+  and `solves`** — `astro build` fails on a missing/empty one, so "every entry says what it costs you
+  and what it removes" is enforced, not reviewed. Search = **Pagefind** (full-text, build-only) +
+  **DOM** (type/tag facets, always work); only detail pages are indexed (`data-pagefind-body`), and
+  the Limitations panel is `data-pagefind-ignore`. See `docs/APP_CATALOG.md`.
 
 ## Theming (light/dark — the fte / leave / pr / board-explorer dashboards; dse-hub + algorithm-catalog are light-only)
 Each dashboard themes through **CSS custom properties**: light values live in `:root`, a
@@ -163,7 +173,16 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   leave build command and publish dir EMPTY (`publish` in the toml is relative to the base dir, the UI
   field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
   implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
-  on all seven sites** — that is expected, and it happens with or without an `ignore` filter.
+  on all eight sites** — that is expected, and it happens with or without an `ignore` filter.
+- **`app-catalog/` is Astro, and two things there bite that never bite in the Vite apps.** (1) **MDX
+  parses markdown inside your inline SVG**: bare text with a leading-space `_` opens an emphasis span
+  and `[^x]` reads as a footnote reference, which **silently truncates the rest of the `<svg>`** — no
+  error, the figure just ends early. Wrap such text in a `{"string literal"}`. Catch it by comparing
+  `grep -c '<text' <entry>.mdx` against the built `dist/catalog/<slug>/index.html`. (2) **Astro scopes
+  component styles**, so a rule in one component that targets elements rendered by another silently
+  does not apply — `[data-entry].is-hidden` (in CatalogGrid) lost to EntryCard's own
+  `.card{display:flex}`, leaving the filter applying classes while hiding nothing. Cross-component
+  rules live in `src/styles/global.css`. **Assert computed `display`/`opacity`, never just the class.**
 - **STAC event names need EXACTLY 2 underscores, and the catalog is deliberately stricter than
   upstream here.** Upstream `dps/_validate.sh:29-36` ends its regex with `.+`, so the LOCATION slot
   swallows extra underscores: `202501_Tropical_Cyclone_CA` passes there but silently parses as
@@ -196,3 +215,11 @@ Board Explorer: `board-explorer/src/{types,data,search,filter,urlState,colors,cs
 `board-explorer/src/views/{Table,Assignee,Timeline}View.tsx`,
 `board-explorer/scripts/{generate_board_export.py,test_generate.py,test_search.ts,e2e.mjs}`,
 `.github/workflows/board-explorer{,-validate}.yml`, `docs/BOARD_EXPLORER.md`.
+App Catalog (Astro, not React): `app-catalog/src/content.config.ts` (Zod schema + `ENTRY_TYPES` +
+`TYPE_HUES` — the single source of truth), `app-catalog/src/content/catalog/*.mdx` (one file per
+entry), `app-catalog/src/components/{CatalogGrid,EntryCard,TypeBadge,TagChip}.astro`,
+`app-catalog/src/layouts/{BaseLayout,EntryLayout}.astro`,
+`app-catalog/src/pages/{index.astro,catalog/[id].astro}`, `app-catalog/src/styles/global.css`
+(cross-component rules + the `.solves-fig` figure/animation primitives),
+`app-catalog/scripts/new-entry.mjs`, `.github/workflows/app-catalog-validate.yml`,
+`docs/APP_CATALOG.md`.

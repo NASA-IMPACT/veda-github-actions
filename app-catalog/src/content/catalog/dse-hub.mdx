@@ -1,0 +1,153 @@
+---
+title: "DSE Hub"
+description: "Tabbed hub for the Data Services & Enablement group: a timezone-aware meeting tracker (list / calendar / categories) and a PI roadmap, edited through an in-app changes cart."
+type: "Web app"
+solves: "Puts the group's meetings and PI schedule in one place, in your timezone, laid against the sprint calendar — and lets anyone correct it without a login or a backend."
+tags: ["meetings", "timezone", "pi-roadmap", "uswds", "react", "recurrence"]
+limitations:
+  - "The sprint calendar in data/pis.json is PLACEHOLDER data — 3-week sprints counted forward from 2026-07-13. Every sprint-relative meeting date is therefore provisional until the real PI schedule replaces it."
+  - "There is no generator and no Action. Meetings and PIs are hand-entered JSON, so the hub is exactly as current as the last person who edited it."
+  - "Data is bundled at BUILD via import.meta.glob, not fetched at runtime — a data change is not live until Netlify rebuilds."
+  - "Light-only (USWDS palette). Unlike the fte / leave / pr dashboards there is no dark theme."
+  - "Timezone conversion is a two-pass DST calculation over stdlib Intl. It is correct for ordinary schedules but has no special handling for meetings landing inside a DST transition hour."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/tree/main/dse-hub"
+homepage: "https://veda-dse-hub.netlify.app"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What it solves
+
+"When is that meeting, and is it in this sprint?" is a question with no single place to look. The
+answer is spread across calendar invites you may not be on, a doc someone updated once, and whatever
+was said in chat — and each of those states a time in **somebody's** timezone, rarely yours. A
+recurring meeting described as "every second sprint week" can't be resolved at all without knowing
+the sprint calendar, which lives somewhere else again.
+
+Three things fix that here. Meetings and PIs are **one set of data**, so there is a single place to
+look. Recurrence rules are resolved against the actual sprint calendar, so "every second sprint week"
+becomes real dates rather than an instruction you have to apply yourself. And every time passes
+through a **view-timezone picker**, so the schedule is rendered in yours instead of the author's.
+
+The fourth problem is keeping it current. A hub nobody can edit rots, but a login and a backend are
+more than this needs — so edits stage in an in-app **Changes cart** and open a single prefilled PR.
+No account, no server, and because every change file gets a unique name, two people editing at once
+cannot conflict.
+
+<figure class="solves-fig">
+  <svg viewBox="0 0 860 340" role="img" aria-labelledby="dse-fig-title dse-fig-desc">
+    <title id="dse-fig-title">Meetings scattered across sources and timezones, versus one resolved schedule</title>
+    <desc id="dse-fig-desc">
+      Before: meeting times live in calendar invites, a stale document and chat, each in a different
+      timezone, with no way to tell which sprint they fall in. After: one dataset, recurrence resolved
+      against the sprint calendar, rendered in the viewer's chosen timezone, corrected by pull request.
+    </desc>
+
+    <defs>
+      <marker id="dse-ah-good" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--focus)" />
+      </marker>
+    </defs>
+
+    {/* ---------------- BEFORE ---------------- */}
+    <rect class="fig-panel" x="8" y="8" width="408" height="324" rx="12" />
+    <text class="fig-label" x="28" y="34">BEFORE — three sources, three timezones</text>
+
+    <rect class="fig-box fig-pulse" x="32" y="56" width="112" height="58" rx="7" />
+    <text class="fig-t--mono" x="44" y="76" font-size="10">📅 invites</text>
+    <text class="fig-t--mono fig-t--dim" x="44" y="94" font-size="9">10:00 ET</text>
+
+    <rect class="fig-box fig-pulse fig-d2" x="152" y="56" width="112" height="58" rx="7" />
+    <text class="fig-t--mono" x="164" y="76" font-size="10">📄 a doc</text>
+    <text class="fig-t--mono fig-t--dim" x="164" y="94" font-size="9">15:00 UTC</text>
+
+    <rect class="fig-box fig-pulse fig-d4" x="272" y="56" width="112" height="58" rx="7" />
+    <text class="fig-t--mono" x="284" y="76" font-size="10">💬 chat</text>
+    <text class="fig-t--mono fig-t--dim" x="284" y="94" font-size="9">“after standup”</text>
+
+    <text class="fig-t--mono" x="208" y="146" font-size="10.5" text-anchor="middle">“every second sprint week”</text>
+    <text class="fig-t--mono fig-t--dim" x="208" y="164" font-size="9.5" text-anchor="middle">…which weeks are those?</text>
+
+    <g class="fig-pulse">
+      <rect x="52" y="184" width="312" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="208" y="201" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">⚠ no single place to look</text>
+    </g>
+    <g class="fig-pulse fig-d2">
+      <rect x="52" y="220" width="312" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="208" y="237" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">⚠ never in your timezone</text>
+    </g>
+    <g class="fig-pulse fig-d4">
+      <rect x="52" y="256" width="312" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="208" y="273" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">⚠ stale, and awkward to correct</text>
+    </g>
+
+    {/* ---------------- AFTER ---------------- */}
+    <rect class="fig-panel" x="440" y="8" width="412" height="324" rx="12" />
+    <text class="fig-label" x="460" y="34">AFTER — one schedule, your clock</text>
+
+    <rect class="fig-box" x="458" y="54" width="150" height="30" rx="6" />
+    <text class="fig-t--mono" x="470" y="74" font-size="10">meetings + pis .json</text>
+    <path class="fig-flow fig-flow--good" d="M612,69 L638,69" stroke-width="2.5" marker-end="url(#dse-ah-good)" />
+    <rect class="fig-box" x="644" y="54" width="190" height="30" rx="6" stroke="var(--focus)" />
+    <text class="fig-t--mono" x="656" y="74" font-size="9.5" fill="var(--focus)">recurrence → real dates</text>
+
+    {/* sprint-banded calendar */}
+    <rect class="fig-box" x="458" y="98" width="376" height="122" rx="7" />
+    <text class="fig-t--mono fig-t--dim" x="470" y="116" font-size="9.5">sprint 26.4 · week 2</text>
+    <rect x="470" y="124" width="352" height="18" rx="4" fill="var(--focus)" opacity="0.13" />
+    <rect class="fig-grow" x="470" y="148" width="210" height="12" rx="3" fill="var(--focus)" opacity="0.8" />
+    <rect class="fig-grow fig-d1" x="470" y="166" width="284" height="12" rx="3" fill="var(--focus)" opacity="0.6" />
+    <rect class="fig-grow fig-d2" x="470" y="184" width="164" height="12" rx="3" fill="var(--focus)" opacity="0.45" />
+    <text class="fig-t--mono" x="470" y="212" font-size="9.5" fill="var(--focus)">shown in your timezone</text>
+    <rect x="700" y="200" width="122" height="18" rx="9" fill="#e8f1ef" stroke="#a9cfc9" />
+    <text class="fig-t--mono" x="761" y="213" font-size="9" text-anchor="middle" fill="#1f5a54">🌐 view tz ▾</text>
+
+    <path class="fig-flow fig-flow--good" d="M646,228 L646,248" stroke-width="2.5" marker-end="url(#dse-ah-good)" />
+
+    <rect x="498" y="256" width="296" height="26" rx="13" fill="#e8f1ef" stroke="#a9cfc9" />
+    <text class="fig-t--mono" x="646" y="273" font-size="10" text-anchor="middle" fill="#1f5a54">🛒 changes cart → one prefilled PR</text>
+    <text class="fig-t--mono fig-t--dim" x="646" y="302" font-size="9.5" text-anchor="middle">no login, no backend, no edit conflicts</text>
+  </svg>
+
+  <figcaption>
+    Recurrence is resolved against the real sprint calendar rather than left as an instruction, and
+    the view-timezone picker means the schedule is rendered in the reader's clock rather than the
+    author's. Corrections arrive as pull requests, so the hub stays editable without a server.
+  </figcaption>
+</figure>
+
+## What it does
+
+A tabbed hub (header tabs plus subtabs) with two areas:
+
+- **Meetings → Meeting Tracker** — List, month **Calendar** with sprint bands, and **Categories**
+  views; search plus team and sprint/PI filters; times rendered in your chosen timezone.
+- **Sprints & PIs → PI Roadmap** — the program-increment picture.
+
+Recurrence is real: weekly / monthly / sprint / sprint-week / TBD rules resolve to actual dates
+against the sprint calendar. Every time is timezone-aware — each meeting carries its own `schedule.tz`
+and a global **view-tz** picker in the header converts everything, remembered in `localStorage`.
+
+## Where the data comes from
+
+Hand-curated `data/meetings.json` and `data/pis.json`, bundled at build time via `import.meta.glob`.
+There is **no runtime fetch**.
+
+Edits (meetings *and* PIs) stage in an in-app **Changes cart** and then open a single prefilled
+new-file PR creating `dse-hub/data/changes/<ts>.json`. The loaders merge those change files over the
+canonical arrays at load — upsert by id, newest `ts` wins — which makes the flow token-free and
+conflict-free, since every filename is unique. On merge, `dse-hub-compact.yml` folds the change files
+back into the canonical arrays.
+
+## Run it locally
+
+```bash
+cd dse-hub
+npm install
+npm run dev
+```
+
+## Related
+
+- Tabs, recurrence, timezone handling and the Changes cart: [`docs/DSE_HUB.md`](https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/DSE_HUB.md)

@@ -1,0 +1,11 @@
+# The root .gitignore only excludes dist/ + node_modules/ for fte-dashboard and
+# leave-dashboard, so every other app owns this file. `.astro/` is Astro's generated
+# type directory — never commit it.
+node_modules
+dist
+.astro/
+*.local
+.DS_Store
+
+# Pagefind writes its index into dist/ on postbuild; this catches a stray dev copy.
+public/pagefind/

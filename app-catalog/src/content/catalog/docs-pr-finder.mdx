@@ -1,0 +1,35 @@
+---
+title: "Doc — PR Finder Crawl Model"
+description: "How the sub-issue crawl works: Objective → sub-issue hierarchy → closing PRs, the global alias-batched BFS, cross-repo traversal, output file naming, and the seed harness."
+type: "Reference"
+solves: "Answers “why did the crawl miss this PR?” — whether it was depth, the API call cap, an unreadable repo, or a link that isn't actually a closing reference."
+tags: ["docs", "pull-requests", "sub-issues", "graphql", "crawl", "seed"]
+limitations:
+  - "The seed harness creates REAL issues and pull requests across repos (and optionally orgs). Teardown is a separate script — cleanup is not automatic."
+  - "Merging a seed PR can be blocked by a base-branch policy. The seeder warns and leaves the PR OPEN rather than failing, so a half-seeded tree is a normal outcome you have to notice."
+  - "Hand-maintained prose. The traversal it describes is verified against a live API whose behaviour can change underneath the doc."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/PR_FINDER.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The crawl model in detail: **board → Objective issues → sub-issue hierarchy → closing PRs**.
+
+Traversal is a single **global BFS**, alias-batched at up to 20 parents per request and paginated via
+`pageInfo`. Every node carries `repository.nameWithOwner`, so the crawl spans repos and orgs; a repo
+you cannot read degrades gracefully (per-alias `FORBIDDEN` / `NOT_FOUND` becomes empty children and
+the crawl keeps going) rather than aborting.
+
+Two non-obvious facts the doc records: the GraphQL `subIssues` connection works **without** any
+`GraphQL-Features` header, and the PR link followed is
+`closedByPullRequestsReferences(includeClosedPrs: true)` — the closing relationship, not
+cross-references.
+
+## Read it when
+
+- An Objective reports fewer PRs than you expect, and you need to know whether it was depth, the API
+  cap, or an unreadable repo.
+- You are setting up a crawlable test tree, including the cross-org hop.

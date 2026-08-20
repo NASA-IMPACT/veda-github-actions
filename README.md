@@ -3,8 +3,8 @@
 **A test station for reusable VEDA GitHub Actions, Projects-v2 board seeds, and Netlify dashboards.**
 One repo where we iterate safely on reusable Actions, their seed/generator tooling, and the SPAs that
 render the output — without touching production. It currently ships **three composite actions**, an
-**AWS pricing data generator**, and **seven dashboards**. Intentionally open — it grows to host new
-VEDA Actions experiments.
+**AWS pricing data generator**, **seven dashboards**, and an **app catalog** that indexes them all.
+Intentionally open — it grows to host new VEDA Actions experiments.
 
 ## 📋 Project board → https://github.com/users/kyle-lesinger/projects/2
 
@@ -16,6 +16,7 @@ VEDA Actions experiments.
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
 ### 🛰️ **Algorithm Catalog:** https://veda-algorithm-catalog.netlify.app
 ### 📋 **Board Explorer:** https://veda-projectboard-dashboard.netlify.app
+### 🗂️ **App Catalog** (indexes all of the above): _Netlify site pending — see [`app-catalog/`](app-catalog/)_
 
 ## Reusable actions
 Each action is a **composite** you import with `uses:`. One repo exposes many via subfolders.
@@ -44,6 +45,7 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 | AWS Cost Calculator | [`cost-dashboard/`](cost-dashboard/) | EC2/S3/RDS/Lambda cost calculator on live AWS On-Demand prices + CSV export. |
 | Algorithm Catalog | [`algorithm-catalog/`](algorithm-catalog/) | Filter the NASA Disasters product algorithms by hazard / sensor / product / date / event, and submit an activation request as a prefilled PR; CI gates the `YYYYMM_Hazard_Location` event-name standard. |
 | Board Explorer | [`board-explorer/`](board-explorer/) | A Projects v2 board made searchable: free-text search plus GitHub's own filter grammar made clickable, over Table / By-assignee / Timeline views, with shareable URLs and CSV export. |
+| App Catalog | [`app-catalog/`](app-catalog/) | The front door to this repo: every dashboard and doc as a searchable, filterable card, each linking out to the real thing. **Astro + Pagefind**, not Vite+React — every entry must declare ≥1 limitation or the build fails. |
 
 ## Repo layout
 | Path | Role |
@@ -51,7 +53,8 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 | [`action.yml`](action.yml), [`pr-finder/`](pr-finder/), [`leave/`](leave/) | the three reusable composite actions |
 | [`.github/scripts/`](.github/scripts/), [`aws-pricing/`](aws-pricing/), [`seed/`](seed/) | generators + seed/bootstrap tooling (stdlib Python) |
 | [`.github/workflows/`](.github/workflows/) | self-consumer workflows that run each action/generator and publish to a report branch, plus the Algorithm Catalog **standards gate** ([`algorithm-catalog-validate.yml`](.github/workflows/algorithm-catalog-validate.yml)) |
-| `*-dashboard/`, [`dse-hub/`](dse-hub/), [`algorithm-catalog/`](algorithm-catalog/), [`board-explorer/`](board-explorer/) | the Netlify SPAs above |
+| `*-dashboard/`, [`dse-hub/`](dse-hub/), [`algorithm-catalog/`](algorithm-catalog/), [`board-explorer/`](board-explorer/) | the Netlify SPAs above (Vite + React) |
+| [`app-catalog/`](app-catalog/) | the catalog that indexes everything above (Astro + Pagefind) |
 | [`docs/`](docs/) | per-module deep-dives |
 
 ## Per-module docs
@@ -62,6 +65,7 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 - **AWS pricing generator** — Price List API pull, weekly review: [`docs/AWS_PRICING.md`](docs/AWS_PRICING.md)
 - **Algorithm Catalog** — data model, the two entry modes, standards enforcement, gotchas: [`docs/ALGORITHM_CATALOG.md`](docs/ALGORITHM_CATALOG.md)
 - **Board Explorer** — the mirror pipeline, the query grammar, the three views, gotchas: [`docs/BOARD_EXPLORER.md`](docs/BOARD_EXPLORER.md)
+- **App Catalog** — why Astro not React, the entry schema, the `limitations` gate, gotchas: [`docs/APP_CATALOG.md`](docs/APP_CATALOG.md)
 - **Design decisions log**: [`docs/DECISIONS.md`](docs/DECISIONS.md)
 
 ## Conventions (non-obvious)
@@ -69,8 +73,11 @@ folder, its own `netlify.toml`). Live links are in [APPS](#apps-) above.
 - **"Objective"** = the issue title contains `"objective"` (case-insensitive). Shared by the actions.
 - **One Netlify site per dashboard; no root `netlify.toml`** — a root config (and its `base` key)
   applies to *every* site connected to the repo and would hijack the others into building the wrong app.
-- Root `.gitignore` has `*.json`, so `git add <dir>` silently skips needed JSON (each dashboard's
-  `package.json`/`tsconfig*.json`, data JSON) — you must **`git add -f`** them.
+- Root `.gitignore` has `*.json`, so `git add <dir>` **silently** skips needed JSON (each dashboard's
+  `package.json`/`tsconfig*.json`, data JSON). New apps add a `!<app>/…` **negation block** to the root
+  `.gitignore` (as `algorithm-catalog`, `board-explorer` and `app-catalog` do) so a plain
+  `git add <dir>` just works; only older folders still need **`git add -f`**. Verify with
+  `git check-ignore --no-index -q <path>` — exit 1 means it will commit.
 
 ---
 Ported from `Disasters-Learning-Portal/disasters-aws-conversion` (PR #74). See [`docs/FTE_SEED.md`](docs/FTE_SEED.md).

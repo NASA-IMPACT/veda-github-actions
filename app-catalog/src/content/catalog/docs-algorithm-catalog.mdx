@@ -1,0 +1,34 @@
+---
+title: "Doc — Algorithm Catalog & the STAC Naming Standard"
+description: "The three-tab data model, the two entry modes, and the enforcement chain that keeps `YYYYMM_Hazard_Location` honest across rules.ts, validate_data.py and CI."
+type: "Reference"
+solves: "Answers “why was my valid-looking event name rejected?” — and documents the deliberate, one-directional divergence from upstream DPS validation."
+tags: ["docs", "disasters", "stac", "validation", "standards", "data-model"]
+limitations:
+  - "It documents a DELIBERATE divergence from upstream: this catalog rejects event names that upstream dps/_validate.sh accepts. Anyone treating the doc as a description of the upstream standard will be misled — it is stricter on purpose."
+  - "The upstream regex it quotes is pinned to a specific version of dps/_validate.sh. If upstream changes the rule, the doc and the parity test describe a standard that no longer exists."
+  - "Hand-maintained prose describing hand-curated data."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/ALGORITHM_CATALOG.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The catalog's data model (algorithms, events, hazards, requests), the two entry modes that share one
+filter state, and — the substantial part — **how the naming standard is enforced rather than merely
+documented**: one source of truth in `src/rules.ts`, a 1:1 mirror in `scripts/validate_data.py`, a
+parity test that fails if the two ever disagree, and a CI workflow that runs all of it on every PR.
+
+It also records the knowing divergence from upstream. Upstream's regex ends with `.+`, so the
+LOCATION slot swallows extra underscores and `202501_Tropical_Cyclone_CA` parses as
+hazard=`Tropical`, location=`Cyclone_CA` — writing a wrong `HAZARD` GeoTIFF tag. This catalog ends
+with `_[^_]+$` instead, making 3+ underscores a hard error. The divergence is one-directional and
+safe: **everything this catalog accepts, DPS accepts too.**
+
+## Read it when
+
+- A valid-looking event name is rejected by the form.
+- You are changing the naming rule (and therefore must change it in two places plus the parity test).
+- You need to explain to an upstream maintainer why the two validators disagree.
