@@ -1,6 +1,6 @@
 ---
 title: "Doc — Architecture Decisions Log"
-description: "Short ADRs, newest first: why theming goes through data-theme + CSS variables, why adding a person is a prefilled PR rather than a backend, and why every dashboard is its own Netlify site."
+description: "Short ADRs, newest first: why this catalog is Astro rather than the house React stack, why theming goes through data-theme + CSS variables, why adding a person is a prefilled PR rather than a backend, and why every dashboard is its own Netlify site."
 type: "Reference"
 solves: "Answers “why is it built this way?” before you change it — the reasoning each convention was protecting, so a fix doesn't quietly undo one."
 tags: ["docs", "adr", "decisions", "netlify", "theming", "architecture"]
@@ -17,6 +17,8 @@ featured: false
 
 The "why" behind the conventions that would otherwise look arbitrary. Among them:
 
+- **Why this catalog is Astro + Pagefind** while every other app here is Vite + React — and where the
+  boundary sits, so the exception doesn't quietly become the rule.
 - **Theming through CSS custom properties** and a `data-theme` attribute on `<html>` — with the rule
   that only *chrome* adapts, while data colours (person swatches, status palettes, PR tag colours)
   carry meaning and must never invert.

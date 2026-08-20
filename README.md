@@ -16,7 +16,7 @@ Intentionally open — it grows to host new VEDA Actions experiments.
 ### 💵 **AWS Cost Calculator (Disasters Hub):** https://veda-aws-dashboard.netlify.app
 ### 🛰️ **Algorithm Catalog:** https://veda-algorithm-catalog.netlify.app
 ### 📋 **Board Explorer:** https://veda-projectboard-dashboard.netlify.app
-### 🗂️ **App Catalog** (indexes all of the above): _Netlify site pending — see [`app-catalog/`](app-catalog/)_
+### 🗂️ **App Catalog** (indexes all of the above): https://veda-app-catalog.netlify.app
 
 ## Reusable actions
 Each action is a **composite** you import with `uses:`. One repo exposes many via subfolders.

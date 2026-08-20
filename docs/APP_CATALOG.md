@@ -3,7 +3,7 @@
 A searchable front door to everything else in this repo. One entry per dashboard and per reference
 doc, each linking out to the real thing — the catalog **references, it never hosts or copies**.
 
-Folder: [`app-catalog/`](../app-catalog/) · Netlify site: **pending** (see [Deploy](#deploy))
+Live: <https://veda-app-catalog.netlify.app> · Folder: [`app-catalog/`](../app-catalog/)
 
 Modelled on [`NASA-IMPACT/odsi-app-catalog`](https://github.com/NASA-IMPACT/odsi-app-catalog), which
 solves the same problem org-wide.
@@ -99,6 +99,18 @@ Then open a PR. `ENTRY_TYPES` is duplicated in `scripts/new-entry.mjs` — keep 
   facets still work and free-text degrades to a substring match on card text — which is easy not to
   notice, so CI asserts `dist/pagefind` exists. Use `npm run build && npm run preview` to exercise
   real search.
+
+- **Give the first live search ~3 seconds before calling it broken.** The first query lazily fetches
+  `pagefind/pagefind.js` *and* `pagefind-worker.js`; against the deployed site a 1-second wait returns
+  "all 14 still showing" and looks exactly like a broken filter. The same query passes on a retry. When
+  scripting this check, wait ~3s and confirm both resources appear in
+  `performance.getEntriesByType('resource')`.
+
+- **To prove search is really hitting Pagefind, query a word that appears only in an MDX *body*** —
+  never in a title, description or tag. Those three are all the substring fallback can see
+  (`data-text`), so a body-only term (e.g. `threadedComments` → `docs-leave-tracker`) returns 1 result
+  through Pagefind and 0 through the fallback. A term present in a title passes either way and proves
+  nothing.
 - **Pagefind is imported via a runtime-built string + `/* @vite-ignore */`** in `CatalogGrid.astro`,
   so Vite doesn't try to resolve `/pagefind/pagefind.js` at build time. Keep that pattern.
 - **No SPA redirect in `netlify.toml`** — unlike the six Vite siblings. Astro emits a real file per
@@ -123,6 +135,18 @@ toml is relative to the base dir, the UI field to the repo root — filling both
 
 There is deliberately **no root `netlify.toml`** — a root config's `base` would apply to every site
 connected to this repo. See [`DECISIONS.md`](DECISIONS.md).
+
+**The Netlify MCP server cannot do this step — don't burn time trying.** Its write surface is
+`create-new-project` (which accepts only `name` and `teamSlug`), rename, env vars, access controls and
+forms; there is **no operation for the repository connection, branch, base directory or build
+settings**, and `get-project` doesn't read them back either. So an agent can create a bare project and
+nothing more — the repo link has to be made in the UI. That is also the *correct* place for it: per
+[`DECISIONS.md`](DECISIONS.md) and odsi-app-catalog's own ADR, the connection must be the **Netlify
+GitHub App**, because an API/deploy-key connection cannot produce PR Deploy Previews and fails
+silently — previews simply never appear.
+
+This site: `veda-app-catalog`, id `419cc3bb-5bfc-4677-b592-2594ae7b30dd`, team `kyle-lesinger`
+("Data Systems Evolution").
 
 `astro.config.mjs` derives `site` from `DEPLOY_PRIME_URL || URL`, so canonical URLs are correct in
 production, branch deploys and PR previews alike. Don't hardcode a URL.
