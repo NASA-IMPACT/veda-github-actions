@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CatalogGrid from "../components/CatalogGrid.astro";
+
+const all = await getCollection("catalog", (e) => !e.data.draft);
+
+// Featured first, then newest.
+const entries = all.sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  return b.data.dateAdded.getTime() - a.data.dateAdded.getTime();
+});
+---
+
+<BaseLayout title="veda-app-catalog · NASA VEDA">
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">Every VEDA dashboard and doc — one searchable index.</h1>
+      <p class="hero__lede">
+        A front door to what lives in <code>veda-github-actions</code>. Each entry links out to the
+        real app and its source — search by name, filter by type or tag, and read what it does (and
+        where it falls short).
+      </p>
+    </section>
+
+    <CatalogGrid entries={entries} />
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 44px 0 8px;
+    max-width: 720px;
+  }
+  .hero__title {
+    margin: 0 0 14px;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    letter-spacing: -0.03em;
+  }
+  .hero__lede {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ink-2);
+  }
+  .hero__lede code {
+    font-size: 0.92em;
+    background: var(--line-2);
+    padding: 0.1em 0.4em;
+    border-radius: 5px;
+  }
+</style>

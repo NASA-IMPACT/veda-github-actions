@@ -1,0 +1,56 @@
+name: App Catalog — validate
+
+# THE ENTRY GATE.
+#
+# `astro build` IS the validation. Every catalog entry's frontmatter is checked against the Zod
+# schema in app-catalog/src/content.config.ts at build time, so a bad entry fails here:
+#   • an unknown `type` (not in ENTRY_TYPES),
+#   • a malformed `repo` / `homepage` URL,
+#   • a description over 280 characters,
+#   • or — the product rule — an empty or missing `limitations` list.
+#
+# That last one is why this workflow exists rather than trusting review: "every entry must
+# acknowledge >=1 limitation or risk" is enforced by `z.array(...).min(1)`, not by a convention.
+#
+# The postbuild hook (`pagefind --site dist`) also runs, so a broken search index fails the PR too.
+
+on:
+  pull_request:
+    paths:
+      - "app-catalog/**"
+      - ".github/workflows/app-catalog-validate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "app-catalog/**"
+      - ".github/workflows/app-catalog-validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Schema + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app-catalog
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: app-catalog/.nvmrc
+          cache: npm
+          cache-dependency-path: app-catalog/package-lock.json
+
+      - run: npm ci
+
+      # astro build (schema validation) + postbuild pagefind (search index).
+      - run: npm run build
+
+      # The index is what makes free-text search work in production; without it the app silently
+      # degrades to a substring match on card text, which is easy not to notice.
+      - name: Assert the Pagefind index was produced
+        run: test -d dist/pagefind

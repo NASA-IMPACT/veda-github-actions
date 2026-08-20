@@ -1,0 +1,32 @@
+---
+title: "Doc — AWS Pricing Generator"
+description: "How On-Demand prices are pulled from the public Price List Bulk API with no AWS credentials, published to the aws-pricing/data branch, and reviewed weekly for spikes."
+type: "Reference"
+solves: "Answers “can I trust this price?” — traces a number on the dashboard back to the SKU and price-list version it came from, with no AWS credentials involved."
+tags: ["docs", "aws", "pricing", "price-list-api", "generator"]
+limitations:
+  - "It documents the shape of an EXTERNAL API. AWS can change the Price List Bulk API's structure or SKU attributes at any time, and the doc (and the filters it describes) would be wrong before anyone noticed."
+  - "Covers On-Demand pricing only — it is not a guide to Reserved Instances, Savings Plans or Spot, and does not claim to be."
+  - "Hand-maintained prose, not generated from generate_aws_pricing.py."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/AWS_PRICING.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The whole no-credentials pricing path: how `generate_aws_pricing.py` pulls the **public** Price List
+Bulk API with stdlib `urllib` (streaming the ~473 MB EC2 region file rather than buffering it), which
+SKU attributes it filters on and why, how the offline golden test proves those filters reject decoy
+SKUs, and how `aws-pricing.yml` publishes compact per-region JSON to the **`aws-pricing/data`** branch
+with regions accumulating rather than being replaced.
+
+It also covers the weekly **review** workflow, which diffs fresh prices against the committed snapshot
+and opens a PR whose body shouts about any change over 1%.
+
+## Read it when
+
+- A price on the dashboard looks wrong and you need to trace it back to a SKU.
+- You are adding a region or a service.
+- The weekly review PR flags a spike and you need to judge whether it is real.

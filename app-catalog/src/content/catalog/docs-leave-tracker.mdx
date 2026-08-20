@@ -1,0 +1,33 @@
+---
+title: "Doc — Leave Tracker Data Model"
+description: "The cell-fill-colour status map, per-person overrides, and the two automatic paths from spreadsheet or override PR to the live dashboard."
+type: "Reference"
+solves: "Answers “why is this person's leave wrong?” by writing down the one non-obvious rule: status is the cell's fill colour, so the fix is a colour, not text."
+tags: ["docs", "leave", "xlsx", "colors", "overrides", "data-model"]
+limitations:
+  - "The colour map documented here must stay in sync with leave/colors.json. Nothing enforces that — a colour added to one and not the other silently mis-classifies leave."
+  - "It documents a parser built on the internal layout of an .xlsx (fills in the sheet XML, notes in xl/threadedComments/*). A change in how the spreadsheet is authored or exported can invalidate it."
+  - "Hand-maintained prose, not generated from generate_leave_tracker.py."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/LEAVE_TRACKER.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The single most surprising fact about this pipeline, written down: **leave status is the cell's fill
+colour, not its text.** A CSV export of the source spreadsheet is blank. The generator therefore
+parses fills directly with stdlib `zipfile` + `xml.etree`.
+
+The doc covers the full colour → status map (including `FF999999` grey meaning weekend, which is
+skipped), where notes actually live (`xl/threadedComments/*`, not `comments1.xml`), how OUT is
+composed from unavailable + PTO + holiday with "limited" as 0.5, the per-person override files, and
+the two automatic update paths that carry a spreadsheet edit or a merged override PR through to the
+live dashboard.
+
+## Read it when
+
+- Someone's leave is missing or wrong and you need to check the colour, not the text.
+- You are adding a new leave status or colour.
+- You want to know why an override PR did or didn't reach the dashboard.

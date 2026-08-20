@@ -1,0 +1,33 @@
+---
+title: "Doc — Architecture Decisions Log"
+description: "Short ADRs, newest first: why theming goes through data-theme + CSS variables, why adding a person is a prefilled PR rather than a backend, and why every dashboard is its own Netlify site."
+type: "Reference"
+solves: "Answers “why is it built this way?” before you change it — the reasoning each convention was protecting, so a fix doesn't quietly undo one."
+tags: ["docs", "adr", "decisions", "netlify", "theming", "architecture"]
+limitations:
+  - "An append-only log. Older entries record decisions that may since have been superseded, and nothing marks them as such — the newest entry on a topic wins, but you have to read far enough to know that."
+  - "It captures the reasoning behind a decision at the time it was taken, not the current state of the code. Treat it as history, not as documentation of how things work today."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/DECISIONS.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The "why" behind the conventions that would otherwise look arbitrary. Among them:
+
+- **Theming through CSS custom properties** and a `data-theme` attribute on `<html>` — with the rule
+  that only *chrome* adapts, while data colours (person swatches, status palettes, PR tag colours)
+  carry meaning and must never invert.
+- **Adding a person via a prefilled PR, not a backend** — the pattern now reused by the leave
+  dashboard, DSE Hub and the algorithm catalog.
+- **"Pattern B": one Netlify site per dashboard, and deliberately no root `netlify.toml`** — because a
+  root config's `base` key would apply to *every* site connected to the repo and hijack the others.
+
+## Read it when
+
+- You are about to add a root-level config file, or a second dark-mode mechanism, or a backend.
+- A convention looks wrong and you want to know what it was protecting against before you change it.
+
+This is the first doc to read before proposing an architectural change in this repo.

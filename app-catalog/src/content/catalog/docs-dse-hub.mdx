@@ -1,0 +1,28 @@
+---
+title: "Doc — DSE Hub Internals"
+description: "The tab/subtab config shell, meeting recurrence resolution against the sprint calendar, timezone handling, and the Changes cart → prefilled PR flow."
+type: "Reference"
+solves: "Answers “why did this recurring meeting land on that date, in that timezone?” — recurrence resolution against the sprint calendar, and the placeholder dates it currently rests on."
+tags: ["docs", "meetings", "recurrence", "timezone", "changes-cart"]
+limitations:
+  - "It describes a sprint calendar whose dates are PLACEHOLDERS (3-week sprints from 2026-07-13). Every recurrence example in the doc inherits that provisional baseline."
+  - "Hand-maintained prose covering hand-entered data — there is no generator on either side, so both the doc and the data it describes drift by hand."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/DSE_HUB.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+How the hub is put together: the tab and subtab configuration shell driven by `src/tabs.ts`, how
+recurrence rules (weekly / monthly / sprint / sprint-week / TBD) resolve to real dates against the
+sprint calendar in `data/pis.json`, how per-meeting `schedule.tz` combines with the global view-tz
+picker, and the **Changes cart → one prefilled new-file PR** flow with its merge-on-load semantics
+(upsert by id, newest `ts` wins).
+
+## Read it when
+
+- A recurring meeting lands on a date you did not expect.
+- A time is displayed in the wrong zone.
+- You are adding a tab, or changing how staged edits are folded back into the canonical arrays.

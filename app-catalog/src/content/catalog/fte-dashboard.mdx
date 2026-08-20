@@ -1,0 +1,145 @@
+---
+title: "FTE Capacity Dashboard"
+description: "Level-of-effort / FTE capacity matrix per person, role and Program Increment, with a what-if PI editor and trend charts."
+type: "Web app"
+solves: "Ends the Word-doc ↔ GitHub double-entry. The issue becomes the only place FTE is written down, and the capacity view is generated from it — so there is nothing left to keep aligned."
+tags: ["capacity", "fte", "program-increment", "react", "recharts", "csv", "projects-v2"]
+limitations:
+  - "Its netlify.toml is the last one still carrying an `ignore = \"git diff …\"` filter (line 16). That filter has skipped PRODUCTION builds when Netlify passed equal CACHED_COMMIT_REF and COMMIT_REF, silently dropping merged code — the newer sites dropped it."
+  - "Only reads issues whose title contains \"objective\" (case-insensitive). An Objective titled any other way is invisible to the report."
+  - "Numbers come from a hand-maintained `## LOE/FTE` Markdown table in each issue body. A malformed or missing table means that Objective silently contributes nothing."
+  - "The dashboard renders whatever last landed on the `fte-report/all-pis` branch. If the Action has not run since the board changed, the page is confidently out of date."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/tree/main/fte-dashboard"
+homepage: "https://veda-github-actions.netlify.app"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: true
+---
+
+## What it solves
+
+Capacity used to be written down **twice**. The loop went:
+
+1. Edit the Word document with the objectives and everyone's FTE.
+2. Update the GitHub ticket with the same information.
+3. Keep the two aligned — again, and again, on every change.
+
+Step 3 is the one that never ends. Two sources of truth for the same numbers means they only agree
+for as long as someone keeps re-typing, and the moment they drift there is no way to tell which one
+is right — the document that got edited in the meeting, or the ticket the work actually hangs off.
+
+This removes the second copy. The GitHub issue is where FTE is written, once; the capacity matrix,
+the per-person and per-role rollups and the trend charts are **generated** from it. There is no
+document to re-align, because there is no document.
+
+<figure class="solves-fig">
+  <svg viewBox="0 0 860 300" role="img" aria-labelledby="fte-fig-title fte-fig-desc">
+    <title id="fte-fig-title">From a two-way sync loop to a one-way generated view</title>
+    <desc id="fte-fig-desc">
+      Before: a Word document and a GitHub issue hold the same FTE numbers and must be re-aligned in
+      both directions, forever, and drift apart in between. After: the GitHub issue is the single
+      source, an Action reads it, and the dashboard is generated output.
+    </desc>
+
+    <defs>
+      <marker id="fte-ah-bad" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" />
+      </marker>
+      <marker id="fte-ah-good" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--focus)" />
+      </marker>
+    </defs>
+
+    {/* ---------------- BEFORE ---------------- */}
+    <rect class="fig-panel" x="8" y="8" width="376" height="284" rx="12" />
+    <text class="fig-label" x="28" y="36">BEFORE</text>
+
+    <rect class="fig-box" x="96" y="58" width="200" height="56" rx="8" />
+    <text class="fig-t" x="112" y="82" font-size="14">📄 Objectives.docx</text>
+    <text class="fig-t--mono fig-t--dim" x="112" y="100" font-size="11">objectives + FTE per person</text>
+
+    <rect class="fig-box" x="96" y="186" width="200" height="56" rx="8" />
+    <text class="fig-t" x="112" y="210" font-size="14">🎫 GitHub issue</text>
+    <text class="fig-t--mono fig-t--dim" x="112" y="228" font-size="11">## LOE/FTE table</text>
+
+    {/* the loop that never ends */}
+    <path class="fig-flow fig-flow--bad" d="M296,86 C356,96 356,206 296,214" stroke-width="2" marker-end="url(#fte-ah-bad)" />
+    <path class="fig-flow fig-flow--bad fig-flow--rev" d="M96,214 C36,206 36,96 96,86" stroke-width="2" marker-start="url(#fte-ah-bad)" />
+
+    <text class="fig-t--mono" x="316" y="150" font-size="11" fill="var(--accent)">re-type</text>
+    <text class="fig-t--mono" x="30" y="150" font-size="11" fill="var(--accent)">re-align</text>
+
+    <g class="fig-pulse">
+      <rect x="120" y="256" width="152" height="24" rx="12" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="196" y="272" font-size="11" text-anchor="middle" fill="var(--warn-ink)">⚠ drifts in between</text>
+    </g>
+
+    {/* ---------------- AFTER ---------------- */}
+    <rect class="fig-panel" x="416" y="8" width="436" height="284" rx="12" />
+    <text class="fig-label" x="436" y="36">AFTER</text>
+
+    <rect class="fig-box" x="436" y="118" width="150" height="64" rx="8" />
+    <text class="fig-t" x="452" y="144" font-size="14">🎫 GitHub issue</text>
+    <text class="fig-t--mono" x="452" y="162" font-size="10.5" fill="var(--focus)">single source of truth</text>
+
+    <path class="fig-flow fig-flow--good" d="M590,150 L624,150" stroke-width="2" marker-end="url(#fte-ah-good)" />
+
+    <circle cx="654" cy="150" r="20" fill="#fff" stroke="var(--focus)" stroke-width="1.5" />
+    <text x="654" y="156" font-size="16" text-anchor="middle">⚙</text>
+    <text class="fig-t--mono fig-t--dim" x="654" y="192" font-size="10" text-anchor="middle">Action</text>
+
+    <path class="fig-flow fig-flow--good" d="M684,150 L710,150" stroke-width="2" marker-end="url(#fte-ah-good)" />
+
+    <rect class="fig-box" x="716" y="110" width="118" height="80" rx="8" />
+    <text class="fig-t--mono fig-t--dim" x="728" y="128" font-size="10">capacity matrix</text>
+    <rect class="fig-grow" x="728" y="138" width="92" height="10" rx="3" fill="var(--focus)" opacity="0.85" />
+    <rect class="fig-grow fig-d1" x="728" y="154" width="64" height="10" rx="3" fill="var(--focus)" opacity="0.6" />
+    <rect class="fig-grow fig-d2" x="728" y="170" width="76" height="10" rx="3" fill="var(--focus)" opacity="0.4" />
+
+    <text class="fig-t--mono" x="634" y="246" font-size="11" text-anchor="middle" fill="var(--ink-3)">generated — nothing to keep in sync</text>
+  </svg>
+
+  <figcaption>
+    Left: the same numbers in two places, re-aligned by hand in both directions, drifting in between.
+    Right: written once in the issue, read by the Action, rendered as output. The second copy is gone
+    rather than automated.
+  </figcaption>
+</figure>
+
+## What it does
+
+Turns the Objective issues on a Projects v2 board into a capacity picture: who is allocated to what,
+at what fraction of an FTE, in which Program Increment. It joins each issue's `## LOE/FTE` body table
+with that issue's PI and date fields from the board, then renders
+
+- an **allocation matrix** by person and by role,
+- a **what-if PI editor** for testing reallocations without touching the board,
+- **trend charts** (Recharts) across PIs.
+
+## Where the data comes from
+
+The **FTE Capacity Report** composite action (the repo's root `action.yml`) generates
+`fte_allocations_*.csv`, `fte_by_person_*.csv`, `fte_by_role_*.csv` and `fte_summary_*.md`, and
+publishes them to the `fte-report/all-pis` branch. The SPA fetches those CSVs at runtime and falls
+back to the snapshot bundled in `public/data/`. The header shows `● live` or `○ snapshot` so you can
+tell which you are looking at.
+
+Reading a Projects v2 board needs `PROJECT_TOKEN_FOR_BOARD_READS` — a token with
+`repo + read:org + project`. The default `GITHUB_TOKEN` **cannot** do it.
+
+## Run it locally
+
+```bash
+cd fte-dashboard
+npm install
+npm run dev
+
+# Regenerate the report offline, without a token or network:
+python .github/scripts/generate_fte_report.py \
+  --issues-json seed/sample_issues.json --out-dir reports
+```
+
+## Related
+
+- The generating Action: `NASA-IMPACT/veda-github-actions@v1`
+- Seed harness, board fields and the PI-change test loop: [`docs/FTE_SEED.md`](https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/FTE_SEED.md)

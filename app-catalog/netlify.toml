@@ -1,0 +1,33 @@
+# Pattern B: this catalog is its own Netlify site, connected to the repo with
+# base directory = app-catalog (set in the Netlify UI). Netlify reads THIS netlify.toml.
+# There is deliberately NO root-level netlify.toml — a root config's `base` would apply to
+# EVERY site connected to the repo and hijack the other dashboards.
+#
+# `npm run build` runs `astro build`, then the `postbuild` hook `pagefind --site dist`, so the
+# search index lands in dist/pagefind/ before Netlify uploads. No adapter — pure static.
+#
+# NOTE: unlike the six Vite SPA siblings there is deliberately NO `[[redirects]] /* -> /index.html`
+# catch-all. Astro emits a real file per route; a SPA fallback would shadow the 404 page and the
+# /pagefind/ assets.
+#
+# No `ignore` filter either. The older dashboards set one (a folder-scoped `git diff`) and it bit
+# them: it skipped PRODUCTION builds whenever Netlify passed equal CACHED_COMMIT_REF and
+# COMMIT_REF. Because this site has a BASE DIRECTORY set, Netlify already applies its own implicit
+# check and skips the build when a commit or PR touched nothing under app-catalog/.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Explicit per-context config (same build everywhere). Netlify injects URL / DEPLOY_PRIME_URL
+# per context, which astro.config.mjs reads for canonical URLs.
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "npm run build"
+
+[context.branch-deploy]
+  command = "npm run build"

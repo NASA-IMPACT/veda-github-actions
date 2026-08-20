@@ -1,0 +1,157 @@
+---
+title: "PR Finder Dashboard"
+description: "Browse accumulated PR-per-Objective reports with a PI/sprint report picker — which pull requests actually closed the work under each Objective."
+type: "Web app"
+solves: "Follows an Objective's sub-issue tree across repos, orgs and projects — the one thing GitHub's own UI won't do — and reports the PRs that actually closed the work."
+tags: ["pull-requests", "objectives", "sub-issues", "cross-repo", "uswds", "static", "projects-v2"]
+limitations:
+  - "The only app here with no build step — a hand-written static shell. It gets no typecheck, no bundler and no CI build job, so a mistake ships straight to production."
+  - "It themes historical reports by injecting CSS variables and a postMessage listener across an iframe `srcdoc` boundary. That is load-bearing and fragile: reports predate the dark CSS and cannot be re-generated."
+  - "The report CSS is duplicated between the generator (pr-finder/generate_pr_finder.py) and the bundled snapshot (pr-dashboard/pr_finder_all.html). The two must be edited together or standalone reports drift."
+  - "Its netlify.toml still carries the `ignore = \"git diff …\"` filter that has silently skipped production builds elsewhere in this repo."
+  - "The crawl behind it is bounded — 5 levels of sub-issues and a max-api-calls cap — so a very deep or very wide Objective tree is truncated rather than reported in full."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/tree/main/pr-dashboard"
+homepage: "https://veda-pr-dashboard.netlify.app"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What it solves
+
+Answering "what actually shipped under this Objective?" used to mean walking the tree by hand: open
+the Objective, expand its sub-issues, click into each child, check whether a PR closed it, note it
+down, go back, do the next one. Five levels deep, that is dozens of clicks to answer one question —
+and it has to be redone every sprint.
+
+But the clicking is the smaller problem. **The tree does not stay in one repo.** An Objective's work
+spills into other repositories, other orgs, and other projects, and GitHub's own UI will not show you
+a sub-issue tree that crosses those boundaries. So the manual walk doesn't just take an afternoon —
+it goes cold at the first boundary. You end up with a partial answer and no way to know what you
+missed.
+
+The crawler doesn't care where a child lives. Every node it fetches carries its own
+`repository.nameWithOwner`, so traversal simply continues across repos and orgs; a repo you can't
+read degrades to empty children instead of aborting the whole crawl. One pass, one report, whatever
+boundaries the work happens to straddle.
+
+<figure class="solves-fig">
+  <svg viewBox="0 0 860 348" role="img" aria-labelledby="prf-fig-title prf-fig-desc">
+    <title id="prf-fig-title">A sub-issue tree that crosses repositories, walked by hand versus crawled</title>
+    <desc id="prf-fig-desc">
+      Before: the tree spans three repositories in different orgs; a person must switch context at
+      each boundary and the trail goes cold. After: one crawl threads straight through every
+      boundary and emits a single report of the closing pull requests.
+    </desc>
+
+    <defs>
+      <marker id="prf-ah-good" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--focus)" />
+      </marker>
+    </defs>
+
+    {/* ---------------- BEFORE ---------------- */}
+    <rect class="fig-panel" x="8" y="8" width="408" height="332" rx="12" />
+    <text class="fig-label" x="28" y="34">BEFORE — by hand</text>
+
+    {/* repo bands */}
+    <rect x="24" y="48" width="376" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <rect x="24" y="118" width="376" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <rect x="24" y="188" width="376" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <text class="fig-t--mono fig-t--dim" x="34" y="66" font-size="9.5">repo-a</text>
+    <text class="fig-t--mono fig-t--dim" x="34" y="136" font-size="9.5">repo-b</text>
+    <text class="fig-t--mono fig-t--dim" x="34" y="206" font-size="9.5">other-org / repo-c</text>
+
+    <rect class="fig-box fig-pulse" x="120" y="60" width="200" height="28" rx="6" />
+    <text class="fig-t" x="132" y="79" font-size="12">🎯 Objective #101</text>
+
+    <rect class="fig-box fig-pulse fig-d2" x="150" y="130" width="200" height="28" rx="6" />
+    <text class="fig-t" x="162" y="149" font-size="12">↳ #118 sub-issue</text>
+
+    <rect class="fig-box fig-pulse fig-d4" x="180" y="200" width="200" height="28" rx="6" />
+    <text class="fig-t" x="192" y="219" font-size="12">↳ #121 sub-issue</text>
+
+    {/* the boundaries that stop you */}
+    <line x1="24" y1="109" x2="400" y2="109" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 5" />
+    <line x1="24" y1="179" x2="400" y2="179" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 5" />
+    <text class="fig-t--mono" x="392" y="106" font-size="9.5" text-anchor="end" fill="var(--accent)">✋ different repo</text>
+    <text class="fig-t--mono" x="392" y="176" font-size="9.5" text-anchor="end" fill="var(--accent)">✋ different org</text>
+
+    <g class="fig-pulse">
+      <rect x="86" y="266" width="252" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="212" y="283" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">⚠ the trail goes cold at each boundary</text>
+    </g>
+    <text class="fig-t--mono fig-t--dim" x="212" y="312" font-size="10" text-anchor="middle">click · expand · check · go back · repeat</text>
+
+    {/* ---------------- AFTER ---------------- */}
+    <rect class="fig-panel" x="440" y="8" width="412" height="332" rx="12" />
+    <text class="fig-label" x="460" y="34">AFTER — one crawl</text>
+
+    <rect x="456" y="48" width="380" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <rect x="456" y="118" width="380" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <rect x="456" y="188" width="380" height="52" rx="7" fill="var(--line-2)" opacity="0.45" />
+    <text class="fig-t--mono fig-t--dim" x="466" y="66" font-size="9.5">repo-a</text>
+    <text class="fig-t--mono fig-t--dim" x="466" y="136" font-size="9.5">repo-b</text>
+    <text class="fig-t--mono fig-t--dim" x="466" y="206" font-size="9.5">other-org / repo-c</text>
+
+    <rect class="fig-box" x="552" y="60" width="200" height="28" rx="6" />
+    <text class="fig-t" x="564" y="79" font-size="12">🎯 Objective #101</text>
+    <rect class="fig-box" x="552" y="130" width="200" height="28" rx="6" />
+    <text class="fig-t" x="564" y="149" font-size="12">↳ #118 · closed by #204</text>
+    <rect class="fig-box" x="552" y="200" width="200" height="28" rx="6" />
+    <text class="fig-t" x="564" y="219" font-size="12">↳ #121 · closed by #211</text>
+
+    {/* one path straight through every boundary */}
+    <path class="fig-flow fig-flow--good" d="M528,74 L528,214 L546,214" stroke-width="2.5" marker-end="url(#prf-ah-good)" />
+    <path class="fig-flow fig-flow--good" d="M528,74 L546,74" stroke-width="2.5" marker-end="url(#prf-ah-good)" />
+    <path class="fig-flow fig-flow--good" d="M528,144 L546,144" stroke-width="2.5" marker-end="url(#prf-ah-good)" />
+    <text class="fig-t--mono" x="470" y="252" font-size="9.5" fill="var(--focus)">boundaries crossed, not stopped at</text>
+
+    {/* the report */}
+    <rect class="fig-box" x="556" y="262" width="264" height="62" rx="8" />
+    <text class="fig-t--mono fig-t--dim" x="568" y="279" font-size="9.5">Objective #101 — closing PRs</text>
+    <rect class="fig-grow" x="568" y="288" width="150" height="9" rx="3" fill="var(--focus)" opacity="0.85" />
+    <rect class="fig-grow fig-d1" x="568" y="302" width="196" height="9" rx="3" fill="var(--focus)" opacity="0.6" />
+    <path class="fig-flow fig-flow--good" d="M688,232 L688,256" stroke-width="2.5" marker-end="url(#prf-ah-good)" />
+  </svg>
+
+  <figcaption>
+    The tree is the same on both sides — what changes is whether a repository boundary is a wall or
+    just another edge to follow. Each node carries its own <code>repository.nameWithOwner</code>, so
+    one crawl spans repos, orgs and projects and emits a single report.
+  </figcaption>
+</figure>
+
+## What it does
+
+Answers "what actually shipped under this Objective?". For every Objective on a board, the PR Finder
+action walks the **sub-issue tree** — up to 5 levels, across repos and orgs — and lists the pull
+requests that **close** those issues. This dashboard is the reading surface: a report picker across
+accumulated PI/sprint-named reports, each rendered as USWDS-styled HTML.
+
+The relationship it follows is `closedByPullRequestsReferences(includeClosedPrs: true)` — the
+`closes #N` / linked-branch link, **not** loose cross-references. `includeClosedPrs` also surfaces
+PRs that were closed without merging.
+
+## Where the data comes from
+
+`.github/workflows/pr-finder.yml` runs the action weekly and publishes CSV + Markdown + HTML to the
+`pr-finder/report` branch, accumulating one report per PI/sprint plus a `reports/index.json`. The
+shell fetches that index at runtime into the picker, then loads the chosen report HTML into an
+iframe via `srcdoc`. It falls back to the bundled `index.snapshot.json` + `pr_finder_all.html`.
+
+## Run it locally
+
+```bash
+# The dashboard is static — just open it.
+open pr-dashboard/index.html
+
+# Regenerate a report offline against a canned tree (no network):
+python pr-finder/generate_pr_finder.py \
+  --tree-json seed/sample_tree.json --out-dir reports
+```
+
+## Related
+
+- The generating Action: `NASA-IMPACT/veda-github-actions/pr-finder@v1`
+- Crawl model, seed harness and gotchas: [`docs/PR_FINDER.md`](https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/PR_FINDER.md)

@@ -1,0 +1,348 @@
+/* ============================================================================
+   veda-app-catalog — design tokens + base styles
+
+   Editorial / technical "field catalog" look: warm paper, ink text, a mono display
+   face for structure, colour-coded type badges. Light-only by design (like dse-hub and
+   algorithm-catalog); there is no dark toggle and no `data-theme` attribute here.
+   ========================================================================= */
+
+:root {
+  /* palette */
+  --paper: #f4f1ea;
+  --paper-2: #fbf9f4;
+  --ink: #1b1a17;
+  --ink-2: #4a473f;
+  --ink-3: #7a766b;
+  --line: #d9d3c5;
+  --line-2: #e7e2d6;
+  --accent: #b4471f; /* rust/terracotta */
+  --accent-ink: #8a3416;
+  --focus: #2f6f6a;
+  --warn-bg: #fbefe6;
+  --warn-line: #e6b8a0;
+  --warn-ink: #8a3416;
+
+  --shadow: 0 1px 2px rgba(27, 26, 23, 0.06), 0 8px 24px rgba(27, 26, 23, 0.06);
+
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  --radius: 10px;
+  --maxw: 1180px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent-ink);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+}
+
+kbd {
+  background: var(--ink);
+  color: var(--paper-2);
+  border-radius: 5px;
+  padding: 0.05em 0.4em;
+  font-size: 0.85em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- site header ---- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: saturate(1.1) blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.brand:hover {
+  text-decoration: none;
+}
+.brand__mark {
+  color: var(--accent);
+}
+.brand__org {
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.site-header__link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+/* ---- footer ---- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 64px;
+  padding: 28px 0;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+}
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+}
+
+/* ---- type badge ---- */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+  background: var(--tb-bg, #eee);
+  border-color: var(--tb-line, #ccc);
+  color: var(--tb-ink, #333);
+}
+.type-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tb-dot, currentColor);
+}
+
+/* ---- tag chip ---- */
+.tag-chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+
+/* ============================================================================
+   "What it solves" figures
+   Inline SVG diagrams inside MDX bodies. Primitives are shared so every entry's figure
+   animates the same way; the SVG itself is bespoke per entry.
+   All motion is opt-in via prefers-reduced-motion — the static diagram must read on its own.
+   ========================================================================= */
+.solves-fig {
+  margin: 22px 0;
+  overflow-x: auto;
+}
+.solves-fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 620px; /* below this the labels collide; the wrapper scrolls instead */
+}
+.solves-fig figcaption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+/* Figure palette — kept local to figures so it can't drift into the data colours. */
+.solves-fig .fig-panel {
+  fill: var(--paper-2);
+  stroke: var(--line);
+}
+.solves-fig .fig-box {
+  fill: #fff;
+  stroke: var(--line);
+}
+.solves-fig .fig-t {
+  font-family: var(--font-sans);
+  fill: var(--ink);
+}
+.solves-fig .fig-t--mono {
+  font-family: var(--font-mono);
+  fill: var(--ink-2);
+}
+.solves-fig .fig-t--dim {
+  fill: var(--ink-3);
+}
+.solves-fig .fig-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  fill: var(--ink-3);
+}
+.solves-fig .fig-flow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+}
+.solves-fig .fig-flow--bad {
+  stroke: var(--accent);
+}
+.solves-fig .fig-flow--good {
+  stroke: var(--focus);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .solves-fig .fig-flow {
+    animation: fig-march 1s linear infinite;
+  }
+  .solves-fig .fig-flow--rev {
+    animation-direction: reverse;
+  }
+  .solves-fig .fig-pulse {
+    animation: fig-pulse 2.2s ease-in-out infinite;
+  }
+  .solves-fig .fig-grow {
+    animation: fig-grow 3s ease-out infinite;
+    transform-origin: left center;
+  }
+
+  /* Generic stagger, reusable by any figure and any animation above. */
+  .solves-fig .fig-d1 {
+    animation-delay: 0.18s;
+  }
+  .solves-fig .fig-d2 {
+    animation-delay: 0.36s;
+  }
+  .solves-fig .fig-d3 {
+    animation-delay: 0.54s;
+  }
+  .solves-fig .fig-d4 {
+    animation-delay: 0.72s;
+  }
+  .solves-fig .fig-d5 {
+    animation-delay: 0.9s;
+  }
+}
+
+@keyframes fig-march {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@keyframes fig-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fig-grow {
+  0% {
+    transform: scaleX(0.04);
+  }
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- utility ---- */
+
+/* Hover spotlight: hovering one card dims the others so the eye lands on a single entry.
+   Lives here, not in a component <style> block, because the selector crosses a component boundary
+   (#grid belongs to CatalogGrid, [data-entry] to EntryCard) — the same scoping trap as below.
+   `#grid:has(…)` (1,2,0) comfortably outranks EntryCard's scoped `.card[data-astro-cid-…]`.
+   Guarded by `hover: hover` so touch devices don't get stuck in a dimmed state. */
+@media (hover: hover) {
+  #grid:has([data-entry]:hover) [data-entry]:not(:hover) {
+    opacity: 0.38;
+    filter: saturate(0.55);
+  }
+}
+
+/* Filter hiding. This MUST live in global CSS with !important, not in CatalogGrid's scoped
+   <style> block. The cards are rendered by EntryCard.astro, so they carry EntryCard's scope id and
+   its `.card[data-astro-cid-…] { display: flex }` rule. A scoped-or-not `[data-entry].is-hidden`
+   rule ties that on specificity (0,2,0) and loses on source order — the class gets applied, the
+   count updates, and every card stays on screen. Which looks like "the filter does nothing". */
+[data-entry].is-hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

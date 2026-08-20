@@ -89,3 +89,11 @@ leave-dashboard/dist/
 !board-explorer/tsconfig.node.json
 !board-explorer/public/data/*.json
 !board-explorer/scripts/fixtures/*.json
+
+# App Catalog: Astro build config — re-included past the global *.json ignore, same as the
+# dashboards above. Its content is MDX, not JSON, so there is no data file to negate; the only
+# JSON it owns is build config. (Astro writes generated types to app-catalog/.astro/, which
+# app-catalog/.gitignore excludes.)
+!app-catalog/package.json
+!app-catalog/package-lock.json
+!app-catalog/tsconfig.json

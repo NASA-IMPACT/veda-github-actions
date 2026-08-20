@@ -1,0 +1,424 @@
+---
+import type { CollectionEntry } from "astro:content";
+import EntryCard from "./EntryCard.astro";
+import { TYPE_HUES, type EntryType } from "../content.config";
+
+interface Props {
+  entries: CollectionEntry<"catalog">[];
+}
+const { entries } = Astro.props;
+
+// Types present in the catalog, with their counts. Type is the PRIMARY facet, so each chip is
+// rendered in that type's own hue (from TYPE_HUES — the same hue as the badge on the card) and
+// carries a count. That colour link is what makes the facet scannable.
+const typeCounts = new Map<string, number>();
+for (const e of entries) typeCounts.set(e.data.type, (typeCounts.get(e.data.type) ?? 0) + 1);
+const types = [...typeCounts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+const typeStyle = (t: string) => {
+  const h = TYPE_HUES[t as EntryType] ?? 220;
+  return [
+    `--tc-bg:hsl(${h} 55% 95%)`,
+    `--tc-line:hsl(${h} 40% 76%)`,
+    `--tc-ink:hsl(${h} 55% 28%)`,
+    `--tc-dot:hsl(${h} 60% 45%)`,
+  ].join(";");
+};
+
+// Tags present, most common first.
+const tagCounts = new Map<string, number>();
+for (const e of entries)
+  for (const t of e.data.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+
+<section class="catalog" aria-label="App catalog">
+  <div class="controls">
+    <div class="search">
+      <span class="search__icon" aria-hidden="true">⌕</span>
+      <input
+        id="q"
+        type="search"
+        class="search__input"
+        placeholder="Search dashboards & docs…"
+        autocomplete="off"
+        aria-label="Search catalog"
+      />
+    </div>
+
+    <div class="facets">
+      <div class="facet facet--type" role="group" aria-label="Filter by type">
+        <span class="facet__label facet__label--strong">Type</span>
+        {
+          types.map(([t, n]) => (
+            <button
+              type="button"
+              class="chip chip--type"
+              data-facet="type"
+              data-value={t}
+              style={typeStyle(t)}
+            >
+              <span class="chip__dot" aria-hidden="true" />
+              {t}
+              <span class="chip__n">{n}</span>
+            </button>
+          ))
+        }
+      </div>
+      {
+        tags.length > 0 && (
+          <details class="facet facet--tag">
+            <summary class="facet__summary">
+              <span class="facet__label">Tag</span>
+              <span class="facet__hint">{tags.length} tags — refine further</span>
+            </summary>
+            <div class="facet__chips" role="group" aria-label="Filter by tag">
+              {tags.map(([t, n]) => (
+                <button type="button" class="chip chip--tag" data-facet="tag" data-value={t}>
+                  #{t} <span class="chip__n chip__n--tag">{n}</span>
+                </button>
+              ))}
+            </div>
+          </details>
+        )
+      }
+    </div>
+
+    <div class="statusbar">
+      <span id="count" class="statusbar__count" aria-live="polite">{entries.length} entries</span>
+      <button type="button" id="clear" class="statusbar__clear" hidden>Clear filters</button>
+    </div>
+  </div>
+
+  <div id="grid" class="grid">
+    {entries.map((entry) => <EntryCard entry={entry} />)}
+  </div>
+
+  <p id="empty" class="empty" hidden>
+    No entries match. Try a different search or clear the filters.
+  </p>
+</section>
+
+<style>
+  .catalog {
+    padding: 24px 0 8px;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0 14px;
+    box-shadow: var(--shadow);
+  }
+  .search:focus-within {
+    border-color: var(--focus);
+  }
+  .search__icon {
+    font-size: 1.2rem;
+    color: var(--ink-3);
+  }
+  .search__input {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    padding: 14px 0;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .search__input:focus {
+    outline: none;
+  }
+  .facets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .facet {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .facet__label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-right: 4px;
+  }
+
+  /* ---- Type: the PRIMARY facet. Given real visual weight so it reads before the tags. ---- */
+  .facet--type {
+    gap: 8px;
+    padding: 12px 14px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .facet__label--strong {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.14em;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-2);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 11px;
+    cursor: pointer;
+    transition:
+      background 0.12s ease,
+      color 0.12s ease,
+      border-color 0.12s ease,
+      transform 0.12s ease;
+  }
+  .chip:hover {
+    border-color: var(--ink-3);
+  }
+
+  /* Type chips wear their own hue — the same one as the badge on the card they select. */
+  .chip--type {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    background: var(--tc-bg);
+    border-color: var(--tc-line);
+    color: var(--tc-ink);
+  }
+  .chip--type:hover {
+    border-color: var(--tc-dot);
+    transform: translateY(-1px);
+  }
+  .chip__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tc-dot);
+    flex: none;
+  }
+  .chip__n {
+    font-size: 0.74rem;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--tc-dot) 16%, transparent);
+    color: var(--tc-ink);
+  }
+  .chip--type[aria-pressed="true"] {
+    background: var(--tc-dot);
+    border-color: var(--tc-dot);
+    color: #fff;
+  }
+  .chip--type[aria-pressed="true"] .chip__dot {
+    background: #fff;
+  }
+  .chip--type[aria-pressed="true"] .chip__n {
+    background: rgba(255, 255, 255, 0.26);
+    color: #fff;
+  }
+
+  /* ---- Tag: the SECONDARY facet, collapsed by default so it can't compete with Type. ---- */
+  .facet--tag {
+    display: block;
+    padding: 0;
+  }
+  .facet__summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    list-style: none;
+    padding: 2px 0;
+  }
+  .facet__summary::-webkit-details-marker {
+    display: none;
+  }
+  .facet__summary::before {
+    content: "▸";
+    color: var(--ink-3);
+    font-size: 0.7rem;
+    transition: transform 0.12s ease;
+  }
+  .facet--tag[open] > .facet__summary::before {
+    transform: rotate(90deg);
+  }
+  .facet__hint {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+  }
+  .facet__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 0 2px;
+  }
+  .chip__n--tag {
+    background: var(--line-2);
+    color: var(--ink-3);
+    margin-left: 2px;
+  }
+  .chip--tag[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--paper-2);
+    border-color: var(--accent);
+  }
+  .chip--tag[aria-pressed="true"] .chip__n--tag {
+    background: rgba(255, 255, 255, 0.26);
+    color: #fff;
+  }
+  .statusbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-3);
+  }
+  .statusbar__clear {
+    border: 0;
+    background: none;
+    color: var(--accent-ink);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: underline;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .empty {
+    text-align: center;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+    padding: 48px 0;
+  }
+  /* NOTE: the `[data-entry].is-hidden { display: none }` rule deliberately lives in
+     src/styles/global.css, not here — see the comment there. A scoped copy does not win against
+     EntryCard's own `.card { display: flex }`. */
+</style>
+
+<script>
+  type Card = HTMLElement;
+
+  const grid = document.getElementById("grid")!;
+  const cards = Array.from(grid.querySelectorAll<Card>("[data-entry]"));
+  const input = document.getElementById("q") as HTMLInputElement;
+  const countEl = document.getElementById("count")!;
+  const emptyEl = document.getElementById("empty")!;
+  const clearBtn = document.getElementById("clear") as HTMLButtonElement;
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>(".chip"));
+
+  const activeTypes = new Set<string>();
+  const activeTags = new Set<string>();
+  let query = "";
+
+  // --- Pagefind (full-text over rendered docs). Loaded lazily; only present after a
+  // production build (`npm run build`). In `astro dev` it won't exist, so free-text falls
+  // back to a substring match on the card text. ---
+  let pagefindPromise: Promise<any> | null = null;
+  function getPagefind(): Promise<any> {
+    if (!pagefindPromise) {
+      const path = "/pagefind/" + "pagefind.js"; // built as a variable so Vite won't resolve it
+      pagefindPromise = import(/* @vite-ignore */ path)
+        .then(async (pf) => {
+          await pf.options?.({ excerptLength: 15 });
+          return pf;
+        })
+        .catch(() => null);
+    }
+    return pagefindPromise;
+  }
+
+  function slugFromUrl(url: string): string {
+    return url.split("#")[0].split("?")[0].split("/").filter(Boolean).pop() ?? "";
+  }
+
+  async function textMatches(): Promise<Set<string> | null> {
+    if (!query) return null; // null => "everything matches the text criterion"
+    const pf = await getPagefind();
+    if (pf) {
+      const search = await pf.search(query);
+      const data = await Promise.all(search.results.map((r: any) => r.data()));
+      return new Set(data.map((d: any) => slugFromUrl(d.url)));
+    }
+    // Fallback (dev / index missing): substring over title+desc+tags.
+    const q = query.toLowerCase();
+    return new Set(
+      cards.filter((c) => (c.dataset.text ?? "").includes(q)).map((c) => c.dataset.slug ?? ""),
+    );
+  }
+
+  let token = 0;
+  async function apply() {
+    const mine = ++token;
+    const textSet = await textMatches();
+    if (mine !== token) return; // a newer keystroke superseded this run
+
+    let shown = 0;
+    for (const card of cards) {
+      const type = card.dataset.type ?? "";
+      const cardTags = (card.dataset.tags ?? "").split(" ").filter(Boolean);
+      const okText = textSet === null || textSet.has(card.dataset.slug ?? "");
+      const okType = activeTypes.size === 0 || activeTypes.has(type);
+      const okTag = activeTags.size === 0 || cardTags.some((t) => activeTags.has(t));
+      const visible = okText && okType && okTag;
+      card.classList.toggle("is-hidden", !visible);
+      if (visible) shown++;
+    }
+
+    countEl.textContent = `${shown} of ${cards.length} ${cards.length === 1 ? "entry" : "entries"}`;
+    emptyEl.hidden = shown !== 0;
+    const filtering = query !== "" || activeTypes.size > 0 || activeTags.size > 0;
+    clearBtn.hidden = !filtering;
+  }
+
+  let debounce: number | undefined;
+  input.addEventListener("input", () => {
+    window.clearTimeout(debounce);
+    query = input.value.trim();
+    debounce = window.setTimeout(apply, 120);
+  });
+
+  for (const chip of chips) {
+    chip.setAttribute("aria-pressed", "false");
+    chip.addEventListener("click", () => {
+      const value = chip.dataset.value!;
+      const set = chip.dataset.facet === "type" ? activeTypes : activeTags;
+      const now = !(chip.getAttribute("aria-pressed") === "true");
+      chip.setAttribute("aria-pressed", String(now));
+      now ? set.add(value) : set.delete(value);
+      apply();
+    });
+  }
+
+  clearBtn.addEventListener("click", () => {
+    query = "";
+    input.value = "";
+    activeTypes.clear();
+    activeTags.clear();
+    for (const chip of chips) chip.setAttribute("aria-pressed", "false");
+    apply();
+  });
+</script>

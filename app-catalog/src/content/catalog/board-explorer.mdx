@@ -1,0 +1,159 @@
+---
+title: "Board Explorer"
+description: "Search, filter and slice a GitHub Projects v2 board — GitHub's own filter vocabulary made clickable, over Table / By Assignee / Timeline views."
+type: "Web app"
+solves: "A Projects v2 board can only be sliced the way its own UI allows, and any view of it is locked behind a token. This makes the board queryable, sliceable three ways, and shareable as a link."
+tags: ["projects-v2", "search", "timeline", "board", "react", "csv", "graphql"]
+limitations:
+  - "It reads a MIRROR, not the board. The sync workflow refreshes every 6 hours, so the view can be up to six hours behind reality — the header's ● live / ○ snapshot badge tells you which copy you have, not how fresh it is."
+  - "The mirror exists because a static site cannot hold a token: Projects v2 is unreadable without one, and even the default GITHUB_TOKEN lacks read:project. If PROJECT_TOKEN_FOR_BOARD_READS expires, the data silently stops updating rather than erroring in the UI."
+  - "The Timeline view needs dates most items do not have. It falls back Start/End → Sprint → Program Increment → created→closed, and each bar labels which source it used — but a bar's position can still be an inference, not a plan."
+  - "Item bodies are truncated for search (600 characters by default), so free-text search will miss text further down a long issue."
+  - "An item with several assignees appears in every one of their lanes in the By Assignee view. That is deliberate, but it means the lane counts sum to more than the item count."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/tree/main/board-explorer"
+homepage: "https://veda-projectboard-dashboard.netlify.app"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: true
+---
+
+## What it solves
+
+A board is good at being a board. It is bad at being asked questions.
+
+The columns are a fixed way of looking at the work, and anything cutting across them — which open
+items have no assignee and slip past this sprint, what does this person actually carry, what has
+dates and what is guesswork — either isn't expressible or means scrolling and counting. There is no
+timeline. There is no export. And because reading Projects v2 requires a token, **the view you worked
+out cannot be handed to anyone**; you can describe it, or screenshot it, but you can't send it.
+
+Two things change that. The board is **mirrored to public JSON** by a scheduled job that holds the
+token, so no viewer needs one. And the whole view — query plus which of the three slices you're on —
+lives in the URL, so "the thing I'm looking at" becomes a link. The query language is deliberately
+GitHub's own vocabulary rather than an invented one, made clickable: every chip you press rewrites
+the same query string, which stays the single source of truth.
+
+<figure class="solves-fig">
+  <svg viewBox="0 0 860 348" role="img" aria-labelledby="be-fig-title be-fig-desc">
+    <title id="be-fig-title">A board's fixed columns versus a query, three views and a shareable link</title>
+    <desc id="be-fig-desc">
+      Before: a board shows fixed columns, cross-cutting questions cannot be expressed, and the view
+      cannot be shared because reading the board requires a token. After: a single GitHub-style query
+      string drives Table, By assignee and Timeline views, and the whole state is a copyable link.
+    </desc>
+
+    <defs>
+      <marker id="be-ah-good" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--focus)" />
+      </marker>
+    </defs>
+
+    {/* ---------------- BEFORE ---------------- */}
+    <rect class="fig-panel" x="8" y="8" width="408" height="332" rx="12" />
+    <text class="fig-label" x="28" y="34">BEFORE — fixed columns only</text>
+
+    <rect x="34" y="56" width="112" height="136" rx="6" fill="var(--line-2)" opacity="0.5" />
+    <rect x="156" y="56" width="112" height="136" rx="6" fill="var(--line-2)" opacity="0.5" />
+    <rect x="278" y="56" width="112" height="136" rx="6" fill="var(--line-2)" opacity="0.5" />
+    <text class="fig-t--mono fig-t--dim" x="44" y="73" font-size="9">Todo</text>
+    <text class="fig-t--mono fig-t--dim" x="166" y="73" font-size="9">In progress</text>
+    <text class="fig-t--mono fig-t--dim" x="288" y="73" font-size="9">Done</text>
+
+    <rect class="fig-box" x="44" y="82" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="44" y="108" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="44" y="134" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="166" y="82" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="166" y="108" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="288" y="82" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="288" y="108" width="92" height="20" rx="4" />
+    <rect class="fig-box" x="288" y="134" width="92" height="20" rx="4" />
+
+    <text class="fig-t--mono" x="212" y="222" font-size="10.5" text-anchor="middle">“open, unassigned, slipping past this sprint?”</text>
+
+    <g class="fig-pulse">
+      <rect x="60" y="238" width="304" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="212" y="255" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">⚠ not a question the board can be asked</text>
+    </g>
+    <g class="fig-pulse fig-d3">
+      <rect x="60" y="276" width="304" height="26" rx="13" fill="var(--warn-bg)" stroke="var(--warn-line)" />
+      <text class="fig-t--mono" x="212" y="293" font-size="10.5" text-anchor="middle" fill="var(--warn-ink)">🔒 and the view needs a token to see</text>
+    </g>
+
+    {/* ---------------- AFTER ---------------- */}
+    <rect class="fig-panel" x="440" y="8" width="412" height="332" rx="12" />
+    <text class="fig-label" x="460" y="34">AFTER — one query, three views, one link</text>
+
+    <rect class="fig-box" x="458" y="54" width="376" height="34" rx="7" stroke="var(--focus)" />
+    <text class="fig-t--mono" x="472" y="76" font-size="11">is:open no:assignee sprint:26.4</text>
+
+    <text class="fig-t--mono fig-t--dim" x="458" y="106" font-size="9">GitHub's own vocabulary — every chip rewrites this one string</text>
+
+    <path class="fig-flow fig-flow--good" d="M646,112 L646,132" stroke-width="2.5" marker-end="url(#be-ah-good)" />
+
+    <rect class="fig-box" x="458" y="138" width="118" height="26" rx="6" stroke="var(--focus)" />
+    <text class="fig-t--mono" x="517" y="155" font-size="10" text-anchor="middle" fill="var(--focus)">Table</text>
+    <rect class="fig-box" x="588" y="138" width="118" height="26" rx="6" />
+    <text class="fig-t--mono" x="647" y="155" font-size="10" text-anchor="middle">By assignee</text>
+    <rect class="fig-box" x="716" y="138" width="118" height="26" rx="6" />
+    <text class="fig-t--mono" x="775" y="155" font-size="10" text-anchor="middle">Timeline</text>
+
+    <rect class="fig-box" x="458" y="176" width="376" height="86" rx="7" />
+    <rect class="fig-grow" x="470" y="190" width="290" height="11" rx="3" fill="var(--focus)" opacity="0.8" />
+    <rect class="fig-grow fig-d1" x="470" y="209" width="342" height="11" rx="3" fill="var(--focus)" opacity="0.6" />
+    <rect class="fig-grow fig-d2" x="470" y="228" width="238" height="11" rx="3" fill="var(--focus)" opacity="0.45" />
+    <rect class="fig-grow fig-d3" x="470" y="247" width="310" height="11" rx="3" fill="var(--focus)" opacity="0.3" />
+
+    <g class="fig-pulse fig-d2">
+      <rect x="482" y="282" width="150" height="26" rx="13" fill="#e8f1ef" stroke="#a9cfc9" />
+      <text class="fig-t--mono" x="557" y="299" font-size="10" text-anchor="middle" fill="#1f5a54">🔗 copy this view</text>
+    </g>
+    <rect x="656" y="282" width="176" height="26" rx="13" fill="#e8f1ef" stroke="#a9cfc9" />
+    <text class="fig-t--mono" x="744" y="299" font-size="10" text-anchor="middle" fill="#1f5a54">⬇ CSV of exactly these rows</text>
+  </svg>
+
+  <figcaption>
+    The board isn't replaced — it's mirrored to public JSON so no viewer needs a token, and the query
+    plus the active view live in the URL. That is what turns "the thing I'm looking at" into something
+    you can send someone.
+  </figcaption>
+</figure>
+
+## What it does
+
+Makes a Projects v2 board answerable. Three views over the same filtered set:
+
+- **Table** — the dense grid; sort by any column, choose your columns (remembered in `localStorage`).
+- **By assignee** — one lane per person plus an Unassigned bucket.
+- **Timeline** — date-axis bars grouped by any field.
+
+The interesting part is the **query language**: GitHub's own filter vocabulary, made clickable.
+`assignee:` / `author:` / `label:` / `milestone:` / `repo:` / `type:` / `reason:` plus **any board
+field by name**, `is:open|closed|merged|issue|pr|draft`, `no:` / `has:`, `-` negation, comma-OR,
+repeated-qualifier-AND, quoting, and date comparisons like `updated:>@today-7d`. Clicking any chip
+anywhere rewrites the one query string — a single source of truth, no parallel filter object.
+
+Also: <kbd>/</kbd> to focus search (like GitHub), a copyable link that encodes the full view state in
+the URL hash, and CSV export of exactly the filtered rows with every board field.
+
+## Where the data comes from
+
+`board-explorer.yml` mirrors the board to JSON on the **`board-explorer/data`** branch every 6 hours
+(and on demand), using `PROJECT_TOKEN_FOR_BOARD_READS`. The app then only ever reads public JSON:
+commit-SHA raw URL → branch path → bundled `public/data/` snapshot.
+
+The generator talks **GraphQL directly** rather than using `gh project item-list`, which cannot return
+state, merged, label colours, avatars, milestone, timestamps or sub-issue progress. It is
+**field-agnostic** — fields are discovered via `fields(first: 60)`, so adding a board column needs no
+code change in either the generator or the SPA.
+
+## Run it locally
+
+```bash
+cd board-explorer
+npm install
+npm run dev
+
+# Offline: regenerate from a canned GraphQL bundle, and exercise the query grammar.
+python3 board-explorer/scripts/test_generate.py
+node board-explorer/scripts/test_search.ts
+```

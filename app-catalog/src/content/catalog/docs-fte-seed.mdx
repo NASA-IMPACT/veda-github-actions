@@ -1,0 +1,28 @@
+---
+title: "Doc — FTE Seed & Data Model"
+description: "How the FTE capacity report gets its numbers: the `## LOE/FTE` issue-body table versus the PI/date board fields, weighted FTE, the PI-change test loop, and how to reset and reseed."
+type: "Reference"
+solves: "Answers “where did this FTE number come from?” — which half of the join (issue body table vs board field) owns each value, and how to reshape a board so the report can read it."
+tags: ["docs", "fte", "seed", "data-model", "projects-v2"]
+limitations:
+  - "Seeding creates REAL issues and pull requests on a real board. It is not a dry run — read the reset/reseed section before you start."
+  - "Seeding into a repo whose workflow has `on: issues:` enabled triggers a run per issue open/edit/close and will flood that repo's Actions tab. This repo keeps that trigger commented out on purpose; the target repo may not."
+  - "Hand-maintained prose, not generated from the code. It can drift from generate_fte_report.py."
+repo: "https://github.com/NASA-IMPACT/veda-github-actions/blob/main/docs/FTE_SEED.md"
+author: "NASA VEDA"
+dateAdded: 2026-08-19
+featured: false
+---
+
+## What's in it
+
+The data model behind the FTE Capacity Report — where each number actually comes from. The split
+matters: **effort** is parsed from a `## LOE/FTE` Markdown table in the issue body, while **when** and
+**which PI** come from the board's own fields. The doc covers weighted FTE, the loop for testing a PI
+change end to end, and how to reset and reseed a board.
+
+## Read it when
+
+- A person's allocation looks wrong and you need to know which half of the join to blame.
+- You are standing up a new board and need it shaped so the report can read it.
+- You want to test a PI change without waiting on real data.

@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Searchable catalog of the VEDA dashboards and reference docs in veda-github-actions.",
+} = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">◈</span>
+          <span>veda&#8202;/&#8202;catalog</span>
+          <span class="brand__org">NASA VEDA</span>
+        </a>
+        <a
+          class="site-header__link"
+          href="https://github.com/NASA-IMPACT/veda-github-actions"
+          rel="noopener"
+        >
+          Contribute →
+        </a>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>veda-app-catalog · NASA VEDA · {year}</span>
+        <span>Built with Astro + Pagefind · deployed on Netlify</span>
+      </div>
+    </footer>
+  </body>
+</html>
