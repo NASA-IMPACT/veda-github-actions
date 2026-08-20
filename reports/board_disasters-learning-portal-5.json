@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-20T12:08:23Z",
+  "generated": "2026-08-20T18:08:21Z",
   "items": [
     {
       "archived": false,
@@ -3462,7 +3462,7 @@
       "state_reason": null,
       "sub": {
         "completed": 5,
-        "total": 14
+        "total": 15
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5241,8 +5241,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Update Event page overview layout",
-      "updated": "2026-08-18T21:08:56Z",
+      "title": "Update DP: Update Event page",
+      "updated": "2026-08-20T18:00:55Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5414,6 +5414,85 @@
       "title": "Update theme to hds.css",
       "updated": "2026-08-19T16:01:55Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/382"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nCSDA has decided to migrate by December 1, 2026 away from using a dedicated /disasters for some (potentially all) CSDA satellite products. These can include Satellogic, Umbra, Capella, Satellogic, Skysat, and IceEye.\nHow to fix\n\n schedule a follow up meeting after Sept. 30 release of Disasters portal with Vishal and Jordan Bell",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-20T13:06:07Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-10-09",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Start Date": "2026-10-05"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg3UUTA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 383,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Follow up scoping with CSDA -- losing `/disasters` S3 path",
+      "updated": "2026-08-20T13:06:13Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/383"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Date should show on left panel as a tag",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-20T18:00:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg3W2Y4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 384,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Update training page",
+      "updated": "2026-08-20T18:00:24Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
     },
     {
       "archived": false,
@@ -6180,7 +6259,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
+        "completed": 3,
         "total": 7
       },
       "title": "[6.5] Productionalize DRCS algorithm workflow and documentation in Jupyterhub",
@@ -6246,8 +6325,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5b\nOwner: VEDA\nAssigned to: Kyle / Andrew\nSmartsheet status: In Progress\nSchedule: 18d — 2026-07-08 → 2026-07-31\nPriority: MEDIUM\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-08-20T13:30:37Z",
+      "comments": 2,
       "created": "2026-08-12T22:46:49Z",
       "draft": false,
       "fields": {
@@ -6264,7 +6343,7 @@
           "title": "26.4.1"
         },
         "Start Date": "2026-07-08",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ui6o",
       "issue_type": null,
@@ -6281,10 +6360,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5b] Implement proof of concept DPS processing and test",
-      "updated": "2026-08-12T22:46:49Z",
+      "updated": "2026-08-20T13:30:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/14"
     },
     {
@@ -6295,8 +6374,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5g\nOwner: Disasters\nAssigned to: Garrett / Ronan\nSmartsheet status: Not Started\nSchedule: 5d — 2026-08-03 → 2026-08-07\nNotes\nFull Smartsheet task text: \"Identify MVP for September (who needs access, what they should be accessing, etc). This will help with documentation. What processes or scripts are they expected to run? Only cog conversion or also algorithms?\"\nGoogle Doc for documentation.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-08-20T13:31:50Z",
+      "comments": 2,
       "created": "2026-08-12T22:46:56Z",
       "draft": false,
       "fields": {
@@ -6312,7 +6391,7 @@
           "title": "26.4.1"
         },
         "Start Date": "2026-08-03",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ui9A",
       "issue_type": null,
@@ -6329,10 +6408,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5g] Identify MVP for September (who needs access, what they access)",
-      "updated": "2026-08-12T22:46:57Z",
+      "updated": "2026-08-20T13:31:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/15"
     },
     {
@@ -7286,7 +7365,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a2\nOwner: Disasters/VEDA\nAssigned to: Kyle / Seph / Jacob / Ronan\nSmartsheet status: In Progress\nSchedule: 15d — 2026-07-13 → 2026-07-31\nPriority: MEDIUM\nNotes\nMigrated content first pass: https://docs.google.com/spreadsheets/d/14wbXmCAq8P2jq7HP2NejvZzw4cfS8BOc4vkWx-6SGhg/edit?usp=drive_web&ouid=118263976044386137121\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-13T10:11:22Z",
       "draft": false,
       "fields": {
@@ -7324,7 +7403,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.1a2] Create plan for migrated content",
-      "updated": "2026-08-19T14:15:44Z",
+      "updated": "2026-08-20T16:09:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/36"
     },
     {
@@ -16342,10 +16421,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 320,
+    "closed": 322,
     "drafts": 0,
-    "issues": 397,
-    "items": 411,
+    "issues": 399,
+    "items": 413,
     "open": 91,
     "prs": 14
   }
