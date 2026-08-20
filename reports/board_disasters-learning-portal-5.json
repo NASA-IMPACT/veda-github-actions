@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-20T06:09:30Z",
+  "generated": "2026-08-20T12:08:23Z",
   "items": [
     {
       "archived": false,
@@ -5253,7 +5253,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Upgrade veda-ui-block package\n Link updates to use Next/Link (consider alongside basepath PR)\n Updates to use HDS css theme",
       "closed": null,
-      "comments": 3,
+      "comments": 4,
       "created": "2026-08-18T21:12:56Z",
       "draft": false,
       "fields": {
@@ -5287,7 +5287,7 @@
         "total": 3
       },
       "title": "HDS Compliance - upgrade veda-ui-block package / breaking changes",
-      "updated": "2026-08-19T15:33:23Z",
+      "updated": "2026-08-20T11:58:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/379"
     },
     {
