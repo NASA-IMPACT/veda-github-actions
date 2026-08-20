@@ -2,6 +2,34 @@
 
 Short ADRs for non-obvious choices. Newest first.
 
+## App Catalog — Astro instead of the house stack; two fields gated by the build
+
+**Astro 5 + Pagefind, not Vite + React.** Every other SPA here is Vite + React 18 with pinned
+versions, and breaking that costs something real: a second framework, a second build story, a second
+set of conventions. It was still the right call, because this is a *content* catalog rather than a
+data dashboard. Entries are prose with typed frontmatter, and the requirement is full-text search
+over that prose with no backend. Astro validates every entry at build (Zod), Pagefind indexes the
+built HTML, and the page ships almost no JS. Doing it in React would mean hand-rolling routing, MDX
+rendering and a search index, then shipping a bundle to run them —
+[`odsi-app-catalog`](https://github.com/NASA-IMPACT/odsi-app-catalog), which this is modelled on,
+rejected the SPA approach for exactly this reason. The boundary to hold: **if a future app needs to
+render data, it belongs in the Vite+React family** — Astro here is for prose, not dashboards.
+
+**`limitations` and `solves` are required and gated by `astro build`.** Both express product rules —
+every entry says what it costs you, and what problem it removes — and both were deliberately made
+schema constraints (`z.array(...).min(1)`, `z.string().min(1)`) rather than review conventions,
+because a review convention decays the first time someone is in a hurry. A missing or empty one fails
+the build and CI. The cost is that adding an entry is slightly more work; that is the point. `solves`
+started optional while entries were written one at a time, then was flipped to required once all 14
+had one — the same move is available for any future required field.
+
+**The catalog references, never hosts.** Each entry links out to the real folder, doc or live site. It
+is an index, not a mirror, so it cannot drift into a second stale copy of what it describes.
+
+**Only detail pages are indexed for search** (`data-pagefind-body`), so a hit maps to an entry rather
+than to the grid page, and the Limitations panel is `data-pagefind-ignore` — otherwise every entry
+would match on the boilerplate sentence inside it.
+
 ## Board Explorer — mirror the board to a branch; one query string is the source of truth
 
 **Mirror in CI, not a token in the browser.** Projects v2 cannot be read anonymously, and the

@@ -117,7 +117,8 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   qualifier = AND**, so `is:open is:closed` correctly returns nothing. See `docs/BOARD_EXPLORER.md`.
 - `app-catalog/` — **the front door to this repo, and the ONLY app here that is not Vite+React.**
   **Astro 5 (static, no adapter) + `@astrojs/mdx` + Pagefind 1.x, Node 24 (`.nvmrc`)**;
-  `app-catalog/netlify.toml` (base=`app-catalog`, build, publish `dist`). One entry = one MDX file in
+  `app-catalog/netlify.toml` (base=`app-catalog`, build, publish `dist`); live at
+  `veda-app-catalog.netlify.app`. One entry = one MDX file in
   `src/content/catalog/`; filename = slug = route. **`src/content.config.ts` is the single source of
   truth** for entry fields (Zod) and owns `ENTRY_TYPES` + `TYPE_HUES`. Modelled on
   `NASA-IMPACT/odsi-app-catalog`. **Two fields are REQUIRED and build-gated: `limitations` (min 1)
@@ -174,6 +175,13 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
   implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
   on all eight sites** — that is expected, and it happens with or without an `ignore` filter.
+- **The Netlify MCP server cannot connect a repo to a site.** Creating the 8th site proved it: the
+  whole write surface is `create-new-project` (**`name` + `teamSlug` only**), rename, env vars, access
+  controls and forms — **no operation for the repo link, branch, base directory or build settings**,
+  and `get-project` can't read them back either. An agent can create a bare project and nothing more;
+  the repo connection is a UI step, which is also where it belongs (it must be the **GitHub App** — an
+  API/deploy-key connection silently yields no PR Deploy Previews). The MCP is still useful for
+  deploys, env vars and reading site state. Team is `kyle-lesinger` ("Data Systems Evolution").
 - **`app-catalog/` is Astro, and two things there bite that never bite in the Vite apps.** (1) **MDX
   parses markdown inside your inline SVG**: bare text with a leading-space `_` opens an emphasis span
   and `[^x]` reads as a footnote reference, which **silently truncates the rest of the `<svg>`** — no
