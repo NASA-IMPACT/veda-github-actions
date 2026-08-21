@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-21T06:09:49Z",
+  "generated": "2026-08-21T12:08:20Z",
   "items": [
     {
       "archived": false,
@@ -5253,7 +5253,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Upgrade veda-ui-block package\n Link updates to use Next/Link (consider alongside basepath PR)\n Updates to use HDS css theme",
       "closed": null,
-      "comments": 4,
+      "comments": 5,
       "created": "2026-08-18T21:12:56Z",
       "draft": false,
       "fields": {
@@ -5283,11 +5283,11 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
+        "completed": 1,
         "total": 3
       },
       "title": "HDS Compliance - upgrade veda-ui-block package / breaking changes",
-      "updated": "2026-08-20T11:58:07Z",
+      "updated": "2026-08-21T11:20:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/379"
     },
     {
@@ -5340,7 +5340,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Upgrade veda-ui-block package\nhandles breaking changes\n\n TagProps",
-      "closed": null,
+      "closed": "2026-08-21T11:26:19Z",
       "comments": 0,
       "created": "2026-08-19T15:32:24Z",
       "draft": false,
@@ -5354,7 +5354,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3LNtE",
       "issue_type": null,
@@ -5368,10 +5369,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/379"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Upgrade veda-ui-blocks and handle breaking changes",
-      "updated": "2026-08-20T20:29:55Z",
+      "updated": "2026-08-21T11:26:19Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/381"
     },
     {
@@ -5493,6 +5494,42 @@
       "title": "Update DP: Update Training page",
       "updated": "2026-08-20T18:52:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "vgeorge"
+      ],
+      "author": "vgeorge",
+      "body_excerpt": "Code freeze on main was requested for the current production website, see #379 (comment) and this thread.\nThis aims to document the migration and its steps:\n\n Change default branch to develop\n Add branch protection to develop\n Setup deploy previews for develop on netlify\n\nThere is ongoing work that need to land in main in #380, related to base path on current deployment. After it lands, we need to merge it back to develop branch to sync.\nAll other PRs should target the develop branch from now on. Currently only active is #388.\nThere are no changes required to the production deployment setup at",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-21T11:58:33Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg3dnoI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 389,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "chore: adopt `develop` as default branch for September release work",
+      "updated": "2026-08-21T11:58:33Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/389"
     },
     {
       "archived": false,
@@ -16421,10 +16458,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 322,
+    "closed": 323,
     "drafts": 0,
-    "issues": 399,
-    "items": 413,
+    "issues": 400,
+    "items": 414,
     "open": 91,
     "prs": 14
   }
