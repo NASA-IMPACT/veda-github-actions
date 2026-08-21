@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-20T18:08:21Z",
+  "generated": "2026-08-21T00:11:29Z",
   "items": [
     {
       "archived": false,
@@ -5015,7 +5015,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page",
+      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n\nConsider using one page template for all content pages",
       "closed": null,
       "comments": 0,
       "created": "2026-08-18T20:48:16Z",
@@ -5047,7 +5047,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Add In Page Navigation to Dataset, News, Story, DataStory, Event, Training Page Templates",
-      "updated": "2026-08-18T20:50:54Z",
+      "updated": "2026-08-20T18:53:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/373"
     },
     {
@@ -5210,7 +5210,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Overview layout should be in left column per designs",
+      "body_excerpt": "Disaster type updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Overview layout should be in left column per designs",
       "closed": null,
       "comments": 0,
       "created": "2026-08-18T21:08:56Z",
@@ -5242,7 +5242,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-08-20T18:00:55Z",
+      "updated": "2026-08-20T18:53:17Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5371,7 +5371,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Upgrade veda-ui-blocks and handle breaking changes",
-      "updated": "2026-08-19T16:01:54Z",
+      "updated": "2026-08-20T20:29:55Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/381"
     },
     {
@@ -5424,7 +5424,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nCSDA has decided to migrate by December 1, 2026 away from using a dedicated /disasters for some (potentially all) CSDA satellite products. These can include Satellogic, Umbra, Capella, Satellogic, Skysat, and IceEye.\nHow to fix\n\n schedule a follow up meeting after Sept. 30 release of Disasters portal with Vishal and Jordan Bell",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-20T13:06:07Z",
       "draft": false,
       "fields": {
@@ -5452,14 +5452,14 @@
       "state": "open",
       "state_reason": null,
       "title": "Follow up scoping with CSDA -- losing `/disasters` S3 path",
-      "updated": "2026-08-20T13:06:13Z",
+      "updated": "2026-08-20T21:18:35Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/383"
     },
     {
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Date should show on left panel as a tag",
+      "body_excerpt": "Date should show on left panel as a tag\n Should use standard content page template",
       "closed": null,
       "comments": 0,
       "created": "2026-08-20T18:00:24Z",
@@ -5490,8 +5490,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Update training page",
-      "updated": "2026-08-20T18:00:24Z",
+      "title": "Update DP: Update Training page",
+      "updated": "2026-08-20T18:52:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
     },
     {
