@@ -6,17 +6,71 @@ dashboard: [`leave-dashboard/`](../leave-dashboard/); workflow:
 [`.github/workflows/leave-tracker.yml`](../.github/workflows/leave-tracker.yml).
 
 ## How updates reach the live dashboard (the whole flow)
-There are exactly **two kinds of change**, and each has one automatic path — no manual steps:
+There are exactly **three kinds of change**, and each has one automatic path — no manual steps:
 
 | You change… | What happens | Result |
 |---|---|---|
+| **The Google Sheet** (where the team actually tracks leave) | Nothing — the **hourly** run re-exports the sheet as `.xlsx`, reparses it, and republishes the report | New data live within the hour |
+| **A person / leave / new team** via the dashboard's **Add leave** button (`leave/overrides/**`) | The prefilled PR is validated and **merged automatically** → the push trigger regenerates the report | Live ~2 min after the PR is opened |
 | **Dashboard app** (`leave-dashboard/**`) | Merge to `main` → Netlify builds (`netlify.toml` has **no build-ignore**, so it always publishes) | New UI live in ~1 min |
-| **Data** — a person / leave / new team (`leave/overrides/**`) or a new workbook (`leave/source/**`) | Merge to `main` → the **Leave Tracker workflow auto-runs** (push trigger) → regenerates the report on the `leave-tracker/report` branch → the dashboard fetches it at runtime | New data live in ~1 min, no redeploy |
 
-So: **just merge the PR.** The dashboard's *Add-person* button opens exactly such an override PR.
 The **PI is inferred from the workbook filename** (`… 26.4.xlsx` → `26.4`), so nothing needs configuring
 when a new PI workbook is dropped in. To force a refresh (or override the PI), run it by hand:
 `gh workflow run leave-tracker.yml` — or GitHub → Actions → **Leave Tracker** → **Run workflow**.
+
+### Hourly Google Sheets sync
+The team edits leave in a Google Sheet. For a long time the only way that reached the dashboard was
+**someone downloading the `.xlsx` and committing it by hand** — so the dashboard silently served
+month-old data and looked perfectly healthy while doing it. Now the workflow re-exports the sheet
+every hour:
+
+- Set the repo **variable** `LEAVE_SHEET_ID` to the sheet's document id. Unset ⇒ the step is skipped
+  and the committed workbook is used, exactly as before.
+- The export URL is `https://docs.google.com/spreadsheets/d/<id>/export?format=xlsx` and needs **no
+  credentials** — the sheet just has to be link-shareable. Google's xlsx export **preserves the cell
+  fill colors**, which is the entire data model here (verified: the export parses to byte-identical
+  results vs. a hand-downloaded copy).
+- The download overwrites the workbook **in the runner's workspace only** — it is never committed, so
+  `main` stays clean and the PI keeps being inferred from the committed filename.
+- **A sheet that loses link-sharing returns HTTP 200 with an HTML sign-in page**, which `curl -f`
+  accepts happily. The step therefore verifies the download is a real zip before trusting it, and
+  falls back to the committed workbook with a `::warning::` rather than publishing garbage.
+- Scheduled workflows are **disabled by GitHub after 60 days of repo inactivity** — if the dashboard
+  goes stale for no obvious reason, check that first.
+- An hourly run that finds no new data commits **nothing**: the report manifest's `generated`
+  timestamp changes every run, so the publish step explicitly ignores a manifest-only,
+  timestamp-only diff. Without that the report branch would collect 24 empty commits a day.
+
+### Auto-merged leave overrides
+`.github/workflows/leave-override-automerge.yml` validates and merges the PRs the dashboard's **Add
+leave** button opens, so a person's dates go live without anyone approving anything.
+
+A PR is auto-merged **only** when every one of these holds — otherwise it gets a comment saying
+exactly what is wrong and stays open:
+
+| Check | Rule |
+|---|---|
+| Author | has write/maintain/admin on the repo, or is a member of the org |
+| Paths | every changed file matches `leave/overrides/<slug>.json` |
+| Change type | `added` / `modified` / `removed` only, at most 5 files, ≤ 64 KB each |
+| Content | passes [`leave/scripts/validate_overrides.py`](../leave/scripts/validate_overrides.py) |
+| State | open, not a draft |
+
+Two non-obvious things about that workflow, both load-bearing:
+
+- It uses **`pull_request_target`**, because a `pull_request` run from a fork gets a read-only token
+  and no secrets and could never merge. That is safe here only because the job **never checks out or
+  runs the PR head** — it reads the changed-file list and each file's content through the API, and
+  refuses anything outside `leave/overrides/`. Override files are inert data.
+- It merges with the **PAT, not `GITHUB_TOKEN`**. A push made by `GITHUB_TOKEN` does not trigger
+  further workflows, so merging with it would silently fail to fire this workflow's own `push`
+  trigger — the PR would merge and the dashboard still would not update. The PAT also satisfies
+  `main`'s 1-approving-review rule.
+
+**Submitters need write access** for the smooth path. A read-only user is sent through GitHub's fork
+prompt in the web editor, and that is where they tend to abandon — which is precisely how one
+person's update went missing for weeks. Their PR still auto-merges if they push through it, as long
+as they are an org member.
 
 > The `leave-tracker/report` branch is **machine-managed / publish-only** — never open a PR from it
 > into `main` (that just dumps generated report files onto `main`).

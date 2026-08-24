@@ -59,6 +59,11 @@ export default function AddPersonForm({ teams, people, pi, drafts, setDrafts, on
           Add dates to an <b>existing person</b>, or create a <b>new</b> one (and a new team if needed).
           Use <b>Preview</b> to see them on the calendar first. <b>Closing keeps your entries</b> — reopen “Add person” to continue.
         </p>
+        <p className="hint">
+          On GitHub, click <b>Commit changes</b> → <b>Propose changes</b> → <b>Create pull request</b>.
+          The PR then <b>merges itself</b> and your dates appear here within about two minutes — nobody
+          has to approve it. If something in an entry is wrong, a comment on the PR says what to fix.
+        </p>
 
         {drafts.map((d, i) => {
           const known = d.mode === "existing" ? byName.get(d.name.trim().toLowerCase()) : undefined;

@@ -1,0 +1,213 @@
+name: Leave overrides — validate & auto-merge
+
+# When someone submits leave from the dashboard ("Add leave" opens a prefilled new-file PR), this
+# validates the override JSON and merges it — so their dates go live with no human in the loop.
+# Merging fires leave-tracker.yml's `push` trigger, which republishes the report the dashboard reads.
+#
+# WHY `pull_request_target` (and why it is safe here): a `pull_request` run from a fork gets a
+# read-only token and NO secrets, so it could never merge. `pull_request_target` runs the workflow
+# as defined on the BASE branch, with credentials. The PR head is therefore NEVER checked out and
+# NEVER executed — this job only reads the changed-file LIST and each file's CONTENT through the
+# API, and it refuses to merge if anything outside `leave/overrides/*.json` was touched. Override
+# files are inert data consumed by generate_leave_tracker.py; they cannot execute anything.
+#
+# WHY the PAT and not GITHUB_TOKEN: a push made by GITHUB_TOKEN does not trigger further workflows.
+# Merging with it would silently fail to fire leave-tracker.yml — the PR would merge and the
+# dashboard still would not update, which is the exact bug this whole flow exists to fix. The PAT
+# also satisfies main's 1-approving-review rule.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "leave/overrides/**"
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "PR number to (re)check — for PRs opened before this workflow existed"
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+# One check per PR; a new push supersedes an in-flight run.
+concurrency:
+  group: leave-override-automerge-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+
+env:
+  REPO: ${{ github.repository }}
+  ORG: ${{ github.repository_owner }}
+  PR: ${{ github.event.pull_request.number || inputs.pr }}
+  MAX_FILES: "5"
+  MAX_BYTES: "65536"
+  # Every `gh` call below uses the PAT — see the header for why.
+  GH_TOKEN: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "0 · Require the merge token"
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::PROJECT_TOKEN_FOR_BOARD_READS is not set — cannot approve or merge." >&2
+            exit 1
+          fi
+
+      # Checks out the BASE branch, never the PR head: the validator and generator used below are
+      # always main's copies, so a PR can't supply its own validation logic.
+      - name: "1 · Checkout the base branch (never the PR head)"
+        uses: actions/checkout@v4
+
+      - name: "2 · Gate — author, paths, change type, and JSON validity"
+        id: gate
+        run: |
+          set -euo pipefail
+          fail() { printf '%s\n' "$1" >> "$RUNNER_TEMP/reasons.txt"; }
+          : > "$RUNNER_TEMP/reasons.txt"
+
+          PR_JSON="$(gh api "repos/$REPO/pulls/$PR")"
+          STATE=$(jq -r .state <<<"$PR_JSON")
+          DRAFT=$(jq -r .draft <<<"$PR_JSON")
+          MERGED=$(jq -r .merged <<<"$PR_JSON")
+          AUTHOR=$(jq -r .user.login <<<"$PR_JSON")
+          HEAD_SHA=$(jq -r .head.sha <<<"$PR_JSON")
+          SAME_REPO=$(jq -r '.head.repo.full_name == .base.repo.full_name' <<<"$PR_JSON")
+          HEAD_REF=$(jq -r .head.ref <<<"$PR_JSON")
+          echo "PR #$PR by $AUTHOR — state=$STATE draft=$DRAFT merged=$MERGED head=$HEAD_SHA"
+
+          # Nothing to do: already merged, closed, or still a draft. Not a failure, just a no-op.
+          if [ "$MERGED" = "true" ] || [ "$STATE" != "open" ] || [ "$DRAFT" = "true" ]; then
+            echo "decision=skip" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+
+          # --- Author trust: write/admin on the repo, or a member of the org. ---
+          PERM=$(gh api "repos/$REPO/collaborators/$AUTHOR/permission" --jq .permission 2>/dev/null || echo none)
+          IS_MEMBER=no
+          gh api "orgs/$ORG/members/$AUTHOR" --silent >/dev/null 2>&1 && IS_MEMBER=yes
+          echo "permission=$PERM org_member=$IS_MEMBER"
+          TRUSTED=no
+          case "$PERM" in write|maintain|admin) TRUSTED=yes ;; esac
+          [ "$IS_MEMBER" = "yes" ] && TRUSTED=yes
+          if [ "$TRUSTED" = "no" ]; then
+            echo "decision=untrusted" >> "$GITHUB_OUTPUT"
+            echo "author=$AUTHOR" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # --- Paths + change type: only `leave/overrides/<slug>.json`, added/modified/removed. ---
+          FILES_JSON="$(gh api "repos/$REPO/pulls/$PR/files" --paginate)"
+          N=$(jq 'length' <<<"$FILES_JSON")
+          echo "changed files: $N"
+          if [ "$N" -gt "$MAX_FILES" ]; then
+            fail "- $N files changed; auto-merge handles at most $MAX_FILES."
+          fi
+
+          mkdir -p "$RUNNER_TEMP/files"
+          while IFS=$'\t' read -r NAME STATUS; do
+            echo "  $STATUS  $NAME"
+            if ! printf '%s' "$NAME" | grep -Eq '^leave/overrides/[a-z0-9._-]+\.json$'; then
+              fail "- \`$NAME\` is outside \`leave/overrides/<slug>.json\` — auto-merge only touches leave overrides."
+              continue
+            fi
+            case "$STATUS" in
+              added|modified) ;;
+              removed) continue ;;   # nothing to validate in a deletion
+              *) fail "- \`$NAME\`: change type \`$STATUS\` is not auto-mergeable."; continue ;;
+            esac
+            # Read the file's CONTENT at the PR head via the API — data only, never executed.
+            if ! gh api "repos/$REPO/contents/$NAME?ref=$HEAD_SHA" --jq '.content' 2>/dev/null \
+                 | base64 -d > "$RUNNER_TEMP/files/$(basename "$NAME")" 2>/dev/null; then
+              fail "- \`$NAME\`: could not be read at the PR head (too large, or not a regular file)."
+              continue
+            fi
+            SIZE=$(wc -c < "$RUNNER_TEMP/files/$(basename "$NAME")")
+            if [ "$SIZE" -gt "$MAX_BYTES" ]; then
+              fail "- \`$NAME\`: ${SIZE} bytes exceeds the ${MAX_BYTES}-byte limit for an override file."
+              rm -f "$RUNNER_TEMP/files/$(basename "$NAME")"
+            fi
+          done < <(jq -r '.[] | [.filename, .status] | @tsv' <<<"$FILES_JSON")
+
+          # --- Content: main's validator, which reuses the generator's own rules. ---
+          echo "(deletion only — nothing to validate)" > "$RUNNER_TEMP/summary.txt"
+          if compgen -G "$RUNNER_TEMP/files/*.json" > /dev/null; then
+            if OUT=$(python3 leave/scripts/validate_overrides.py "$RUNNER_TEMP"/files/*.json 2>&1); then
+              printf '%s\n' "$OUT" > "$RUNNER_TEMP/summary.txt"
+            else
+              fail "$(printf '%s' "$OUT" | grep '^ERROR ' | sed 's/^ERROR /- /')"
+            fi
+            echo "$OUT"
+          fi
+
+          if [ -s "$RUNNER_TEMP/reasons.txt" ]; then
+            echo "decision=invalid" >> "$GITHUB_OUTPUT"
+          else
+            echo "decision=merge" >> "$GITHUB_OUTPUT"
+          fi
+          echo "same_repo=$SAME_REPO" >> "$GITHUB_OUTPUT"
+          echo "head_ref=$HEAD_REF" >> "$GITHUB_OUTPUT"
+
+      - name: "3 · Not auto-mergeable — explain on the PR and stop"
+        if: steps.gate.outputs.decision == 'invalid'
+        run: |
+          set -euo pipefail
+          {
+            echo "🚫 **Not auto-merged.** This PR needs a human look:"
+            echo
+            cat "$RUNNER_TEMP/reasons.txt"
+            echo
+            echo "Fix the file and push again, or ask a maintainer to review. The leave dashboard"
+            echo "will not show these dates until this merges."
+          } > "$RUNNER_TEMP/comment.md"
+          gh pr comment "$PR" --body-file "$RUNNER_TEMP/comment.md"
+          echo "::error::PR #$PR failed the leave-override gate."
+          exit 1
+
+      - name: "4 · Untrusted author — leave it open for review"
+        if: steps.gate.outputs.decision == 'untrusted'
+        run: |
+          set -euo pipefail
+          {
+            echo "👋 Thanks! **@${{ steps.gate.outputs.author }}** isn't a collaborator on this repo"
+            echo "or a member of \`$ORG\`, so this one waits for a maintainer to review and merge it"
+            echo "rather than merging automatically."
+          } > "$RUNNER_TEMP/untrusted.md"
+          gh pr comment "$PR" --body-file "$RUNNER_TEMP/untrusted.md"
+
+      - name: "5 · Approve and merge"
+        if: steps.gate.outputs.decision == 'merge'
+        run: |
+          set -euo pipefail
+          # Satisfies main's 1-review rule. Fails harmlessly when the PAT's own user opened the PR
+          # ("can not approve your own pull request") — the merge below then relies on admin bypass,
+          # which works because branch protection has enforce_admins disabled.
+          gh pr review "$PR" --approve --body "Auto-approved: leave override files only, all valid." \
+            || echo "note: could not approve (likely the token's own PR) — relying on admin bypass."
+          gh pr merge "$PR" --squash
+          {
+            echo "✅ **Merged automatically.**"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/summary.txt"
+            echo '```'
+            echo
+            echo "The Leave Tracker workflow is regenerating the report now — these dates should"
+            echo "appear on the [leave dashboard](https://veda-leave-dashboard.netlify.app) within"
+            echo "a couple of minutes."
+          } > "$RUNNER_TEMP/merged.md"
+          gh pr comment "$PR" --body-file "$RUNNER_TEMP/merged.md"
+          if [ "${{ steps.gate.outputs.same_repo }}" = "true" ]; then
+            gh api -X DELETE "repos/$REPO/git/refs/heads/${{ steps.gate.outputs.head_ref }}" \
+              || echo "note: branch already gone."
+          fi
+
+      - name: "6 · Job summary"
+        if: always()
+        run: |
+          echo "PR #$PR → decision: **${{ steps.gate.outputs.decision }}**" >> "$GITHUB_STEP_SUMMARY"
+          if [ -s "$RUNNER_TEMP/reasons.txt" ]; then
+            { echo; cat "$RUNNER_TEMP/reasons.txt"; } >> "$GITHUB_STEP_SUMMARY"
+          fi

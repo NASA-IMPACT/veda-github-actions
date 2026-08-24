@@ -123,6 +123,21 @@ body {
 .badge.snapshot .dot {
   background: var(--amber);
 }
+/* "Updated <when>" — chrome, so it tracks the theme. Turns into a warning when the hourly Google
+   Sheets sync has not landed in a while, so stale data can never look current. */
+.freshness {
+  font-size: 0.78rem;
+  color: var(--muted);
+  cursor: help;
+}
+.freshness.stale {
+  font-weight: 600;
+  color: var(--warn-ink);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
 .linkbtn {
   border: 1px solid var(--line-strong);
   background: var(--card);

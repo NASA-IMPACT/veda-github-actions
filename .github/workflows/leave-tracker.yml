@@ -7,7 +7,16 @@ name: Leave Tracker
 # override file changes on `main` (e.g. an "Add person" PR merges), so the dashboard updates
 # with no manual step. The PI is inferred from the xlsx filename, so no inputs are required.
 # You can still trigger it by hand (workflow_dispatch) to force a refresh or override the PI.
+#
+# HOURLY GOOGLE SHEETS SYNC: the team edits leave in a Google Sheet, and for a long time the only
+# way that reached the dashboard was someone downloading the .xlsx and committing it by hand — so
+# the dashboard silently showed month-old data. When the repo variable LEAVE_SHEET_ID is set, the
+# hourly run re-exports that sheet as .xlsx and parses it, and the committed workbook in
+# leave/source/ becomes a FALLBACK for when the export is unreachable. Nothing is committed to
+# `main` by this job; only the report branch moves.
 on:
+  schedule:
+    - cron: "0 * * * *"       # hourly: re-export the Google Sheet (see LEAVE_SHEET_ID below)
   push:
     branches: [main]
     paths:
@@ -56,6 +65,28 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0     # full history so the report branch can be based/pushed
+
+      # Overwrites the workspace copy of the workbook only — never committed to `main`. Keeping the
+      # same PATH means the PI keeps being inferred from the committed filename, and a failed or
+      # revoked export degrades to the committed workbook instead of breaking the run.
+      - name: "1b · Refresh the workbook from Google Sheets"
+        if: vars.LEAVE_SHEET_ID != ''
+        env:
+          SHEET_ID: ${{ vars.LEAVE_SHEET_ID }}
+          XLSX: ${{ github.event.inputs.xlsx-path || 'leave/source/DSE Leave Tracker - 26.4.xlsx' }}
+        run: |
+          set -uo pipefail
+          URL="https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=xlsx"
+          # A sheet that loses link-sharing returns 200 + an HTML sign-in page, which `curl -f`
+          # happily accepts — so prove the download is really a zip (xlsx) before trusting it.
+          if curl -fsSL --max-time 120 -o "$RUNNER_TEMP/sheet.xlsx" "$URL" \
+             && python3 -c "import sys,zipfile; sys.exit(0 if zipfile.is_zipfile(sys.argv[1]) else 1)" \
+                  "$RUNNER_TEMP/sheet.xlsx"; then
+            cp "$RUNNER_TEMP/sheet.xlsx" "$XLSX"
+            echo "Refreshed from Google Sheets: $(wc -c < "$XLSX") bytes."
+          else
+            echo "::warning::Google Sheets export failed or was not an .xlsx — using the committed workbook."
+          fi
 
       - name: "2 · Parse the leave tracker (reusable action)"
         id: run
@@ -114,7 +145,16 @@ jobs:
           jq --argjson e "$ENTRY" '(map(select(.slug != $e.slug))) + [$e] | sort_by(.generated) | reverse' \
             reports/index.json > reports/index.json.tmp && mv reports/index.json.tmp reports/index.json
           git add -f reports
-          if git diff --cached --quiet; then
+          # The manifest carries a fresh `generated` timestamp on every run, so once this job runs
+          # hourly an idle run would still "change" a file and commit — 24 empty commits a day. If
+          # the ONLY staged file is the manifest and the ONLY differing lines in it are "generated",
+          # nothing about the leave data actually moved: leave the branch alone.
+          CHANGED="$(git diff --cached --name-only)"
+          if [ "$CHANGED" = "reports/leave_manifest.json" ] \
+             && ! git diff --cached -U0 -- reports/leave_manifest.json \
+                  | grep -E '^[+-][^+-]' | grep -qv '"generated"'; then
+            echo "No data change for $BR — only the generated timestamp moved."
+          elif [ -z "$CHANGED" ]; then
             echo "No report changes for $BR."
           else
             git commit -m "Leave tracker report — $(jq -r .slug "$MAN") (run ${{ github.run_id }})"
