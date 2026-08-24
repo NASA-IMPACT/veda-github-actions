@@ -123,6 +123,113 @@ body {
 .badge.snapshot .dot {
   background: var(--amber);
 }
+/* ---- Month navigator: the primary control, centred above the calendar ---- */
+.monthnav-big {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: 0.9rem 0 0.7rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--card);
+}
+.mn-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.mn-label {
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.mn-year {
+  color: var(--muted);
+  font-weight: 600;
+}
+/* Big, unmissable hit targets — this is the thing people came to click. */
+.mn-arrow {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.9rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.mn-arrow:hover:not(:disabled) {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+.mn-arrow:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+.mn-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+}
+.mn-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mn-pill:hover {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+.mn-pill.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+/* The current real-world month stays findable even when another month is selected. */
+.mn-pill.today:not(.active) {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+.mn-pill-year {
+  font-size: 0.68rem;
+  opacity: 0.72;
+}
+.mn-today {
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px dashed var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .mn-label { font-size: 1.3rem; }
+  .mn-arrow { width: 2.5rem; height: 2.5rem; font-size: 1.6rem; }
+}
+
 /* "Updated <when>" — chrome, so it tracks the theme. Turns into a warning when the hourly Google
    Sheets sync has not landed in a while, so stale data can never look current. */
 .freshness {
