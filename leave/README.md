@@ -90,7 +90,7 @@ Override or extend the map with a `colors` JSON (see `colors.json`). Unknown non
 surfaced in `warnings[]` and treated as available (fail-open).
 
 ## Adding / correcting people without editing the workbook
-Drop a per-person file in [`overrides/`](overrides/README.md) (the dashboard's **Add person** button
+Drop a per-person file in [`overrides/`](overrides/README.md) (the dashboard's **Add leave** button
 opens a prefilled PR that does exactly this). Overrides win over the xlsx per (person, date); a new
 person's team counts toward that team's size.
 

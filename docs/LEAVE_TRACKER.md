@@ -139,14 +139,14 @@ so one PR can add many. A new person's `team` counts toward that team's size; a 
 **creates a new team**. `{"status":"available"}` is a tombstone that clears an xlsx leave. Schema and
 examples: [`leave/overrides/README.md`](../leave/overrides/README.md).
 
-The dashboard's **Add person** button builds a prefilled GitHub PR that creates such a file (no
+The dashboard's **Add leave** button builds a prefilled GitHub PR that creates such a file (no
 backend), and can **preview** the additions on the calendar before you open the PR.
 
 ## Dashboard (Pattern B)
 Features: a **month calendar** of who's out, a **person multi-select** ("build a calendar"), team/status
 filters, and a **team-risk heatmap** with a live % threshold. Plus: **Export PNG** (3× render of the
 current calendar + legend), **Copy link** (encodes the filtered view — people/teams/statuses/month/
-view/threshold — in the URL hash so it reopens exactly), and an **Add-person** modal that toggles
+view/threshold — in the URL hash so it reopens exactly), and an **Add leave** modal that toggles
 between **existing person** (autocompletes a name → merges new leave dates onto their slug) and
 **new person** (with a brand-new team), batching everyone into one prefilled PR and previewing them
 on the calendar first.

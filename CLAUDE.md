@@ -59,8 +59,10 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   runtime from the `leave-tracker/report` branch (slashed → raw URL needs the `/refs/heads/` form); falls
   back to the bundled `leave-dashboard/public/data/` snapshot. Month **calendar** of who's out, a
   **person multi-select** ("build a calendar"), a **team-risk heatmap** with a live % threshold, and an
-  **Add-person** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
-  hold several people → one PR) with an in-app **preview** before the PR. **Data updates are fully
+  **Add leave** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
+  hold several people → one PR) with an in-app **preview** before the PR. Month traversal is the page's
+  centred anchor (`components/MonthNav.tsx`: big arrows + a pill per month + `Today` + ←/→ keys), NOT a
+  header corner — it is what most visitors come to use. **Data updates are fully
   hands-off in both directions:** the Google Sheet is re-exported **hourly** by `leave-tracker.yml`
   (repo var `LEAVE_SHEET_ID`), and Add-person PRs are validated + **auto-merged** by
   `leave-override-automerge.yml`. The header shows an absolute **"Updated <when>"** that turns into a
