@@ -289,9 +289,6 @@ DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-20,Tue,43,unavailable
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-23,Fri,43,unavailable,true,1.0,,xlsx
-DevSeed,ZZ Automerge Test,zz-automerge-test,temporary end-to-end test — deleted immediately,2026-09-14,Mon,38,planned_time_off,true,1.0,automerge e2e,override
-DevSeed,ZZ Automerge Test,zz-automerge-test,temporary end-to-end test — deleted immediately,2026-09-15,Tue,38,planned_time_off,true,1.0,automerge e2e,override
-DevSeed,ZZ Automerge Test,zz-automerge-test,temporary end-to-end test — deleted immediately,2026-09-16,Wed,38,planned_time_off,true,1.0,automerge e2e,override
 Disasters,Jacob Reed,jacob-reed,,2026-08-07,Fri,32,planned_time_off,true,1.0,,override
 Disasters,Ronan Lucey,ronan-lucey,,2026-07-30,Thu,31,other,false,0.0,,override
 Disasters,Ronan Lucey,ronan-lucey,,2026-07-31,Fri,31,other,false,0.0,,override
