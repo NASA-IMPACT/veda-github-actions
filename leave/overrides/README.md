@@ -5,6 +5,18 @@ the xlsx. It lets you **add someone who isn't on the spreadsheet**, or **adjust/
 someone who is — without touching the workbook. The "Add person" button in the dashboard just
 opens a prefilled GitHub PR that creates a file here.
 
+**These PRs merge themselves.** `.github/workflows/leave-override-automerge.yml` validates the file
+and merges it with no human approval, so the dates are on the dashboard about two minutes later. It
+only does that when the PR touches **nothing but** `leave/overrides/<slug>.json` files (≤ 5 of them),
+they all pass [`../scripts/validate_overrides.py`](../scripts/validate_overrides.py), and the author
+is a collaborator or org member. Anything else gets a comment explaining why and waits for a review.
+
+Validate a file before you push it:
+
+```bash
+python leave/scripts/validate_overrides.py leave/overrides/jane-doe.json
+```
+
 - Filename: `<slug>.json` where `<slug>` is the lowercase, dash-separated name (e.g.
   `jane-doe.json`). One file per person avoids merge conflicts.
 - The generator merges these **after** the xlsx: for any date an override touches, the override

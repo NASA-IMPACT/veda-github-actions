@@ -32,6 +32,24 @@ function relativeTime(iso: string): string {
   return `${days}d ago`;
 }
 
+function absoluteTime(iso: string): string {
+  if (!iso) return "unknown";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "unknown";
+  return d.toLocaleString(undefined, {
+    month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+  });
+}
+
+// The Google Sheet is re-exported hourly, so anything older than a few hours means the sync is
+// broken — and a silently stale dashboard is the exact failure this app already had once.
+const STALE_AFTER_MS = 3 * 60 * 60 * 1000;
+
+function isStale(iso: string): boolean {
+  const then = new Date(iso).getTime();
+  return !Number.isNaN(then) && Date.now() - then > STALE_AFTER_MS;
+}
+
 export default function Header(props: Props) {
   const { source, generated, view, onView, month, canPrev, canNext, onPrev, onNext, refreshing, onRefresh, theme, onToggleTheme } = props;
   return (
@@ -44,9 +62,15 @@ export default function Header(props: Props) {
             {source === "live" ? "Live" : "Snapshot"}
           </span>{" "}
           <span
-            title={`Report generated ${generated ? new Date(generated).toLocaleString() : "—"}. A just-merged change can take a few minutes to appear (GitHub CDN).`}
+            className={isStale(generated) ? "freshness stale" : "freshness"}
+            title={
+              `Leave data last updated ${generated ? new Date(generated).toLocaleString() : "—"}. ` +
+              `The Google Sheet is re-read every hour; an "Add leave" PR merges itself and shows up ` +
+              `within a couple of minutes.` +
+              (isStale(generated) ? " This is older than expected — the hourly sync may be failing." : "")
+            }
           >
-            Updated {relativeTime(generated)}
+            {isStale(generated) ? "⚠ " : ""}Updated {absoluteTime(generated)} ({relativeTime(generated)})
           </span>{" "}
           <button className="btn linkbtn" onClick={onRefresh} disabled={refreshing} title="Re-fetch the latest report">
             {refreshing ? "Refreshing…" : "↻ Refresh"}

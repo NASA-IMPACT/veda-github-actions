@@ -60,7 +60,11 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   back to the bundled `leave-dashboard/public/data/` snapshot. Month **calendar** of who's out, a
   **person multi-select** ("build a calendar"), a **team-risk heatmap** with a live % threshold, and an
   **Add-person** form that opens a **prefilled PR** creating `leave/overrides/<slug>.json` (one file may
-  hold several people → one PR) with an in-app **preview** before the PR.
+  hold several people → one PR) with an in-app **preview** before the PR. **Data updates are fully
+  hands-off in both directions:** the Google Sheet is re-exported **hourly** by `leave-tracker.yml`
+  (repo var `LEAVE_SHEET_ID`), and Add-person PRs are validated + **auto-merged** by
+  `leave-override-automerge.yml`. The header shows an absolute **"Updated <when>"** that turns into a
+  ⚠ warning past 3h, so a broken sync can't masquerade as current data.
 - `dse-hub/` — Vite React SPA; `dse-hub/netlify.toml` (base=`dse-hub`, build, publish `dist`); live at
   `veda-dse-hub.netlify.app`. A **tabbed hub** (header tabs + subtabs via `src/tabs.ts`): **Meetings →
   Meeting Tracker** (List / month **Calendar** with sprint bands / **Categories** views; search + team +
@@ -158,6 +162,25 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 - **Leave status = cell FILL COLOR, not text.** A CSV export of the leave xlsx is blank; the generator
   parses fills with stdlib `zipfile`+`xml.etree`. `FF999999` gray = weekend (ignore); notes live in
   `xl/threadedComments/*`, not `comments1.xml`. OUT = unavailable+PTO+holiday; limited = 0.5.
+- **A push made by `GITHUB_TOKEN` does not trigger any further workflow.** This bites hardest in
+  merge-then-regenerate chains: `leave-override-automerge.yml` merges with the **PAT** precisely so
+  the merge fires `leave-tracker.yml`'s `push` trigger. Merging with `GITHUB_TOKEN` would look
+  completely successful — PR merged, green check — and the dashboard would never update. Same reason
+  the compact workflows' bot pushes can't be assumed to chain.
+- **Leave's real source of truth is a Google Sheet, re-exported hourly** (repo var `LEAVE_SHEET_ID` →
+  `…/export?format=xlsx`, no credentials — the sheet only needs link-sharing). Google's xlsx export
+  **preserves fill colors**, so the color-coded data model survives it intact. Two traps: a sheet that
+  loses link-sharing returns **HTTP 200 with an HTML sign-in page** (so `curl -f` succeeds — verify
+  `zipfile.is_zipfile` before trusting the bytes), and GitHub **disables `schedule:` workflows after
+  60 days of repo inactivity**, which presents as "the dashboard quietly went stale."
+- **An hourly report job must not commit on the timestamp alone.** `leave_manifest.json` carries a
+  fresh `generated` on every run, so a naive `git diff --cached --quiet` commits 24×/day forever. The
+  publish step suppresses a manifest-only, `generated`-only diff. (Verify such shell under **bash** —
+  the interactive shell here is zsh, where the `grep -qv` in that condition returns the wrong status.)
+- **`main` requires 1 approving review and `enforce_admins` is off.** So bots cannot push to `main`
+  directly (the compact workflows' pushes are untested for that reason — they have only ever hit the
+  "nothing to commit" path); automation must go through the PR merge API, and the PAT's admin bypass
+  is what covers the case where its own user opened the PR and so cannot approve it.
 - **Root `.gitignore` has `*.json`.** `git add <dir>` **silently skips** needed JSON — each dashboard's
   `package.json`/`tsconfig*.json`, `dse-hub/data/*.json`, `leave-dashboard/public/data/*.json`. You must
   **`git add -f`** them (that's how the sibling dashboards' JSON got committed). A `dse-hub` change touching
@@ -206,7 +229,8 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
 `action.yml`, `pr-finder/action.yml`, `pr-finder/generate_pr_finder.py`,
 `.github/scripts/generate_fte_report.py`, `leave/generate_leave_tracker.py`, `leave/action.yml`,
 `seed/seed_subissue_tree.py`, `seed/cleanup_subissue_tree.py`,
-`.github/workflows/{fte-report,pr-finder,leave-tracker}.yml`,
+`.github/workflows/{fte-report,pr-finder,leave-tracker,leave-override-automerge}.yml`,
+`leave/scripts/validate_overrides.py` (imports the generator so the override rules can't drift),
 `docs/{FTE_SEED,PR_FINDER,LEAVE_TRACKER}.md`, `docs/DECISIONS.md`.
 Theming: `{fte,leave}-dashboard/src/theme.ts`, each `*/src/styles.css` (`:root[data-theme="dark"]`),
 each `index.html` (no-FOUC script), `leave-dashboard/src/exportImage.ts`.
