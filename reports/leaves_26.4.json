@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-07-30T15:44:30Z",
+    "generated": "2026-08-24T17:51:14Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -21,7 +21,7 @@
       "DSE - Manage": 6,
       "DevSeed": 31,
       "Disasters": 3,
-      "MSFC": 1,
+      "MSFC": 2,
       "UAH": 25
     },
     "risk_threshold_default": 0.3,
@@ -717,6 +717,22 @@
           "source": "override"
         },
         {
+          "date": "2026-08-14",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
           "date": "2026-08-24",
           "status": "unavailable",
           "out": true,
@@ -805,10 +821,26 @@
           "source": "xlsx"
         },
         {
+          "date": "2026-09-22",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-23",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
           "date": "2026-09-24",
-          "status": "unavailable",
-          "out": true,
-          "weight": 1.0,
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
           "note": null,
           "source": "xlsx"
         },
@@ -817,6 +849,46 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-05",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-06",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-07",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-08",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
           "note": null,
           "source": "xlsx"
         },
@@ -881,6 +953,46 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-05",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-06",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-07",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-08",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
           "note": null,
           "source": "xlsx"
         },
@@ -1279,7 +1391,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": "Pod week",
+          "note": null,
           "source": "xlsx"
         },
         {
@@ -1321,7 +1433,48 @@
       "name": "Alison Ziel",
       "team": "DevSeed",
       "role": "VEDA - Data Services",
-      "leaves": []
+      "leaves": [
+        {
+          "date": "2026-09-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
     },
     {
       "slug": "anthony-boyd",
@@ -1688,6 +1841,86 @@
       "role": "VEDA - Dashboard - LEAD",
       "leaves": [
         {
+          "date": "2026-08-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-02",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
           "date": "2026-10-19",
           "status": "unavailable",
           "out": true,
@@ -1961,7 +2194,40 @@
       "name": "Lane Goodman",
       "team": "DevSeed",
       "role": "VEDA - Design / floating",
-      "leaves": []
+      "leaves": [
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-21",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
     },
     {
       "slug": "lilly-thomas",
@@ -2127,6 +2393,46 @@
           "weight": 1.0,
           "note": null,
           "source": "xlsx"
+        },
+        {
+          "date": "2026-09-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
         }
       ]
     },
@@ -2177,7 +2483,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": "half day",
+          "note": null,
           "source": "xlsx"
         },
         {
@@ -2193,7 +2499,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": "half day",
+          "note": null,
           "source": "xlsx"
         },
         {
@@ -2209,7 +2515,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": "half day",
+          "note": null,
           "source": "xlsx"
         },
         {
@@ -2227,6 +2533,14 @@
           "weight": 1.0,
           "note": null,
           "source": "override"
+        },
+        {
+          "date": "2026-09-01",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
         },
         {
           "date": "2026-10-19",
@@ -2329,6 +2643,30 @@
           "weight": 1.0,
           "note": null,
           "source": "override"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-31",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
         },
         {
           "date": "2026-10-19",
@@ -2575,7 +2913,14 @@
       "slug": "chris-phillips",
       "name": "Chris Phillips",
       "team": "MSFC",
-      "role": "DSE - Developer",
+      "role": "DSE - Cloud Management",
+      "leaves": []
+    },
+    {
+      "slug": "shawn-foley",
+      "name": "Shawn Foley",
+      "team": "MSFC",
+      "role": "DSE - Cloud Management",
       "leaves": []
     },
     {
@@ -2790,6 +3135,38 @@
           "weight": 1.0,
           "note": null,
           "source": "xlsx"
+        },
+        {
+          "date": "2026-10-06",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-08",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
         }
       ]
     },
@@ -2873,6 +3250,22 @@
       "team": "UAH",
       "role": "GHGC - LEAD",
       "leaves": [
+        {
+          "date": "2026-08-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
         {
           "date": "2026-09-25",
           "status": "unavailable",

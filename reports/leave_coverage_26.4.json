@@ -4,7 +4,7 @@
     "DSE - Manage": 6,
     "DevSeed": 31,
     "Disasters": 3,
-    "MSFC": 1,
+    "MSFC": 2,
     "UAH": 25
   },
   "days": [
@@ -985,6 +985,18 @@
     },
     {
       "date": "2026-08-14",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 0.5,
+      "out_pct": 0.0833,
+      "people_out": [],
+      "limited": [
+        "brian-freitag"
+      ]
+    },
+    {
+      "date": "2026-08-14",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 2,
@@ -1067,12 +1079,13 @@
       "date": "2026-08-17",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
+      "out_count": 3,
+      "out_weight": 3.5,
+      "out_pct": 0.1129,
       "people_out": [
         "alice-ruhl",
-        "isayah-vidito"
+        "isayah-vidito",
+        "lane-goodman"
       ],
       "limited": [
         "max-jones"
@@ -1095,10 +1108,11 @@
       "date": "2026-08-17",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
+        "sheyenne-kirkland",
         "sijan-bhattarai"
       ],
       "limited": []
@@ -1121,12 +1135,13 @@
       "date": "2026-08-18",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
+      "out_count": 3,
+      "out_weight": 3.5,
+      "out_pct": 0.1129,
       "people_out": [
         "alice-ruhl",
-        "isayah-vidito"
+        "isayah-vidito",
+        "lane-goodman"
       ],
       "limited": [
         "max-jones"
@@ -1175,12 +1190,13 @@
       "date": "2026-08-19",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
+      "out_count": 3,
+      "out_weight": 3.5,
+      "out_pct": 0.1129,
       "people_out": [
         "alice-ruhl",
-        "isayah-vidito"
+        "isayah-vidito",
+        "lane-goodman"
       ],
       "limited": [
         "max-jones"
@@ -1279,16 +1295,29 @@
     },
     {
       "date": "2026-08-21",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [
+        "brian-freitag"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-21",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
+      "out_weight": 3.0,
+      "out_pct": 0.0968,
       "people_out": [
         "alice-ruhl",
         "isayah-vidito"
       ],
       "limited": [
+        "lane-goodman",
         "max-jones"
       ]
     },
@@ -1333,11 +1362,12 @@
       "date": "2026-08-24",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
+      "out_count": 3,
+      "out_weight": 3.5,
+      "out_pct": 0.1129,
       "people_out": [
         "alice-ruhl",
+        "gjore-milevski",
         "isayah-vidito"
       ],
       "limited": [
@@ -1358,123 +1388,6 @@
     },
     {
       "date": "2026-08-25",
-      "team": "DevSeed",
-      "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
-      "people_out": [
-        "alice-ruhl",
-        "isayah-vidito"
-      ],
-      "limited": [
-        "max-jones"
-      ]
-    },
-    {
-      "date": "2026-08-26",
-      "team": "2i2c",
-      "team_size": 7,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1429,
-      "people_out": [
-        "april-johnson"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-26",
-      "team": "DSE - Manage",
-      "team_size": 6,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1667,
-      "people_out": [
-        "brian-freitag"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-26",
-      "team": "DevSeed",
-      "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
-      "people_out": [
-        "alice-ruhl",
-        "isayah-vidito"
-      ],
-      "limited": [
-        "max-jones"
-      ]
-    },
-    {
-      "date": "2026-08-27",
-      "team": "2i2c",
-      "team_size": 7,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1429,
-      "people_out": [
-        "april-johnson"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-27",
-      "team": "DSE - Manage",
-      "team_size": 6,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1667,
-      "people_out": [
-        "brian-freitag"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-27",
-      "team": "DevSeed",
-      "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.5,
-      "out_pct": 0.0806,
-      "people_out": [
-        "alice-ruhl",
-        "isayah-vidito"
-      ],
-      "limited": [
-        "max-jones"
-      ]
-    },
-    {
-      "date": "2026-08-28",
-      "team": "2i2c",
-      "team_size": 7,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1429,
-      "people_out": [
-        "april-johnson"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-28",
-      "team": "DSE - Manage",
-      "team_size": 6,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1667,
-      "people_out": [
-        "brian-freitag"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-08-28",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 3,
@@ -1482,8 +1395,131 @@
       "out_pct": 0.1129,
       "people_out": [
         "alice-ruhl",
+        "gjore-milevski",
+        "isayah-vidito"
+      ],
+      "limited": [
+        "max-jones"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1429,
+      "people_out": [
+        "april-johnson"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-26",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [
+        "brian-freitag"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-26",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 3,
+      "out_weight": 3.5,
+      "out_pct": 0.1129,
+      "people_out": [
+        "alice-ruhl",
+        "gjore-milevski",
+        "isayah-vidito"
+      ],
+      "limited": [
+        "max-jones"
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1429,
+      "people_out": [
+        "april-johnson"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-27",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [
+        "brian-freitag"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-27",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 4,
+      "out_weight": 4.5,
+      "out_pct": 0.1452,
+      "people_out": [
+        "alice-ruhl",
+        "gjore-milevski",
         "isayah-vidito",
-        "simi-damani"
+        "vitor-george"
+      ],
+      "limited": [
+        "max-jones"
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1429,
+      "people_out": [
+        "april-johnson"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-28",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [
+        "brian-freitag"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-08-28",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 5,
+      "out_weight": 5.5,
+      "out_pct": 0.1774,
+      "people_out": [
+        "alice-ruhl",
+        "gjore-milevski",
+        "isayah-vidito",
+        "simi-damani",
+        "vitor-george"
       ],
       "limited": [
         "max-jones"
@@ -1493,12 +1529,37 @@
       "date": "2026-08-31",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 2,
-      "out_weight": 2.0,
-      "out_pct": 0.0645,
+      "out_count": 3,
+      "out_weight": 3.0,
+      "out_pct": 0.0968,
       "people_out": [
         "alice-ruhl",
+        "simi-damani",
+        "vitor-george"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-01",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
         "simi-damani"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-02",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "gjore-milevski"
       ],
       "limited": []
     },
@@ -1506,10 +1567,11 @@
       "date": "2026-09-03",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
+        "gjore-milevski",
         "max-jones"
       ],
       "limited": []
@@ -1530,10 +1592,11 @@
       "date": "2026-09-04",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
+        "gjore-milevski",
         "max-jones"
       ],
       "limited": []
@@ -1583,11 +1646,12 @@
       "date": "2026-09-07",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
-        "jeanne-le-roux"
+        "jeanne-le-roux",
+        "sheyenne-kirkland"
       ],
       "limited": []
     },
@@ -1619,10 +1683,11 @@
       "date": "2026-09-09",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
+        "gjore-milevski",
         "max-jones"
       ],
       "limited": []
@@ -1643,10 +1708,11 @@
       "date": "2026-09-10",
       "team": "DevSeed",
       "team_size": 31,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.0323,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
       "people_out": [
+        "gjore-milevski",
         "max-jones"
       ],
       "limited": []
@@ -1700,6 +1766,18 @@
       ]
     },
     {
+      "date": "2026-09-14",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "alison-ziel"
+      ],
+      "limited": []
+    },
+    {
       "date": "2026-09-15",
       "team": "DSE - Manage",
       "team_size": 6,
@@ -1710,6 +1788,18 @@
       "limited": [
         "brian-freitag"
       ]
+    },
+    {
+      "date": "2026-09-15",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "alison-ziel"
+      ],
+      "limited": []
     },
     {
       "date": "2026-09-16",
@@ -1724,6 +1814,18 @@
       ]
     },
     {
+      "date": "2026-09-16",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "alison-ziel"
+      ],
+      "limited": []
+    },
+    {
       "date": "2026-09-17",
       "team": "DSE - Manage",
       "team_size": 6,
@@ -1734,6 +1836,18 @@
       "limited": [
         "brian-freitag"
       ]
+    },
+    {
+      "date": "2026-09-17",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "alison-ziel"
+      ],
+      "limited": []
     },
     {
       "date": "2026-09-18",
@@ -1748,26 +1862,76 @@
       ]
     },
     {
-      "date": "2026-09-21",
+      "date": "2026-09-18",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 1,
       "out_weight": 1.0,
       "out_pct": 0.0323,
       "people_out": [
-        "emma-paz"
+        "alison-ziel"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-21",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
+      "people_out": [
+        "emma-paz",
+        "max-jones"
       ],
       "limited": []
     },
     {
       "date": "2026-09-22",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 0.5,
+      "out_pct": 0.0833,
+      "people_out": [],
+      "limited": [
+        "brian-freitag"
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.0645,
+      "people_out": [
+        "emma-paz",
+        "max-jones"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-23",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 0.5,
+      "out_pct": 0.0833,
+      "people_out": [],
+      "limited": [
+        "brian-freitag"
+      ]
+    },
+    {
+      "date": "2026-09-23",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 1,
       "out_weight": 1.0,
       "out_pct": 0.0323,
       "people_out": [
-        "emma-paz"
+        "max-jones"
       ],
       "limited": []
     },
@@ -1775,11 +1939,23 @@
       "date": "2026-09-24",
       "team": "DSE - Manage",
       "team_size": 6,
+      "out_count": 0,
+      "out_weight": 0.5,
+      "out_pct": 0.0833,
+      "people_out": [],
+      "limited": [
+        "brian-freitag"
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "team": "DevSeed",
+      "team_size": 31,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.1667,
+      "out_pct": 0.0323,
       "people_out": [
-        "brian-freitag"
+        "max-jones"
       ],
       "limited": []
     },
@@ -1792,6 +1968,18 @@
       "out_pct": 0.1667,
       "people_out": [
         "brian-freitag"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-25",
+      "team": "DevSeed",
+      "team_size": 31,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.0323,
+      "people_out": [
+        "max-jones"
       ],
       "limited": []
     },
@@ -1881,6 +2069,19 @@
     },
     {
       "date": "2026-10-05",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [],
+      "limited": [
+        "brian-freitag",
+        "brianna-pagan"
+      ]
+    },
+    {
+      "date": "2026-10-05",
       "team": "UAH",
       "team_size": 25,
       "out_count": 1,
@@ -1893,48 +2094,104 @@
     },
     {
       "date": "2026-10-06",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [],
+      "limited": [
+        "brian-freitag",
+        "brianna-pagan"
+      ]
+    },
+    {
+      "date": "2026-10-06",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
+        "kyle-lesinger",
         "sheyenne-kirkland"
       ],
       "limited": []
     },
     {
       "date": "2026-10-07",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [],
+      "limited": [
+        "brian-freitag",
+        "brianna-pagan"
+      ]
+    },
+    {
+      "date": "2026-10-07",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
+        "kyle-lesinger",
         "sheyenne-kirkland"
       ],
       "limited": []
     },
     {
       "date": "2026-10-08",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [],
+      "limited": [
+        "brian-freitag",
+        "brianna-pagan"
+      ]
+    },
+    {
+      "date": "2026-10-08",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
+        "kyle-lesinger",
         "sheyenne-kirkland"
       ],
       "limited": []
     },
     {
       "date": "2026-10-09",
+      "team": "DSE - Manage",
+      "team_size": 6,
+      "out_count": 0,
+      "out_weight": 1.0,
+      "out_pct": 0.1667,
+      "people_out": [],
+      "limited": [
+        "brian-freitag",
+        "brianna-pagan"
+      ]
+    },
+    {
+      "date": "2026-10-09",
       "team": "UAH",
       "team_size": 25,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.08,
       "people_out": [
+        "kyle-lesinger",
         "sheyenne-kirkland"
       ],
       "limited": []

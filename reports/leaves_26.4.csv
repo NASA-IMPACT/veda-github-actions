@@ -73,6 +73,8 @@ DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-1
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-11,Tue,33,planned_time_off,true,1.0,,override
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-12,Wed,33,planned_time_off,true,1.0,,override
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-13,Thu,33,planned_time_off,true,1.0,,override
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-14,Fri,33,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-21,Fri,34,unavailable,true,1.0,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-24,Mon,35,unavailable,true,1.0,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-25,Tue,35,unavailable,true,1.0,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-08-26,Wed,35,unavailable,true,1.0,,xlsx
@@ -84,8 +86,15 @@ DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-1
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-16,Wed,38,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-17,Thu,38,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-18,Fri,38,limited,false,0.5,,xlsx
-DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-24,Thu,39,unavailable,true,1.0,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-22,Tue,39,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-23,Wed,39,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-24,Thu,39,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-09-25,Fri,39,unavailable,true,1.0,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-05,Mon,41,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-06,Tue,41,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-07,Wed,41,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-08,Thu,41,limited,false,0.5,,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-09,Fri,41,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-12,Mon,42,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-27,Mon,31,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-28,Tue,31,unavailable,true,1.0,,xlsx
@@ -93,6 +102,11 @@ DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-29
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-30,Thu,31,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-31,Fri,31,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-09-07,Mon,37,unavailable,true,1.0,,xlsx
+DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-05,Mon,41,limited,false,0.5,,xlsx
+DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-06,Tue,41,limited,false,0.5,,xlsx
+DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-07,Wed,41,limited,false,0.5,,xlsx
+DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-08,Thu,41,limited,false,0.5,,xlsx
+DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-09,Fri,41,limited,false,0.5,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-10-12,Mon,42,unavailable,true,1.0,,xlsx
 DSE - Manage,Buddy Aswin,buddy-aswin,DSE Deputy (NASA Civil Servant),2026-09-07,Mon,37,unavailable,true,1.0,,xlsx
 DSE - Manage,Buddy Aswin,buddy-aswin,DSE Deputy (NASA Civil Servant),2026-10-12,Mon,42,unavailable,true,1.0,,xlsx
@@ -134,11 +148,16 @@ DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-26,Wed,35,planned_time_of
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-27,Thu,35,planned_time_off,true,1.0,,override
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-28,Fri,35,planned_time_off,true,1.0,,override
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-31,Mon,36,planned_time_off,true,1.0,,override
-DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,Pod week,xlsx
+DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-23,Fri,43,unavailable,true,1.0,,xlsx
+DevSeed,Alison Ziel,alison-ziel,VEDA - Data Services,2026-09-14,Mon,38,unavailable,true,1.0,,xlsx
+DevSeed,Alison Ziel,alison-ziel,VEDA - Data Services,2026-09-15,Tue,38,unavailable,true,1.0,,xlsx
+DevSeed,Alison Ziel,alison-ziel,VEDA - Data Services,2026-09-16,Wed,38,unavailable,true,1.0,,xlsx
+DevSeed,Alison Ziel,alison-ziel,VEDA - Data Services,2026-09-17,Thu,38,unavailable,true,1.0,,xlsx
+DevSeed,Alison Ziel,alison-ziel,VEDA - Data Services,2026-09-18,Fri,38,unavailable,true,1.0,,xlsx
 DevSeed,Anthony Boyd,anthony-boyd,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Anthony Boyd,anthony-boyd,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Anthony Boyd,anthony-boyd,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
@@ -178,6 +197,16 @@ DevSeed,Fanny Casal,fanny-casal,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,t
 DevSeed,Fanny Casal,fanny-casal,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
 DevSeed,Fanny Casal,fanny-casal,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
 DevSeed,Fanny Casal,fanny-casal,VEDA - Dashboard,2026-10-23,Fri,43,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-08-24,Mon,35,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-08-25,Tue,35,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-08-26,Wed,35,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-08-27,Thu,35,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-08-28,Fri,35,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-09-02,Wed,36,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-09-03,Thu,36,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-09-04,Fri,36,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-09-09,Wed,37,unavailable,true,1.0,,xlsx
+DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-09-10,Thu,37,unavailable,true,1.0,,xlsx
 DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Gjore Milevski,gjore-milevski,VEDA - Dashboard - LEAD,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
@@ -205,6 +234,10 @@ DevSeed,Isayah Vidito,isayah-vidito,VEDA - Data Services,2026-08-25,Tue,35,unava
 DevSeed,Isayah Vidito,isayah-vidito,VEDA - Data Services,2026-08-26,Wed,35,unavailable,true,1.0,,xlsx
 DevSeed,Isayah Vidito,isayah-vidito,VEDA - Data Services,2026-08-27,Thu,35,unavailable,true,1.0,,xlsx
 DevSeed,Isayah Vidito,isayah-vidito,VEDA - Data Services,2026-08-28,Fri,35,unavailable,true,1.0,,xlsx
+DevSeed,Lane Goodman,lane-goodman,VEDA - Design / floating,2026-08-17,Mon,34,unavailable,true,1.0,,xlsx
+DevSeed,Lane Goodman,lane-goodman,VEDA - Design / floating,2026-08-18,Tue,34,unavailable,true,1.0,,xlsx
+DevSeed,Lane Goodman,lane-goodman,VEDA - Design / floating,2026-08-19,Wed,34,unavailable,true,1.0,,xlsx
+DevSeed,Lane Goodman,lane-goodman,VEDA - Design / floating,2026-08-21,Fri,34,limited,false,0.5,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-08-13,Thu,33,limited,false,0.5,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-08-14,Fri,33,limited,false,0.5,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-08-17,Mon,34,limited,false,0.5,,xlsx
@@ -224,14 +257,20 @@ DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-08,Tue,37,unavailable,true,1.0,,x
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-09,Wed,37,unavailable,true,1.0,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-10,Thu,37,unavailable,true,1.0,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-11,Fri,37,unavailable,true,1.0,,xlsx
+DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-21,Mon,39,unavailable,true,1.0,,xlsx
+DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-22,Tue,39,unavailable,true,1.0,,xlsx
+DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-23,Wed,39,unavailable,true,1.0,,xlsx
+DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-24,Thu,39,unavailable,true,1.0,,xlsx
+DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-25,Fri,39,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-06,Mon,28,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-23,Thu,30,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-23,Thu,30,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-24,Fri,30,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-29,Wed,31,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-29,Wed,31,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-30,Thu,31,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-12,Wed,33,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-12,Wed,33,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-28,Fri,35,planned_time_off,true,1.0,,override
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-31,Mon,36,planned_time_off,true,1.0,,override
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-09-01,Tue,36,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
@@ -242,6 +281,9 @@ DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-07-28,Tue,31,planned_tim
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-07-29,Wed,31,planned_time_off,true,1.0,,override
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-07-30,Thu,31,planned_time_off,true,1.0,,override
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-07-31,Fri,31,planned_time_off,true,1.0,,override
+DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-08-27,Thu,35,unavailable,true,1.0,,xlsx
+DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-08-28,Fri,35,unavailable,true,1.0,,xlsx
+DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-08-31,Mon,36,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
@@ -284,9 +326,15 @@ UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-08-04,Tue,32,unavailable,t
 UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-08-05,Wed,32,unavailable,true,1.0,,xlsx
 UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-08-06,Thu,32,unavailable,true,1.0,,xlsx
 UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-08-07,Fri,32,unavailable,true,1.0,,xlsx
+UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-10-06,Tue,41,unavailable,true,1.0,,xlsx
+UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-10-07,Wed,41,unavailable,true,1.0,,xlsx
+UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-10-08,Thu,41,unavailable,true,1.0,,xlsx
+UAH,Kyle Lesinger,kyle-lesinger,Disasters - LEAD,2026-10-09,Fri,41,unavailable,true,1.0,,xlsx
 UAH,Paridhi Parajuli,paridhi-parajuli,DSE - Developer,2026-08-03,Mon,32,unavailable,true,1.0,,xlsx
 UAH,Paridhi Parajuli,paridhi-parajuli,DSE - Developer,2026-08-04,Tue,32,unavailable,true,1.0,,xlsx
 UAH,Paridhi Parajuli,paridhi-parajuli,DSE - Developer,2026-08-05,Wed,32,unavailable,true,1.0,,xlsx
+UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-08-17,Mon,34,unavailable,true,1.0,,xlsx
+UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-09-07,Mon,37,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-09-25,Fri,39,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-05,Mon,41,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-06,Tue,41,unavailable,true,1.0,,xlsx
