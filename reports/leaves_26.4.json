@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-08-24T18:06:35Z",
+    "generated": "2026-08-24T18:54:42Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -19,7 +19,7 @@
     "team_size": {
       "2i2c": 7,
       "DSE - Manage": 6,
-      "DevSeed": 31,
+      "DevSeed": 32,
       "Disasters": 3,
       "MSFC": 2,
       "UAH": 25
@@ -2716,6 +2716,38 @@
       "team": "DevSeed",
       "role": "VEDA - Data Services",
       "leaves": []
+    },
+    {
+      "slug": "zz-automerge-test",
+      "name": "ZZ Automerge Test",
+      "team": "DevSeed",
+      "role": "temporary end-to-end test \u2014 deleted immediately",
+      "leaves": [
+        {
+          "date": "2026-09-14",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": "automerge e2e",
+          "source": "override"
+        },
+        {
+          "date": "2026-09-15",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": "automerge e2e",
+          "source": "override"
+        },
+        {
+          "date": "2026-09-16",
+          "status": "planned_time_off",
+          "out": true,
+          "weight": 1.0,
+          "note": "automerge e2e",
+          "source": "override"
+        }
+      ]
     },
     {
       "slug": "jacob-reed",
