@@ -11,6 +11,7 @@ import { exportNodeToPng } from "./exportImage";
 import { applyTheme, getInitialTheme } from "./theme";
 import { decodeHash, encodeHash } from "./urlState";
 import Header from "./components/Header";
+import MonthNav from "./components/MonthNav";
 import PersonPicker from "./components/PersonPicker";
 import Filters from "./components/Filters";
 import MonthCalendar from "./components/MonthCalendar";
@@ -206,11 +207,6 @@ export default function App() {
         generated={ds.generated}
         view={view}
         onView={setView}
-        month={month}
-        canPrev={idx > 0}
-        canNext={idx < months.length - 1}
-        onPrev={() => setMonth(months[idx - 1])}
-        onNext={() => setMonth(months[idx + 1])}
         refreshing={refreshing}
         onRefresh={refresh}
         theme={theme}
@@ -242,7 +238,7 @@ export default function App() {
           statuses={statuses}
           onStatuses={setStatuses}
         />
-        <button className="btn primary" onClick={() => setAddOpen(true)}>＋ Add person</button>
+        <button className="btn primary" onClick={() => setAddOpen(true)}>＋ Add leave</button>
         <button className="btn" onClick={copyLink} title="Copy a link that reopens this exact filtered view">
           {copied ? "✓ Link copied" : "🔗 Copy link"}
         </button>
@@ -259,6 +255,8 @@ export default function App() {
           <div className="stat panel risk"><div className="n">{flaggedDays}</div><div className="l">High-risk</div></div>
         </div>
       </div>
+
+      {view === "calendar" && <MonthNav months={months} month={month} onMonth={setMonth} />}
 
       {view === "calendar" ? (
         <div ref={exportRef} className="export-target">

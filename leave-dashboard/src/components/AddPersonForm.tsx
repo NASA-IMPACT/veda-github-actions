@@ -57,7 +57,7 @@ export default function AddPersonForm({ teams, people, pi, drafts, setDrafts, on
         <p className="hint">
           Everyone below goes into <b>one</b> pull request (<code>{filename.replace("leave/overrides/", "")}</code>).
           Add dates to an <b>existing person</b>, or create a <b>new</b> one (and a new team if needed).
-          Use <b>Preview</b> to see them on the calendar first. <b>Closing keeps your entries</b> — reopen “Add person” to continue.
+          Use <b>Preview</b> to see them on the calendar first. <b>Closing keeps your entries</b> — reopen “Add leave” to continue.
         </p>
         <p className="hint">
           On GitHub, click <b>Commit changes</b> → <b>Propose changes</b> → <b>Create pull request</b>.

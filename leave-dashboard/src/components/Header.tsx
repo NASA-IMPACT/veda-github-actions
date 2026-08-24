@@ -1,5 +1,3 @@
-import type { MonthKey } from "../compute";
-import { MONTH_NAMES } from "../compute";
 import type { Theme } from "../theme";
 
 interface Props {
@@ -7,11 +5,6 @@ interface Props {
   generated: string;
   view: "calendar" | "risk";
   onView: (v: "calendar" | "risk") => void;
-  month: MonthKey;
-  canPrev: boolean;
-  canNext: boolean;
-  onPrev: () => void;
-  onNext: () => void;
   refreshing: boolean;
   onRefresh: () => void;
   theme: Theme;
@@ -51,7 +44,7 @@ function isStale(iso: string): boolean {
 }
 
 export default function Header(props: Props) {
-  const { source, generated, view, onView, month, canPrev, canNext, onPrev, onNext, refreshing, onRefresh, theme, onToggleTheme } = props;
+  const { source, generated, view, onView, refreshing, onRefresh, theme, onToggleTheme } = props;
   return (
     <div className="header">
       <div>
@@ -94,19 +87,8 @@ export default function Header(props: Props) {
             Team risk
           </button>
         </div>
-        {view === "calendar" && (
-          <>
-            <button className="btn iconbtn" onClick={onPrev} disabled={!canPrev} aria-label="Previous month">
-              ‹
-            </button>
-            <div className="label">
-              {MONTH_NAMES[month.month]} {month.year}
-            </div>
-            <button className="btn iconbtn" onClick={onNext} disabled={!canNext} aria-label="Next month">
-              ›
-            </button>
-          </>
-        )}
+        {/* Month traversal lives in <MonthNav>, centred above the calendar — it is the control most
+            people come here to use, so it gets the middle of the page instead of this corner. */}
       </div>
     </div>
   );

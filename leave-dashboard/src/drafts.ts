@@ -1,4 +1,4 @@
-// Shared model for people being added in the "Add person" modal — used both to render an
+// Shared model for people being added in the "Add leave" modal — used both to render an
 // in-app PREVIEW (before any PR) and to build the prefilled-PR override file.
 import type { Person, Status } from "./types";
 import { toISO } from "./compute";

@@ -186,7 +186,11 @@ jobs:
           # which works because branch protection has enforce_admins disabled.
           gh pr review "$PR" --approve --body "Auto-approved: leave override files only, all valid." \
             || echo "note: could not approve (likely the token's own PR) — relying on admin bypass."
-          gh pr merge "$PR" --squash
+          # `gh pr merge` does NOT apply an admin's bypass unless --admin is passed explicitly: it
+          # just reports "the base branch policy prohibits the merge". Try the ordinary merge first
+          # (the approval above usually satisfies the rule), then fall back to the bypass for the
+          # case that approval could not cover — the token's user opening the PR themselves.
+          gh pr merge "$PR" --squash || gh pr merge "$PR" --squash --admin
           {
             echo "✅ **Merged automatically.**"
             echo
