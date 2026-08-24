@@ -25,7 +25,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 GENERATOR = os.path.join(os.path.dirname(HERE), "generate_leave_tracker.py")
 
-# Filenames the dashboard's "Add person" flow produces: `<slug>.json` / `<slug>-plus-N.json`.
+# Filenames the dashboard's "Add leave" flow produces: `<slug>.json` / `<slug>-plus-N.json`.
 FILENAME_RE = re.compile(r"^[a-z0-9._-]+\.json$")
 
 

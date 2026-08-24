@@ -2,7 +2,7 @@
 
 One **JSON file per person** in this directory layers on top of what the generator reads from
 the xlsx. It lets you **add someone who isn't on the spreadsheet**, or **adjust/add leave** for
-someone who is — without touching the workbook. The "Add person" button in the dashboard just
+someone who is — without touching the workbook. The "Add leave" button in the dashboard just
 opens a prefilled GitHub PR that creates a file here.
 
 **These PRs merge themselves.** `.github/workflows/leave-override-automerge.yml` validates the file
@@ -24,7 +24,7 @@ python leave/scripts/validate_overrides.py leave/overrides/jane-doe.json
 - A new person's `team` counts toward that team's size in the coverage/risk math. Typing a team
   that isn't on the spreadsheet **creates a new team** (a new group in the dashboard).
 - **Multiple people in one file / one PR:** a file may hold a single person (object), or several
-  (a top-level array, or `{"people": [ … ]}`). The dashboard's "Add person" modal uses this to
+  (a top-level array, or `{"people": [ … ]}`). The dashboard's "Add leave" modal uses this to
   put everyone you add in one sitting into a single PR (e.g. `jane-doe-plus-2.json`).
 
 ## Schema
