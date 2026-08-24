@@ -200,6 +200,17 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   field to the repo root — filling both gives `<app>/<app>/dist`). Separately, a base dir earns an
   implicit build skip when a commit/PR touched nothing under it, so a **docs-only PR cancels the preview
   on all eight sites** — that is expected, and it happens with or without an `ignore` filter.
+- **Netlify's PR-comment storm: 8 sites = 8 comments = 8 notifications on EVERY PR**, most of them
+  "Deploy Preview canceled" from the implicit base-dir build skip. The MCP cannot touch this (its
+  write surface is access controls, forms, rename, env vars, create-project). The lever is the
+  **hooks API**, not a site setting you can reach from `get-project`:
+  `GET/DELETE https://api.netlify.com/api/v1/hooks?site_id=<id>` with a **Netlify PAT**
+  (app.netlify.com/user/applications). Each site ships **15** hooks; the comments come from
+  `github_app_review_comment` — 6 of them, of which the `deploy_building` / `deploy_created` /
+  `deploy_failed` three are what fire on ordinary PRs. **Those 24 (3 × 8 sites) are deleted.**
+  `github_app_commit_status` + `github_app_checks` were deliberately KEPT, so the Deploy Preview
+  link still reaches each PR through the checks section instead of as eight comments. Netlify adds
+  the comment hooks back automatically on any **newly created** site — delete them again for site #9.
 - **The Netlify MCP server cannot connect a repo to a site.** Creating the 8th site proved it: the
   whole write surface is `create-new-project` (**`name` + `teamSlug` only**), rename, env vars, access
   controls and forms — **no operation for the repo link, branch, base directory or build settings**,
