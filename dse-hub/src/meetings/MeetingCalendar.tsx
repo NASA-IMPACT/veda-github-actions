@@ -18,6 +18,7 @@ interface Props {
   today: string;
   draftIds: Set<string>;
   onEdit?: (m: Meeting) => void;
+  onDelete?: (m: Meeting) => void;
 }
 
 // What's shown when a user clicks — either a single meeting or a whole day's list.
@@ -33,6 +34,7 @@ function MeetingPopoverContent({
   isDraft,
   onClose,
   onEdit,
+  onDelete,
   viewTz,
 }: {
   meeting: Meeting;
@@ -40,6 +42,7 @@ function MeetingPopoverContent({
   isDraft: boolean;
   onClose: () => void;
   onEdit?: () => void;
+  onDelete?: () => void;
   viewTz: string;
 }) {
   const sourceTz = meeting.schedule.tz ?? "America/Chicago";
@@ -61,7 +64,7 @@ function MeetingPopoverContent({
         <button className="modal-x" onClick={onClose} aria-label="Close">×</button>
       </div>
       <div className="pop-body">
-        <MeetingDetail meeting={meeting} onEdit={onEdit} />
+        <MeetingDetail meeting={meeting} onEdit={onEdit} onDelete={onDelete} />
       </div>
     </>
   );
@@ -73,6 +76,7 @@ function DayPopoverContent({
   draftIds,
   onClose,
   onEdit,
+  onDelete,
   viewTz,
 }: {
   iso: string;
@@ -80,6 +84,7 @@ function DayPopoverContent({
   draftIds: Set<string>;
   onClose: () => void;
   onEdit?: (m: Meeting) => void;
+  onDelete?: (m: Meeting) => void;
   viewTz: string;
 }) {
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -119,7 +124,11 @@ function DayPopoverContent({
               </button>
               {isOpen && (
                 <div className="pop-day-item-detail">
-                  <MeetingDetail meeting={m} onEdit={onEdit ? () => onEdit(m) : undefined} />
+                  <MeetingDetail
+                    meeting={m}
+                    onEdit={onEdit ? () => onEdit(m) : undefined}
+                    onDelete={onDelete ? () => onDelete(m) : undefined}
+                  />
                 </div>
               )}
             </div>
@@ -130,7 +139,7 @@ function DayPopoverContent({
   );
 }
 
-export default function MeetingCalendar({ meetings, pi, today, draftIds, onEdit }: Props) {
+export default function MeetingCalendar({ meetings, pi, today, draftIds, onEdit, onDelete }: Props) {
   const { tz: viewTz } = useViewTz();
   const [month, setMonth] = useState(() => monthKey(parseISO(today)));
   const [selection, setSelection] = useState<Selection | null>(null);
@@ -193,6 +202,11 @@ export default function MeetingCalendar({ meetings, pi, today, draftIds, onEdit 
   function handleEdit(m: Meeting) {
     setSelection(null);
     onEdit?.(m);
+  }
+
+  function handleDelete(m: Meeting) {
+    setSelection(null);
+    onDelete?.(m);
   }
 
   return (
@@ -341,6 +355,7 @@ export default function MeetingCalendar({ meetings, pi, today, draftIds, onEdit 
                   isDraft={draftIds.has(selection.meeting.id)}
                   onClose={closeSelection}
                   onEdit={onEdit ? () => handleEdit(selection.meeting) : undefined}
+                  onDelete={onDelete ? () => handleDelete(selection.meeting) : undefined}
                   viewTz={viewTz}
                 />
               ) : (
@@ -350,6 +365,7 @@ export default function MeetingCalendar({ meetings, pi, today, draftIds, onEdit 
                   draftIds={draftIds}
                   onClose={closeSelection}
                   onEdit={onEdit ? handleEdit : undefined}
+                  onDelete={onDelete ? handleDelete : undefined}
                   viewTz={viewTz}
                 />
               )}

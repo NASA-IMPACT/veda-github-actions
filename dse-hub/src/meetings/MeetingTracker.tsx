@@ -80,6 +80,17 @@ export default function MeetingTracker() {
     setDraft(meetingToDraft(m));
     setMtgForm({ mode: "edit", editId: m.id });
   }
+  // Staged (not applied) — the "hold 2s to delete" gesture in HoldToDelete is the confirmation, and
+  // it still only lands as a reviewable entry in the Changes cart / PR, never an instant removal.
+  function deleteMeeting(m: Meeting) {
+    stage({
+      kind: "meeting",
+      op: "delete",
+      ts: new Date().toISOString(),
+      data: m,
+      label: `Delete meeting: ${m.name}`,
+    });
+  }
 
   return (
     <div className="tracker">
@@ -120,13 +131,13 @@ export default function MeetingTracker() {
       </div>
 
       {view === "list" && (
-        <MeetingList meetings={shown} pi={piCalendar} today={today} draftIds={draftIds} onEdit={openEditMeeting} />
+        <MeetingList meetings={shown} pi={piCalendar} today={today} draftIds={draftIds} onEdit={openEditMeeting} onDelete={deleteMeeting} />
       )}
       {view === "calendar" && (
-        <MeetingCalendar meetings={shown} pi={piCalendar} today={today} draftIds={draftIds} onEdit={openEditMeeting} />
+        <MeetingCalendar meetings={shown} pi={piCalendar} today={today} draftIds={draftIds} onEdit={openEditMeeting} onDelete={deleteMeeting} />
       )}
       {view === "categories" && (
-        <MeetingCategories meetings={shown} onEdit={openEditMeeting} />
+        <MeetingCategories meetings={shown} onEdit={openEditMeeting} onDelete={deleteMeeting} />
       )}
 
       {mtgForm && (
