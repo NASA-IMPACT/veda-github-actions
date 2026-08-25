@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-25T06:09:51Z",
+  "generated": "2026-08-25T12:09:00Z",
   "items": [
     {
       "archived": false,
@@ -3462,7 +3462,7 @@
       "state_reason": null,
       "sub": {
         "completed": 5,
-        "total": 15
+        "total": 17
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5629,6 +5629,84 @@
       "title": "Update GAIA gridded building exposure dataset",
       "updated": "2026-08-24T22:47:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/392"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "vgeorge",
+      "body_excerpt": "PR #390 surfaced the need for a convention on image handling (editable content images vs app-native assets like logos).\nWhile adding base path support, I initially moved the logo emblem to app/assets/ so the bundler resolves its URL (c78cb7c). That introduced a second image convention, so it was reverted in favor of a CSS variable to keep the PR focused (556dc5f) — all images live in public/ for now.\nProposal by @ifsimicoded from the review discussion:\n\nI'm not sure we should have two different approaches for image handling. Maybe we can distinguish this by logos and non-editable assets being ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-25T09:27:54Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg36oGw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 393,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "RFC: Define convention for app-native vs editable images",
+      "updated": "2026-08-25T09:27:54Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/393"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "vgeorge",
+      "body_excerpt": "PR #390 surfaced the need to introduce testing strategy.\nWhile adding base path support, I added node --test coverage for the withBasePath helper plus a CI test job (d6d4fcc). It was removed per review to avoid building on an ad-hoc setup (70a8d7f).\nFeedback by @ifsimicoded from the review discussion:\n\nI think we should be more intentional about testing. Instead of this, could you file a tech debt ticket which more intentionally introduces a testing library. Because I don't expect the base path helpers to change, I think it's sufficient to leave them untested for the time being.\nI worry we'll ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-25T09:33:04Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg36qbQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 394,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "RFC: Define testing strategy",
+      "updated": "2026-08-25T09:33:04Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/394"
     },
     {
       "archived": false,
@@ -16559,9 +16637,9 @@
   "stats": {
     "closed": 327,
     "drafts": 0,
-    "issues": 402,
-    "items": 416,
-    "open": 89,
+    "issues": 404,
+    "items": 418,
+    "open": 91,
     "prs": 14
   }
 }
