@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-24T18:08:41Z",
+  "generated": "2026-08-25T00:10:49Z",
   "items": [
     {
       "archived": false,
@@ -4652,8 +4652,8 @@
       "assignees": [],
       "author": "amarouane-ABDELHAK",
       "body_excerpt": "Description\nAddress the review comments and suggestions raised in PR-351.\nTasks\n\n\n Review all suggested comments in PR-351.\n\n\n Address the applicable comments and update the implementation.\n\n\n Resolve the corresponding review threads.\n\n\n Verify that the changes do not introduce regressions.\n\n\n Request a final review once all comments have been addressed.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-08-24T22:29:15Z",
+      "comments": 1,
       "created": "2026-08-12T14:26:20Z",
       "draft": false,
       "fields": {
@@ -4669,7 +4669,8 @@
           "startDate": "2026-08-09",
           "title": "26.4.2"
         },
-        "Start Date": "2026-08-19"
+        "Start Date": "2026-08-19",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Q-RY",
       "issue_type": null,
@@ -4677,16 +4678,11 @@
       "labels": [],
       "milestone": null,
       "number": 363,
-      "parent": {
-        "number": 792,
-        "title": "Objective #2 [26.4] - [Dashboard]: Portal Beta Release",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/792"
-      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "duplicate",
       "title": "Address Suggesting Comments in PR-351",
-      "updated": "2026-08-12T14:26:20Z",
+      "updated": "2026-08-24T22:29:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/363"
     },
     {
@@ -4742,7 +4738,7 @@
       ],
       "author": "acblackford",
       "body_excerpt": "Suomi NPP data product delivery will cease on November 1, 2026 - including the VNP46A2 VIIRS nighttime lights product utilized in the HD Black Marble Nighttime Lights script. Alternative data products will need to be explored for when a user triggers this algorithm for dates after Nov. 1, 2026 (archived data will still be accessible).\n\nOne solution would be to leverage the supplemental NOAA-20 nighttime lights product VJ146A2, which will NOT be impacted by this delivery outage.",
-      "closed": null,
+      "closed": "2026-08-24T20:05:55Z",
       "comments": 5,
       "created": "2026-08-12T21:24:46Z",
       "draft": false,
@@ -4756,7 +4752,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UFRs",
       "issue_type": null,
@@ -4765,10 +4762,10 @@
       "milestone": null,
       "number": 365,
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Explore Alternatives for Black Marble VIIRS Nighttime Lights Data",
-      "updated": "2026-08-13T22:57:10Z",
+      "updated": "2026-08-24T20:05:55Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/365"
     },
     {
@@ -5330,9 +5327,7 @@
       "id": "PVTI_lADODdLRP84BMP5Rzg3LLe4",
       "issue_type": null,
       "kind": "issue",
-      "labels": [
-        "blocked"
-      ],
+      "labels": [],
       "milestone": null,
       "number": 380,
       "parent": {
@@ -5344,7 +5339,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update all links to to use Next/Link / basepath handled",
-      "updated": "2026-08-19T16:01:36Z",
+      "updated": "2026-08-24T22:28:52Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/380"
     },
     {
@@ -5544,6 +5539,96 @@
       "title": "chore: adopt `develop` as default branch for September release work",
       "updated": "2026-08-21T13:52:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/389"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nWhen a new version lands on main in\ndisasters-product-algorithms\n(via the admin-gated release.yaml workflow), nobody is told. Team members on the Disasters\nJupyterHub keep running stale code with no signal that anything changed — and then hit confusing\nfailures because their CLI doesn't have a flag that the docs describe.\nWhy a plain \"run git pull\" notice isn't enough\nThere are two different things that go stale on the hub, and git pull only fixes one:\n\n\n\nWhat's stale\nHow it actually updates\n\n\n\n\nThe process_* CLIs / shared_utils baked into the hub image (image/Dockerfile → pip install ",
+      "closed": "2026-08-24T21:34:11Z",
+      "comments": 2,
+      "created": "2026-08-24T21:02:16Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-24",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-24",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg315KI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 391,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Alert the team when a new version hits `main` (disasters-product-algorithms)",
+      "updated": "2026-08-24T21:34:11Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/391"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Info\nRe-staging and updating the GAIA (Global Assessment of Infrastructure Assets) gridded building exposure dataset.\nFollow-up to #77, which ingested GAIA from s3://nasa-disasters/ProgramData/test/. The source has since been moved and the dataset configs rebuilt against it.\n\n\n\n\n\n\n\n\n\nCollections\ngaia-total-composite, gaia-wood-composite\n\n\nEnvironment\nstaging\n\n\nS3 source\ns3://nasa-disasters-staging/ProgramData/GAIA/\n\n\nSource files\ngaia_total_day_2025-01_monthly.tifgaia_low-durability-wood-framed-1_2025-01_monthly.tif\n\n\nTracking sheet\nData tracking spreadsheet\n\n\n\nTasks\n\n Update the JSON dataset ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-24T22:45:01Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-26",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-24",
+        "Status": "In Progress"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg32ios",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 392,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update GAIA gridded building exposure dataset",
+      "updated": "2026-08-24T22:47:00Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/392"
     },
     {
       "archived": false,
@@ -16472,11 +16557,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 324,
+    "closed": 327,
     "drafts": 0,
-    "issues": 400,
-    "items": 414,
-    "open": 90,
+    "issues": 402,
+    "items": 416,
+    "open": 89,
     "prs": 14
   }
 }
