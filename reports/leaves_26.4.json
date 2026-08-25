@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-08-25T16:11:34Z",
+    "generated": "2026-08-25T17:09:46Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -2512,7 +2512,7 @@
         },
         {
           "date": "2026-08-12",
-          "status": "unavailable",
+          "status": "holiday",
           "out": true,
           "weight": 1.0,
           "note": null,
