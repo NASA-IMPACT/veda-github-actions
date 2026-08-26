@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-26T12:09:09Z",
+  "generated": "2026-08-26T18:38:25Z",
   "items": [
     {
       "archived": false,
@@ -3462,7 +3462,7 @@
       "state_reason": null,
       "sub": {
         "completed": 5,
-        "total": 15
+        "total": 16
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5801,8 +5801,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "An audit of notebooks/shared_utils_reference.ipynb in disasters-product-algorithms (walking every cell against src/shared_utils/) found the notebook substantially out of date — and surfaced a live bug in SimpleProcessor that mis-routes every output COG.\n\n1. SimpleProcessor sends every COG to the wrong S3 prefix and drops per-category nodata\nSeverity: high — silently wrong output, no error.\nshared_utils.file_naming.categorize_file(filename, categories) iterates for pattern, directory in categories.items() and returns the dict value. Its contract is {regex: subdir}.\nSimpleProcessor._categorize_f",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-08-26T12:35:26Z",
+      "comments": 1,
       "created": "2026-08-25T22:41:59Z",
       "draft": false,
       "fields": {
@@ -5815,7 +5815,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4BKfw",
       "issue_type": null,
@@ -5832,11 +5833,143 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "SimpleProcessor mis-routes every output COG; shared_utils_reference.ipynb is stale",
+      "updated": "2026-08-26T12:35:26Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/398"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nGetting an operator-processed product to its final home currently takes two passes:\n\nsimple_disaster_template.ipynb converts the raw delivery to COGs and writes them to s3://nasa-disasters/drcs_activations_new/<category>/, with the activation event prefixed onto every filename.\nbake_event_metadata.ipynb is then pointed at that prefix to finish the job.\n\nThe intermediate hop buys nothing. Pass 1 already embeds the activation tags at COG-creation time (convert_to_cog(metadata=...) → resolve_metadata), so ACTIVATION_EVENT / YEAR_MONTH / HAZARD / LOCATION / SOURCE / PROCESSOR are on the ob",
+      "closed": "2026-08-26T12:42:47Z",
+      "comments": 0,
+      "created": "2026-08-26T12:38:42Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-26",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-25",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4GzZk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 399,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Publish operator COGs to nasa-disasters-staging in one pass (drop the drcs_activations_new hop)",
+      "updated": "2026-08-26T12:42:47Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/399"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nshared_utils.cog_utils.convert_to_cog can emit a COG that declares nodata=-9999 while its fill pixels actually hold FLT_MAX (3.4028234663852886e+38). rio-tiler masks on the declared value, finds no matching pixels, and renders the fill as real data — it clamps to the top of any rescale and paints the entire masked area solid.\nFound while ingesting NISAR GUNW for #395. Every affected file passes gdalinfo, passes COG validation, and looks correct in metadata.\nEvidence\nThree NISAR GUNW rasters in s3://nasa-disasters-staging/ProgramData/NISAR/GUNW/, all dtype=float32, all declaring nodata=",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-26T15:00:17Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-27",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-25"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4IJS8",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug"
+      ],
+      "milestone": null,
+      "number": 400,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "SimpleProcessor mis-routes every output COG; shared_utils_reference.ipynb is stale",
-      "updated": "2026-08-25T22:43:11Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/398"
+      "title": "convert_to_cog ships COGs whose declared nodata is absent from the pixels (FLT_MAX fill survives)",
+      "updated": "2026-08-26T15:01:43Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/400"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "https://developmentseed.slack.com/archives/C07JY4J68SX/p1787263508765929?thread_ts=1787256561.033999&cid=C07JY4J68SX",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-26T16:14:41Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4IubQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 401,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP - StacMaps Legends",
+      "updated": "2026-08-26T16:14:41Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/401"
     },
     {
       "archived": false,
@@ -16765,11 +16898,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 331,
+    "closed": 333,
     "drafts": 0,
-    "issues": 407,
-    "items": 421,
-    "open": 90,
+    "issues": 410,
+    "items": 424,
+    "open": 91,
     "prs": 14
   }
 }
