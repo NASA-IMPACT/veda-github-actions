@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-25T18:08:57Z",
+  "generated": "2026-08-26T00:11:29Z",
   "items": [
     {
       "archived": false,
@@ -5749,6 +5749,94 @@
       "title": "Ingest NISAR GUNW displacement — June 2026 Venezuela Earthquake",
       "updated": "2026-08-25T14:59:12Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/395"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "What\nThe disasters-sentinel2-process DPS algorithm currently deployed on MAAP is stale. Delete the existing dev registration, then re-register it so the current code and input schema actually land.\nWhy the delete is required (a plain re-register is not enough)\nRe-registering an already-deployed algorithm_name + algorithm_version returns:\n409 Duplicate process. Use PUT to modify existing process with process ID <n>\n\nNeither the Register Algorithm GUI nor .github/workflows/register-dps.yml fails on that response — the run reports success while MAAP silently keeps the old process definition. A co",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-25T22:41:09Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-28",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-27"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4BKKk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 397,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "DPS: delete the stale `disasters-sentinel2-process` `dev` registration and re-register it",
+      "updated": "2026-08-25T22:41:10Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/397"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "An audit of notebooks/shared_utils_reference.ipynb in disasters-product-algorithms (walking every cell against src/shared_utils/) found the notebook substantially out of date — and surfaced a live bug in SimpleProcessor that mis-routes every output COG.\n\n1. SimpleProcessor sends every COG to the wrong S3 prefix and drops per-category nodata\nSeverity: high — silently wrong output, no error.\nshared_utils.file_naming.categorize_file(filename, categories) iterates for pattern, directory in categories.items() and returns the dict value. Its contract is {regex: subdir}.\nSimpleProcessor._categorize_f",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-25T22:41:59Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4BKfw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "documentation"
+      ],
+      "milestone": null,
+      "number": 398,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "SimpleProcessor mis-routes every output COG; shared_utils_reference.ipynb is stale",
+      "updated": "2026-08-25T22:43:11Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/398"
     },
     {
       "archived": false,
@@ -16679,9 +16767,9 @@
   "stats": {
     "closed": 331,
     "drafts": 0,
-    "issues": 405,
-    "items": 419,
-    "open": 88,
+    "issues": 407,
+    "items": 421,
+    "open": 90,
     "prs": 14
   }
 }
