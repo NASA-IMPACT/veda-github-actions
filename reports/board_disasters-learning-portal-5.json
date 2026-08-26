@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-26T06:10:45Z",
+  "generated": "2026-08-26T12:09:09Z",
   "items": [
     {
       "archived": false,
@@ -5517,7 +5517,7 @@
       "author": "vgeorge",
       "body_excerpt": "Code freeze on main was requested for the current production website, see #379 (comment) and this thread.\nThis aims to document the migration and its steps:\n\n Change default branch to develop\n Add branch protection to develop\n Setup deploy previews for develop on netlify\n\nThere is ongoing work that need to land in main in #380, related to base path on current deployment. After it lands, we need to merge it back to develop branch to sync.\nAll other PRs should target the develop branch from now on. Currently only active is #388.\nThere are no changes required to the production deployment setup at",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-08-21T11:58:33Z",
       "draft": false,
       "fields": {
@@ -5542,7 +5542,7 @@
       "state": "open",
       "state_reason": null,
       "title": "chore: adopt `develop` as default branch for September release work",
-      "updated": "2026-08-25T16:12:53Z",
+      "updated": "2026-08-26T10:31:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/389"
     },
     {
