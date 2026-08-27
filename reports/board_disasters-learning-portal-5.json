@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-27T15:41:05Z",
+  "generated": "2026-08-27T21:11:43Z",
   "items": [
     {
       "archived": false,
@@ -6625,8 +6625,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
-        "total": 4
+        "completed": 2,
+        "total": 5
       },
       "title": "[6.3] Custom visualization tool",
       "updated": "2026-08-12T22:43:32Z",
@@ -6737,8 +6737,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3c\nOwner: Disasters/VEDA\nAssigned to: Kyle / Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 1d — 2026-09-14 → 2026-09-14\nSmartsheet Ticket# column: 221 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\nNotes\nCalendar invite sent for Monday 9/14.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-08-27T18:20:52Z",
+      "comments": 1,
       "created": "2026-08-12T22:43:53Z",
       "draft": false,
       "fields": {
@@ -6754,7 +6754,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-09-14",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Uhyg",
       "issue_type": null,
@@ -6772,10 +6772,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.3c] Compile and Review User Testing feedback - Plug in Visualization Tool",
-      "updated": "2026-08-19T14:19:34Z",
+      "updated": "2026-08-27T18:20:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/9"
     },
     {
@@ -9028,6 +9028,40 @@
       "title": "[6.13] Creation of 4 trainings, plus links to external resources",
       "updated": "2026-08-13T10:17:05Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/56"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Contact the plugins team to settle how users get from the portal to the data visualization tool.\nOwner: Disasters\nAssigned to: Kyle\nThe open question\nTwo options on the table:\n\nEmbedded page — the tool renders inside the portal; users stay on the portal domain\nLink-out — the portal links to the tool, opening in a new tab\n\nStatus\nNot started — the plugins team has not been contacted yet.\n\n\"I haven't spoken with them at all yet, but I'll make that a next item.\"\n\nDone when\n\n Plugins team contacted\n One of the two options chosen, with the reasoning recorded on this issue\n Any resulting implementat",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-08-27T21:01:23Z",
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_lADODdLRP84BMP5Rzg4Vaoo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "owner: Disasters",
+        "owner: VEDA",
+        "smartsheet"
+      ],
+      "milestone": null,
+      "number": 66,
+      "parent": {
+        "number": 6,
+        "title": "[6.3] Custom visualization tool",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-tracking",
+      "state": "open",
+      "state_reason": null,
+      "title": "[6.3e] Decide how users reach the data visualization tool from the portal — embedded page vs. link-out",
+      "updated": "2026-08-27T21:12:46Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/66"
     },
     {
       "archived": false,
@@ -17079,10 +17113,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 338,
+    "closed": 339,
     "drafts": 0,
-    "issues": 414,
-    "items": 428,
+    "issues": 415,
+    "items": 429,
     "open": 90,
     "prs": 14
   }
