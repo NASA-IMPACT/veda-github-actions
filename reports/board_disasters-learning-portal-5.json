@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-26T18:38:25Z",
+  "generated": "2026-08-27T01:26:07Z",
   "items": [
     {
       "archived": false,
@@ -3749,7 +3749,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Ingest new collections into `dev` STAC for activation event Southern California Wildfires",
-      "updated": "2026-07-28T18:00:07Z",
+      "updated": "2026-08-26T19:55:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/338"
     },
     {
@@ -5632,7 +5632,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update GAIA gridded building exposure dataset",
-      "updated": "2026-08-24T22:47:00Z",
+      "updated": "2026-08-26T20:42:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/392"
     },
     {
@@ -5730,7 +5730,8 @@
           "startDate": "2026-08-09",
           "title": "26.4.2"
         },
-        "Start Date": "2026-08-25"
+        "Start Date": "2026-08-25",
+        "Status": "In Progress"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg39mvw",
       "issue_type": null,
@@ -5970,6 +5971,141 @@
       "title": "Update DP - StacMaps Legends",
       "updated": "2026-08-26T16:14:41Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/401"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Info\nCreate and ingest the opera-distalert-s1-daily collection — OPERA Surface Disturbance Alert from Sentinel-1 (DIST-S1-ALERT) prototype.\nAddresses the unchecked opera dist s1 line item in #338 (Southern California Wildfires activation). The two source files are dated 2025-01-09, which matches that activation.\n\n\n\n\n\n\n\n\n\nCollection\nopera-distalert-s1-daily\n\n\nTitle\nOPERA Surface Disturbance from Sentinel-1 (DIST-S1)\n\n\nEnvironment\nstaging\n\n\nS3 source\ns3://nasa-disasters-staging/ProgramData/OPERA/DistAlertS1/\n\n\nFiles\ndisturbance_track64_2025-01-09_day.tifdisturbance_track71_2025-01-09_day.tif\n\n\nA",
+      "closed": "2026-08-26T21:57:23Z",
+      "comments": 1,
+      "created": "2026-08-26T19:52:11Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-27",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-26",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4KflU",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 402,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest opera-distalert-s1-daily (OPERA DIST-S1 surface disturbance)",
+      "updated": "2026-08-26T21:57:23Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/402"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Deploy MMGIS as the Disasters Learning Portal map interface\nMotivation\nThe Disasters Learning Portal publishes a growing catalogue of hazard and response data products, but has no interactive map of its own for exploring them. Today, seeing whether a newly staged product actually looks right means either trusting the ingest logs or wiring up a one-off viewer. Science and response staff can't browse the catalogue spatially, compare products over an area, or hand a colleague a link to what they're looking at.\nMMGIS is the mapping interface we intend to use for this. It needs a Disasters deployme",
+      "closed": "2026-08-26T21:57:06Z",
+      "comments": 1,
+      "created": "2026-08-26T21:47:01Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-31",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-26",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4LUr0",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 404,
+      "parent": {
+        "number": 777,
+        "title": "Objective #1 [26.4] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Deploy MMGIS as the Disasters Learning Portal map interface",
+      "updated": "2026-08-26T21:57:06Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/404"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nCOG conversion through shared_utils.cog_utils.convert_to_cog's metadata path (metadata=..., the in-process rio_cogeo.cog_translate branch) can stall effectively forever on large rasters. Observed on three SkySat SR TrueColor scenes for 202607_Fire_OR run through notebooks/simple_disaster_staging.ipynb on the Disasters hub.\nRoot cause is not compression speed. rio-cogeo writes an uncompressed scratch dataset and then adds overviews to it. GDAL's default BIGTIFF=IF_NEEDED sizes the classic-vs-BigTIFF decision on the base raster only, so a source comfortably under 4 GB uncompressed crosse",
+      "closed": "2026-08-26T22:16:39Z",
+      "comments": 0,
+      "created": "2026-08-26T21:58:57Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-27",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-26",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4LZkA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 405,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "COG conversion stalls indefinitely: metadata path writes a classic-TIFF scratch that overflows 4 GB",
+      "updated": "2026-08-26T22:16:39Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/405"
     },
     {
       "archived": false,
@@ -16898,10 +17034,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 333,
+    "closed": 336,
     "drafts": 0,
-    "issues": 410,
-    "items": 424,
+    "issues": 413,
+    "items": 427,
     "open": 91,
     "prs": 14
   }
