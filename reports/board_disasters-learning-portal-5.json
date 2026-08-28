@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-28T16:06:02Z",
+  "generated": "2026-08-28T21:23:35Z",
   "items": [
     {
       "archived": false,
@@ -4229,7 +4229,7 @@
       "author": "amarouane-ABDELHAK",
       "body_excerpt": "Description\nThe website is currently using the default Next.js favicon. We should replace it with the appropriate disasters favicon for the website to provide consistent branding.\nAcceptance Criteria\n\n The website no longer displays the default Next.js favicon.\n The approved custom favicon is displayed consistently across supported browsers.\n The favicon works in both development and production builds.\n No broken or missing favicon requests appear in the browser console/network logs.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-08T22:01:44Z",
       "draft": false,
       "fields": {
@@ -4256,7 +4256,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Add disasters favicon",
-      "updated": "2026-08-08T22:01:44Z",
+      "updated": "2026-08-28T20:47:37Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/352"
     },
     {
@@ -5597,7 +5597,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Info\nRe-staging and updating the GAIA (Global Assessment of Infrastructure Assets) gridded building exposure dataset.\nFollow-up to #77, which ingested GAIA from s3://nasa-disasters/ProgramData/test/. The source has since been moved and the dataset configs rebuilt against it.\n\n\n\n\n\n\n\n\n\nCollections\ngaia-total-composite, gaia-wood-composite\n\n\nEnvironment\nstaging\n\n\nS3 source\ns3://nasa-disasters-staging/ProgramData/GAIA/\n\n\nSource files\ngaia_total_day_2025-01_monthly.tifgaia_low-durability-wood-framed-1_2025-01_monthly.tif\n\n\nTracking sheet\nData tracking spreadsheet\n\n\n\nTasks\n\n Update the JSON dataset ",
-      "closed": null,
+      "closed": "2026-08-28T20:46:09Z",
       "comments": 0,
       "created": "2026-08-24T22:45:01Z",
       "draft": false,
@@ -5615,7 +5615,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-08-24",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg32ios",
       "issue_type": null,
@@ -5629,10 +5629,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update GAIA gridded building exposure dataset",
-      "updated": "2026-08-26T20:42:14Z",
+      "updated": "2026-08-28T20:46:09Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/392"
     },
     {
@@ -5894,7 +5894,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nshared_utils.cog_utils.convert_to_cog can emit a COG that declares nodata=-9999 while its fill pixels actually hold FLT_MAX (3.4028234663852886e+38). rio-tiler masks on the declared value, finds no matching pixels, and renders the fill as real data — it clamps to the top of any rescale and paints the entire masked area solid.\nFound while ingesting NISAR GUNW for #395. Every affected file passes gdalinfo, passes COG validation, and looks correct in metadata.\nEvidence\nThree NISAR GUNW rasters in s3://nasa-disasters-staging/ProgramData/NISAR/GUNW/, all dtype=float32, all declaring nodata=",
-      "closed": null,
+      "closed": "2026-08-28T20:46:28Z",
       "comments": 0,
       "created": "2026-08-26T15:00:17Z",
       "draft": false,
@@ -5911,7 +5911,8 @@
           "startDate": "2026-08-09",
           "title": "26.4.2"
         },
-        "Start Date": "2026-08-25"
+        "Start Date": "2026-08-25",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4IJS8",
       "issue_type": null,
@@ -5927,10 +5928,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "convert_to_cog ships COGs whose declared nodata is absent from the pixels (FLT_MAX fill survives)",
-      "updated": "2026-08-26T15:01:43Z",
+      "updated": "2026-08-28T20:46:28Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/400"
     },
     {
@@ -6204,8 +6205,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Why\nThe Disasters Ecosystem Architecture currently lives as a static Lucidchart\ndiagram. It shows what exists but not what moves: a viewer cannot tell what\nflows through the system, in what order, or which paths are related. In a\nbriefing it reads as a wall of boxes and someone has to narrate it live.\nThis adds an animated version that illustrates the architecture in a more\ndigestible, interactive way — it plays the data-integration story as a sequence\nof beats with narration, and drops straight into a Google Slides deck\n(Insert > Image) with no plugin, embed, or upload step.\nWhat was produced",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-08-28T20:45:04Z",
+      "comments": 3,
       "created": "2026-08-28T14:13:50Z",
       "draft": false,
       "fields": {
@@ -6222,7 +6223,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-08-28",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4bzHg",
       "issue_type": null,
@@ -6236,10 +6237,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Animated Disasters Ecosystem Architecture diagram (data integration flow)",
-      "updated": "2026-08-28T15:33:12Z",
+      "updated": "2026-08-28T20:45:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/408"
     },
     {
@@ -17267,11 +17268,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 340,
+    "closed": 343,
     "drafts": 0,
     "issues": 418,
     "items": 432,
-    "open": 92,
+    "open": 89,
     "prs": 14
   }
 }
