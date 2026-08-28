@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-28T09:08:37Z",
+  "generated": "2026-08-28T16:06:02Z",
   "items": [
     {
       "archived": false,
@@ -6151,6 +6151,143 @@
       "title": "Ingest sentinel1-dmgassessment-daily (Sentinel-1 Likely Damaged Areas)",
       "updated": "2026-08-27T13:02:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/406"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Need\nThe Constant Contact logo was only available as a raster PNG (constant-contact-logo2.png, 447x447, 10.7 KB). We needed it in SVG format for use in the portal.\nSolution\nConverted using the png-to-svg skill's base64-embedding method: the PNG is embedded as a data:image/png;base64 URI inside an <image> element in an SVG wrapper. This preserves the exact original appearance and colors, unlike tracing methods which produce black-only paths.\nResult: constant-contact-logo2.svg, 14.6 KB, viewBox=\"0 0 447 447\".\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg width=\"447\" height=\"447\"\n  ",
+      "closed": "2026-08-28T13:05:28Z",
+      "comments": 0,
+      "created": "2026-08-28T13:04:39Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-28",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-28",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4bO3k",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 407,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Convert Constant Contact logo PNG to SVG",
+      "updated": "2026-08-28T13:05:28Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/407"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Why\nThe Disasters Ecosystem Architecture currently lives as a static Lucidchart\ndiagram. It shows what exists but not what moves: a viewer cannot tell what\nflows through the system, in what order, or which paths are related. In a\nbriefing it reads as a wall of boxes and someone has to narrate it live.\nThis adds an animated version that illustrates the architecture in a more\ndigestible, interactive way — it plays the data-integration story as a sequence\nof beats with narration, and drops straight into a Google Slides deck\n(Insert > Image) with no plugin, embed, or upload step.\nWhat was produced",
+      "closed": null,
+      "comments": 2,
+      "created": "2026-08-28T14:13:50Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-28",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-28",
+        "Status": "In Progress"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4bzHg",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 408,
+      "parent": {
+        "number": 777,
+        "title": "Objective #1 [26.4] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Animated Disasters Ecosystem Architecture diagram (data integration flow)",
+      "updated": "2026-08-28T15:33:12Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/408"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger",
+        "chelsea-aaron"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "basemap — explicit style list added (satellite still needs a keyed provider, see comment)\n gaia units missing — now reads in m² of built-up area\n compare datetime feature not added — real feature work, button has no handler behind it\n make sure that the widget top right formatter is present — MapControl was being skipped by the generator; now emits and renders\n point gibs black marble layer into the app (blue/yellow)\n add hydrosar layer\n ensure that legends are present",
+      "closed": null,
+      "comments": 3,
+      "created": "2026-08-28T14:57:05Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-25",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-09",
+          "title": "26.4.2"
+        },
+        "Start Date": "2026-08-28",
+        "Status": "In Progress"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4cKhU",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 409,
+      "parent": {
+        "number": 777,
+        "title": "Objective #1 [26.4] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Things to fix for Viz tool",
+      "updated": "2026-08-28T15:57:28Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/409"
     },
     {
       "archived": false,
@@ -17130,11 +17267,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 339,
+    "closed": 340,
     "drafts": 0,
-    "issues": 415,
-    "items": 429,
-    "open": 90,
+    "issues": 418,
+    "items": 432,
+    "open": 92,
     "prs": 14
   }
 }
