@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-27T21:11:43Z",
+  "generated": "2026-08-28T02:48:06Z",
   "items": [
     {
       "archived": false,
@@ -9032,15 +9032,32 @@
     {
       "archived": false,
       "assignees": [
-        "kyle-lesinger"
+        "BhattaraiSijan",
+        "kyle-lesinger",
+        "gwlayne"
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Contact the plugins team to settle how users get from the portal to the data visualization tool.\nOwner: Disasters\nAssigned to: Kyle\nThe open question\nTwo options on the table:\n\nEmbedded page — the tool renders inside the portal; users stay on the portal domain\nLink-out — the portal links to the tool, opening in a new tab\n\nStatus\nNot started — the plugins team has not been contacted yet.\n\n\"I haven't spoken with them at all yet, but I'll make that a next item.\"\n\nDone when\n\n Plugins team contacted\n One of the two options chosen, with the reasoning recorded on this issue\n Any resulting implementat",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-27T21:01:23Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "End Date": "2026-09-11",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-08-27",
+        "Status": "Todo"
+      },
       "id": "PVTI_lADODdLRP84BMP5Rzg4Vaoo",
       "issue_type": null,
       "kind": "issue",
@@ -9060,7 +9077,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.3e] Decide how users reach the data visualization tool from the portal — embedded page vs. link-out",
-      "updated": "2026-08-27T21:12:46Z",
+      "updated": "2026-08-27T21:15:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/66"
     },
     {
