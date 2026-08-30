@@ -94,7 +94,7 @@ DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-0
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-06,Tue,41,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-07,Wed,41,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-08,Thu,41,limited,false,0.5,,xlsx
-DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-09,Fri,41,limited,false,0.5,this assumes @brianna@developmentseed.org and @brian.m.freitag@nasa.gov are attending CNG Forum,xlsx
+DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-09,Fri,41,limited,false,0.5,,xlsx
 DSE - Manage,Brian Freitag,brian-freitag,DSE Lead (NASA Civil Servant),2026-10-12,Mon,42,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-27,Mon,31,unavailable,true,1.0,,xlsx
 DSE - Manage,Brianna Pagan,brianna-pagan,DSE Technical Lead (DevSeed),2026-07-28,Tue,31,unavailable,true,1.0,,xlsx
@@ -148,7 +148,7 @@ DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-26,Wed,35,planned_time_of
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-27,Thu,35,planned_time_off,true,1.0,,override
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-28,Fri,35,planned_time_off,true,1.0,,override
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-08-31,Mon,36,planned_time_off,true,1.0,,override
-DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,Pod week,xlsx
+DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
 DevSeed,Alice Ruhl,alice-ruhl,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
@@ -263,11 +263,11 @@ DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-23,Wed,39,unavailable,true,1.0,,x
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-24,Thu,39,unavailable,true,1.0,,xlsx
 DevSeed,Max Jones,max-jones,VEDA - ODD,2026-09-25,Fri,39,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-06,Mon,28,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-23,Thu,30,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-23,Thu,30,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-24,Fri,30,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-29,Wed,31,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-29,Wed,31,unavailable,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-07-30,Thu,31,unavailable,true,1.0,,xlsx
-DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-12,Wed,33,unavailable,true,1.0,half day,xlsx
+DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-12,Wed,33,holiday,true,1.0,,xlsx
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-28,Fri,35,planned_time_off,true,1.0,,override
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-08-31,Mon,36,planned_time_off,true,1.0,,override
 DevSeed,Simi Damani,simi-damani,VEDA - Dashboard,2026-09-01,Tue,36,unavailable,true,1.0,,xlsx
