@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-08-30T21:02:01Z",
+    "generated": "2026-08-30T22:04:08Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -889,7 +889,7 @@
           "status": "limited",
           "out": false,
           "weight": 0.5,
-          "note": null,
+          "note": "this assumes @brianna@developmentseed.org and @brian.m.freitag@nasa.gov are attending CNG Forum",
           "source": "xlsx"
         },
         {
@@ -1391,7 +1391,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": null,
+          "note": "Pod week",
           "source": "xlsx"
         },
         {
@@ -2483,7 +2483,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": null,
+          "note": "half day",
           "source": "xlsx"
         },
         {
@@ -2499,7 +2499,7 @@
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": null,
+          "note": "half day",
           "source": "xlsx"
         },
         {
@@ -2512,10 +2512,10 @@
         },
         {
           "date": "2026-08-12",
-          "status": "holiday",
+          "status": "unavailable",
           "out": true,
           "weight": 1.0,
-          "note": null,
+          "note": "half day",
           "source": "xlsx"
         },
         {
