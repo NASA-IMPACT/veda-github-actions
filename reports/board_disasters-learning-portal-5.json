@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-31T12:12:51Z",
+  "generated": "2026-08-31T18:10:00Z",
   "items": [
     {
       "archived": false,
@@ -6289,6 +6289,51 @@
       "title": "Things to fix for Viz tool",
       "updated": "2026-08-28T15:57:28Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/409"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Info\ndps-output-discover picks a collection by testing each candidate's filename_regex against the basename, so the filename suffix is the routing key. disasters-product-algorithms .clinerules.md #27 is the authority on that suffix:\n\n\n\nshape\nmeaning\nexample\n\n\n\n\n..._merged_YYYY-MM-DD_day.tif\nmerged mosaic (spans several acquisition times)\nS2A_trueColor_merged_2025-01-12_day.tif\n\n\n..._YYYY-MM-DDTHH:MM:SSZ.tif\nindividual scene with a time\nS2B_trueColor_T17RLM_2025-12-31T16:15:59Z.tif\n\n\n..._YYYY-MM-DD_day.tif\nindividual with no time (waterExtent, Black Marble)\nhdnightlights_..._2023-06-15_day.tif\n",
+      "closed": "2026-08-31T15:46:02Z",
+      "comments": 0,
+      "created": "2026-08-31T15:42:42Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-31",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-08-31",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4wplc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 410,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Cadence gaps: 10 dps-output-discover routes silently skip half the files DPS emits",
+      "updated": "2026-08-31T15:46:02Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/410"
     },
     {
       "archived": false,
@@ -17268,10 +17313,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 343,
+    "closed": 344,
     "drafts": 0,
-    "issues": 418,
-    "items": 432,
+    "issues": 419,
+    "items": 433,
     "open": 89,
     "prs": 14
   }
