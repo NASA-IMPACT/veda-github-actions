@@ -5,6 +5,9 @@ team,person,person_slug,role,date,weekday,iso_week,status,out,out_weight,note,so
 2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-08-17,Mon,34,unavailable,true,1.0,,xlsx
 2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-08-18,Tue,34,unavailable,true,1.0,,xlsx
 2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-08-19,Wed,34,unavailable,true,1.0,,xlsx
+2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-09-09,Wed,37,limited,false,0.5,,xlsx
+2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-09-10,Thu,37,limited,false,0.5,,xlsx
+2i2c,Angus Hollands,angus-hollands,VEDA - JupyterHub,2026-09-11,Fri,37,limited,false,0.5,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-07-27,Mon,31,limited,false,0.5,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-07-28,Tue,31,limited,false,0.5,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-07-29,Wed,31,limited,false,0.5,,xlsx
@@ -15,6 +18,11 @@ team,person,person_slug,role,date,weekday,iso_week,status,out,out_weight,note,so
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-08-28,Fri,35,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-04,Fri,36,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-07,Mon,37,unavailable,true,1.0,,xlsx
+2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-08,Tue,37,limited,false,0.5,,xlsx
+2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-09,Wed,37,limited,false,0.5,,xlsx
+2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-10,Thu,37,limited,false,0.5,,xlsx
+2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-11,Fri,37,limited,false,0.5,,xlsx
+2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-14,Mon,38,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-28,Mon,40,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-29,Tue,40,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-30,Wed,40,unavailable,true,1.0,,xlsx
@@ -52,6 +60,9 @@ team,person,person_slug,role,date,weekday,iso_week,status,out,out_weight,note,so
 2i2c,Georgiana Dolocan,georgiana-dolocan,VEDA - JupyterHub,2026-08-19,Wed,34,unavailable,true,1.0,,xlsx
 2i2c,Georgiana Dolocan,georgiana-dolocan,VEDA - JupyterHub,2026-08-20,Thu,34,unavailable,true,1.0,,xlsx
 2i2c,Georgiana Dolocan,georgiana-dolocan,VEDA - JupyterHub,2026-08-21,Fri,34,unavailable,true,1.0,,xlsx
+2i2c,Jenny Wong,jenny-wong,VEDA - JupyterHub,2026-09-09,Wed,37,limited,false,0.5,,xlsx
+2i2c,Jenny Wong,jenny-wong,VEDA - JupyterHub,2026-09-10,Thu,37,limited,false,0.5,,xlsx
+2i2c,Jenny Wong,jenny-wong,VEDA - JupyterHub,2026-09-11,Fri,37,limited,false,0.5,,xlsx
 2i2c,Yuvi Panda,yuvi-panda,VEDA - JupyterHub,2026-08-10,Mon,33,unavailable,true,1.0,,xlsx
 2i2c,Yuvi Panda,yuvi-panda,VEDA - JupyterHub,2026-08-11,Tue,33,unavailable,true,1.0,,xlsx
 2i2c,Yuvi Panda,yuvi-panda,VEDA - JupyterHub,2026-08-12,Wed,33,unavailable,true,1.0,,xlsx

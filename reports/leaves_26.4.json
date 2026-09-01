@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-09-01T15:02:26Z",
+    "generated": "2026-09-01T16:24:11Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -117,6 +117,30 @@
           "weight": 1.0,
           "note": null,
           "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-11",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
         }
       ]
     },
@@ -200,6 +224,46 @@
         },
         {
           "date": "2026-09-07",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-08",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-11",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-14",
           "status": "unavailable",
           "out": true,
           "weight": 1.0,
@@ -525,7 +589,32 @@
       "name": "Jenny Wong",
       "team": "2i2c",
       "role": "VEDA - JupyterHub",
-      "leaves": []
+      "leaves": [
+        {
+          "date": "2026-09-09",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-11",
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
     },
     {
       "slug": "jim-colliander",

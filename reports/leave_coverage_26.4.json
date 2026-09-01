@@ -1657,6 +1657,18 @@
     },
     {
       "date": "2026-09-08",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 0,
+      "out_weight": 0.5,
+      "out_pct": 0.0714,
+      "people_out": [],
+      "limited": [
+        "april-johnson"
+      ]
+    },
+    {
+      "date": "2026-09-08",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 1,
@@ -1681,6 +1693,20 @@
     },
     {
       "date": "2026-09-09",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 0,
+      "out_weight": 1.5,
+      "out_pct": 0.2143,
+      "people_out": [],
+      "limited": [
+        "angus-hollands",
+        "april-johnson",
+        "jenny-wong"
+      ]
+    },
+    {
+      "date": "2026-09-09",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 2,
@@ -1706,6 +1732,20 @@
     },
     {
       "date": "2026-09-10",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 0,
+      "out_weight": 1.5,
+      "out_pct": 0.2143,
+      "people_out": [],
+      "limited": [
+        "angus-hollands",
+        "april-johnson",
+        "jenny-wong"
+      ]
+    },
+    {
+      "date": "2026-09-10",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 2,
@@ -1731,6 +1771,20 @@
     },
     {
       "date": "2026-09-11",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 0,
+      "out_weight": 1.5,
+      "out_pct": 0.2143,
+      "people_out": [],
+      "limited": [
+        "angus-hollands",
+        "april-johnson",
+        "jenny-wong"
+      ]
+    },
+    {
+      "date": "2026-09-11",
       "team": "DevSeed",
       "team_size": 31,
       "out_count": 1,
@@ -1750,6 +1804,18 @@
       "out_pct": 0.04,
       "people_out": [
         "jeanne-le-roux"
+      ],
+      "limited": []
+    },
+    {
+      "date": "2026-09-14",
+      "team": "2i2c",
+      "team_size": 7,
+      "out_count": 1,
+      "out_weight": 1.0,
+      "out_pct": 0.1429,
+      "people_out": [
+        "april-johnson"
       ],
       "limited": []
     },
