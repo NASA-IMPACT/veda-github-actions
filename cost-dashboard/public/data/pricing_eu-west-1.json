@@ -4631,6 +4631,61 @@
         "memoryGiB": 32.0,
         "vcpu": 4
       },
+      "r8id.12xlarge": {
+        "hourlyUSD": 4.4352,
+        "memoryGiB": 384.0,
+        "vcpu": 48
+      },
+      "r8id.16xlarge": {
+        "hourlyUSD": 5.9136,
+        "memoryGiB": 512.0,
+        "vcpu": 64
+      },
+      "r8id.24xlarge": {
+        "hourlyUSD": 8.8704,
+        "memoryGiB": 768.0,
+        "vcpu": 96
+      },
+      "r8id.2xlarge": {
+        "hourlyUSD": 0.7392,
+        "memoryGiB": 64.0,
+        "vcpu": 8
+      },
+      "r8id.32xlarge": {
+        "hourlyUSD": 11.8272,
+        "memoryGiB": 1024.0,
+        "vcpu": 128
+      },
+      "r8id.48xlarge": {
+        "hourlyUSD": 17.7408,
+        "memoryGiB": 1536.0,
+        "vcpu": 192
+      },
+      "r8id.4xlarge": {
+        "hourlyUSD": 1.4784,
+        "memoryGiB": 128.0,
+        "vcpu": 16
+      },
+      "r8id.8xlarge": {
+        "hourlyUSD": 2.9568,
+        "memoryGiB": 256.0,
+        "vcpu": 32
+      },
+      "r8id.96xlarge": {
+        "hourlyUSD": 35.4816,
+        "memoryGiB": 3072.0,
+        "vcpu": 384
+      },
+      "r8id.large": {
+        "hourlyUSD": 0.1848,
+        "memoryGiB": 16.0,
+        "vcpu": 2
+      },
+      "r8id.xlarge": {
+        "hourlyUSD": 0.3696,
+        "memoryGiB": 32.0,
+        "vcpu": 4
+      },
       "r8idb.12xlarge": {
         "hourlyUSD": 6.26736,
         "memoryGiB": 384.0,
@@ -5343,7 +5398,7 @@
       }
     }
   },
-  "generated": "2026-07-31T13:32:40Z",
+  "generated": "2026-09-01T00:48:41Z",
   "label": "EU (Ireland)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -10984,10 +11039,10 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20260728175247",
-    "lambda": "20260717075216",
-    "rds": "20260729234248",
-    "s3": "20260728131000"
+    "ec2": "20260831181331",
+    "lambda": "20260831092318",
+    "rds": "20260831092223",
+    "s3": "20260831092225"
   },
   "sources": {
     "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
@@ -10996,25 +11051,25 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20260728175247"
+        "version": "20260831181331"
       },
       "lambda": {
         "offerCode": "AWSLambda",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/lambda/pricing/",
-        "version": "20260717075216"
+        "version": "20260831092318"
       },
       "rds": {
         "offerCode": "AmazonRDS",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/rds/pricing/",
-        "version": "20260729234248"
+        "version": "20260831092223"
       },
       "s3": {
         "offerCode": "AmazonS3",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/s3/pricing/",
-        "version": "20260728131000"
+        "version": "20260831092225"
       }
     }
   }
