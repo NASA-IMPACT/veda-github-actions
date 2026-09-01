@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-08-31T18:10:00Z",
+  "generated": "2026-09-01T00:25:54Z",
   "items": [
     {
       "archived": false,
@@ -6338,6 +6338,54 @@
     {
       "archived": false,
       "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nUmbra (and, with variations, Capella and ICEYE) build their output filename from a\nhand-rolled f-string, and each sensor got a different part of it wrong. A real DPS run\npublished:\ns3://nasa-disasters-staging/dps_output/202608_KyleWx_AL/202608_Umbra-07_sigma02026-08-05T03:54:47Z_filtered5.tif\n\nThe pixels and the GeoTIFF tags are correct — only the object key is wrong.\nDefects\n1. No separator between the product token and the timestamp.\nsigma0 is welded onto 2026-08-05T03:54:47Z. Nothing splitting on _ can recover\neither field. Present in Umbra's sigmaCalib/betaCalib/gammaCalib and in C",
+      "closed": "2026-08-31T19:05:48Z",
+      "comments": 2,
+      "created": "2026-08-31T18:55:27Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-31",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-08-31",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4yReI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 411,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "SAR output filenames are malformed: product token welded to the timestamp, `_filtered<N>` after it, redundant `YYYYMM_` head",
+      "updated": "2026-08-31T19:23:12Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/411"
+    },
+    {
+      "archived": false,
+      "assignees": [
         "amarouane-ABDELHAK"
       ],
       "author": "ifsimicoded",
@@ -6526,6 +6574,51 @@
     },
     {
       "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Tracking issue for replacing the Copernicus-download + .SAFE-unzip Sentinel-2 pipeline\nwith the STAC/COG pipeline introduced in #134, and retiring the old one.\nTwo hard rules for this cutover:\n\nDeprecation is gated on Phase 1. The old pipeline is not retired while the\nreplacement crashes on evi, no-ops Rayleigh correction, and cannot be driven from DPS.\nBoth algorithms must be registered and runnable simultaneously (Phase 3) and\ncompared on real activations (Phase 4) before anything is deleted (Phase 5). No\nbig-bang swap.\n\n\nReview findings on #134 (9b68e66..9247740)\nThe reviewed range is the s",
+      "closed": "2026-08-31T19:21:43Z",
+      "comments": 2,
+      "created": "2026-08-31T13:54:28Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-08-31",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-08-31",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4yfPk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 144,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-product-algorithms",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Cut over Sentinel-2 to the STAC pipeline and retire the Copernicus/.SAFE path",
+      "updated": "2026-08-31T19:21:43Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-product-algorithms/issues/144"
+    },
+    {
+      "archived": false,
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: Not Started\nSchedule: 40d — 2026-08-03 → 2026-09-25\nRow not migrated\nSmartsheet row 6.2e New PORTAL stress test (VEDA / Abdelhak / 4d / 2026-09-07 → 2026-09-10 / LOW) was not re-created here — it already exists as Disasters-Learning-Portal/disasters-portal#316 \"Conduct stress test on production services prior to September 30, 2026 launch\".\n\nMigrated from the September 30, 2026 launch Smartsheet.",
@@ -6632,7 +6725,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2b\nOwner: Disasters\nAssigned to: Shanna\nSmartsheet status: Not Started\nSchedule: 3d — 2026-09-01 → 2026-09-03\nPriority: LOW\nNotes\nMust happen during the F2F, August 31 – September 4.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:41:30Z",
       "draft": false,
       "fields": {
@@ -6669,7 +6762,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.2b] Shanna initial review (make sure during the F2F August 31 - Sept. 4)!!!!",
-      "updated": "2026-08-12T22:41:30Z",
+      "updated": "2026-08-31T19:16:37Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/3"
     },
     {
@@ -17313,10 +17406,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 344,
+    "closed": 346,
     "drafts": 0,
-    "issues": 419,
-    "items": 433,
+    "issues": 421,
+    "items": 435,
     "open": 89,
     "prs": 14
   }
