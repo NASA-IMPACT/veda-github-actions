@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-01T18:10:28Z",
+  "generated": "2026-09-02T00:21:55Z",
   "items": [
     {
       "archived": false,
@@ -4229,7 +4229,7 @@
       "author": "amarouane-ABDELHAK",
       "body_excerpt": "Description\nThe website is currently using the default Next.js favicon. We should replace it with the appropriate disasters favicon for the website to provide consistent branding.\nAcceptance Criteria\n\n The website no longer displays the default Next.js favicon.\n The approved custom favicon is displayed consistently across supported browsers.\n The favicon works in both development and production builds.\n No broken or missing favicon requests appear in the browser console/network logs.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-08T22:01:44Z",
       "draft": false,
       "fields": {
@@ -4256,7 +4256,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Add disasters favicon",
-      "updated": "2026-08-28T20:47:37Z",
+      "updated": "2026-09-01T21:35:33Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/352"
     },
     {
@@ -6255,8 +6255,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "basemap — explicit style list added (satellite still needs a keyed provider, see comment)\n gaia units missing — now reads in m² of built-up area\n compare datetime feature not added — real feature work, button has no handler behind it\n make sure that the widget top right formatter is present — MapControl was being skipped by the generator; now emits and renders\n point gibs black marble layer into the app (blue/yellow)\n add hydrosar layer\n ensure that legends are present",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-09-01T20:13:39Z",
+      "comments": 4,
       "created": "2026-08-28T14:57:05Z",
       "draft": false,
       "fields": {
@@ -6273,7 +6273,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-08-28",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4cKhU",
       "issue_type": null,
@@ -6287,10 +6287,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Things to fix for Viz tool",
-      "updated": "2026-08-28T15:57:28Z",
+      "updated": "2026-09-01T20:13:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/409"
     },
     {
@@ -6389,12 +6389,12 @@
     {
       "archived": false,
       "assignees": [
-        "amarouane-ABDELHAK"
+        "slesaad"
       ],
       "author": "vgeorge",
       "body_excerpt": "Follow up of #389.\nScope:\n\n Enable Amplify previews for develop branch\n Enable Amplify previews for PRs targeting develop branch\n\n@amarouane-ABDELHAK please ping here when you get the chance to look into this. Then we can remove Netlify, which is managed in the DevSeed account.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-01T14:37:33Z",
       "draft": false,
       "fields": {
@@ -6424,8 +6424,46 @@
       "state": "open",
       "state_reason": null,
       "title": "chore: enable Amplify deploy previews for develop and remove Netlify",
-      "updated": "2026-09-01T16:12:17Z",
+      "updated": "2026-09-01T19:25:33Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/412"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger",
+        "chelsea-aaron"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nWe conducted an internal set of testing for the Visualization tool. Any feedback will be saved here for future reference.\nList of items directly mentioned (not in the feedback forms that need to be created into an importable form)\n\nZoom to layer when selected (or zoom to activation AOI)\nAnalysis layers don't allow scrolling\nClear the layers (create a default view) -- too many layers stack up\nSuggestion for moving buttons or draggable content blocks for better viewing\nWould like a full panel dataset\nSearch by city/ do analysis by city\nMeasurement tool bug. --- if you click too many time",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-01T22:20:48Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4-4Mc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 414,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Feedback suggestions from internal Viz tool testing: Sept. 1, 2026",
+      "updated": "2026-09-01T22:20:48Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/414"
     },
     {
       "archived": false,
@@ -17450,10 +17488,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 347,
+    "closed": 348,
     "drafts": 0,
-    "issues": 422,
-    "items": 436,
+    "issues": 423,
+    "items": 437,
     "open": 89,
     "prs": 14
   }
