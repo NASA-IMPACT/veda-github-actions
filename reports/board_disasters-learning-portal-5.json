@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-02T12:12:31Z",
+  "generated": "2026-09-02T18:10:55Z",
   "items": [
     {
       "archived": false,
@@ -3461,8 +3461,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 6,
-        "total": 17
+        "completed": 7,
+        "total": 18
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5106,7 +5106,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Adds Search Bar to Header (non-functional)\n Adds Search Page Placeholder (shows all content pages - theme, training, events, news, datastories, data)\n Adds Filters to Search Page Placeholder ( relates to #372 )",
       "closed": null,
@@ -5140,7 +5142,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Adds Search Bar and Search Page Placeholder",
-      "updated": "2026-08-18T20:57:51Z",
+      "updated": "2026-09-02T18:04:49Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/375"
     },
     {
@@ -5227,7 +5229,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Disaster type updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Overview layout should be in left column per designs",
+      "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)",
       "closed": null,
       "comments": 0,
       "created": "2026-08-18T21:08:56Z",
@@ -5259,7 +5261,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-08-20T18:53:17Z",
+      "updated": "2026-09-02T16:37:01Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5397,7 +5399,7 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "",
+      "body_excerpt": "ensure this is only done on 'develop'",
       "closed": null,
       "comments": 0,
       "created": "2026-08-19T15:36:13Z",
@@ -5429,7 +5431,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update theme to hds.css",
-      "updated": "2026-08-19T16:01:55Z",
+      "updated": "2026-09-02T16:00:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/382"
     },
     {
@@ -5941,9 +5943,9 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "https://developmentseed.slack.com/archives/C07JY4J68SX/p1787263508765929?thread_ts=1787256561.033999&cid=C07JY4J68SX",
-      "closed": null,
-      "comments": 0,
+      "body_excerpt": "https://www.figma.com/design/jlhpwixTyZF2Cgxr4bVD2U/Disasters-Portal?node-id=6179-41255&p=f&m=dev\nhttps://developmentseed.slack.com/archives/C07JY4J68SX/p1787263508765929?thread_ts=1787256561.033999&cid=C07JY4J68SX",
+      "closed": "2026-09-02T16:08:35Z",
+      "comments": 1,
       "created": "2026-08-26T16:14:41Z",
       "draft": false,
       "fields": {
@@ -5956,7 +5958,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4IubQ",
       "issue_type": null,
@@ -5970,10 +5973,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
-      "title": "Update DP - StacMaps Legends",
-      "updated": "2026-08-26T16:14:41Z",
+      "state": "closed",
+      "state_reason": "duplicate",
+      "title": "Update StacMap Component Legends",
+      "updated": "2026-09-02T16:08:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/401"
     },
     {
@@ -6519,6 +6522,45 @@
       "title": "Restore Black Marble HD on homepage: ingest pre-Helene Augusta scene",
       "updated": "2026-09-02T01:18:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/415"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Homepage hero should include Learn About Us button which directs to about page",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-02T15:44:41Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5HU1k",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 416,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Homepage Learn About Us Link",
+      "updated": "2026-09-02T15:44:41Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
       "archived": false,
@@ -8532,7 +8574,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a4\nOwner: VEDA\nAssigned to: Dev Team\nSmartsheet status: (blank)\nSchedule: 20d — 2026-07-20 → 2026-09-05\nNotes\n⚠️ Status was blank in the Smartsheet — defaulted to Todo on the board.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-08-13T10:11:49Z",
       "draft": false,
       "fields": {
@@ -8568,7 +8610,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.1a4] Update Figma and site with HDS tokens",
-      "updated": "2026-08-18T13:45:21Z",
+      "updated": "2026-09-02T16:54:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/38"
     },
     {
@@ -17543,10 +17585,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 349,
+    "closed": 350,
     "drafts": 0,
-    "issues": 424,
-    "items": 438,
+    "issues": 425,
+    "items": 439,
     "open": 89,
     "prs": 14
   }
