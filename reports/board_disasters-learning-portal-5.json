@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-02T06:18:10Z",
+  "generated": "2026-09-02T12:12:31Z",
   "items": [
     {
       "archived": false,
@@ -3461,8 +3461,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 5,
-        "total": 16
+        "completed": 6,
+        "total": 17
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -6393,8 +6393,8 @@
       ],
       "author": "vgeorge",
       "body_excerpt": "Follow up of #389.\nScope:\n\n Enable Amplify previews for develop branch\n Enable Amplify previews for PRs targeting develop branch\n\n@amarouane-ABDELHAK please ping here when you get the chance to look into this. Then we can remove Netlify, which is managed in the DevSeed account.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-02T10:30:26Z",
+      "comments": 3,
       "created": "2026-09-01T14:37:33Z",
       "draft": false,
       "fields": {
@@ -6407,7 +6407,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg46_Ps",
       "issue_type": null,
@@ -6421,10 +6422,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "chore: enable Amplify deploy previews for develop and remove Netlify",
-      "updated": "2026-09-01T19:25:33Z",
+      "updated": "2026-09-02T10:30:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/412"
     },
     {
@@ -17542,11 +17543,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 348,
+    "closed": 349,
     "drafts": 0,
     "issues": 424,
     "items": 438,
-    "open": 90,
+    "open": 89,
     "prs": 14
   }
 }
