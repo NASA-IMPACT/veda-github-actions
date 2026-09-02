@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-02T00:21:55Z",
+  "generated": "2026-09-02T06:18:10Z",
   "items": [
     {
       "archived": false,
@@ -6441,6 +6441,50 @@
       "created": "2026-09-01T22:20:48Z",
       "draft": false,
       "fields": {
+        "Priority": "Low",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg4-4Mc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 414,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Feedback suggestions from internal Viz tool testing: Sept. 1, 2026",
+      "updated": "2026-09-01T22:20:48Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/414"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThe homepage \"Data Visualization\" swipe map can no longer show the Black Marble HD product for Hurricane Helene. There is no pre-Helene HD scene for Augusta, GA anywhere in the catalog, so an HD-vs-HD pre/post comparison is impossible. As a stopgap (commit 6044b88) the homepage was repointed to the ~500 m blackmarble-brdf-daily product on both sides, and \"HD\" was removed from the caption.\nTo restore HD we need to locate the correct source files in S3, stage them, re-ingest, and repoint the site.\nCurrent catalog state\nEnumerated via full pagination of https://dev.disasters.openveda.clou",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-02T01:18:53Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-09",
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -6450,20 +6494,30 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Start Date": "2026-09-01",
+        "Status": "Todo"
       },
-      "id": "PVTI_lADODdLRP84BMP5Rzg4-4Mc",
+      "id": "PVTI_lADODdLRP84BMP5Rzg4_5y0",
       "issue_type": null,
       "kind": "issue",
-      "labels": [],
+      "labels": [
+        "bug",
+        "dataServices"
+      ],
       "milestone": null,
-      "number": 414,
+      "number": 415,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Feedback suggestions from internal Viz tool testing: Sept. 1, 2026",
-      "updated": "2026-09-01T22:20:48Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/414"
+      "title": "Restore Black Marble HD on homepage: ingest pre-Helene Augusta scene",
+      "updated": "2026-09-02T01:18:53Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/415"
     },
     {
       "archived": false,
@@ -17490,9 +17544,9 @@
   "stats": {
     "closed": 348,
     "drafts": 0,
-    "issues": 423,
-    "items": 437,
-    "open": 89,
+    "issues": 424,
+    "items": 438,
+    "open": 90,
     "prs": 14
   }
 }
