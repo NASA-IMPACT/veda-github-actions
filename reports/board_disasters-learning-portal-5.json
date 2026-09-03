@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-03T12:12:58Z",
+  "generated": "2026-09-03T18:10:05Z",
   "items": [
     {
       "archived": false,
@@ -3461,7 +3461,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 6,
+        "completed": 7,
         "total": 22
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
@@ -6648,7 +6648,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Blocks:\n\nNASA-IMPACT/tinacms-portal-monorepo#464\n\n\n Respond Page - Latest event cards updated to use CardSimple",
-      "closed": null,
+      "closed": "2026-09-03T15:06:51Z",
       "comments": 0,
       "created": "2026-09-02T21:39:53Z",
       "draft": false,
@@ -6662,7 +6662,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5KoVU",
       "issue_type": null,
@@ -6676,10 +6677,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Respond Page - Latest Event Cards",
-      "updated": "2026-09-03T01:28:32Z",
+      "updated": "2026-09-03T15:06:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/421"
     },
     {
@@ -17783,11 +17784,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 350,
+    "closed": 351,
     "drafts": 0,
     "issues": 430,
     "items": 444,
-    "open": 94,
+    "open": 93,
     "prs": 14
   }
 }
