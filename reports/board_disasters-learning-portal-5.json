@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-03T00:22:23Z",
+  "generated": "2026-09-03T06:14:21Z",
   "items": [
     {
       "archived": false,
@@ -3462,7 +3462,7 @@
       "state_reason": null,
       "sub": {
         "completed": 6,
-        "total": 20
+        "total": 22
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -4778,7 +4778,7 @@
       "author": "vgeorge",
       "body_excerpt": "The 'View Data' button on data detail pages (/data-gallery/[id]) doesn't do anything.\nFigma designs also include a 'Process Data' button. The purpose of both needs to be clarified so they can be finished.\n\nNotes:\n\nReported before in #258, closed without the button working\nAfter #366 the card CTA also reads \"View Data\", so the button duplicates the link that got you to the page. If it stays, it likely needs different text\n#366 suggests deriving the label from CONTENT_TYPES[contentType].label (thread). Depends on the outcome here\n\n@kyle-lesinger @ifsimicoded Should these open the data in the viz",
       "closed": null,
-      "comments": 4,
+      "comments": 5,
       "created": "2026-08-13T16:20:38Z",
       "draft": false,
       "fields": {
@@ -4810,7 +4810,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: links for data page view data buttons",
-      "updated": "2026-08-18T20:45:47Z",
+      "updated": "2026-09-03T01:37:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/367"
     },
     {
@@ -6679,8 +6679,86 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Respond Page - Latest Event Cards",
-      "updated": "2026-09-02T21:41:43Z",
+      "updated": "2026-09-03T01:28:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/421"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Ensure all components render tags per HDS designs.\n\n Gallery CardDetailed\n Home / Theme page CardSimple sections\n Home / Theme page CarouselCard sections\n Dataset / Training / News / Event / Story / DataStory page left side panel\n Search filters\n\nSimply helpers where possible.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-03T01:32:25Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5MDl8",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 423,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Review Tags",
+      "updated": "2026-09-03T01:32:25Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/423"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "style tag in html\n\n\n\n\n\n\n non-native prop pass through via ...rest",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-03T01:41:25Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5MGzo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 424,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Bugfix: Handle NextJS errors",
+      "updated": "2026-09-03T01:41:25Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/424"
     },
     {
       "archived": false,
@@ -17707,9 +17785,9 @@
   "stats": {
     "closed": 350,
     "drafts": 0,
-    "issues": 428,
-    "items": 442,
-    "open": 92,
+    "issues": 430,
+    "items": 444,
+    "open": 94,
     "prs": 14
   }
 }
