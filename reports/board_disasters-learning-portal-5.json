@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-02T18:10:55Z",
+  "generated": "2026-09-03T00:22:23Z",
   "items": [
     {
       "archived": false,
@@ -3461,8 +3461,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 7,
-        "total": 18
+        "completed": 6,
+        "total": 20
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5231,7 +5231,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-18T21:08:56Z",
       "draft": false,
       "fields": {
@@ -5261,7 +5261,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-09-02T16:37:01Z",
+      "updated": "2026-09-02T21:31:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5967,11 +5967,6 @@
       "labels": [],
       "milestone": null,
       "number": 401,
-      "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
-      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "closed",
       "state_reason": "duplicate",
@@ -6527,7 +6522,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Homepage hero should include Learn About Us button which directs to about page",
+      "body_excerpt": "Homepage masthead should include Learn About Us button which directs to about page. It should be red.\n Cards should be updated, but the design is incomplete",
       "closed": null,
       "comments": 0,
       "created": "2026-09-02T15:44:41Z",
@@ -6547,7 +6542,9 @@
       "id": "PVTI_lADODdLRP84BMP5Rzg5HU1k",
       "issue_type": null,
       "kind": "issue",
-      "labels": [],
+      "labels": [
+        "blocked"
+      ],
       "milestone": null,
       "number": 416,
       "parent": {
@@ -6558,9 +6555,132 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Homepage Learn About Us Link",
-      "updated": "2026-09-02T15:44:41Z",
+      "title": "Update DP: Homepage masthead CTA and Cards",
+      "updated": "2026-09-02T21:44:43Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ifsimicoded"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "These pages should be created as duplicates of the Recover page with the Masthead title updated.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-02T21:21:13Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5KfqE",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 419,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Create Prepare and Resilience Dummy Pages",
+      "updated": "2026-09-02T21:21:18Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/419"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ifsimicoded"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "order of components\nevents --> stories of impact --> data visualization --> data stories --> resources & learning",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-02T21:24:33Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5KhRs",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 420,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Update Theme page template",
+      "updated": "2026-09-02T21:24:49Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/420"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ifsimicoded"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "Blocks:\n\nNASA-IMPACT/tinacms-portal-monorepo#464\n\n\n Respond Page - Latest event cards updated to use CardSimple",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-02T21:39:53Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5KoVU",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 421,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Respond Page - Latest Event Cards",
+      "updated": "2026-09-02T21:41:43Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/421"
     },
     {
       "archived": false,
@@ -17587,9 +17707,9 @@
   "stats": {
     "closed": 350,
     "drafts": 0,
-    "issues": 425,
-    "items": 439,
-    "open": 89,
+    "issues": 428,
+    "items": 442,
+    "open": 92,
     "prs": 14
   }
 }
