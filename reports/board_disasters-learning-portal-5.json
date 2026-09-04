@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-04T12:12:06Z",
+  "generated": "2026-09-04T18:09:39Z",
   "items": [
     {
       "archived": false,
@@ -4778,7 +4778,7 @@
       "author": "vgeorge",
       "body_excerpt": "The 'View Data' button on data detail pages (/data-gallery/[id]) doesn't do anything.\nFigma designs also include a 'Process Data' button. The purpose of both needs to be clarified so they can be finished.\n\nNotes:\n\nReported before in #258, closed without the button working\nAfter #366 the card CTA also reads \"View Data\", so the button duplicates the link that got you to the page. If it stays, it likely needs different text\n#366 suggests deriving the label from CONTENT_TYPES[contentType].label (thread). Depends on the outcome here\n\n@kyle-lesinger @ifsimicoded Should these open the data in the viz",
       "closed": null,
-      "comments": 5,
+      "comments": 6,
       "created": "2026-08-13T16:20:38Z",
       "draft": false,
       "fields": {
@@ -4810,7 +4810,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: links for data page view data buttons",
-      "updated": "2026-09-03T01:37:03Z",
+      "updated": "2026-09-04T13:35:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/367"
     },
     {
@@ -6429,6 +6429,7 @@
     {
       "archived": false,
       "assignees": [
+        "BhattaraiSijan",
         "acblackford",
         "kyle-lesinger",
         "chelsea-aaron"
@@ -6760,6 +6761,196 @@
       "title": "Bugfix: Handle NextJS errors",
       "updated": "2026-09-03T01:41:25Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/424"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThe \"Export PDF\" output from the Visualization tool currently contains only the map image. It should also include additional contextual information alongside the image so the exported PDF stands on its own.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nBrian shared a mockup image (image.png) in Slack showing the intended layout — that image still needs to be attached to this issue for the exact target design.\nSuggested information to include with the exported image (to be confirmed against the mockup):\n\nLayer / dataset name(s) shown\nDate or date range of the ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-04T13:36:21Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5c7rs",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 437,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz tool: include additional context alongside the image in exported PDF",
+      "updated": "2026-09-04T14:40:31Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/437"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nMove the Analyze Area control out of the left sidebar and place it where the Share Map button currently sits.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nThis pairs with #439, which moves Share Map into the in-map icon control cluster — freeing up the spot that Analyze Area should occupy.\nAcceptance criteria\n\n Analyze Area is removed from the left sidebar\n Analyze Area occupies the position previously used by the Share Map button\n Analyze Area behavior/functionality is unchanged after the move\n Left sidebar layout reflows cleanly with the control removed\n\nR",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-04T13:36:22Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5c7tU",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 438,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz tool: move Analyze Area from the left sidebar into the Share Map button position",
+      "updated": "2026-09-04T14:40:39Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/438"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nReplace the Share Map button with an icon control placed in-line with the other map icons (search, basemap, distance/measure, etc.).\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nShare Map should look and behave like its neighboring map controls: same icon size, spacing, hover/active states, and tooltip treatment.\nThis frees up the current Share Map button position, which Analyze Area will take over — see #438.\nAcceptance criteria\n\n Share Map is rendered as an icon in the map control cluster alongside search, basemap, and distance\n Icon styling, sizing, and t",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-04T13:36:23Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5c7ug",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 439,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz tool: convert Share Map into an in-map icon control",
+      "updated": "2026-09-04T14:40:48Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/439"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nIn the info popup for each data layer, add a Learn more button or hyperlink that takes users to that dataset's landing page.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nThe link target should be the dataset landing page for the specific layer being viewed, so the URL needs to be driven per-layer from dataset metadata rather than hardcoded.\nOpen questions\n\n Where does the landing page URL come from — STAC collection metadata, portal dataset config, or a manual mapping?\n Behavior for layers with no landing page: hide the link, or disable it?\n\nAcceptance crite",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-04T13:36:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5c7v0",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 440,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz tool: add \"Learn more\" link to the dataset landing page in each layer info popup",
+      "updated": "2026-09-04T14:40:53Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/440"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nIn the info popup for each data layer, add a button or hyperlink that directs users to the Earthdata GIS service page for that layer.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nBrian noted he will supply a new image and additional content for this popup later — this issue is blocked on that content before the final design can be implemented.\nThis sits alongside the \"Learn more\" dataset landing page link in #440; the two links should be laid out together consistently.\nOpen questions\n\n Where does the Earthdata GIS service page URL come from per layer?\n Behav",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-04T13:36:25Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5c7yY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 441,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz tool: add Earthdata GIS service page link in each layer info popup",
+      "updated": "2026-09-04T14:40:59Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/441"
     },
     {
       "archived": false,
@@ -17786,9 +17977,9 @@
   "stats": {
     "closed": 351,
     "drafts": 0,
-    "issues": 430,
-    "items": 444,
-    "open": 93,
+    "issues": 435,
+    "items": 449,
+    "open": 98,
     "prs": 14
   }
 }
