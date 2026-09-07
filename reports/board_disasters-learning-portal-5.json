@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-07T06:17:31Z",
+  "generated": "2026-09-07T12:11:58Z",
   "items": [
     {
       "archived": false,
@@ -5231,7 +5231,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-18T21:08:56Z",
       "draft": false,
       "fields": {
@@ -5261,7 +5261,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-09-02T21:31:00Z",
+      "updated": "2026-09-07T09:21:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
