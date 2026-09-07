@@ -1,38 +1,38 @@
 {
   "defaultRegion": "us-west-2",
-  "generated": "2026-08-31T13:04:59Z",
+  "generated": "2026-09-07T13:04:53Z",
   "hoursPerMonth": 730,
   "regions": {
     "eu-west-1": {
       "file": "pricing_eu-west-1.json",
-      "generated": "2026-08-31T13:03:55Z",
+      "generated": "2026-09-07T13:04:27Z",
       "label": "EU (Ireland)",
       "sourceVersions": {
-        "ec2": "20260831092155",
+        "ec2": "20260904231117",
         "lambda": "20260831092318",
-        "rds": "20260831092223",
+        "rds": "20260904172716",
         "s3": "20260831092225"
       }
     },
     "us-east-1": {
       "file": "pricing_us-east-1.json",
-      "generated": "2026-08-31T13:03:55Z",
+      "generated": "2026-09-07T13:04:27Z",
       "label": "US East (N. Virginia)",
       "sourceVersions": {
-        "ec2": "20260831092155",
+        "ec2": "20260904231117",
         "lambda": "20260831092318",
-        "rds": "20260831092223",
+        "rds": "20260904172716",
         "s3": "20260831092225"
       }
     },
     "us-west-2": {
       "file": "pricing_us-west-2.json",
-      "generated": "2026-08-31T13:03:55Z",
+      "generated": "2026-09-07T13:04:27Z",
       "label": "US West (Oregon)",
       "sourceVersions": {
-        "ec2": "20260831092155",
+        "ec2": "20260904231117",
         "lambda": "20260831092318",
-        "rds": "20260831092223",
+        "rds": "20260904172716",
         "s3": "20260831092225"
       }
     }

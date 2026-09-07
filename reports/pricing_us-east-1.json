@@ -5601,6 +5601,106 @@
         "memoryGiB": 32.0,
         "vcpu": 4
       },
+      "r9g.12xlarge": {
+        "hourlyUSD": 3.08208,
+        "memoryGiB": 384.0,
+        "vcpu": 48
+      },
+      "r9g.16xlarge": {
+        "hourlyUSD": 4.10944,
+        "memoryGiB": 512.0,
+        "vcpu": 64
+      },
+      "r9g.24xlarge": {
+        "hourlyUSD": 6.16416,
+        "memoryGiB": 768.0,
+        "vcpu": 96
+      },
+      "r9g.2xlarge": {
+        "hourlyUSD": 0.51368,
+        "memoryGiB": 64.0,
+        "vcpu": 8
+      },
+      "r9g.48xlarge": {
+        "hourlyUSD": 12.32832,
+        "memoryGiB": 1536.0,
+        "vcpu": 192
+      },
+      "r9g.4xlarge": {
+        "hourlyUSD": 1.02736,
+        "memoryGiB": 128.0,
+        "vcpu": 16
+      },
+      "r9g.8xlarge": {
+        "hourlyUSD": 2.05472,
+        "memoryGiB": 256.0,
+        "vcpu": 32
+      },
+      "r9g.large": {
+        "hourlyUSD": 0.12842,
+        "memoryGiB": 16.0,
+        "vcpu": 2
+      },
+      "r9g.medium": {
+        "hourlyUSD": 0.06421,
+        "memoryGiB": 8.0,
+        "vcpu": 1
+      },
+      "r9g.xlarge": {
+        "hourlyUSD": 0.25684,
+        "memoryGiB": 32.0,
+        "vcpu": 4
+      },
+      "r9gd.12xlarge": {
+        "hourlyUSD": 3.84432,
+        "memoryGiB": 384.0,
+        "vcpu": 48
+      },
+      "r9gd.16xlarge": {
+        "hourlyUSD": 5.12576,
+        "memoryGiB": 512.0,
+        "vcpu": 64
+      },
+      "r9gd.24xlarge": {
+        "hourlyUSD": 7.68864,
+        "memoryGiB": 768.0,
+        "vcpu": 96
+      },
+      "r9gd.2xlarge": {
+        "hourlyUSD": 0.64072,
+        "memoryGiB": 64.0,
+        "vcpu": 8
+      },
+      "r9gd.48xlarge": {
+        "hourlyUSD": 15.37728,
+        "memoryGiB": 1536.0,
+        "vcpu": 192
+      },
+      "r9gd.4xlarge": {
+        "hourlyUSD": 1.28144,
+        "memoryGiB": 128.0,
+        "vcpu": 16
+      },
+      "r9gd.8xlarge": {
+        "hourlyUSD": 2.56288,
+        "memoryGiB": 256.0,
+        "vcpu": 32
+      },
+      "r9gd.large": {
+        "hourlyUSD": 0.16018,
+        "memoryGiB": 16.0,
+        "vcpu": 2
+      },
+      "r9gd.medium": {
+        "hourlyUSD": 0.08009,
+        "memoryGiB": 8.0,
+        "vcpu": 1
+      },
+      "r9gd.xlarge": {
+        "hourlyUSD": 0.32036,
+        "memoryGiB": 32.0,
+        "vcpu": 4
+      },
       "t1.micro": {
         "hourlyUSD": 0.02,
         "memoryGiB": 0.613,
@@ -6138,7 +6238,7 @@
       }
     }
   },
-  "generated": "2026-08-31T13:03:55Z",
+  "generated": "2026-09-07T13:04:27Z",
   "label": "US East (N. Virginia)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -12124,9 +12224,9 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20260831092155",
+    "ec2": "20260904231117",
     "lambda": "20260831092318",
-    "rds": "20260831092223",
+    "rds": "20260904172716",
     "s3": "20260831092225"
   },
   "sources": {
@@ -12136,7 +12236,7 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20260831092155"
+        "version": "20260904231117"
       },
       "lambda": {
         "offerCode": "AWSLambda",
@@ -12148,7 +12248,7 @@
         "offerCode": "AmazonRDS",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/rds/pricing/",
-        "version": "20260831092223"
+        "version": "20260904172716"
       },
       "s3": {
         "offerCode": "AmazonS3",
