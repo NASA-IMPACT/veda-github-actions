@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-07T12:11:58Z",
+  "generated": "2026-09-07T18:09:33Z",
   "items": [
     {
       "archived": false,
@@ -7998,7 +7998,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5e\nOwner: VEDA\nAssigned to: GRAs\nSmartsheet status: Not Started\nSchedule: 15d — 2026-08-03 → 2026-09-10\nPriority: LOW\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-12T22:47:03Z",
       "draft": false,
       "fields": {
@@ -8035,7 +8035,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.5e] Continued DRCS support (bug fixes, minimal training)",
-      "updated": "2026-08-18T13:44:55Z",
+      "updated": "2026-09-07T17:58:24Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/16"
     },
     {
