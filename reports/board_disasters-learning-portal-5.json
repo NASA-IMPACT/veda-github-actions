@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-08T12:12:24Z",
+  "generated": "2026-09-08T18:10:06Z",
   "items": [
     {
       "archived": false,
@@ -1859,7 +1859,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nGoal: Identify high priority MVP deliverables for Sept. release. Additionally scope out FY27 tasks (it time allows)\nAnti-Goal: To describe the exact mechanism for completing the task (staffing, capacity, etc).\nAcceptance criteria\n\n request feedback on task prioritization (Miro board)\n draft a proposal roadmap for must-have priorities for FY26 and Sept PORTAL release\n get proposal approved by Disasters + ODSI",
-      "closed": null,
+      "closed": "2026-09-08T14:03:51Z",
       "comments": 1,
       "created": "2026-06-18T18:53:39Z",
       "draft": false,
@@ -1877,7 +1877,7 @@
           "title": "26.3.3"
         },
         "Start Date": "2026-06-18",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5RzgwL7VM",
       "issue_type": null,
@@ -1891,10 +1891,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Create project timeline draft plan (June - Sept 2026)",
-      "updated": "2026-07-14T20:41:27Z",
+      "updated": "2026-09-08T14:03:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/276"
     },
     {
@@ -7542,7 +7542,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 3,
+        "completed": 4,
         "total": 5
       },
       "title": "[6.3] Custom visualization tool",
@@ -7556,8 +7556,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3a\nOwner: VEDA\nAssigned to: Shanna / Ronan / VEDA Dev\nSmartsheet status: In Progress (0% complete)\nSchedule: 40d — 2026-06-02 → 2026-07-27\nPriority: LOW\nNotes\nNew date deliverable 5/31 for FIGMA design. New deliverable 6/5. Still waiting on comments and feedback from Ronan. New deliverable, 7/31 — Shanna still needs to review and provide final feedback. We are waiting for Ronan to give us the go-ahead.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-08T14:01:33Z",
+      "comments": 2,
       "created": "2026-08-12T22:43:38Z",
       "draft": false,
       "fields": {
@@ -7574,7 +7574,7 @@
           "title": "26.4.1"
         },
         "Start Date": "2026-06-02",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Uhsw",
       "issue_type": null,
@@ -7591,10 +7591,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.3a] Deliverable: custom tool wireframe/Figma",
-      "updated": "2026-08-12T22:43:39Z",
+      "updated": "2026-09-08T14:01:42Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/7"
     },
     {
@@ -7834,7 +7834,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 3,
+        "completed": 4,
         "total": 7
       },
       "title": "[6.5] Productionalize DRCS algorithm workflow and documentation in Jupyterhub",
@@ -7997,8 +7997,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5e\nOwner: VEDA\nAssigned to: GRAs\nSmartsheet status: Not Started\nSchedule: 15d — 2026-08-03 → 2026-09-10\nPriority: LOW\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-08T14:39:46Z",
+      "comments": 4,
       "created": "2026-08-12T22:47:03Z",
       "draft": false,
       "fields": {
@@ -8015,7 +8015,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-08-03",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ui-w",
       "issue_type": null,
@@ -8032,10 +8032,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5e] Continued DRCS support (bug fixes, minimal training)",
-      "updated": "2026-09-07T17:58:24Z",
+      "updated": "2026-09-08T14:39:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/16"
     },
     {
@@ -18049,11 +18049,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 359,
+    "closed": 362,
     "drafts": 0,
     "issues": 437,
     "items": 451,
-    "open": 92,
+    "open": 89,
     "prs": 14
   }
 }
