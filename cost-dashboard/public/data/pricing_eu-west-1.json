@@ -3431,6 +3431,106 @@
         "memoryGiB": 16.0,
         "vcpu": 4
       },
+      "m9g.12xlarge": {
+        "hourlyUSD": 2.61696,
+        "memoryGiB": 192.0,
+        "vcpu": 48
+      },
+      "m9g.16xlarge": {
+        "hourlyUSD": 3.48928,
+        "memoryGiB": 256.0,
+        "vcpu": 64
+      },
+      "m9g.24xlarge": {
+        "hourlyUSD": 5.23392,
+        "memoryGiB": 384.0,
+        "vcpu": 96
+      },
+      "m9g.2xlarge": {
+        "hourlyUSD": 0.43616,
+        "memoryGiB": 32.0,
+        "vcpu": 8
+      },
+      "m9g.48xlarge": {
+        "hourlyUSD": 10.46784,
+        "memoryGiB": 768.0,
+        "vcpu": 192
+      },
+      "m9g.4xlarge": {
+        "hourlyUSD": 0.87232,
+        "memoryGiB": 64.0,
+        "vcpu": 16
+      },
+      "m9g.8xlarge": {
+        "hourlyUSD": 1.74464,
+        "memoryGiB": 128.0,
+        "vcpu": 32
+      },
+      "m9g.large": {
+        "hourlyUSD": 0.10904,
+        "memoryGiB": 8.0,
+        "vcpu": 2
+      },
+      "m9g.medium": {
+        "hourlyUSD": 0.05452,
+        "memoryGiB": 4.0,
+        "vcpu": 1
+      },
+      "m9g.xlarge": {
+        "hourlyUSD": 0.21808,
+        "memoryGiB": 16.0,
+        "vcpu": 4
+      },
+      "m9gd.12xlarge": {
+        "hourlyUSD": 3.36432,
+        "memoryGiB": 192.0,
+        "vcpu": 48
+      },
+      "m9gd.16xlarge": {
+        "hourlyUSD": 4.48576,
+        "memoryGiB": 256.0,
+        "vcpu": 64
+      },
+      "m9gd.24xlarge": {
+        "hourlyUSD": 6.72864,
+        "memoryGiB": 384.0,
+        "vcpu": 96
+      },
+      "m9gd.2xlarge": {
+        "hourlyUSD": 0.56072,
+        "memoryGiB": 32.0,
+        "vcpu": 8
+      },
+      "m9gd.48xlarge": {
+        "hourlyUSD": 13.45728,
+        "memoryGiB": 768.0,
+        "vcpu": 192
+      },
+      "m9gd.4xlarge": {
+        "hourlyUSD": 1.12144,
+        "memoryGiB": 64.0,
+        "vcpu": 16
+      },
+      "m9gd.8xlarge": {
+        "hourlyUSD": 2.24288,
+        "memoryGiB": 128.0,
+        "vcpu": 32
+      },
+      "m9gd.large": {
+        "hourlyUSD": 0.14018,
+        "memoryGiB": 8.0,
+        "vcpu": 2
+      },
+      "m9gd.medium": {
+        "hourlyUSD": 0.07009,
+        "memoryGiB": 4.0,
+        "vcpu": 1
+      },
+      "m9gd.xlarge": {
+        "hourlyUSD": 0.28036,
+        "memoryGiB": 16.0,
+        "vcpu": 4
+      },
       "p2.16xlarge": {
         "hourlyUSD": 15.552,
         "memoryGiB": 732.0,
@@ -4631,6 +4731,61 @@
         "memoryGiB": 32.0,
         "vcpu": 4
       },
+      "r8id.12xlarge": {
+        "hourlyUSD": 4.4352,
+        "memoryGiB": 384.0,
+        "vcpu": 48
+      },
+      "r8id.16xlarge": {
+        "hourlyUSD": 5.9136,
+        "memoryGiB": 512.0,
+        "vcpu": 64
+      },
+      "r8id.24xlarge": {
+        "hourlyUSD": 8.8704,
+        "memoryGiB": 768.0,
+        "vcpu": 96
+      },
+      "r8id.2xlarge": {
+        "hourlyUSD": 0.7392,
+        "memoryGiB": 64.0,
+        "vcpu": 8
+      },
+      "r8id.32xlarge": {
+        "hourlyUSD": 11.8272,
+        "memoryGiB": 1024.0,
+        "vcpu": 128
+      },
+      "r8id.48xlarge": {
+        "hourlyUSD": 17.7408,
+        "memoryGiB": 1536.0,
+        "vcpu": 192
+      },
+      "r8id.4xlarge": {
+        "hourlyUSD": 1.4784,
+        "memoryGiB": 128.0,
+        "vcpu": 16
+      },
+      "r8id.8xlarge": {
+        "hourlyUSD": 2.9568,
+        "memoryGiB": 256.0,
+        "vcpu": 32
+      },
+      "r8id.96xlarge": {
+        "hourlyUSD": 35.4816,
+        "memoryGiB": 3072.0,
+        "vcpu": 384
+      },
+      "r8id.large": {
+        "hourlyUSD": 0.1848,
+        "memoryGiB": 16.0,
+        "vcpu": 2
+      },
+      "r8id.xlarge": {
+        "hourlyUSD": 0.3696,
+        "memoryGiB": 32.0,
+        "vcpu": 4
+      },
       "r8idb.12xlarge": {
         "hourlyUSD": 6.26736,
         "memoryGiB": 384.0,
@@ -5343,7 +5498,7 @@
       }
     }
   },
-  "generated": "2026-07-31T13:32:40Z",
+  "generated": "2026-09-08T00:41:14Z",
   "label": "EU (Ireland)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -10984,10 +11139,10 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20260728175247",
-    "lambda": "20260717075216",
-    "rds": "20260729234248",
-    "s3": "20260728131000"
+    "ec2": "20260904231117",
+    "lambda": "20260831092318",
+    "rds": "20260904172716",
+    "s3": "20260831092225"
   },
   "sources": {
     "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
@@ -10996,25 +11151,25 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20260728175247"
+        "version": "20260904231117"
       },
       "lambda": {
         "offerCode": "AWSLambda",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/lambda/pricing/",
-        "version": "20260717075216"
+        "version": "20260831092318"
       },
       "rds": {
         "offerCode": "AmazonRDS",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/rds/pricing/",
-        "version": "20260729234248"
+        "version": "20260904172716"
       },
       "s3": {
         "offerCode": "AmazonS3",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/s3/pricing/",
-        "version": "20260728131000"
+        "version": "20260831092225"
       }
     }
   }
