@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-08T18:10:06Z",
+  "generated": "2026-09-09T00:21:57Z",
   "items": [
     {
       "archived": false,
@@ -6437,7 +6437,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nWe conducted an internal set of testing for the Visualization tool. Any feedback will be saved here for future reference.\nList of items directly mentioned (not in the feedback forms that need to be created into an importable form)\n\nZoom to layer when selected (or zoom to activation AOI)\nAnalysis layers don't allow scrolling\nClear the layers (create a default view) -- too many layers stack up\nSuggestion for moving buttons or draggable content blocks for better viewing\nWould like a full panel dataset\nSearch by city/ do analysis by city\nMeasurement tool bug. --- if you click too many time",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-01T22:20:48Z",
       "draft": false,
       "fields": {
@@ -6460,15 +6460,15 @@
       "milestone": null,
       "number": 414,
       "parent": {
-        "number": 786,
-        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Feedback suggestions from internal Viz tool testing: Sept. 1, 2026",
-      "updated": "2026-09-01T22:20:48Z",
+      "updated": "2026-09-08T19:32:38Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/414"
     },
     {
@@ -6959,11 +6959,13 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "In the example below for 2 matching activations, the number 2 fontsize is too large. Please shrink to not make it stand out.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-08T20:20:21Z",
+      "comments": 1,
       "created": "2026-09-04T18:36:35Z",
       "draft": false,
       "fields": {
+        "End Date": "2026-09-08",
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -6973,7 +6975,9 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Start Date": "2026-09-04",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5fXjw",
       "issue_type": null,
@@ -6981,11 +6985,16 @@
       "labels": [],
       "milestone": null,
       "number": 442,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Viz tool: Shrink size of text INT in activation matching case",
-      "updated": "2026-09-04T18:36:45Z",
+      "updated": "2026-09-08T20:20:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/442"
     },
     {
@@ -6995,9 +7004,52 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Remove the word activation from all places within the app.  This word is not used anymore within the Disasters program.\n I would also suggest that we remove the title Matching Activations. It seems redudanct since directly below it has 2 Activations Matching.",
+      "closed": "2026-09-08T20:19:54Z",
+      "comments": 1,
+      "created": "2026-09-04T18:37:29Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-08",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-04",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg5fX7w",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 443,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Viz tool: Remove `activation` from all places",
+      "updated": "2026-09-08T20:19:54Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/443"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nAdd a \"Learn more about GAIA\" link to the GAIA stacCompare block on the Recover theme page, pointing readers at the GAIA data gallery page (/data-gallery/gaia-infrastructure-assets).\nFollow-up from #403 / #430, per @vgeorge's review comment.\nContext\n#430 implemented this as an optional infoHref / infoLabel pair on the stacCompare content block, rendered as a link below the map in our local StacCompareBlock wrapper. It was closed rather than merged because the legend is being reworked on the library side:\n\nNASA-IMPACT/tinacms-portal-monorepo#460 — Update Legend / StacCompare Legend, whi",
       "closed": null,
       "comments": 0,
-      "created": "2026-09-04T18:37:29Z",
+      "created": "2026-09-08T19:55:31Z",
       "draft": false,
       "fields": {
         "Program Increment": {
@@ -7011,18 +7063,21 @@
           "title": "26.4.3"
         }
       },
-      "id": "PVTI_lADODdLRP84BMP5Rzg5fX7w",
+      "id": "PVTI_lADODdLRP84BMP5Rzg6B2XE",
       "issue_type": null,
       "kind": "issue",
-      "labels": [],
+      "labels": [
+        "enhancement",
+        "blocked"
+      ],
       "milestone": null,
-      "number": 443,
+      "number": 445,
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Viz tool: Remove `activation` from all places",
-      "updated": "2026-09-04T18:39:33Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/443"
+      "title": "GAIA stacCompare: add \"Learn more\" link once library legend link lands",
+      "updated": "2026-09-08T19:55:31Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/445"
     },
     {
       "archived": false,
@@ -18049,11 +18104,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 362,
+    "closed": 364,
     "drafts": 0,
-    "issues": 437,
-    "items": 451,
-    "open": 89,
+    "issues": 438,
+    "items": 452,
+    "open": 88,
     "prs": 14
   }
 }
