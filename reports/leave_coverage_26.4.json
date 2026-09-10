@@ -932,11 +932,12 @@
       "date": "2026-08-13",
       "team": "DSE - Manage",
       "team_size": 6,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1667,
+      "out_count": 2,
+      "out_weight": 2.0,
+      "out_pct": 0.3333,
       "people_out": [
-        "brian-freitag"
+        "brian-freitag",
+        "chelsea-aaron"
       ],
       "limited": []
     },
@@ -987,10 +988,12 @@
       "date": "2026-08-14",
       "team": "DSE - Manage",
       "team_size": 6,
-      "out_count": 0,
-      "out_weight": 0.5,
-      "out_pct": 0.0833,
-      "people_out": [],
+      "out_count": 1,
+      "out_weight": 1.5,
+      "out_pct": 0.25,
+      "people_out": [
+        "chelsea-aaron"
+      ],
       "limited": [
         "brian-freitag"
       ]
