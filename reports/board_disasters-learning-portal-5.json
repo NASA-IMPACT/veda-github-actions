@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-10T12:11:38Z",
+  "generated": "2026-09-10T18:09:38Z",
   "items": [
     {
       "archived": false,
@@ -3322,7 +3322,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
+        "completed": 2,
         "total": 3
       },
       "title": "Disasters DPS cost assessment",
@@ -6521,7 +6521,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "ifsimicoded"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Homepage masthead should include Learn About Us button which directs to about page. It should be red.\n Cards should be updated, but the design is incomplete",
       "closed": null,
@@ -6557,7 +6559,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Homepage masthead CTA and Cards",
-      "updated": "2026-09-02T21:44:43Z",
+      "updated": "2026-09-10T16:58:24Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -7800,11 +7802,15 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger",
+        "chelsea-aaron"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3d\nOwner: VEDA\nAssigned to: VEDA Dev\nSmartsheet status: Not Started\nSchedule: 12d — 2026-09-15 → 2026-09-30\nPriority: MEDIUM\nSmartsheet Ticket# column: 222 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:44:00Z",
       "draft": false,
       "fields": {
@@ -7841,7 +7847,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.3d] Address high impact user feedback and bugs (show stopper large blockers)",
-      "updated": "2026-08-12T22:44:00Z",
+      "updated": "2026-09-10T14:56:13Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/10"
     },
     {
@@ -7937,7 +7943,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 4,
+        "completed": 5,
         "total": 7
       },
       "title": "[6.5] Productionalize DRCS algorithm workflow and documentation in Jupyterhub",
@@ -8200,8 +8206,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5f\nOwner: VEDA\nAssigned to: Kyle / Andrew\nSmartsheet status: Not Started\nSchedule: 23d — 2026-08-31 → 2026-09-30\nPriority: LOW\nNotes\nWill fix old functionality if bugs present themselves. New functionality will need to be scoped. This includes the inclusion of any new algorithms.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-10T14:53:10Z",
+      "comments": 2,
       "created": "2026-08-12T22:47:17Z",
       "draft": false,
       "fields": {
@@ -8218,7 +8224,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-08-31",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UjEc",
       "issue_type": null,
@@ -8235,10 +8241,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5f] Continued DPS scoping for additional algorithms",
-      "updated": "2026-08-12T22:47:18Z",
+      "updated": "2026-09-10T14:53:17Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/18"
     },
     {
@@ -9141,7 +9147,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a4\nOwner: VEDA\nAssigned to: Dev Team\nSmartsheet status: (blank)\nSchedule: 20d — 2026-07-20 → 2026-09-05\nNotes\n⚠️ Status was blank in the Smartsheet — defaulted to Todo on the board.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 3,
+      "comments": 4,
       "created": "2026-08-13T10:11:49Z",
       "draft": false,
       "fields": {
@@ -9177,7 +9183,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.1a4] Update Figma and site with HDS tokens",
-      "updated": "2026-09-02T16:54:07Z",
+      "updated": "2026-09-10T14:54:45Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/38"
     },
     {
@@ -9429,7 +9435,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.7a\nOwner: VEDA\nAssigned to: Alex Mandel\nSmartsheet status: Not Started\nSchedule: 88d — 2026-06-01 → 2026-09-30\nPriority: LOW\nNotes\nKyle to work on this. Currently in progress working with CSDA / Science Support / DSE.\nParent Smartsheet row 6.7 (\"Cost Assessment (Jupyterhub)\", Disasters/VEDA, Sci Support/MAAP, 88d, 2026-06-01 → 2026-09-30) was not re-created — it already exists as Disasters-Learning-Portal/disasters-portal#321 \"Disasters Hub cost assessment\", which is the parent of this row.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-08-13T10:14:28Z",
       "draft": false,
       "fields": {
@@ -9466,7 +9472,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.7a] Determine approximate costs for different levels of compute resources",
-      "updated": "2026-08-13T10:14:28Z",
+      "updated": "2026-09-10T15:32:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/44"
     },
     {
@@ -9476,8 +9482,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.7.4\nOwner: VEDA\nAssigned to: Alex Mandel\nSmartsheet status: In Progress\nSchedule: 1d — 2026-09-29 → 2026-09-29\nNotes\nSmartsheet note: \"create a better ticket\" — this row needs rewriting.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-10T14:47:56Z",
+      "comments": 2,
       "created": "2026-08-13T10:14:40Z",
       "draft": false,
       "fields": {
@@ -9493,7 +9499,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-29",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YdeM",
       "issue_type": null,
@@ -9510,10 +9516,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/321"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "[6.7.4] DPS algorithm cost — add to Grafana dashboard",
-      "updated": "2026-08-13T10:14:40Z",
+      "updated": "2026-09-10T14:48:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/45"
     },
     {
@@ -18152,11 +18158,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 364,
+    "closed": 366,
     "drafts": 0,
     "issues": 439,
     "items": 453,
-    "open": 89,
+    "open": 87,
     "prs": 14
   }
 }
