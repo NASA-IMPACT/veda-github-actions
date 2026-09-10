@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-09-10T22:01:59Z",
+    "generated": "2026-09-10T23:02:04Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -22,7 +22,7 @@
       "DevSeed": 31,
       "Disasters": 3,
       "MSFC": 2,
-      "UAH": 25
+      "UAH": 24
     },
     "risk_threshold_default": 0.3,
     "categories": {
@@ -3026,13 +3026,6 @@
       "name": "Shawn Foley",
       "team": "MSFC",
       "role": "DSE - Cloud Management",
-      "leaves": []
-    },
-    {
-      "slug": "aaron-serre",
-      "name": "Aaron Serre",
-      "team": "UAH",
-      "role": "VEDA (GRA)",
       "leaves": []
     },
     {

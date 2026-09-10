@@ -5,7 +5,7 @@
     "DevSeed": 31,
     "Disasters": 3,
     "MSFC": 2,
-    "UAH": 25
+    "UAH": 24
   },
   "days": [
     {
@@ -233,10 +233,10 @@
     {
       "date": "2026-07-23",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 0,
       "out_weight": 0.5,
-      "out_pct": 0.02,
+      "out_pct": 0.0208,
       "people_out": [],
       "limited": [
         "jeanne-le-roux"
@@ -257,10 +257,10 @@
     {
       "date": "2026-07-24",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -541,10 +541,10 @@
     {
       "date": "2026-08-03",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 3,
       "out_weight": 3.0,
-      "out_pct": 0.12,
+      "out_pct": 0.125,
       "people_out": [
         "jeanne-le-roux",
         "kyle-lesinger",
@@ -593,10 +593,10 @@
     {
       "date": "2026-08-04",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "paridhi-parajuli"
@@ -632,10 +632,10 @@
     {
       "date": "2026-08-05",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "paridhi-parajuli"
@@ -670,10 +670,10 @@
     {
       "date": "2026-08-06",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "kyle-lesinger"
       ],
@@ -719,10 +719,10 @@
     {
       "date": "2026-08-07",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "kyle-lesinger"
       ],
@@ -1029,10 +1029,10 @@
     {
       "date": "2026-08-14",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sijan-bhattarai"
       ],
@@ -1110,10 +1110,10 @@
     {
       "date": "2026-08-17",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "sheyenne-kirkland",
         "sijan-bhattarai"
@@ -1166,10 +1166,10 @@
     {
       "date": "2026-08-18",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sijan-bhattarai"
       ],
@@ -1221,10 +1221,10 @@
     {
       "date": "2026-08-19",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sijan-bhattarai"
       ],
@@ -1274,10 +1274,10 @@
     {
       "date": "2026-08-20",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sijan-bhattarai"
       ],
@@ -1340,10 +1340,10 @@
     {
       "date": "2026-08-21",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 0,
       "out_weight": 0.5,
-      "out_pct": 0.02,
+      "out_pct": 0.0208,
       "people_out": [],
       "limited": [
         "andrew-blackford"
@@ -1648,10 +1648,10 @@
     {
       "date": "2026-09-07",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "jeanne-le-roux",
         "sheyenne-kirkland"
@@ -1685,10 +1685,10 @@
     {
       "date": "2026-09-08",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -1724,10 +1724,10 @@
     {
       "date": "2026-09-09",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -1763,10 +1763,10 @@
     {
       "date": "2026-09-10",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -1801,10 +1801,10 @@
     {
       "date": "2026-09-11",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -1849,10 +1849,10 @@
     {
       "date": "2026-09-14",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "andrew-blackford"
       ],
@@ -1885,10 +1885,10 @@
     {
       "date": "2026-09-15",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "andrew-blackford"
       ],
@@ -1945,10 +1945,10 @@
     {
       "date": "2026-09-17",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "andrew-blackford"
       ],
@@ -1981,10 +1981,10 @@
     {
       "date": "2026-09-18",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "andrew-blackford"
       ],
@@ -2103,10 +2103,10 @@
     {
       "date": "2026-09-25",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sheyenne-kirkland"
       ],
@@ -2200,10 +2200,10 @@
     {
       "date": "2026-10-05",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "sheyenne-kirkland"
       ],
@@ -2225,10 +2225,10 @@
     {
       "date": "2026-10-06",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "sheyenne-kirkland"
@@ -2251,10 +2251,10 @@
     {
       "date": "2026-10-07",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "sheyenne-kirkland"
@@ -2277,10 +2277,10 @@
     {
       "date": "2026-10-08",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "sheyenne-kirkland"
@@ -2303,10 +2303,10 @@
     {
       "date": "2026-10-09",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "kyle-lesinger",
         "sheyenne-kirkland"
@@ -2368,10 +2368,10 @@
     {
       "date": "2026-10-15",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 1,
       "out_weight": 1.0,
-      "out_pct": 0.04,
+      "out_pct": 0.0417,
       "people_out": [
         "jeanne-le-roux"
       ],
@@ -2392,10 +2392,10 @@
     {
       "date": "2026-10-16",
       "team": "UAH",
-      "team_size": 25,
+      "team_size": 24,
       "out_count": 2,
       "out_weight": 2.0,
-      "out_pct": 0.08,
+      "out_pct": 0.0833,
       "people_out": [
         "andrew-blackford",
         "jeanne-le-roux"
