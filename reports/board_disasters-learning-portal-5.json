@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-09T18:10:15Z",
+  "generated": "2026-09-10T00:20:04Z",
   "items": [
     {
       "archived": false,
@@ -7078,6 +7078,54 @@
       "title": "GAIA stacCompare: add \"Learn more\" link once library legend link lands",
       "updated": "2026-09-08T19:55:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/445"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ifsimicoded",
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Request\nFrom Brian Freitag (Slack, @channel):\n\nLast year we updated our web mapping tools to update the Gulf of America. On August 27, an EO was signed to rename Lake Ontario to Lake America. We will need to update all existing and upcoming visualization tools to align with both of these EOs. Please ensure these changes are complete no later than September 24th. Please let me know if there are any questions.\n\nScope\nAudit and update every existing and upcoming visualization tool in the portal so place-name labels align with both Executive Orders:\n\nGulf of Mexico → Gulf of America (previously ap",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-09T20:26:21Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-24",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-09",
+        "Status": "Todo"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6N0T0",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": null,
+      "number": 447,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update all visualization tools for Gulf of America and Lake America renames (due Sept 24)",
+      "updated": "2026-09-09T20:32:18Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/447"
     },
     {
       "archived": false,
@@ -18106,9 +18154,9 @@
   "stats": {
     "closed": 364,
     "drafts": 0,
-    "issues": 438,
-    "items": 452,
-    "open": 88,
+    "issues": 439,
+    "items": 453,
+    "open": 89,
     "prs": 14
   }
 }
