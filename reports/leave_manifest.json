@@ -2,7 +2,7 @@
   "slug": "26.4",
   "pi": "26.4",
   "year": 2026,
-  "generated": "2026-09-10T21:02:04Z",
+  "generated": "2026-09-10T22:01:59Z",
   "source_file": "DSE Leave Tracker - 26.4.xlsx",
   "files": {
     "csv": "leaves_26.4.csv",
@@ -12,8 +12,8 @@
   "stats": {
     "people": 74,
     "teams": 6,
-    "leave_days": 286,
-    "csv_rows": 360,
+    "leave_days": 291,
+    "csv_rows": 365,
     "span_start": "2026-07-06",
     "span_end": "2026-10-25",
     "warnings": 0

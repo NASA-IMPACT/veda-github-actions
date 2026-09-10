@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-09-10T21:02:04Z",
+    "generated": "2026-09-10T22:01:59Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -3062,6 +3062,46 @@
           "weight": 0.5,
           "note": null,
           "source": "override"
+        },
+        {
+          "date": "2026-09-14",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-15",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-17",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-18",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-16",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
         }
       ]
     },
