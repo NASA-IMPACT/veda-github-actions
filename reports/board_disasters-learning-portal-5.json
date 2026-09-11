@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-11T12:12:12Z",
+  "generated": "2026-09-11T18:08:47Z",
   "items": [
     {
       "archived": false,
@@ -7747,7 +7747,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Related: #453 (LHASA / landslide hazard ingest for Sinlaku and Texas Floods).\nDataset\n\nProduct: LHASA (Landslide Hazard Assessment for Situational Awareness) landslide nowcast.\nCurrent state: not in the Disasters STAC. MAAP already has the data within their STAC catalog. The GIS service has some info on the product.\n\nTo do\n\n Investigate LHASA access via the MAAP STAC (collection id, asset format, auth requirements)\n Pull any additional product details from the GIS service\n Index the collection into the Disasters STAC\n\nNotes\n\nLeave the option open to use a static image for initial launch. We wi",
       "closed": null,
-      "comments": 3,
+      "comments": 4,
       "created": "2026-09-10T21:41:51Z",
       "draft": false,
       "fields": {
@@ -7777,8 +7777,55 @@
       "state": "open",
       "state_reason": null,
       "title": "Investigate LHASA access and index collection into Disasters STAC",
-      "updated": "2026-09-10T23:48:04Z",
+      "updated": "2026-09-11T15:18:08Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/464"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Three Black Marble collections need an ingest run against nasa-disasters-staging for the Typhoon Sinlaku (Apr 2026) activation. One is an existing collection that must be re-ingested to pick up the new files; two are new. Configs are in disasters-data under ingestion-data/staging/dataset-config/.\nDataset\nSource delivery: s3://nasa-disasters/drcs_activations/202604_Typhoon_Sinlaku/Blackmarble/ (9 daily BRDF, 9 daily cloud masks, 1 monthly pre-event composite). Files were renamed to the ingest convention and converted to COG with activation tags.\n\n\n\nCollection\nState\nStaging prefix\nFiles\nConfig\n\n",
+      "closed": "2026-09-11T15:17:44Z",
+      "comments": 0,
+      "created": "2026-09-11T14:34:54Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-11",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-11",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6h3HE",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 465,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: Black Marble BRDF daily (re-ingest), pre-event monthly composite, and cloud mask — Typhoon Sinlaku Apr 2026 (2 new collections)",
+      "updated": "2026-09-11T15:17:44Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/465"
     },
     {
       "archived": false,
@@ -18809,10 +18856,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 374,
+    "closed": 375,
     "drafts": 0,
-    "issues": 454,
-    "items": 468,
+    "issues": 455,
+    "items": 469,
     "open": 94,
     "prs": 14
   }
