@@ -77,7 +77,7 @@
         {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         }
       ],
       "name": "Program Increment",
@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-10T18:09:38Z",
+  "generated": "2026-09-11T00:21:45Z",
   "items": [
     {
       "archived": false,
@@ -1587,7 +1587,7 @@
       "created": "2026-06-03T18:55:32Z",
       "draft": false,
       "fields": {
-        "End Date": "2026-07-29",
+        "End Date": "2026-10-23",
         "Priority": "High",
         "Program Increment": {
           "duration": 98,
@@ -1596,10 +1596,10 @@
         },
         "Sprint": {
           "duration": 21,
-          "startDate": "2026-07-19",
-          "title": "26.4.1"
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
         },
-        "Start Date": "2026-07-27",
+        "Start Date": "2026-09-10",
         "Status": "Todo"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgv9Yvw",
@@ -1845,7 +1845,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 3,
+        "completed": 6,
         "total": 9
       },
       "title": "Create documentation for Jupyterhub for Disasters",
@@ -1896,45 +1896,6 @@
       "title": "Create project timeline draft plan (June - Sept 2026)",
       "updated": "2026-09-08T14:03:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/276"
-    },
-    {
-      "archived": false,
-      "assignees": [],
-      "author": "kyle-lesinger",
-      "body_excerpt": "Summary\nTo receive additional feedback during development of the Disasters portal, adding Feedbucket would be useful.\n@ifsimicoded please fill out any additional specifics, I never actually got the full walkthrough of what Feedbucket does other than allow for feedback of a live site.",
-      "closed": null,
-      "comments": 0,
-      "created": "2026-06-23T19:28:30Z",
-      "draft": false,
-      "fields": {
-        "Program Increment": {
-          "duration": 98,
-          "startDate": "2026-07-12",
-          "title": "PI 26.4"
-        },
-        "Sprint": {
-          "duration": 21,
-          "startDate": "2026-07-19",
-          "title": "26.4.1"
-        }
-      },
-      "id": "PVTI_lADODdLRP84BMP5RzgwoFdA",
-      "issue_type": null,
-      "kind": "issue",
-      "labels": [],
-      "milestone": null,
-      "number": 277,
-      "parent": {
-        "number": 271,
-        "title": "[26.4] PI Objective - Disasters Beta Portal (Sept launch)",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/271"
-      },
-      "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
-      "title": "Setup Feedbucket for Disasters <Placeholder>",
-      "updated": "2026-06-23T19:28:30Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/277"
     },
     {
       "archived": false,
@@ -2411,11 +2372,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "Scope training session(s) for CRCs for walking through the Hub workflows/algorithms.\nDRCS stores info on Sharepoint for presentations, training, etc. May need a specific home within Sharepoint for storing training session info.\n\nOverarching of what the Hub is on the backend.\nHow the PORTAL is connected to the Hub.\nLogging in and user interaction will need to be extensive/in-depth. Each workflow (Landsat, S2, etc.) may need mini sessions at first.\n\nTraining will need to be completed by September 1 - the sooner the better!",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-10T21:54:23Z",
+      "comments": 1,
       "created": "2026-06-30T15:25:45Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTQYM",
       "issue_type": null,
       "kind": "issue",
@@ -2428,10 +2391,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Scope Training Session(s)",
-      "updated": "2026-06-30T15:35:30Z",
+      "updated": "2026-09-10T21:54:23Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/292"
     },
     {
@@ -2441,11 +2404,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "",
-      "closed": null,
+      "closed": "2026-09-10T21:54:04Z",
       "comments": 0,
       "created": "2026-06-30T15:26:58Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTQ0Q",
       "issue_type": null,
       "kind": "issue",
@@ -2458,10 +2423,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Document Permissions of Shared Spaces in JupyterHub",
-      "updated": "2026-06-30T15:26:58Z",
+      "updated": "2026-09-10T21:54:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/293"
     },
     {
@@ -2471,11 +2436,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "",
-      "closed": null,
+      "closed": "2026-09-10T21:54:31Z",
       "comments": 6,
       "created": "2026-06-30T15:27:28Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTRBs",
       "issue_type": null,
       "kind": "issue",
@@ -2488,10 +2455,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Create Lucid Chart for Disasters PORTAL Architecture",
-      "updated": "2026-08-13T14:48:30Z",
+      "updated": "2026-09-10T21:54:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/294"
     },
     {
@@ -3287,7 +3254,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nTo properly inform NASA leadership regarding resource costs for the Disasters DPS jobs, a cost assessment has been requested to be conducted.\nThe exact criteria has not yet been deteremined, so there may need to be some discussion prior to executing the task.\nPotential items to investigate in a cost assessment report\n\nCosts for different levels of compute (with or without DPS)\nCosts associated with different levels of storage\nCosts associated with EC2 on standby\nDeveloper maintenance and support (estimate 0.05 / PI)\n\nAcceptance Criteria\n\n agreed upon metrics/costs are computed and repo",
-      "closed": null,
+      "closed": "2026-09-10T21:53:16Z",
       "comments": 6,
       "created": "2026-07-21T13:47:21Z",
       "draft": false,
@@ -3305,7 +3272,7 @@
           "title": "26.4.1"
         },
         "Start Date": "2026-07-21",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5RzgznwfE",
       "issue_type": null,
@@ -3319,14 +3286,14 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 2,
+        "completed": 3,
         "total": 3
       },
       "title": "Disasters DPS cost assessment",
-      "updated": "2026-08-12T16:41:38Z",
+      "updated": "2026-09-10T21:53:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/321"
     },
     {
@@ -4111,8 +4078,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nDetermine whether DPS work should stay on the MAAP Hub or move to the Disasters Hub. Currently, MAAP login settings must be re-configured on every launch, which is not ideal.\nAcceptance Criteria\n\n  Test if the DPS workflows can be ran easily within the Disasters Hub\n Document the MAAP login settings that must be configured each launch\n Compare MAAP Hub vs Disasters Hub for DPS execution (capabilities, friction, access)\n Provide a recommendation on which hub to standardize on\n\nContext\n\nParent PoC: #342",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-10T21:46:59Z",
+      "comments": 3,
       "created": "2026-07-31T19:18:06Z",
       "draft": false,
       "fields": {
@@ -4125,7 +4092,8 @@
           "duration": 21,
           "startDate": "2026-07-19",
           "title": "26.4.1"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg02Ujs",
       "issue_type": null,
@@ -4139,10 +4107,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "DPS: Discuss whether to stay on MAAP Hub or move to Disasters Hub",
-      "updated": "2026-08-12T16:38:02Z",
+      "updated": "2026-09-10T21:46:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/347"
     },
     {
@@ -6436,7 +6404,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nWe conducted an internal set of testing for the Visualization tool. Any feedback will be saved here for future reference.\nList of items directly mentioned (not in the feedback forms that need to be created into an importable form)\n\nZoom to layer when selected (or zoom to activation AOI)\nAnalysis layers don't allow scrolling\nClear the layers (create a default view) -- too many layers stack up\nSuggestion for moving buttons or draggable content blocks for better viewing\nWould like a full panel dataset\nSearch by city/ do analysis by city\nMeasurement tool bug. --- if you click too many time",
-      "closed": null,
+      "closed": "2026-09-10T21:46:07Z",
       "comments": 1,
       "created": "2026-09-01T22:20:48Z",
       "draft": false,
@@ -6451,7 +6419,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4-4Mc",
       "issue_type": null,
@@ -6465,10 +6434,10 @@
         "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Feedback suggestions from internal Viz tool testing: Sept. 1, 2026",
-      "updated": "2026-09-08T19:32:38Z",
+      "updated": "2026-09-10T21:46:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/414"
     },
     {
@@ -7128,6 +7097,688 @@
       "title": "Update all visualization tools for Gulf of America and Lake America renames (due Sept 24)",
       "updated": "2026-09-09T20:32:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/447"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nTarget: every event story has ≥4 datasets (distinct non-test STAC collections with items for the event) ingested on dev (https://dev.disasters.openveda.cloud/api/stac) before Oct 1, 2026.\nStatus legend: ✅ ingested (collection + event items) · ⚠️ collection exists but no items for this event · ❌ product named in the story but no collection at all.\n\n\n\nEvent\nStory page\n✅ Ingested\n⚠️ Collection only\n❌ Not started\nCount\n≥4 met\n\n\n\n\nVenezuela Earthquake Jun 2026\nfeature branch only\n3\n1\n1 (Vantor)\n3\n[ ]\n\n\nTyphoon Sinlaku Apr 2026\nhttps://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:38:58Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Todo"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Zs4E",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 448,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "sub": {
+        "completed": 1,
+        "total": 10
+      },
+      "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+      "updated": "2026-09-10T20:46:04Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH — unblocks the ≥4 target for Venezuela (currently 3/4).\nDataset\n\nProduct: Vantor (formerly Maxar) open-data optical imagery, visual asset (RGB COGs).\nEvent: Venezuela Earthquake, June 2026.\nSource: static STAC collection already staged on S3: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/collection.json\n\n49 rel: item links, temporal extent 2025-11-03 → 2026-06-30, bboxes across northern Venezuela (Caracas/Valencia/Barquisimeto).\n\n\n\nCurrent state\n\nNot registered in pgstac: no vantor* collection in https://dev.d",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:08Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Ztgk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 449,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Vantor optical imagery — Venezuela Earthquake Jun 2026 (new collection)",
+      "updated": "2026-09-10T20:40:08Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/449"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH — Sinlaku currently has 0/4; Venezuela 3/4.\nDataset\n\nProduct: Umbra SAR Geocoded Ellipsoid Corrected (GEC) sigma-nought, via CSDA.\nExisting collection: umbra-gec-test — only 3 items total (2026-05-22 at 147.4°E 3.0°N; 2026-08-05 and 08-08 in Arizona/Utah). It is still a -test collection.\n\nNeeded items\n\nTyphoon Sinlaku, Apr 2026: Guam / Saipan scenes ~2026-04-12 → 04-20. The story page (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026) already shows a static Umbra image of Antonio B. Won Pat International Airport dated 20",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:10Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Ztgw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 450,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Umbra SAR GEC scenes — Typhoon Sinlaku (Guam) and Venezuela EQ",
+      "updated": "2026-09-10T20:40:10Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/450"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for SoCal / Winter Storm (already ≥4, but Black Marble is named in the story text).\nDataset\n\nExisting collections: blackmarble-brdf-daily (~500 m, extent 2024-06-01 → 2026-01-01) and blackmarble-hd-daily (extent 2023-08-03 → 2026-06-29, 83 items).\nCollections exist; items for these events are missing.\n\nNeeded items\n\n\n\nEvent\nArea (bbox)\nDates\nCurrent\n\n\n\n\nTyphoon Sinlaku Apr 2026\nGuam + CNMI 143.5,12.5,146.5,20.5\n2026-04-10 → 04-25\n0 items in either collection. Story text says Black Marble was used to assess power out",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:11Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6ZtiQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 451,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Black Marble (BRDF / HD) items — Sinlaku (Guam), SoCal fires (LA), Winter Storm",
+      "updated": "2026-09-10T20:40:11Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/451"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for Texas (7/4).\nDataset\n\nProduct: GPM IMERG precipitation (Early/Late run accumulation, e.g. 1-day / 3-day / event-total).\nCurrent state: no IMERG / precipitation collection of any kind in https://dev.disasters.openveda.cloud/api/stac/collections.\nNamed in story text for both events:\n\nSinlaku (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026): \"NASA also shared IMERG satellite precipitation data to assess rainfall impacts when ground-based weather radars … were down\".\nTexas Floods (https://dev.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:13Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Zths",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 452,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: IMERG precipitation — Typhoon Sinlaku and Texas Floods (new collection)",
+      "updated": "2026-09-10T20:40:13Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/452"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for Texas (7/4).\nDataset\n\nProduct: NASA landslide product referenced in both stories — LHASA nowcast and/or landslide susceptibility / rainfall-triggered risk maps.\nCurrent state: no landslide collection in https://dev.disasters.openveda.cloud/api/stac/collections.\nStory text: Sinlaku \"landslide … that provided context and situational awareness\"; Texas Floods \"landslide risk assessments\".\n\nNeeded items\n\nSinlaku: Guam/CNMI, 2026-04-13 → 04-16.\nTexas: central Texas, 2025-07-04 → 07-08.\n\nDone when\n\n Confirm which produ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:14Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6ZtjQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 453,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: landslide hazard product (LHASA / susceptibility) — Sinlaku and Texas Floods (new collection)",
+      "updated": "2026-09-10T20:40:14Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/453"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: MEDIUM — Sinlaku is 0/4; this is the story's banner image.\nDataset\n\nProduct: Suomi-NPP VIIRS imagery (true color / day-night band scene of the typhoon over the Marianas, 2026-04-13).\nCurrent state: no VIIRS imagery collection. The only VIIRS-named collection, VIIRS_SNPP_DayNightBand_AtSensor_M15, is the Black Marble Blue/Yellow composite with no items.\nThe Sinlaku page (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026) uses this scene only as a static banner (public/img/event/typhoon-sinlaku-2026__*).\n\nDone when\n\n Collection ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:16Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Ztjo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 454,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: VIIRS true-color / imagery — Typhoon Sinlaku (new collection)",
+      "updated": "2026-09-10T20:43:26Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/454"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — Winter Storm already meets ≥4 with 5 collections, but only 3 sensor families.\nDataset\n\nExisting collection: nrt-sport-lis-conus-daily — 90 daily CONUS items, 2026-02-12 → 2026-05-12.\nStorm window is 2026-01-20 → 02-05, so no items exist for the event (https://dev.disasters.openveda.cloud/api/stac/search?collections=nrt-sport-lis-conus-daily&datetime=2026-01-20T00:00:00Z/2026-02-10T23:59:59Z returns 0).\n\nDone when\n\n Daily items backfilled from ≥2026-01-15 through 2026-02-11\n Collection temporal extent updated\n Optional: Winter Storm story (h",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:18Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6ZtlI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 455,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Backfill: SPoRT LIS soil moisture to cover US Winter Storm Jan 2026",
+      "updated": "2026-09-10T20:43:16Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/455"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — Texas already meets ≥4 (7 collections); story text promises \"infrastructure impact analyses\".\nDataset\n\nExisting collections: gaia-total-composite and gaia-wood-composite — each has a single Jan 2025 Los Angeles item.\nTexas Floods story (https://dev.disasters.openveda.cloud/news-events/texas-floods-july-2025) mentions infrastructure impact analyses; no GAIA item covers Texas.\n\nDone when\n\n GAIA total + wood composites clipped to central Texas (-101,29,-96.5,32) ingested with a 2025-07 datetime\n Texas story references it (e.g. a stacCompare al",
+      "closed": "2026-09-10T20:43:00Z",
+      "comments": 1,
+      "created": "2026-09-10T20:40:19Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6ZtmM",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 456,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "title": "Ingest: GAIA building exposure composite — Texas Floods Jul 2025",
+      "updated": "2026-09-10T20:43:00Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/456"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — SoCal already meets ≥4 (16 collections); Maxar is named in the story text.\nDataset\n\nProduct: Maxar (now Vantor) open-data optical imagery / damage analysis for Palisades and Eaton fires.\nCurrent state: no Maxar/Vantor collection in https://dev.disasters.openveda.cloud/api/stac/collections. Story (https://dev.disasters.openveda.cloud/news-events/southern-california-fire-jan-2025): \"NASA shared multispectral imagery, including Sentinel-2, Landsat, and Maxar analysis\".\nIf the Vantor Venezuela collection (sibling ticket) lands first, reuse the ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:21Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Ztlw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 457,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Maxar optical analysis — Southern California Wildfires Jan 2025 (new collection)",
+      "updated": "2026-09-10T20:42:08Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/457"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — SoCal already meets ≥4; TEMPO is named in the story text.\nDataset\n\nProduct: TEMPO tropospheric NO2 / aerosol index over LA during the fires.\nCurrent state: no TEMPO or air-quality collection in https://dev.disasters.openveda.cloud/api/stac/collections. Story (https://dev.disasters.openveda.cloud/news-events/southern-california-fire-jan-2025) links to https://tempo.si.edu/ and says TEMPO \"characterized air quality\".\n\nDone when\n\n Decide product (NO2 column vs. aerosol index) and hourly vs. daily granularity\n Collection created; items for -119",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T20:40:22Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6ZtrA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 458,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: TEMPO air quality (NO2 / aerosol) — Southern California Wildfires Jan 2025 (new collection)",
+      "updated": "2026-09-10T20:41:45Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/458"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "anayeaye",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Info\nThe two GAIA gridded building exposure collections render with a long inline interval colormap embedded as a JSON string in their STAC renders block. NASA-IMPACT/veda-backend#650 adds a named gaia-exposure colormap to the raster API so the layers can reference it by name instead.\n\n\n\n\n\n\n\n\n\nCollections\ngaia-total-composite (asset total)gaia-wood-composite (asset wood)\n\n\nEnvironment\ndev / staging\n\n\nDataset configs\ndisasters-data/ingestion-data/staging/dataset-config/gaia-total-composite.jsondisasters-data/ingestion-data/staging/dataset-config/gaia-wood-composite.json\n\n\nBackend PR\nNASA-IMPACT",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T21:12:17Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "In Progress"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6Z-I4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 459,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Use named gaia-exposure colormap for GAIA building exposure layers",
+      "updated": "2026-09-10T21:12:42Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/459"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan",
+        "chelsea-aaron"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nValues shown in the Custom Visualization Tool analysis pane (Analyze Area statistics / time series) have no units. Add the layer's unit to axis labels, statistic rows, and hover values so numbers are interpretable without leaving the tool.\nDetails\nExample: for GAIA building exposure the analysis pane reports raw numbers, but the values are built-up area in m² per 100 × 100 m grid cell. Without the unit a value like 142,823 is ambiguous.\nSuggested approach:\n\nSource the unit from the collection metadata where available (raster:bands[].unit on item assets, or a unit field in the dataset c",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T21:21:01Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6aDVk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 461,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Add unit labels in analysis pane",
+      "updated": "2026-09-10T21:24:08Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/461"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan",
+        "chelsea-aaron"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThe Data Visualization compare block on the Recover page shows GAIA total vs. wood building exposure side by side, but with no legend. Readers cannot tell what the colours mean or what the values are. Add a colormap legend with units to the block.\nDetails\nConfig: app/site-config/theme/theme__recover.ts, the stacCompare body item. The left layer (gaia-total-composite) currently sets hideLegend: true; the right layer (gaia-wood-composite) has no legend rendered either. The caption states the units in prose (\"square meters\", \"100x100 meter grid cell\") but nothing on the map conveys the cl",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-10T21:21:11Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6aDaw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 462,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Data Visualization section (Recover page) needs colormap/legend with units",
+      "updated": "2026-09-10T21:22:50Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/462"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nTracking ticket for the remaining Custom Visualization Tool items from the latest review round. Each item can be split into its own issue if it grows; the GAIA color ramp, analysis-pane units and Recover-page legend are already tracked separately (#460, #461, #462).\nTasks\n\n Add \"Sum\" to the Analyze Area statistics. Alongside min / max / mean / median, report the sum of pixel values over the drawn area. For layers like GAIA (built-up m² per cell) the sum is the headline number (total exposed built-up area in the AOI). Should carry the unit label from #461.\n Remove auto-zoom when a layer",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-10T21:21:28Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6aDis",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 463,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "FY27 Viz tool follow-ups: Sum statistic, layer auto-zoom, grouped layer cards, splash-screen user guide",
+      "updated": "2026-09-10T21:21:53Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/463"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "wildintellect",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Related: #453 (LHASA / landslide hazard ingest for Sinlaku and Texas Floods).\nDataset\n\nProduct: LHASA (Landslide Hazard Assessment for Situational Awareness) landslide nowcast.\nCurrent state: not in the Disasters STAC. MAAP already has the data within their STAC catalog. The GIS service has some info on the product.\n\nTo do\n\n Investigate LHASA access via the MAAP STAC (collection id, asset format, auth requirements)\n Pull any additional product details from the GIS service\n Index the collection into the Disasters STAC\n\nNotes\n\nLeave the option open to use a static image for initial launch. We wi",
+      "closed": null,
+      "comments": 3,
+      "created": "2026-09-10T21:41:51Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-11-06",
+        "Priority": "Medium",
+        "Program Increment": {
+          "duration": 91,
+          "startDate": "2026-10-18",
+          "title": "PI 27.1"
+        },
+        "Sprint": {
+          "duration": 20,
+          "startDate": "2026-10-26",
+          "title": "27.1.1"
+        },
+        "Start Date": "2026-10-19"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6aOHc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 464,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Investigate LHASA access and index collection into Disasters STAC",
+      "updated": "2026-09-10T23:48:04Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/464"
     },
     {
       "archived": false,
@@ -9434,8 +10085,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.7a\nOwner: VEDA\nAssigned to: Alex Mandel\nSmartsheet status: Not Started\nSchedule: 88d — 2026-06-01 → 2026-09-30\nPriority: LOW\nNotes\nKyle to work on this. Currently in progress working with CSDA / Science Support / DSE.\nParent Smartsheet row 6.7 (\"Cost Assessment (Jupyterhub)\", Disasters/VEDA, Sci Support/MAAP, 88d, 2026-06-01 → 2026-09-30) was not re-created — it already exists as Disasters-Learning-Portal/disasters-portal#321 \"Disasters Hub cost assessment\", which is the parent of this row.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-10T21:52:49Z",
+      "comments": 3,
       "created": "2026-08-13T10:14:28Z",
       "draft": false,
       "fields": {
@@ -9452,7 +10103,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-06-01",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YdTA",
       "issue_type": null,
@@ -9469,10 +10120,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/321"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "[6.7a] Determine approximate costs for different levels of compute resources",
-      "updated": "2026-09-10T15:32:59Z",
+      "updated": "2026-09-10T21:52:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/44"
     },
     {
@@ -9586,7 +10237,7 @@
         "Program Increment": {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         },
         "Sprint": {
           "duration": 20,
@@ -9738,7 +10389,7 @@
         "Program Increment": {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         },
         "Sprint": {
           "duration": 20,
@@ -9879,7 +10530,7 @@
         "Program Increment": {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         },
         "Sprint": {
           "duration": 21,
@@ -9933,7 +10584,7 @@
         "Program Increment": {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         },
         "Sprint": {
           "duration": 20,
@@ -9978,7 +10629,7 @@
         "Program Increment": {
           "duration": 91,
           "startDate": "2026-10-18",
-          "title": "PI 27.2"
+          "title": "PI 27.1"
         },
         "Sprint": {
           "duration": 21,
@@ -18158,11 +18809,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 366,
+    "closed": 374,
     "drafts": 0,
-    "issues": 439,
-    "items": 453,
-    "open": 87,
+    "issues": 454,
+    "items": 468,
+    "open": 94,
     "prs": 14
   }
 }
