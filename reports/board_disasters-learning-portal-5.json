@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-11T18:08:47Z",
+  "generated": "2026-09-12T00:20:34Z",
   "items": [
     {
       "archived": false,
@@ -5367,7 +5367,7 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "ensure this is only done on 'develop'",
+      "body_excerpt": "ensure this is only done on 'develop'\n\nupdate package\nhandle breaking changes\n\n cardSimple size prop change\n cardCTA removed AsLink wrapper, removed accentColor, added description",
       "closed": null,
       "comments": 0,
       "created": "2026-08-19T15:36:13Z",
@@ -5398,8 +5398,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update theme to hds.css",
-      "updated": "2026-09-02T16:00:00Z",
+      "title": "Update theme to hds.css and handle breaking changes",
+      "updated": "2026-09-11T21:03:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/382"
     },
     {
@@ -7140,8 +7140,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
-        "total": 10
+        "completed": 2,
+        "total": 15
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
       "updated": "2026-09-10T20:46:04Z",
@@ -7826,6 +7826,261 @@
       "title": "Ingest: Black Marble BRDF daily (re-ingest), pre-event monthly composite, and cloud mask — Typhoon Sinlaku Apr 2026 (2 new collections)",
       "updated": "2026-09-11T15:17:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/465"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "New collection capella-backscatter-subdaily for the Capella SAR backscatter delivered for the Typhoon Sinlaku (Apr 2026) activation. Config is in disasters-data at ingestion-data/staging/dataset-config/capella-backscatter-subdaily.json. Spreadsheet status: Metadata Verified.\nDataset\n\nProduct: Capella Space sigma0 backscatter in dB, derived from the Geocoded Terrain Corrected (GEO) product. Float32, nodata -9999 (0 dB is real data and must never be used as nodata).\nSource delivery: s3://nasa-disasters/drcs_activations/202604_Typhoon_Sinlaku/Capella/ — 4 scenes over Guam, 1.2–2.2 GB each.\nNaming",
+      "closed": "2026-09-11T19:18:50Z",
+      "comments": 0,
+      "created": "2026-09-11T19:09:15Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-11",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-11",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6kWSs",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 466,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: Capella SAR backscatter — Typhoon Sinlaku Apr 2026 (new collection)",
+      "updated": "2026-09-11T19:18:50Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/466"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "New collection gpm-imerg-daily for the GPM IMERG daily precipitation accumulations delivered for the Typhoon Sinlaku (Apr 2026) activation. Config is in disasters-data at ingestion-data/staging/dataset-config/gpm-imerg-daily.json. No developer hand-off was provided; the description was assembled from the Earthdata GIS item (https://gis.earthdata.nasa.gov/portal/home/item.html?id=3d8fe28c96214dbc905a69001a55a20e) and GPM/GES DISC documentation.\nDataset\n\nProduct: daily total precipitation (mm) accumulated in Giovanni from the IMERG V07 half-hourly Level 3 product, 0.1° × 0.1° grid. Early run (3I",
+      "closed": "2026-09-11T20:12:53Z",
+      "comments": 0,
+      "created": "2026-09-11T20:08:35Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-11",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-11",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6kz4A",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 467,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: GPM IMERG daily precipitation — Typhoon Sinlaku Apr 2026 (new collection)",
+      "updated": "2026-09-11T20:13:33Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/467"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "New collection iceye-backscatter-subdaily for the ICEYE SAR backscatter delivered for the Typhoon Sinlaku (Apr 2026) activation. Config is in disasters-data at ingestion-data/staging/dataset-config/iceye-backscatter-subdaily.json.\nDataset\n\nProduct: ICEYE sigma0 backscatter in dB, calibrated from the Ground Range Detected (GRD) product. X-band SAR, acquired through NASA CSDA (ICEYE US).\nSource delivery: s3://nasa-disasters/drcs_activations/202604_Typhoon_Sinlaku/Iceye/ — 3 scenes over Guam, 600–680 MB each (plus an Upload/ subfolder that is not touched).\nNaming: files are renamed in place to th",
+      "closed": "2026-09-11T21:21:42Z",
+      "comments": 1,
+      "created": "2026-09-11T20:26:14Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-14",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-10",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6k7qc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 468,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: ICEYE SAR backscatter — Typhoon Sinlaku Apr 2026 (new collection)",
+      "updated": "2026-09-11T21:22:11Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/468"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "New collection umbra-gec-subdaily for the Umbra SAR backscatter delivered for the Typhoon Sinlaku (Apr 2026) activation. Config is in disasters-data at ingestion-data/staging/dataset-config/umbra-gec-subdaily.json.\nDataset\n\nProduct: Umbra sigma0 backscatter in dB, calibrated from the Umbra Geocoded Ellipsoid Corrected (GEC) product (X-band, 9.6/9.8 GHz center frequency, HH or VV single-pol; 0.25 m Spotlight / 0.50 m Scan per the CSDA vendor page). Float32, single band, EPSG:4326.\nInspected sample (202604_Guam_Umbra_BackscatterdB_20260414T115251Z.tif, 256,112,420 B): 8001 x 8001 float32, no nod",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-11T20:29:17Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6k9IY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 469,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Umbra SAR backscatter — Typhoon Sinlaku Apr 2026 (new collection)",
+      "updated": "2026-09-11T20:39:25Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/469"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Two new collections, satellogic-truecolor-subdaily and satellogic-colorir-subdaily, for the Satellogic optical imagery delivered for the Typhoon Sinlaku (Apr 2026) activation over Guam. Configs are in disasters-data at ingestion-data/staging/dataset-config/satellogic-truecolor-subdaily.json and satellogic-colorir-subdaily.json. One collection per product, following the sentinel2-*-subdaily pattern.\nDataset\n\nProduct: Satellogic true color (RGB: red, green, blue) and color infrared (NIR, red, green) composites from Satellogic's four-band (B, G, R, NIR) multispectral satellites, acquired through ",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-11T20:36:02Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6lAKE",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 470,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Satellogic true color + color infrared — Typhoon Sinlaku Apr 2026 (2 new collections)",
+      "updated": "2026-09-11T21:25:30Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/470"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Two new collections, skysat-truecolor-subdaily and skysat-colorir-subdaily, for the Planet SkySat optical scenes delivered for the Typhoon Sinlaku (Apr 2026) activation. Configs are in disasters-data at ingestion-data/staging/dataset-config/skysat-truecolor-subdaily.json and ingestion-data/staging/dataset-config/skysat-colorir-subdaily.json.\nThese are not folded into planet-truecolor-daily / planet-colorir-daily: those collections are PlanetScope, datetime_range: day / P1D, _day.tif names and license: CC0-1.0; SkySat is a different sensor (~50 cm vs ~3 m), the scenes are sub-daily multi-pass (",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-11T20:39:57Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg6lCSQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 471,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Planet SkySat true color + color infrared — Typhoon Sinlaku Apr 2026 (new collections)",
+      "updated": "2026-09-11T21:13:57Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/471"
     },
     {
       "archived": false,
@@ -18539,6 +18794,37 @@
     },
     {
       "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "acblackford",
+      "body_excerpt": "Create Product Landing Pages for Data Gallery\nSeveral data gallery product landing pages are needed for soft launch of the Disasters PORTAL on September 30, 2026. Every data product ingested in STAC and that is planned to be included in the custom visualization tool and/or content pieces needs an associated landing page.\n\n Landsat TrueColor\n Landsat ColorIR\n Landsat Natural Color\n Landsat NBR\n Landsat NDVI\n Landsat MNDWI\n S2 NDVI\n S2 MNDWI\n NISAR GUNW\n Planet TrueColor\n S1 Damage Assessment (CA Fire)\n OPERA Coherence\n AVIRIS DNBR\n AVIRIS Early Look\n Black Marble Blue/Yellow\n Black Marble HD\n G",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-11T19:15:33Z",
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_lADODdLRP84BMP5Rzg6kgGg",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 863,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "NASA-IMPACT/veda-architecture",
+      "state": "open",
+      "state_reason": null,
+      "title": "Create Product Landing Pages for Data Gallery",
+      "updated": "2026-09-11T20:08:29Z",
+      "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/863"
+    },
+    {
+      "archived": false,
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Seed sub-issue (O1.L3, depth 3, kind spine).\nCreated by seed/seed_subissue_tree.py to exercise pr-finder. Safe to delete.",
@@ -18852,15 +19138,16 @@
     "Disasters-Learning-Portal/disasters-tracking",
     "Disasters-Learning-Portal/veda-disasters",
     "NASA-IMPACT/dse-tasks",
+    "NASA-IMPACT/veda-architecture",
     "kyle-lesinger/veda-subissue-seed"
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 375,
+    "closed": 378,
     "drafts": 0,
-    "issues": 455,
-    "items": 469,
-    "open": 94,
+    "issues": 462,
+    "items": 476,
+    "open": 98,
     "prs": 14
   }
 }
