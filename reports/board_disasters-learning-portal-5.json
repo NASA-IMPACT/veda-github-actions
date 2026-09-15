@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-14T18:09:16Z",
+  "generated": "2026-09-15T00:22:16Z",
   "items": [
     {
       "archived": false,
@@ -8133,6 +8133,42 @@
       "title": "Update DP - About Page",
       "updated": "2026-09-14T16:30:50Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/473"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Event: U.S. Winter Storm January 2026 (portal id us-winter-storm-jan-2026, start 2026-01-23).\nEarthdata GIS group: https://gis.earthdata.nasa.gov/portal/home/group.html?id=461a5be76a2c4e6db6ec470657a6f9d6\nGoal\nConfirm every product delivered for this event lives under the S3 prefix its dataset config discovers from in nasa-disasters-staging. Anything found elsewhere gets moved into the correct prefix, and anything moved gets re-ingested so it shows up in the dev STAC collection.\nProducts to check\n\n\n\nProduct\nExpected prefix (s3://nasa-disasters-staging/)\nSTAC collection\nConfig (disasters-data)\n",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-14T21:11:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg67_9o",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 474,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Verify Jan 2026 US Winter Storm data is in the correct nasa-disasters-staging prefixes and ingested",
+      "updated": "2026-09-14T21:12:07Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/474"
     },
     {
       "archived": false,
@@ -19197,9 +19233,9 @@
   "stats": {
     "closed": 383,
     "drafts": 0,
-    "issues": 463,
-    "items": 477,
-    "open": 94,
+    "issues": 464,
+    "items": 478,
+    "open": 95,
     "prs": 14
   }
 }
