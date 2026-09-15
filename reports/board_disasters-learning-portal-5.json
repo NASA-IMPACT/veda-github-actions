@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-15T12:11:42Z",
+  "generated": "2026-09-15T18:08:52Z",
   "items": [
     {
       "archived": false,
@@ -3428,7 +3428,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 8,
+        "completed": 10,
         "total": 23
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
@@ -4742,7 +4742,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge"
+      ],
       "author": "vgeorge",
       "body_excerpt": "The 'View Data' button on data detail pages (/data-gallery/[id]) doesn't do anything.\nFigma designs also include a 'Process Data' button. The purpose of both needs to be clarified so they can be finished.\n\nNotes:\n\nReported before in #258, closed without the button working\nAfter #366 the card CTA also reads \"View Data\", so the button duplicates the link that got you to the page. If it stays, it likely needs different text\n#366 suggests deriving the label from CONTENT_TYPES[contentType].label (thread). Depends on the outcome here\n\n@kyle-lesinger @ifsimicoded Should these open the data in the viz",
       "closed": null,
@@ -4778,7 +4780,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: links for data page view data buttons",
-      "updated": "2026-09-04T13:35:57Z",
+      "updated": "2026-09-15T15:49:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/367"
     },
     {
@@ -4996,11 +4998,13 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n\nConsider using one page template for all content pages",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-18T20:48:16Z",
       "draft": false,
       "fields": {
@@ -5030,7 +5034,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Add In Page Navigation to Dataset, News, Story, DataStory, Event, Training Page Templates",
-      "updated": "2026-08-20T18:53:57Z",
+      "updated": "2026-09-15T17:55:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/373"
     },
     {
@@ -5110,7 +5114,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Adds Search Bar and Search Page Placeholder",
-      "updated": "2026-09-02T18:04:49Z",
+      "updated": "2026-09-15T15:44:58Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/375"
     },
     {
@@ -5120,7 +5124,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Updates Gallery Pages to use CardDetailed per designs\n\n Data Gallery\n Training\n News & Events",
-      "closed": null,
+      "closed": "2026-09-15T17:19:39Z",
       "comments": 0,
       "created": "2026-08-18T21:00:21Z",
       "draft": false,
@@ -5134,7 +5138,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3DPnI",
       "issue_type": null,
@@ -5148,10 +5153,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "HDS Compliance: Updates Gallery Pages to use CardDetailed",
-      "updated": "2026-09-14T16:24:22Z",
+      "updated": "2026-09-15T17:19:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/376"
     },
     {
@@ -5161,7 +5166,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Adds helpers and hooks for pagination processing\n Adds Pagination component and processing to gallery pages\n\n\nTraining\nNews & Events\nData\n\n\n Adds pattern for managing pagination in routes (via /page/ or ?page=)",
-      "closed": null,
+      "closed": "2026-09-15T15:44:26Z",
       "comments": 0,
       "created": "2026-08-18T21:04:08Z",
       "draft": false,
@@ -5175,7 +5180,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3DRus",
       "issue_type": null,
@@ -5189,15 +5195,18 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Add Pagination to all gallery pages",
-      "updated": "2026-09-01T15:27:03Z",
+      "updated": "2026-09-15T15:44:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/377"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge",
+        "willemarcel"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)",
       "closed": null,
@@ -5231,7 +5240,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-09-07T09:21:14Z",
+      "updated": "2026-09-15T15:47:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5448,7 +5457,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "willemarcel"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Date should show on left panel as a tag\n Should use standard content page template",
       "closed": null,
@@ -5482,7 +5493,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Training page",
-      "updated": "2026-08-20T18:52:47Z",
+      "updated": "2026-09-15T15:48:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
     },
     {
@@ -7144,7 +7155,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 5,
+        "completed": 7,
         "total": 15
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
@@ -7194,14 +7205,18 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH — Sinlaku currently has 0/4; Venezuela 3/4.\nDataset\n\nProduct: Umbra SAR Geocoded Ellipsoid Corrected (GEC) sigma-nought, via CSDA.\nExisting collection: umbra-gec-test — only 3 items total (2026-05-22 at 147.4°E 3.0°N; 2026-08-05 and 08-08 in Arizona/Utah). It is still a -test collection.\n\nNeeded items\n\nTyphoon Sinlaku, Apr 2026: Guam / Saipan scenes ~2026-04-12 → 04-20. The story page (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026) already shows a static Umbra image of Antonio B. Won Pat International Airport dated 20",
-      "closed": null,
+      "closed": "2026-09-15T15:07:51Z",
       "comments": 0,
       "created": "2026-09-10T20:40:10Z",
       "draft": false,
       "fields": {
+        "End Date": "2026-09-15",
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -7211,7 +7226,9 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Start Date": "2026-09-14",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Ztgw",
       "issue_type": null,
@@ -7227,10 +7244,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: Umbra SAR GEC scenes — Typhoon Sinlaku (Guam) and Venezuela EQ",
-      "updated": "2026-09-10T20:40:10Z",
+      "updated": "2026-09-15T15:07:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/450"
     },
     {
@@ -7276,10 +7293,12 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for Texas (7/4).\nDataset\n\nProduct: GPM IMERG precipitation (Early/Late run accumulation, e.g. 1-day / 3-day / event-total).\nCurrent state: no IMERG / precipitation collection of any kind in https://dev.disasters.openveda.cloud/api/stac/collections.\nNamed in story text for both events:\n\nSinlaku (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026): \"NASA also shared IMERG satellite precipitation data to assess rainfall impacts when ground-based weather radars … were down\".\nTexas Floods (https://dev.",
-      "closed": null,
+      "closed": "2026-09-15T15:08:15Z",
       "comments": 0,
       "created": "2026-09-10T20:40:13Z",
       "draft": false,
@@ -7293,14 +7312,13 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Zths",
       "issue_type": null,
       "kind": "issue",
-      "labels": [
-        "dataServices"
-      ],
+      "labels": [],
       "milestone": null,
       "number": 452,
       "parent": {
@@ -7309,10 +7327,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: IMERG precipitation — Typhoon Sinlaku and Texas Floods (new collection)",
-      "updated": "2026-09-10T20:40:13Z",
+      "updated": "2026-09-15T15:08:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/452"
     },
     {
@@ -7582,7 +7600,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Info\nThe two GAIA gridded building exposure collections render with a long inline interval colormap embedded as a JSON string in their STAC renders block. NASA-IMPACT/veda-backend#650 adds a named gaia-exposure colormap to the raster API so the layers can reference it by name instead.\n\n\n\n\n\n\n\n\n\nCollections\ngaia-total-composite (asset total)gaia-wood-composite (asset wood)\n\n\nEnvironment\ndev / staging\n\n\nDataset configs\ndisasters-data/ingestion-data/staging/dataset-config/gaia-total-composite.jsondisasters-data/ingestion-data/staging/dataset-config/gaia-wood-composite.json\n\n\nBackend PR\nNASA-IMPACT",
-      "closed": null,
+      "closed": "2026-09-15T13:15:19Z",
       "comments": 0,
       "created": "2026-09-10T21:12:17Z",
       "draft": false,
@@ -7597,7 +7615,7 @@
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Z-I4",
       "issue_type": null,
@@ -7614,10 +7632,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Use named gaia-exposure colormap for GAIA building exposure layers",
-      "updated": "2026-09-10T21:12:42Z",
+      "updated": "2026-09-15T13:15:20Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/459"
     },
     {
@@ -7739,7 +7757,7 @@
       "state": "open",
       "state_reason": null,
       "title": "FY27 Viz tool follow-ups: Sum statistic, layer auto-zoom, grouped layer cards, splash-screen user guide",
-      "updated": "2026-09-10T21:21:53Z",
+      "updated": "2026-09-15T13:44:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/463"
     },
     {
@@ -7751,7 +7769,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Related: #453 (LHASA / landslide hazard ingest for Sinlaku and Texas Floods).\nDataset\n\nProduct: LHASA (Landslide Hazard Assessment for Situational Awareness) landslide nowcast.\nCurrent state: not in the Disasters STAC. MAAP already has the data within their STAC catalog. The GIS service has some info on the product.\n\nTo do\n\n Investigate LHASA access via the MAAP STAC (collection id, asset format, auth requirements)\n Pull any additional product details from the GIS service\n Index the collection into the Disasters STAC\n\nNotes\n\nLeave the option open to use a static image for initial launch. We wi",
       "closed": null,
-      "comments": 4,
+      "comments": 6,
       "created": "2026-09-10T21:41:51Z",
       "draft": false,
       "fields": {
@@ -7781,7 +7799,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Investigate LHASA access and index collection into Disasters STAC",
-      "updated": "2026-09-11T15:18:08Z",
+      "updated": "2026-09-15T15:21:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/464"
     },
     {
@@ -8097,7 +8115,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "ifsimicoded"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "Team Image deleted\n Team cards introduced\n Any additional content changes to match figma\n\nhttps://www.figma.com/design/a2L7j6wVWUtygMy3B4J0bZ/TinaCMS---Components?node-id=7815-13974&m=dev",
       "closed": null,
@@ -8131,17 +8151,108 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP - About Page",
-      "updated": "2026-09-14T16:30:50Z",
+      "updated": "2026-09-15T15:48:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/473"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Event: U.S. Winter Storm January 2026 (portal id us-winter-storm-jan-2026, start 2026-01-23).\nEarthdata GIS group: https://gis.earthdata.nasa.gov/portal/home/group.html?id=461a5be76a2c4e6db6ec470657a6f9d6\nGoal\nConfirm every product delivered for this event lives under the S3 prefix its dataset config discovers from in nasa-disasters-staging. Anything found elsewhere gets moved into the correct prefix, and anything moved gets re-ingested so it shows up in the dev STAC collection.\nProducts to check\n\n\n\nProduct\nExpected prefix (s3://nasa-disasters-staging/)\nSTAC collection\nConfig (disasters-data)\n",
+      "closed": "2026-09-15T13:43:47Z",
+      "comments": 0,
+      "created": "2026-09-14T21:11:24Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-15",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-14",
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg67_9o",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 474,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Verify Jan 2026 US Winter Storm data is in the correct nasa-disasters-staging prefixes and ingested",
+      "updated": "2026-09-15T13:43:47Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/474"
     },
     {
       "archived": false,
       "assignees": [],
       "author": "kyle-lesinger",
-      "body_excerpt": "Event: U.S. Winter Storm January 2026 (portal id us-winter-storm-jan-2026, start 2026-01-23).\nEarthdata GIS group: https://gis.earthdata.nasa.gov/portal/home/group.html?id=461a5be76a2c4e6db6ec470657a6f9d6\nGoal\nConfirm every product delivered for this event lives under the S3 prefix its dataset config discovers from in nasa-disasters-staging. Anything found elsewhere gets moved into the correct prefix, and anything moved gets re-ingested so it shows up in the dev STAC collection.\nProducts to check\n\n\n\nProduct\nExpected prefix (s3://nasa-disasters-staging/)\nSTAC collection\nConfig (disasters-data)\n",
+      "body_excerpt": "New collection opera-distalert-gen-dist-status-daily for the OPERA DIST-ALERT GEN-DIST-STATUS layer delivered for the Texas Floods July 2025 activation. Config is in disasters-data at ingestion-data/staging/dataset-config/opera-distalert-gen-dist-status-daily.json. The collection is live on dev with its first item: https://dev.disasters.openveda.cloud/api/stac/collections/opera-distalert-gen-dist-status-daily\nThis is not folded into opera-distalert-s1-daily: that collection's single asset is the disturbance_track product with classes 0/1/2 (none / moderate / high confidence), while GEN-DIST-ST",
       "closed": null,
       "comments": 0,
-      "created": "2026-09-14T21:11:24Z",
+      "created": "2026-09-15T13:44:37Z",
+      "draft": false,
+      "fields": {
+        "End Date": "2026-09-15",
+        "Priority": "High",
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Start Date": "2026-09-15"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7DyUo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 476,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: OPERA DIST-ALERT GEN-DIST-STATUS — Texas Floods Jul 2025 (new collection)",
+      "updated": "2026-09-15T13:53:34Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/476"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Tracking issue for the PORTAL Content Review – Sept 2026 (notes updated 9/11/26). Review site: PR #403 preview (https://pr-403.d1cvmssihw8emg.amplifyapp.com).\nEach page section below will be addressed in its own PR and linked here for review. 🔴 marks items flagged during the review meeting as needing a decision or dev-team follow-up.\n\n1. Home page — /disasters\nPR: #477\n\n Under Let's Connect → Contact Our Team, replace the email address with disasters@nasa.gov\n Data visualization caption: change \"Yellow represents the presence of more light; dark blue less lights.\" to \"Yellow represents more li",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-15T14:31:33Z",
       "draft": false,
       "fields": {
         "Program Increment": {
@@ -8155,20 +8266,173 @@
           "title": "26.4.3"
         }
       },
-      "id": "PVTI_lADODdLRP84BMP5Rzg67_9o",
+      "id": "PVTI_lADODdLRP84BMP5Rzg7EY34",
       "issue_type": null,
       "kind": "issue",
-      "labels": [
-        "dataServices"
-      ],
+      "labels": [],
       "milestone": null,
-      "number": 474,
+      "number": 479,
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Verify Jan 2026 US Winter Storm data is in the correct nasa-disasters-staging prefixes and ingested",
-      "updated": "2026-09-14T21:12:07Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/474"
+      "title": "PORTAL Content Review Sept 2026 — soft-launch page fixes",
+      "updated": "2026-09-15T14:33:18Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/479"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ifsimicoded",
+        "anayeaye"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nContent pages need to embed the Black Marble Nighttime Blue/Yellow Composite as a live map, first for the \"Tools You Can Use: Mapping Flood Impacts\" data story (#479, section 11: \"make each visualization interactive\"; page work in #480). The portal cannot render it today.\nThe dev STAC has the collection VIIRS_SNPP_DayNightBand_AtSensor_M15, but it is a pointer to NASA GIBS, not a set of COGs:\n\nzero items, no renders, no item_assets\na wmts link: https://gibs{s}.earthdata.nasa.gov/wmts/epsg3857/best/wmts.cgi with wmts:layer: [\"VIIRS_SNPP_DayNightBand_AtSensor_M15\"]\n\nBoth portal map block",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-15T14:50:58Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7Em28",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 481,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Add a URL tile layer block so content can embed GIBS Black Marble Blue/Yellow (as MMGIS does)",
+      "updated": "2026-09-15T14:53:22Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/481"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nThe Sept 2026 content review (#479) asks for in-page navigation in the left sidebar of long-form pages, jumping to the story's section headings. Requested for Finding the Floods (section 4, PR #482), Estimating Loss to Speed Recovery (section 13) and the EO Building Exposure training (section 14, flagged 🔴).\nToday PageSidebar (app/components/PageSidebar.tsx) only shows type, theme, hazard tags and related content, and carries // TODO: update to include inpage navigation. Section headings rendered by ContentHeading in app/components/ContentBlockRenderer.tsx have no id, so there is nothi",
+      "closed": null,
+      "comments": 2,
+      "created": "2026-09-15T15:24:15Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7E_Bs",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 483,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Add in-page navigation to the training page sidebar (story pages done in #482)",
+      "updated": "2026-09-15T16:08:46Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/483"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nIn the \"Explore the UAVSAR Flood Maps\" map on Finding the Floods (/news-events/finding-floods, preview on PR #482), the layer info box truncates both the product name and the attribution with an ellipsis: \"UAVSAR Classified Imagery..\" and \"NASA Jet Propulsion Labo..\". There is no way for a reader to see the full text. Raised in the Sept 2026 content review (#479, section 4) and flagged 🔴 for the dev team.\nTwo related asks from the same review:\n\nWrap the title text rather than truncating it.\nConsider removing the attribution from the legend box entirely. The attribution must still appea",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-15T15:24:30Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7E_LE",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 484,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Map info box truncates product name and attribution; classified layers need a categorical legend",
+      "updated": "2026-09-15T15:24:30Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/484"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "vgeorge",
+        "ifsimicoded",
+        "fannycc"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Need\nFrom the Sept 2026 content review (#479, sitewide note under section 6):\n\nAll \"News\", \"Story of Impact\", and \"Data Story\" items should have a publish date at the top. Migrated items are back-dated; new items get a selectable publish date defaulting to today.\n\nPlus the sitewide date-format guidance (NASA Stylebook v14 / AP style): abbreviate months longer than five letters (Jan., Feb., Aug., Sept., Oct., Nov., Dec.), spell out March through July, no ordinal suffix, comma between day and year (June 5, 2024).\nWhat exists after #482\n\nStoryContent.date?: string (ISO date) is rendered on story ",
+      "closed": null,
+      "comments": 2,
+      "created": "2026-09-15T15:42:56Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7FLhc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 485,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
+      "updated": "2026-09-15T16:08:43Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
     },
     {
       "archived": false,
@@ -19216,6 +19480,11 @@
       "avatar": "https://avatars.githubusercontent.com/u/306179?v=4",
       "login": "wildintellect",
       "name": "Alex I. Mandel"
+    },
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/666291?u=50008ec15a304d5a1c17941133207ed161e9e4fd&v=4",
+      "login": "willemarcel",
+      "name": "Wille Marcel"
     }
   ],
   "repos": [
@@ -19231,10 +19500,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 383,
+    "closed": 389,
     "drafts": 0,
-    "issues": 464,
-    "items": 478,
+    "issues": 470,
+    "items": 484,
     "open": 95,
     "prs": 14
   }
