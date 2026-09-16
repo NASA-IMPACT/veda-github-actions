@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-15T18:08:52Z",
+  "generated": "2026-09-16T00:20:33Z",
   "items": [
     {
       "archived": false,
@@ -3429,7 +3429,7 @@
       "state_reason": null,
       "sub": {
         "completed": 10,
-        "total": 23
+        "total": 25
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -4963,7 +4963,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Creates a reusable filter block that contains filters per Figma\n\nText Search Input\nThemes Checkboxes in Accordion\nHazards Checkboxes in Accordion\nNote, events will be added later as we do not yet have designs.\n\n\n Reusable filter block manages filter state as a single object which can be used on all gallery pages.\n Filter logic is decoupled from view and managed via a hook and composed helper functions with tests (useFilters, filter.helpers.ts)\n Adds filter block to training gallery, news and events gallery and data gallery pages\n Considers that events and text search filtering will be added la",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-18T20:45:36Z",
       "draft": false,
       "fields": {
@@ -4993,7 +4993,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Add Filters for Themes, Hazards",
-      "updated": "2026-08-19T12:25:13Z",
+      "updated": "2026-09-15T19:54:10Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/372"
     },
     {
@@ -6509,9 +6509,9 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Homepage masthead should include Learn About Us button which directs to about page. It should be red.\n Cards should be updated, but the design is incomplete",
+      "body_excerpt": "Homepage masthead should include Learn About Us button which directs to about page. It should be red.\n cardCTAs should be updated",
       "closed": null,
-      "comments": 0,
+      "comments": 3,
       "created": "2026-09-02T15:44:41Z",
       "draft": false,
       "fields": {
@@ -6524,14 +6524,13 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5HU1k",
       "issue_type": null,
       "kind": "issue",
-      "labels": [
-        "blocked"
-      ],
+      "labels": [],
       "milestone": null,
       "number": 416,
       "parent": {
@@ -6541,9 +6540,9 @@
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
-      "state_reason": null,
+      "state_reason": "reopened",
       "title": "Update DP: Homepage masthead CTA and Cards",
-      "updated": "2026-09-10T16:58:24Z",
+      "updated": "2026-09-15T22:06:43Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -8362,7 +8361,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Problem\nIn the \"Explore the UAVSAR Flood Maps\" map on Finding the Floods (/news-events/finding-floods, preview on PR #482), the layer info box truncates both the product name and the attribution with an ellipsis: \"UAVSAR Classified Imagery..\" and \"NASA Jet Propulsion Labo..\". There is no way for a reader to see the full text. Raised in the Sept 2026 content review (#479, section 4) and flagged 🔴 for the dev team.\nTwo related asks from the same review:\n\nWrap the title text rather than truncating it.\nConsider removing the attribution from the legend box entirely. The attribution must still appea",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-15T15:24:30Z",
       "draft": false,
       "fields": {
@@ -8390,7 +8389,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Map info box truncates product name and attribution; classified layers need a categorical legend",
-      "updated": "2026-09-15T15:24:30Z",
+      "updated": "2026-09-15T21:35:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/484"
     },
     {
@@ -8427,12 +8426,59 @@
       ],
       "milestone": null,
       "number": 485,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
       "updated": "2026-09-15T16:08:43Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "What changed\nEmbedded maps on the review site (e.g. the home page Data Visualization and the Finding the Floods UAVSAR map) used to show a \"Click to interact with the map\" overlay. They now show maplibre's \"Use Ctrl + scroll to zoom the map\" (⌘ on Mac). Garrett Layne raised it on the #403 review: the new behaviour is less user-friendly.\nThis was not a stray leftover. It is an upstream library change that the portal followed:\n\n\n\nDate\nWhere\nChange\n\n\n\n\nJul 2\nlibrary PR NASA-IMPACT/tinacms-portal-monorepo#335\nAdded the click-to-interact overlay (MapScrollGuard, showScrollGuard prop)\n\n\nJul 3\nportal",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-15T20:34:57Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7HroA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dashboard",
+        "blocked"
+      ],
+      "milestone": null,
+      "number": 496,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
+      "updated": "2026-09-15T21:08:37Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
       "archived": false,
@@ -19502,9 +19548,9 @@
   "stats": {
     "closed": 389,
     "drafts": 0,
-    "issues": 470,
-    "items": 484,
-    "open": 95,
+    "issues": 471,
+    "items": 485,
+    "open": 96,
     "prs": 14
   }
 }
