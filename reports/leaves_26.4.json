@@ -2,7 +2,7 @@
   "meta": {
     "pi": "26.4",
     "year": 2026,
-    "generated": "2026-09-17T18:03:30Z",
+    "generated": "2026-09-17T19:02:10Z",
     "source_file": "DSE Leave Tracker - 26.4.xlsx",
     "span": {
       "start": "2026-07-06",
@@ -19,7 +19,7 @@
     "team_size": {
       "2i2c": 7,
       "DSE - Manage": 6,
-      "DevSeed": 31,
+      "DevSeed": 32,
       "Disasters": 3,
       "MSFC": 2,
       "UAH": 24
@@ -2784,6 +2784,134 @@
       ]
     },
     {
+      "slug": "wille-marcel",
+      "name": "Wille Marcel",
+      "team": "DevSeed",
+      "role": "VEDA - Dashboard",
+      "leaves": [
+        {
+          "date": "2026-08-24",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-25",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-26",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-27",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-08-28",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-02",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-03",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-04",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-09",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-09-10",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-19",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-20",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-21",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-22",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        },
+        {
+          "date": "2026-10-23",
+          "status": "unavailable",
+          "out": true,
+          "weight": 1.0,
+          "note": null,
+          "source": "xlsx"
+        }
+      ]
+    },
+    {
       "slug": "zac-deziel",
       "name": "Zac Deziel",
       "team": "DevSeed",
@@ -3374,33 +3502,9 @@
         },
         {
           "date": "2026-09-25",
-          "status": "unavailable",
-          "out": true,
-          "weight": 1.0,
-          "note": null,
-          "source": "xlsx"
-        },
-        {
-          "date": "2026-10-05",
-          "status": "unavailable",
-          "out": true,
-          "weight": 1.0,
-          "note": null,
-          "source": "xlsx"
-        },
-        {
-          "date": "2026-10-06",
-          "status": "unavailable",
-          "out": true,
-          "weight": 1.0,
-          "note": null,
-          "source": "xlsx"
-        },
-        {
-          "date": "2026-10-07",
-          "status": "unavailable",
-          "out": true,
-          "weight": 1.0,
+          "status": "limited",
+          "out": false,
+          "weight": 0.5,
           "note": null,
           "source": "xlsx"
         },

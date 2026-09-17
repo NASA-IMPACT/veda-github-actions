@@ -298,6 +298,21 @@ DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-20,Tue,43,unavailable
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
 DevSeed,Vitor George,vitor-george,VEDA - Dashboard,2026-10-23,Fri,43,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-08-24,Mon,35,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-08-25,Tue,35,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-08-26,Wed,35,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-08-27,Thu,35,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-08-28,Fri,35,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-09-02,Wed,36,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-09-03,Thu,36,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-09-04,Fri,36,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-09-09,Wed,37,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-09-10,Thu,37,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-10-19,Mon,43,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-10-20,Tue,43,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-10-21,Wed,43,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-10-22,Thu,43,unavailable,true,1.0,,xlsx
+DevSeed,Wille Marcel,wille-marcel,VEDA - Dashboard,2026-10-23,Fri,43,unavailable,true,1.0,,xlsx
 Disasters,Jacob Reed,jacob-reed,,2026-08-07,Fri,32,planned_time_off,true,1.0,,override
 Disasters,Ronan Lucey,ronan-lucey,,2026-07-30,Thu,31,other,false,0.0,,override
 Disasters,Ronan Lucey,ronan-lucey,,2026-07-31,Fri,31,other,false,0.0,,override
@@ -349,10 +364,7 @@ UAH,Paridhi Parajuli,paridhi-parajuli,DSE - Developer,2026-08-04,Tue,32,unavaila
 UAH,Paridhi Parajuli,paridhi-parajuli,DSE - Developer,2026-08-05,Wed,32,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-08-17,Mon,34,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-09-07,Mon,37,unavailable,true,1.0,,xlsx
-UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-09-25,Fri,39,unavailable,true,1.0,,xlsx
-UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-05,Mon,41,unavailable,true,1.0,,xlsx
-UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-06,Tue,41,unavailable,true,1.0,,xlsx
-UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-07,Wed,41,unavailable,true,1.0,,xlsx
+UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-09-25,Fri,39,limited,false,0.5,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-08,Thu,41,unavailable,true,1.0,,xlsx
 UAH,Sheyenne Kirkland,sheyenne-kirkland,GHGC - LEAD,2026-10-09,Fri,41,unavailable,true,1.0,,xlsx
 UAH,Sijan Bhattarai,sijan-bhattarai,DSE - Developer,2026-08-14,Fri,33,unavailable,true,1.0,,xlsx
