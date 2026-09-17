@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-16T18:09:25Z",
+  "generated": "2026-09-17T00:20:30Z",
   "items": [
     {
       "archived": false,
@@ -8440,7 +8440,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "What changed\nEmbedded maps on the review site (e.g. the home page Data Visualization and the Finding the Floods UAVSAR map) used to show a \"Click to interact with the map\" overlay. They now show maplibre's \"Use Ctrl + scroll to zoom the map\" (⌘ on Mac). Garrett Layne raised it on the #403 review: the new behaviour is less user-friendly.\nThis was not a stray leftover. It is an upstream library change that the portal followed:\n\n\n\nDate\nWhere\nChange\n\n\n\n\nJul 2\nlibrary PR NASA-IMPACT/tinacms-portal-monorepo#335\nAdded the click-to-interact overlay (MapScrollGuard, showScrollGuard prop)\n\n\nJul 3\nportal",
       "closed": null,
-      "comments": 4,
+      "comments": 5,
       "created": "2026-09-15T20:34:57Z",
       "draft": false,
       "fields": {
@@ -8473,7 +8473,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
-      "updated": "2026-09-16T17:44:01Z",
+      "updated": "2026-09-16T22:07:49Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
