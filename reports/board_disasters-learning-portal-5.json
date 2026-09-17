@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-17T12:11:59Z",
+  "generated": "2026-09-17T18:09:53Z",
   "items": [
     {
       "archived": false,
@@ -2547,7 +2547,7 @@
       "author": "acblackford",
       "body_excerpt": "A plan will need to be drafted for an agreement of work for any additional VEDA team support in FY27 for CRC algorithms and workflows for activations.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-06-30T15:30:02Z",
       "draft": false,
       "fields": {},
@@ -2566,7 +2566,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Draft ~1 Year Plan (FY27)",
-      "updated": "2026-06-30T15:30:02Z",
+      "updated": "2026-09-17T13:16:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/297"
     },
     {
@@ -4035,8 +4035,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nScope automation for triggering a DPS job in response to a cloud notification message (e.g. S3 event / SNS / SQS). To make automation possible, we need to identify what is fixed in the algorithm inputs vs. what is searchable/derivable from the incoming files.\nAcceptance Criteria\n\n Identify the notification source and format (e.g. S3 event, SNS/SQS)\n Identify which algorithm parameters are fixed vs. derived from file/metadata\n Determine what is searchable from the files to populate job inputs\n Produce a scoping doc / recommended architecture for automated triggering\n\nContext\n\nParent PoC",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-17T13:15:19Z",
+      "comments": 1,
       "created": "2026-07-31T19:18:02Z",
       "draft": false,
       "fields": {
@@ -4049,7 +4049,8 @@
           "duration": 21,
           "startDate": "2026-07-19",
           "title": "26.4.1"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg02UkI",
       "issue_type": null,
@@ -4063,10 +4064,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "DPS: Auto-trigger a job from a cloud notification message (scoping)",
-      "updated": "2026-07-31T19:18:02Z",
+      "updated": "2026-09-17T13:15:19Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/346"
     },
     {
@@ -8205,7 +8206,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "New collection opera-distalert-gen-dist-status-daily for the OPERA DIST-ALERT GEN-DIST-STATUS layer delivered for the Texas Floods July 2025 activation. Config is in disasters-data at ingestion-data/staging/dataset-config/opera-distalert-gen-dist-status-daily.json. The collection is live on dev with its first item: https://dev.disasters.openveda.cloud/api/stac/collections/opera-distalert-gen-dist-status-daily\nThis is not folded into opera-distalert-s1-daily: that collection's single asset is the disturbance_track product with classes 0/1/2 (none / moderate / high confidence), while GEN-DIST-ST",
-      "closed": null,
+      "closed": "2026-09-17T13:13:59Z",
       "comments": 0,
       "created": "2026-09-15T13:44:37Z",
       "draft": false,
@@ -8222,7 +8223,8 @@
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
-        "Start Date": "2026-09-15"
+        "Start Date": "2026-09-15",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7DyUo",
       "issue_type": null,
@@ -8238,10 +8240,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: OPERA DIST-ALERT GEN-DIST-STATUS — Texas Floods Jul 2025 (new collection)",
-      "updated": "2026-09-15T13:53:34Z",
+      "updated": "2026-09-17T13:14:01Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/476"
     },
     {
@@ -8275,7 +8277,7 @@
       "state": "open",
       "state_reason": null,
       "title": "PORTAL Content Review Sept 2026 — soft-launch page fixes",
-      "updated": "2026-09-15T14:33:18Z",
+      "updated": "2026-09-17T13:47:08Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/479"
     },
     {
@@ -8440,7 +8442,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "What changed\nEmbedded maps on the review site (e.g. the home page Data Visualization and the Finding the Floods UAVSAR map) used to show a \"Click to interact with the map\" overlay. They now show maplibre's \"Use Ctrl + scroll to zoom the map\" (⌘ on Mac). Garrett Layne raised it on the #403 review: the new behaviour is less user-friendly.\nThis was not a stray leftover. It is an upstream library change that the portal followed:\n\n\n\nDate\nWhere\nChange\n\n\n\n\nJul 2\nlibrary PR NASA-IMPACT/tinacms-portal-monorepo#335\nAdded the click-to-interact overlay (MapScrollGuard, showScrollGuard prop)\n\n\nJul 3\nportal",
       "closed": null,
-      "comments": 5,
+      "comments": 6,
       "created": "2026-09-15T20:34:57Z",
       "draft": false,
       "fields": {
@@ -8473,7 +8475,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
-      "updated": "2026-09-16T22:07:49Z",
+      "updated": "2026-09-17T15:04:01Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
@@ -19620,11 +19622,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 389,
+    "closed": 391,
     "drafts": 0,
     "issues": 473,
     "items": 487,
-    "open": 98,
+    "open": 96,
     "prs": 14
   }
 }
