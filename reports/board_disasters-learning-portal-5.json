@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-17T18:09:53Z",
+  "generated": "2026-09-18T00:21:08Z",
   "items": [
     {
       "archived": false,
@@ -7155,8 +7155,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 7,
-        "total": 15
+        "completed": 8,
+        "total": 16
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
       "updated": "2026-09-10T20:46:04Z",
@@ -8555,6 +8555,50 @@
       "title": "Update DP: Create SectionFeatured (without image)",
       "updated": "2026-09-16T16:48:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/500"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Backfill the Sentinel-2 Color Infrared ingest for the July 2025 Central Texas flood activation (202507_Flood_TX) so the event has complete ColorIR coverage in the published STAC.\nFiled here because issues are disabled on Disasters-Learning-Portal/disasters-data, where the ingest configs and scripts live.\nCurrent state\nChecked against the dev STAC (https://dev.disasters.openveda.cloud/api/stac) on 2026-09-17. Only 5 items carry event:name = 202507_Flood_TX across both ColorIR collections — all in sentinel2-colorir-daily; sentinel2-colorir-subdaily has none:\n\n\n\nDate\nItem\n\n\n\n\n2025-06-17\nsentinel2",
+      "closed": "2026-09-17T21:12:44Z",
+      "comments": 0,
+      "created": "2026-09-17T20:35:37Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7fYjM",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 512,
+      "parent": {
+        "number": 448,
+        "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Backfill Sentinel-2 Color Infrared ingest for 202507_Flood_TX (July 2025 Texas floods)",
+      "updated": "2026-09-17T21:12:57Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/512"
     },
     {
       "archived": false,
@@ -19622,10 +19666,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 391,
+    "closed": 392,
     "drafts": 0,
-    "issues": 473,
-    "items": 487,
+    "issues": 474,
+    "items": 488,
     "open": 96,
     "prs": 14
   }
