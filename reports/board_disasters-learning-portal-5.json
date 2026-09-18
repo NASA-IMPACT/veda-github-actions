@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-18T12:11:15Z",
+  "generated": "2026-09-18T18:09:04Z",
   "items": [
     {
       "archived": false,
@@ -8396,11 +8396,13 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Need\nFrom the Sept 2026 content review (#479, sitewide note under section 6):\n\nAll \"News\", \"Story of Impact\", and \"Data Story\" items should have a publish date at the top. Migrated items are back-dated; new items get a selectable publish date defaulting to today.\n\nPlus the sitewide date-format guidance (NASA Stylebook v14 / AP style): abbreviate months longer than five letters (Jan., Feb., Aug., Sept., Oct., Nov., Dec.), spell out March through July, no ordinal suffix, comma between day and year (June 5, 2024).\nWhat exists after #482\n\nStoryContent.date?: string (ISO date) is rendered on story ",
       "closed": null,
-      "comments": 3,
+      "comments": 4,
       "created": "2026-09-15T15:42:56Z",
       "draft": false,
       "fields": {
@@ -8433,7 +8435,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
-      "updated": "2026-09-16T16:30:40Z",
+      "updated": "2026-09-18T14:11:35Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
     },
     {
@@ -8480,7 +8482,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "vgeorge"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "From Kyle's word doc of change requests from a review with Disasters team",
       "closed": null,
@@ -8514,7 +8518,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: update news-events route to news-events-stories",
-      "updated": "2026-09-16T16:39:33Z",
+      "updated": "2026-09-18T17:22:09Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/499"
     },
     {
@@ -8599,6 +8603,137 @@
       "title": "Backfill Sentinel-2 Color Infrared ingest for 202507_Flood_TX (July 2025 Texas floods)",
       "updated": "2026-09-17T21:12:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/512"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "This records the final agreed convention for where products are published, so it can be documented and enforced in code.\nCanonical location\nAll products publish to a single bucket under a three-level key:\ns3://nasa-disasters-staging/ProgramData/<Sensor>/<Product>/<filename>.tif\n\nNo event, date, or Output/ level in the key — the activation event lives in the GeoTIFF tags. Verified against a full bucket listing: 3,752 of 3,757 objects sit at exactly this depth; zero objects contain an /Output/ segment.\nSensor directories\nLandsat/, Sentinel-2/, Satellogic/, Skysat/, Umbra/, Capella/, Iceye/\nNote ",
+      "closed": "2026-09-18T16:56:30Z",
+      "comments": 1,
+      "created": "2026-09-18T15:29:58Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7n_Qc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "documentation"
+      ],
+      "milestone": null,
+      "number": 513,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Document and enforce the canonical ProgramData S3 product layout",
+      "updated": "2026-09-18T16:56:30Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/513"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Records what the new real-data test fixture set in disasters-product-algorithms covers, and the gaps it leaves.\nImplemented in Disasters-Learning-Portal/disasters-product-algorithms#157.\nWhy\ntests/fixtures/ held two files, so nearly every raster test in the algorithms repo ran against synthetic rasters that only exercise the happy path. Several classes of defect we have actually shipped are invisible to a synthetic raster — a transposed band order, a nodata sentinel that masks real imagery, a misregistered mosaic — because the synthetic input has none of the awkward properties the real deliver",
+      "closed": "2026-09-18T17:01:22Z",
+      "comments": 0,
+      "created": "2026-09-18T16:58:06Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7owog",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 514,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Real-data test fixtures for raster edge cases (rotated geotransforms, nodata conflicts, non-COG inputs)",
+      "updated": "2026-09-18T17:01:22Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/514"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "We can already produce NDVI and NDWI for Satellogic. For SkySat we could not: a complete processor had been written but never merged. This ticket tracks landing it and the follow-up work needed before it is used on an activation.\nWhat the products require\nSkySat indices can only be made from Planet's 4-band _analytic delivery, which is the only asset that carries a near-infrared band.\n\n\n\nPlanet asset\nBands\nCan produce\n\n\n\n\n_analytic\nblue, green, red, NIR (16-bit)\ntrue color, color IR, NDVI, NDWI, EVI\n\n\n_visual\nred, green, blue (8-bit)\ntrue color only\n\n\n_basic_analytic\n4-band, not georeferenced\n",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-18T17:02:25Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7oyxg",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 515,
+      "parent": {
+        "number": 787,
+        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "SkySat: produce NDVI / NDWI / EVI from Planet analytic deliveries",
+      "updated": "2026-09-18T17:02:25Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/515"
     },
     {
       "archived": false,
@@ -8988,7 +9123,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2c\nOwner: Disasters/VEDA\nAssigned to: VEDA Dev / Disasters\nSmartsheet status: Not Started\nSchedule: 12d — 2026-09-04 → 2026-09-21\nPriority: MEDIUM\nSmartsheet Ticket# column: 214 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:41:38Z",
       "draft": false,
       "fields": {
@@ -9026,7 +9161,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.2c] Complete development tasks from Shanna initial review",
-      "updated": "2026-08-12T22:41:38Z",
+      "updated": "2026-09-18T16:46:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/4"
     },
     {
@@ -19666,11 +19801,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 392,
+    "closed": 394,
     "drafts": 0,
-    "issues": 474,
-    "items": 488,
-    "open": 96,
+    "issues": 477,
+    "items": 491,
+    "open": 97,
     "prs": 14
   }
 }
