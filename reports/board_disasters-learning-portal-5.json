@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-18T18:09:04Z",
+  "generated": "2026-09-19T00:20:45Z",
   "items": [
     {
       "archived": false,
@@ -3429,7 +3429,7 @@
       "state_reason": null,
       "sub": {
         "completed": 10,
-        "total": 27
+        "total": 28
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -4964,7 +4964,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Creates a reusable filter block that contains filters per Figma\n\nText Search Input\nThemes Checkboxes in Accordion\nHazards Checkboxes in Accordion\nNote, events will be added later as we do not yet have designs.\n\n\n Reusable filter block manages filter state as a single object which can be used on all gallery pages.\n Filter logic is decoupled from view and managed via a hook and composed helper functions with tests (useFilters, filter.helpers.ts)\n Adds filter block to training gallery, news and events gallery and data gallery pages\n Considers that events and text search filtering will be added la",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-18T20:45:36Z",
       "draft": false,
       "fields": {
@@ -4994,7 +4994,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Add Filters for Themes, Hazards",
-      "updated": "2026-09-15T19:54:10Z",
+      "updated": "2026-09-18T18:22:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/372"
     },
     {
@@ -8289,7 +8289,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Problem\nContent pages need to embed the Black Marble Nighttime Blue/Yellow Composite as a live map, first for the \"Tools You Can Use: Mapping Flood Impacts\" data story (#479, section 11: \"make each visualization interactive\"; page work in #480). The portal cannot render it today.\nThe dev STAC has the collection VIIRS_SNPP_DayNightBand_AtSensor_M15, but it is a pointer to NASA GIBS, not a set of COGs:\n\nzero items, no renders, no item_assets\na wmts link: https://gibs{s}.earthdata.nasa.gov/wmts/epsg3857/best/wmts.cgi with wmts:layer: [\"VIIRS_SNPP_DayNightBand_AtSensor_M15\"]\n\nBoth portal map block",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-15T14:50:58Z",
       "draft": false,
       "fields": {
@@ -8317,7 +8317,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Add a URL tile layer block so content can embed GIBS Black Marble Blue/Yellow (as MMGIS does)",
-      "updated": "2026-09-15T14:53:22Z",
+      "updated": "2026-09-18T23:29:09Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/481"
     },
     {
@@ -8699,7 +8699,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "We can already produce NDVI and NDWI for Satellogic. For SkySat we could not: a complete processor had been written but never merged. This ticket tracks landing it and the follow-up work needed before it is used on an activation.\nWhat the products require\nSkySat indices can only be made from Planet's 4-band _analytic delivery, which is the only asset that carries a near-infrared band.\n\n\n\nPlanet asset\nBands\nCan produce\n\n\n\n\n_analytic\nblue, green, red, NIR (16-bit)\ntrue color, color IR, NDVI, NDWI, EVI\n\n\n_visual\nred, green, blue (8-bit)\ntrue color only\n\n\n_basic_analytic\n4-band, not georeferenced\n",
-      "closed": null,
+      "closed": "2026-09-18T18:59:09Z",
       "comments": 0,
       "created": "2026-09-18T17:02:25Z",
       "draft": false,
@@ -8713,7 +8713,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7oyxg",
       "issue_type": null,
@@ -8729,11 +8730,92 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "SkySat: produce NDVI / NDWI / EVI from Planet analytic deliveries",
+      "updated": "2026-09-18T18:59:09Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/515"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "The content review asks that Sentinel-2 layers be credited as Copernicus Sentinel-2, not ESA or NASA. The portal map legend shows providers[0].name from the STAC collection, so the fix is in each collection's dataset config in disasters-data (ingestion-data/staging/dataset-config/<collection>.json), pushed to the collection's open ingest PR so CI republishes it to staging.\nChange applied\nIn every Sentinel-2 config, providers[0] was replaced with:\n{\n  \"name\": \"Copernicus\",\n  \"roles\": [\"producer\", \"licensor\"],\n  \"url\": \"https://www.copernicus.eu/\"\n}\nBefore, it was either ESA / [\"host\"] / https:/",
+      "closed": "2026-09-18T20:55:47Z",
+      "comments": 0,
+      "created": "2026-09-18T20:54:45Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7qp1A",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 518,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Credit Copernicus (not ESA or NASA) as the provider on all Sentinel-2 collections",
+      "updated": "2026-09-18T20:55:47Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/518"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Please update the Home page hero video with this file https://drive.google.com/file/d/1xb8KQ7vkdha-DjDaG0DmDKgE4sF7FaDH/view?usp=sharing\nNotes from Disasters Comms:\nIt includes the new color-wash, and also loops completely seamlessly.",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-18T21:00:35Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-08-30",
+          "title": "26.4.3"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7qsik",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 519,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "SkySat: produce NDVI / NDWI / EVI from Planet analytic deliveries",
-      "updated": "2026-09-18T17:02:25Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/515"
+      "title": "Update DP: Home page hero video",
+      "updated": "2026-09-18T21:08:14Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/519"
     },
     {
       "archived": false,
@@ -19801,10 +19883,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 394,
+    "closed": 396,
     "drafts": 0,
-    "issues": 477,
-    "items": 491,
+    "issues": 479,
+    "items": 493,
     "open": 97,
     "prs": 14
   }
