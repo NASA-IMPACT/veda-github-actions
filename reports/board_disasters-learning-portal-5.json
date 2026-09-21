@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-21T12:11:39Z",
+  "generated": "2026-09-21T18:09:36Z",
   "items": [
     {
       "archived": false,
@@ -8816,6 +8816,174 @@
       "title": "Update DP: Home page hero video",
       "updated": "2026-09-18T21:08:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/519"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #338 (SoCal Wildfires activation ingest).\nTwo new collections for the AVIRIS-3 Relative Char and Ash Product. Configs are written and the COGs are staged; this ticket tracks the ingest and records the AVIRIS-3-specific handling for the next one.\nDataset\nChar/ash fractional cover from AVIRIS-3 imaging spectroscopy — ISOFIT surface reflectance, then MESMA spectral unmixing. Research grade, with known false positives/negatives. Ships as a pair per scene, and the two halves need separate collections:\n\n\n\n\naviris3-charash-daily\naviris3-charashcolor-daily\n\n\n\n\ncontent\n0–1 fractional cover\npre-",
+      "closed": "2026-09-21T15:18:35Z",
+      "comments": 0,
+      "created": "2026-09-21T15:11:59Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7-YyY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 521,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: AVIRIS-3 relative char/ash — Southern California Wildfires Jan 2025 (new collections)",
+      "updated": "2026-09-21T15:18:35Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/521"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #338 (SoCal Wildfires activation ingest). Sibling of #521 (AVIRIS-3 char/ash).\nNew collection aviris3-pca-daily for the AVIRIS-3 Principal Component Analysis product. Config and rename script are written; the COGs are not built yet.\nDataset\nThree dominant principal components of AVIRIS-3 surface reflectance, rendered to RGB by the producer. Eigenvectors over a 284-band scene, so the channels are correlated to physical phenomena without directly identifying them — contrast between colored regions indicates strong differences in surface type, and the fire boundary is readily apparent. Us",
+      "closed": "2026-09-21T15:33:49Z",
+      "comments": 0,
+      "created": "2026-09-21T15:31:25Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7-l3I",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 522,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: AVIRIS-3 Principal Component Analysis (PCA) — Southern California Wildfires Jan 2025 (new collection)",
+      "updated": "2026-09-21T15:33:49Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/522"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Parent: #338 (SoCal Wildfires activation ingest). Siblings: #521 (AVIRIS-3 char/ash), #522 (AVIRIS-3 PCA).\nNew collection ecostress-lst-subdaily for ECOSTRESS land surface temperature. Ingested and verified on dev — this ticket records the ECOSTRESS-specific handling for the next delivery, and tracks the companion products still to come.\nDataset\nLand surface temperature from the ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station. Atmospherically corrected LST derived from five thermal infrared bands via a physics-based Temperature and Emissivity Separation algorithm.\n\nCollecti",
+      "closed": "2026-09-21T16:22:37Z",
+      "comments": 0,
+      "created": "2026-09-21T16:19:26Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7_Gnk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 523,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: ECOSTRESS Land Surface Temperature — Southern California Wildfires Jan 2025 (new collection)",
+      "updated": "2026-09-21T16:22:40Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/523"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Related: #449 (same event, different source) · Siblings: #521, #522, #523.\nTwo new collections for the Vantor (formerly Maxar) delivery staged under\ns3://nasa-disasters/drcs_activations/202606_Earthquake_Venezuela/Vantor/.\n\nvantor-truecolor-subdaily — ProgramData/Vantor/TrueColor/, asset truecolor\nvantor-colorir-subdaily — ProgramData/Vantor/ColorIR/, asset colorir\n\nBoth follow the vendor-optical pattern already used by satellogic, skysat, planet and landsat: one collection per composite, bidx [1,2,3], nodata 0, no rescale, -subdaily datetime handling.\nRelationship to #449\n#449 covers this sam",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-21T16:58:02Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg7_dEA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 524,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Ingest: Vantor 8-band optical — Venezuela Earthquake Jun 2026 (two new collections; band order trap)",
+      "updated": "2026-09-21T16:58:02Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/524"
     },
     {
       "archived": false,
@@ -19883,11 +20051,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 396,
+    "closed": 399,
     "drafts": 0,
-    "issues": 479,
-    "items": 493,
-    "open": 97,
+    "issues": 483,
+    "items": 497,
+    "open": 98,
     "prs": 14
   }
 }
