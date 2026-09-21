@@ -5846,6 +5846,26 @@
         "memoryGiB": 16.0,
         "vcpu": 4
       },
+      "t8i.medium": {
+        "hourlyUSD": 0.04992,
+        "memoryGiB": 4.0,
+        "vcpu": 2
+      },
+      "t8i.micro": {
+        "hourlyUSD": 0.01248,
+        "memoryGiB": 1.0,
+        "vcpu": 2
+      },
+      "t8i.nano": {
+        "hourlyUSD": 0.00624,
+        "memoryGiB": 0.5,
+        "vcpu": 2
+      },
+      "t8i.small": {
+        "hourlyUSD": 0.02496,
+        "memoryGiB": 2.0,
+        "vcpu": 2
+      },
       "trn1.2xlarge": {
         "hourlyUSD": 1.34375,
         "memoryGiB": 32.0,
@@ -6238,7 +6258,7 @@
       }
     }
   },
-  "generated": "2026-09-14T13:04:14Z",
+  "generated": "2026-09-21T13:03:34Z",
   "label": "US East (N. Virginia)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -12224,10 +12244,10 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20260910195514",
-    "lambda": "20260911173510",
-    "rds": "20260911124502",
-    "s3": "20260911124507"
+    "ec2": "20260918212757",
+    "lambda": "20260919002359",
+    "rds": "20260917234246",
+    "s3": "20260918174747"
   },
   "sources": {
     "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
@@ -12236,25 +12256,25 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20260910195514"
+        "version": "20260918212757"
       },
       "lambda": {
         "offerCode": "AWSLambda",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/lambda/pricing/",
-        "version": "20260911173510"
+        "version": "20260919002359"
       },
       "rds": {
         "offerCode": "AmazonRDS",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/rds/pricing/",
-        "version": "20260911124502"
+        "version": "20260917234246"
       },
       "s3": {
         "offerCode": "AmazonS3",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/s3/pricing/",
-        "version": "20260911124507"
+        "version": "20260918174747"
       }
     }
   }
