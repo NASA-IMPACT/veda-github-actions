@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-22T12:11:28Z",
+  "generated": "2026-09-22T18:10:24Z",
   "items": [
     {
       "archived": false,
@@ -3428,7 +3428,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 12,
+        "completed": 13,
         "total": 30
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
@@ -4964,8 +4964,8 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Creates a reusable filter block that contains filters per Figma\n\nText Search Input\nThemes Checkboxes in Accordion\nHazards Checkboxes in Accordion\nNote, events will be added later as we do not yet have designs.\n\n\n Reusable filter block manages filter state as a single object which can be used on all gallery pages.\n Filter logic is decoupled from view and managed via a hook and composed helper functions with tests (useFilters, filter.helpers.ts)\n Adds filter block to training gallery, news and events gallery and data gallery pages\n Considers that events and text search filtering will be added la",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-22T13:38:30Z",
+      "comments": 3,
       "created": "2026-08-18T20:45:36Z",
       "draft": false,
       "fields": {
@@ -4978,7 +4978,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3DHTg",
       "issue_type": null,
@@ -4992,10 +4993,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Add Filters for Themes, Hazards",
-      "updated": "2026-09-18T18:22:16Z",
+      "updated": "2026-09-22T13:38:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/372"
     },
     {
@@ -7163,7 +7164,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 8,
+        "completed": 10,
         "total": 16
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
@@ -7175,7 +7176,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH — unblocks the ≥4 target for Venezuela (currently 3/4).\nDataset\n\nProduct: Vantor (formerly Maxar) open-data optical imagery, visual asset (RGB COGs).\nEvent: Venezuela Earthquake, June 2026.\nSource: static STAC collection already staged on S3: https://vantor-opendata.s3.amazonaws.com/events/Venezuela-Earthquake-Jun-2026/collection.json\n\n49 rel: item links, temporal extent 2025-11-03 → 2026-06-30, bboxes across northern Venezuela (Caracas/Valencia/Barquisimeto).\n\n\n\nCurrent state\n\nNot registered in pgstac: no vantor* collection in https://dev.d",
-      "closed": null,
+      "closed": "2026-09-22T14:47:00Z",
       "comments": 0,
       "created": "2026-09-10T20:40:08Z",
       "draft": false,
@@ -7189,7 +7190,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Ztgk",
       "issue_type": null,
@@ -7205,10 +7207,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "duplicate",
       "title": "Ingest: Vantor optical imagery — Venezuela Earthquake Jun 2026 (new collection)",
-      "updated": "2026-09-10T20:40:08Z",
+      "updated": "2026-09-22T14:47:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/449"
     },
     {
@@ -7260,10 +7262,12 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for SoCal / Winter Storm (already ≥4, but Black Marble is named in the story text).\nDataset\n\nExisting collections: blackmarble-brdf-daily (~500 m, extent 2024-06-01 → 2026-01-01) and blackmarble-hd-daily (extent 2023-08-03 → 2026-06-29, 83 items).\nCollections exist; items for these events are missing.\n\nNeeded items\n\n\n\nEvent\nArea (bbox)\nDates\nCurrent\n\n\n\n\nTyphoon Sinlaku Apr 2026\nGuam + CNMI 143.5,12.5,146.5,20.5\n2026-04-10 → 04-25\n0 items in either collection. Story text says Black Marble was used to assess power out",
-      "closed": null,
+      "closed": "2026-09-22T14:47:47Z",
       "comments": 0,
       "created": "2026-09-10T20:40:11Z",
       "draft": false,
@@ -7277,7 +7281,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6ZtiQ",
       "issue_type": null,
@@ -7293,10 +7298,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: Black Marble (BRDF / HD) items — Sinlaku (Guam), SoCal fires (LA), Winter Storm",
-      "updated": "2026-09-10T20:40:11Z",
+      "updated": "2026-09-22T14:47:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/451"
     },
     {
@@ -7366,7 +7371,8 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [
-        "dataServices"
+        "dataServices",
+        "blocked"
       ],
       "milestone": null,
       "number": 453,
@@ -7379,7 +7385,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Ingest: landslide hazard product (LHASA / susceptibility) — Sinlaku and Texas Floods (new collection)",
-      "updated": "2026-09-10T20:40:14Z",
+      "updated": "2026-09-22T14:47:13Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/453"
     },
     {
@@ -8484,8 +8490,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
-      "updated": "2026-09-17T15:04:01Z",
+      "title": "(Not needed yet) Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
+      "updated": "2026-09-22T15:45:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
@@ -8960,14 +8966,18 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
-      "body_excerpt": "Related: #449 (same event, different source) · Siblings: #521, #522, #523.\nThree new collections for the Vantor (formerly Maxar) delivery staged under\ns3://nasa-disasters/drcs_activations/202606_Earthquake_Venezuela/Vantor/.\n\nvantor-truecolor-subdaily — ProgramData/Vantor/TrueColor/, asset truecolor\nvantor-colorir-subdaily — ProgramData/Vantor/ColorIR/, asset colorir\nvantor-panchromatic-subdaily — ProgramData/Vantor/Panchromatic/, asset panchromatic — added 2026-09-21, see the comment below for why\n\nBoth follow the vendor-optical pattern already used by satellogic, skysat, planet and landsat: ",
-      "closed": null,
-      "comments": 1,
+      "body_excerpt": "Related: #449 (same event, different source) · Siblings: #521, #522, #523.\nThree new collections for the Vantor (formerly Maxar) delivery staged under\ns3://nasa-disasters/drcs_activations/202606_Earthquake_Venezuela/Vantor/.\nLayout revised 2026-09-22 (see the second comment): true colour and colour IR are render-time views of the same 8-band files, not separate composites.\n\n\n\ncollection\nprefix (nasa-disasters-staging)\nasset\nbidx\nrescale\n\n\n\n\nvantor-truecolor-subdaily\nProgramData/Vantor/Multispectral/\ntruecolor\n[5,3,2]\n[[0,3500],[0,3200],[0,2400]]\n\n\nvantor-colorir-subdaily\nProgramData/Vantor/Mul",
+      "closed": "2026-09-22T14:25:31Z",
+      "comments": 3,
       "created": "2026-09-21T16:58:02Z",
       "draft": false,
       "fields": {
+        "End Date": "2026-09-22",
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -8977,7 +8987,9 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Start Date": "2026-09-22",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7_dEA",
       "issue_type": null,
@@ -8987,11 +8999,16 @@
       ],
       "milestone": null,
       "number": 524,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: Vantor 8-band optical — Venezuela Earthquake Jun 2026 (two new collections; band order trap)",
-      "updated": "2026-09-21T22:07:18Z",
+      "updated": "2026-09-22T14:25:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/524"
     },
     {
@@ -9112,6 +9129,170 @@
       "title": "Update DP: update news, story, data story page",
       "updated": "2026-09-22T07:21:37Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/527"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Tracking ticket for getting the Vantor Venezuela delivery from the raw vendor tree to three live collections. The technical background (band order proof, .TIF case, naming) is in #524; the public open-data alternative for the same event is #449. This ticket is the checklist.\nCurrent design (supersedes the layout in #524)\nTrue colour and colour IR are render-time views of the same 8-band files, not separate products. Both colour collections discover the same objects and differ only in bidx:\n\n\n\ncollection\nprefix (nasa-disasters-staging)\nasset\nbidx\nrescale\n\n\n\n\nvantor-truecolor-subdaily\nProgramDat",
+      "closed": "2026-09-22T13:13:09Z",
+      "comments": 1,
+      "created": "2026-09-22T13:11:51Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8IuDc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 528,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "not_planned",
+      "title": "Tracking: Vantor Venezuela Jun 2026 — rename, convert, ingest three collections",
+      "updated": "2026-09-22T13:13:09Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/528"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "vgeorge",
+      "body_excerpt": "Follow-ups from @ifsimicoded's review of #493. All in app/components/Gallery/helpers/facets.helpers.ts.\n\n\n Remove a type cast (r4068993291) — FACET_KEYS casts the result of Object.keys. There is already a getTypedEntries helper in app/site-config/typed.helpers.tsx that solves this for entries. Add the matching getTypedKeys and use it.\n\n\n Rename the hideWhenSingleOption flag (r4069026239) — the name suggests someone has to decide by hand when to hide a filter section. That is not how it works: the code already looks at the content and hides a section when only one option turns up. The flag just",
+      "closed": null,
+      "comments": 2,
+      "created": "2026-09-22T13:31:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8I7EM",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 529,
+      "parent": {
+        "number": 137,
+        "title": "[Rolling] PI Objective - Productionalize Reusable Component Registry (Documentation / Socialize / Dev-x / Tech Debt)",
+        "url": "https://github.com/NASA-IMPACT/tinacms-portal-monorepo/issues/137"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Gallery filters: follow-ups from the #493 review",
+      "updated": "2026-09-22T16:50:45Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/529"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Complete the Planet coverage for the July 2025 Central Texas flood activation (202507_Flood_TX) across the three Planet collections: True Color, NDVI, and NDVI Change.\nFiled here because issues are disabled on Disasters-Learning-Portal/disasters-data, where the ingest configs and rename scripts live.\nChecked against the dev STAC (https://dev.disasters.openveda.cloud/api/stac) and both S3 buckets on 2026-09-22. The three collections are in two different states — only True Color is a missing-data problem.\nCurrent state\n\n\n\nCollection\nItems\nTemporal extent\nTX flood items\nProblem\n\n\n\n\nplanet-ndvi-da",
+      "closed": "2026-09-22T14:27:22Z",
+      "comments": 0,
+      "created": "2026-09-22T13:45:28Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8JEGo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 530,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest Planet True Color for 202507_Flood_TX; backfill event tags on Planet NDVI + NDVI Change (July 2025 Texas floods)",
+      "updated": "2026-09-22T14:27:22Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/530"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "New collection sentinel2-naturalcolor-daily for the 149 Sentinel-2 natural colour composites already staged under s3://nasa-disasters-staging/ProgramData/Sentinel-2/NaturalColor/.\nThese have been sitting in staging unclaimed: there was no config anywhere in disasters-data pointing at that prefix, in either staging/ or production/. The repo has 13 Sentinel-2 configs (ColorIR, dNBR, mNDWI, NBR, NDVI change, SWIR, TrueColor and tests) and none for natural colour, so none of the 149 files reached the dev STAC. Confirmed by content-type: sentinel2-naturalcolor-daily returned 200 text/html, the SPA ",
+      "closed": "2026-09-22T16:53:39Z",
+      "comments": 0,
+      "created": "2026-09-22T14:48:17Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8JxPw",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "dataServices"
+      ],
+      "milestone": null,
+      "number": 531,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Ingest: Sentinel-2 Natural Color — 149 staged composites with no collection (new sentinel2-naturalcolor-daily)",
+      "updated": "2026-09-22T16:53:39Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/531"
     },
     {
       "archived": false,
@@ -9353,7 +9534,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: Not Started\nSchedule: 40d — 2026-08-03 → 2026-09-25\nRow not migrated\nSmartsheet row 6.2e New PORTAL stress test (VEDA / Abdelhak / 4d / 2026-09-07 → 2026-09-10 / LOW) was not re-created here — it already exists as Disasters-Learning-Portal/disasters-portal#316 \"Conduct stress test on production services prior to September 30, 2026 launch\".\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:41:13Z",
       "draft": false,
       "fields": {
@@ -9395,7 +9576,7 @@
         "total": 4
       },
       "title": "[6.2] PORTAL content review",
-      "updated": "2026-08-12T22:41:13Z",
+      "updated": "2026-09-22T17:24:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/1"
     },
     {
@@ -9548,7 +9729,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2d\nOwner: Disasters\nAssigned to: Shanna\nSmartsheet status: Not Started\nSchedule: 4d — 2026-09-22 → 2026-09-25\nSmartsheet Ticket# column: 216 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:41:45Z",
       "draft": false,
       "fields": {
@@ -9584,7 +9765,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.2d] Final Shanna review",
-      "updated": "2026-08-12T22:41:45Z",
+      "updated": "2026-09-22T17:24:13Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/5"
     },
     {
@@ -11176,7 +11357,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a5\nOwner: VEDA\nAssigned to: Dev Team\nSmartsheet status: (blank)\nSchedule: 30d — 2026-08-17 → 2026-09-25\nSmartsheet Ticket# column: 262 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\nNotes\n⚠️ Status was blank in the Smartsheet — defaulted to Todo on the board.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:12:00Z",
       "draft": false,
       "fields": {
@@ -11212,7 +11393,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.1a5] Add HDS feature compliance to Disasters Portal",
-      "updated": "2026-08-13T10:12:00Z",
+      "updated": "2026-09-22T17:24:12Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/39"
     },
     {
@@ -20184,11 +20365,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 401,
+    "closed": 408,
     "drafts": 0,
-    "issues": 486,
-    "items": 500,
-    "open": 99,
+    "issues": 490,
+    "items": 504,
+    "open": 96,
     "prs": 14
   }
 }
