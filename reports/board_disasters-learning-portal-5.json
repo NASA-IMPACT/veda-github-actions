@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-22T06:13:52Z",
+  "generated": "2026-09-22T12:11:28Z",
   "items": [
     {
       "archived": false,
@@ -3429,7 +3429,7 @@
       "state_reason": null,
       "sub": {
         "completed": 12,
-        "total": 27
+        "total": 30
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -5004,7 +5004,7 @@
         "vgeorge"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n\nConsider using one page template for all content pages",
+      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n Updates CONTENT_SIDEBAR_CONTENT_TYPES as needed\n\nConsider using one page template for all content pages",
       "closed": null,
       "comments": 1,
       "created": "2026-08-18T20:48:16Z",
@@ -5036,7 +5036,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Add In Page Navigation to Dataset, News, Story, DataStory, Event, Training Page Templates",
-      "updated": "2026-09-15T17:55:15Z",
+      "updated": "2026-09-22T06:26:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/373"
     },
     {
@@ -5074,8 +5074,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Add Carousel to Theme pages",
-      "updated": "2026-08-18T20:50:29Z",
+      "title": "(Not needed / Not enough content) Update DP: Add Carousel to Theme pages",
+      "updated": "2026-09-22T07:25:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/374"
     },
     {
@@ -5210,7 +5210,7 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template / updated date added to masthead / in page nav included in sidebar\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)",
+      "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template / updated date added to masthead / in page nav included in sidebar\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)\n left column matches figma (shows type, theme, hazard, region, start date)",
       "closed": null,
       "comments": 2,
       "created": "2026-08-18T21:08:56Z",
@@ -5242,7 +5242,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Event page",
-      "updated": "2026-09-21T21:21:24Z",
+      "updated": "2026-09-22T07:19:05Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5463,7 +5463,7 @@
         "vgeorge"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar",
+      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard)",
       "closed": null,
       "comments": 0,
       "created": "2026-08-20T18:00:24Z",
@@ -5495,7 +5495,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Update Training page",
-      "updated": "2026-09-21T21:23:55Z",
+      "updated": "2026-09-22T07:19:57Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
     },
     {
@@ -6630,8 +6630,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Update Theme page template",
-      "updated": "2026-09-21T21:33:21Z",
+      "title": "Update DP: Theme page template",
+      "updated": "2026-09-22T07:21:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/420"
     },
     {
@@ -8442,8 +8442,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
-      "updated": "2026-09-18T14:11:35Z",
+      "title": "Updated DP: Masthead Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
+      "updated": "2026-09-22T07:26:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
     },
     {
@@ -8993,6 +8993,125 @@
       "title": "Ingest: Vantor 8-band optical — Venezuela Earthquake Jun 2026 (two new collections; band order trap)",
       "updated": "2026-09-21T22:07:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/524"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "willemarcel"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "ensure all cards have the same height so they're aligned.  Ensure wrapping happens reasonably / no cut off.  Consider capping number of tags.\n ensure cards match figma",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-22T07:13:11Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8FSNQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 525,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Gallery page review",
+      "updated": "2026-09-22T07:24:35Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/525"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard, related content",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-22T07:13:47Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8FSik",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 526,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: Data page",
+      "updated": "2026-09-22T07:18:00Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/526"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard)",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-22T07:20:40Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8FWvk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 527,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: update news, story, data story page",
+      "updated": "2026-09-22T07:21:37Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/527"
     },
     {
       "archived": false,
@@ -20067,9 +20186,9 @@
   "stats": {
     "closed": 401,
     "drafts": 0,
-    "issues": 483,
-    "items": 497,
-    "open": 96,
+    "issues": 486,
+    "items": 500,
+    "open": 99,
     "prs": 14
   }
 }
