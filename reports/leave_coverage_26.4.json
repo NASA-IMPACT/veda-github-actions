@@ -2197,18 +2197,6 @@
     },
     {
       "date": "2026-10-05",
-      "team": "2i2c",
-      "team_size": 7,
-      "out_count": 1,
-      "out_weight": 1.0,
-      "out_pct": 0.1429,
-      "people_out": [
-        "april-johnson"
-      ],
-      "limited": []
-    },
-    {
-      "date": "2026-10-05",
       "team": "DSE - Manage",
       "team_size": 6,
       "out_count": 0,

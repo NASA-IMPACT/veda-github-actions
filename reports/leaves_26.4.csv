@@ -28,7 +28,6 @@ team,person,person_slug,role,date,weekday,iso_week,status,out,out_weight,note,so
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-09-30,Wed,40,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-10-01,Thu,40,unavailable,true,1.0,,xlsx
 2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-10-02,Fri,40,unavailable,true,1.0,,xlsx
-2i2c,April Johnson,april-johnson,VEDA - JupyterHub - LEAD,2026-10-05,Mon,41,unavailable,true,1.0,,xlsx
 2i2c,Chris Holdgraf,chris-holdgraf,VEDA - JupyterHub,2026-07-27,Mon,31,limited,false,0.5,,xlsx
 2i2c,Chris Holdgraf,chris-holdgraf,VEDA - JupyterHub,2026-07-28,Tue,31,limited,false,0.5,,xlsx
 2i2c,Chris Holdgraf,chris-holdgraf,VEDA - JupyterHub,2026-07-29,Wed,31,limited,false,0.5,,xlsx
