@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-22T18:10:24Z",
+  "generated": "2026-09-23T00:20:11Z",
   "items": [
     {
       "archived": false,
@@ -3429,7 +3429,7 @@
       "state_reason": null,
       "sub": {
         "completed": 13,
-        "total": 30
+        "total": 31
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -3537,7 +3537,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
+        "completed": 1,
         "total": 11
       },
       "title": "Disasters + VEDA tasks for September 30, 2026 launch",
@@ -3683,8 +3683,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nIn order to properly visualize the story which contains numerous data products, we will need to ingest new collections into the correct bucket.\nLocation of activation/layer info\nNoteSome collections must be verified before we ingest them\n\nAcceptance Criteria\n\nall collections have been ingested and visualized\n opera dist s1\n opera dist-hld-status\n aviris dnbr\n avirist3 earlylook\n aviris3 charash\n aviris3 pca\n sentinel1_2 burnseverity\n ecostress LST\n optisar\n sentinel-1 damage\n sentinel-2 damage\n sentinel-2 asf change detection\n firms hot spots\n feds fire perimeter",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-22T19:51:30Z",
+      "comments": 3,
       "created": "2026-07-27T14:28:26Z",
       "draft": false,
       "fields": {
@@ -3699,7 +3699,8 @@
           "startDate": "2026-07-19",
           "title": "26.4.1"
         },
-        "Start Date": "2026-07-26"
+        "Start Date": "2026-07-26",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg0Pako",
       "issue_type": null,
@@ -3713,10 +3714,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest new collections into `dev` STAC for activation event Southern California Wildfires",
-      "updated": "2026-08-27T13:02:38Z",
+      "updated": "2026-09-22T19:51:30Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/338"
     },
     {
@@ -6509,11 +6510,10 @@
     {
       "archived": false,
       "assignees": [
-        "willemarcel",
-        "ifsimicoded"
+        "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components\n Updates masthead video (see subtask)",
+      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components\n Updates masthead video (see subtask)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
       "closed": null,
       "comments": 3,
       "created": "2026-09-02T15:44:41Z",
@@ -6550,7 +6550,7 @@
         "total": 1
       },
       "title": "Update DP: Homepage ",
-      "updated": "2026-09-21T21:38:11Z",
+      "updated": "2026-09-22T23:10:29Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -6680,12 +6680,12 @@
     {
       "archived": false,
       "assignees": [
-        "willemarcel"
+        "ifsimicoded"
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Ensure all components render tags per HDS designs.\n\n Gallery CardDetailed\n Home / Theme page CardSimple sections\n Home / Theme page CarouselCard sections\n Dataset / Training / News / Event / Story / DataStory page left side panel\n Search filters\n\nRemove / Simplify helpers where possible.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-03T01:32:25Z",
       "draft": false,
       "fields": {
@@ -6715,7 +6715,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Review Tags",
-      "updated": "2026-09-21T21:39:47Z",
+      "updated": "2026-09-22T23:10:13Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/423"
     },
     {
@@ -8571,8 +8571,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Create SectionFeatured (without image)",
-      "updated": "2026-09-16T16:48:32Z",
+      "title": "Update DP: ContentBlockRenderer - Create SectionFeatured (without image)",
+      "updated": "2026-09-22T19:59:30Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/500"
     },
     {
@@ -9293,6 +9293,45 @@
       "title": "Ingest: Sentinel-2 Natural Color — 149 staged composites with no collection (new sentinel2-naturalcolor-daily)",
       "updated": "2026-09-22T16:53:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/531"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text.\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-22T19:58:39Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8Mu_g",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 532,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: ContentBlockRenderer - Image",
+      "updated": "2026-09-22T20:00:53Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/532"
     },
     {
       "archived": false,
@@ -20365,10 +20404,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 408,
+    "closed": 409,
     "drafts": 0,
-    "issues": 490,
-    "items": 504,
+    "issues": 491,
+    "items": 505,
     "open": 96,
     "prs": 14
   }
