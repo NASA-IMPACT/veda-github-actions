@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-23T00:20:11Z",
+  "generated": "2026-09-23T06:13:49Z",
   "items": [
     {
       "archived": false,
@@ -6600,7 +6600,7 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "order of components\n\n events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Theme page mastheads\n Update Data viz caption to use caption prop on STAC map components",
+      "body_excerpt": "order of components\n\n events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Data Stories to use CardSimpleSection\n Update Theme page mastheads\n Update Data viz caption to use caption prop on STAC map components",
       "closed": null,
       "comments": 1,
       "created": "2026-09-02T21:24:33Z",
@@ -6632,7 +6632,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Theme page template",
-      "updated": "2026-09-22T07:21:14Z",
+      "updated": "2026-09-23T04:06:25Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/420"
     },
     {
@@ -8411,7 +8411,8 @@
     {
       "archived": false,
       "assignees": [
-        "vgeorge"
+        "vgeorge",
+        "ifsimicoded"
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Need\nFrom the Sept 2026 content review (#479, sitewide note under section 6):\n\nAll \"News\", \"Story of Impact\", and \"Data Story\" items should have a publish date at the top. Migrated items are back-dated; new items get a selectable publish date defaulting to today.\n\nPlus the sitewide date-format guidance (NASA Stylebook v14 / AP style): abbreviate months longer than five letters (Jan., Feb., Aug., Sept., Oct., Nov., Dec.), spell out March through July, no ordinal suffix, comma between day and year (June 5, 2024).\nWhat exists after #482\n\nStoryContent.date?: string (ISO date) is rendered on story ",
@@ -8449,7 +8450,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Updated DP: Masthead Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
-      "updated": "2026-09-22T07:26:04Z",
+      "updated": "2026-09-23T03:49:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
     },
     {
