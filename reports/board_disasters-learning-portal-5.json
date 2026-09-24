@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-24T06:14:03Z",
+  "generated": "2026-09-24T12:12:13Z",
   "items": [
     {
       "archived": false,
@@ -3459,7 +3459,7 @@
       "state_reason": null,
       "sub": {
         "completed": 15,
-        "total": 35
+        "total": 36
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -9565,6 +9565,45 @@
       "title": "Update DP: SectionHeading",
       "updated": "2026-09-24T04:35:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/542"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "vgeorge",
+      "body_excerpt": "The updated PageSidebar has a separator and other style changes from the HDS compliance work.\nRef: Figma element",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-24T11:59:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8io-w",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 543,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: PageSidebar to match HDS Figma",
+      "updated": "2026-09-24T11:59:24Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/543"
     },
     {
       "archived": false,
@@ -20639,9 +20678,9 @@
   "stats": {
     "closed": 413,
     "drafts": 0,
-    "issues": 496,
-    "items": 511,
-    "open": 98,
+    "issues": 497,
+    "items": 512,
+    "open": 99,
     "prs": 15
   }
 }
