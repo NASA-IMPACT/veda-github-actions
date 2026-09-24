@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-24T12:12:13Z",
+  "generated": "2026-09-24T18:10:19Z",
   "items": [
     {
       "archived": false,
@@ -5149,7 +5149,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Adds Search Bar and Search Page Placeholder",
-      "updated": "2026-09-15T15:44:58Z",
+      "updated": "2026-09-24T14:58:12Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/375"
     },
     {
@@ -5239,8 +5239,7 @@
     {
       "archived": false,
       "assignees": [
-        "vgeorge",
-        "willemarcel"
+        "vgeorge"
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template / updated date added to masthead / in page nav included in sidebar\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)\n left column matches figma (shows type, theme, hazard, region, start date)",
@@ -7196,7 +7195,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 10,
+        "completed": 14,
         "total": 16
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
@@ -7428,7 +7427,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: MEDIUM — Sinlaku is 0/4; this is the story's banner image.\nDataset\n\nProduct: Suomi-NPP VIIRS imagery (true color / day-night band scene of the typhoon over the Marianas, 2026-04-13).\nCurrent state: no VIIRS imagery collection. The only VIIRS-named collection, VIIRS_SNPP_DayNightBand_AtSensor_M15, is the Black Marble Blue/Yellow composite with no items.\nThe Sinlaku page (https://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku-2026) uses this scene only as a static banner (public/img/event/typhoon-sinlaku-2026__*).\n\nDone when\n\n Collection ",
-      "closed": null,
+      "closed": "2026-09-24T15:16:51Z",
       "comments": 0,
       "created": "2026-09-10T20:40:16Z",
       "draft": false,
@@ -7442,7 +7441,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Ztjo",
       "issue_type": null,
@@ -7458,10 +7458,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: VIIRS true-color / imagery — Typhoon Sinlaku (new collection)",
-      "updated": "2026-09-10T20:43:26Z",
+      "updated": "2026-09-24T15:16:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/454"
     },
     {
@@ -7472,7 +7472,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — Winter Storm already meets ≥4 with 5 collections, but only 3 sensor families.\nDataset\n\nExisting collection: nrt-sport-lis-conus-daily — 90 daily CONUS items, 2026-02-12 → 2026-05-12.\nStorm window is 2026-01-20 → 02-05, so no items exist for the event (https://dev.disasters.openveda.cloud/api/stac/search?collections=nrt-sport-lis-conus-daily&datetime=2026-01-20T00:00:00Z/2026-02-10T23:59:59Z returns 0).\n\nDone when\n\n Daily items backfilled from ≥2026-01-15 through 2026-02-11\n Collection temporal extent updated\n Optional: Winter Storm story (h",
-      "closed": null,
+      "closed": "2026-09-24T15:17:00Z",
       "comments": 0,
       "created": "2026-09-10T20:40:18Z",
       "draft": false,
@@ -7486,7 +7486,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6ZtlI",
       "issue_type": null,
@@ -7502,10 +7503,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Backfill: SPoRT LIS soil moisture to cover US Winter Storm Jan 2026",
-      "updated": "2026-09-10T20:43:16Z",
+      "updated": "2026-09-24T15:17:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/455"
     },
     {
@@ -7558,7 +7559,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — SoCal already meets ≥4 (16 collections); Maxar is named in the story text.\nDataset\n\nProduct: Maxar (now Vantor) open-data optical imagery / damage analysis for Palisades and Eaton fires.\nCurrent state: no Maxar/Vantor collection in https://dev.disasters.openveda.cloud/api/stac/collections. Story (https://dev.disasters.openveda.cloud/news-events/southern-california-fire-jan-2025): \"NASA shared multispectral imagery, including Sentinel-2, Landsat, and Maxar analysis\".\nIf the Vantor Venezuela collection (sibling ticket) lands first, reuse the ",
-      "closed": null,
+      "closed": "2026-09-24T15:16:45Z",
       "comments": 0,
       "created": "2026-09-10T20:40:21Z",
       "draft": false,
@@ -7572,7 +7573,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Ztlw",
       "issue_type": null,
@@ -7588,10 +7590,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: Maxar optical analysis — Southern California Wildfires Jan 2025 (new collection)",
-      "updated": "2026-09-10T20:42:08Z",
+      "updated": "2026-09-24T15:16:45Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/457"
     },
     {
@@ -7602,7 +7604,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: LOW — SoCal already meets ≥4; TEMPO is named in the story text.\nDataset\n\nProduct: TEMPO tropospheric NO2 / aerosol index over LA during the fires.\nCurrent state: no TEMPO or air-quality collection in https://dev.disasters.openveda.cloud/api/stac/collections. Story (https://dev.disasters.openveda.cloud/news-events/southern-california-fire-jan-2025) links to https://tempo.si.edu/ and says TEMPO \"characterized air quality\".\n\nDone when\n\n Decide product (NO2 column vs. aerosol index) and hourly vs. daily granularity\n Collection created; items for -119",
-      "closed": null,
+      "closed": "2026-09-24T15:17:06Z",
       "comments": 0,
       "created": "2026-09-10T20:40:22Z",
       "draft": false,
@@ -7616,7 +7618,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6ZtrA",
       "issue_type": null,
@@ -7632,10 +7635,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Ingest: TEMPO air quality (NO2 / aerosol) — Southern California Wildfires Jan 2025 (new collection)",
-      "updated": "2026-09-10T20:41:45Z",
+      "updated": "2026-09-24T15:17:06Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/458"
     },
     {
@@ -9502,12 +9505,12 @@
       "author": "acblackford",
       "body_excerpt": "",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-09-23T18:15:42Z",
       "diff": {
-        "additions": 6,
-        "deletions": 4,
-        "files": 3
+        "additions": 16,
+        "deletions": 10,
+        "files": 8
       },
       "draft": false,
       "fields": {},
@@ -9522,7 +9525,7 @@
       "state": "open",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-24T04:29:02Z",
+      "updated": "2026-09-24T14:20:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
@@ -20676,11 +20679,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 413,
+    "closed": 417,
     "drafts": 0,
     "issues": 497,
     "items": 512,
-    "open": 99,
+    "open": 95,
     "prs": 15
   }
 }
