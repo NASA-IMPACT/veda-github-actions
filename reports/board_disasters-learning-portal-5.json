@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-24T00:20:35Z",
+  "generated": "2026-09-24T06:14:03Z",
   "items": [
     {
       "archived": false,
@@ -3459,7 +3459,7 @@
       "state_reason": null,
       "sub": {
         "completed": 15,
-        "total": 34
+        "total": 35
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -6544,7 +6544,7 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components (will complete in #420)\n Update Section view all to red (will complete in #420)\n Updates masthead video (see subtask)\n Update Section link labels (will complete in #420)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
+      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components (will complete in #420)\n Update Section view all to red (will complete in #420)\n Updates masthead video (see subtask)\n Update Section link labels (will complete in #542)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
       "closed": null,
       "comments": 5,
       "created": "2026-09-02T15:44:41Z",
@@ -6581,7 +6581,7 @@
         "total": 1
       },
       "title": "Update DP: Homepage ",
-      "updated": "2026-09-23T23:46:21Z",
+      "updated": "2026-09-24T04:33:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -6631,7 +6631,7 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "order of components : events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Data Stories to use SectionCardSimple\n Update Theme page mastheads\n Update Theme page section labels\n Update Data viz caption to use caption prop on STAC map components\n Update Section view all links to red\n Update SectionCardSimple, SectionCardSimpleMini, SectionCardSimpleMosaic overlays to dark\n Update CardFeatured button to red arrow\n Update CardDetailed button to red arrow\n Update make CardDetailed helper title elem",
+      "body_excerpt": "order of components : events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Data Stories to use SectionCardSimple\n Update Theme page mastheads\n Update Data viz caption to use caption prop on STAC map components\n Update Section view all links to red\n Update SectionCardSimple, SectionCardSimpleMini, SectionCardSimpleMosaic overlays to dark and appropriate size to sm\n Update CardFeatured button to red arrow\n Update CardDetailed button to red arrow\n Update make CardDetailed helper title elements wi",
       "closed": null,
       "comments": 2,
       "created": "2026-09-02T21:24:33Z",
@@ -6663,7 +6663,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Content Helpers and Theme page template",
-      "updated": "2026-09-24T00:14:04Z",
+      "updated": "2026-09-24T04:56:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/420"
     },
     {
@@ -9090,7 +9090,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard, related content",
+      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard, related content\n explore data button is red",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T07:13:47Z",
@@ -9122,7 +9122,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Data page",
-      "updated": "2026-09-22T07:18:00Z",
+      "updated": "2026-09-24T04:51:28Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/526"
     },
     {
@@ -9332,7 +9332,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text.\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b",
+      "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text. Should also use measure (similar to stac map blocks) to limit width.\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T19:58:39Z",
@@ -9364,7 +9364,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: ContentBlockRenderer - Image",
-      "updated": "2026-09-22T20:00:53Z",
+      "updated": "2026-09-24T04:36:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/532"
     },
     {
@@ -9502,7 +9502,7 @@
       "author": "acblackford",
       "body_excerpt": "",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-23T18:15:42Z",
       "diff": {
         "additions": 6,
@@ -9522,8 +9522,49 @@
       "state": "open",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-23T19:41:03Z",
+      "updated": "2026-09-24T04:29:02Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "willemarcel"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "Unify ContentHeading and SectionHeading\n SectionHeading should take titleAs prop so one component can handle h1, h2, h3 variant needs\n SectionHeading should take Link props so a custom label can be specified for View All section links\n Update home, respond, recover section headings.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-24T04:25:02Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8eNEc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 542,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: SectionHeading",
+      "updated": "2026-09-24T04:35:04Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/542"
     },
     {
       "archived": false,
@@ -20598,9 +20639,9 @@
   "stats": {
     "closed": 413,
     "drafts": 0,
-    "issues": 495,
-    "items": 510,
-    "open": 97,
+    "issues": 496,
+    "items": 511,
+    "open": 98,
     "prs": 15
   }
 }
