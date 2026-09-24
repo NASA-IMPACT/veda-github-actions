@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-23T18:10:55Z",
+  "generated": "2026-09-24T00:20:35Z",
   "items": [
     {
       "archived": false,
@@ -1095,7 +1095,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 25,
       "parent": {
         "number": 24,
@@ -1144,7 +1144,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 26,
       "parent": {
         "number": 24,
@@ -1191,7 +1191,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 27,
       "parent": {
         "number": 24,
@@ -1578,6 +1578,36 @@
     {
       "archived": false,
       "assignees": [
+        "vgeorge"
+      ],
+      "author": "vgeorge",
+      "body_excerpt": "Open follow-up issues from #114:\n\nImages in story pages do not stretch to fill the content column.\nThe image block currently uses an inline style: style={{ width: block.maxWidth ?? \"100%\", height: \"auto\" }} ([#114 comment](#114 (comment))). Inline styles bypass the USWDS utility class approach and are harder to override. We should replace this with utility classes or a wrapper element that controls the image sizing.\nThe general caption approach still needs alignment, especially around where figcaption behavior should live and how captions should be handled across content blocks.\n\ncc @snmln",
+      "closed": null,
+      "comments": 3,
+      "created": "2026-05-29T11:49:59Z",
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_lADODdLRP84BMP5Rzg8W8g0",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 157,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Bug: Fix image block rendering in ContentBlockRenderer",
+      "updated": "2026-09-23T15:41:52Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/157"
+    },
+    {
+      "archived": false,
+      "assignees": [
         "kyle-lesinger"
       ],
       "author": "kyle-lesinger",
@@ -1883,7 +1913,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 276,
       "parent": {
         "number": 777,
@@ -2878,7 +2908,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 311,
       "parent": {
         "number": 786,
@@ -2923,7 +2953,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 312,
       "parent": {
         "number": 787,
@@ -3429,7 +3459,7 @@
       "state_reason": null,
       "sub": {
         "completed": 15,
-        "total": 33
+        "total": 34
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -3526,7 +3556,7 @@
       "labels": [
         "EPIC"
       ],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 332,
       "parent": {
         "number": 777,
@@ -3978,7 +4008,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "Disasters Dashboard Release (September 2026)",
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
       "number": 344,
       "parent": {
         "number": 787,
@@ -5006,9 +5036,9 @@
         "vgeorge"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n Updates CONTENT_SIDEBAR_CONTENT_TYPES as needed\n\nConsider using one page template for all content pages",
-      "closed": "2026-09-23T18:00:02Z",
-      "comments": 1,
+      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n Removes / Updates CONTENT_SIDEBAR_CONTENT_TYPES as needed so PageSideBar theme with hazard, theme, type show consistently.\n\nConsider using one page template for all content pages",
+      "closed": null,
+      "comments": 2,
       "created": "2026-08-18T20:48:16Z",
       "draft": false,
       "fields": {
@@ -5036,10 +5066,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "closed",
-      "state_reason": "completed",
+      "state": "open",
+      "state_reason": "reopened",
       "title": "Update DP: Add In Page Navigation to Dataset, News, Story, DataStory, Event, Training Page Templates",
-      "updated": "2026-09-23T18:00:02Z",
+      "updated": "2026-09-23T18:48:42Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/373"
     },
     {
@@ -6514,9 +6544,9 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components (will complete in #420)\n Update Section view all to red (will complete in #420)\n Updates masthead video (see subtask)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
+      "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components (will complete in #420)\n Update Section view all to red (will complete in #420)\n Updates masthead video (see subtask)\n Update Section link labels (will complete in #420)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
       "closed": null,
-      "comments": 4,
+      "comments": 5,
       "created": "2026-09-02T15:44:41Z",
       "draft": false,
       "fields": {
@@ -6551,7 +6581,7 @@
         "total": 1
       },
       "title": "Update DP: Homepage ",
-      "updated": "2026-09-23T17:17:24Z",
+      "updated": "2026-09-23T23:46:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -6601,9 +6631,9 @@
         "ifsimicoded"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "order of components : events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Data Stories to use SectionCardSimple\n Update Theme page mastheads\n Update Data viz caption to use caption prop on STAC map components\n Update Section view all links to red\n Update SectionCardSimple overlays to dark",
+      "body_excerpt": "order of components : events --> stories of impact --> data visualization --> data stories --> resources & learning\n Remove Data Stories section from Recover theme page\n Update Data Stories to use SectionCardSimple\n Update Theme page mastheads\n Update Theme page section labels\n Update Data viz caption to use caption prop on STAC map components\n Update Section view all links to red\n Update SectionCardSimple, SectionCardSimpleMini, SectionCardSimpleMosaic overlays to dark\n Update CardFeatured button to red arrow\n Update CardDetailed button to red arrow\n Update make CardDetailed helper title elem",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-02T21:24:33Z",
       "draft": false,
       "fields": {
@@ -6632,8 +6662,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: Theme page template",
-      "updated": "2026-09-23T15:37:10Z",
+      "title": "Update DP: Content Helpers and Theme page template",
+      "updated": "2026-09-24T00:14:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/420"
     },
     {
@@ -8137,7 +8167,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Team Image deleted\n Team cards introduced\n Any additional content changes to match figma\n\nhttps://www.figma.com/design/a2L7j6wVWUtygMy3B4J0bZ/TinaCMS---Components?node-id=7815-13974&m=dev",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-14T16:30:50Z",
       "draft": false,
       "fields": {
@@ -8167,7 +8197,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: About Page",
-      "updated": "2026-09-21T21:38:56Z",
+      "updated": "2026-09-23T20:59:41Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/473"
     },
     {
@@ -9021,7 +9051,7 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "ensure all cards have the same height so they're aligned.  Ensure wrapping happens reasonably / no cut off.  Consider capping number of tags.\n ensure cards match figma",
+      "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T07:13:11Z",
@@ -9053,7 +9083,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Gallery page review",
-      "updated": "2026-09-22T07:24:35Z",
+      "updated": "2026-09-23T19:01:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/525"
     },
     {
@@ -9130,8 +9160,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: update news, story, data story page",
-      "updated": "2026-09-22T07:21:37Z",
+      "title": "Update DP: update news, story, data story",
+      "updated": "2026-09-23T19:04:25Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/527"
     },
     {
@@ -9344,7 +9374,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "should use NASA full color logo in header (see figma or storybook)",
-      "closed": null,
+      "closed": "2026-09-23T19:55:44Z",
       "comments": 0,
       "created": "2026-09-23T15:45:44Z",
       "draft": false,
@@ -9358,7 +9388,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8XUcs",
       "issue_type": null,
@@ -9372,11 +9403,127 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Update DP: Header NASA logo",
+      "updated": "2026-09-23T19:55:44Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/536"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "amarouane-ABDELHAK"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "GH repo https://github.com/NASA-IMPACT/veda-disasters-s3browse\nSummary\nPreviously, Disasters wanted a way for individuals to download data. This was not set as a priority or a need for FY27.\nRationale\n\nCSDA data should not be exposed for downloading and this application is extra maintenance\n\nNeed\nDecomission ASAP.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-23T17:11:07Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8YTx4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 537,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Updated DP: Header NASA logo",
-      "updated": "2026-09-23T15:57:58Z",
-      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/536"
+      "title": "Decommission Disasters S3 Browse",
+      "updated": "2026-09-23T17:11:28Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/537"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford"
+      ],
+      "author": "acblackford",
+      "body_excerpt": "Several titles of content pieces are lengthy, and include colons in their titles. We have decided to separate all characters after the colon into a subtitle component in the masthead of each content piece that contains this style. A couple of examples include some of the training pieces.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-23T18:05:49Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "In Progress"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8Y64k",
+      "issue_type": "Feature",
+      "kind": "issue",
+      "labels": [
+        "enhancement"
+      ],
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "number": 538,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update Content Using Subtitle Masthead",
+      "updated": "2026-09-23T18:06:34Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/538"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford"
+      ],
+      "author": "acblackford",
+      "body_excerpt": "",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-23T18:15:42Z",
+      "diff": {
+        "additions": 6,
+        "deletions": 4,
+        "files": 3
+      },
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_lADODdLRP84BMP5Rzg8ZBnc",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [],
+      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "number": 539,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "review_decision": "review_required",
+      "state": "open",
+      "state_reason": null,
+      "title": "feat(content): break longer content titles into subtitles",
+      "updated": "2026-09-23T19:41:03Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
       "archived": false,
@@ -20451,9 +20598,9 @@
   "stats": {
     "closed": 413,
     "drafts": 0,
-    "issues": 492,
-    "items": 506,
-    "open": 93,
-    "prs": 14
+    "issues": 495,
+    "items": 510,
+    "open": 97,
+    "prs": 15
   }
 }
