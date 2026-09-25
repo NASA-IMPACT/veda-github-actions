@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-25T00:21:49Z",
+  "generated": "2026-09-25T06:14:02Z",
   "items": [
     {
       "archived": false,
@@ -1582,11 +1582,13 @@
       ],
       "author": "vgeorge",
       "body_excerpt": "Open follow-up issues from #114:\n\nImages in story pages do not stretch to fill the content column.\nThe image block currently uses an inline style: style={{ width: block.maxWidth ?? \"100%\", height: \"auto\" }} ([#114 comment](#114 (comment))). Inline styles bypass the USWDS utility class approach and are harder to override. We should replace this with utility classes or a wrapper element that controls the image sizing.\nThe general caption approach still needs alignment, especially around where figcaption behavior should live and how captions should be handled across content blocks.\n\ncc @snmln",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-09-25T01:53:13Z",
+      "comments": 4,
       "created": "2026-05-29T11:49:59Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5Rzg8W8g0",
       "issue_type": null,
       "kind": "issue",
@@ -1599,10 +1601,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Bug: Fix image block rendering in ContentBlockRenderer",
-      "updated": "2026-09-23T15:41:52Z",
+      "updated": "2026-09-25T01:53:19Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/157"
     },
     {
@@ -3458,7 +3460,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 16,
+        "completed": 24,
         "total": 39
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
@@ -5036,9 +5038,9 @@
         "vgeorge"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "Adds in page navigation component to\n\n dataset page\n news / story / data story page\n event page\n training page\n Removes / Updates CONTENT_SIDEBAR_CONTENT_TYPES as needed so PageSideBar theme with hazard, theme, type show consistently.\n\nConsider using one page template for all content pages",
-      "closed": null,
-      "comments": 2,
+      "body_excerpt": "Adds in page navigation component to\n\n[x] dataset page asked to be removed (GH comment)\n news / story / data story page\n event page\n training page\n Removes / Updates CONTENT_SIDEBAR_CONTENT_TYPES as needed so PageSideBar theme with hazard, theme, type show consistently.\n\nConsider using one page template for all content pages",
+      "closed": "2026-09-25T01:43:32Z",
+      "comments": 3,
       "created": "2026-08-18T20:48:16Z",
       "draft": false,
       "fields": {
@@ -5066,10 +5068,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": "reopened",
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Add In Page Navigation to Dataset, News, Story, DataStory, Event, Training Page Templates",
-      "updated": "2026-09-23T18:48:42Z",
+      "updated": "2026-09-25T01:48:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/373"
     },
     {
@@ -5243,8 +5245,8 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Disaster type label text updated to Hazard and uses tag to be consistent with other pages\n Should use standard page template / updated date added to masthead / in page nav included in sidebar\n Top section should only contain What DHS and FEMA are doing:\nand What the U.S. government is doing links (Note this was a change provided on Sept 2 during the F2F (Designs may need to be updated)\n left column matches figma (shows type, theme, hazard, region, start date)",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-25T01:46:36Z",
+      "comments": 3,
       "created": "2026-08-18T21:08:56Z",
       "draft": false,
       "fields": {
@@ -5257,7 +5259,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3DUmE",
       "issue_type": null,
@@ -5271,10 +5274,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Update Event page",
-      "updated": "2026-09-22T07:19:05Z",
+      "updated": "2026-09-25T01:46:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/378"
     },
     {
@@ -5496,8 +5499,8 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard)",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-25T01:49:54Z",
+      "comments": 1,
       "created": "2026-08-20T18:00:24Z",
       "draft": false,
       "fields": {
@@ -5510,7 +5513,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3W2Y4",
       "issue_type": null,
@@ -5524,10 +5528,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Update Training page",
-      "updated": "2026-09-22T07:19:57Z",
+      "updated": "2026-09-25T01:49:54Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/384"
     },
     {
@@ -6544,7 +6548,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Update Disasters logo css variable definitionto image-logo-url\n Update masthead props (as needed)\n Add red Learn About Us button which directs to about page.\n Update CardCTA definitions as needed\n Update Data viz caption to use caption prop on STAC map components (will complete in #420)\n Update Section view all to red (will complete in #420)\n Updates masthead video (see subtask)\n Update Section link labels (will complete in #542)\n\nSee storybook for code reference. https://tinacms-portal-monorepo-storybook.netlify.app/?path=/story/components-cards-card--custom-home-masthead&globals=theme:hds",
-      "closed": null,
+      "closed": "2026-09-25T01:55:58Z",
       "comments": 6,
       "created": "2026-09-02T15:44:41Z",
       "draft": false,
@@ -6573,14 +6577,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": "reopened",
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
         "completed": 1,
         "total": 1
       },
       "title": "Update DP: Homepage ",
-      "updated": "2026-09-24T21:14:46Z",
+      "updated": "2026-09-25T01:55:58Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/416"
     },
     {
@@ -9095,9 +9099,9 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard, related content\n explore data button is red",
-      "closed": null,
-      "comments": 0,
+      "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard, related content\n explore data button is red and shows in masthead",
+      "closed": "2026-09-25T01:51:31Z",
+      "comments": 1,
       "created": "2026-09-22T07:13:47Z",
       "draft": false,
       "fields": {
@@ -9110,7 +9114,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8FSik",
       "issue_type": null,
@@ -9124,10 +9129,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Data page",
-      "updated": "2026-09-24T04:51:28Z",
+      "updated": "2026-09-25T01:51:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/526"
     },
     {
@@ -9135,8 +9140,8 @@
       "assignees": [],
       "author": "ifsimicoded",
       "body_excerpt": "Should use standard page template / updated date added to masthead / in page nav included in sidebar\n left column matches figma (shows type, theme, hazard)",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-25T01:55:17Z",
+      "comments": 1,
       "created": "2026-09-22T07:20:40Z",
       "draft": false,
       "fields": {
@@ -9149,7 +9154,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8FWvk",
       "issue_type": null,
@@ -9163,10 +9169,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: update news, story, data story",
-      "updated": "2026-09-23T19:04:25Z",
+      "updated": "2026-09-25T01:55:17Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/527"
     },
     {
@@ -9567,17 +9573,19 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Update DP: SectionHeading",
-      "updated": "2026-09-24T04:35:04Z",
+      "title": "Update DP: SectionHeading (home and theme pages)",
+      "updated": "2026-09-25T01:58:17Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/542"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "ifsimicoded"
+      ],
       "author": "vgeorge",
       "body_excerpt": "The updated PageSidebar has a separator and other style changes from the HDS compliance work.\nRef: Figma element",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-25T01:52:10Z",
+      "comments": 1,
       "created": "2026-09-24T11:59:24Z",
       "draft": false,
       "fields": {
@@ -9590,7 +9598,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8io-w",
       "issue_type": null,
@@ -9604,10 +9613,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: PageSidebar to match HDS Figma",
-      "updated": "2026-09-24T11:59:24Z",
+      "updated": "2026-09-25T01:52:10Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/543"
     },
     {
@@ -20845,11 +20854,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 419,
+    "closed": 427,
     "drafts": 0,
     "issues": 501,
     "items": 516,
-    "open": 97,
+    "open": 89,
     "prs": 15
   }
 }
