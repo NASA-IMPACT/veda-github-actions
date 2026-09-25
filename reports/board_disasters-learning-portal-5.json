@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-25T12:12:34Z",
+  "generated": "2026-09-25T18:10:03Z",
   "items": [
     {
       "archived": false,
@@ -1095,7 +1095,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 25,
       "parent": {
         "number": 24,
@@ -1144,7 +1144,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 26,
       "parent": {
         "number": 24,
@@ -1191,7 +1191,7 @@
       "labels": [
         "dse"
       ],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 27,
       "parent": {
         "number": 24,
@@ -1915,7 +1915,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 276,
       "parent": {
         "number": 777,
@@ -2910,7 +2910,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 311,
       "parent": {
         "number": 786,
@@ -2955,7 +2955,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 312,
       "parent": {
         "number": 787,
@@ -3460,7 +3460,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 24,
+        "completed": 25,
         "total": 39
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
@@ -3558,7 +3558,7 @@
       "labels": [
         "EPIC"
       ],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 332,
       "parent": {
         "number": 777,
@@ -4010,7 +4010,7 @@
       "issue_type": null,
       "kind": "issue",
       "labels": [],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 344,
       "parent": {
         "number": 787,
@@ -8457,8 +8457,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Need\nFrom the Sept 2026 content review (#479, sitewide note under section 6):\n\nAll \"News\", \"Story of Impact\", and \"Data Story\" items should have a publish date at the top. Migrated items are back-dated; new items get a selectable publish date defaulting to today.\n\nPlus the sitewide date-format guidance (NASA Stylebook v14 / AP style): abbreviate months longer than five letters (Jan., Feb., Aug., Sept., Oct., Nov., Dec.), spell out March through July, no ordinal suffix, comma between day and year (June 5, 2024).\nWhat exists after #482\n\nStoryContent.date?: string (ISO date) is rendered on story ",
-      "closed": null,
-      "comments": 5,
+      "closed": "2026-09-25T13:38:19Z",
+      "comments": 6,
       "created": "2026-09-15T15:42:56Z",
       "draft": false,
       "fields": {
@@ -8471,7 +8471,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7FLhc",
       "issue_type": null,
@@ -8488,10 +8489,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Updated DP: Masthead Publish dates on News, Story and Data Story pages: type coverage, back-dating, CMS default",
-      "updated": "2026-09-23T16:53:02Z",
+      "updated": "2026-09-25T14:40:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/485"
     },
     {
@@ -9491,7 +9492,7 @@
       "labels": [
         "enhancement"
       ],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 538,
       "parent": {
         "number": 329,
@@ -9513,12 +9514,12 @@
       "author": "acblackford",
       "body_excerpt": "",
       "closed": null,
-      "comments": 3,
+      "comments": 4,
       "created": "2026-09-23T18:15:42Z",
       "diff": {
-        "additions": 16,
-        "deletions": 10,
-        "files": 8
+        "additions": 23,
+        "deletions": 12,
+        "files": 10
       },
       "draft": false,
       "fields": {},
@@ -9526,14 +9527,14 @@
       "issue_type": null,
       "kind": "pr",
       "labels": [],
-      "milestone": "ARCHIVED - Disasters Dashboard Release (September 2026)",
+      "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 539,
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "review_decision": "review_required",
       "state": "open",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-24T14:20:27Z",
+      "updated": "2026-09-25T14:33:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
@@ -9703,7 +9704,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Decision needed\nWhich date, if any, each content type shows on its masthead.\n\n\n\nContent type\nDate shown\n\n\n\n\nStory of impact / News / Data story\nPublished\n\n\nEvent pages\nUpdated\n\n\nTraining modules\nUpdated\n\n\nData gallery pages\nnone\n\n\nHome, theme pages, About Us, other evergreen\nnone\n\n\n\nWhy now\nPR #489 is in review and currently renders a single Published: label for every type, which contradicts the Event row. Details and the proposed code change are in the linked PR below.\nAcceptance\n\nEach content type shows the date in the table, or none\nEvent pages keep an updated date rather than a published o",
       "closed": null,
-      "comments": 1,
+      "comments": 7,
       "created": "2026-09-24T19:44:49Z",
       "draft": false,
       "fields": {
@@ -9735,7 +9736,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Content convention: which date each content type shows",
-      "updated": "2026-09-24T20:01:23Z",
+      "updated": "2026-09-25T16:50:12Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/550"
     },
     {
@@ -9778,6 +9779,40 @@
       "title": "Related Data on event pages: cap at 2 data products per page and reuse the Data Gallery pagination",
       "updated": "2026-09-24T20:08:19Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/551"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nCurrently there is some inference based on the bbox size of the data in which a categorization occurs in the Data Visualization legend.\nRequest\nRemove the regional or global or any other classification and leave that space empty.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-25T13:41:03Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg8w5KQ",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 557,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Remove `regional` and `global` tags from Data Visualization Legend",
+      "updated": "2026-09-25T13:41:03Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/557"
     },
     {
       "archived": false,
@@ -20854,10 +20889,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 427,
+    "closed": 428,
     "drafts": 0,
-    "issues": 501,
-    "items": 516,
+    "issues": 502,
+    "items": 517,
     "open": 89,
     "prs": 15
   }
