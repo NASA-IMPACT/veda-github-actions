@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-28T12:13:42Z",
+  "generated": "2026-09-28T18:11:13Z",
   "items": [
     {
       "archived": false,
@@ -7166,7 +7166,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nTarget: every event story has ≥4 datasets (distinct non-test STAC collections with items for the event) ingested on dev (https://dev.disasters.openveda.cloud/api/stac) before Oct 1, 2026.\nStatus legend: ✅ ingested (collection + event items) · ⚠️ collection exists but no items for this event · ❌ product named in the story but no collection at all.\n\n\n\nEvent\nStory page\n✅ Ingested\n⚠️ Collection only\n❌ Not started\nCount\n≥4 met\n\n\n\n\nVenezuela Earthquake Jun 2026\nfeature branch only\n3\n1\n1 (Vantor)\n3\n[ ]\n\n\nTyphoon Sinlaku Apr 2026\nhttps://dev.disasters.openveda.cloud/news-events/typhoon-sinlaku",
-      "closed": null,
+      "closed": "2026-09-28T16:56:55Z",
       "comments": 0,
       "created": "2026-09-10T20:38:58Z",
       "draft": false,
@@ -7181,7 +7181,7 @@
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6Zs4E",
       "issue_type": null,
@@ -7197,14 +7197,14 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 14,
+        "completed": 16,
         "total": 16
       },
       "title": "Oct 1 readiness: event story datasets vs dev STAC ingestion",
-      "updated": "2026-09-10T20:46:04Z",
+      "updated": "2026-09-28T16:56:55Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
     },
     {
@@ -7387,8 +7387,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Parent: #448 (Oct 1 readiness audit).\nPriority: HIGH for Sinlaku (0/4). Medium for Texas (7/4).\nDataset\n\nProduct: NASA landslide product referenced in both stories — LHASA nowcast and/or landslide susceptibility / rainfall-triggered risk maps.\nCurrent state: no landslide collection in https://dev.disasters.openveda.cloud/api/stac/collections.\nStory text: Sinlaku \"landslide … that provided context and situational awareness\"; Texas Floods \"landslide risk assessments\".\n\nNeeded items\n\nSinlaku: Guam/CNMI, 2026-04-13 → 04-16.\nTexas: central Texas, 2025-07-04 → 07-08.\n\nDone when\n\n Confirm which produ",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-28T16:57:43Z",
+      "comments": 1,
       "created": "2026-09-10T20:40:14Z",
       "draft": false,
       "fields": {
@@ -7401,7 +7401,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6ZtjQ",
       "issue_type": null,
@@ -7418,10 +7419,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Ingest: landslide hazard product (LHASA / susceptibility) — Sinlaku and Texas Floods (new collection)",
-      "updated": "2026-09-22T14:47:13Z",
+      "updated": "2026-09-28T16:57:43Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/453"
     },
     {
@@ -7700,7 +7701,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nValues shown in the Custom Visualization Tool analysis pane (Analyze Area statistics / time series) have no units. Add the layer's unit to axis labels, statistic rows, and hover values so numbers are interpretable without leaving the tool.\nDetails\nExample: for GAIA building exposure the analysis pane reports raw numbers, but the values are built-up area in m² per 100 × 100 m grid cell. Without the unit a value like 142,823 is ambiguous.\nSuggested approach:\n\nSource the unit from the collection metadata where available (raster:bands[].unit on item assets, or a unit field in the dataset c",
-      "closed": null,
+      "closed": "2026-09-28T16:56:31Z",
       "comments": 0,
       "created": "2026-09-10T21:21:01Z",
       "draft": false,
@@ -7714,7 +7715,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6aDVk",
       "issue_type": null,
@@ -7725,11 +7727,16 @@
       ],
       "milestone": null,
       "number": 461,
+      "parent": {
+        "number": 786,
+        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Add unit labels in analysis pane",
-      "updated": "2026-09-10T21:24:08Z",
+      "updated": "2026-09-28T16:56:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/461"
     },
     {
@@ -9819,6 +9826,43 @@
       "title": "Remove `regional` and `global` tags from Data Visualization Legend",
       "updated": "2026-09-25T13:41:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/557"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nCollections whose renders carry an inline (unnamed) categorical colormap — a colormap object rather than a colormap_name string — produce no tiles at all in the portal. The map panel stays empty.\nThe trigger came from a Slack thread on sentinel1-hydrosar-wm-iw-dvr-subdaily, where the STAC Browser 5.1.0 preview also fails and NASA-IMPACT/veda-backend#657 was opened to strip whitespace and re-encode the render URLs. This ticket records what was actually tested against dev.disasters.openveda.cloud, because the portal's failure is a different bug than #657, and the whitespace fix does not ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-28T16:54:50Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9QRMg",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 562,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Inline categorical colormaps render no tiles: library never serialises object render properties (whitespace stripping is not the fix)",
+      "updated": "2026-09-28T16:54:50Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/562"
     },
     {
       "archived": false,
@@ -20538,11 +20582,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "Create Product Landing Pages for Data Gallery\nSeveral data gallery product landing pages are needed for soft launch of the Disasters PORTAL on September 30, 2026. Every data product ingested in STAC and that is planned to be included in the custom visualization tool and/or content pieces needs an associated landing page.\n\n Landsat TrueColor\n Landsat ColorIR\n Landsat Natural Color\n Landsat NBR\n Landsat NDVI\n Landsat MNDWI\n S2 NDVI\n S2 MNDWI\n NISAR GUNW\n Planet TrueColor\n S1 Damage Assessment (CA Fire)\n OPERA Coherence\n AVIRIS DNBR\n AVIRIS Early Look\n Black Marble Blue/Yellow\n Black Marble HD\n G",
-      "closed": null,
+      "closed": "2026-09-28T16:57:12Z",
       "comments": 1,
       "created": "2026-09-11T19:15:33Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5Rzg6kgGg",
       "issue_type": null,
       "kind": "issue",
@@ -20555,10 +20601,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/448"
       },
       "repo": "NASA-IMPACT/veda-architecture",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Create Product Landing Pages for Data Gallery",
-      "updated": "2026-09-11T20:08:29Z",
+      "updated": "2026-09-28T16:57:12Z",
       "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/863"
     },
     {
@@ -20895,11 +20941,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 428,
+    "closed": 432,
     "drafts": 0,
-    "issues": 502,
-    "items": 517,
-    "open": 89,
+    "issues": 503,
+    "items": 518,
+    "open": 86,
     "prs": 15
   }
 }
