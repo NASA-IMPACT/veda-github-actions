@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-28T18:11:13Z",
+  "generated": "2026-09-29T00:22:58Z",
   "items": [
     {
       "archived": false,
@@ -1614,7 +1614,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nAfter identifying that there were item_assets with different temporal ranges, it was determined that this collection must be split into 4 different collections.\nSplit into 4 collections. Kyle will finish updating ticket.\nDue Date\nAfter June 12, 2026",
-      "closed": null,
+      "closed": "2026-09-28T22:12:46Z",
       "comments": 2,
       "created": "2026-06-03T18:55:32Z",
       "draft": false,
@@ -1632,7 +1632,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-10",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgv9Yvw",
       "issue_type": null,
@@ -1646,10 +1646,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Split collection `opera-distalert-daily` into 4 separate collections <placeholder>",
-      "updated": "2026-07-28T18:07:14Z",
+      "updated": "2026-09-28T22:12:46Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/244"
     },
     {
@@ -3460,8 +3460,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 25,
-        "total": 39
+        "completed": 27,
+        "total": 42
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
       "updated": "2026-08-19T17:43:43Z",
@@ -6500,7 +6500,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nThe homepage \"Data Visualization\" swipe map can no longer show the Black Marble HD product for Hurricane Helene. There is no pre-Helene HD scene for Augusta, GA anywhere in the catalog, so an HD-vs-HD pre/post comparison is impossible. As a stopgap (commit 6044b88) the homepage was repointed to the ~500 m blackmarble-brdf-daily product on both sides, and \"HD\" was removed from the caption.\nTo restore HD we need to locate the correct source files in S3, stage them, re-ingest, and repoint the site.\nCurrent catalog state\nEnumerated via full pagination of https://dev.disasters.openveda.clou",
-      "closed": null,
+      "closed": "2026-09-28T18:59:08Z",
       "comments": 0,
       "created": "2026-09-02T01:18:53Z",
       "draft": false,
@@ -6518,7 +6518,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-09-01",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4_5y0",
       "issue_type": null,
@@ -6535,10 +6535,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Restore Black Marble HD on homepage: ingest pre-Helene Augusta scene",
-      "updated": "2026-09-02T01:18:53Z",
+      "updated": "2026-09-28T18:59:08Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/415"
     },
     {
@@ -6595,7 +6595,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Blocked by: #420\nThese pages should be created as duplicates of the Recover page with the Masthead title updated.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-02T21:21:13Z",
       "draft": false,
       "fields": {
@@ -6625,7 +6625,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Create Prepare and Resilience Dummy Pages",
-      "updated": "2026-09-14T16:31:58Z",
+      "updated": "2026-09-28T21:16:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/419"
     },
     {
@@ -6800,7 +6800,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nThe \"Export PDF\" output from the Visualization tool currently contains only the map image. It should also include additional contextual information alongside the image so the exported PDF stands on its own.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nBrian shared a mockup image (image.png) in Slack showing the intended layout — that image still needs to be attached to this issue for the exact target design.\nSuggested information to include with the exported image (to be confirmed against the mockup):\n\nLayer / dataset name(s) shown\nDate or date range of the ",
-      "closed": null,
+      "closed": "2026-09-28T22:11:18Z",
       "comments": 0,
       "created": "2026-09-04T13:36:21Z",
       "draft": false,
@@ -6814,7 +6814,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5c7rs",
       "issue_type": null,
@@ -6824,11 +6825,16 @@
       ],
       "milestone": null,
       "number": 437,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Viz tool: include additional context alongside the image in exported PDF",
-      "updated": "2026-09-04T14:40:31Z",
+      "updated": "2026-09-28T22:11:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/437"
     },
     {
@@ -6838,7 +6844,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nMove the Analyze Area control out of the left sidebar and place it where the Share Map button currently sits.\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nThis pairs with #439, which moves Share Map into the in-map icon control cluster — freeing up the spot that Analyze Area should occupy.\nAcceptance criteria\n\n Analyze Area is removed from the left sidebar\n Analyze Area occupies the position previously used by the Share Map button\n Analyze Area behavior/functionality is unchanged after the move\n Left sidebar layout reflows cleanly with the control removed\n\nR",
-      "closed": null,
+      "closed": "2026-09-28T22:10:46Z",
       "comments": 0,
       "created": "2026-09-04T13:36:22Z",
       "draft": false,
@@ -6852,7 +6858,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5c7tU",
       "issue_type": null,
@@ -6862,11 +6869,16 @@
       ],
       "milestone": null,
       "number": 438,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Viz tool: move Analyze Area from the left sidebar into the Share Map button position",
-      "updated": "2026-09-04T14:40:39Z",
+      "updated": "2026-09-28T22:10:46Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/438"
     },
     {
@@ -6876,7 +6888,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nReplace the Share Map button with an icon control placed in-line with the other map icons (search, basemap, distance/measure, etc.).\nDetails\nReported by Brian Freitag (2026-09-04, Viz tool changes thread).\nShare Map should look and behave like its neighboring map controls: same icon size, spacing, hover/active states, and tooltip treatment.\nThis frees up the current Share Map button position, which Analyze Area will take over — see #438.\nAcceptance criteria\n\n Share Map is rendered as an icon in the map control cluster alongside search, basemap, and distance\n Icon styling, sizing, and t",
-      "closed": null,
+      "closed": "2026-09-28T22:11:51Z",
       "comments": 0,
       "created": "2026-09-04T13:36:23Z",
       "draft": false,
@@ -6890,7 +6902,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5c7ug",
       "issue_type": null,
@@ -6900,11 +6913,16 @@
       ],
       "milestone": null,
       "number": 439,
+      "parent": {
+        "number": 186,
+        "title": "Objective #6 [26.4] - [Plug-in]: Configure, assemble & deploy the Disasters tool for user testing",
+        "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Viz tool: convert Share Map into an in-map icon control",
-      "updated": "2026-09-04T14:40:48Z",
+      "updated": "2026-09-28T22:11:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/439"
     },
     {
@@ -7690,7 +7708,7 @@
       "state": "closed",
       "state_reason": "completed",
       "title": "Use named gaia-exposure colormap for GAIA building exposure layers",
-      "updated": "2026-09-15T13:15:20Z",
+      "updated": "2026-09-28T22:05:40Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/459"
     },
     {
@@ -8593,7 +8611,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "From Kyle's word doc. Disasters team wants a way to introduce page body content that is \"separated\" from the normal body text flow. This can be achieved by using a Card w/o an image",
-      "closed": null,
+      "closed": "2026-09-28T20:25:04Z",
       "comments": 0,
       "created": "2026-09-16T16:48:15Z",
       "draft": false,
@@ -8607,7 +8625,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7ReyM",
       "issue_type": null,
@@ -8621,10 +8640,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: ContentBlockRenderer - Create SectionFeatured (without image)",
-      "updated": "2026-09-26T00:50:39Z",
+      "updated": "2026-09-28T20:25:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/500"
     },
     {
@@ -9070,7 +9089,7 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma",
+      "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma\n\ngallery pages:\n\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/data-gallery\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/training\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T07:13:11Z",
@@ -9102,7 +9121,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Gallery page review",
-      "updated": "2026-09-23T19:01:56Z",
+      "updated": "2026-09-28T18:39:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/525"
     },
     {
@@ -9543,11 +9562,11 @@
       "milestone": "Disasters Dashboard Release (September 2026)",
       "number": 539,
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "review_decision": "review_required",
+      "review_decision": "approved",
       "state": "open",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-25T14:33:00Z",
+      "updated": "2026-09-29T00:23:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
@@ -9557,7 +9576,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Unify ContentHeading and SectionHeading\n SectionHeading should take titleAs prop so one component can handle h1, h2, h3 variant needs\n SectionHeading should take Link props so a custom label can be specified for View All section links\n Update home, respond, recover section headings.",
-      "closed": null,
+      "closed": "2026-09-28T20:25:04Z",
       "comments": 0,
       "created": "2026-09-24T04:25:02Z",
       "draft": false,
@@ -9571,7 +9590,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8eNEc",
       "issue_type": null,
@@ -9585,10 +9605,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: SectionHeading (home and theme pages)",
-      "updated": "2026-09-26T00:03:21Z",
+      "updated": "2026-09-28T20:25:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/542"
     },
     {
@@ -9820,6 +9840,11 @@
       "labels": [],
       "milestone": null,
       "number": 557,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -9857,12 +9882,59 @@
       ],
       "milestone": null,
       "number": 562,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Inline categorical colormaps render no tiles: library never serialises object render properties (whitespace stripping is not the fix)",
       "updated": "2026-09-28T16:54:50Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/562"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Problem\nCollections whose renders carry an inline interval colormap — a nested array such as [[[0, 25000], [63, 42, 107, 255]], …] rather than a colormap_name string — produce no tiles at all. The map panel stays empty.\nThis is the same function as #562 and the same 400, but a different branch, and the fix proposed in #562 step 2 does not fix it. That is the reason for a separate ticket rather than a comment: #562's acceptance criteria can be satisfied by a patch that leaves this case broken.\nFound on the Recover page GAIA compare block while reviewing #564.\nRelationship to #562\n#562 documents",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-28T21:25:42Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9TQSA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "bug",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 566,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Interval (nested-array) colormaps render no tiles: the fix proposed in #562 does not cover them",
+      "updated": "2026-09-28T21:25:42Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/566"
     },
     {
       "archived": false,
@@ -10342,9 +10414,9 @@
       "archived": false,
       "assignees": [],
       "author": "kyle-lesinger",
-      "body_excerpt": "Smartsheet row: 6.3\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: In Progress (0% complete)\nSchedule: 87d — 2026-06-02 → 2026-09-30\nNotes\nSmartsheet link column: Disasters-Learning-Portal/veda-disasters#197\n\nMigrated from the September 30, 2026 launch Smartsheet.",
+      "body_excerpt": "Smartsheet row: 6.3\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: In Progress (0% complete)\nSchedule: 87d — 2026-06-02 → 2026-10-06\nNotes\nSmartsheet link column: Disasters-Learning-Portal/veda-disasters#197\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-08-12T22:43:32Z",
       "draft": false,
       "fields": {
@@ -10386,7 +10458,7 @@
         "total": 5
       },
       "title": "[6.3] Custom visualization tool",
-      "updated": "2026-08-12T22:43:32Z",
+      "updated": "2026-09-28T22:24:10Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
     },
     {
@@ -10545,7 +10617,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3d\nOwner: VEDA\nAssigned to: VEDA Dev\nSmartsheet status: Not Started\nSchedule: 12d — 2026-09-15 → 2026-09-30\nPriority: MEDIUM\nSmartsheet Ticket# column: 222 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-12T22:44:00Z",
       "draft": false,
       "fields": {
@@ -10582,7 +10654,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.3d] Address high impact user feedback and bugs (show stopper large blockers)",
-      "updated": "2026-09-10T14:56:13Z",
+      "updated": "2026-09-28T19:53:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/10"
     },
     {
@@ -10593,7 +10665,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.4\nOwner: Disasters/VEDA\nAssigned to: Brian / Ronan\nSmartsheet status: In Progress\nSchedule: 81d — 2026-06-10 → 2026-09-30\nPriority: MEDIUM\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:44:07Z",
       "draft": false,
       "fields": {
@@ -10631,7 +10703,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.4] Draft a joint project plan",
-      "updated": "2026-08-12T22:44:08Z",
+      "updated": "2026-09-28T19:52:58Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/11"
     },
     {
@@ -10640,7 +10712,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: Not Started\nSchedule: 73d — 2026-06-22 → 2026-09-30\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-12T22:46:33Z",
       "draft": false,
       "fields": {
@@ -10678,11 +10750,11 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 5,
+        "completed": 6,
         "total": 7
       },
       "title": "[6.5] Productionalize DRCS algorithm workflow and documentation in Jupyterhub",
-      "updated": "2026-08-12T22:46:33Z",
+      "updated": "2026-09-28T19:52:58Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
     },
     {
@@ -10891,8 +10963,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5e-2\nOwner: Disasters/VEDA\nAssigned to: Andrew / Alex / Garrett\nSmartsheet status: Not Started\nSchedule: 5d — 2026-08-24 → 2026-08-28\nPriority: LOW\nNotes\n⚠️ Source-data defect: this row is also lettered e in the Smartsheet, colliding with 6.5e (\"Continued DRCS support\"). Migrated as 6.5e-2; the Smartsheet should be renumbered.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-09-28T22:27:16Z",
+      "comments": 5,
       "created": "2026-08-12T22:47:10Z",
       "draft": false,
       "fields": {
@@ -10909,7 +10981,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-08-24",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UjBU",
       "issue_type": null,
@@ -10927,10 +10999,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5e-2] Final test and approval for workflows",
-      "updated": "2026-08-25T14:48:44Z",
+      "updated": "2026-09-28T22:27:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/17"
     },
     {
@@ -12019,7 +12091,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.6\nOwner: Disasters/VEDA\nSmartsheet status: Not Started\nSchedule: 108d — 2026-05-04 → 2026-09-30\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:13:56Z",
       "draft": false,
       "fields": {
@@ -12057,11 +12129,11 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
+        "completed": 2,
         "total": 2
       },
       "title": "[6.6] Tagging and Filtering options",
-      "updated": "2026-08-13T10:13:56Z",
+      "updated": "2026-09-28T19:52:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/41"
     },
     {
@@ -12074,8 +12146,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.6a\nOwner: Disasters/VEDA\nAssigned to: Alexandra / Ronan / Garrett / Kyle / Seph / Jacob\nSmartsheet status: In Progress\nSchedule: 86d — 2026-05-04 → 2026-08-31\nPriority: MEDIUM\nNotes\nUpdate the ADR as time goes on! Data Services is taking over this.\nOpen question from the Smartsheet link column: \"Is there anything still decisional that is needed?\"\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-09-28T22:26:19Z",
+      "comments": 3,
       "created": "2026-08-13T10:14:05Z",
       "draft": false,
       "fields": {
@@ -12092,7 +12164,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-05-04",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YdIk",
       "issue_type": null,
@@ -12110,10 +12182,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/41"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.6a] Scope tag and filter options",
-      "updated": "2026-08-28T22:45:34Z",
+      "updated": "2026-09-28T22:27:02Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/42"
     },
     {
@@ -12121,8 +12193,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.6b\nOwner: VEDA\nAssigned to: VEDA Dev\nSmartsheet status: Not Started\nSchedule: 43d — 2026-08-03 → 2026-09-30\nPriority: MEDIUM\nNotes\nLarge uncertainty. Unsure if Disasters has a clear deadline for when they will finalize their tags and filters.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-09-28T22:25:46Z",
+      "comments": 3,
       "created": "2026-08-13T10:14:17Z",
       "draft": false,
       "fields": {
@@ -12139,7 +12211,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-08-03",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YdNM",
       "issue_type": null,
@@ -12156,10 +12228,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/41"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.6b] Implement tag and filter options",
-      "updated": "2026-08-13T10:14:17Z",
+      "updated": "2026-09-28T22:25:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/43"
     },
     {
@@ -12366,7 +12438,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9a\nOwner: Disasters/VEDA\nAssigned to: Brian / Jacob / Ronan\nSmartsheet status: Not Started\nSchedule: 179d — 2026-01-23 → 2026-09-30\nPriority: LOW\nNotes\nNotes from Disasters: needs to be ours and to point it to our new portal for the 9/30/2026 launch — what are the tasks to get the domain to that point? Defining subpage URLs is also an outstanding task.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:15:10Z",
       "draft": false,
       "fields": {
@@ -12404,7 +12476,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.9a] Domain created for disasters.nasa.gov",
-      "updated": "2026-08-13T10:15:10Z",
+      "updated": "2026-09-28T19:52:54Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/48"
     },
     {
@@ -12753,7 +12825,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.13\nOwner: Disasters\nAssigned to: Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 23d — 2026-08-31 → 2026-09-30\nNotes\nPORTAL 101 + potentially 1 more curated module.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:17:02Z",
       "draft": false,
       "fields": {
@@ -12789,7 +12861,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.13] Creation of 4 trainings, plus links to external resources",
-      "updated": "2026-08-13T10:17:05Z",
+      "updated": "2026-09-28T19:52:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/56"
     },
     {
@@ -20941,11 +21013,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 432,
+    "closed": 442,
     "drafts": 0,
-    "issues": 503,
-    "items": 518,
-    "open": 86,
+    "issues": 504,
+    "items": 519,
+    "open": 77,
     "prs": 15
   }
 }
