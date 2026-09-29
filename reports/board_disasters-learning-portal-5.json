@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-29T00:22:58Z",
+  "generated": "2026-09-29T06:15:05Z",
   "items": [
     {
       "archived": false,
@@ -9549,9 +9549,9 @@
       "comments": 4,
       "created": "2026-09-23T18:15:42Z",
       "diff": {
-        "additions": 23,
-        "deletions": 12,
-        "files": 10
+        "additions": 31,
+        "deletions": 16,
+        "files": 12
       },
       "draft": false,
       "fields": {},
@@ -9566,7 +9566,7 @@
       "state": "open",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-29T00:23:47Z",
+      "updated": "2026-09-29T00:52:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
