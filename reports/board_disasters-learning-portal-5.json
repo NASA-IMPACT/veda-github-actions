@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-29T12:13:14Z",
+  "generated": "2026-09-29T18:10:34Z",
   "items": [
     {
       "archived": false,
@@ -1597,7 +1597,7 @@
       "number": 157,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -3460,11 +3460,11 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 27,
-        "total": 42
+        "completed": 29,
+        "total": 43
       },
-      "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
-      "updated": "2026-08-19T17:43:43Z",
+      "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+      "updated": "2026-09-29T16:34:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
     },
     {
@@ -3489,7 +3489,7 @@
       "number": 330,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -3521,7 +3521,7 @@
       "number": 331,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4335,7 +4335,7 @@
       "number": 355,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4377,7 +4377,7 @@
       "number": 356,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4419,7 +4419,7 @@
       "number": 357,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4808,7 +4808,7 @@
       "number": 367,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5022,7 +5022,7 @@
       "number": 372,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5064,7 +5064,7 @@
       "number": 373,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5103,7 +5103,7 @@
       "number": 374,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5144,7 +5144,7 @@
       "number": 375,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5186,7 +5186,7 @@
       "number": 376,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5228,7 +5228,7 @@
       "number": 377,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5270,7 +5270,7 @@
       "number": 378,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5312,7 +5312,7 @@
       "number": 379,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5524,7 +5524,7 @@
       "number": 384,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6437,7 +6437,7 @@
       "number": 412,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6573,7 +6573,7 @@
       "number": 416,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6590,11 +6590,11 @@
     {
       "archived": false,
       "assignees": [
-        "ifsimicoded"
+        "kyle-lesinger"
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Blocked by: #420\nThese pages should be created as duplicates of the Recover page with the Masthead title updated.",
-      "closed": null,
+      "closed": "2026-09-29T16:53:09Z",
       "comments": 1,
       "created": "2026-09-02T21:21:13Z",
       "draft": false,
@@ -6608,7 +6608,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5KfqE",
       "issue_type": null,
@@ -6618,14 +6619,14 @@
       "number": 419,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Create Prepare and Resilience Dummy Pages",
-      "updated": "2026-09-28T21:16:14Z",
+      "updated": "2026-09-29T16:53:09Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/419"
     },
     {
@@ -6660,7 +6661,7 @@
       "number": 420,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6702,7 +6703,7 @@
       "number": 421,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6744,7 +6745,7 @@
       "number": 423,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -6756,7 +6757,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "emmalu"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "style tag in html\n\n\n\n\n\n\n non-native prop pass through via ...rest",
       "closed": null,
@@ -6773,7 +6776,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "In Progress"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5MGzo",
       "issue_type": null,
@@ -6783,14 +6787,14 @@
       "number": 424,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Bugfix: Handle NextJS errors",
-      "updated": "2026-09-03T01:41:25Z",
+      "updated": "2026-09-29T17:05:38Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/424"
     },
     {
@@ -8223,7 +8227,7 @@
       "number": 473,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -8510,7 +8514,7 @@
       "number": 485,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -8552,7 +8556,7 @@
       "number": 496,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -8594,7 +8598,7 @@
       "number": 499,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -8636,7 +8640,7 @@
       "number": 500,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9114,7 +9118,7 @@
       "number": 525,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9156,7 +9160,7 @@
       "number": 526,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9198,7 +9202,7 @@
       "number": 527,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9374,9 +9378,11 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "alukach"
+      ],
       "author": "ifsimicoded",
-      "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text. Should also use measure (similar to stac map blocks) to limit width.\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b",
+      "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text. Should also use measure (similar to stac map blocks) to limit width.\n\n matches styles (font size, measure class) on caption under data viz on homepage\n\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b\n\nsample page with image: https://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories/estimating-loss-recovery",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T19:58:39Z",
@@ -9401,14 +9407,14 @@
       "number": 532,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Update DP: ContentBlockRenderer - Image",
-      "updated": "2026-09-24T04:36:00Z",
+      "updated": "2026-09-29T15:54:05Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/532"
     },
     {
@@ -9443,7 +9449,7 @@
       "number": 536,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9501,7 +9507,7 @@
       ],
       "author": "acblackford",
       "body_excerpt": "Several titles of content pieces are lengthy, and include colons in their titles. We have decided to separate all characters after the colon into a subtitle component in the masthead of each content piece that contains this style. A couple of examples include some of the training pieces.",
-      "closed": null,
+      "closed": "2026-09-29T14:22:15Z",
       "comments": 0,
       "created": "2026-09-23T18:05:49Z",
       "draft": false,
@@ -9516,7 +9522,7 @@
           "startDate": "2026-09-20",
           "title": "26.4.4"
         },
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8Y64k",
       "issue_type": "Feature",
@@ -9528,14 +9534,14 @@
       "number": 538,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update Content Using Subtitle Masthead",
-      "updated": "2026-09-23T18:06:34Z",
+      "updated": "2026-09-29T14:22:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/538"
     },
     {
@@ -9545,7 +9551,7 @@
       ],
       "author": "acblackford",
       "body_excerpt": "",
-      "closed": null,
+      "closed": "2026-09-29T14:22:14Z",
       "comments": 4,
       "created": "2026-09-23T18:15:42Z",
       "diff": {
@@ -9554,7 +9560,9 @@
         "files": 12
       },
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5Rzg8ZBnc",
       "issue_type": null,
       "kind": "pr",
@@ -9563,10 +9571,10 @@
       "number": 539,
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "review_decision": "approved",
-      "state": "open",
+      "state": "merged",
       "state_reason": null,
       "title": "feat(content): break longer content titles into subtitles",
-      "updated": "2026-09-29T00:52:21Z",
+      "updated": "2026-09-29T14:22:16Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/539"
     },
     {
@@ -9601,7 +9609,7 @@
       "number": 542,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9643,7 +9651,7 @@
       "number": 543,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9682,7 +9690,7 @@
       "number": 547,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9762,7 +9770,7 @@
       "number": 550,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9803,7 +9811,7 @@
       "number": 551,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9815,7 +9823,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "AliceR"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nCurrently there is some inference based on the bbox size of the data in which a categorization occurs in the Data Visualization legend.\nRequest\nRemove the regional or global or any other classification and leave that space empty.",
       "closed": null,
@@ -9842,14 +9852,14 @@
       "number": 557,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Remove `regional` and `global` tags from Data Visualization Legend",
-      "updated": "2026-09-25T13:41:03Z",
+      "updated": "2026-09-29T15:54:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/557"
     },
     {
@@ -9884,7 +9894,7 @@
       "number": 562,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9926,7 +9936,7 @@
       "number": 566,
       "parent": {
         "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP Development Needs / Requests",
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -9935,6 +9945,204 @@
       "title": "Interval (nested-array) colormaps render no tiles: the fix proposed in #562 does not cover them",
       "updated": "2026-09-28T21:25:42Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/566"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "slesaad"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThe Disasters team has created a PORTAL 101 training which needs to be added to the /training section.\nPotential suggestions to implement from initial discussion w/ Slesa and Brian:\n\nembed pdf since it has text colors which conflict with HDS guidelines\nAdd as text using in-page navigation, and make HDS colors\n\nAC\n\n pdf is embedded or added as text\n information is downloadable as a pdf\n\nLinks\nPortal 101 pdf",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T15:33:05Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9eMyI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 568,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Add/Embed pdf with a viewer and allow for download",
+      "updated": "2026-09-29T15:33:10Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/568"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Several images over 50kb were added. We should optimize these for page load.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T16:15:15Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9evKg",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 572,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Optimize all images",
+      "updated": "2026-09-29T16:15:15Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/572"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Represents issues / feature requests that came up but were deprioritized for launch",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T16:32:33Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9e8QY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "EPIC"
+      ],
+      "milestone": null,
+      "number": 575,
+      "parent": {
+        "number": 792,
+        "title": "Objective #2 [26.4] - [Dashboard]: Portal Beta Release",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/792"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "sub": {
+        "completed": 0,
+        "total": 2
+      },
+      "title": "🏈 [27.1] Epic - Post Launch Backlog",
+      "updated": "2026-09-29T16:36:11Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Disasters team wanted to have created and published dates rendered on the portal depending on the content type. Both dates should be tracked.\nGithub conversation:\n#553 (comment)",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T16:34:20Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9e9Sc",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 576,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Add dateCreated field to all content types",
+      "updated": "2026-09-29T16:34:20Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/576"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Pre-release additional body block types came up (two images side by side, rich text highlight section).\nWe need to be intentional on the configurable blocks provided to Disasters.\nslack conversation: https://developmentseed.slack.com/archives/C07JY4J68SX/p1790701775609409?thread_ts=1790700557.878919&cid=C07JY4J68SX\n\n Align on minimum content blocks needed for content pages.\n Designs defined for all blocks / Should meet HDS requirements\n Tickets created for block updates",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T17:13:54Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9fZZk",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 577,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Define Configurable Body Blocks",
+      "updated": "2026-09-29T17:14:05Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/577"
     },
     {
       "archived": false,
@@ -20885,6 +21093,11 @@
       "name": "Andrew Blackford"
     },
     {
+      "avatar": "https://avatars.githubusercontent.com/u/1732578?u=5cf6f4072ad8a4ccd8b9d03a2bd3a36ba8607578&v=4",
+      "login": "AliceR",
+      "name": "Alice Rühl"
+    },
+    {
       "avatar": "https://avatars.githubusercontent.com/u/897290?u=8a1afcc5d92b24ee977556ac4a3c418ed14f87dc&v=4",
       "login": "alukach",
       "name": "Anthony Lukach"
@@ -20913,6 +21126,11 @@
       "avatar": "https://avatars.githubusercontent.com/u/210393093?v=4",
       "login": "chelsea-aaron",
       "name": "chelsea-aaron"
+    },
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/18629881?u=d4356412e48c670d413192b4aaa49439360bfa3e&v=4",
+      "login": "emmalu",
+      "name": "Emma Paz"
     },
     {
       "avatar": "https://avatars.githubusercontent.com/u/140041545?v=4",
@@ -21013,11 +21231,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 442,
+    "closed": 445,
     "drafts": 0,
-    "issues": 504,
-    "items": 519,
-    "open": 77,
+    "issues": 509,
+    "items": 524,
+    "open": 79,
     "prs": 15
   }
 }
