@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-29T18:10:34Z",
+  "generated": "2026-09-30T00:23:41Z",
   "items": [
     {
       "archived": false,
@@ -3460,8 +3460,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 29,
-        "total": 43
+        "completed": 31,
+        "total": 38
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
       "updated": "2026-09-29T16:34:56Z",
@@ -8203,7 +8203,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Team Image deleted\n Team cards introduced\n Any additional content changes to match figma\n\nhttps://www.figma.com/design/a2L7j6wVWUtygMy3B4J0bZ/TinaCMS---Components?node-id=7815-13974&m=dev",
-      "closed": null,
+      "closed": "2026-09-29T21:05:37Z",
       "comments": 3,
       "created": "2026-09-14T16:30:50Z",
       "draft": false,
@@ -8217,7 +8217,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg65nXQ",
       "issue_type": null,
@@ -8231,10 +8232,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: About Page",
-      "updated": "2026-09-24T21:07:09Z",
+      "updated": "2026-09-29T21:12:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/473"
     },
     {
@@ -8555,15 +8556,15 @@
       "milestone": null,
       "number": 496,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "(Not needed yet) Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
-      "updated": "2026-09-22T15:45:59Z",
+      "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
+      "updated": "2026-09-29T21:07:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
@@ -9383,7 +9384,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Ensure caption text matches smaller size caption text present on StacMap blocks. Should be smaller than body text. Should also use measure (similar to stac map blocks) to limit width.\n\n matches styles (font size, measure class) on caption under data viz on homepage\n\nFrom: https://docs.google.com/document/d/1g4MEJ72EtIrNvNh52R8mUfdlh2vbVbzNyT6-kT2RDNk/edit?tab=t.0#heading=h.kivhw0andc7b\n\nsample page with image: https://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories/estimating-loss-recovery",
-      "closed": null,
+      "closed": "2026-09-29T21:05:38Z",
       "comments": 0,
       "created": "2026-09-22T19:58:39Z",
       "draft": false,
@@ -9397,7 +9398,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8Mu_g",
       "issue_type": null,
@@ -9411,10 +9413,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: ContentBlockRenderer - Image",
-      "updated": "2026-09-29T15:54:05Z",
+      "updated": "2026-09-29T21:05:38Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/532"
     },
     {
@@ -9769,9 +9771,9 @@
       "milestone": null,
       "number": 550,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 576,
+        "title": "Add dateCreated field to all content types",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/576"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -9810,9 +9812,9 @@
       "milestone": null,
       "number": 551,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -9893,9 +9895,9 @@
       "milestone": null,
       "number": 562,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 580,
+        "title": "Custom Colormap - categorical / inline",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/580"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -9908,7 +9910,7 @@
       "archived": false,
       "assignees": [],
       "author": "kyle-lesinger",
-      "body_excerpt": "Problem\nCollections whose renders carry an inline interval colormap — a nested array such as [[[0, 25000], [63, 42, 107, 255]], …] rather than a colormap_name string — produce no tiles at all. The map panel stays empty.\nThis is the same function as #562 and the same 400, but a different branch, and the fix proposed in #562 step 2 does not fix it. That is the reason for a separate ticket rather than a comment: #562's acceptance criteria can be satisfied by a patch that leaves this case broken.\nFound on the Recover page GAIA compare block while reviewing #564.\nRelationship to #562\n#562 documents",
+      "body_excerpt": "Problem\nCollections whose renders carry an inline interval colormap (a nested array such as [[[0, 25000], [63, 42, 107, 255]], …] rather than a colormap_name string) produce no tiles at all. The map panel stays empty.\nThis is the same function as #562 and the same 400, but a different branch, and the fix proposed in #562 step 2 does not fix it. That is the reason for a separate ticket rather than a comment: #562's acceptance criteria can be satisfied by a patch that leaves this case broken.\nFound on the Recover page GAIA compare block while reviewing #564.\nRelationship to #562\n#562 documents o",
       "closed": null,
       "comments": 0,
       "created": "2026-09-28T21:25:42Z",
@@ -9935,15 +9937,15 @@
       "milestone": null,
       "number": 566,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 580,
+        "title": "Custom Colormap - categorical / inline",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/580"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
       "title": "Interval (nested-array) colormaps render no tiles: the fix proposed in #562 does not cover them",
-      "updated": "2026-09-28T21:25:42Z",
+      "updated": "2026-09-29T21:32:48Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/566"
     },
     {
@@ -10060,7 +10062,7 @@
       "state_reason": null,
       "sub": {
         "completed": 0,
-        "total": 2
+        "total": 5
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10101,6 +10103,10 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
+      "sub": {
+        "completed": 0,
+        "total": 1
+      },
       "title": "Add dateCreated field to all content types",
       "updated": "2026-09-29T16:34:20Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/576"
@@ -10143,6 +10149,49 @@
       "title": "Define Configurable Body Blocks",
       "updated": "2026-09-29T17:14:05Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/577"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "See sub-issues\nGAIA collection Test case: https://pr-403.d1cvmssihw8emg.amplifyapp.com/disasters/recover\nPR: https://github.com/Disasters-Learning-Portal/disasters-portal/pull/403/changes\nRelated backend ticket: https://github.com/Disasters-Learning-Portal/disasters-portal/pull/403/changes\nRelated slack conversations:",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-29T21:51:40Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9iX9I",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 580,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "sub": {
+        "completed": 0,
+        "total": 2
+      },
+      "title": "Custom Colormap - categorical / inline",
+      "updated": "2026-09-29T22:00:59Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/580"
     },
     {
       "archived": false,
@@ -11999,7 +12048,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 2,
+        "completed": 3,
         "total": 6
       },
       "title": "[6.1a] Content implementation plan",
@@ -12206,8 +12255,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a5\nOwner: VEDA\nAssigned to: Dev Team\nSmartsheet status: (blank)\nSchedule: 30d — 2026-08-17 → 2026-10-02\nSmartsheet Ticket# column: 262 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\nNotes\n⚠️ Status was blank in the Smartsheet — defaulted to Todo on the board.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-09-29T20:46:27Z",
+      "comments": 5,
       "created": "2026-08-13T10:12:00Z",
       "draft": false,
       "fields": {
@@ -12223,7 +12272,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-08-17",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YcP8",
       "issue_type": null,
@@ -12240,10 +12289,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/34"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.1a5] Add HDS feature compliance to Disasters Portal",
-      "updated": "2026-09-23T17:24:56Z",
+      "updated": "2026-09-29T20:46:34Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/39"
     },
     {
@@ -21231,11 +21280,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 445,
+    "closed": 448,
     "drafts": 0,
-    "issues": 509,
-    "items": 524,
-    "open": 79,
+    "issues": 510,
+    "items": 525,
+    "open": 77,
     "prs": 15
   }
 }
