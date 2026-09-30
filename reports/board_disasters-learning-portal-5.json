@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-30T12:13:29Z",
+  "generated": "2026-09-30T18:10:50Z",
   "items": [
     {
       "archived": false,
@@ -6795,7 +6795,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Bugfix: Handle NextJS errors",
-      "updated": "2026-09-29T17:05:38Z",
+      "updated": "2026-09-30T12:49:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/424"
     },
     {
@@ -9669,7 +9669,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "fix attempted here #549\nProblem\nOn the Texas Floods July 2025 page (PR #435 preview), the On This Page navigation lists 20 entries where the page has 4 sections.\nEverything indented below a section is a card title, not a place you can navigate to in any meaningful sense. The nav is taller than the Overview section it sits beside.\n\nWhat it should list\nJust the four real sections:\n\nOverview\nExplore the UAVSAR Flood Maps\nRelated Data\nResources & Learning\n\nWhy it happens\nContentPageLayout renders the library InPageNavigation and lets it use its default heading set:\n<InPageNavigation data-main-cont",
-      "closed": null,
+      "closed": "2026-09-30T14:28:26Z",
       "comments": 6,
       "created": "2026-09-24T19:16:54Z",
       "draft": false,
@@ -9683,7 +9683,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8nphg",
       "issue_type": null,
@@ -9697,10 +9698,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "In-page navigation lists every card title, not just the page's sections",
-      "updated": "2026-09-24T20:45:55Z",
+      "updated": "2026-09-30T14:28:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/547"
     },
     {
@@ -10063,8 +10064,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
-        "total": 8
+        "completed": 1,
+        "total": 9
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10233,6 +10234,473 @@
       "title": "Header Search Bar and Search Results Page",
       "updated": "2026-09-30T07:52:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/582"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "The flood impacts data story wants a HydroSAR / NLCD swipe. We can't build one today, and the reason isn't the one we assumed.\nWhat's actually going on\nNLCD is available — just not where we're looking. openveda.cloud has nlcd-annual-conus (CONUS, 2001–2021, nine items over the Mississippi Delta, named nlcd colormap so it dodges the inline-colormap problems in #562/#566). Our disasters STAC doesn't have it. The earlier note that NLCD \"doesn't seem to be an available STAC collection\" is true of our STAC but not of VEDA's.\nThe blocker is that a stacCompare block carries a single stacApiUrl / titi",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T14:05:28Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9r1Os",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 583,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "stacCompare can't swipe two layers from different STAC endpoints (HydroSAR vs NLCD)",
+      "updated": "2026-09-30T14:05:28Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/583"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nSome small tasks are required prior to the soft-launch release (if possible). See sub-issues.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:10:12Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9ssU4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 584,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "sub": {
+        "completed": 0,
+        "total": 9
+      },
+      "title": "[Viz Tool] - needed enhancements",
+      "updated": "2026-09-30T15:38:27Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "We cannot showcase the CSDA collections due to EULA. We will need to remove the following collections.\nCollections to remove — 12 layers across 5 vendors\n\n\n\nSTAC collection\nLayer name in the portal\nPaired with\n\n\n\n\ncapella-backscatter-subdaily\nCapella Backscatter\nTyphoon Sinlaku\n\n\niceye-backscatter-subdaily\nICEYE Backscatter\nTyphoon Sinlaku\n\n\nplanet-cloudmask-daily\nPlanet Cloud Mask\n—\n\n\nplanet-colorir-daily\nPlanet Color Infrared\n—\n\n\nplanet-ndvi-daily\nPlanet Normalized Difference Vegetation Index (NDVI)\nTexas Flood\n\n\nplanet-ndvichange-composite\nPlanet NDVI Change\nTexas Flood\n\n\nplanet-ndwi-daily\n",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:12:14Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9st-0",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 585,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Remove CSDA collections",
+      "updated": "2026-09-30T15:39:35Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/585"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Re-raising the data \"footprint\" toggle from Disasters-Learning-Portal/veda-disasters#35, which was closed on 2026-06-25 with \"These will be re-scoped as needed. We are working on some of these features for the new plug-in visualization tool.\"\nThe ask\nOverlay each layer's geospatial bounding box as GeoJSON, visible at lower zoom levels, so a reader can see where a layer actually holds data before zooming in to look for it.\nFrom the original issue (comment) — what a footprint toggle looks like:\n\nAnd the AVIRIS case that motivated it, from Disasters E&A:\n\nWhy it matters more than it did when firs",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:20:29Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9s1O4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 586,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Data footprint toggle",
+      "updated": "2026-09-30T15:23:29Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/586"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Remove the SPoRT LIS Soil Moisture - All Variables [CONUS] layer from the disasters portal.\nWhat to remove\n\n\n\n\n\n\n\n\n\nLayer name\nSPoRT LIS Soil Moisture - All Variables [CONUS]\n\n\nSTAC collection\nnrt-sport-lis-conus-daily\n\n\nLayer key\nnrt-sport-lis-conus-daily\n\n\nUUID\n8a06a4e6-ca55-4f9b-9572-ee833e7e68be\n\n\nAsset / band\nrsm0-2m, band 1\n\n\nExtent\nCONUS, [-124.94, 25.06, -67.07, 52.93]\n\n\nDates held\n90, 2026-02-12 → 2026-05-12\n\n\n\nIt is the only SPoRT / LIS / soil-moisture layer in the catalogue, so this is a single layer definition in layers[]. Catalogue goes 81 → 80.\nImpact: none\n\nNot paired with any a",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:24:34Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9s4q0",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 587,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Remove SPoRT LIS Soil Moisture - All Variables [CONUS]",
+      "updated": "2026-09-30T15:39:43Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/587"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Feature request. When a reader selects an activation event, the portal should automatically move the timeline to the first item within that event's date range — with no further action from the reader.\nBehaviour\n\nSelecting an event sets the timeline window to the activation's start_datetime / end_datetime.\nThe cursor moves to the earliest date any of that event's layers holds data within that window.\nThis happens on selection. The reader should not have to drag the scrubber or press play.\n\nCurrent state\nA first implementation of the timeline move already exists on the MMGIS feature/disasters-mi",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:27:08Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9s7EI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 588,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "When an event is selected, automatically move the timeline to the first item in the event range",
+      "updated": "2026-09-30T15:27:08Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/588"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "When we select a layer, then it loses some of the street and map information. See if we can get it overlayed.",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-30T15:27:44Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9s7YY",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 589,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Geographic overlays missing",
+      "updated": "2026-09-30T15:39:50Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/589"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Good example:\n\nBad example (user won't know what the numerical values mean - need labels for the legend)",
+      "closed": null,
+      "comments": 2,
+      "created": "2026-09-30T15:29:21Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9s8oY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 590,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Legends for categorical data need mapped to real value",
+      "updated": "2026-09-30T15:59:58Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/590"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Unsure what the real issue is, but when we have multiple tiles that overlap then\nhttps://d3ulkw1jf8ffkj.cloudfront.net/?mission=disasters_learning_portal\nExample, you are looking at EarthQuake venezuela NISAR GUNW layer",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-09-30T15:33:17Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9tAEM",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 591,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Data un-renders if there are multiple overlapping tiles",
+      "updated": "2026-09-30T15:49:30Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/591"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "acblackford",
+      "body_excerpt": "The Compare Layer feature currently expects the same datetime between two layers, but not all layers have the same datetime for a disaster of interest. For example, both the OPERA Surface Disturbance and S1/2 Fire Severity products are showing post-fire analysis for the CA Wildfires event (2025), but are dated two days apart so cannot be compared like some user personas would desire.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:36:35Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9tDHQ",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 592,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Viz Tool Request: Ability to Select Datetime in Compare Layer Feature",
+      "updated": "2026-09-30T15:49:52Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/592"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Identify whether one of the collections should be named composite, monthly, daily etc. Then update the name so that users can understand the difference.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T15:58:00Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9tUkw",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 593,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update Black marble HD naming",
+      "updated": "2026-09-30T15:58:14Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/593"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Decision\nFrom the Slack thread on whether the PORTAL should use env vars for its hard-coded links to /data-visualization:\n\nAbdelhak: yes, use env vars, defined in Amplify per branch (main = prod, develop = dev).\nSimi: Abdelhak and Carson Davis to update the links in the codebase and the README, and add an .env file to the repo for local development.\n\nThis ticket records that decision and inventories what actually needs to change.\nWhat is hard-coded today\nFour occurrences across two classes. The thread covers the first; the second is the same problem and is included because it will bite at the ",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T16:04:06Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9tZaM",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [
+        "enhancement",
+        "dashboard"
+      ],
+      "milestone": null,
+      "number": 594,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Move hard-coded environment hosts behind env vars, set per Amplify branch",
+      "updated": "2026-09-30T16:04:06Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/594"
     },
     {
       "archived": false,
@@ -21321,11 +21789,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 450,
+    "closed": 451,
     "drafts": 0,
-    "issues": 511,
-    "items": 526,
-    "open": 76,
+    "issues": 523,
+    "items": 538,
+    "open": 87,
     "prs": 15
   }
 }
