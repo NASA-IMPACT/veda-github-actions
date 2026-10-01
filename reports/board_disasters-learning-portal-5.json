@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-01T12:13:11Z",
+  "generated": "2026-10-01T18:11:45Z",
   "items": [
     {
       "archived": false,
@@ -10070,7 +10070,7 @@
       "state_reason": null,
       "sub": {
         "completed": 0,
-        "total": 10
+        "total": 13
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10791,9 +10791,169 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
+      "sub": {
+        "completed": 0,
+        "total": 1
+      },
       "title": "PreLaunch - Misc Update",
       "updated": "2026-09-30T19:54:54Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "captions should allow hyperlinks and some rich text (update to react element)\nFrom Disaster's pre-launch review doc: https://docs.google.com/document/d/1AiyXvnrw4-_iI3eCtavvEiDmB1j-xDJS4f9d1zSde5U/edit?tab=t.0",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-01T16:40:18Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg980gI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 604,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Captions - maps and image",
+      "updated": "2026-10-01T16:40:18Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/604"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "https://docs.google.com/document/d/1AiyXvnrw4-_iI3eCtavvEiDmB1j-xDJS4f9d1zSde5U/edit?tab=t.0 - see 🔴",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-01T16:42:04Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg981_c",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 605,
+      "parent": {
+        "number": 600,
+        "title": "PreLaunch - Misc Update",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Updates from Disasters Stakeholder Review",
+      "updated": "2026-10-01T16:42:04Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/605"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-01T16:52:56Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg98-IA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 606,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Filters - Event filtering",
+      "updated": "2026-10-01T16:52:56Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/606"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "Events, Data, Hazards, Themes/Needs are shared between STAC, Data Viz Tool and Content Portal. We need a single source of truth for this data to be shared by 3 sources.\nWe've talked about hosting some of this in a shared disasters DB or within STAC meta data.\nDoc of shared needs: https://docs.google.com/document/d/1eyDLfNAQdlmQiBF8lDV--dPkDOEDqFVoOZXZn06vaPE/edit?tab=t.0",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-01T17:01:35Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg99FWo",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 607,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Shared Meta data",
+      "updated": "2026-10-01T17:01:35Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/607"
     },
     {
       "archived": false,
@@ -21884,9 +22044,9 @@
   "stats": {
     "closed": 452,
     "drafts": 0,
-    "issues": 525,
-    "items": 540,
-    "open": 88,
+    "issues": 529,
+    "items": 544,
+    "open": 92,
     "prs": 15
   }
 }
