@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-09-30T18:10:50Z",
+  "generated": "2026-10-01T00:26:57Z",
   "items": [
     {
       "archived": false,
@@ -3460,8 +3460,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 33,
-        "total": 36
+        "completed": 35,
+        "total": 38
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
       "updated": "2026-09-29T16:34:56Z",
@@ -6763,7 +6763,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "style tag in html\n\n\n\n\n\n\n non-native prop pass through via ...rest",
-      "closed": null,
+      "closed": "2026-09-30T22:49:21Z",
       "comments": 0,
       "created": "2026-09-03T01:41:25Z",
       "draft": false,
@@ -6778,7 +6778,7 @@
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg5MGzo",
       "issue_type": null,
@@ -6792,10 +6792,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Bugfix: Handle NextJS errors",
-      "updated": "2026-09-30T12:49:27Z",
+      "updated": "2026-09-30T22:49:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/424"
     },
     {
@@ -9693,9 +9693,9 @@
       "milestone": null,
       "number": 547,
       "parent": {
-        "number": 575,
-        "title": "🏈 [27.1] Epic - Post Launch Backlog",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "closed",
@@ -9980,6 +9980,11 @@
       "labels": [],
       "milestone": null,
       "number": 568,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -9991,7 +9996,7 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "Several images over 50kb were added. We should optimize these for page load.",
+      "body_excerpt": "Several images over 50kb were added. We should optimize these for page load. Please wait until Friday Oct 2nd to complete.",
       "closed": null,
       "comments": 0,
       "created": "2026-09-29T16:15:15Z",
@@ -10023,7 +10028,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Optimize all images",
-      "updated": "2026-09-29T16:15:15Z",
+      "updated": "2026-09-30T19:41:25Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/572"
     },
     {
@@ -10064,8 +10069,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
-        "total": 9
+        "completed": 0,
+        "total": 10
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10350,7 +10355,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Remove CSDA collections",
-      "updated": "2026-09-30T15:39:35Z",
+      "updated": "2026-09-30T20:33:19Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/585"
     },
     {
@@ -10388,8 +10393,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Data footprint toggle",
-      "updated": "2026-09-30T15:23:29Z",
+      "title": "[FY27 request] Data footprint toggle",
+      "updated": "2026-09-30T20:30:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/586"
     },
     {
@@ -10437,7 +10442,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Feature request. When a reader selects an activation event, the portal should automatically move the timeline to the first item within that event's date range — with no further action from the reader.\nBehaviour\n\nSelecting an event sets the timeline window to the activation's start_datetime / end_datetime.\nThe cursor moves to the earliest date any of that event's layers holds data within that window.\nThis happens on selection. The reader should not have to drag the scrubber or press play.\n\nCurrent state\nA first implementation of the timeline move already exists on the MMGIS feature/disasters-mi",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-30T15:27:08Z",
       "draft": false,
       "fields": {
@@ -10466,8 +10471,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "When an event is selected, automatically move the timeline to the first item in the event range",
-      "updated": "2026-09-30T15:27:08Z",
+      "title": "[FY 27 request] When an event is selected, automatically move the timeline to the first item in the event range",
+      "updated": "2026-09-30T20:31:43Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/588"
     },
     {
@@ -10476,7 +10481,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "When we select a layer, then it loses some of the street and map information. See if we can get it overlayed.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-30T15:27:44Z",
       "draft": false,
       "fields": {
@@ -10506,16 +10511,18 @@
       "state": "open",
       "state_reason": null,
       "title": "Geographic overlays missing",
-      "updated": "2026-09-30T15:39:50Z",
+      "updated": "2026-09-30T20:15:06Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/589"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Good example:\n\nBad example (user won't know what the numerical values mean - need labels for the legend)",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-09-30T15:29:21Z",
       "draft": false,
       "fields": {
@@ -10531,7 +10538,7 @@
         }
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9s8oY",
-      "issue_type": null,
+      "issue_type": "Task",
       "kind": "issue",
       "labels": [],
       "milestone": null,
@@ -10545,16 +10552,18 @@
       "state": "open",
       "state_reason": null,
       "title": "Legends for categorical data need mapped to real value",
-      "updated": "2026-09-30T15:59:58Z",
+      "updated": "2026-09-30T20:36:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/590"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Unsure what the real issue is, but when we have multiple tiles that overlap then\nhttps://d3ulkw1jf8ffkj.cloudfront.net/?mission=disasters_learning_portal\nExample, you are looking at EarthQuake venezuela NISAR GUNW layer",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-30T15:33:17Z",
       "draft": false,
       "fields": {
@@ -10584,16 +10593,18 @@
       "state": "open",
       "state_reason": null,
       "title": "Data un-renders if there are multiple overlapping tiles",
-      "updated": "2026-09-30T15:49:30Z",
+      "updated": "2026-09-30T21:13:14Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/591"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "BhattaraiSijan"
+      ],
       "author": "acblackford",
       "body_excerpt": "The Compare Layer feature currently expects the same datetime between two layers, but not all layers have the same datetime for a disaster of interest. For example, both the OPERA Surface Disturbance and S1/2 Fire Severity products are showing post-fire analysis for the CA Wildfires event (2025), but are dated two days apart so cannot be compared like some user personas would desire.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-30T15:36:35Z",
       "draft": false,
       "fields": {
@@ -10609,7 +10620,7 @@
         }
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9tDHQ",
-      "issue_type": "Task",
+      "issue_type": null,
       "kind": "issue",
       "labels": [],
       "milestone": null,
@@ -10623,16 +10634,18 @@
       "state": "open",
       "state_reason": null,
       "title": "Viz Tool Request: Ability to Select Datetime in Compare Layer Feature",
-      "updated": "2026-09-30T15:49:52Z",
+      "updated": "2026-09-30T20:40:58Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/592"
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "kyle-lesinger"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Identify whether one of the collections should be named composite, monthly, daily etc. Then update the name so that users can understand the difference.",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-09-30T15:58:00Z",
       "draft": false,
       "fields": {
@@ -10662,7 +10675,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update Black marble HD naming",
-      "updated": "2026-09-30T15:58:14Z",
+      "updated": "2026-09-30T20:39:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/593"
     },
     {
@@ -10701,6 +10714,86 @@
       "title": "Move hard-coded environment hosts behind env vars, set per Amplify branch",
       "updated": "2026-09-30T16:04:06Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/594"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "ifsimicoded",
+      "body_excerpt": "For the HDS theme only, we should use HDS specific icons instead of the USWDS icons. These icons typically are encircled, so we should ensure existing icons in use have any artificial circled border removed.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T19:40:29Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9v6dI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 599,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "HDS icons",
+      "updated": "2026-09-30T19:40:29Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/599"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "willemarcel"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "Remove Data Processing Link from header\n Update Data Viz Link in Header and Footer (use constant so it can be swapped easily with an Env var)\n Update ExploreDataURL to use constant ☝️",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-09-30T19:53:36Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg9wD5c",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 600,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "PreLaunch - Misc Update",
+      "updated": "2026-09-30T19:54:54Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
     },
     {
       "archived": false,
@@ -21789,11 +21882,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 451,
+    "closed": 452,
     "drafts": 0,
-    "issues": 523,
-    "items": 538,
-    "open": 87,
+    "issues": 525,
+    "items": 540,
+    "open": 88,
     "prs": 15
   }
 }
