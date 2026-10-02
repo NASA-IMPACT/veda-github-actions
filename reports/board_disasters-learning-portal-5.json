@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-02T12:12:51Z",
+  "generated": "2026-10-02T18:11:07Z",
   "items": [
     {
       "archived": false,
@@ -10312,7 +10312,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
+        "completed": 4,
         "total": 9
       },
       "title": "[Viz Tool] - needed enhancements",
@@ -10324,8 +10324,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "We cannot showcase the CSDA collections due to EULA. We will need to remove the following collections.\nCollections to remove — 12 layers across 5 vendors\n\n\n\nSTAC collection\nLayer name in the portal\nPaired with\n\n\n\n\ncapella-backscatter-subdaily\nCapella Backscatter\nTyphoon Sinlaku\n\n\niceye-backscatter-subdaily\nICEYE Backscatter\nTyphoon Sinlaku\n\n\nplanet-cloudmask-daily\nPlanet Cloud Mask\n—\n\n\nplanet-colorir-daily\nPlanet Color Infrared\n—\n\n\nplanet-ndvi-daily\nPlanet Normalized Difference Vegetation Index (NDVI)\nTexas Flood\n\n\nplanet-ndvichange-composite\nPlanet NDVI Change\nTexas Flood\n\n\nplanet-ndwi-daily\n",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-02T15:28:10Z",
+      "comments": 1,
       "created": "2026-09-30T15:12:14Z",
       "draft": false,
       "fields": {
@@ -10338,7 +10338,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9st-0",
       "issue_type": "Task",
@@ -10352,10 +10353,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Remove CSDA collections",
-      "updated": "2026-09-30T20:33:19Z",
+      "updated": "2026-10-02T15:28:10Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/585"
     },
     {
@@ -10402,8 +10403,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Remove the SPoRT LIS Soil Moisture - All Variables [CONUS] layer from the disasters portal.\nWhat to remove\n\n\n\n\n\n\n\n\n\nLayer name\nSPoRT LIS Soil Moisture - All Variables [CONUS]\n\n\nSTAC collection\nnrt-sport-lis-conus-daily\n\n\nLayer key\nnrt-sport-lis-conus-daily\n\n\nUUID\n8a06a4e6-ca55-4f9b-9572-ee833e7e68be\n\n\nAsset / band\nrsm0-2m, band 1\n\n\nExtent\nCONUS, [-124.94, 25.06, -67.07, 52.93]\n\n\nDates held\n90, 2026-02-12 → 2026-05-12\n\n\n\nIt is the only SPoRT / LIS / soil-moisture layer in the catalogue, so this is a single layer definition in layers[]. Catalogue goes 81 → 80.\nImpact: none\n\nNot paired with any a",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-02T15:28:36Z",
+      "comments": 1,
       "created": "2026-09-30T15:24:34Z",
       "draft": false,
       "fields": {
@@ -10416,7 +10417,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9s4q0",
       "issue_type": "Task",
@@ -10430,10 +10432,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Remove SPoRT LIS Soil Moisture - All Variables [CONUS]",
-      "updated": "2026-09-30T15:39:43Z",
+      "updated": "2026-10-02T15:28:37Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/587"
     },
     {
@@ -10481,7 +10483,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "When we select a layer, then it loses some of the street and map information. See if we can get it overlayed.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-09-30T15:27:44Z",
       "draft": false,
       "fields": {
@@ -10511,7 +10513,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Geographic overlays missing",
-      "updated": "2026-09-30T20:15:06Z",
+      "updated": "2026-10-02T14:51:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/589"
     },
     {
@@ -10521,8 +10523,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Good example:\n\nBad example (user won't know what the numerical values mean - need labels for the legend)",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-10-02T15:29:02Z",
+      "comments": 4,
       "created": "2026-09-30T15:29:21Z",
       "draft": false,
       "fields": {
@@ -10535,7 +10537,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9s8oY",
       "issue_type": "Task",
@@ -10549,10 +10552,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Legends for categorical data need mapped to real value",
-      "updated": "2026-09-30T20:36:44Z",
+      "updated": "2026-10-02T15:29:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/590"
     },
     {
@@ -10644,8 +10647,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Identify whether one of the collections should be named composite, monthly, daily etc. Then update the name so that users can understand the difference.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-02T15:29:24Z",
+      "comments": 3,
       "created": "2026-09-30T15:58:00Z",
       "draft": false,
       "fields": {
@@ -10658,7 +10661,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9tUkw",
       "issue_type": "Task",
@@ -10672,10 +10676,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update Black marble HD naming",
-      "updated": "2026-09-30T20:39:39Z",
+      "updated": "2026-10-02T15:29:25Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/593"
     },
     {
@@ -11252,7 +11256,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2a\nOwner: Disasters/VEDA\nAssigned to: Jacob / Seph / Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 38d — 2026-08-03 → 2026-10-05\nPriority: High\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-08-12T22:41:21Z",
       "draft": false,
       "fields": {
@@ -11290,7 +11294,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.2a] Agreed upon content is added to PORTAL",
-      "updated": "2026-09-21T18:31:34Z",
+      "updated": "2026-10-02T18:06:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/2"
     },
     {
@@ -11392,7 +11396,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2d\nOwner: Disasters\nAssigned to: Shanna\nSmartsheet status: Not Started\nSchedule: 4d — 2026-09-22 → 2026-10-05\nSmartsheet Ticket# column: 216 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-08-12T22:41:45Z",
       "draft": false,
       "fields": {
@@ -11428,7 +11432,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.2d] Final Shanna review",
-      "updated": "2026-09-23T17:24:15Z",
+      "updated": "2026-10-02T18:06:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/5"
     },
     {
@@ -22044,11 +22048,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 452,
+    "closed": 456,
     "drafts": 0,
     "issues": 529,
     "items": 544,
-    "open": 92,
+    "open": 88,
     "prs": 15
   }
 }
