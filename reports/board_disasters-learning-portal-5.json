@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-01T18:11:45Z",
+  "generated": "2026-10-02T00:23:40Z",
   "items": [
     {
       "archived": false,
@@ -9095,7 +9095,7 @@
         "willemarcel"
       ],
       "author": "ifsimicoded",
-      "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma\n\ngallery pages:\n\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/data-gallery\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/training\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories",
+      "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.  COnsider text limits and ellipsis for description text\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma\n\ngallery pages:\n\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/data-gallery\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/training\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories",
       "closed": null,
       "comments": 0,
       "created": "2026-09-22T07:13:11Z",
@@ -9127,7 +9127,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update DP: Gallery page review",
-      "updated": "2026-09-28T18:39:56Z",
+      "updated": "2026-10-02T00:22:38Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/525"
     },
     {
@@ -9280,14 +9280,14 @@
       "number": 529,
       "parent": {
         "number": 137,
-        "title": "[Rolling] PI Objective - Productionalize Reusable Component Registry (Documentation / Socialize / Dev-x / Tech Debt)",
+        "title": "[Rolling] PI Objective - Productionalize Reusable Component Registry (Documentation / Socialize / Dev-x / Features / Tech Debt)",
         "url": "https://github.com/NASA-IMPACT/tinacms-portal-monorepo/issues/137"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Gallery filters: follow-ups from the #493 review",
-      "updated": "2026-09-22T16:50:45Z",
+      "title": "Tech Debt: Gallery filters - follow-ups from the #493 review",
+      "updated": "2026-10-01T19:52:50Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/529"
     },
     {
@@ -10840,7 +10840,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "ifsimicoded"
+      ],
       "author": "ifsimicoded",
       "body_excerpt": "https://docs.google.com/document/d/1AiyXvnrw4-_iI3eCtavvEiDmB1j-xDJS4f9d1zSde5U/edit?tab=t.0 - see 🔴",
       "closed": null,
@@ -10874,7 +10876,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Updates from Disasters Stakeholder Review",
-      "updated": "2026-10-01T16:42:04Z",
+      "updated": "2026-10-01T21:06:08Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/605"
     },
     {
