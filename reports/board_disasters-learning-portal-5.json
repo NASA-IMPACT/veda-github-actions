@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-02T18:11:07Z",
+  "generated": "2026-10-03T00:21:22Z",
   "items": [
     {
       "archived": false,
@@ -3460,8 +3460,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 35,
-        "total": 38
+        "completed": 36,
+        "total": 40
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
       "updated": "2026-09-29T16:34:56Z",
@@ -10761,7 +10761,7 @@
     {
       "archived": false,
       "assignees": [
-        "willemarcel"
+        "CarsonDavis"
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Remove Data Processing Link from header\n Update Data Viz Link in Header and Footer (use constant so it can be swapped easily with an Env var)\n Update ExploreDataURL to use constant ☝️",
@@ -10795,12 +10795,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "sub": {
-        "completed": 0,
-        "total": 1
-      },
-      "title": "PreLaunch - Misc Update",
-      "updated": "2026-09-30T19:54:54Z",
+      "title": "Update DP: env variable handling (data viz tool, stac api, raster api)",
+      "updated": "2026-10-02T18:59:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
     },
     {
@@ -10849,7 +10845,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "https://docs.google.com/document/d/1AiyXvnrw4-_iI3eCtavvEiDmB1j-xDJS4f9d1zSde5U/edit?tab=t.0 - see 🔴",
-      "closed": null,
+      "closed": "2026-10-02T18:57:52Z",
       "comments": 0,
       "created": "2026-10-01T16:42:04Z",
       "draft": false,
@@ -10863,7 +10859,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg981_c",
       "issue_type": null,
@@ -10872,15 +10869,15 @@
       "milestone": null,
       "number": 605,
       "parent": {
-        "number": 600,
-        "title": "PreLaunch - Misc Update",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
-      "title": "Updates from Disasters Stakeholder Review",
-      "updated": "2026-10-01T21:06:08Z",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "PreLaunch QA: Updates from Disasters Stakeholder Review on Sept 30th",
+      "updated": "2026-10-02T18:57:52Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/605"
     },
     {
@@ -10960,6 +10957,47 @@
       "title": "Shared Meta data",
       "updated": "2026-10-01T17:01:35Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/607"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "ram-sharan25"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "https://developmentseed.slack.com/archives/C07JY4J68SX/p1790608696470269\n\nRonan would like to add the PORTAL 101 Training sometime this week as a clickable PDF that users can download. I am hesitant to include the content directly on the page because some of the text is colored-coded, which would likely not meet HDS compliance. Given these constraints, what feasible options do we have to implement this between now and this Friday?\n\nhttps://developmentseed.slack.com/archives/C07JY4J68SX/p1790889886426689",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-02T19:05:11Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-MvDY",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 622,
+      "parent": {
+        "number": 329,
+        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update DP: handle PDF pages",
+      "updated": "2026-10-02T19:05:48Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/622"
     },
     {
       "archived": false,
@@ -21940,6 +21978,11 @@
       "name": "Sijan Bhattarai"
     },
     {
+      "avatar": "https://avatars.githubusercontent.com/u/14339518?u=1da38f4eb08d50ac4110f4d6230b66b8f8b22f27&v=4",
+      "login": "CarsonDavis",
+      "name": "Carson Davis"
+    },
+    {
       "avatar": "https://avatars.githubusercontent.com/u/210393093?v=4",
       "login": "chelsea-aaron",
       "name": "chelsea-aaron"
@@ -21983,6 +22026,11 @@
       "avatar": "https://avatars.githubusercontent.com/u/43391635?u=017f1155c9bca7b48e26bcefdf0f68cd356c5e17&v=4",
       "login": "NightFuryis11",
       "name": "Sam Bailey"
+    },
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/94235384?u=493453d55a923507947e3f589c45bb7535746e75&v=4",
+      "login": "ram-sharan25",
+      "name": "Ram Sharan Rimal"
     },
     {
       "avatar": "https://avatars.githubusercontent.com/u/33552396?u=04b01d4f6328655e9e71d13efe124b3a404d820c&v=4",
@@ -22048,10 +22096,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 456,
+    "closed": 457,
     "drafts": 0,
-    "issues": 529,
-    "items": 544,
+    "issues": 530,
+    "items": 545,
     "open": 88,
     "prs": 15
   }
