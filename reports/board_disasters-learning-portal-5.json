@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-05T12:13:31Z",
+  "generated": "2026-10-05T18:11:02Z",
   "items": [
     {
       "archived": false,
@@ -3460,7 +3460,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 36,
+        "completed": 37,
         "total": 40
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
@@ -10313,7 +10313,7 @@
       "state_reason": null,
       "sub": {
         "completed": 4,
-        "total": 9
+        "total": 13
       },
       "title": "[Viz Tool] - needed enhancements",
       "updated": "2026-09-30T15:38:27Z",
@@ -10687,7 +10687,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Decision\nFrom the Slack thread on whether the PORTAL should use env vars for its hard-coded links to /data-visualization:\n\nAbdelhak: yes, use env vars, defined in Amplify per branch (main = prod, develop = dev).\nSimi: Abdelhak and Carson Davis to update the links in the codebase and the README, and add an .env file to the repo for local development.\n\nThis ticket records that decision and inventories what actually needs to change.\nWhat is hard-coded today\nFour occurrences across two classes. The thread covers the first; the second is the same problem and is included because it will bite at the ",
-      "closed": null,
+      "closed": "2026-10-05T17:57:04Z",
       "comments": 0,
       "created": "2026-09-30T16:04:06Z",
       "draft": false,
@@ -10701,7 +10701,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9tZaM",
       "issue_type": null,
@@ -10713,10 +10714,10 @@
       "milestone": null,
       "number": 594,
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Move hard-coded environment hosts behind env vars, set per Amplify branch",
-      "updated": "2026-09-30T16:04:06Z",
+      "updated": "2026-10-05T17:57:04Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/594"
     },
     {
@@ -10765,7 +10766,7 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "Remove Data Processing Link from header\n Update Data Viz Link in Header and Footer (use constant so it can be swapped easily with an Env var)\n Update ExploreDataURL to use constant ☝️",
-      "closed": null,
+      "closed": "2026-10-05T17:57:03Z",
       "comments": 0,
       "created": "2026-09-30T19:53:36Z",
       "draft": false,
@@ -10779,7 +10780,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9wD5c",
       "issue_type": null,
@@ -10793,10 +10795,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: env variable handling (data viz tool, stac api, raster api)",
-      "updated": "2026-10-02T18:59:51Z",
+      "updated": "2026-10-05T17:57:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/600"
     },
     {
@@ -10998,6 +11000,204 @@
       "title": "Update DP: handle PDF pages",
       "updated": "2026-10-02T19:05:48Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/622"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThere are several new buttons that don't have hover tooltips available. Would be nice to have those to understand the component functionality.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-05T16:07:19Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-rIOs",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 627,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "[FY27 request] - Add tooltips for icons",
+      "updated": "2026-10-05T16:07:19Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/627"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "AC\nGo through the current tool and verify that each layer is properly attributed. Provide a report to Sijan and Sandesh once completed.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-05T16:07:55Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-rIsg",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 628,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update the Analyzable layer list",
+      "updated": "2026-10-05T16:18:17Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/628"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford",
+        "chelsea-aaron"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nWith all of the new features that have been added to the PORTAL Visualization Tool, it has been requested to create a training document (similarly to PORTAL 101 training) in which we have a .pdf which allows users to walkthrough the tool and understand the functionality.\nAC\n\n Viz Tool Training created and added to Disasters PORTAL",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-05T16:09:24Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-rJz4",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 629,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "[FY 27 request] - Create Data Visualization 101 training",
+      "updated": "2026-10-05T16:09:37Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/629"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nPrior to the IAEM conference, it was suggested to created an in-line form in which individuals can add their contact information and it will link to the list-serv\nToDO\n\n scope on where on PORTAL it should go, what content should be fillable, etc\n\nAC\n\n in-line form added to PORTAL",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-05T16:11:26Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-rL-Q",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 630,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "[FY 27 request] - Create in-line form to receive contact information",
+      "updated": "2026-10-05T16:11:26Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/630"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "BhattaraiSijan"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThere is a copy link button which captures the app state and allows the link to be shared.\n\nIssue\nCurrently, loading the URL from copy link produces the same geospatial coords, but IS MISSING THE TIME.  Therefore, it always loads but no data shows up.\nAC\n\n include time in the copy link URL",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-05T16:17:56Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg-rRBc",
+      "issue_type": "Task",
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 631,
+      "parent": {
+        "number": 584,
+        "title": "[Viz Tool] - needed enhancements",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Copy link doesn't include the datetime (when re-loaded)",
+      "updated": "2026-10-05T16:18:13Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/631"
     },
     {
       "archived": false,
@@ -11277,7 +11477,7 @@
       "state": "closed",
       "state_reason": "completed",
       "sub": {
-        "completed": 0,
+        "completed": 1,
         "total": 4
       },
       "title": "[6.2] PORTAL content review",
@@ -11293,8 +11493,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2a\nOwner: Disasters/VEDA\nAssigned to: Jacob / Seph / Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 38d — 2026-08-03 → 2026-10-05\nPriority: High\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-10-05T16:25:43Z",
+      "comments": 5,
       "created": "2026-08-12T22:41:21Z",
       "draft": false,
       "fields": {
@@ -11311,7 +11511,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-08-03",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ug1U",
       "issue_type": null,
@@ -11329,10 +11529,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/1"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.2a] Agreed upon content is added to PORTAL",
-      "updated": "2026-10-02T18:06:04Z",
+      "updated": "2026-10-05T16:25:51Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/2"
     },
     {
@@ -22096,11 +22296,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 457,
+    "closed": 460,
     "drafts": 0,
-    "issues": 530,
-    "items": 545,
-    "open": 88,
+    "issues": 535,
+    "items": 550,
+    "open": 90,
     "prs": 15
   }
 }
