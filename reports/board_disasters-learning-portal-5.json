@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-05T06:23:01Z",
+  "generated": "2026-10-05T12:13:31Z",
   "items": [
     {
       "archived": false,
@@ -10805,7 +10805,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "captions should allow hyperlinks and some rich text (update to react element)\nFrom Disaster's pre-launch review doc: https://docs.google.com/document/d/1AiyXvnrw4-_iI3eCtavvEiDmB1j-xDJS4f9d1zSde5U/edit?tab=t.0",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-10-01T16:40:18Z",
       "draft": false,
       "fields": {
@@ -10835,7 +10835,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Captions - maps and image",
-      "updated": "2026-10-01T16:40:18Z",
+      "updated": "2026-10-05T09:51:26Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/604"
     },
     {
