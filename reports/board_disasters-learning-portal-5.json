@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-05T18:11:02Z",
+  "generated": "2026-10-06T00:23:12Z",
   "items": [
     {
       "archived": false,
@@ -1842,7 +1842,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nThe Jupyterhub will be utilized extensively for Disasters activation events to process data and push to the S3 bucket. We have been alerted that many individuals do not have the expertise to efficiently access and run the notebooks. Therefore, documentation must be created.\nAcceptance Critieria\n\n meet with Disasters and get more info on documentation criteria (needs)\n Create documentation (either Markdown or word... still TBD) (get info from Disasters regarding their preferred format for delivery)\n\nInfo\nHere are some things that would be useful to add to a ticket to track.\n\nUser identi",
-      "closed": null,
+      "closed": "2026-10-05T20:36:35Z",
       "comments": 0,
       "created": "2026-06-17T14:37:13Z",
       "draft": false,
@@ -1860,7 +1860,7 @@
           "title": "26.3.3"
         },
         "Start Date": "2026-06-17",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5RzgwC2pc",
       "issue_type": null,
@@ -1874,14 +1874,14 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 6,
+        "completed": 9,
         "total": 9
       },
       "title": "Create documentation for Jupyterhub for Disasters",
-      "updated": "2026-06-18T14:27:36Z",
+      "updated": "2026-10-05T20:36:35Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
     },
     {
@@ -2578,11 +2578,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "A plan will need to be drafted for an agreement of work for any additional VEDA team support in FY27 for CRC algorithms and workflows for activations.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T20:36:07Z",
+      "comments": 2,
       "created": "2026-06-30T15:30:02Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTSG0",
       "issue_type": null,
       "kind": "issue",
@@ -2595,10 +2597,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Draft ~1 Year Plan (FY27)",
-      "updated": "2026-09-17T13:16:15Z",
+      "updated": "2026-10-05T20:36:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/297"
     },
     {
@@ -2646,11 +2648,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "GRAs to investigate efficient improvements to workflows following feedback from MSFC CRCs June 25, 2026 (lower priority):\n\nNeed data in a usable format (download from original source, process via algorithm scripts, and sharing with DRCS via PORTAL).\nWant all 12 CRCs to be using workflow by October 2026.\n\nDo not need to investigate this sub-issue until all currently requested notebooks are built and tested (including commercial data).",
-      "closed": null,
+      "closed": "2026-10-05T20:36:27Z",
       "comments": 0,
       "created": "2026-06-30T15:35:00Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTUCQ",
       "issue_type": null,
       "kind": "issue",
@@ -2663,10 +2667,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Improve Data Format Efficiency",
-      "updated": "2026-06-30T15:38:12Z",
+      "updated": "2026-10-05T20:36:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/299"
     },
     {
@@ -2676,11 +2680,13 @@
       ],
       "author": "acblackford",
       "body_excerpt": "GitHub issues may be the easiest way to accomplish this, but need to evaluate CRCs' familiarity with GitHub.\nThis is specifically for Disasters staff.\nAcceptance Criteria\n\n establish CRC familiarity with Github or other communication means\n protocol documented with training examples\n run tests with Disasters staff to ensure everything works smoothly\n address any major bugs",
-      "closed": null,
+      "closed": "2026-10-05T20:36:32Z",
       "comments": 0,
       "created": "2026-06-30T15:36:29Z",
       "draft": false,
-      "fields": {},
+      "fields": {
+        "Status": "Done"
+      },
       "id": "PVTI_lADODdLRP84BMP5RzgxTUq8",
       "issue_type": null,
       "kind": "issue",
@@ -2693,10 +2699,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/275"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Establish Protocol for Feature Requests/Bug Reports",
-      "updated": "2026-07-01T12:33:23Z",
+      "updated": "2026-10-05T20:36:32Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/300"
     },
     {
@@ -3059,6 +3065,7 @@
     {
       "archived": false,
       "assignees": [
+        "CarsonDavis",
         "amarouane-ABDELHAK"
       ],
       "author": "kyle-lesinger",
@@ -3096,8 +3103,8 @@
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
-      "title": "Conduct stress test on production services prior to September 30, 2026 launch",
-      "updated": "2026-07-17T15:30:16Z",
+      "title": "Conduct stress test on production services prior to October 8, 2026 launch",
+      "updated": "2026-10-05T20:38:15Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/316"
     },
     {
@@ -3105,7 +3112,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nWhen we release the Disasters PORTAL, we will need staff on-call to respond to any frontend or backend bugs that arise. We have yet to specifically identify who will be on-call, but this should be decided 1 month prior.",
-      "closed": null,
+      "closed": "2026-10-05T20:38:36Z",
       "comments": 0,
       "created": "2026-07-15T14:33:33Z",
       "draft": false,
@@ -3123,7 +3130,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-30",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgy7b-M",
       "issue_type": null,
@@ -3137,10 +3144,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "General support needed during Disasters PORTAL release (October 8, 2026 - October 15, 2026)",
-      "updated": "2026-09-24T19:38:42Z",
+      "updated": "2026-10-05T20:38:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/317"
     },
     {
@@ -3569,7 +3576,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 2,
+        "completed": 6,
         "total": 11
       },
       "title": "Disasters + VEDA tasks for September 30, 2026 launch",
@@ -3804,7 +3811,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nWhen building MMGIS missions, it's typically a time consuming process to add individual layers and customization.  To alleviate this and speed up time from initial thought to final MMGIS dashboard, we would like to scope the feasibility of using agents to help orchestrate the building of the dashboard from a STAC collection.\nDisasters is a prime candidate due to its need for different missions based on different activation events. They can have up to 20 per year. Additionally, we are a STAC-centric portal where we try and incorporate as much into STAC as possible. So finding the specif",
-      "closed": null,
+      "closed": "2026-10-05T21:09:12Z",
       "comments": 1,
       "created": "2026-07-28T18:16:44Z",
       "draft": false,
@@ -3821,7 +3828,8 @@
           "startDate": "2026-09-20",
           "title": "26.4.4"
         },
-        "Start Date": "2026-10-05"
+        "Start Date": "2026-10-05",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg0a4D0",
       "issue_type": null,
@@ -3835,10 +3843,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Scope CARE process with Disasters MMGIS Design",
-      "updated": "2026-07-28T18:18:00Z",
+      "updated": "2026-10-05T21:09:12Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/340"
     },
     {
@@ -4191,7 +4199,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nAdd a Disasters-specific veda-black-marble algorithm/product for the F2F POC, which auto-updates to STAC via the lambda.\nAcceptance Criteria\n\n Add a disasters-specific veda-black-marble algorithm/product\n Output auto-updates to STAC via the ingestion lambda\n Demonstrate for the F2F POC\n\nContext\n\nParent PoC: #342",
-      "closed": null,
+      "closed": "2026-10-05T21:11:09Z",
       "comments": 0,
       "created": "2026-07-31T19:18:10Z",
       "draft": false,
@@ -4205,7 +4213,8 @@
           "duration": 21,
           "startDate": "2026-07-19",
           "title": "26.4.1"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg02Um4",
       "issue_type": null,
@@ -4219,10 +4228,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "DPS: Add disasters-specific veda-black-marble for F2F POC (auto-update to STAC lambda)",
-      "updated": "2026-08-13T20:51:50Z",
+      "updated": "2026-10-05T21:11:09Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/349"
     },
     {
@@ -4231,7 +4240,7 @@
       "author": "amarouane-ABDELHAK",
       "body_excerpt": "Description\nThe website is currently using the default Next.js favicon. We should replace it with the appropriate disasters favicon for the website to provide consistent branding.\nAcceptance Criteria\n\n The website no longer displays the default Next.js favicon.\n The approved custom favicon is displayed consistently across supported browsers.\n The favicon works in both development and production builds.\n No broken or missing favicon requests appear in the browser console/network logs.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-08-08T22:01:44Z",
       "draft": false,
       "fields": {
@@ -4258,7 +4267,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Add disasters favicon",
-      "updated": "2026-09-01T21:35:33Z",
+      "updated": "2026-10-05T21:19:41Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/352"
     },
     {
@@ -11477,7 +11486,7 @@
       "state": "closed",
       "state_reason": "completed",
       "sub": {
-        "completed": 1,
+        "completed": 4,
         "total": 4
       },
       "title": "[6.2] PORTAL content review",
@@ -11540,8 +11549,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2b\nOwner: Disasters\nAssigned to: Shanna\nSmartsheet status: Not Started\nSchedule: 3d — 2026-09-01 → 2026-09-03\nPriority: LOW\nNotes\nMust happen during the F2F, August 31 – September 4.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:48:09Z",
+      "comments": 3,
       "created": "2026-08-12T22:41:30Z",
       "draft": false,
       "fields": {
@@ -11558,7 +11567,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-09-01",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ug4I",
       "issue_type": null,
@@ -11575,10 +11584,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/1"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.2b] Shanna initial review (make sure during the F2F August 31 - Sept. 4)!!!!",
-      "updated": "2026-08-31T19:16:37Z",
+      "updated": "2026-10-05T21:48:17Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/3"
     },
     {
@@ -11586,8 +11595,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2c\nOwner: Disasters/VEDA\nAssigned to: VEDA Dev / Disasters\nSmartsheet status: Not Started\nSchedule: 12d — 2026-09-04 → 2026-09-21\nPriority: MEDIUM\nSmartsheet Ticket# column: 214 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:47:16Z",
+      "comments": 3,
       "created": "2026-08-12T22:41:38Z",
       "draft": false,
       "fields": {
@@ -11604,7 +11613,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-04",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ug7U",
       "issue_type": null,
@@ -11622,10 +11631,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/1"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.2c] Complete development tasks from Shanna initial review",
-      "updated": "2026-09-18T16:46:00Z",
+      "updated": "2026-10-05T21:47:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/4"
     },
     {
@@ -11633,8 +11642,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.2d\nOwner: Disasters\nAssigned to: Shanna\nSmartsheet status: Not Started\nSchedule: 4d — 2026-09-22 → 2026-10-05\nSmartsheet Ticket# column: 216 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 3,
+      "closed": "2026-10-05T21:47:44Z",
+      "comments": 5,
       "created": "2026-08-12T22:41:45Z",
       "draft": false,
       "fields": {
@@ -11650,7 +11659,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-22",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ug90",
       "issue_type": null,
@@ -11667,10 +11676,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/1"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.2d] Final Shanna review",
-      "updated": "2026-10-02T18:06:03Z",
+      "updated": "2026-10-05T21:47:52Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/5"
     },
     {
@@ -11678,8 +11687,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: In Progress (0% complete)\nSchedule: 87d — 2026-06-02 → 2026-10-06\nNotes\nSmartsheet link column: Disasters-Learning-Portal/veda-disasters#197\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-05T21:20:47Z",
+      "comments": 5,
       "created": "2026-08-12T22:43:32Z",
       "draft": false,
       "fields": {
@@ -11695,7 +11704,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-06-02",
-        "Status": "EPIC"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UhrM",
       "issue_type": null,
@@ -11714,14 +11723,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 4,
+        "completed": 5,
         "total": 5
       },
       "title": "[6.3] Custom visualization tool",
-      "updated": "2026-09-28T22:24:10Z",
+      "updated": "2026-10-05T21:25:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
     },
     {
@@ -11879,8 +11888,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.3d\nOwner: VEDA\nAssigned to: VEDA Dev\nSmartsheet status: Not Started\nSchedule: 12d — 2026-09-15 → 2026-09-30\nPriority: MEDIUM\nSmartsheet Ticket# column: 222 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-05T21:21:54Z",
+      "comments": 4,
       "created": "2026-08-12T22:44:00Z",
       "draft": false,
       "fields": {
@@ -11897,7 +11906,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-15",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Uh00",
       "issue_type": null,
@@ -11914,10 +11923,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/6"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.3d] Address high impact user feedback and bugs (show stopper large blockers)",
-      "updated": "2026-09-28T19:53:00Z",
+      "updated": "2026-10-05T21:27:07Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/10"
     },
     {
@@ -11928,7 +11937,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.4\nOwner: Disasters/VEDA\nAssigned to: Brian / Ronan\nSmartsheet status: In Progress\nSchedule: 81d — 2026-06-10 → 2026-09-30\nPriority: MEDIUM\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-12T22:44:07Z",
       "draft": false,
       "fields": {
@@ -11966,7 +11975,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.4] Draft a joint project plan",
-      "updated": "2026-09-28T19:52:58Z",
+      "updated": "2026-10-05T22:34:45Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/11"
     },
     {
@@ -11974,8 +11983,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5\nOwner: (blank in Smartsheet) — labelled from its children (Disasters, VEDA)\nSmartsheet status: Not Started\nSchedule: 73d — 2026-06-22 → 2026-09-30\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:52:26Z",
+      "comments": 3,
       "created": "2026-08-12T22:46:33Z",
       "draft": false,
       "fields": {
@@ -11991,7 +12000,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-06-22",
-        "Status": "EPIC"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ui0g",
       "issue_type": null,
@@ -12010,14 +12019,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 6,
+        "completed": 7,
         "total": 7
       },
       "title": "[6.5] Productionalize DRCS algorithm workflow and documentation in Jupyterhub",
-      "updated": "2026-09-28T19:52:58Z",
+      "updated": "2026-10-05T21:52:33Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
     },
     {
@@ -12325,13 +12334,13 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5d\nOwner: VEDA\nAssigned to: Kyle / Andrew / GRAs\nSmartsheet status: Not Started\nSchedule: no dates in Smartsheet\nPriority: MEDIUM\nNotes\nKeep Garrett in the loop. Andrew will add Garrett to the weekly meeting.\n⚠️ No start/end date in the Smartsheet — schedule fields left empty.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T21:51:53Z",
+      "comments": 1,
       "created": "2026-08-12T22:47:25Z",
       "draft": false,
       "fields": {
         "Priority": "Medium",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UjHQ",
       "issue_type": null,
@@ -12348,14 +12357,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/12"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 1,
+        "completed": 3,
         "total": 3
       },
       "title": "[6.5d] Create training documentation for current Jupyter Notebooks",
-      "updated": "2026-08-12T22:47:26Z",
+      "updated": "2026-10-05T21:52:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/19"
     },
     {
@@ -12363,12 +12372,12 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5d1\nOwner: VEDA\nAssigned to: GRAs\nSmartsheet status: Not Started\nSchedule: no dates in Smartsheet\nNotes\n⚠️ No start/end date in the Smartsheet — schedule fields left empty.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T21:51:39Z",
+      "comments": 2,
       "created": "2026-08-12T22:47:31Z",
       "draft": false,
       "fields": {
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UjJA",
       "issue_type": null,
@@ -12385,10 +12394,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/19"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5d1] testing-notebooks",
-      "updated": "2026-08-12T22:47:31Z",
+      "updated": "2026-10-05T21:51:47Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/20"
     },
     {
@@ -12396,12 +12405,12 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.5d2\nOwner: VEDA\nAssigned to: GRAs\nSmartsheet status: Not Started\nSchedule: no dates in Smartsheet\nNotes\n⚠️ No start/end date in the Smartsheet — schedule fields left empty.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T21:51:25Z",
+      "comments": 2,
       "created": "2026-08-12T22:47:35Z",
       "draft": false,
       "fields": {
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UjKU",
       "issue_type": null,
@@ -12418,10 +12427,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/19"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.5d2] algorithm notebooks",
-      "updated": "2026-08-12T22:47:35Z",
+      "updated": "2026-10-05T21:51:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/21"
     },
     {
@@ -12462,8 +12471,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1\nOwner: (blank in Smartsheet) — labelled from its children\nSmartsheet status: Not Started\nSchedule: 80d — 2026-06-22 → 2026-10-09\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T21:50:48Z",
+      "comments": 2,
       "created": "2026-08-12T22:53:45Z",
       "draft": false,
       "fields": {
@@ -12479,7 +12488,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-06-22",
-        "Status": "EPIC"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2UlMs",
       "issue_type": null,
@@ -12498,14 +12507,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 2,
+        "completed": 3,
         "total": 3
       },
       "title": "[6.1] Portal content, User Feedback, STAC collections",
-      "updated": "2026-08-12T22:53:45Z",
+      "updated": "2026-10-05T21:50:54Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/23"
     },
     {
@@ -13017,8 +13026,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a\nOwner: Disasters\nAssigned to: Ronan / Shanna / Garrett / Jacob / Seph\nSmartsheet status: In Progress\nSchedule: 65d — 2026-07-13 → 2026-10-09\nNotes\nNEED a list of activations they want published, what should be there for launch, what they will work on, etc. This will include the tagging and search.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T20:42:45Z",
+      "comments": 3,
       "created": "2026-08-13T10:10:57Z",
       "draft": false,
       "fields": {
@@ -13034,7 +13043,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-07-13",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ybp8",
       "issue_type": null,
@@ -13051,14 +13060,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/23"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
-        "completed": 3,
+        "completed": 6,
         "total": 6
       },
       "title": "[6.1a] Content implementation plan",
-      "updated": "2026-09-04T20:59:58Z",
+      "updated": "2026-10-05T21:44:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/34"
     },
     {
@@ -13070,8 +13079,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a1\nOwner: Disasters\nAssigned to: Ronan / Garrett / Seph / Jacob\nSmartsheet status: In Progress\nSchedule: 21d — 2026-07-13 → 2026-08-10\nPriority: MEDIUM\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T20:40:46Z",
+      "comments": 2,
       "created": "2026-08-13T10:11:09Z",
       "draft": false,
       "fields": {
@@ -13088,7 +13097,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-07-13",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ybuk",
       "issue_type": null,
@@ -13105,10 +13114,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/34"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.1a1] Create plan for New content",
-      "updated": "2026-08-13T10:11:10Z",
+      "updated": "2026-10-05T21:44:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/35"
     },
     {
@@ -13216,8 +13225,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a4\nOwner: VEDA\nAssigned to: Dev Team\nSmartsheet status: (blank)\nSchedule: 20d — 2026-07-20 → 2026-09-05\nNotes\n⚠️ Status was blank in the Smartsheet — defaulted to Todo on the board.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 4,
+      "closed": "2026-10-05T20:41:29Z",
+      "comments": 6,
       "created": "2026-08-13T10:11:49Z",
       "draft": false,
       "fields": {
@@ -13233,7 +13242,7 @@
           "title": "26.4.2"
         },
         "Start Date": "2026-07-20",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YcLY",
       "issue_type": null,
@@ -13250,10 +13259,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/34"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.1a4] Update Figma and site with HDS tokens",
-      "updated": "2026-09-10T14:54:45Z",
+      "updated": "2026-10-05T21:44:37Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/38"
     },
     {
@@ -13308,8 +13317,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.1a6\nOwner: VEDA\nAssigned to: Brian / Kyle / Kat\nSmartsheet status: Not Started\nSchedule: 10d — 2026-09-28 → 2026-10-09\nSmartsheet Ticket# column: 263 — stale reference; it resolves to a closed, unrelated issue in veda-disasters. Recorded for traceability, not linked.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-05T20:42:33Z",
+      "comments": 2,
       "created": "2026-08-13T10:12:11Z",
       "draft": false,
       "fields": {
@@ -13325,7 +13334,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-09-28",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YcUQ",
       "issue_type": null,
@@ -13342,10 +13351,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/34"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.1a6] HDS Compliance Check",
-      "updated": "2026-08-13T10:12:12Z",
+      "updated": "2026-10-05T20:42:53Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/40"
     },
     {
@@ -13353,8 +13362,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.6\nOwner: Disasters/VEDA\nSmartsheet status: Not Started\nSchedule: 108d — 2026-05-04 → 2026-09-30\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:48:39Z",
+      "comments": 3,
       "created": "2026-08-13T10:13:56Z",
       "draft": false,
       "fields": {
@@ -13370,7 +13379,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-05-04",
-        "Status": "EPIC"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YdEE",
       "issue_type": null,
@@ -13389,14 +13398,14 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
         "completed": 2,
         "total": 2
       },
       "title": "[6.6] Tagging and Filtering options",
-      "updated": "2026-09-28T19:52:56Z",
+      "updated": "2026-10-05T21:48:46Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/41"
     },
     {
@@ -13648,7 +13657,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9\nOwner: Disasters\nAssigned to: Brian / Jacob / Ronan\nSmartsheet status: In Progress\nSchedule: 201d — 2026-01-23 → 2026-10-30\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:15:00Z",
       "draft": false,
       "fields": {
@@ -13686,11 +13695,11 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
+        "completed": 2,
         "total": 4
       },
       "title": "[6.9] Domain migration",
-      "updated": "2026-08-13T10:15:00Z",
+      "updated": "2026-10-05T22:33:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/47"
     },
     {
@@ -13700,8 +13709,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9a\nOwner: Disasters/VEDA\nAssigned to: Brian / Jacob / Ronan\nSmartsheet status: Not Started\nSchedule: 179d — 2026-01-23 → 2026-09-30\nPriority: LOW\nNotes\nNotes from Disasters: needs to be ours and to point it to our new portal for the 9/30/2026 launch — what are the tasks to get the domain to that point? Defining subpage URLs is also an outstanding task.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:49:54Z",
+      "comments": 3,
       "created": "2026-08-13T10:15:10Z",
       "draft": false,
       "fields": {
@@ -13718,7 +13727,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-01-23",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Ydx8",
       "issue_type": null,
@@ -13736,10 +13745,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/47"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.9a] Domain created for disasters.nasa.gov",
-      "updated": "2026-09-28T19:52:54Z",
+      "updated": "2026-10-05T21:50:02Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/48"
     },
     {
@@ -13750,7 +13759,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9b\nOwner: Disasters\nAssigned to: Brian / Jacob / Ronan\nSmartsheet status: Not Started\nSchedule: 23d — 2026-07-30 → 2026-08-31\nPriority: LOW\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-13T10:15:20Z",
       "draft": false,
       "fields": {
@@ -13787,7 +13796,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.9b] Decision: what needs to happen to get disasters.nasa.gov into our control?",
-      "updated": "2026-08-28T22:45:33Z",
+      "updated": "2026-10-05T22:32:24Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/49"
     },
     {
@@ -13799,7 +13808,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9c\nOwner: Disasters\nAssigned to: Brian / Jacob / Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 22d — 2026-10-01 → 2026-10-30\nPriority: LOW\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-08-13T10:15:29Z",
       "draft": false,
       "fields": {
@@ -13836,7 +13845,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.9c] Decommission disasters-nasa.hub.arcgis.com site",
-      "updated": "2026-08-13T10:15:29Z",
+      "updated": "2026-10-05T22:31:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/50"
     },
     {
@@ -13846,8 +13855,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.9d\nOwner: Disasters\nAssigned to: Brian / Jacob / Ronan\nSmartsheet status: In Progress\nSchedule: 143d — 2026-02-12 → 2026-08-31\nPriority: LOW\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-05T21:49:31Z",
+      "comments": 3,
       "created": "2026-08-13T10:15:39Z",
       "draft": false,
       "fields": {
@@ -13864,7 +13873,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-02-12",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YeA0",
       "issue_type": null,
@@ -13881,10 +13890,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/47"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.9d] Defining subpage URLs",
-      "updated": "2026-08-28T22:45:33Z",
+      "updated": "2026-10-05T21:49:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/51"
     },
     {
@@ -13995,7 +14004,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.12a\nOwner: Disasters\nAssigned to: Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 22d — 2026-10-01 → 2026-10-30\nNotes\nFull Smartsheet task text: \"Jupyter Notebooks and Hub access - determine protocol. Who needs access and by what date? Should everyone who has access have the EXACT same ability to read/write to S3 and compute algorithms?\"\nDependency — need to identify who will be using the Hub. If the same people are using it, then this can be deprioritized. By Sept 30, currently only NASA approved people. Can be prioritized to FY27 (early).\n\nMigrated from the Septemb",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-08-13T10:16:41Z",
       "draft": false,
       "fields": {
@@ -14031,7 +14040,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.12a] Jupyter Notebooks and Hub access — determine protocol",
-      "updated": "2026-08-13T10:16:42Z",
+      "updated": "2026-10-05T22:28:46Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/54"
     },
     {
@@ -14088,7 +14097,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.13\nOwner: Disasters\nAssigned to: Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 23d — 2026-08-31 → 2026-09-30\nNotes\nPORTAL 101 + potentially 1 more curated module.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-13T10:17:02Z",
       "draft": false,
       "fields": {
@@ -14124,7 +14133,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.13] Creation of 4 trainings, plus links to external resources",
-      "updated": "2026-09-28T19:52:53Z",
+      "updated": "2026-10-05T22:26:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/56"
     },
     {
@@ -22296,11 +22305,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 460,
+    "closed": 484,
     "drafts": 0,
     "issues": 535,
     "items": 550,
-    "open": 90,
+    "open": 66,
     "prs": 15
   }
 }
