@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-06T18:10:24Z",
+  "generated": "2026-10-07T00:23:51Z",
   "items": [
     {
       "archived": false,
@@ -11211,6 +11211,37 @@
     {
       "archived": false,
       "assignees": [
+        "acblackford"
+      ],
+      "author": "acblackford",
+      "body_excerpt": "Related to this PR from the monorepo updates!",
+      "closed": null,
+      "comments": 1,
+      "created": "2026-10-06T20:41:18Z",
+      "diff": {
+        "additions": 14,
+        "deletions": 0,
+        "files": 2
+      },
+      "draft": false,
+      "fields": {},
+      "id": "PVTI_lADODdLRP84BMP5Rzg--9MM",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [],
+      "milestone": "Disasters Dashboard Release (September 2026)",
+      "number": 638,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "review_decision": "approved",
+      "state": "open",
+      "state_reason": null,
+      "title": "Update Data Visualizations in Need Pages with 'Learn More' URLs",
+      "updated": "2026-10-06T21:27:19Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/638"
+    },
+    {
+      "archived": false,
+      "assignees": [
         "amarouane-ABDELHAK"
       ],
       "author": "ifsimicoded",
@@ -13904,7 +13935,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.11\nOwner: VEDA\nAssigned to: Alexandra\nSmartsheet status: Not Started\nSchedule: 65d — 2026-07-13 → 2026-10-09\nPriority: LOW\nNotes\nThis task will be owned by Data Services in PI 26.4. Should be a low lift.\nAlexandra = @anayeaye (Alexandra Kirk).\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-08-13T10:16:21Z",
       "draft": false,
       "fields": {
@@ -13941,7 +13972,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.11] (STRETCH) Improve EGIS/STAC service connection",
-      "updated": "2026-08-13T10:37:37Z",
+      "updated": "2026-10-06T18:40:08Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/52"
     },
     {
@@ -22308,8 +22339,8 @@
     "closed": 484,
     "drafts": 0,
     "issues": 535,
-    "items": 550,
-    "open": 66,
-    "prs": 15
+    "items": 551,
+    "open": 67,
+    "prs": 16
   }
 }
