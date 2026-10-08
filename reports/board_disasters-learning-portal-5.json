@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-07T18:10:50Z",
+  "generated": "2026-10-08T00:22:40Z",
   "items": [
     {
       "archived": false,
@@ -11273,6 +11273,39 @@
       "title": "Place portal 101 training as first resource in each need page",
       "updated": "2026-10-07T16:05:00Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/640"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "acblackford"
+      ],
+      "author": "acblackford",
+      "body_excerpt": "",
+      "closed": "2026-10-07T20:19:00Z",
+      "comments": 1,
+      "created": "2026-10-07T18:29:33Z",
+      "diff": {
+        "additions": 4,
+        "deletions": 26,
+        "files": 5
+      },
+      "draft": false,
+      "fields": {
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg_Noko",
+      "issue_type": null,
+      "kind": "pr",
+      "labels": [],
+      "milestone": "Disasters Dashboard Release (September 2026)",
+      "number": 644,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "review_decision": "approved",
+      "state": "merged",
+      "state_reason": null,
+      "title": "[Soft Launch] Remove placeholder content until pieces are developed",
+      "updated": "2026-10-07T20:19:03Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/pull/644"
     },
     {
       "archived": false,
@@ -22371,11 +22404,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 486,
+    "closed": 487,
     "drafts": 0,
     "issues": 535,
-    "items": 552,
+    "items": 553,
     "open": 66,
-    "prs": 17
+    "prs": 18
   }
 }
