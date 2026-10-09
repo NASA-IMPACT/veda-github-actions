@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-08T18:10:19Z",
+  "generated": "2026-10-09T00:24:26Z",
   "items": [
     {
       "archived": false,
@@ -3467,7 +3467,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 37,
+        "completed": 39,
         "total": 40
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
@@ -9105,8 +9105,8 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "ensure all cards have the same height (if possible, w/o clipping) so they're aligned.  Ensure wrapping happens reasonably / no cut off.  COnsider text limits and ellipsis for description text\n ensure cards match figma\n ensure search and filter styles (inputs and buttons) match figma\n\ngallery pages:\n\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/data-gallery\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/training\nhttps://develop.d1cvmssihw8emg.amplifyapp.com/disasters/news-events-stories",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-08T18:57:51Z",
+      "comments": 1,
       "created": "2026-09-22T07:13:11Z",
       "draft": false,
       "fields": {
@@ -9119,7 +9119,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg8FSNQ",
       "issue_type": null,
@@ -9133,10 +9134,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: Gallery page review",
-      "updated": "2026-10-02T00:22:38Z",
+      "updated": "2026-10-08T19:00:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/525"
     },
     {
@@ -9963,11 +9964,11 @@
     {
       "archived": false,
       "assignees": [
-        "slesaad"
+        "ram-sharan25"
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nThe Disasters team has created a PORTAL 101 training which needs to be added to the /training section.\nPotential suggestions to implement from initial discussion w/ Slesa and Brian:\n\nembed pdf since it has text colors which conflict with HDS guidelines\nAdd as text using in-page navigation, and make HDS colors\n\nAC\n\n pdf is embedded or added as text\n information is downloadable as a pdf\n\nLinks\nPortal 101 pdf",
-      "closed": null,
+      "closed": "2026-10-08T18:51:02Z",
       "comments": 1,
       "created": "2026-09-29T15:33:05Z",
       "draft": false,
@@ -9981,7 +9982,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9eMyI",
       "issue_type": null,
@@ -9995,10 +9997,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Add/Embed pdf with a viewer and allow for download",
-      "updated": "2026-10-06T15:23:21Z",
+      "updated": "2026-10-08T18:51:33Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/568"
     },
     {
@@ -10078,8 +10080,8 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 0,
-        "total": 13
+        "completed": 1,
+        "total": 12
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10935,8 +10937,8 @@
       "assignees": [],
       "author": "ifsimicoded",
       "body_excerpt": "Events, Data, Hazards, Themes/Needs are shared between STAC, Data Viz Tool and Content Portal. We need a single source of truth for this data to be shared by 3 sources.\nWe've talked about hosting some of this in a shared disasters DB or within STAC meta data.\nDoc of shared needs: https://docs.google.com/document/d/1eyDLfNAQdlmQiBF8lDV--dPkDOEDqFVoOZXZn06vaPE/edit?tab=t.0",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-08T19:54:18Z",
+      "comments": 1,
       "created": "2026-10-01T17:01:35Z",
       "draft": false,
       "fields": {
@@ -10949,7 +10951,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg99FWo",
       "issue_type": null,
@@ -10957,16 +10960,11 @@
       "labels": [],
       "milestone": null,
       "number": 607,
-      "parent": {
-        "number": 575,
-        "title": "🏈 [27.1] Epic - Post Launch Backlog",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
-      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "duplicate",
       "title": "Shared Meta data",
-      "updated": "2026-10-01T17:01:35Z",
+      "updated": "2026-10-08T19:54:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/607"
     },
     {
@@ -10976,8 +10974,8 @@
       ],
       "author": "ifsimicoded",
       "body_excerpt": "https://developmentseed.slack.com/archives/C07JY4J68SX/p1790608696470269\n\nRonan would like to add the PORTAL 101 Training sometime this week as a clickable PDF that users can download. I am hesitant to include the content directly on the page because some of the text is colored-coded, which would likely not meet HDS compliance. Given these constraints, what feasible options do we have to implement this between now and this Friday?\n\nhttps://developmentseed.slack.com/archives/C07JY4J68SX/p1790889886426689",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-08T19:01:21Z",
+      "comments": 1,
       "created": "2026-10-02T19:05:11Z",
       "draft": false,
       "fields": {
@@ -10990,7 +10988,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg-MvDY",
       "issue_type": null,
@@ -11004,10 +11003,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update DP: handle PDF pages",
-      "updated": "2026-10-02T19:05:48Z",
+      "updated": "2026-10-08T19:01:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/622"
     },
     {
@@ -22404,11 +22403,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 487,
+    "closed": 491,
     "drafts": 0,
     "issues": 535,
     "items": 553,
-    "open": 66,
+    "open": 62,
     "prs": 18
   }
 }
