@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-09T18:10:03Z",
+  "generated": "2026-10-10T00:23:49Z",
   "items": [
     {
       "archived": false,
@@ -5329,8 +5329,8 @@
       "state": "closed",
       "state_reason": "completed",
       "sub": {
-        "completed": 3,
-        "total": 3
+        "completed": 4,
+        "total": 4
       },
       "title": "HDS Compliance - upgrade veda-ui-block package / breaking changes",
       "updated": "2026-09-14T16:17:23Z",
@@ -11309,6 +11309,48 @@
     {
       "archived": false,
       "assignees": [
+        "vgeorge"
+      ],
+      "author": "ifsimicoded",
+      "body_excerpt": "(this work was not previously ticketed)\nThis work is needed such that the disasters portal can be deployed to a subpath (/disasters) and all images and links work properly.\nRelated PRs:\n\n#351\n#390\n#633",
+      "closed": "2026-10-09T21:23:59Z",
+      "comments": 0,
+      "created": "2026-10-09T21:23:46Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        "Status": "Done"
+      },
+      "id": "PVTI_lADODdLRP84BMP5Rzg_wP68",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 652,
+      "parent": {
+        "number": 379,
+        "title": "HDS Compliance - upgrade veda-ui-block package / breaking changes",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/379"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "Basepath support",
+      "updated": "2026-10-09T21:23:59Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/652"
+    },
+    {
+      "archived": false,
+      "assignees": [
         "amarouane-ABDELHAK"
       ],
       "author": "ifsimicoded",
@@ -14002,7 +14044,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.11\nOwner: VEDA\nAssigned to: Alexandra\nSmartsheet status: Not Started\nSchedule: 65d — 2026-07-13 → 2026-10-09\nPriority: LOW\nNotes\nThis task will be owned by Data Services in PI 26.4. Should be a low lift.\nAlexandra = @anayeaye (Alexandra Kirk).\n\nMigrated from the September 30, 2026 launch Smartsheet.",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-08-13T10:16:21Z",
       "draft": false,
       "fields": {
@@ -14039,7 +14081,7 @@
       "state": "open",
       "state_reason": null,
       "title": "[6.11] (STRETCH) Improve EGIS/STAC service connection",
-      "updated": "2026-10-06T18:40:08Z",
+      "updated": "2026-10-09T18:34:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/52"
     },
     {
@@ -22403,10 +22445,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 491,
+    "closed": 492,
     "drafts": 0,
-    "issues": 535,
-    "items": 553,
+    "issues": 536,
+    "items": 554,
     "open": 62,
     "prs": 18
   }
