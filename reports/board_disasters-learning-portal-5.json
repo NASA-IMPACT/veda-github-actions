@@ -88,6 +88,11 @@
       "iterations": [
         {
           "duration": 21,
+          "startDate": "2026-09-20",
+          "title": "26.4.4"
+        },
+        {
+          "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
@@ -227,11 +232,6 @@
           "title": "Sprint 1"
         },
         {
-          "duration": 21,
-          "startDate": "2026-09-20",
-          "title": "26.4.4"
-        },
-        {
           "duration": 20,
           "startDate": "2026-10-26",
           "title": "27.1.1"
@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-11T00:26:05Z",
+  "generated": "2026-10-11T06:13:41Z",
   "items": [
     {
       "archived": false,
