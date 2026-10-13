@@ -260,6 +260,10 @@
       "name": "Priority",
       "options": [
         {
+          "color": "PURPLE",
+          "name": "Urgent"
+        },
+        {
           "color": "ORANGE",
           "name": "High"
         },
@@ -270,10 +274,6 @@
         {
           "color": "BLUE",
           "name": "Low"
-        },
-        {
-          "color": "RED",
-          "name": "Urgent"
         }
       ],
       "type": "single_select"
@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-13T12:13:39Z",
+  "generated": "2026-10-13T18:11:32Z",
   "items": [
     {
       "archived": false,
@@ -3071,7 +3071,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nPrior to the deployment of the live Disasters PORTAL site on September 30, 2026, we will need to verify that the application can handle different loads of individuals and requests.\nAcceptance Criteria\n\n perform stress test on Disasters production env\n save stress test code to distribute to other individuals\n update @anayeaye  when this code is saved and available. She will need to test it with other instances.",
       "closed": null,
-      "comments": 2,
+      "comments": 3,
       "created": "2026-07-14T21:19:56Z",
       "draft": false,
       "fields": {
@@ -3104,7 +3104,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Conduct stress test on production services prior to October 8, 2026 launch",
-      "updated": "2026-10-05T20:38:15Z",
+      "updated": "2026-10-13T16:15:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/316"
     },
     {
@@ -3576,7 +3576,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 6,
+        "completed": 9,
         "total": 11
       },
       "title": "Disasters + VEDA tasks for September 30, 2026 launch",
@@ -5088,8 +5088,8 @@
       "assignees": [],
       "author": "ifsimicoded",
       "body_excerpt": "Adds carousel to Data Story section on\n\n Respond Page\n Recover Page",
-      "closed": null,
-      "comments": 0,
+      "closed": "2026-10-13T17:49:01Z",
+      "comments": 1,
       "created": "2026-08-18T20:50:29Z",
       "draft": false,
       "fields": {
@@ -5102,7 +5102,8 @@
           "duration": 21,
           "startDate": "2026-08-09",
           "title": "26.4.2"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg3DKdo",
       "issue_type": null,
@@ -5116,10 +5117,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "(Not enough content) Update DP: Add Carousel to Theme pages",
-      "updated": "2026-09-30T07:53:44Z",
+      "updated": "2026-10-13T17:49:01Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/374"
     },
     {
@@ -5794,7 +5795,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "What\nThe disasters-sentinel2-process DPS algorithm currently deployed on MAAP is stale. Delete the existing dev registration, then re-register it so the current code and input schema actually land.\nWhy the delete is required (a plain re-register is not enough)\nRe-registering an already-deployed algorithm_name + algorithm_version returns:\n409 Duplicate process. Use PUT to modify existing process with process ID <n>\n\nNeither the Register Algorithm GUI nor .github/workflows/register-dps.yml fails on that response — the run reports success while MAAP silently keeps the old process definition. A co",
-      "closed": null,
+      "closed": "2026-10-13T15:12:22Z",
       "comments": 0,
       "created": "2026-08-25T22:41:09Z",
       "draft": false,
@@ -5811,7 +5812,8 @@
           "startDate": "2026-08-09",
           "title": "26.4.2"
         },
-        "Start Date": "2026-08-27"
+        "Start Date": "2026-08-27",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg4BKKk",
       "issue_type": null,
@@ -5825,10 +5827,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "DPS: delete the stale `disasters-sentinel2-process` `dev` registration and re-register it",
-      "updated": "2026-08-25T22:41:10Z",
+      "updated": "2026-10-13T15:12:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/397"
     },
     {
@@ -7150,8 +7152,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Request\nFrom Brian Freitag (Slack, @channel):\n\nLast year we updated our web mapping tools to update the Gulf of America. On August 27, an EO was signed to rename Lake Ontario to Lake America. We will need to update all existing and upcoming visualization tools to align with both of these EOs. Please ensure these changes are complete no later than September 24th. Please let me know if there are any questions.\n\nScope\nAudit and update every existing and upcoming visualization tool in the portal so place-name labels align with both Executive Orders:\n\nGulf of Mexico → Gulf of America (previously ap",
-      "closed": null,
-      "comments": 1,
+      "closed": "2026-10-13T16:12:24Z",
+      "comments": 3,
       "created": "2026-09-09T20:26:21Z",
       "draft": false,
       "fields": {
@@ -7168,7 +7170,7 @@
           "title": "26.4.3"
         },
         "Start Date": "2026-09-09",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg6N0T0",
       "issue_type": null,
@@ -7184,10 +7186,10 @@
         "url": "https://github.com/NASA-IMPACT/MMGIS/issues/186"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update all visualization tools for Gulf of America and Lake America renames (due Sept 24)",
-      "updated": "2026-09-09T20:32:18Z",
+      "updated": "2026-10-13T16:13:52Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/447"
     },
     {
@@ -8540,8 +8542,8 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "What changed\nEmbedded maps on the review site (e.g. the home page Data Visualization and the Finding the Floods UAVSAR map) used to show a \"Click to interact with the map\" overlay. They now show maplibre's \"Use Ctrl + scroll to zoom the map\" (⌘ on Mac). Garrett Layne raised it on the #403 review: the new behaviour is less user-friendly.\nThis was not a stray leftover. It is an upstream library change that the portal followed:\n\n\n\nDate\nWhere\nChange\n\n\n\n\nJul 2\nlibrary PR NASA-IMPACT/tinacms-portal-monorepo#335\nAdded the click-to-interact overlay (MapScrollGuard, showScrollGuard prop)\n\n\nJul 3\nportal",
-      "closed": null,
-      "comments": 6,
+      "closed": "2026-10-13T17:54:43Z",
+      "comments": 7,
       "created": "2026-09-15T20:34:57Z",
       "draft": false,
       "fields": {
@@ -8555,7 +8557,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7HroA",
       "issue_type": null,
@@ -8572,10 +8575,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "Map overlay changed from \"Click to interact\" to \"Ctrl + scroll to zoom\" (library cooperativeGestures) — decide whether to restore",
-      "updated": "2026-09-29T21:07:32Z",
+      "updated": "2026-10-13T17:54:44Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/496"
     },
     {
@@ -9760,7 +9763,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Decision needed\nWhich date, if any, each content type shows on its masthead.\n\n\n\nContent type\nDate shown\n\n\n\n\nStory of impact / News / Data story\nPublished\n\n\nEvent pages\nUpdated\n\n\nTraining modules\nUpdated\n\n\nData gallery pages\nnone\n\n\nHome, theme pages, About Us, other evergreen\nnone\n\n\n\nWhy now\nPR #489 is in review and currently renders a single Published: label for every type, which contradicts the Event row. Details and the proposed code change are in the linked PR below.\nAcceptance\n\nEach content type shows the date in the table, or none\nEvent pages keep an updated date rather than a published o",
       "closed": null,
-      "comments": 8,
+      "comments": 9,
       "created": "2026-09-24T19:44:49Z",
       "draft": false,
       "fields": {
@@ -9792,7 +9795,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Content convention: which date each content type shows",
-      "updated": "2026-10-12T16:20:42Z",
+      "updated": "2026-10-13T16:38:13Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/550"
     },
     {
@@ -9805,6 +9808,7 @@
       "created": "2026-09-24T19:54:49Z",
       "draft": false,
       "fields": {
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -9880,7 +9884,9 @@
     },
     {
       "archived": false,
-      "assignees": [],
+      "assignees": [
+        "AliceR"
+      ],
       "author": "kyle-lesinger",
       "body_excerpt": "Problem\nCollections whose renders carry an inline (unnamed) categorical colormap — a colormap object rather than a colormap_name string — produce no tiles at all in the portal. The map panel stays empty.\nThe trigger came from a Slack thread on sentinel1-hydrosar-wm-iw-dvr-subdaily, where the STAC Browser 5.1.0 preview also fails and NASA-IMPACT/veda-backend#657 was opened to strip whitespace and re-encode the render URLs. This ticket records what was actually tested against dev.disasters.openveda.cloud, because the portal's failure is a different bug than #657, and the whitespace fix does not ",
       "closed": null,
@@ -9917,7 +9923,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Inline categorical colormaps render no tiles: library never serialises object render properties (whitespace stripping is not the fix)",
-      "updated": "2026-09-28T16:54:50Z",
+      "updated": "2026-10-13T17:43:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/562"
     },
     {
@@ -10010,7 +10016,7 @@
       "author": "ifsimicoded",
       "body_excerpt": "Several images over 50kb were added. We should optimize these for page load. Please wait until Friday Oct 2nd to complete.",
       "closed": null,
-      "comments": 0,
+      "comments": 1,
       "created": "2026-09-29T16:15:15Z",
       "draft": false,
       "fields": {
@@ -10040,7 +10046,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Optimize all images",
-      "updated": "2026-09-30T19:41:25Z",
+      "updated": "2026-10-13T16:30:03Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/572"
     },
     {
@@ -10081,7 +10087,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 1,
+        "completed": 3,
         "total": 12
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
@@ -10141,6 +10147,7 @@
       "created": "2026-09-29T17:13:54Z",
       "draft": false,
       "fields": {
+        "Priority": "Medium",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -10155,7 +10162,10 @@
       "id": "PVTI_lADODdLRP84BMP5Rzg9fZZk",
       "issue_type": null,
       "kind": "issue",
-      "labels": [],
+      "labels": [
+        "blocked",
+        "design"
+      ],
       "milestone": null,
       "number": 577,
       "parent": {
@@ -10167,7 +10177,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Define Configurable Body Blocks",
-      "updated": "2026-09-29T17:14:05Z",
+      "updated": "2026-10-13T17:52:31Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/577"
     },
     {
@@ -10180,6 +10190,7 @@
       "created": "2026-09-29T21:51:40Z",
       "draft": false,
       "fields": {
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -10189,7 +10200,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "In Progress"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg9iX9I",
       "issue_type": null,
@@ -10237,7 +10249,9 @@
       "id": "PVTI_lADODdLRP84BMP5Rzg9nUDw",
       "issue_type": null,
       "kind": "issue",
-      "labels": [],
+      "labels": [
+        "blocked"
+      ],
       "milestone": null,
       "number": 582,
       "parent": {
@@ -10249,7 +10263,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Header Search Bar and Search Results Page",
-      "updated": "2026-09-30T07:52:18Z",
+      "updated": "2026-10-13T17:55:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/582"
     },
     {
@@ -10262,6 +10276,7 @@
       "created": "2026-09-30T14:05:28Z",
       "draft": false,
       "fields": {
+        "Priority": "Low",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -10742,6 +10757,7 @@
       "created": "2026-09-30T19:40:29Z",
       "draft": false,
       "fields": {
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -10823,6 +10839,7 @@
       "created": "2026-10-01T16:40:18Z",
       "draft": false,
       "fields": {
+        "Priority": "Medium",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -11058,7 +11075,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "AC\nGo through the current tool and verify that each layer is properly attributed. Provide a report to Sijan and Sandesh once completed.",
       "closed": null,
-      "comments": 0,
+      "comments": 2,
       "created": "2026-10-05T16:07:55Z",
       "draft": false,
       "fields": {
@@ -11088,7 +11105,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Update the Analyzable layer list",
-      "updated": "2026-10-05T16:18:17Z",
+      "updated": "2026-10-13T16:46:33Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/628"
     },
     {
@@ -11348,6 +11365,43 @@
       "title": "Basepath support",
       "updated": "2026-10-09T21:23:59Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/652"
+    },
+    {
+      "archived": false,
+      "assignees": [
+        "jreed6",
+        "kyle-lesinger"
+      ],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Summary\nThere has been a new natural disaster that NASA is responding to. This will require the following items:\n\n Event page (images and text provided by Disasters)\n\nDATA info links\nToDO\nFind content info here in Drive\n\nCreate Event page (use default image)\nAdd text (according to what Disasters has provided)\nSchedule release from dev to prod",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-13T14:49:56Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 20,
+          "startDate": "2026-10-26",
+          "title": "27.1.1"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5RzhAdtEA",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 653,
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "[Disasters EVENT activation] - Hurricane Isaias",
+      "updated": "2026-10-13T14:53:35Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/653"
     },
     {
       "archived": false,
@@ -12077,8 +12131,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.4\nOwner: Disasters/VEDA\nAssigned to: Brian / Ronan\nSmartsheet status: In Progress\nSchedule: 81d — 2026-06-10 → 2026-09-30\nPriority: MEDIUM\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-13T13:32:49Z",
+      "comments": 4,
       "created": "2026-08-12T22:44:07Z",
       "draft": false,
       "fields": {
@@ -12095,7 +12149,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-06-10",
-        "Status": "In Progress"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2Uh4I",
       "issue_type": null,
@@ -12113,10 +12167,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.4] Draft a joint project plan",
-      "updated": "2026-10-05T22:34:45Z",
+      "updated": "2026-10-13T13:32:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/11"
     },
     {
@@ -14044,8 +14098,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.11\nOwner: VEDA\nAssigned to: Alexandra\nSmartsheet status: Not Started\nSchedule: 65d — 2026-07-13 → 2026-10-09\nPriority: LOW\nNotes\nThis task will be owned by Data Services in PI 26.4. Should be a low lift.\nAlexandra = @anayeaye (Alexandra Kirk).\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-13T13:31:41Z",
+      "comments": 4,
       "created": "2026-08-13T10:16:21Z",
       "draft": false,
       "fields": {
@@ -14062,7 +14116,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-07-13",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YeU4",
       "issue_type": null,
@@ -14079,10 +14133,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "not_planned",
       "title": "[6.11] (STRETCH) Improve EGIS/STAC service connection",
-      "updated": "2026-10-09T18:34:27Z",
+      "updated": "2026-10-13T13:31:50Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/52"
     },
     {
@@ -14237,8 +14291,8 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Smartsheet row: 6.13\nOwner: Disasters\nAssigned to: Ronan / Garrett\nSmartsheet status: Not Started\nSchedule: 23d — 2026-08-31 → 2026-09-30\nNotes\nPORTAL 101 + potentially 1 more curated module.\n\nMigrated from the September 30, 2026 launch Smartsheet.",
-      "closed": null,
-      "comments": 2,
+      "closed": "2026-10-13T13:29:17Z",
+      "comments": 4,
       "created": "2026-08-13T10:17:02Z",
       "draft": false,
       "fields": {
@@ -14254,7 +14308,7 @@
           "title": "26.4.4"
         },
         "Start Date": "2026-08-31",
-        "Status": "Todo"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg2YerU",
       "issue_type": null,
@@ -14271,10 +14325,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
       },
       "repo": "Disasters-Learning-Portal/disasters-tracking",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "[6.13] Creation of 4 trainings, plus links to external resources",
-      "updated": "2026-10-05T22:26:59Z",
+      "updated": "2026-10-13T13:29:27Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-tracking/issues/56"
     },
     {
@@ -22215,6 +22269,10 @@
       "name": "dataServices"
     },
     {
+      "color": "4e222a",
+      "name": "design"
+    },
+    {
       "color": "0075ca",
       "name": "documentation"
     },
@@ -22446,11 +22504,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 492,
+    "closed": 499,
     "drafts": 0,
-    "issues": 536,
-    "items": 554,
-    "open": 62,
+    "issues": 537,
+    "items": 555,
+    "open": 56,
     "prs": 18
   }
 }
