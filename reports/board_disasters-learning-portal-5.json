@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-14T12:12:08Z",
+  "generated": "2026-10-14T18:09:59Z",
   "items": [
     {
       "archived": false,
@@ -8462,7 +8462,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Problem\nIn the \"Explore the UAVSAR Flood Maps\" map on Finding the Floods (/news-events/finding-floods, preview on PR #482), the layer info box truncates both the product name and the attribution with an ellipsis: \"UAVSAR Classified Imagery..\" and \"NASA Jet Propulsion Labo..\". There is no way for a reader to see the full text. Raised in the Sept 2026 content review (#479, section 4) and flagged 🔴 for the dev team.\nTwo related asks from the same review:\n\nWrap the title text rather than truncating it.\nConsider removing the attribution from the legend box entirely. The attribution must still appea",
       "closed": null,
-      "comments": 1,
+      "comments": 2,
       "created": "2026-09-15T15:24:30Z",
       "draft": false,
       "fields": {
@@ -8490,7 +8490,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Map info box truncates product name and attribution; classified layers need a categorical legend",
-      "updated": "2026-09-15T21:35:16Z",
+      "updated": "2026-10-14T17:52:56Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/484"
     },
     {
@@ -9765,7 +9765,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Decision needed\nWhich date, if any, each content type shows on its masthead.\n\n\n\nContent type\nDate shown\n\n\n\n\nStory of impact / News / Data story\nPublished\n\n\nEvent pages\nUpdated\n\n\nTraining modules\nUpdated\n\n\nData gallery pages\nnone\n\n\nHome, theme pages, About Us, other evergreen\nnone\n\n\n\nWhy now\nPR #489 is in review and currently renders a single Published: label for every type, which contradicts the Event row. Details and the proposed code change are in the linked PR below.\nAcceptance\n\nEach content type shows the date in the table, or none\nEvent pages keep an updated date rather than a published o",
       "closed": null,
-      "comments": 11,
+      "comments": 12,
       "created": "2026-09-24T19:44:49Z",
       "draft": false,
       "fields": {
@@ -9797,7 +9797,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Content convention: which date each content type shows",
-      "updated": "2026-10-13T19:27:40Z",
+      "updated": "2026-10-14T15:43:39Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/550"
     },
     {
@@ -10343,7 +10343,7 @@
       "state": "open",
       "state_reason": null,
       "sub": {
-        "completed": 4,
+        "completed": 5,
         "total": 13
       },
       "title": "[Viz Tool] - needed enhancements",
@@ -11079,7 +11079,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "AC\nGo through the current tool and verify that each layer is properly attributed. Provide a report to Sijan and Sandesh once completed.",
-      "closed": null,
+      "closed": "2026-10-14T13:20:36Z",
       "comments": 2,
       "created": "2026-10-05T16:07:55Z",
       "draft": false,
@@ -11093,7 +11093,8 @@
           "duration": 21,
           "startDate": "2026-09-20",
           "title": "26.4.4"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg-rIsg",
       "issue_type": "Task",
@@ -11107,10 +11108,10 @@
         "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Update the Analyzable layer list",
-      "updated": "2026-10-13T16:46:33Z",
+      "updated": "2026-10-14T13:20:36Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/628"
     },
     {
@@ -22509,11 +22510,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 502,
+    "closed": 503,
     "drafts": 0,
     "issues": 537,
     "items": 555,
-    "open": 53,
+    "open": 52,
     "prs": 18
   }
 }
