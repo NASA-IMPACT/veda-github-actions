@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-13T18:11:32Z",
+  "generated": "2026-10-14T00:19:42Z",
   "items": [
     {
       "archived": false,
@@ -3070,7 +3070,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nPrior to the deployment of the live Disasters PORTAL site on September 30, 2026, we will need to verify that the application can handle different loads of individuals and requests.\nAcceptance Criteria\n\n perform stress test on Disasters production env\n save stress test code to distribute to other individuals\n update @anayeaye  when this code is saved and available. She will need to test it with other instances.",
-      "closed": null,
+      "closed": "2026-10-13T20:43:34Z",
       "comments": 3,
       "created": "2026-07-14T21:19:56Z",
       "draft": false,
@@ -3087,7 +3087,8 @@
           "startDate": "2026-08-30",
           "title": "26.4.3"
         },
-        "Start Date": "2026-09-14"
+        "Start Date": "2026-09-14",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgy1d80",
       "issue_type": null,
@@ -3101,10 +3102,10 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Conduct stress test on production services prior to October 8, 2026 launch",
-      "updated": "2026-10-13T16:15:21Z",
+      "updated": "2026-10-13T20:43:34Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/316"
     },
     {
@@ -3430,7 +3431,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nThis ticket will house sub-issues for development work that will directly support content for the September 30, 2026 release.",
-      "closed": null,
+      "closed": "2026-10-13T18:43:18Z",
       "comments": 0,
       "created": "2026-07-24T13:29:25Z",
       "draft": false,
@@ -3448,7 +3449,7 @@
           "title": "26.4.1"
         },
         "Start Date": "2026-07-24",
-        "Status": "EPIC"
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgz-Zm8",
       "issue_type": "Task",
@@ -3464,14 +3465,14 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/792"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
         "completed": 39,
-        "total": 40
+        "total": 39
       },
       "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-      "updated": "2026-09-29T16:34:56Z",
+      "updated": "2026-10-13T18:43:18Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
     },
     {
@@ -3545,7 +3546,7 @@
       ],
       "author": "kyle-lesinger",
       "body_excerpt": "Summary\nItems will be migrated over from the Smartsheet and tracked in this new repo and through the Disasters-Learning-Portal project.  This will serve as the header ticket\nTODO\n\nadd all tickets as sub-issues to this ticket",
-      "closed": null,
+      "closed": "2026-10-13T20:43:06Z",
       "comments": 0,
       "created": "2026-07-24T14:19:24Z",
       "draft": false,
@@ -3557,7 +3558,8 @@
           "startDate": "2026-07-12",
           "title": "PI 26.4"
         },
-        "Start Date": "2026-07-24"
+        "Start Date": "2026-07-24",
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzgz-vdI",
       "issue_type": null,
@@ -3573,14 +3575,14 @@
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/777"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "sub": {
         "completed": 9,
         "total": 11
       },
       "title": "Disasters + VEDA tasks for September 30, 2026 launch",
-      "updated": "2026-08-13T10:16:44Z",
+      "updated": "2026-10-13T20:43:06Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/332"
     },
     {
@@ -9763,7 +9765,7 @@
       "author": "kyle-lesinger",
       "body_excerpt": "Decision needed\nWhich date, if any, each content type shows on its masthead.\n\n\n\nContent type\nDate shown\n\n\n\n\nStory of impact / News / Data story\nPublished\n\n\nEvent pages\nUpdated\n\n\nTraining modules\nUpdated\n\n\nData gallery pages\nnone\n\n\nHome, theme pages, About Us, other evergreen\nnone\n\n\n\nWhy now\nPR #489 is in review and currently renders a single Published: label for every type, which contradicts the Event row. Details and the proposed code change are in the linked PR below.\nAcceptance\n\nEach content type shows the date in the table, or none\nEvent pages keep an updated date rather than a published o",
       "closed": null,
-      "comments": 9,
+      "comments": 11,
       "created": "2026-09-24T19:44:49Z",
       "draft": false,
       "fields": {
@@ -9795,7 +9797,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Content convention: which date each content type shows",
-      "updated": "2026-10-13T16:38:13Z",
+      "updated": "2026-10-13T19:27:40Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/550"
     },
     {
@@ -10038,9 +10040,9 @@
       "milestone": null,
       "number": 572,
       "parent": {
-        "number": 329,
-        "title": "[26.4] Epic - Disasters Portal Post MVP User Testing Development Needs / Requests",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/329"
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -10088,7 +10090,7 @@
       "state_reason": null,
       "sub": {
         "completed": 3,
-        "total": 12
+        "total": 13
       },
       "title": "🏈 [27.1] Epic - Post Launch Backlog",
       "updated": "2026-09-29T16:36:11Z",
@@ -10915,12 +10917,13 @@
       "archived": false,
       "assignees": [],
       "author": "ifsimicoded",
-      "body_excerpt": "",
+      "body_excerpt": "Context\nCurrently, all gallery page filters include Need and Hazard but are missing Event:\n\nTasks\n\nThe content model for each content type (trainings, news, data, dataStory, and stories, etc) will need a new event field. We'll want to do this at the *Content type level (not the InternalCardContent type): \n  \n    \n      disasters-portal/app/site-config/types.ts\n    \n    \n        Lines 202 to 210\n      in\n      e97e14e\n    \n  \n  \n    \n\n        \n          \n           export type TrainingContent = Omit<InternalCardContent, \"contentType\"> & { \n        \n\n        \n          \n             contentType:",
       "closed": null,
       "comments": 0,
       "created": "2026-10-01T16:52:56Z",
       "draft": false,
       "fields": {
+        "Priority": "High",
         "Program Increment": {
           "duration": 98,
           "startDate": "2026-07-12",
@@ -10947,7 +10950,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Filters - Event filtering",
-      "updated": "2026-10-01T16:52:56Z",
+      "updated": "2026-10-13T18:14:34Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/606"
     },
     {
@@ -22504,11 +22507,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 499,
+    "closed": 502,
     "drafts": 0,
     "issues": 537,
     "items": 555,
-    "open": 56,
+    "open": 53,
     "prs": 18
   }
 }
