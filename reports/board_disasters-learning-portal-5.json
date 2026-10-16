@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-16T00:18:48Z",
+  "generated": "2026-10-16T06:13:25Z",
   "items": [
     {
       "archived": false,
@@ -11411,6 +11411,50 @@
     },
     {
       "archived": false,
+      "assignees": [],
+      "author": "emmalu",
+      "body_excerpt": "Motivation\n\nA user who visits the Disasters Portal should \"know\" - without question - whether the Disasters program (team) is actively responding to a disaster.\nProposed Solution\n\nAn \"activation banner\" appears to alert the user that there is an active Disaster Event.\nAcceptance Criteria\n\n\n A user is \"alerted\" to a Disasters Event upon navigating to the Disasters Portal\n\nScope & Notes\n\nNotes\n\nWe do already have this reusable Banner component\n\nQuestions\n\nDo we have any designs for a banner other than the \"Official US Government Website\"? @fannycc\nWhat information do we expect to be displayed in",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-16T01:33:31Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        "Sprint": {
+          "duration": 20,
+          "startDate": "2026-10-26",
+          "title": "27.1.1"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5RzhBIeAM",
+      "issue_type": "Feature",
+      "kind": "issue",
+      "labels": [
+        "question",
+        "dashboard",
+        "design",
+        "Activation Event"
+      ],
+      "milestone": null,
+      "number": 657,
+      "parent": {
+        "number": 892,
+        "title": "CMS-27.1: Disasters maintenance, support & feature requests",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/892"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Event banner to inform users of activation state",
+      "updated": "2026-10-16T01:37:10Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/657"
+    },
+    {
+      "archived": false,
       "assignees": [
         "amarouane-ABDELHAK"
       ],
@@ -22259,6 +22303,10 @@
       "name": "action-item"
     },
     {
+      "color": "d4c5f9",
+      "name": "Activation Event"
+    },
+    {
       "color": "b60205",
       "name": "blocked"
     },
@@ -22512,9 +22560,9 @@
   "stats": {
     "closed": 504,
     "drafts": 0,
-    "issues": 537,
-    "items": 555,
-    "open": 51,
+    "issues": 538,
+    "items": 556,
+    "open": 52,
     "prs": 18
   }
 }
