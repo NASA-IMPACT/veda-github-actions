@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-16T12:11:57Z",
+  "generated": "2026-10-16T18:09:42Z",
   "items": [
     {
       "archived": false,
@@ -3617,9 +3617,9 @@
       "milestone": null,
       "number": 333,
       "parent": {
-        "number": 787,
-        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+        "number": 900,
+        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -4062,9 +4062,9 @@
       "milestone": null,
       "number": 345,
       "parent": {
-        "number": 787,
-        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+        "number": 900,
+        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -4185,9 +4185,9 @@
       "milestone": null,
       "number": 348,
       "parent": {
-        "number": 787,
-        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+        "number": 900,
+        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -4470,9 +4470,9 @@
       "milestone": null,
       "number": 358,
       "parent": {
-        "number": 787,
-        "title": "Objective #5 [26.4] - [DSE]: JupyterHub — Develop Algorithms and Implement DPS",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/787"
+        "number": 900,
+        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -10082,11 +10082,6 @@
       ],
       "milestone": null,
       "number": 575,
-      "parent": {
-        "number": 792,
-        "title": "Objective #2 [26.4] - [Dashboard]: Portal Beta Release",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/792"
-      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -11413,7 +11408,7 @@
       "archived": false,
       "assignees": [],
       "author": "emmalu",
-      "body_excerpt": "Motivation\n\nA user who visits the Disasters Portal should \"know\" - without question - whether the Disasters program (team) is actively responding to a disaster.\nProposed Solution\n\nAn \"activation banner\" appears to alert the user that there is an active Disaster Event.\nAcceptance Criteria\n\n\n A user is \"alerted\" to a Disasters Event upon navigating to the Disasters Portal\n\nScope & Notes\n\nNotes\n\nWe do already have this reusable Banner component\n\nQuestions\n\nDo we have any designs for a banner other than the \"Official US Government Website\"? @fannycc\nWhat information do we expect to be displayed in",
+      "body_excerpt": "Motivation\n\nA user who visits the Disasters Portal should \"know\" - without question - whether the Disasters program (team) is actively responding to a disaster.\nProposed Solution\n\nAn \"activation banner\" appears to alert the user that there is an active Disaster Event.\nAcceptance Criteria\n\n\n An end user is \"alerted\" to a Disasters Event upon navigating to the Disasters Portal\n\nScope & Notes\n\nNotes\n\nWe do already have this reusable Banner component\n\nQuestions\n\nDo we have any designs for a banner other than the \"Official US Government Website\"? @fannycc\nWhat information do we expect to be display",
       "closed": null,
       "comments": 0,
       "created": "2026-10-16T01:33:31Z",
@@ -11428,7 +11423,8 @@
           "duration": 20,
           "startDate": "2026-10-26",
           "title": "27.1.1"
-        }
+        },
+        "Status": "Todo"
       },
       "id": "PVTI_lADODdLRP84BMP5RzhBIeAM",
       "issue_type": "Feature",
@@ -11450,7 +11446,7 @@
       "state": "open",
       "state_reason": null,
       "title": "Event banner to inform users of activation state",
-      "updated": "2026-10-16T01:37:10Z",
+      "updated": "2026-10-16T16:42:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/657"
     },
     {
