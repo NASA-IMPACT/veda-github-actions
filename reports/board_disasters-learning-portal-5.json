@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-16T18:09:42Z",
+  "generated": "2026-10-17T00:19:45Z",
   "items": [
     {
       "archived": false,
@@ -4241,7 +4241,7 @@
       "assignees": [],
       "author": "amarouane-ABDELHAK",
       "body_excerpt": "Description\nThe website is currently using the default Next.js favicon. We should replace it with the appropriate disasters favicon for the website to provide consistent branding.\nAcceptance Criteria\n\n The website no longer displays the default Next.js favicon.\n The approved custom favicon is displayed consistently across supported browsers.\n The favicon works in both development and production builds.\n No broken or missing favicon requests appear in the browser console/network logs.",
-      "closed": null,
+      "closed": "2026-10-16T21:12:38Z",
       "comments": 3,
       "created": "2026-08-08T22:01:44Z",
       "draft": false,
@@ -4255,7 +4255,8 @@
           "duration": 21,
           "startDate": "2026-07-19",
           "title": "26.4.1"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg1zm8Q",
       "issue_type": null,
@@ -4266,10 +4267,10 @@
       "milestone": null,
       "number": 352,
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "Add disasters favicon",
-      "updated": "2026-10-05T21:19:41Z",
+      "updated": "2026-10-16T21:12:38Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/352"
     },
     {
@@ -5498,6 +5499,11 @@
       "labels": [],
       "milestone": null,
       "number": 383,
+      "parent": {
+        "number": 900,
+        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -7892,6 +7898,11 @@
       ],
       "milestone": null,
       "number": 464,
+      "parent": {
+        "number": 904,
+        "title": "Objective #3 [27.1] - [DSE + DS]: Ingest New Data Collections into STAC",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/904"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -9508,9 +9519,9 @@
       "milestone": null,
       "number": 537,
       "parent": {
-        "number": 786,
-        "title": "Objective #4 [26.4] - [Team Lead]: General administrative and technical support",
-        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/786"
+        "number": 906,
+        "title": "Objective #4 [27.1] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/906"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -10339,7 +10350,7 @@
       "state_reason": null,
       "sub": {
         "completed": 5,
-        "total": 13
+        "total": 12
       },
       "title": "[Viz Tool] - needed enhancements",
       "updated": "2026-09-30T15:38:27Z",
@@ -11112,6 +11123,7 @@
     {
       "archived": false,
       "assignees": [
+        "BhattaraiSijan",
         "acblackford",
         "chelsea-aaron"
       ],
@@ -11140,9 +11152,9 @@
       "milestone": null,
       "number": 629,
       "parent": {
-        "number": 584,
-        "title": "[Viz Tool] - needed enhancements",
-        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/584"
+        "number": 906,
+        "title": "Objective #4 [27.1] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/906"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
@@ -11397,6 +11409,11 @@
       "labels": [],
       "milestone": null,
       "number": 653,
+      "parent": {
+        "number": 906,
+        "title": "Objective #4 [27.1] - [Team Lead]: Project Discovery + Coordination",
+        "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/906"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -22554,11 +22571,11 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 504,
+    "closed": 505,
     "drafts": 0,
     "issues": 538,
     "items": 556,
-    "open": 52,
+    "open": 51,
     "prs": 18
   }
 }
