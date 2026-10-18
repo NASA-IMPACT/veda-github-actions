@@ -45,6 +45,11 @@
       "id": "PVTIF_lADODdLRP84BMP5Rzg7lhtA",
       "iterations": [
         {
+          "duration": 98,
+          "startDate": "2026-07-12",
+          "title": "PI 26.4"
+        },
+        {
           "duration": 84,
           "startDate": "2026-04-19",
           "title": "PI 26.3"
@@ -68,11 +73,6 @@
           "duration": 84,
           "startDate": "2025-04-13",
           "title": "PI 25.3"
-        },
-        {
-          "duration": 98,
-          "startDate": "2026-07-12",
-          "title": "PI 26.4"
         },
         {
           "duration": 91,
@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-18T06:11:51Z",
+  "generated": "2026-10-18T12:10:17Z",
   "items": [
     {
       "archived": false,
