@@ -6258,7 +6258,7 @@
       }
     }
   },
-  "generated": "2026-10-12T13:25:55Z",
+  "generated": "2026-10-19T13:06:30Z",
   "label": "US East (N. Virginia)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -12604,10 +12604,10 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20261009203134",
-    "lambda": "20261009223122",
+    "ec2": "20261015191316",
+    "lambda": "20261016182359",
     "rds": "20261006224050",
-    "s3": "20260928230416"
+    "s3": "20261015173540"
   },
   "sources": {
     "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
@@ -12616,13 +12616,13 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20261009203134"
+        "version": "20261015191316"
       },
       "lambda": {
         "offerCode": "AWSLambda",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/lambda/pricing/",
-        "version": "20261009223122"
+        "version": "20261016182359"
       },
       "rds": {
         "offerCode": "AmazonRDS",
@@ -12634,7 +12634,7 @@
         "offerCode": "AmazonS3",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/s3/pricing/",
-        "version": "20260928230416"
+        "version": "20261015173540"
       }
     }
   }
