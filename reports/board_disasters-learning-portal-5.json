@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-19T12:12:59Z",
+  "generated": "2026-10-19T18:10:24Z",
   "items": [
     {
       "archived": false,
@@ -3618,7 +3618,7 @@
       "number": 333,
       "parent": {
         "number": 900,
-        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "title": "Objective #1 [27.1] - [DSE]: Integrate New Algorithms and Begin Data Processing System (DPS) Implementation",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4063,7 +4063,7 @@
       "number": 345,
       "parent": {
         "number": 900,
-        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "title": "Objective #1 [27.1] - [DSE]: Integrate New Algorithms and Begin Data Processing System (DPS) Implementation",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4186,7 +4186,7 @@
       "number": 348,
       "parent": {
         "number": 900,
-        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "title": "Objective #1 [27.1] - [DSE]: Integrate New Algorithms and Begin Data Processing System (DPS) Implementation",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -4472,7 +4472,7 @@
       "number": 358,
       "parent": {
         "number": 900,
-        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "title": "Objective #1 [27.1] - [DSE]: Integrate New Algorithms and Begin Data Processing System (DPS) Implementation",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -5470,6 +5470,7 @@
       "archived": false,
       "assignees": [
         "acblackford",
+        "krosewheeler",
         "kyle-lesinger"
       ],
       "author": "kyle-lesinger",
@@ -5501,7 +5502,7 @@
       "number": 383,
       "parent": {
         "number": 900,
-        "title": "Objective #1 [27.1] - [DSE]: Develop Algorithms and Begin Data Processing System (DPS) Implementation",
+        "title": "Objective #1 [27.1] - [DSE]: Integrate New Algorithms and Begin Data Processing System (DPS) Implementation",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/900"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -7900,7 +7901,7 @@
       "number": 464,
       "parent": {
         "number": 904,
-        "title": "Objective #3 [27.1] - [DSE + DS]: Ingest New Data Collections into STAC",
+        "title": "Objective #3 [27.1] - [DSE + DS]: Ingest New Data Collections/ Update Existing Collection into STAC",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/904"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
@@ -22491,6 +22492,11 @@
       "avatar": "https://avatars.githubusercontent.com/u/13542757?u=97c4f039018dc2b35441f05ddb85d1b7fca0d630&v=4",
       "login": "jreed6",
       "name": "Jacob Reed"
+    },
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/156042604?u=26c41e32c00ef7c6aeb08e0ac81be7e8846cc85a&v=4",
+      "login": "krosewheeler",
+      "name": "krosewheeler"
     },
     {
       "avatar": "https://avatars.githubusercontent.com/u/194828069?u=0ae4840be42c1ac2f5ffd158d686a7d93432ed0f&v=4",
