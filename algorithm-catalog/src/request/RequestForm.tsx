@@ -97,7 +97,9 @@ function deriveInput(input: AlgorithmInput, d: RequestDraft, tokens: string[]): 
     return { input, value: d.start, source: "start date" };
   }
   if (has("end") || n === "date_to" || n === "to_date") {
-    return { input, value: d.end, source: "end date" };
+    return d.end
+      ? { input, value: d.end, source: "end date" }
+      : { input, value: "", source: "no end date — the event is ongoing; set by the operator at run time" };
   }
   if (has("bbox") || has("bound") || has("extent")) {
     return { input, value: d.bbox, source: "bounding box" };
@@ -460,7 +462,9 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
             <Issues all={violations} field="start" show={shown("start")} />
           </div>
           <div>
-            <label htmlFor="req-end">End date</label>
+            <label htmlFor="req-end">
+              End date <span className="opt">(optional)</span>
+            </label>
             <input
               id="req-end"
               type="date"
@@ -469,6 +473,7 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
               onChange={(e) => patch({ end: e.target.value })}
               onBlur={() => touch("end")}
             />
+            <div className="req-help">Leave blank while the event is ongoing.</div>
             <Issues all={violations} field="end" show={shown("end")} />
           </div>
         </div>

@@ -222,6 +222,17 @@ await page.goto(BASE, { waitUntil: "networkidle" });
 await page.locator("button", { hasText: /event/i }).first().click();
 await page.waitForTimeout(300);
 check("imported events are listed (8)", (await page.locator(".ecard").count()) === 8);
+check(
+  "an event with no end date reads as ongoing",
+  /9 Oct 2026 – ongoing/.test(await page.locator(".ecard", { hasText: "Hurricane Isaias" }).innerText()),
+);
+await page.locator('input[type="date"]').first().fill("2026-10-15");
+await page.waitForTimeout(300);
+check(
+  "an ongoing event still matches a later date filter",
+  (await page.locator(".ecard", { hasText: "Hurricane Isaias" }).count()) === 1,
+);
+await page.locator("button", { hasText: "Reset" }).click();
 await page.locator(".ecard", { hasText: "Hurricane Isaias October 2026" }).click();
 await page.locator('[role="tab"]', { hasText: "Page preview" }).click();
 const preview = await page.locator(".page-preview").innerText();
@@ -234,6 +245,7 @@ await page.locator("button", { hasText: "Edit page" }).click();
 await page.waitForTimeout(400);
 check("Edit page opens Submit prefilled", (await page.locator("#req-name").inputValue()) === "Hurricane Isaias October 2026");
 check("…with the event's places as chips", (await page.locator(".place-chip").count()) === 2);
+check("…and the end date blank (optional — ongoing)", (await page.locator("#req-end").inputValue()) === "");
 await page.locator("#req-subtitle").fill('As Hurricane Isaias made landfall, NASA "activated" to support FEMA.');
 await page.locator("button.req-haz", { hasText: /^Respond$/ }).click();
 await page.locator("#req-intro").fill("Hurricane Isaias brought storm surge to Florida and Alabama.\n\nNASA is sharing maps.");
@@ -257,7 +269,10 @@ const opened = await page.evaluate(() => window.__opened[0] || "");
 const doc = opened ? JSON.parse(new URL(opened).searchParams.get("value"))[0] : {};
 check(
   "Open PR carries the page + places in the request file",
-  doc.page?.intro?.startsWith("Hurricane Isaias") && doc.page?.needs?.[0] === "respond" && doc.event?.places?.length === 2,
+  doc.page?.intro?.startsWith("Hurricane Isaias") &&
+    doc.page?.needs?.[0] === "respond" &&
+    doc.event?.places?.length === 2 &&
+    !("end" in (doc.event ?? {})),
   opened ? new URL(opened).searchParams.get("filename") : "no window.open",
 );
 

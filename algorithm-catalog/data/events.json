@@ -199,7 +199,6 @@
     "name": "Hurricane Isaias October 2026",
     "stacName": "202610_Hurricane_Isaias",
     "start": "2026-10-09",
-    "end": "2026-10-09",
     "hazards": ["TropicalCyclone", "Flood"],
     "locations": ["Florida", "Alabama"],
     "places": ["US-FL", "US-AL"],

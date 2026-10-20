@@ -77,6 +77,7 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
 | US-gov link | "What the U.S. government is doing" | `page.govLink` (https only) |
 | Intro paragraph | Overview | `page.intro` (blank line = paragraph) |
 | Start date | Start Date | `start` |
+| End date | — (the portal records none) | `end` — **optional**; blank = ongoing (shown "– ongoing", never filtered out) |
 | Need/Theme | Need | `page.needs` — the portal's theme **ids** `prepare/respond/recover/resilience` |
 | Hazards | Hazard / categories | `hazards` → `hazards.json` `portal` (its `CONTENT_CATEGORIES`) |
 | Locations | Region | `locations` (+ `places`), or `page.region` override |

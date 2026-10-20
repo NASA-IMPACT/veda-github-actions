@@ -288,16 +288,16 @@ def main(argv: list[str] | None = None) -> int:
             report.append(f"{where} {len(external)} layer(s) have no catalog algorithm — kept as externalLayers: {', '.join(external)}")
 
         start = excel_date(row["F"]) if row.get("F") else ""
-        end = excel_date(row["G"]) if row.get("G") else start
-        if not row.get("G"):
-            report.append(f"{where} no end date in the sheet — set end = start ({start}).")
+        end = excel_date(row["G"]) if row.get("G") else ""
+        if not end:
+            report.append(f"{where} no end date in the sheet — imported as ongoing (end is optional).")
 
         ev = {
             "id": stac,
             "name": name,
             "stacName": stac,
             "start": start,
-            "end": end,
+            **({"end": end} if end else {}),
             "hazards": hz,
             "locations": [*(gaz.label(i) for i in places), *free],
         }

@@ -66,7 +66,7 @@ export function pageView(ev: PageEvent, algorithms: Algorithm[], hazards: Hazard
     hazards: ev.hazards.map((h) => hazardLabel(h, hazards)),
     region: ev.page?.region?.trim() ? [ev.page.region.trim()] : ev.locations,
     startDate: ev.start,
-    endDate: ev.end,
+    endDate: ev.end ?? "",
     govLink: ev.page?.govLink ?? "",
     paragraphs: (ev.page?.intro ?? "").split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean),
     stacName: ev.stacName,
