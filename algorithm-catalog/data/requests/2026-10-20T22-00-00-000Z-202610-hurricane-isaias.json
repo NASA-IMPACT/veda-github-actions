@@ -1,0 +1,60 @@
+[
+  {
+    "kind": "algorithm-request",
+    "id": "202610-hurricane-isaias",
+    "ts": "2026-10-20T22:00:00.000Z",
+    "event": {
+      "name": "Hurricane Isaias October 2026",
+      "stacName": "202610_Hurricane_Isaias",
+      "start": "2026-10-04",
+      "end": "2026-10-20",
+      "hazards": [
+        "TropicalCyclone",
+        "Flood"
+      ],
+      "locations": [
+        "Florida",
+        "Alabama"
+      ],
+      "places": [
+        "US-FL",
+        "US-AL"
+      ],
+      "bbox": "-88.474,24.396,-79.974,35.009"
+    },
+    "products": [
+      {
+        "algorithm": "sentinel2",
+        "product": "true",
+        "via": "hazard"
+      },
+      {
+        "algorithm": "sentinel2",
+        "product": "swir",
+        "via": "hazard"
+      },
+      {
+        "algorithm": "blackmarble",
+        "product": "hdnightlights",
+        "via": "manual"
+      },
+      {
+        "algorithm": "umbra",
+        "product": "sigma",
+        "via": "manual"
+      }
+    ],
+    "page": {
+      "subtitle": "As Hurricane Isaias made landfall along the Gulf Coast, NASA’s Disasters Program supported FEMA and state partners with satellite data.",
+      "intro": "Hurricane Isaias brought \"life-threatening\" storm surge to Florida and Alabama.\n\nNASA is sharing maps of flooding and power outages with response agencies.",
+      "govLink": "https://www.fema.gov/disaster/hurricane-isaias",
+      "needs": [
+        "respond"
+      ],
+      "region": "Florida and Alabama, North America",
+      "portalId": "hurricane-isaias-oct-2026"
+    },
+    "requester": "rehearsal",
+    "notes": "Dress rehearsal of the portal PR workflow — will be closed, not merged."
+  }
+]
