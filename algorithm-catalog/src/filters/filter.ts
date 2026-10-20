@@ -164,7 +164,7 @@ export function applyEvent(f: Filters, u: Universe, ev: ActivationEvent | null):
     eventId: ev.id,
     hazards: new Set(known.length > 0 ? known : u.hazards),
     start: ev.start,
-    end: ev.end,
+    end: ev.end ?? "",
     aoi: ev.locations[0] ?? "",
   };
 }
@@ -229,9 +229,9 @@ export function eventHaystack(
     .toLowerCase();
 }
 
-/** Two windows overlap unless one ends before the other begins. */
-function overlaps(evStart: string, evEnd: string, start: string, end: string): boolean {
-  if (start && evEnd < start) return false;
+/** Two windows overlap unless one ends before the other begins. No end = ongoing, never ended. */
+function overlaps(evStart: string, evEnd: string | undefined, start: string, end: string): boolean {
+  if (start && evEnd && evEnd < start) return false;
   if (end && evStart > end) return false;
   return true;
 }

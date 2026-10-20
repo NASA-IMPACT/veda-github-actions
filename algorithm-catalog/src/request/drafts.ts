@@ -23,7 +23,7 @@ export interface RequestDraft {
   name: string; // human-readable, e.g. "California Wildfires January 2025"
   stacName: string; // YYYYMM_Hazard_Location, e.g. "202501_Fire_CA"
   start: string; // YYYY-MM-DD
-  end: string; // YYYY-MM-DD
+  end: string; // YYYY-MM-DD — optional; blank = ongoing
   bbox: string; // "min_lon,min_lat,max_lon,max_lat" — optional
   mgrsTiles: string; // optional, space-separated Sentinel-2 MGRS tiles, e.g. "T17RLN T17RLM"
   wrs2Tiles: string; // optional, space-separated Landsat WRS-2 path/rows, e.g. "171035"
@@ -140,7 +140,7 @@ export function draftToRequest(d: RequestDraft, ts: string): AlgorithmRequest {
       name: d.name.trim(),
       stacName: d.stacName.trim(),
       start: d.start,
-      end: d.end,
+      ...(d.end ? { end: d.end } : {}),
       hazards: [...d.hazards],
       locations: allLocations(d),
     },
@@ -193,7 +193,7 @@ export function requestToDraft(r: AlgorithmRequest): RequestDraft {
   d.name = r.event.name;
   d.stacName = r.event.stacName;
   d.start = r.event.start;
-  d.end = r.event.end;
+  d.end = r.event.end ?? "";
   d.bbox = r.event.bbox ?? "";
   d.mgrsTiles = (r.event.tiles?.mgrs ?? []).join(" ");
   d.wrs2Tiles = (r.event.tiles?.wrs2 ?? []).join(" ");

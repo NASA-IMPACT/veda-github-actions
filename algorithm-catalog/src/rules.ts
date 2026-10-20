@@ -214,15 +214,18 @@ export function checkStacName(value: string, hazards: Hazard[] = [], selected: s
   return out;
 }
 
-/** ISO shape + ordering. Upstream only checks shape; start<=end is our own catalog invariant. */
+/**
+ * ISO shape + ordering. Upstream only checks shape; start<=end is our own catalog invariant.
+ * The END date is OPTIONAL: blank means the event is still ongoing (the portal itself records only
+ * a startDate). Only a malformed or out-of-order end is an error.
+ */
 export function checkDates(start: string, end: string): Violation[] {
   const out: Violation[] = [];
   if (!start) out.push(err("start", "required", "Start date is required."));
   else if (!ISO_DATE_RE.test(start))
     out.push(err("start", "format", `Start date "${start}" must be YYYY-MM-DD.`));
 
-  if (!end) out.push(err("end", "required", "End date is required."));
-  else if (!ISO_DATE_RE.test(end)) out.push(err("end", "format", `End date "${end}" must be YYYY-MM-DD.`));
+  if (end && !ISO_DATE_RE.test(end)) out.push(err("end", "format", `End date "${end}" must be YYYY-MM-DD.`));
 
   if (start && end && ISO_DATE_RE.test(start) && ISO_DATE_RE.test(end) && start > end) {
     out.push(err("end", "order", `End date ${end} is before start date ${start}.`));
