@@ -242,8 +242,10 @@ export function formatDate(iso: string): string {
   return `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}`;
 }
 
-export function formatRange(start: string, end: string): string {
+/** A missing end date means the event is still ongoing. */
+export function formatRange(start: string, end?: string): string {
   if (!start && !end) return "no dates";
+  if (!end) return `${formatDate(start)} – ongoing`;
   if (start === end) return formatDate(start);
   return `${formatDate(start)} – ${formatDate(end)}`;
 }

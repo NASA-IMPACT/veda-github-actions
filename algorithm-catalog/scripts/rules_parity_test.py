@@ -234,6 +234,8 @@ FIXTURES: list[tuple[str, object, bool, str | None, str]] = [
     # --- date ordering -----------------------------------------------------------------------------
     ("date-order", ("2025-01-07", "2025-01-31"), True, None, "start before end"),
     ("date-order", ("2025-01-07", "2025-01-07"), True, None, "single-day event"),
+    ("date-order", ("2026-10-09", ""), True, None, "no end date — the event is ongoing (end is optional)"),
+    ("date-order", ("2026-10-09", "2026-13-01"), False, "format", "an end date, if given, must still be valid"),
     ("date-order", ("2025-01-31", "2025-01-07"), False, "order", "end before start"),
     # --- bbox --------------------------------------------------------------------------------------
     ("bbox", "", True, None, "bbox is optional"),

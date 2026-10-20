@@ -135,7 +135,8 @@ export interface ActivationEvent {
   name: string; // human-readable, visible on the website
   stacName: string; // YYYYMM_Hazard_Location
   start: string; // "YYYY-MM-DD"
-  end: string; // "YYYY-MM-DD"
+  /** "YYYY-MM-DD", or absent while the event is ongoing. */
+  end?: string;
   hazards: string[]; // hazard ids
   /**
    * Display strings, shown as the page's "Region". The first `places.length` of them are the
@@ -201,7 +202,7 @@ export interface AlgorithmRequest {
     name: string;
     stacName: string;
     start: string;
-    end: string;
+    end?: string; // absent = ongoing
     hazards: string[];
     locations: string[];
     places?: string[];

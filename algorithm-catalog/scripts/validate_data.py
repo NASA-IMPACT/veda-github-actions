@@ -266,16 +266,15 @@ def check_stac_name(
 
 
 def check_dates(start: str, end: str) -> list[Violation]:
-    """ISO shape + ordering. Upstream only checks shape; start<=end is our own catalog invariant."""
+    """ISO shape + ordering. Upstream only checks shape; start<=end is our own catalog invariant.
+    The END date is OPTIONAL: blank means the event is still ongoing. Mirrors rules.ts checkDates."""
     out: list[Violation] = []
     if not start:
         out.append(_err("start", "required", "Start date is required."))
     elif not matches(_ISO_DATE, start):
         out.append(_err("start", "format", f'Start date "{start}" must be YYYY-MM-DD.'))
 
-    if not end:
-        out.append(_err("end", "required", "End date is required."))
-    elif not matches(_ISO_DATE, end):
+    if end and not matches(_ISO_DATE, end):
         out.append(_err("end", "format", f'End date "{end}" must be YYYY-MM-DD.'))
 
     if start and end and matches(_ISO_DATE, start) and matches(_ISO_DATE, end) and start > end:
