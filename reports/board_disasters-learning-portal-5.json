@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-19T18:10:24Z",
+  "generated": "2026-10-20T00:20:19Z",
   "items": [
     {
       "archived": false,
@@ -7901,7 +7901,7 @@
       "number": 464,
       "parent": {
         "number": 904,
-        "title": "Objective #3 [27.1] - [DSE + DS]: Ingest New Data Collections/ Update Existing Collection into STAC",
+        "title": "Objective #3 [27.1] - [DSE + DS]: Ingest New Data Collections/ Update Existing Collections into STAC",
         "url": "https://github.com/NASA-IMPACT/veda-architecture/issues/904"
       },
       "repo": "Disasters-Learning-Portal/disasters-portal",
