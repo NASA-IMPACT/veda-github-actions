@@ -9,6 +9,10 @@
 // in the wild today).
 //
 // Submissions land as data/requests/<ts>-<slug>.json and are overlaid at load time.
+//
+// An event ALSO carries the text of its public page on science.data.nasa.gov (`page`), so one
+// record covers both the website and the algorithm layers — that page used to be written from a
+// spreadsheet kept by hand. See docs/ALGORITHM_CATALOG.md "Event pages".
 
 /** Sensing modality — drives the modality filter and the card accent color. */
 export type Modality = "optical" | "sar" | "nightlights" | "utility";
@@ -64,6 +68,11 @@ export interface Product {
    */
   primaryHazards: string[];
   note?: string;
+  /**
+   * The Disasters Portal data-gallery card for this product, e.g. "DATA__SENTINEL_2_TRUE_COLOR"
+   * (app/site-config/data/data__sentinel-2-true-color.ts). None = no card on the portal yet.
+   */
+  portalData?: string;
 }
 
 export interface Algorithm {
@@ -95,6 +104,32 @@ export interface EventLayer {
   product: string; // Product["id"]
 }
 
+/**
+ * The website's "Need" facet, as the portal's own THEME ids (disasters-portal
+ * app/site-config/types.ts `Theme`) — "resilience" is displayed "Build Resilience".
+ */
+export type Need = "prepare" | "respond" | "recover" | "resilience";
+
+/**
+ * The public event page's own text — everything on it that is NOT already event data. Title,
+ * hazard, region and start date come from the event itself; the data gallery from its layers.
+ */
+export interface EventPage {
+  subtitle?: string;
+  /** Overview narrative. Plain text; a blank line separates paragraphs. */
+  intro?: string;
+  /** The "What the U.S. government is doing — Learn more" link. https only. */
+  govLink?: string;
+  needs: Need[];
+  /** The page's sidebar "Region", e.g. "Los Angeles County, North America". Defaults to the locations. */
+  region?: string;
+  /**
+   * The page's id on the Disasters Portal — its URL slug and its file
+   * app/site-config/event/event__<portalId>.ts, e.g. "southern-california-fire-jan-2025".
+   */
+  portalId?: string;
+}
+
 export interface ActivationEvent {
   id: string; // == stacName
   name: string; // human-readable, visible on the website
@@ -102,11 +137,33 @@ export interface ActivationEvent {
   start: string; // "YYYY-MM-DD"
   end: string; // "YYYY-MM-DD"
   hazards: string[]; // hazard ids
+  /**
+   * Display strings, shown as the page's "Region". The first `places.length` of them are the
+   * gazetteer labels of `places`, IN ORDER; anything after is free text (src/request/drafts.ts).
+   */
   locations: string[];
+  /** Gazetteer ids (data/places*.json) at whatever level of interest: "US-AL" or "US-AL-c51000". */
+  places?: string[];
   bbox?: string;
   layers: EventLayer[];
   /** Layers the event required that have NO algorithm in this catalog — shown greyed out. */
   externalLayers: string[];
+  page?: EventPage;
+}
+
+/**
+ * One gazetteer entry. Ids are hierarchical, so a parent is a prefix of its children:
+ * "US" > "US-AL" > "US-AL-101" (county) and "US-AL-c51000" (city — parent is the state).
+ */
+export type PlaceLevel = "country" | "state" | "county" | "city";
+
+export interface Place {
+  id: string;
+  name: string;
+  level: PlaceLevel;
+  /** The display string, e.g. "Montgomery, Alabama". */
+  label: string;
+  bbox: [number, number, number, number]; // west, south, east, north
 }
 
 /**
@@ -122,6 +179,8 @@ export interface Hazard {
   icon: string;
   /** Other tokens seen in the wild that mean this hazard (Wildfire -> Fire, Quake -> Earthquake). */
   aliases: string[];
+  /** The Disasters Portal category this files under (its CONTENT_CATEGORIES). None = no category. */
+  portal?: string;
 }
 
 /** Where a product on a request came from: hazard auto-selection, or the user adding it by hand. */
@@ -145,6 +204,7 @@ export interface AlgorithmRequest {
     end: string;
     hazards: string[];
     locations: string[];
+    places?: string[];
     bbox?: string;
     /**
      * Optional scene selectors, for when the requester already knows exactly which tiles they
@@ -154,6 +214,7 @@ export interface AlgorithmRequest {
     tiles?: { mgrs?: string[]; wrs2?: string[] };
   };
   products: RequestProduct[];
+  page?: EventPage;
   requester?: string;
   notes?: string;
 }

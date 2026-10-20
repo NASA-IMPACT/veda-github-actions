@@ -64,6 +64,71 @@ conflict-free. `scripts/compact.mjs` + `.github/workflows/algorithm-catalog-comp
 request files into `data/requests.json` and delete them, with `[skip ci]` so the fold does not
 re-trigger validation.
 
+## Event pages (website text + algorithm layers, one record)
+An event also carries the text of its public page on science.data.nasa.gov — `page` on
+`ActivationEvent` / `AlgorithmRequest` (`src/types.ts`). That page used to be written from the
+hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** section replaces it.
+
+| Sheet 1 column | Portal page | Field |
+|---|---|---|
+| Title | masthead title | `name` |
+| STAC event name | — | `stacName` |
+| Sub-title | masthead description | `page.subtitle` (→ portal `description`) |
+| US-gov link | "What the U.S. government is doing" | `page.govLink` (https only) |
+| Intro paragraph | Overview | `page.intro` (blank line = paragraph) |
+| Start date | Start Date | `start` |
+| Need/Theme | Need | `page.needs` — the portal's theme **ids** `prepare/respond/recover/resilience` |
+| Hazards | Hazard / categories | `hazards` → `hazards.json` `portal` (its `CONTENT_CATEGORIES`) |
+| Locations | Region | `locations` (+ `places`), or `page.region` override |
+| Layers | Event Data Gallery | `layers` → `algorithms.json` product `portalData` (its `DATA__*` cards) |
+
+- **Merge rule:** page text is **newest-wins** — `loadEventCatalog` shows the newest submission's
+  `page` over the published one (Events → **Edit page** submits a request for an existing event).
+  Layers stay published-owns-row.
+- **Preview / export:** Events → event → **Page preview** (`src/events/EventPage.tsx`, the portal's
+  section order), **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
+- **Import:** `scripts/import_xlsx.py` is **one-time** and reads **sheet 1 only**; the Google Sheet
+  is being retired. It reports, never invents: unmapped hazards/locations/layers are listed, a Layers
+  cell that only points at another sheet imports no layers. Per-layer pipeline status (STAC / GIBS /
+  EGIS / staging) is deferred.
+
+## Locations at any level of interest
+`src/request/PlacePicker.tsx` over a bundled gazetteer (`src/places.ts`): pick **Alabama**, or
+**Narrow** it to *Montgomery, Alabama* (or a county); **Broaden** goes back up. Picking places fills
+the bbox (union, padded past the 0.05° Black Marble floor) until you type your own; a union wider
+than 180° (antimeridian — Alaska, the whole US) leaves the bbox alone with a warning.
+- Data: `data/places.json` (countries + US states/territories + counties, eager) and
+  `data/places-cities.json` (~32k US places incl. CDPs, a **lazy** chunk loaded on first search),
+  built once by `scripts/build_places.py` from Natural Earth 50m + Census `cb_2023_*_500k`
+  (stdlib: a `.shp` record header already holds its bbox). Rows are `[id, name, w, s, e, n]`.
+- Ids are hierarchical — `US` › `US-AL` › `US-AL-101` (county) / `US-AL-c51000` (city) — so
+  "a place listed with its own ancestor" is a prefix test (`rules.ts` `checkPlaces`, warning).
+  `validate_data.py` additionally checks every id exists in the gazetteer.
+- `locations` keeps the display strings; its first `places.length` entries are the places' labels
+  **in order**, then free text. That ordering is what lets `requestToDraft` rebuild the chips.
+
+## Disasters Portal PR (`.github/workflows/algorithm-catalog-portal-pr.yml`)
+A request PR whose file carries a `page` gets a matching PR on
+`Disasters-Learning-Portal/disasters-portal` (base `develop`): `app/site-config/event/event__<id>.ts`
+plus its import + `EVENTS` entry (newest `startDate` first) in `app/site-config/event/index.ts`.
+- **One generator, two callers:** `src/portal.ts` is previewed live in the form (Review → *Portal
+  file*) and run by `scripts/portal_pr.mjs` under plain Node (type-only imports, so Node's native
+  type stripping runs it — no build step).
+- **It can't arrive red:** `portal_pr.mjs` runs `biome check --write` on the touched files, then the
+  portal's full `pnpm lint:ci` + `pnpm typecheck` in the checkout; any failure stops before the push.
+  The portal's PR checks also skip drafts, so the PR is opened ready-for-review.
+- **Portal standards it follows:** theme ids, `CONTENT_CATEGORIES`, `DateString` (20xx only — a
+  rule in `checkPage`), Biome style (double quotes → straight `"` in prose becomes curly `“ ”`, or
+  Biome flips the literal to single quotes and `lint:ci` fails), and the portal's placeholder
+  `/img/event/template-hero.webp` for hero + thumbnail (swap before merge).
+- **Never clobbers:** a page file without the generator's marker line (all 7 pre-existing portal
+  events) is hand-written and is skipped, not overwritten. Only generated files are regenerated.
+- One portal branch per request PR, `veda-catalog/pr-<N>`, force-updated on every push; a comment on
+  the request PR links it. Token: `DISASTERS_PORTAL_TOKEN`, else `PROJECT_TOKEN_FOR_BOARD_READS`.
+  Fork PRs are skipped (no secrets, and they must not push into another org).
+- Dry run against any portal checkout:
+  `node algorithm-catalog/scripts/portal_pr.mjs --portal <checkout> --branch test --dry-run <request.json>`
+
 ## Theming
 **Light-only USWDS**, like dse-hub — there is no dark toggle and no `data-theme` attribute. Colors
 come from custom properties in `src/styles.css`; `src/request.css` holds the request form's own
@@ -112,4 +177,6 @@ npm run build          # vite build -> dist/
 node scripts/compact.mjs                    # fold data/requests/*.json into data/requests.json
 python3 scripts/validate_data.py            # the standards gate, offline, stdlib only
 python3 scripts/rules_parity_test.py        # rules.ts vs validate_data.py must agree
+python3 -I scripts/import_xlsx.py <xlsx> --dry-run   # one-time sheet-1 import (report only)
+python3 -I scripts/build_places.py --countries … --states … --counties … --places …  # rebuild gazetteer
 ```

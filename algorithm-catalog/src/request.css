@@ -694,3 +694,49 @@ input[aria-invalid="true"] {
     white-space: normal;
   }
 }
+
+/* --- place picker (src/request/PlacePicker.tsx) ---------------------------------------------- */
+
+.place-picker {
+  position: relative;
+  z-index: 50; /* same stacking reason as .req-addwrap: its popovers overflow later sections */
+}
+
+.place-chips {
+  margin-bottom: 0.45rem;
+}
+
+.place-act {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.place-pop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: auto;
+  max-height: 340px;
+}
+
+.place-lvl {
+  background: var(--base-lightest, #f0f0f0);
+  color: var(--base-dark, #3d4551);
+}
+
+.place-lvl-state {
+  background: var(--primary-lighter, #d9e8f6);
+  color: var(--primary-dark, #1a4480);
+}
+
+.place-lvl-city {
+  background: #e3f5e1;
+  color: #216e1f;
+}
+
+/* The Need toggles carry no data color (unlike hazards), so "on" uses the brand blue. */
+.req-need.is-on {
+  border-color: var(--primary, #0b3d91);
+  background: var(--primary-lighter, #d9e8f6);
+  color: var(--primary-dark, #061f4a);
+}

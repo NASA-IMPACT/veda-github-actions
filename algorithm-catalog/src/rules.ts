@@ -8,7 +8,7 @@
 // If you change a rule here you MUST change it in scripts/validate_data.py too; the parity test
 // fails otherwise, and CI runs the parity test.
 
-import type { Hazard } from "./types";
+import type { Hazard, Need } from "./types";
 
 // ---------------------------------------------------------------------------------------------
 // Source-of-truth constants
@@ -46,6 +46,29 @@ export const BBOX_MIN_LAT_SPAN = 0.05;
 
 /** A worked example to show the user in every error message about the event name. */
 export const STAC_EXAMPLE = "202511_Flood_TX";
+
+/**
+ * The event page's "Need" vocabulary — the Disasters Portal's own theme ids
+ * (disasters-portal app/site-config/types.ts `Theme`). Kept as ONE pipe-joined string so
+ * rules_parity_test.py can compare it as text.
+ */
+export const NEEDS_TEXT = "prepare|respond|recover|resilience";
+export const NEEDS = NEEDS_TEXT.split("|") as Need[];
+
+/** The page's "Learn more" link. https only — the portal is https and won't link out to http. */
+export const HTTPS_URL_RE = /^https:\/\/[^\s/]+\.[^\s]+$/;
+
+/**
+ * A gazetteer id (data/places*.json): country, state, county FIPS, or "c" + city FIPS.
+ * Hierarchical on purpose — a parent is always a prefix of its children.
+ */
+export const PLACE_ID_RE = /^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$/;
+
+/** A Disasters Portal content id: its URL slug and file name, e.g. southern-california-fire-jan-2025. */
+export const PORTAL_ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** The portal's CONTENT_CATEGORIES (disasters-portal app/site-config/types.ts), pipe-joined. */
+export const PORTAL_CATEGORIES_TEXT = "cyclone|earthquake|fire|flood|heat|hurricane|landslide|severe weather|tropical cyclone|tsunami|typhoon|volcano|winter weather";
 
 // ---------------------------------------------------------------------------------------------
 // Violation type
@@ -302,6 +325,79 @@ export function checkLocations(locations: string[]): Violation[] {
   return [];
 }
 
+/**
+ * Places at any level of interest — "Alabama" or "Montgomery, Alabama". Naming a place AND one of
+ * its own ancestors is almost always a slip (the state already covers the city), so it warns.
+ * Whether an id actually exists in the gazetteer is checked in CI (validate_data.py), not here:
+ * the picker can only produce real ids, and the city list is a lazy chunk.
+ */
+export function checkPlaces(ids: string[]): Violation[] {
+  const out: Violation[] = [];
+  for (const id of ids) {
+    if (!PLACE_ID_RE.test(id)) {
+      out.push(err("places", "format", `"${id}" is not a place id, e.g. US-AL or US-AL-c51000.`));
+    }
+  }
+  for (const id of ids) {
+    const ancestor = ids.find((a) => a !== id && id.startsWith(`${a}-`));
+    if (ancestor) {
+      out.push(
+        warn(
+          "places",
+          "redundant",
+          `"${id}" is inside "${ancestor}", which is also listed — keep only the one at your level of interest.`,
+        ),
+      );
+    }
+  }
+  return out;
+}
+
+/**
+ * The event page's own text. All optional; only a bad value is an error. When a page is started,
+ * the Disasters Portal's own type rules apply too (its DateString only allows 20xx years, and a
+ * page files under the categories of its hazards).
+ */
+export function checkPage(
+  p: { subtitle: string; intro: string; govLink: string; needs: string[]; portalId: string; start: string; hazards: string[] },
+  vocabulary: Hazard[] = [],
+): Violation[] {
+  const out: Violation[] = [];
+  for (const n of p.needs) {
+    if (!(NEEDS as string[]).includes(n)) {
+      out.push(err("needs", "vocabulary", `"${n}" is not a Need. Use one of: ${NEEDS.join(", ")}.`));
+    }
+  }
+  const link = p.govLink.trim();
+  if (link && !HTTPS_URL_RE.test(link)) {
+    out.push(err("govLink", "format", `"${link}" must be a full https:// link, e.g. https://www.usa.gov/…`));
+  }
+  const portalId = p.portalId.trim();
+  if (portalId && !PORTAL_ID_RE.test(portalId)) {
+    out.push(
+      err("portalId", "format", `"${portalId}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.`),
+    );
+  }
+  const started = Boolean(p.subtitle.trim() || p.intro.trim() || link || p.needs.length > 0 || portalId);
+  if (!started) return out;
+  // Started a page but left out its body — the Overview is the one section a reader comes for.
+  if (!p.intro.trim()) {
+    out.push(warn("intro", "missing", "The page has no intro paragraph, so its Overview section will be empty."));
+  }
+  if (p.needs.length === 0) {
+    out.push(warn("needs", "missing", "Pick at least one Need — the portal files every page under one."));
+  }
+  if (/^[0-9]{4}/.test(p.start) && !p.start.startsWith("20")) {
+    out.push(err("start", "portal-year", "The Disasters Portal only accepts dates in 2000–2099 (its DateString type)."));
+  }
+  if (vocabulary.length > 0 && p.hazards.length > 0 && !p.hazards.some((h) => vocabulary.find((v) => v.id === h)?.portal)) {
+    out.push(
+      warn("hazards", "portal-category", "None of these hazards has a Disasters Portal category, so the page will be filed under none."),
+    );
+  }
+  return out;
+}
+
 export function checkName(name: string): Violation[] {
   if (!name.trim()) {
     return [
@@ -333,10 +429,17 @@ export interface RequestShape {
   end: string;
   hazards: string[];
   locations: string[];
+  places: string[];
   bbox: string;
   mgrsTiles: string;
   wrs2Tiles: string;
   products: { algorithm: string; product: string }[];
+  // --- event page ---
+  subtitle: string;
+  intro: string;
+  govLink: string;
+  needs: string[];
+  portalId: string;
 }
 
 export function validateRequest(r: RequestShape, vocabulary: Hazard[]): Violation[] {
@@ -346,9 +449,11 @@ export function validateRequest(r: RequestShape, vocabulary: Hazard[]): Violatio
     ...checkDates(r.start, r.end),
     ...checkHazards(r.hazards, vocabulary),
     ...checkLocations(r.locations),
+    ...checkPlaces(r.places),
     ...checkBbox(r.bbox),
     ...checkTiles(r.mgrsTiles, r.wrs2Tiles),
     ...checkProducts(r.products),
+    ...checkPage(r, vocabulary),
   ];
 }
 

@@ -81,7 +81,30 @@ STAC_EXAMPLE = "202511_Flood_TX"
 MGRS_TILE_RE = r'^T[0-9]{2}[A-Z]{3}$'
 WRS2_TILE_RE = r'^[0-9]{6}$'
 
+#: The event page's "Need" vocabulary — one pipe-joined string so the parity test compares it as text.
+NEEDS_TEXT = "prepare|respond|recover|resilience"
+NEEDS = NEEDS_TEXT.split("|")
+
+#: The page's "Learn more" link. https only.
+HTTPS_URL_RE = r'^https:\/\/[^\s/]+\.[^\s]+$'
+
+#: A gazetteer id: country, state, county FIPS, or "c" + city FIPS. A parent prefixes its children.
+PLACE_ID_RE = r'^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$'
+
+#: A Disasters Portal content id: its URL slug and file name.
+PORTAL_ID_RE = r'^[a-z0-9]+(-[a-z0-9]+)*$'
+
+#: The portal's CONTENT_CATEGORIES (disasters-portal app/site-config/types.ts), pipe-joined.
+PORTAL_CATEGORIES_TEXT = "cyclone|earthquake|fire|flood|heat|hurricane|landslide|severe weather|tropical cyclone|tsunami|typhoon|volcano|winter weather"
+PORTAL_CATEGORIES = PORTAL_CATEGORIES_TEXT.split("|")
+
+#: A portal data-gallery card constant, e.g. DATA__SENTINEL_2_TRUE_COLOR.
+PORTAL_DATA_RE = re.compile(r'^DATA__[A-Z0-9]+(_[A-Z0-9]+)*$')
+
 _STAC_EVENT = re.compile(STAC_EVENT_RE)
+_HTTPS_URL = re.compile(HTTPS_URL_RE)
+_PLACE_ID = re.compile(PLACE_ID_RE)
+_PORTAL_ID = re.compile(PORTAL_ID_RE)
 _ISO_DATE = re.compile(ISO_DATE_RE)
 _YEARMONTH = re.compile(r'^[0-9]{6}$')
 _MONTH = re.compile(r'^(0[1-9]|1[0-2])$')
@@ -323,6 +346,63 @@ def check_locations(locations: list[str]) -> list[Violation]:
     return []
 
 
+def check_places(ids: list[str]) -> list[Violation]:
+    """Places at any level of interest. A place listed with one of its own ancestors warns.
+    Whether an id exists in the gazetteer is a referential check — see check_place_refs()."""
+    out: list[Violation] = []
+    for pid in ids:
+        if not matches(_PLACE_ID, pid):
+            out.append(_err("places", "format", f'"{pid}" is not a place id, e.g. US-AL or US-AL-c51000.'))
+    for pid in ids:
+        ancestor = next((a for a in ids if a != pid and pid.startswith(f"{a}-")), None)
+        if ancestor:
+            out.append(
+                _warn(
+                    "places",
+                    "redundant",
+                    f'"{pid}" is inside "{ancestor}", which is also listed — keep only the one at your '
+                    f"level of interest.",
+                )
+            )
+    return out
+
+
+def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None) -> list[Violation]:
+    """The event page's own text. All optional; only a bad value is an error. Once a page is
+    started, the Disasters Portal's own type rules apply too."""
+    out: list[Violation] = []
+    needs = _strs(p, "needs")
+    for n in needs:
+        if n not in NEEDS:
+            out.append(_err("needs", "vocabulary", f'"{n}" is not a Need. Use one of: {", ".join(NEEDS)}.'))
+    link = _s(p, "govLink").strip()
+    if link and not matches(_HTTPS_URL, link):
+        out.append(_err("govLink", "format", f'"{link}" must be a full https:// link, e.g. https://www.usa.gov/…'))
+    portal_id = _s(p, "portalId").strip()
+    if portal_id and not matches(_PORTAL_ID, portal_id):
+        out.append(
+            _err("portalId", "format", f'"{portal_id}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.')
+        )
+    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id)
+    if not started:
+        return out
+    if not _s(p, "intro").strip():
+        out.append(_warn("intro", "missing", "The page has no intro paragraph, so its Overview section will be empty."))
+    if not needs:
+        out.append(_warn("needs", "missing", "Pick at least one Need — the portal files every page under one."))
+    start = _s(p, "start")
+    if re.match(r"^[0-9]{4}", start) and not start.startswith("20"):
+        out.append(_err("start", "portal-year", "The Disasters Portal only accepts dates in 2000–2099 (its DateString type)."))
+    hazards = _strs(p, "hazards")
+    if vocabulary and hazards and not any(
+        next((v for v in vocabulary if v.get("id") == h), {}).get("portal") for h in hazards
+    ):
+        out.append(
+            _warn("hazards", "portal-category", "None of these hazards has a Disasters Portal category, so the page will be filed under none.")
+        )
+    return out
+
+
 def check_name(name: str) -> list[Violation]:
     if not name.strip():
         return [
@@ -350,8 +430,10 @@ def validate_request(r: dict[str, Any], vocabulary: list[dict[str, Any]]) -> lis
         *check_dates(_s(r, "start"), _s(r, "end")),
         *check_hazards(_strs(r, "hazards"), vocabulary),
         *check_locations(_strs(r, "locations")),
+        *check_places(_strs(r, "places")),
         *check_bbox(_s(r, "bbox")),
         *check_products(_dicts(r, "products")),
+        *check_page(r, vocabulary),
     ]
 
 
@@ -383,6 +465,9 @@ RULE_EXAMPLES = {
     "thumb": '"thumb": "/thumbs/sentinel2.png"  (file at public/thumbs/sentinel2.png)',
     "temporalStart": '"temporalStart": "2015-06-23"',
     "kind": '"kind": "algorithm-request"',
+    "places": '"places": ["US-AL"]  or  ["US-AL-c51000"]  (ids from data/places*.json)',
+    "needs": '"needs": ["respond"]  (portal theme ids: prepare, respond, recover, resilience)',
+    "govLink": '"govLink": "https://www.usa.gov/disasters-and-emergencies"',
     "ts": '"ts": "2025-01-08T17:04:11.284Z"',
     "<file>": "a JSON array of records, e.g. []",
 }
@@ -549,6 +634,12 @@ def check_hazard_vocabulary(rep: Report, hazards: list[dict[str, Any]]) -> None:
             )
         if _s(h, "id") and "_" in _s(h, "id"):
             rep.error(file, where, "id", "underscore", f'Hazard id "{_s(h, "id")}" must not contain an underscore.')
+        portal = h.get("portal")
+        if portal is not None and portal not in PORTAL_CATEGORIES:
+            rep.error(
+                file, where, "portal", "portal-category",
+                f'"{portal}" is not a Disasters Portal category. Use one of: {", ".join(PORTAL_CATEGORIES)}.',
+            )
 
 
 def check_algorithms(rep: Report, algorithms: list[dict[str, Any]], hazard_ids: set[str]) -> None:
@@ -593,6 +684,12 @@ def check_algorithms(rep: Report, algorithms: list[dict[str, Any]], hazard_ids: 
             if not pid:
                 rep.error(file, pwhere, "products", "required", "Product is missing an id.",
                           example=ALGORITHM_PRODUCT_EXAMPLE)
+            portal_data = p.get("portalData")
+            if portal_data is not None and not (isinstance(portal_data, str) and PORTAL_DATA_RE.match(portal_data)):
+                rep.error(
+                    file, pwhere, "portalData", "format",
+                    f'portalData {portal_data!r} must be a portal card constant, e.g. "DATA__SENTINEL_2_TRUE_COLOR".',
+                )
             for hz in _strs(p, "hazards"):
                 if hz not in hazard_ids:
                     rep.error(
@@ -622,6 +719,7 @@ def check_events(
     events: list[dict[str, Any]],
     hazards: list[dict[str, Any]],
     products_by_algorithm: dict[str, set[str]],
+    place_ids: set[str],
 ) -> None:
     file = "data/events.json"
     dup_check(rep, file, events, "id", "ActivationEvent")
@@ -643,6 +741,13 @@ def check_events(
             rep.add(file, where, v)
         for v in check_bbox(_s(e, "bbox")):
             rep.add(file, where, v)
+        for v in check_places(_strs(e, "places")):
+            rep.add(file, where, v)
+        check_place_refs(rep, file, where, _strs(e, "places"), place_ids)
+        if "page" in e:
+            page = {**_obj(e, "page"), "start": _s(e, "start"), "hazards": _strs(e, "hazards")}
+            for v in check_page(page, hazards):
+                rep.add(file, where, v)
 
         # types.ts: ActivationEvent.id == stacName.
         stac = _s(e, "stacName")
@@ -681,11 +786,31 @@ def check_layers(
             )
 
 
+def check_place_refs(rep: Report, file: str, where: str, ids: list[str], place_ids: set[str]) -> None:
+    """Every place id must exist in the committed gazetteer (scripts/build_places.py)."""
+    for pid in ids:
+        if matches(_PLACE_ID, pid) and pid not in place_ids:
+            rep.error(file, where, "places", "place-ref", f'"{pid}" is not in data/places.json or data/places-cities.json.')
+
+
+def load_place_ids(parsed: dict[str, Any], rep: Report) -> set[str]:
+    """Gazetteer rows are [id, name, w, s, e, n]."""
+    out: set[str] = set()
+    for name in ("data/places.json", "data/places-cities.json"):
+        value = parsed.get(name)
+        if not isinstance(value, list):
+            rep.error(name, "-", "<file>", "missing-file", f"Gazetteer {name} is missing or not an array (scripts/build_places.py).")
+            continue
+        out.update(r[0] for r in value if isinstance(r, list) and r and isinstance(r[0], str))
+    return out
+
+
 def check_requests(
     rep: Report,
     parsed: dict[str, Any],
     hazards: list[dict[str, Any]],
     products_by_algorithm: dict[str, set[str]],
+    place_ids: set[str],
 ) -> None:
     """Every submission under data/requests/ (and the compacted data/requests.json, if present)."""
     files = sorted(f for f in parsed if f.startswith("data/requests/") and f.endswith(".json"))
@@ -712,6 +837,7 @@ def check_requests(
                 rep.error(file, where, "ts", "required", "Request ts is required (compact.mjs resolves conflicts by ts).")
 
             event = _obj(doc, "event")
+            page = _obj(doc, "page")
             shape = {
                 "name": _s(event, "name"),
                 "stacName": _s(event, "stacName"),
@@ -719,11 +845,18 @@ def check_requests(
                 "end": _s(event, "end"),
                 "hazards": _strs(event, "hazards"),
                 "locations": _strs(event, "locations"),
+                "places": _strs(event, "places"),
                 "bbox": _s(event, "bbox"),
                 "products": _dicts(doc, "products"),
+                "subtitle": _s(page, "subtitle"),
+                "intro": _s(page, "intro"),
+                "govLink": _s(page, "govLink"),
+                "needs": _strs(page, "needs"),
+                "portalId": _s(page, "portalId"),
             }
             for v in validate_request(shape, hazards):
                 rep.add(file, where, v)
+            check_place_refs(rep, file, where, shape["places"], place_ids)
 
             check_layers(rep, file, where, "products", _dicts(doc, "products"), products_by_algorithm)
 
@@ -748,8 +881,9 @@ def run() -> Report:
 
     check_hazard_vocabulary(rep, hazards)
     check_algorithms(rep, algorithms, hazard_ids)
-    check_events(rep, events, hazards, products_by_algorithm)
-    check_requests(rep, parsed, hazards, products_by_algorithm)
+    place_ids = load_place_ids(parsed, rep)
+    check_events(rep, events, hazards, products_by_algorithm, place_ids)
+    check_requests(rep, parsed, hazards, products_by_algorithm, place_ids)
     return rep
 
 

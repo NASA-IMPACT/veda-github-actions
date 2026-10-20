@@ -4,6 +4,7 @@
 // does not exist. So every layer the event needed is listed — the ones we can run are clickable
 // and jump to the Algorithms tab; the rest are shown, greyed, and inert.
 
+import { useState } from "react";
 import type { Algorithm, Hazard } from "../types";
 import {
   algorithmById,
@@ -14,6 +15,8 @@ import {
 } from "../data";
 import { hazardColor, hazardIcon, hazardLabel, modality as modalityStyle } from "../colors";
 import { navigate } from "../tabs";
+import EventPage from "./EventPage";
+import { pageView, toJSON, toMarkdown } from "../pageExport";
 
 interface Props {
   event: CatalogEvent;
@@ -31,9 +34,32 @@ export default function EventDetail({ event: ev, algorithms, hazards, onClose }:
   const available = resolved.filter((r) => r.algorithm && r.product);
   const total = ev.layers.length + ev.externalLayers.length;
 
+  const [view, setView] = useState<"details" | "page">("details");
+  const [copied, setCopied] = useState(false);
+
   function jump(algorithmId: string) {
     navigate({ tab: "algorithms", algorithm: algorithmId, event: ev.id });
     onClose();
+  }
+
+  function editPage() {
+    navigate({ tab: "submit", event: ev.stacName });
+    onClose();
+  }
+
+  function copyMarkdown() {
+    navigator.clipboard?.writeText(toMarkdown(pageView(ev, algorithms, hazards)));
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2000);
+  }
+
+  function downloadJson() {
+    const url = URL.createObjectURL(new Blob([toJSON(pageView(ev, algorithms, hazards))], { type: "application/json" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${ev.stacName}-page.json`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -46,6 +72,19 @@ export default function EventDetail({ event: ev, algorithms, hazards, onClose }:
           </button>
         </div>
 
+        <div className="page-tabs" role="tablist">
+          <button role="tab" aria-selected={view === "details"} className={view === "details" ? "is-on" : ""} onClick={() => setView("details")}>
+            Details
+          </button>
+          <button role="tab" aria-selected={view === "page"} className={view === "page" ? "is-on" : ""} onClick={() => setView("page")}>
+            🌐 Page preview {!ev.page && <span className="opt">(no text yet)</span>}
+          </button>
+        </div>
+
+        {view === "page" ? (
+          <EventPage event={ev} algorithms={algorithms} hazards={hazards} />
+        ) : (
+        <>
         <div className="detail-badges">
           <span className={`src-badge ${ev.source}`}>{ev.source}</span>
           <code className="stac">{ev.stacName}</code>
@@ -163,9 +202,21 @@ export default function EventDetail({ event: ev, algorithms, hazards, onClose }:
           </>
         )}
 
+        </>
+        )}
+
         <div className="foot">
           <button className="btn" onClick={onClose}>
             Close
+          </button>
+          <button className="btn" onClick={copyMarkdown}>
+            {copied ? "✅ Copied" : "📋 Copy Markdown"}
+          </button>
+          <button className="btn" onClick={downloadJson}>
+            ⬇ Page JSON
+          </button>
+          <button className="btn" onClick={editPage}>
+            ✏️ Edit page
           </button>
           {available.length > 0 && (
             <button className="btn primary" onClick={() => jump(available[0].algorithm!.id)}>

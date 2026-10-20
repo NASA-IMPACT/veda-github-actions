@@ -177,6 +177,90 @@ check(
 );
 await shot(page, "07-submit-valid");
 
+// --- 5. Locations at any level of interest: Alabama → Montgomery, Alabama → back ----------------
+await page.goto(BASE, { waitUntil: "networkidle" });
+const placeSearch = page.locator('input[aria-label="Search places"]');
+const bbox = page.locator("#req-bbox");
+const pickPlace = async (label) => {
+  await page.locator(".req-picker-row", { hasText: new RegExp(`^＋${label}`) }).first().click();
+  await page.waitForTimeout(200);
+};
+await placeSearch.fill("Los Angeles");
+await page.waitForTimeout(800); // first search pulls in the lazy city chunk
+const laRows = await page.locator(".req-picker-row").allInnerTexts();
+check(
+  "“Los Angeles” lists the county and the city separately",
+  laRows.some((t) => /Los Angeles County, California\s*county/i.test(t)) &&
+    laRows.some((t) => /Los Angeles, California\s*city/i.test(t)),
+  laRows.slice(0, 3).join(" | ").replace(/\s+/g, " "),
+);
+await placeSearch.fill("Alabama");
+await page.waitForTimeout(300);
+await pickPlace("Alabama");
+const alBox = await bbox.inputValue();
+check("picking Alabama fills its bbox", alBox === "-88.474,30.223,-84.889,35.009", alBox);
+await page.locator(".place-chip", { hasText: "Alabama" }).locator("button", { hasText: "Narrow" }).click();
+await page.locator('input[aria-label="Filter places inside"]').fill("Montgomery");
+await page.waitForTimeout(300);
+await pickPlace("Montgomery, Alabama");
+const chips = await page.locator(".place-chip").allInnerTexts();
+const mgBox = await bbox.inputValue();
+check("Narrow replaces Alabama with Montgomery, Alabama", chips.length === 1 && /Montgomery, Alabama/.test(chips[0]), chips.join(" | "));
+check("…and the bbox shrinks to the city", mgBox === "-86.443,32.22,-86.069,32.438" || mgBox.startsWith("-86.443,"), mgBox);
+await shot(page, "08-places-narrow");
+await page.locator(".place-chip").locator("button", { hasText: /Broaden to Alabama/ }).click();
+await page.waitForTimeout(200);
+check("Broaden goes back up to the state", (await bbox.inputValue()) === alBox);
+await bbox.fill("-87,32,-86,33");
+await placeSearch.fill("Georgia");
+await page.waitForTimeout(300);
+await pickPlace("Georgia");
+check("a hand-typed bbox is never overwritten", (await bbox.inputValue()) === "-87,32,-86,33");
+
+// --- 6. Event page: preview in Events, edit in Submit, and the PR carries the page --------------
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("button", { hasText: /event/i }).first().click();
+await page.waitForTimeout(300);
+check("imported events are listed (8)", (await page.locator(".ecard").count()) === 8);
+await page.locator(".ecard", { hasText: "Hurricane Isaias October 2026" }).click();
+await page.locator('[role="tab"]', { hasText: "Page preview" }).click();
+const preview = await page.locator(".page-preview").innerText();
+check(
+  "Page preview follows the portal's section order",
+  /Hurricane Isaias October 2026[\s\S]*Type[\s\S]*Need[\s\S]*Hazard[\s\S]*Region[\s\S]*Start Date[\s\S]*Overview[\s\S]*Event Data Gallery/.test(preview),
+);
+await shot(page, "09-page-preview");
+await page.locator("button", { hasText: "Edit page" }).click();
+await page.waitForTimeout(400);
+check("Edit page opens Submit prefilled", (await page.locator("#req-name").inputValue()) === "Hurricane Isaias October 2026");
+check("…with the event's places as chips", (await page.locator(".place-chip").count()) === 2);
+await page.locator("#req-subtitle").fill('As Hurricane Isaias made landfall, NASA "activated" to support FEMA.');
+await page.locator("button.req-haz", { hasText: /^Respond$/ }).click();
+await page.locator("#req-intro").fill("Hurricane Isaias brought storm surge to Florida and Alabama.\n\nNASA is sharing maps.");
+await page.locator("#req-govlink").fill("https://www.fema.gov/disaster/hurricane-isaias");
+await page.locator("button", { hasText: "Add products" }).click();
+await page.locator(".req-picker-row", { hasText: "True color" }).first().click();
+await page.keyboard.press("Escape");
+await page.waitForTimeout(300);
+const review = await page.locator(".req-form").innerText();
+check("Review shows the live page preview", /Hurricane Isaias brought storm surge/.test(review));
+check("Review shows the portal file path", /app\/site-config\/event\/event__hurricane-isaias-oct-2026\.ts/.test(review));
+const portalSrc = await page.locator(".req-whatruns pre.urlbox").last().textContent();
+check("portal file uses curly quotes (Biome-safe)", portalSrc.includes("NASA “activated”") && !portalSrc.includes('\\"'));
+await shot(page, "10-edit-page");
+await page.evaluate(() => {
+  window.__opened = [];
+  window.open = (u) => (window.__opened.push(u), null);
+});
+await page.locator("button", { hasText: "Open PR" }).click();
+const opened = await page.evaluate(() => window.__opened[0] || "");
+const doc = opened ? JSON.parse(new URL(opened).searchParams.get("value"))[0] : {};
+check(
+  "Open PR carries the page + places in the request file",
+  doc.page?.intro?.startsWith("Hurricane Isaias") && doc.page?.needs?.[0] === "respond" && doc.event?.places?.length === 2,
+  opened ? new URL(opened).searchParams.get("filename") : "no window.open",
+);
+
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 
 await browser.close();

@@ -107,7 +107,13 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   **The standard is enforced automatically**: `src/rules.ts` holds the rules (the
   `YYYYMM_Hazard_Location` regex is lifted verbatim from upstream `dps/_validate.sh:29-36`),
   mirrored 1:1 in `scripts/validate_data.py`, kept honest by `scripts/rules_parity_test.py`, and
-  gated in CI by `.github/workflows/algorithm-catalog-validate.yml`. See `docs/ALGORITHM_CATALOG.md`.
+  gated in CI by `.github/workflows/algorithm-catalog-validate.yml`. **Event pages:** a request may
+  carry `page` (the science.data.nasa.gov page text, newest-wins over the published event) and
+  `places` (bundled gazetteer `data/places*.json`, hierarchical ids `US-AL` › `US-AL-c51000`, bbox
+  auto-filled). `.github/workflows/algorithm-catalog-portal-pr.yml` turns such a request PR into a
+  PR on `Disasters-Learning-Portal/disasters-portal` via `scripts/portal_pr.mjs` + `src/portal.ts`,
+  only after the portal's own Biome `lint:ci` + `typecheck` pass in a checkout; hand-written portal
+  pages are never overwritten. See `docs/ALGORITHM_CATALOG.md`.
 - `board-explorer/` — Vite React SPA; `board-explorer/netlify.toml` (base=`board-explorer`, build,
   publish `dist`). Makes a **Projects v2 board searchable**: free-text search plus **GitHub's own
   Projects filter grammar made clickable**, over **Table / By-assignee / Timeline** views. Reads

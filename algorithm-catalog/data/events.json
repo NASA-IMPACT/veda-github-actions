@@ -35,7 +35,11 @@
       "planet truecolor",
       "firms hot spots",
       "feds fire perimeter"
-    ]
+    ],
+    "page": {
+      "needs": [],
+      "portalId": "southern-california-fire-jan-2025"
+    }
   },
   {
     "id": "202606_Earthquake_Venezuela",
@@ -69,7 +73,11 @@
       "landslideProxyHeatmap",
       "sentinel-2_urbanChangeAnalysis",
       "vantor_trueColor"
-    ]
+    ],
+    "page": {
+      "needs": [],
+      "portalId": "venezuela-earthquake-jun-2026"
+    }
   },
   {
     "id": "202604_Typhoon_Sinlaku",
@@ -104,6 +112,99 @@
       "ISS_NTL",
       "luminosityLost",
       "LHASA_nowcast"
-    ]
+    ],
+    "page": {
+      "needs": [],
+      "portalId": "typhoon-sinlaku-2026"
+    }
+  },
+  {
+    "id": "202601_WinterWx_US",
+    "name": "Winter Weather January 2026",
+    "stacName": "202601_WinterWx_US",
+    "start": "2026-01-26",
+    "end": "2026-02-05",
+    "hazards": ["WinterWx"],
+    "locations": ["Virginia", "Texas", "Tennessee", "South Carolina", "Mississippi"],
+    "places": ["US-VA", "US-TX", "US-TN", "US-SC", "US-MS"],
+    "bbox": "-106.646,25.837,-75.242,39.467",
+    "layers": [],
+    "externalLayers": [],
+    "page": {
+      "needs": [],
+      "portalId": "us-winter-storm-jan-2026"
+    }
+  },
+  {
+    "id": "202410_Hurricane_Milton",
+    "name": "Hurricane Milton October 2024",
+    "stacName": "202410_Hurricane_Milton",
+    "start": "2024-10-07",
+    "end": "2024-10-30",
+    "hazards": ["TropicalCyclone", "Flood"],
+    "locations": ["Florida"],
+    "places": ["US-FL"],
+    "bbox": "-87.635,24.521,-80.031,31.001",
+    "layers": [],
+    "externalLayers": [],
+    "page": {
+      "needs": [],
+      "portalId": "hurricane-milton-oct-2024"
+    }
+  },
+  {
+    "id": "202409_Hurricane_Helene",
+    "name": "Hurricane Helene September 2024",
+    "stacName": "202409_Hurricane_Helene",
+    "start": "2024-09-24",
+    "end": "2024-10-24",
+    "hazards": ["TropicalCyclone", "Flood", "Landslide"],
+    "locations": [
+      "Florida",
+      "Georgia",
+      "Alabama",
+      "Tennessee",
+      "North Carolina",
+      "South Carolina",
+      "Virginia"
+    ],
+    "places": ["US-FL", "US-GA", "US-AL", "US-TN", "US-NC", "US-SC", "US-VA"],
+    "bbox": "-90.311,24.521,-75.242,39.467",
+    "layers": [],
+    "externalLayers": [],
+    "page": {
+      "needs": [],
+      "portalId": "hurricane-helene-sept-2024"
+    }
+  },
+  {
+    "id": "202507_Flood_TX",
+    "name": "Texas Flood July 2025",
+    "stacName": "202507_Flood_TX",
+    "start": "2025-07-07",
+    "end": "2025-07-22",
+    "hazards": ["Flood"],
+    "locations": ["Texas"],
+    "places": ["US-TX"],
+    "bbox": "-106.646,25.837,-93.508,36.501",
+    "layers": [],
+    "externalLayers": [],
+    "page": {
+      "needs": [],
+      "portalId": "texas-floods-july-2025"
+    }
+  },
+  {
+    "id": "202610_Hurricane_Isaias",
+    "name": "Hurricane Isaias October 2026",
+    "stacName": "202610_Hurricane_Isaias",
+    "start": "2026-10-09",
+    "end": "2026-10-09",
+    "hazards": ["TropicalCyclone", "Flood"],
+    "locations": ["Florida", "Alabama"],
+    "places": ["US-FL", "US-AL"],
+    "bbox": "-88.474,24.521,-80.031,35.009",
+    "layers": [],
+    "externalLayers": ["LHASA nowcast", "SPoRT-LIS", "Black Marble", "HydroSAR"]
   }
 ]
