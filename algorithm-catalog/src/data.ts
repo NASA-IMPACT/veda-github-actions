@@ -10,6 +10,7 @@ import type {
   Algorithm,
   AlgorithmRequest,
   EventLayer,
+  EventPage,
   Hazard,
   Product,
 } from "./types";
@@ -105,6 +106,7 @@ export interface EventSubmission {
   requester?: string;
   notes?: string;
   layers: EventLayer[];
+  page?: EventPage;
 }
 
 export interface CatalogEvent extends ActivationEvent {
@@ -120,6 +122,12 @@ function requestLayers(r: AlgorithmRequest): EventLayer[] {
 /**
  * Published activations + submitted requests, keyed by `stacName`, newest activation first.
  * A published event always wins the row; matching requests ride along in `submissions`.
+ *
+ * EXCEPT the page text, which is newest-wins: the row's `page` is the newest submission's `page`
+ * when one carries it, else the published one. Page text is edited by submitting a request for an
+ * existing event (Events → "Edit page"), and the reviewer merging that PR IS the approval — so the
+ * preview must show the edit. Layers stay published-owns-row: a request asks for products, it does
+ * not record what an activation actually used.
  */
 export function loadEventCatalog(): CatalogEvent[] {
   const byStac = new Map<string, CatalogEvent>();
@@ -138,6 +146,7 @@ export function loadEventCatalog(): CatalogEvent[] {
       requester: r.requester,
       notes: r.notes,
       layers: requestLayers(r),
+      page: r.page,
     };
     const existing = byStac.get(stac);
     if (existing) {
@@ -152,12 +161,19 @@ export function loadEventCatalog(): CatalogEvent[] {
       end: r.event.end,
       hazards: [...r.event.hazards],
       locations: [...r.event.locations],
+      places: r.event.places,
       bbox: r.event.bbox,
       layers: submission.layers,
       externalLayers: [],
       source: "submitted",
       submissions: [submission],
     });
+  }
+
+  // submissions are newest-first, so the first one with a page is the newest page.
+  for (const row of byStac.values()) {
+    const latest = row.submissions.find((s) => s.page)?.page;
+    if (latest) row.page = latest;
   }
 
   return [...byStac.values()].sort(

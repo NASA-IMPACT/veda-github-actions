@@ -9,7 +9,7 @@
 // in src/rules.ts sees the same text the user sees. Nothing is coerced or "fixed up" behind their
 // back — a bad date stays bad until they fix it, and the error says why.
 
-import type { Algorithm, AlgorithmRequest, RequestProduct } from "../types";
+import type { ActivationEvent, Algorithm, AlgorithmRequest, EventPage, Need, RequestProduct } from "../types";
 import type { RequestShape } from "../rules";
 import { splitTiles } from "../rules";
 
@@ -29,9 +29,20 @@ export interface RequestDraft {
   wrs2Tiles: string; // optional, space-separated Landsat WRS-2 path/rows, e.g. "171035"
   requester: string; // optional
   notes: string; // optional
+  // --- event page (the public website's own text) ---
+  subtitle: string;
+  intro: string;
+  govLink: string;
+  needs: Need[];
+  region: string; // optional override of the page's Region; blank = the locations
+  portalId: string; // optional override of the portal page id; blank = derived from the name
   // --- repeatable / multi-select ---
   hazards: string[]; // Hazard["id"]
-  locations: string[]; // free text rows; always at least one (possibly empty) row
+  /** Gazetteer picks, at any level of interest. `label` travels with the id so this stays pure. */
+  places: { id: string; label: string }[];
+  locations: string[]; // FREE-TEXT rows, for anything the gazetteer lacks; always >= 1 (maybe empty) row
+  /** True while the bbox should follow `places`. Typing in the bbox field turns it off for good. */
+  bboxAuto: boolean;
   products: RequestProduct[]; // resolved list: hazard-derived (via:"hazard") + hand-picked (via:"manual")
   /** productKey()s of hazard-derived products the user removed, so they don't reappear. Draft-only. */
   dismissed: string[];
@@ -48,8 +59,16 @@ export function newDraft(): RequestDraft {
     wrs2Tiles: "",
     requester: "",
     notes: "",
+    subtitle: "",
+    intro: "",
+    govLink: "",
+    needs: [],
+    region: "",
+    portalId: "",
     hazards: [],
+    places: [],
     locations: [""],
+    bboxAuto: true,
     products: [],
     dismissed: [],
   };
@@ -69,6 +88,26 @@ export function cleanLocations(locations: string[]): string[] {
   return locations.map((l) => l.trim()).filter(Boolean);
 }
 
+/**
+ * Every location's display string: the gazetteer picks FIRST, in order, then the free text.
+ * That order is the contract (src/types.ts ActivationEvent.locations) that lets requestToDraft
+ * pair `places[i]` back up with its label without needing the gazetteer.
+ */
+export function allLocations(d: RequestDraft): string[] {
+  return [...d.places.map((p) => p.label), ...cleanLocations(d.locations)];
+}
+
+/** The page block, or undefined when nothing on it has been filled in. */
+function draftPage(d: RequestDraft): EventPage | undefined {
+  const page: EventPage = { needs: [...d.needs] };
+  if (d.subtitle.trim()) page.subtitle = d.subtitle.trim();
+  if (d.intro.trim()) page.intro = d.intro.trim();
+  if (d.govLink.trim()) page.govLink = d.govLink.trim();
+  if (d.region.trim()) page.region = d.region.trim();
+  if (d.portalId.trim()) page.portalId = d.portalId.trim();
+  return page.subtitle || page.intro || page.govLink || page.needs.length || page.portalId ? page : undefined;
+}
+
 /** What src/rules.ts validates. Kept separate so the form can validate WITHOUT building a record. */
 export function draftToShape(d: RequestDraft): RequestShape {
   return {
@@ -77,11 +116,17 @@ export function draftToShape(d: RequestDraft): RequestShape {
     start: d.start,
     end: d.end,
     hazards: d.hazards,
-    locations: cleanLocations(d.locations),
+    locations: allLocations(d),
+    places: d.places.map((p) => p.id),
     bbox: d.bbox,
     mgrsTiles: d.mgrsTiles,
     wrs2Tiles: d.wrs2Tiles,
     products: d.products.map((p) => ({ algorithm: p.algorithm, product: p.product })),
+    subtitle: d.subtitle,
+    intro: d.intro,
+    govLink: d.govLink,
+    needs: d.needs,
+    portalId: d.portalId,
   };
 }
 
@@ -97,10 +142,11 @@ export function draftToRequest(d: RequestDraft, ts: string): AlgorithmRequest {
       start: d.start,
       end: d.end,
       hazards: [...d.hazards],
-      locations: cleanLocations(d.locations),
+      locations: allLocations(d),
     },
     products: d.products.map((p) => ({ ...p })),
   };
+  if (d.places.length) r.event.places = d.places.map((p) => p.id);
   if (d.bbox.trim()) r.event.bbox = d.bbox.trim();
   const mgrs = splitTiles(d.mgrsTiles);
   const wrs2 = splitTiles(d.wrs2Tiles);
@@ -109,12 +155,39 @@ export function draftToRequest(d: RequestDraft, ts: string): AlgorithmRequest {
     if (mgrs.length) r.event.tiles.mgrs = mgrs;
     if (wrs2.length) r.event.tiles.wrs2 = wrs2;
   }
+  const page = draftPage(d);
+  if (page) r.page = page;
   if (d.requester.trim()) r.requester = d.requester.trim();
   if (d.notes.trim()) r.notes = d.notes.trim();
   return r;
 }
 
-/** Reverse: prefill the form from a staged request (edit-from-cart). */
+/**
+ * An existing activation as a request, so "Edit page" can open it in the form. Its catalog layers
+ * come back as MANUAL picks — they were chosen, not derived, and must survive a hazard toggle.
+ */
+export function eventToRequest(e: ActivationEvent): AlgorithmRequest {
+  const r: AlgorithmRequest = {
+    kind: "algorithm-request",
+    id: slugify(e.stacName || e.name),
+    ts: "",
+    event: {
+      name: e.name,
+      stacName: e.stacName,
+      start: e.start,
+      end: e.end,
+      hazards: [...e.hazards],
+      locations: [...e.locations],
+    },
+    products: e.layers.map((l) => ({ ...l, via: "manual" })),
+  };
+  if (e.places?.length) r.event.places = [...e.places];
+  if (e.bbox) r.event.bbox = e.bbox;
+  if (e.page) r.page = { ...e.page, needs: [...e.page.needs] };
+  return r;
+}
+
+/** Reverse: prefill the form from a staged request (edit-from-cart) or an event (Edit page). */
 export function requestToDraft(r: AlgorithmRequest): RequestDraft {
   const d = newDraft();
   d.name = r.event.name;
@@ -127,8 +200,19 @@ export function requestToDraft(r: AlgorithmRequest): RequestDraft {
   d.requester = r.requester ?? "";
   d.notes = r.notes ?? "";
   d.hazards = [...r.event.hazards];
-  d.locations = r.event.locations.length > 0 ? [...r.event.locations] : [""];
+  const ids = r.event.places ?? [];
+  d.places = ids.map((id, i) => ({ id, label: r.event.locations[i] ?? id }));
+  const free = r.event.locations.slice(ids.length);
+  d.locations = free.length > 0 ? free : [""];
+  // A box that came with the record was set on purpose — never let a place edit overwrite it.
+  d.bboxAuto = !r.event.bbox;
   d.products = r.products.map((p) => ({ ...p }));
+  d.subtitle = r.page?.subtitle ?? "";
+  d.intro = r.page?.intro ?? "";
+  d.govLink = r.page?.govLink ?? "";
+  d.needs = [...(r.page?.needs ?? [])];
+  d.region = r.page?.region ?? "";
+  d.portalId = r.page?.portalId ?? "";
   return d;
 }
 

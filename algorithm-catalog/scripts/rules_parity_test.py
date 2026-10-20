@@ -34,8 +34,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from validate_data import (  # noqa: E402
     BBOX_MIN_LAT_SPAN,
+    HTTPS_URL_RE,
     ISO_DATE_RE,
     MGRS_TILE_RE,
+    NEEDS_TEXT,
+    PLACE_ID_RE,
+    PORTAL_CATEGORIES_TEXT,
+    PORTAL_ID_RE,
     STAC_EVENT_RE,
     STAC_EXAMPLE,
     STAC_PART_COUNT,
@@ -49,6 +54,8 @@ from validate_data import (  # noqa: E402
     check_bbox,
     check_dates,
     check_hazards,
+    check_page,
+    check_places,
     check_stac_name,
     parse_stac_name,
 )
@@ -84,6 +91,11 @@ PY_CONSTANTS = {
     "STAC_EXAMPLE": STAC_EXAMPLE,
     "MGRS_TILE_RE": MGRS_TILE_RE,
     "WRS2_TILE_RE": WRS2_TILE_RE,
+    "NEEDS_TEXT": NEEDS_TEXT,
+    "HTTPS_URL_RE": HTTPS_URL_RE,
+    "PLACE_ID_RE": PLACE_ID_RE,
+    "PORTAL_ID_RE": PORTAL_ID_RE,
+    "PORTAL_CATEGORIES_TEXT": PORTAL_CATEGORIES_TEXT,
 }
 
 
@@ -242,6 +254,26 @@ FIXTURES: list[tuple[str, object, bool, str | None, str]] = [
     ("hazards", ["fire"], False, "vocabulary", "ids are case-sensitive — the id is 'Fire'"),
     ("hazards", ["Wildfire"], False, "vocabulary", "an ALIAS is not an id; Wildfire resolves to Fire"),
     ("hazards", ["Tropical_Cyclone"], False, "vocabulary", "unknown AND contains an underscore"),
+    # --- places: any level of interest ---------------------------------------------------------------
+    ("places", [], True, None, "optional — free-text locations alone are fine"),
+    ("places", ["US-AL"], True, None, "a state"),
+    ("places", ["US-AL-c51000"], True, None, "a city: Montgomery, Alabama"),
+    ("places", ["US-AL-101", "VE"], True, None, "a county and a country"),
+    ("places", ["Alabama"], False, "format", "a label is not an id"),
+    ("places", ["US-AL-51000"], False, "format", "city FIPS needs the c prefix (3 digits = county)"),
+    ("places", ["us-al"], False, "format", "ids are upper-case"),
+    # --- event page ----------------------------------------------------------------------------------
+    ("page", {}, True, None, "no page at all"),
+    ("page", {"needs": ["respond", "resilience"], "intro": "x"}, True, None, "two real needs (portal theme ids)"),
+    ("page", {"govLink": "https://www.usa.gov/california-wildfires", "intro": "x", "needs": ["respond"]}, True, None, "https link"),
+    ("page", {"needs": ["Respond"]}, False, "vocabulary", "needs are the portal's lowercase theme ids"),
+    ("page", {"needs": ["Build Resilience"]}, False, "vocabulary", "a label is not a theme id"),
+    ("page", {"portalId": "southern-california-fire-jan-2025", "intro": "x", "needs": ["respond"]}, True, None, "a real portal id"),
+    ("page", {"portalId": "Southern_California"}, False, "format", "portal ids are lowercase-hyphenated"),
+    ("page", {"intro": "x", "needs": ["respond"], "start": "1999-12-31"}, False, "portal-year", "portal DateString is 20xx only"),
+    ("page", {"govLink": "http://www.usa.gov/x"}, False, "format", "http is refused"),
+    ("page", {"govLink": "https://usa"}, False, "format", "a host needs a dot"),
+    ("page", {"govLink": "www.usa.gov"}, False, "format", "no scheme"),
 ]
 
 # The soft hazard cross-check: the regex accepts ANY token in slot 2, so the controlled vocabulary
@@ -262,6 +294,15 @@ WARNING_FIXTURES: list[tuple[str, list[str], list[str], str]] = [
     ("202501_Quake_Venezuela", ["Earthquake"], [], "alias: Quake resolves to the Earthquake hazard"),
     ("202501_Fire_CA", ["Flood"], ["hazard-mismatch"], "known token, but that hazard is not selected"),
     ("202501_Sinkhole_FL", ["Fire"], ["hazard-vocabulary"], "token outside the vocabulary"),
+]
+
+# Rules whose only finding is a WARNING. (rule fn, value, expected warning rules, note)
+SOFT_FIXTURES: list[tuple[str, object, list[str], str]] = [
+    ("places", ["US-AL", "US-AL-c51000"], ["redundant"], "Montgomery is already inside Alabama"),
+    ("places", ["US-AL-c51000", "US-GA"], [], "a city and a different state — fine"),
+    ("page", {"needs": ["respond"]}, ["missing"], "a page was started but has no intro"),
+    ("page", {"intro": "x"}, ["missing"], "a page with no Need"),
+    ("page", {}, [], "no page started — no nag"),
 ]
 
 # parse_stac_name() slotting — the behavior every "why did that pass?" question comes back to.
@@ -290,6 +331,10 @@ def run_fixture(kind: str, value: object) -> list:
         return check_bbox(str(value))
     if kind == "hazards":
         return check_hazards(list(value), VOCAB)  # type: ignore[arg-type]
+    if kind == "places":
+        return check_places(list(value))  # type: ignore[arg-type]
+    if kind == "page":
+        return check_page(dict(value))  # type: ignore[arg-type]
     raise AssertionError(f"unknown fixture kind {kind!r}")
 
 
@@ -326,6 +371,16 @@ def check_fixtures() -> None:
             fail(f"[warn] {value!r}: expected warnings {expected_warnings}, got {warnings} ({note})")
         else:
             print(f"  ok    [warn] {value!r} + {selected} -> warnings {warnings or '[]'}")
+
+    print("\n   warning-only rules (places, page)")
+    for kind, value, expected_warnings, note in SOFT_FIXTURES:
+        violations = run_fixture(kind, value)
+        errors = [v.rule for v in violations if v.severity == ERROR]
+        warnings = [v.rule for v in violations if v.severity != ERROR]
+        if errors or warnings != expected_warnings:
+            fail(f"[{kind}] {value!r}: expected warnings {expected_warnings}, got errors {errors} warnings {warnings} ({note})")
+        else:
+            print(f"  ok    [{kind}] {value!r} -> warnings {warnings or '[]'}")
 
     print("\n   parse_stac_name() slotting")
     for value, expected in PARSE_CASES:

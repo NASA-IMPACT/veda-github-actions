@@ -5,7 +5,8 @@
     "token": "Fire",
     "color": "#d54309",
     "icon": "🔥",
-    "aliases": ["Wildfire", "Wildfires", "Burn"]
+    "aliases": ["Wildfire", "Wildfires", "Burn"],
+    "portal": "fire"
   },
   {
     "id": "Flood",
@@ -13,7 +14,8 @@
     "token": "Flood",
     "color": "#0076d6",
     "icon": "🌊",
-    "aliases": ["Flooding", "Inundation"]
+    "aliases": ["Flooding", "Inundation"],
+    "portal": "flood"
   },
   {
     "id": "Earthquake",
@@ -21,7 +23,8 @@
     "token": "Earthquake",
     "color": "#7e4c00",
     "icon": "🌐",
-    "aliases": ["Quake", "Seismic"]
+    "aliases": ["Quake", "Seismic"],
+    "portal": "earthquake"
   },
   {
     "id": "TropicalCyclone",
@@ -29,7 +32,8 @@
     "token": "TropicalCyclone",
     "color": "#5e517a",
     "icon": "🌀",
-    "aliases": ["Hurricane", "Typhoon", "TropicalStorm", "Cyclone"]
+    "aliases": ["Hurricane", "Typhoon", "TropicalStorm", "Cyclone"],
+    "portal": "tropical cyclone"
   },
   {
     "id": "Storm",
@@ -37,7 +41,8 @@
     "token": "Storm",
     "color": "#3f57a6",
     "icon": "⛈️",
-    "aliases": ["SevereStorm", "Tornado", "Hail"]
+    "aliases": ["SevereStorm", "Tornado", "Hail"],
+    "portal": "severe weather"
   },
   {
     "id": "Landslide",
@@ -45,7 +50,8 @@
     "token": "Landslide",
     "color": "#6f3331",
     "icon": "⛰️",
-    "aliases": ["Mudslide", "Debris", "DebrisFlow"]
+    "aliases": ["Mudslide", "Debris", "DebrisFlow"],
+    "portal": "landslide"
   },
   {
     "id": "Heat",
@@ -53,7 +59,8 @@
     "token": "Heat",
     "color": "#c05600",
     "icon": "🌡️",
-    "aliases": ["Heatwave", "ExtremeHeat"]
+    "aliases": ["Heatwave", "ExtremeHeat"],
+    "portal": "heat"
   },
   {
     "id": "WinterWx",
@@ -61,7 +68,8 @@
     "token": "WinterWx",
     "color": "#0081a1",
     "icon": "❄️",
-    "aliases": ["Winter", "Snow", "Ice", "Blizzard"]
+    "aliases": ["Winter", "Snow", "Ice", "Blizzard"],
+    "portal": "winter weather"
   },
   {
     "id": "Volcano",
@@ -69,7 +77,8 @@
     "token": "Volcano",
     "color": "#5c1349",
     "icon": "🌋",
-    "aliases": ["Eruption", "Volcanic", "Ash"]
+    "aliases": ["Eruption", "Volcanic", "Ash"],
+    "portal": "volcano"
   },
   {
     "id": "Drought",

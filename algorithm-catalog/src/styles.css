@@ -483,3 +483,33 @@ a { color: var(--primary); }
   .mode-row .seg { width: 100%; }
   .mode-row .seg button { flex: 1; padding: 0.45rem 0.4rem; font-size: 0.85rem; }
 }
+
+/* --- Event page preview (src/events/EventPage.tsx) ------------------------------------------
+   Mirrors the section order of the live Disasters Portal page, NOT its look — it sits inside this
+   app's chrome, so it reuses the house tokens. */
+
+.page-tabs { display: flex; gap: 0.25rem; border-bottom: 1px solid var(--base-lighter); margin: 0.5rem 0 0.8rem; }
+.page-tabs button {
+  border: 0; background: transparent; font: inherit; padding: 0.4rem 0.7rem; cursor: pointer;
+  color: var(--base); border-bottom: 3px solid transparent; margin-bottom: -1px;
+}
+.page-tabs button.is-on { color: var(--ink); font-weight: 600; border-bottom-color: var(--secondary); }
+
+.page-preview { background: var(--white); border: 1px solid var(--base-lighter); border-radius: var(--radius); padding: 1rem 1.2rem; }
+.page-hero { border-left: 4px solid var(--primary); padding-left: 0.8rem; margin-bottom: 0.8rem; }
+.page-kicker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--secondary); }
+.page-title { margin: 0.15rem 0 0.3rem; font-size: 1.5rem; }
+.page-sub { margin: 0; color: var(--base-dark); }
+.page-meta { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.9rem; margin: 0 0 0.6rem; font-size: 0.9rem; }
+.page-meta dt { font-weight: 700; color: var(--base-dark); }
+.page-meta dd { margin: 0; }
+.page-gov { font-size: 0.9rem; margin: 0 0 0.8rem; }
+.page-gov a { font-weight: 700; }
+.page-h { font-size: 1.05rem; margin: 1rem 0 0.4rem; }
+.page-missing { color: var(--base-mid); font-style: italic; }
+.page-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0.5rem; }
+.page-card {
+  border: 1px solid var(--base-lighter); border-top: 4px solid var(--primary); border-radius: 6px;
+  padding: 0.5rem 0.6rem; font-size: 0.85rem; font-weight: 600; background: var(--white);
+}
+.page-card.ext { border-top-color: var(--base-lighter); color: var(--base-mid); font-weight: 400; background: var(--base-lightest); }

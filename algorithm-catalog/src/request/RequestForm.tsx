@@ -15,21 +15,29 @@
 // noise, not help. "Show all problems" reveals everything at once, which is the answer to "why is
 // the submit button greyed out?" (a disabled button can't tell you itself — it emits no click).
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../request.css";
 import type { Algorithm, AlgorithmInput, Hazard, RequestProduct } from "../types";
 import type { Violation } from "../rules";
-import { forField, isSubmittable, errorsOnly, validateRequest, STAC_EXAMPLE } from "../rules";
+import { forField, isSubmittable, errorsOnly, validateRequest, NEEDS, STAC_EXAMPLE } from "../rules";
 import {
-  cleanLocations,
+  allLocations,
   draftToRequest,
   draftToShape,
+  eventToRequest,
   newDraft,
   productKey,
+  requestToDraft,
   syncProducts,
   type RequestDraft,
 } from "./drafts";
 import ProductPicker from "./ProductPicker";
+import PlacePicker from "./PlacePicker";
+import { unionBbox } from "../places";
+import { takeNavIntent } from "../tabs";
+import type { CatalogEvent } from "../data";
+import EventPage from "../events/EventPage";
+import { derivePortalId, NEED_LABELS, PORTAL_REPO, portalEventFile } from "../portal";
 
 /** Remembers the requester handle across visits — see the note where the draft is initialised. */
 const REQUESTER_KEY = "algorithm-catalog:requester";
@@ -41,6 +49,8 @@ interface Props {
   algorithms: Algorithm[];
   /** The controlled hazard vocabulary from data/hazards.json. */
   hazards: Hazard[];
+  /** The Events tab's catalog — what "Edit page" (Events tab) opens in this form. */
+  events: CatalogEvent[];
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -181,7 +191,9 @@ function WhatWillRun({
 // The form
 // ---------------------------------------------------------------------------------------------
 
-export default function RequestForm({ algorithms, hazards }: Props) {
+const today = () => new Date().toISOString().slice(0, 10);
+
+export default function RequestForm({ algorithms, hazards, events }: Props) {
   // The app has no auth and no backend, so it cannot know your GitHub handle — a static page
   // can't read your github.com session. (GitHub captures the real author anyway: whoever clicks
   // "Open PR" is signed in there, so the PR carries their handle.) Best we can do is remember
@@ -205,6 +217,18 @@ export default function RequestForm({ algorithms, hazards }: Props) {
   const [ts, setTs] = useState(() => new Date().toISOString());
 
   const { items, stage } = useRequests();
+  // Set when the form was opened from an event's "Edit page" — names what is being edited.
+  const [editing, setEditing] = useState<string | null>(null);
+  const [bboxNote, setBboxNote] = useState("");
+
+  // Events → "Edit page" parks {tab:"submit", event} and switches here (src/tabs.ts navigate).
+  useEffect(() => {
+    const intent = takeNavIntent();
+    const ev = intent?.tab === "submit" && intent.event ? events.find((e) => e.stacName === intent.event) : undefined;
+    if (!ev) return;
+    setDraft((d) => ({ ...requestToDraft(eventToRequest(ev)), requester: d.requester }));
+    setEditing(ev.name);
+  }, [events]);
 
   const patch = (p: Partial<RequestDraft>) => setDraft((d) => ({ ...d, ...p }));
   const touch = (field: string) => setTouched((t) => (t[field] ? t : { ...t, [field]: true }));
@@ -232,6 +256,24 @@ export default function RequestForm({ algorithms, hazards }: Props) {
   const ok = isSubmittable(violations);
 
   const request = useMemo(() => draftToRequest(draft, ts), [draft, ts]);
+  const previewEvent = useMemo(
+    () => ({
+      name: request.event.name,
+      stacName: request.event.stacName,
+      start: request.event.start,
+      end: request.event.end,
+      hazards: request.event.hazards,
+      locations: request.event.locations,
+      layers: request.products.map(({ algorithm, product }) => ({ algorithm, product })),
+      externalLayers: [],
+      page: request.page,
+    }),
+    [request],
+  );
+  const portalFile = useMemo(
+    () => (request.page ? portalEventFile(previewEvent, algorithms, hazards, today()) : null),
+    [previewEvent, request.page, algorithms, hazards],
+  );
   const { filename, json } = useMemo(() => buildRequestFile([request]), [request]);
   const prUrl = useMemo(() => ghNewFileUrl(filename, json), [filename, json]);
   const urlTooLong = prUrl.length > URL_LIMIT;
@@ -246,6 +288,17 @@ export default function RequestForm({ algorithms, hazards }: Props) {
   }
 
   // --- locations -------------------------------------------------------------------------------
+  /** Picking places re-derives the bbox — until the user types one of their own. */
+  function setPlaces(places: RequestDraft["places"]) {
+    const u = unionBbox(places.map((p) => p.id));
+    setBboxNote(draft.bboxAuto ? u.note : "");
+    setDraft((d) => ({ ...d, places, ...(d.bboxAuto && u.bbox !== null ? { bbox: u.bbox } : {}) }));
+  }
+  function toggleNeed(n: (typeof NEEDS)[number]) {
+    touch("needs");
+    setDraft((d) => ({ ...d, needs: d.needs.includes(n) ? d.needs.filter((x) => x !== n) : [...d.needs, n] }));
+  }
+
   const setLocation = (i: number, v: string) =>
     setDraft((d) => ({ ...d, locations: d.locations.map((l, j) => (j === i ? v : l)) }));
   const addLocation = () => setDraft((d) => ({ ...d, locations: [...d.locations, ""] }));
@@ -342,6 +395,15 @@ export default function RequestForm({ algorithms, hazards }: Props) {
           them — you never touch a job config. Submitting opens a pull request for review; nothing
           runs until it is merged.
         </p>
+        {editing && (
+          <div className="req-cartnote">
+            ✏️ Editing the page for <b>{editing}</b>. Submitting opens a PR with your changes; its
+            products are the event's current layers.{" "}
+            <button className="req-linkbtn" type="button" onClick={() => (setDraft(newDraft()), setEditing(null))}>
+              Start a new request instead
+            </button>
+          </div>
+        )}
         {items.length > 0 && (
           <div className="req-cartnote">
             🧺 {items.length} staged — submit them together from <b>Requests</b> in the header.
@@ -448,12 +510,115 @@ export default function RequestForm({ algorithms, hazards }: Props) {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------------- 2. Hazards ---------- */}
+      {/* ---------------------------------------------------------------- 2. Page content ---- */}
       <section className="panel req-section">
-        <h3>2 · Hazards</h3>
+        <h3>
+          2 · Page content <span className="opt">(optional — the event's page on the Disasters Portal)</span>
+        </h3>
+        <div className="req-help">
+          The text of the public page on science.data.nasa.gov. Title, hazards, locations and start
+          date come from the rest of this form; the Event Data Gallery comes from your products.
+          Fill this in and the request also opens a matching PR on the Disasters Portal.
+        </div>
+
+        <div className="field">
+          <label htmlFor="req-subtitle">Sub-title</label>
+          <input
+            id="req-subtitle"
+            value={draft.subtitle}
+            onChange={(e) => patch({ subtitle: e.target.value })}
+            placeholder="As wildfires burned across Los Angeles County, NASA supported response agencies with satellite data…"
+          />
+          <div className="req-help">One sentence under the title — the portal's masthead description.</div>
+        </div>
+
+        <div className="field">
+          <label>Need</label>
+          <div className="req-hazards">
+            {NEEDS.map((n) => {
+              const on = draft.needs.includes(n);
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  className={on ? "req-haz req-need is-on" : "req-haz req-need"}
+                  onClick={() => toggleNeed(n)}
+                  aria-pressed={on}
+                >
+                  {NEED_LABELS[n]}
+                </button>
+              );
+            })}
+          </div>
+          <Issues all={violations} field="needs" show={shown("needs")} />
+        </div>
+
+        <div className="field">
+          <label htmlFor="req-intro">Intro paragraph</label>
+          <textarea
+            id="req-intro"
+            rows={5}
+            value={draft.intro}
+            onChange={(e) => patch({ intro: e.target.value })}
+            onBlur={() => touch("intro")}
+            placeholder="What happened, who asked NASA for support, and what data is being shared. Leave a blank line between paragraphs."
+          />
+          <div className="req-help">
+            The page's Overview. {draft.intro.trim() ? `${draft.intro.trim().split(/\s+/).length} words.` : ""}
+          </div>
+          <Issues all={violations} field="intro" show={shown("intro")} />
+        </div>
+
+        <div className="field">
+          <label htmlFor="req-govlink">“What the U.S. government is doing” link</label>
+          <input
+            id="req-govlink"
+            className="req-mono"
+            value={draft.govLink}
+            onChange={(e) => patch({ govLink: e.target.value })}
+            onBlur={() => touch("govLink")}
+            placeholder="https://www.fema.gov/disaster/…"
+          />
+          <Issues all={violations} field="govLink" show={shown("govLink")} />
+        </div>
+
+        <div className="field two">
+          <div>
+            <label htmlFor="req-region">
+              Region <span className="opt">(optional)</span>
+            </label>
+            <input
+              id="req-region"
+              value={draft.region}
+              onChange={(e) => patch({ region: e.target.value })}
+              placeholder={allLocations(draft).join("; ") || "Los Angeles County, North America"}
+            />
+            <div className="req-help">As printed on the page. Blank = your locations.</div>
+          </div>
+          <div>
+            <label htmlFor="req-portalid">
+              Portal page id <span className="opt">(optional)</span>
+            </label>
+            <input
+              id="req-portalid"
+              className="req-mono"
+              value={draft.portalId}
+              onChange={(e) => patch({ portalId: e.target.value })}
+              onBlur={() => touch("portalId")}
+              placeholder={derivePortalId(draft.name) || "southern-california-fire-jan-2025"}
+            />
+            <div className="req-help">The page's URL slug. Blank = derived from the event name.</div>
+            <Issues all={violations} field="portalId" show={shown("portalId")} />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- 3. Hazards ---------- */}
+      <section className="panel req-section">
+        <h3>3 · Hazards</h3>
         <div className="req-help">
           Pick every hazard this activation covers. Selecting a hazard auto-selects the products
-          suited to it (you can drop or add any of them in step 4).
+          suited to it (you can drop or add any of them in step 5).
         </div>
         <div className="req-hazards">
           {hazards.map((h) => {
@@ -479,18 +644,30 @@ export default function RequestForm({ algorithms, hazards }: Props) {
         <Issues all={violations} field="hazards" show={shown("hazards")} />
       </section>
 
-      {/* ---------------------------------------------------------------- 3. Locations -------- */}
+      {/* ---------------------------------------------------------------- 4. Locations -------- */}
       <section className="panel req-section">
-        <h3>3 · Locations</h3>
+        <h3>4 · Locations</h3>
         <div className="field">
           <label>Places affected</label>
+          <div className="req-help">
+            At whatever level of interest — a whole state, or <b>Narrow</b> it to a county or city.
+            Picking places fills in the bounding box.
+          </div>
+          <PlacePicker value={draft.places} onChange={setPlaces} onTouched={() => touch("locations")} />
+          <Issues all={violations} field="places" show={shown("locations")} />
+        </div>
+
+        <div className="field">
+          <label>
+            Other places <span className="opt">(free text — anything the search doesn't list)</span>
+          </label>
           {draft.locations.map((loc, i) => (
             <div className="req-row" key={i}>
               <input
                 value={loc}
                 onChange={(e) => setLocation(i, e.target.value)}
                 onBlur={() => touch("locations")}
-                placeholder="Los Angeles, CA"
+                placeholder="Valencia, Venezuela"
                 aria-label={`Location ${i + 1}`}
               />
               <button
@@ -518,13 +695,20 @@ export default function RequestForm({ algorithms, hazards }: Props) {
             id="req-bbox"
             className="req-mono"
             value={draft.bbox}
-            onChange={(e) => patch({ bbox: e.target.value })}
+            onChange={(e) => {
+              patch({ bbox: e.target.value, bboxAuto: false });
+              setBboxNote("");
+            }}
             onBlur={() => touch("bbox")}
             placeholder="-118.9,33.7,-117.6,34.4"
           />
           <div className="req-help">
-            WGS84 <code>min_lon,min_lat,max_lon,max_lat</code>. Leave blank if you don't have one.
+            WGS84 <code>min_lon,min_lat,max_lon,max_lat</code>.{" "}
+            {draft.bboxAuto
+              ? "Follows the places you pick — type here to set your own."
+              : "Set by hand, so picking places no longer changes it."}
           </div>
+          {bboxNote && <p className="hint req-warn">⚠ {bboxNote}</p>}
           <Issues all={violations} field="bbox" show={shown("bbox")} />
         </div>
 
@@ -574,7 +758,7 @@ export default function RequestForm({ algorithms, hazards }: Props) {
 
       {/* ---------------------------------------------------------------- 4. Products --------- */}
       <section className="panel req-section">
-        <h3>4 · Products</h3>
+        <h3>5 · Products</h3>
         <div className="req-help">
           {autoCount} auto-selected from your hazards, {manualCount} added by hand. Anything the
           hazard mapping missed, add it yourself — the mapping is a hint, not a limit.
@@ -683,7 +867,29 @@ export default function RequestForm({ algorithms, hazards }: Props) {
 
       {/* ---------------------------------------------------------------- 5. Review ----------- */}
       <section className="panel req-section">
-        <h3>5 · Review &amp; submit</h3>
+        <h3>6 · Review &amp; submit</h3>
+
+        {request.page && (
+          <details className="req-whatruns panel" open>
+            <summary>🌐 Page preview — how it will read on the Disasters Portal</summary>
+            <EventPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+          </details>
+        )}
+        {portalFile && (
+          <details className="req-whatruns panel">
+            <summary>
+              🧩 Portal file — <code>{portalFile.path}</code>
+            </summary>
+            <p className="hint">
+              Opening the PR below also opens a PR on <code>{PORTAL_REPO}</code> with this file
+              (registered in its event index), once the portal's own lint and typecheck pass on it.
+              A page that already exists there and was written by hand is never overwritten.
+              {portalFile.unmapped.length > 0 &&
+                ` No portal gallery card exists yet for: ${portalFile.unmapped.join(", ")}.`}
+            </p>
+            <pre className="urlbox">{portalFile.source}</pre>
+          </details>
+        )}
 
         <label className="jsonlabel">
           File preview — <code>{filename}</code>
@@ -719,7 +925,7 @@ export default function RequestForm({ algorithms, hazards }: Props) {
                   ? `⚠ ${errCount} problem${errCount === 1 ? "" : "s"} to fix`
                   : warnCount > 0
                     ? `⚠ ${warnCount} warning${warnCount === 1 ? "" : "s"} — you can still submit`
-                    : `✅ Ready — ${cleanLocations(draft.locations).length} location${cleanLocations(draft.locations).length === 1 ? "" : "s"}, ${draft.products.length} product${draft.products.length === 1 ? "" : "s"}`}
+                    : `✅ Ready — ${allLocations(draft).length} location${allLocations(draft).length === 1 ? "" : "s"}, ${draft.products.length} product${draft.products.length === 1 ? "" : "s"}${request.page ? " + event page" : ""}`}
             </div>
             {errCount > 0 && !showAll && (
               <button className="req-linkbtn" type="button" onClick={() => setShowAll(true)}>

@@ -51,7 +51,8 @@
           "Flood",
           "Landslide",
           "Volcano"
-        ]
+        ],
+        "portalData": "DATA__LANDSAT_TRUE_COLOR"
       },
       {
         "id": "pan",
@@ -76,7 +77,8 @@
           "Volcano",
           "Landslide"
         ],
-        "primaryHazards": []
+        "primaryHazards": [],
+        "portalData": "DATA__LANDSAT_NATURAL_COLOR"
       },
       {
         "id": "colorIR",
@@ -93,7 +95,8 @@
         "primaryHazards": [
           "Fire",
           "Landslide"
-        ]
+        ],
+        "portalData": "DATA__LANDSAT_COLOR_INFRARED"
       },
       {
         "id": "ndvi",
@@ -110,7 +113,8 @@
         "primaryHazards": [
           "Drought",
           "Heat"
-        ]
+        ],
+        "portalData": "DATA__LANDSAT_NDVI"
       },
       {
         "id": "ndwi",
@@ -135,7 +139,8 @@
         "primaryHazards": [
           "Flood",
           "TropicalCyclone"
-        ]
+        ],
+        "portalData": "DATA__LANDSAT_MNDWI"
       },
       {
         "id": "evi",
@@ -158,7 +163,8 @@
         ],
         "primaryHazards": [
           "Fire"
-        ]
+        ],
+        "portalData": "DATA__LANDSAT_NBR"
       },
       {
         "id": "we",
@@ -327,7 +333,8 @@
           "Landslide",
           "Volcano",
           "WinterWx"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_TRUE_COLOR"
       },
       {
         "id": "nat",
@@ -339,7 +346,8 @@
           "Volcano",
           "Landslide"
         ],
-        "primaryHazards": []
+        "primaryHazards": [],
+        "portalData": "DATA__SENTINEL_2_NATURAL_COLOR"
       },
       {
         "id": "swir",
@@ -354,7 +362,8 @@
         "primaryHazards": [
           "Fire",
           "Volcano"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_SWIR"
       },
       {
         "id": "colorIR",
@@ -371,7 +380,8 @@
         "primaryHazards": [
           "Fire",
           "Flood"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_COLOR_INFRARED"
       },
       {
         "id": "ndvi",
@@ -388,7 +398,8 @@
         "primaryHazards": [
           "Drought",
           "Heat"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_NDVI"
       },
       {
         "id": "ndwi",
@@ -413,7 +424,8 @@
         "primaryHazards": [
           "Flood",
           "TropicalCyclone"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_MNDWI"
       },
       {
         "id": "nbr",
@@ -424,7 +436,8 @@
         ],
         "primaryHazards": [
           "Fire"
-        ]
+        ],
+        "portalData": "DATA__SENTINEL_2_NBR"
       },
       {
         "id": "we",
@@ -558,7 +571,8 @@
           "Earthquake",
           "TropicalCyclone",
           "Landslide"
-        ]
+        ],
+        "portalData": "DATA__SATELLOGIC_TRUE_COLOR"
       },
       {
         "id": "colorir",
@@ -571,7 +585,8 @@
           "Earthquake",
           "Landslide"
         ],
-        "primaryHazards": []
+        "primaryHazards": [],
+        "portalData": "DATA__SATELLOGIC_COLOR_INFRARED"
       },
       {
         "id": "ndvi",
@@ -717,7 +732,8 @@
           "TropicalCyclone",
           "Earthquake",
           "Storm"
-        ]
+        ],
+        "portalData": "DATA__UMBRA_SIGMA_NAUGHT"
       },
       {
         "id": "beta",
@@ -873,7 +889,8 @@
           "TropicalCyclone",
           "Earthquake",
           "Storm"
-        ]
+        ],
+        "portalData": "DATA__CAPELLA_BACKSCATTER"
       }
     ],
     "inputs": [
@@ -958,7 +975,8 @@
           "TropicalCyclone",
           "Storm",
           "WinterWx"
-        ]
+        ],
+        "portalData": "DATA__BLACK_MARBLE_HD"
       },
       {
         "id": "hdnightlightscolored",
@@ -1197,7 +1215,8 @@
           "Storm"
         ],
         "note": "Prototype — produced via notebook, not DPS.",
-        "primaryHazards": []
+        "primaryHazards": [],
+        "portalData": "DATA__ICEYE_BACKSCATTER"
       }
     ],
     "inputs": [

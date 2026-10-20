@@ -9,7 +9,7 @@ import { createElement, type ComponentType } from "react";
 import Catalog from "./catalog/Catalog";
 import EventList from "./events/EventList";
 import RequestForm from "./request/RequestForm";
-import { loadAlgorithms, loadHazards } from "./data";
+import { loadAlgorithms, loadEventCatalog, loadHazards } from "./data";
 
 export interface HeaderTab {
   id: string;
@@ -23,7 +23,8 @@ export interface HeaderTab {
 // free and keeps the adapter from re-deriving them on every render.
 const ALGORITHMS = loadAlgorithms();
 const HAZARDS = loadHazards();
-const SubmitTab = () => createElement(RequestForm, { algorithms: ALGORITHMS, hazards: HAZARDS });
+const EVENTS = loadEventCatalog();
+const SubmitTab = () => createElement(RequestForm, { algorithms: ALGORITHMS, hazards: HAZARDS, events: EVENTS });
 SubmitTab.displayName = "SubmitTab";
 
 export const TABS: HeaderTab[] = [
@@ -46,7 +47,7 @@ export interface NavIntent {
   tab: string;
   /** Algorithm id to narrow the sensor facet to. */
   algorithm?: string;
-  /** ActivationEvent id to prefill the facets from. */
+  /** ActivationEvent id to prefill the facets from — or, for "submit", the stacName to edit. */
   event?: string;
 }
 
