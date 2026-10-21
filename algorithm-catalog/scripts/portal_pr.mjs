@@ -32,6 +32,8 @@ import { driveFileId } from "../src/rules.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DATA = join(HERE, "..", "data");
+/** Tagged on every portal PR (and on the request PRs here) — see data/pr-reviewers.json. */
+const REVIEWERS = JSON.parse(readFileSync(join(DATA, "pr-reviewers.json"), "utf8")).reviewers;
 const INDEX = "app/site-config/event/index.ts";
 const IMG_DIR = "public/img/event";
 // Overridable so the download path can be tested against a local server.
@@ -286,6 +288,8 @@ async function main() {
     "The masthead and card thumbnail use the portal's default event image (`/img/event/template-hero.webp`).",
     ...(opts.sourcePr ? ["", `Source request: ${opts.sourcePr}`] : []),
     "",
+    `cc ${REVIEWERS.map((r) => `@${r}`).join(" ")}`,
+    "",
     "Lint (`pnpm lint:ci`) and typecheck (`pnpm typecheck`) were run against this branch before the PR was opened.",
   ].join("\n");
 
@@ -307,7 +311,29 @@ async function main() {
     existing ||
     run(opts.portal, "gh", ["pr", "create", "--repo", PORTAL_REPO, "--base", PORTAL_BRANCH, "--head", opts.branch, "--title", title, "--body", body], { quiet: true }).trim();
   console.log(`${existing ? "updated" : "opened"} ${url}`);
+  if (!existing) requestReviewers(opts.portal, url);
   if (process.env.GITHUB_OUTPUT) writeFileSync(process.env.GITHUB_OUTPUT, `url=${url}\n`, { flag: "a" });
+}
+
+/**
+ * Ask each reviewer for a review on a newly opened PR. One at a time and never fatal: GitHub refuses
+ * a PR's own author (the token's user opens these) and anyone without access, and neither may stop
+ * the PR — everyone is @-mentioned in its body regardless.
+ */
+export function requestReviewers(cwd, url) {
+  const me = run(cwd, "gh", ["api", "user", "--jq", ".login"], { quiet: true }).trim();
+  for (const r of REVIEWERS) {
+    if (r.toLowerCase() === me.toLowerCase()) {
+      console.log(`  review: @${r} is the PR author — mentioned in the body instead`);
+      continue;
+    }
+    try {
+      run(cwd, "gh", ["pr", "edit", url, "--add-reviewer", r], { quiet: true });
+      console.log(`  review: requested @${r}`);
+    } catch (e) {
+      console.log(`  review: could not request @${r} (${String(e.stderr || e.message).trim().split("\n").pop()}) — still mentioned in the body`);
+    }
+  }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

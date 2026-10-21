@@ -1,0 +1,4 @@
+{
+  "description": "Who is tagged on every Algorithm Catalog PR: the request PRs here (.github/workflows/algorithm-catalog-reviewers.yml) and the Disasters Portal PRs the automation opens (scripts/portal_pr.mjs). GitHub logins. Each is @-mentioned and requested as a reviewer — except a PR's own author, whom GitHub will not accept as its reviewer.",
+  "reviewers": ["kyle-lesinger", "chelsea-aaron", "acblackford"]
+}
