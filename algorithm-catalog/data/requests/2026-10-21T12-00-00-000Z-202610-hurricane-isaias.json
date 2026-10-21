@@ -1,0 +1,66 @@
+{
+  "kind": "algorithm-request",
+  "id": "202610-hurricane-isaias",
+  "ts": "2026-10-21T12:00:00.000Z",
+  "event": {
+    "name": "Hurricane Isaias October 2026",
+    "stacName": "202610_Hurricane_Isaias",
+    "start": "2026-10-09",
+    "hazards": [
+      "TropicalCyclone",
+      "Flood"
+    ],
+    "locations": [
+      "Florida",
+      "Alabama"
+    ],
+    "places": [
+      "US-FL",
+      "US-AL"
+    ],
+    "bbox": "-88.474,24.521,-80.031,35.009"
+  },
+  "products": [
+    {
+      "algorithm": "sentinel2",
+      "product": "true",
+      "via": "hazard"
+    },
+    {
+      "algorithm": "sentinel2",
+      "product": "swir",
+      "via": "hazard"
+    },
+    {
+      "algorithm": "landsat",
+      "product": "colorIR",
+      "via": "manual"
+    },
+    {
+      "algorithm": "blackmarble",
+      "product": "hdnightlights",
+      "via": "manual"
+    },
+    {
+      "algorithm": "umbra",
+      "product": "sigma",
+      "via": "manual"
+    },
+    {
+      "algorithm": "opera",
+      "product": "dswx",
+      "via": "manual"
+    }
+  ],
+  "page": {
+    "needs": [
+      "respond"
+    ],
+    "subtitle": "Hurricane Isaias made landfall on the Florida Panhandle on October 9, 2026, bringing storm surge, damaging winds and inland flooding to Florida and Alabama.",
+    "intro": "Hurricane Isaias came ashore near Pensacola, Florida, as a Category 3 storm on October 9, 2026, pushing a storm surge of up to 9 feet into Escambia and Mobile Bays. Forecasters described the rainfall as \"a slow-moving flood event\" as the storm stalled over southern Alabama for nearly two days.\n\nNASA's Disasters Program is providing optical, radar and nighttime-lights imagery to help response agencies map flood extent, assess coastal damage and track power outages across the affected counties.",
+    "govLink": "https://www.fema.gov/disaster/hurricane-isaias",
+    "region": "Florida and Alabama, North America"
+  },
+  "requester": "e2e-review",
+  "notes": "Temporary end-to-end review — will be closed, not merged."
+}
