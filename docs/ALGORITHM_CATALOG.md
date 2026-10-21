@@ -190,7 +190,15 @@ plus its import + `EVENTS` entry (newest `startDate` first) in `app/site-config/
 - **Never clobbers:** a page file without the generator's marker line (all 7 pre-existing portal
   events) is hand-written and is skipped, not overwritten. Only generated files are regenerated.
 - One portal branch per request PR, `veda-catalog/pr-<N>`, force-updated on every push; a comment on
-  the request PR links it. Token: `DISASTERS_PORTAL_TOKEN`, else `PROJECT_TOKEN_FOR_BOARD_READS`.
+  the request PR links it.
+- **Who gets tagged** is one list, `data/pr-reviewers.json` (`kyle-lesinger`, `chelsea-aaron`,
+  `acblackford`). Every new request PR is tagged by `.github/workflows/algorithm-catalog-reviewers.yml`
+  (review request each + one cc comment); every new portal PR gets a cc line in its body and review
+  requests from `portal_pr.mjs`. GitHub refuses a PR's **own author** as its reviewer — portal PRs are
+  authored by the PAT's user (Kyle), so he is mentioned, not requested. Review requests are made one at
+  a time and are never fatal. The reviewers workflow uses **`pull_request_target`** so it can tag on
+  FORK PRs (whose `GITHUB_TOKEN` is read-only); that is safe only because it never checks out the PR's
+  code — keep it that way. Token: `DISASTERS_PORTAL_TOKEN`, else `PROJECT_TOKEN_FOR_BOARD_READS`.
   Fork PRs are skipped (no secrets, and they must not push into another org).
 - Dry run against any portal checkout:
   `node algorithm-catalog/scripts/portal_pr.mjs --portal <checkout> --branch test --dry-run <request.json>`

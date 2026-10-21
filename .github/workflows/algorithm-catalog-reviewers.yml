@@ -1,0 +1,56 @@
+name: Algorithm Catalog — tag reviewers
+
+# Every new Algorithm Catalog request PR (a file under algorithm-catalog/data/requests/, opened from
+# the app's prefilled "Open PR") tags the people in algorithm-catalog/data/pr-reviewers.json: one
+# cc comment, plus a review request for each — except the PR's own author, whom GitHub refuses as a
+# reviewer.
+#
+# pull_request_target, not pull_request: submitters without write access open their request from a
+# FORK, and a fork PR's GITHUB_TOKEN is read-only, so it could tag no one. pull_request_target runs
+# this workflow as it is on the base branch with a write token. That is safe here ONLY because the
+# PR's code is never checked out or run — the job reads the reviewer list from the base branch and
+# calls the GitHub API. Do not add a checkout of the PR head to this workflow.
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+    paths:
+      - "algorithm-catalog/data/requests/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  tag:
+    name: Request reviews + cc
+    runs-on: ubuntu-latest
+    steps:
+      # The BASE branch (pull_request_target's default ref) — never the PR's head.
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: algorithm-catalog/data/pr-reviewers.json
+          sparse-checkout-cone-mode: false
+
+      - name: Tag reviewers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          REPO: ${{ github.repository }}
+        run: |
+          reviewers=$(jq -r '.reviewers[]' algorithm-catalog/data/pr-reviewers.json)
+          lc() { printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; }  # GitHub logins are case-insensitive
+          mentions=""
+          for r in $reviewers; do
+            mentions="$mentions @$r"
+            if [ "$(lc "$r")" = "$(lc "$AUTHOR")" ]; then
+              echo "@$r opened this PR — mentioned, not requested (GitHub refuses the author as reviewer)"
+              continue
+            fi
+            gh pr edit "$PR" --repo "$REPO" --add-reviewer "$r" \
+              && echo "requested a review from @$r" \
+              || echo "::warning::could not request a review from @$r — still mentioned"
+          done
+          gh pr comment "$PR" --repo "$REPO" \
+            --body "New Algorithm Catalog request — cc${mentions}"
