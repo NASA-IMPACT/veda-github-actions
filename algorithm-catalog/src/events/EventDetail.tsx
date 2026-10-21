@@ -15,7 +15,7 @@ import {
 } from "../data";
 import { hazardColor, hazardIcon, hazardLabel, modality as modalityStyle } from "../colors";
 import { navigate } from "../tabs";
-import EventPage from "./EventPage";
+import PortalPage, { PortalFrame } from "./PortalPage";
 import { pageView, toJSON, toMarkdown } from "../pageExport";
 
 interface Props {
@@ -82,7 +82,9 @@ export default function EventDetail({ event: ev, algorithms, hazards, onClose }:
         </div>
 
         {view === "page" ? (
-          <EventPage event={ev} algorithms={algorithms} hazards={hazards} />
+          <PortalFrame>
+            <PortalPage event={ev} algorithms={algorithms} hazards={hazards} />
+          </PortalFrame>
         ) : (
         <>
         <div className="detail-badges">

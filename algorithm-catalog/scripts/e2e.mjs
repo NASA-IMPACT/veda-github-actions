@@ -235,10 +235,10 @@ check(
 await page.locator("button", { hasText: "Reset" }).click();
 await page.locator(".ecard", { hasText: "Hurricane Isaias October 2026" }).click();
 await page.locator('[role="tab"]', { hasText: "Page preview" }).click();
-const preview = await page.locator(".page-preview").innerText();
+const preview = await page.locator(".overlay .pp").innerText();
 check(
   "Page preview follows the portal's section order",
-  /Hurricane Isaias October 2026[\s\S]*Type[\s\S]*Need[\s\S]*Hazard[\s\S]*Region[\s\S]*Start Date[\s\S]*Overview[\s\S]*Event Data Gallery/.test(preview),
+  /Hurricane Isaias October 2026[\s\S]*PUBLISHED:[\s\S]*Type[\s\S]*Region[\s\S]*Start Date[\s\S]*Overview/i.test(preview),
 );
 await shot(page, "09-page-preview");
 await page.locator("button", { hasText: "Edit page" }).click();
@@ -255,7 +255,20 @@ await page.locator(".req-picker-row", { hasText: "True color" }).first().click()
 await page.keyboard.press("Escape");
 await page.waitForTimeout(300);
 const review = await page.locator(".req-form").innerText();
-check("Review shows the live page preview", /Hurricane Isaias brought storm surge/.test(review));
+const live = page.locator(".req-live .pp");
+check("the live portal preview is docked beside the form", (await live.count()) === 1);
+check(
+  "…and updates as you type (sub-title, Need, intro)",
+  // curly, exactly as the generated portal file will carry it — not the straight quotes typed
+  (await live.locator(".pp-hero p").innerText()).includes("NASA “activated” to support FEMA") &&
+    (await live.locator(".pp-meta").innerText()).includes("RESPOND") &&
+    (await live.locator(".pp-main").innerText()).includes("Hurricane Isaias brought storm surge"),
+);
+check(
+  "…and shows the REAL portal gallery card for the product",
+  (await live.locator(".pp-card h3").allInnerTexts()).includes("Landsat True Color Imagery") &&
+    (await live.locator(".pp-card img").first().evaluate((i) => i.complete && i.naturalWidth > 0)),
+);
 check("Review shows the portal file path", /app\/site-config\/event\/event__hurricane-isaias-oct-2026\.ts/.test(review));
 const portalSrc = await page.locator(".req-whatruns pre.urlbox").last().textContent();
 check("portal file uses curly quotes (Biome-safe)", portalSrc.includes("NASA “activated”") && !portalSrc.includes('\\"'));

@@ -86,8 +86,20 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
 - **Merge rule:** page text is **newest-wins** — `loadEventCatalog` shows the newest submission's
   `page` over the published one (Events → **Edit page** submits a request for an existing event).
   Layers stay published-owns-row.
-- **Preview / export:** Events → event → **Page preview** (`src/events/EventPage.tsx`, the portal's
-  section order), **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
+- **Live preview — as it will look ON the portal:** `src/events/PortalPage.tsx` replicates the
+  portal page (its header, hero masthead, sidebar tags, Overview, Event Data Gallery; fonts, colors
+  and proportions measured off the live California page) at its 1280px desktop width, and
+  `<PortalFrame>` scales it to fit. It is docked beside the Submit form (👁 **Live preview**, sticky,
+  remembered per browser in `localStorage algorithm-catalog:livePreview`; default open ≥1200px) and
+  updates on every keystroke; Events → event → **Page preview** shows the same. Text goes through
+  `src/portal.ts` `typographic()` — the same transform the generated file uses — so the preview
+  shows exactly what the portal will (curly quotes included).
+- **The gallery shows the portal's REAL cards** (title, description, tags, thumbnail) for each
+  product's `portalData`, snapshotted by `scripts/sync_portal_cards.py <portal checkout>` into
+  `data/portal-cards.json` + `public/portal/` (thumbnails downsized with macOS `sips`). Re-run it
+  when the portal's cards change or a `portalData` mapping is added. Layers with no portal card are
+  listed under the preview, since the real page will not show them.
+- **Export:** **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
 - **Import:** `scripts/import_xlsx.py` is **one-time** and reads **sheet 1 only**; the Google Sheet
   is being retired. It reports, never invents: unmapped hazards/locations/layers are listed, a Layers
   cell that only points at another sheet imports no layers. Per-layer pipeline status (STAC / GIBS /

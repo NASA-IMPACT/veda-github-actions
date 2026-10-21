@@ -85,17 +85,20 @@ export const portalDataModule = (constName: string): string =>
   `@/app/site-config/data/data__${constName.replace(/^DATA__/, "").toLowerCase().replace(/_/g, "-")}`;
 
 /**
- * A TS string literal in the portal's style. Straight double quotes in prose become curly ones
- * (the portal already writes NASA’s, not NASA's) — otherwise Biome would flip the literal to single
- * quotes and `biome ci` would fail the PR on formatting.
+ * Prose as the portal will print it: one line, straight double quotes made curly (the portal
+ * already writes NASA’s, not NASA's) — otherwise Biome would flip the literal to single quotes and
+ * `biome ci` would fail the PR on formatting. The live preview applies this too, so it shows
+ * exactly the text the generated file will carry.
  */
-function lit(text: string): string {
-  const typographic = text
+export function typographic(text: string): string {
+  return text
     .replace(/\s*\n\s*/g, " ")
     .replace(/"([^"]*)"/g, "“$1”")
     .replace(/"/g, "”");
-  return JSON.stringify(typographic);
 }
+
+/** A TS string literal in the portal's style. */
+const lit = (text: string): string => JSON.stringify(typographic(text));
 
 /** `key: value,` at `indent`, broken onto two lines the way Biome does once it passes 100 columns. */
 function prop(indent: string, key: string, value: string): string {

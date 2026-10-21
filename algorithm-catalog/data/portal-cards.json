@@ -1,0 +1,375 @@
+{
+  "DATA__BLACK_MARBLE_HD": {
+    "title": "Black Marble HD",
+    "description": "HD Black Marble combines VIIRS nighttime lights with Landsat-derived land surface information and OpenStreetMap road networks to create enhanced 30-meter nighttime light imagery for disaster impact assessment.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/black-marble-hd.jpg"
+  },
+  "DATA__CAPELLA_BACKSCATTER": {
+    "title": "Capella SAR Backscatter",
+    "description": "Sigma Naught backscatter derived from high-resolution Capella Space synthetic aperture radar (SAR) imagery acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/capella-backscatter.jpg"
+  },
+  "DATA__ICEYE_BACKSCATTER": {
+    "title": "ICEYE SAR Backscatter",
+    "description": "Sigma Naught backscatter derived from high-resolution ICEYE synthetic aperture radar (SAR) imagery acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/iceye-backscatter.jpg"
+  },
+  "DATA__LANDSAT_COLOR_INFRARED": {
+    "title": "Landsat Color Infrared Imagery",
+    "description": "Created using near-infrared, red, and green channels to highlight vegetation, water, burned areas, and other surface changes associated with natural hazards.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/landsat-color-infrared.jpg"
+  },
+  "DATA__LANDSAT_MNDWI": {
+    "title": "Landsat Modified Normalized Difference Water Index (MNDWI)",
+    "description": "Modified Normalized Difference Water Index (MNDWI) uses green and shortwave-infrared reflectance to enhance open water features and suppress vegetation, soil, and built-up surfaces.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "flood",
+      "tropical cyclone",
+      "winter weather"
+    ],
+    "image": "/portal/cards/landsat-mndwi.jpg"
+  },
+  "DATA__LANDSAT_NATURAL_COLOR": {
+    "title": "Landsat Natural Color Imagery",
+    "description": "The Landsat Natural Color composite uses shortwave infrared, near-infrared, and red channels to emphasize vegetation, water, urban areas, and other surface features.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/landsat-natural-color.jpg"
+  },
+  "DATA__LANDSAT_NBR": {
+    "title": "Landsat Normalized Burn Ratio (NBR)",
+    "description": "Normalized Burn Ratio (NBR) is defined mathematically as (NIR - SWIR)/(NIR + SWIR), where NIR is near-infrared and SWIR is shortwave infrared. NBR is commonly used as a proxy to identify areas of burned or charred vegetation.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/landsat-nbr.jpg"
+  },
+  "DATA__LANDSAT_NDVI": {
+    "title": "Landsat Normalized Difference Vegetation Index (NDVI)",
+    "description": "Normalized Difference Vegetation Index (NDVI) uses near-infrared and red reflectance to indicate the presence and relative condition of green vegetation.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/landsat-ndvi.jpg"
+  },
+  "DATA__LANDSAT_TRUE_COLOR": {
+    "title": "Landsat True Color Imagery",
+    "description": "The Landsat True Color RGB composite provides a natural-looking view of the Earth's surface similar to how it would appear to the human eye.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/landsat-true-color.jpg"
+  },
+  "DATA__SATELLOGIC_COLOR_INFRARED": {
+    "title": "Satellogic Color Infrared Imagery",
+    "description": "Satellogic Color Infrared imagery combines near-infrared, red, and green observations from Satellogic's high-resolution multispectral satellites to highlight vegetation, water, and burned or damaged areas affected by floods, storms, fires, and other hazards.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/satellogic-color-infrared.jpg"
+  },
+  "DATA__SATELLOGIC_TRUE_COLOR": {
+    "title": "Satellogic True Color Imagery",
+    "description": "Satellogic True Color imagery combines red, green, and blue observations from Satellogic's high-resolution multispectral satellites to provide a natural-looking, sub-meter to meter-scale view of the Earth's surface for disaster response and assessment.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/satellogic-true-color.jpg"
+  },
+  "DATA__SENTINEL_2_COLOR_INFRARED": {
+    "title": "Sentinel-2 Color Infrared Imagery",
+    "description": "Created using near-infrared, red, and green channels to highlight vegetation, water, burned areas, and other surface changes associated with floods, fires, and other hazards.",
+    "themes": [
+      "prepare",
+      "respond",
+      "recover",
+      "resilience"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-color-infrared.jpg"
+  },
+  "DATA__SENTINEL_2_MNDWI": {
+    "title": "Sentinel-2 Modified Normalized Difference Water Index (MNDWI)",
+    "description": "Modified Normalized Difference Water Index (MNDWI) uses green and shortwave-infrared reflectance to enhance open water features and suppress vegetation, soil, and built-up surfaces.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "flood",
+      "tropical cyclone",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-mndwi.jpg"
+  },
+  "DATA__SENTINEL_2_NATURAL_COLOR": {
+    "title": "Sentinel-2 Natural Color",
+    "description": "Natural color imagery from Sentinel-2 combines the red, green, and blue bands of the MultiSpectral Instrument into a view approximating what the human eye would see, supporting visual assessment of surface conditions before and after a disaster.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-natural-color.jpg"
+  },
+  "DATA__SENTINEL_2_NBR": {
+    "title": "Sentinel-2 Normalized Burn Ratio (NBR)",
+    "description": "Normalized Burn Ratio (NBR) is defined mathematically as (NIR – SWIR)/(NIR + SWIR) where NIR is near-infrared and SWIR is short-wave infrared. NBR is commonly used as a proxy to indicate areas which have charred vegetation.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/sentinel-2-nbr.jpg"
+  },
+  "DATA__SENTINEL_2_NDVI": {
+    "title": "Sentinel-2 Normalized Difference Vegetation Index (NDVI)",
+    "description": "Normalized Difference Vegetation Index (NDVI) uses near-infrared and red reflectance to indicate the presence and relative condition of green vegetation.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-ndvi.jpg"
+  },
+  "DATA__SENTINEL_2_SWIR": {
+    "title": "Sentinel-2 Shortwave Infrared Imagery",
+    "description": "A false color composite created from Sentinel-2 shortwave infrared, near-infrared, and red observations to highlight differences among water, vegetation, burned areas, snow, bare ground, and developed surfaces.",
+    "themes": [
+      "prepare",
+      "respond",
+      "recover",
+      "resilience"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-swir.jpg"
+  },
+  "DATA__SENTINEL_2_TRUE_COLOR": {
+    "title": "Sentinel-2 True Color Imagery",
+    "description": "A visible-light composite created from Sentinel-2 red, green, and blue observations to show the Earth's surface approximately as it would appear to the human eye from space.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-true-color.jpg"
+  },
+  "DATA__UMBRA_SIGMA_NAUGHT": {
+    "title": "Umbra Backscatter",
+    "description": "Sigma Naught backscatter derived from high-resolution Umbra synthetic aperture radar (SAR) imagery acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/umbra-sigma-naught.jpg"
+  }
+}

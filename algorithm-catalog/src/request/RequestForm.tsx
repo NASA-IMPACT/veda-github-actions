@@ -36,8 +36,13 @@ import PlacePicker from "./PlacePicker";
 import { unionBbox } from "../places";
 import { takeNavIntent } from "../tabs";
 import type { CatalogEvent } from "../data";
-import EventPage from "../events/EventPage";
-import { derivePortalId, NEED_LABELS, PORTAL_REPO, portalEventFile } from "../portal";
+import PortalPage, { PortalFrame, portalGallery } from "../events/PortalPage";
+import { derivePortalId, NEED_LABELS, PORTAL_REPO, portalEventFile, portalIdOf } from "../portal";
+
+/** Whether the live portal preview is docked beside the form — remembered per browser. */
+const LIVE_KEY = "algorithm-catalog:livePreview";
+/** Below this the form and preview can't both be readable side by side, so it starts closed. */
+const LIVE_MIN_WIDTH = 1200;
 
 /** Remembers the requester handle across visits — see the note where the draft is initialised. */
 const REQUESTER_KEY = "algorithm-catalog:requester";
@@ -222,6 +227,25 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
   // Set when the form was opened from an event's "Edit page" — names what is being edited.
   const [editing, setEditing] = useState<string | null>(null);
   const [bboxNote, setBboxNote] = useState("");
+  const [live, setLive] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem(LIVE_KEY);
+      if (saved !== null) return saved === "1";
+    } catch {
+      /* ignore */
+    }
+    return window.innerWidth >= LIVE_MIN_WIDTH;
+  });
+  function toggleLive() {
+    setLive((v) => {
+      try {
+        localStorage.setItem(LIVE_KEY, v ? "0" : "1");
+      } catch {
+        /* ignore */
+      }
+      return !v;
+    });
+  }
 
   // Events → "Edit page" parks {tab:"submit", event} and switches here (src/tabs.ts navigate).
   useEffect(() => {
@@ -388,7 +412,10 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
   const autoCount = draft.products.filter((p) => p.via === "hazard").length;
   const manualCount = draft.products.length - autoCount;
 
+  const gallery = portalGallery(previewEvent, algorithms);
+
   return (
+    <div className={live ? "req-layout is-live" : "req-layout"}>
     <div className="req-form" onClick={() => pickerOpen && setPickerOpen(false)}>
       <div className="req-intro">
         <h2>📝 Request an activation</h2>
@@ -519,6 +546,9 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
       <section className="panel req-section">
         <h3>
           2 · Page content <span className="opt">(optional — the event's page on the Disasters Portal)</span>
+          <button className="btn req-live-toggle" type="button" onClick={toggleLive} aria-pressed={live}>
+            {live ? "Hide live preview" : "👁 Live preview"}
+          </button>
         </h3>
         <div className="req-help">
           The text of the public page on science.data.nasa.gov. Title, hazards, locations and start
@@ -874,10 +904,12 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
       <section className="panel req-section">
         <h3>6 · Review &amp; submit</h3>
 
-        {request.page && (
+        {request.page && !live && (
           <details className="req-whatruns panel" open>
-            <summary>🌐 Page preview — how it will read on the Disasters Portal</summary>
-            <EventPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+            <summary>🌐 Page preview — how it will look on the Disasters Portal</summary>
+            <PortalFrame>
+              <PortalPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+            </PortalFrame>
           </details>
         )}
         {portalFile && (
@@ -951,6 +983,29 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           </div>
         </div>
       </section>
+    </div>
+
+    {live && (
+      <aside className="req-live" aria-label="Live Disasters Portal preview">
+        <div className="req-live-head">
+          <b>👁 Live preview</b>
+          <code title="Where the page will be published">
+            …/disasters/news-events-stories/{portalIdOf(previewEvent) || "…"}
+          </code>
+          <button className="req-modal-x" type="button" onClick={toggleLive} aria-label="Hide live preview">
+            ×
+          </button>
+        </div>
+        <PortalFrame>
+          <PortalPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+        </PortalFrame>
+        {gallery.unmapped.length > 0 && (
+          <p className="hint req-live-note">
+            Not in the portal's Data Gallery yet, so not shown: {gallery.unmapped.join(", ")}.
+          </p>
+        )}
+      </aside>
+    )}
     </div>
   );
 }

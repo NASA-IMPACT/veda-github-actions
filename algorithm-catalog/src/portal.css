@@ -1,0 +1,106 @@
+/* ============================================================================================
+ * The Disasters Portal's look, for src/events/PortalPage.tsx — NOT this app's chrome.
+ *
+ * Values are the portal's own, read off the live page (science.data.nasa.gov/disasters, its
+ * @teamimpact/veda-ui-blocks "disasters" theme): Inter for headings, Public Sans for body, its
+ * --color-* tokens, a 71px #17171b header, a 64px hero title, and a 240px sidebar beside a ~930px
+ * main column at 1280px. Everything is scoped under .pp, laid out at 1280px and scaled by
+ * <PortalFrame>. Fonts fall back to the platform UI font (this app loads no web fonts).
+ * ============================================================================================ */
+
+.pp {
+  --pp-ink: #17171b;
+  --pp-base-dark: #58585b;
+  --pp-base: #77777a;
+  --pp-base-light: #b9b9bb;
+  --pp-base-lighter: #e3e3e3;
+  --pp-secondary: #f64137;
+  --pp-heading: "Inter Variable", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --pp-body: "Public Sans Web", "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: var(--pp-ink);
+  font-family: var(--pp-body);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.pp h1, .pp h2, .pp h3 { font-family: var(--pp-heading); letter-spacing: normal; color: inherit; }
+.pp-frame { position: relative; overflow: hidden; }
+.pp-scale { transform-origin: top left; position: absolute; top: 0; left: 0; }
+
+/* --- header ------------------------------------------------------------------------------- */
+.pp-nav {
+  height: 71px; background: var(--pp-ink); color: #fff;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 32px 0 20px;
+}
+.pp-brand { display: flex; align-items: center; gap: 6px; font-size: 16px; line-height: 1.2; }
+.pp-brand b { font-weight: 700; }
+.pp-menu { display: flex; gap: 32px; font-weight: 700; font-size: 16px; }
+
+/* --- hero masthead ------------------------------------------------------------------------- */
+.pp-hero {
+  position: relative; min-height: 488px; background-color: #2e2e32;
+  background-size: cover; background-position: center; display: flex; align-items: center;
+}
+.pp-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.05) 100%);
+}
+.pp-hero-text { position: relative; max-width: 620px; padding: 36px 16px; color: #fff; }
+.pp-hero h1 { font-size: 63.68px; font-weight: 700; line-height: 1; margin: 0 0 22px; }
+.pp-hero p { font-family: var(--pp-heading); font-size: 17px; line-height: 1.6; color: #e3e3e3; margin: 0 0 22px; }
+.pp-published { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+
+/* --- body: sidebar + main ----------------------------------------------------------------- */
+.pp-body { display: grid; grid-template-columns: 240px 1fr; gap: 64px; padding: 56px 16px 72px 32px; }
+.pp-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--pp-base-dark); margin: 0 0 8px;
+}
+.pp-side > .pp-label { color: var(--pp-ink); font-size: 13px; letter-spacing: 0.06em; margin-bottom: 18px; }
+.pp-toc { list-style: none; margin: 0 0 56px; padding: 0; border-left: 1px solid var(--pp-base-light); }
+.pp-toc li { font-size: 13px; padding: 6px 16px; letter-spacing: 0.02em; }
+
+.pp-meta { margin: 0; padding: 0 16px; }
+.pp-meta > div { border-bottom: 1px solid var(--pp-base-lighter); padding: 20px 0 18px; }
+.pp-meta dt {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--pp-base-dark); margin-bottom: 8px;
+}
+.pp-meta dd { margin: 0; }
+.pp-strong { font-family: var(--pp-heading); font-weight: 700; font-size: 16px; line-height: 1.2; }
+
+.pp-tags { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.pp-tag {
+  border: 1px solid var(--pp-base); border-radius: 2px; padding: 2px 8px;
+  font-size: 12px; font-weight: 700; color: var(--pp-base-dark); letter-spacing: 0.02em;
+}
+.pp-more { font-size: 12px; color: var(--pp-base-dark); }
+
+.pp-main h2 { font-size: 35.84px; font-weight: 700; margin: 0 0 28px; line-height: 1.15; }
+.pp-main > p { font-size: 16px; line-height: 1.62; margin: 0 0 22px; }
+.pp-gov {
+  border-top: 1px solid var(--pp-base-lighter); border-bottom: 1px solid var(--pp-base-lighter);
+  padding: 26px 0 22px; margin-bottom: 30px;
+}
+.pp-learn { font-weight: 700; border-bottom: 1px dashed var(--pp-ink); }
+
+.pp-gallery-head { display: flex; justify-content: space-between; align-items: baseline; margin-top: 56px; }
+.pp-viewall, .pp-viewdata {
+  font-family: var(--pp-heading); font-weight: 600; font-size: 16px; display: inline-flex; align-items: center; gap: 10px;
+}
+.pp-arrow {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--pp-secondary); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+}
+.pp-card { display: grid; grid-template-columns: 200px 1fr; gap: 20px; margin-bottom: 32px; }
+.pp-card img { width: 200px; height: 300px; object-fit: cover; display: block; background: var(--pp-base-lighter); }
+.pp-card > div { display: flex; flex-direction: column; padding-top: 14px; }
+.pp-card h3 { font-size: 21.92px; font-weight: 700; margin: 0 0 14px; }
+.pp-card p { font-family: var(--pp-heading); font-size: 16px; line-height: 1.6; margin: 0 0 18px; }
+.pp-card .pp-viewdata { margin-top: auto; padding-bottom: 20px; }
+
+/* What isn't written yet: shown faint, so the preview reads as a draft, not the published page. */
+.pp-placeholder { opacity: 0.45; font-style: italic; }
+.pp-hero h1.pp-placeholder { font-style: normal; }
