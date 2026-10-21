@@ -145,6 +145,13 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
   sensors on the left (catalog order, selected/total counts, status badge from a generic
   `STATUS_LABEL` map), the selected sensor's products on the right. Search spans both columns, with
   an "All matches" entry. Keyboard: ↓ into sensors, ↑/↓/Home/End, → or Enter into products, Esc.
+  Rows are **toggles** (an added row's ✓ turns into a red − on hover; clicking removes it via the same
+  `removeProduct` as the chip ×). The selected list sits ABOVE the picker, so each add/remove made from
+  the open picker records its position first and scrolls by the difference after — the picker stays
+  under the cursor (e2e asserts 0px drift; without it, 26–66px per add).
+- **Nothing picked disappears from the preview.** A product with no Data Gallery card renders in the
+  live preview as a dashed draft card stating the published page won't show it — the real page can only
+  render existing `DATA__*` cards.
 - **`stacAsset` / `stacCollections` are GENERATED from the live Disasters STAC** by
   `scripts/sync_stac_assets.py`, never hand-edited, and the app offers no way to edit them. The
   asset name is the item asset whose roles include `data`; `cog_default` and the
@@ -245,4 +252,10 @@ python3 scripts/validate_data.py            # the standards gate, offline, stdli
 python3 scripts/rules_parity_test.py        # rules.ts vs validate_data.py must agree
 python3 -I scripts/import_xlsx.py <xlsx> --dry-run   # one-time sheet-1 import (report only)
 python3 -I scripts/build_places.py --countries … --states … --counties … --places …  # rebuild gazetteer
+python3 -I scripts/sync_stac_assets.py [--check]    # stacAsset/stacCollections from the LIVE STAC
+python3 -I scripts/sync_portal_cards.py <portal checkout>   # preview's card snapshot (needs cwebp)
+node scripts/portal_pr.mjs --portal <portal checkout> --branch t --dry-run <request.json>
+# e2e: playwright is NOT a devDependency, and Node resolves import("playwright") from the SCRIPT's
+# folder (not the cwd) — so copy scripts/e2e.mjs into a folder that has playwright installed, run it there:
+#   cp scripts/e2e.mjs /tmp/e2e/ && (cd /tmp/e2e && npm i playwright && node e2e.mjs http://localhost:5173)
 ```

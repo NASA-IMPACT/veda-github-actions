@@ -113,7 +113,16 @@ Netlify reads the `netlify.toml` **inside that base dir**, so the sites stay iso
   auto-filled). `.github/workflows/algorithm-catalog-portal-pr.yml` turns such a request PR into a
   PR on `Disasters-Learning-Portal/disasters-portal` via `scripts/portal_pr.mjs` + `src/portal.ts`,
   only after the portal's own Biome `lint:ci` + `typecheck` pass in a checkout; hand-written portal
-  pages are never overwritten. See `docs/ALGORITHM_CATALOG.md`.
+  pages are never overwritten. A **live preview** (`src/events/PortalPage.tsx`) replicates the portal
+  page at its 1280px width, scaled, with the portal's REAL gallery cards (`data/portal-cards.json`,
+  snapshotted by `scripts/sync_portal_cards.py`); a picked product with no card shows as a dashed
+  draft card. The page takes **one optional image after the intro** (a Google Drive link) — the
+  masthead is always the portal's default — re-encoded to the portal's image standard. The page
+  address is **never typed**: derived from the event name, which must end "<Month> <YYYY>". **All 59
+  portal Data Gallery products are selectable**; the 40 with no algorithm are `status: "external"`
+  ("no algorithm yet", never auto-selected). Each product's `stacAsset`/`stacCollections` are
+  **generated from the live STAC** (`scripts/sync_stac_assets.py`), never hand-edited. "＋ Add products"
+  is a two-column toggle picker (sensors left, products right). See `docs/ALGORITHM_CATALOG.md`.
 - `board-explorer/` — Vite React SPA; `board-explorer/netlify.toml` (base=`board-explorer`, build,
   publish `dist`). Makes a **Projects v2 board searchable**: free-text search plus **GitHub's own
   Projects filter grammar made clickable**, over **Table / By-assignee / Timeline** views. Reads
@@ -244,6 +253,34 @@ sets the attribute before first paint + `<meta name="color-scheme" content="dark
   locations are CamelCase (`TropicalCyclone`, `WinterWx`). The catalog serializes hazard **ids**
   (= those tokens), never display labels.
 
+- **The Disasters Portal PR automation has four traps** (`algorithm-catalog/scripts/portal_pr.mjs`).
+  (1) **Hand-written portal event pages are often `.tsx`** — the "page already exists, never
+  overwrite" check must look for BOTH `event__<id>.ts` and `.tsx` (and an `index.ts` entry); a `.ts`-only
+  check once wrote a duplicate page beside the hand-made one, and lint/typecheck still passed because
+  the duplicate was never imported. Generated files carry a marker first line; only those are
+  regenerated. (2) `GITHUB_TOKEN` cannot push to another org — the workflow uses
+  `DISASTERS_PORTAL_TOKEN` else `PROJECT_TOKEN_FOR_BOARD_READS` (classic PAT, `repo`). (3) The portal's
+  `pr-checks.yml` **skips draft PRs**, so the PR is opened ready-for-review; `develop` requires
+  lint + typecheck + build + 1 approval. (4) Straight `"` in prose makes Biome flip the literal to
+  single quotes and fail `lint:ci` — `src/portal.ts` `typographic()` curls them (the preview applies the
+  same transform). Dry-run any change: `node algorithm-catalog/scripts/portal_pr.mjs --portal
+  <disasters-portal checkout> --branch test --dry-run <request.json>`.
+- **A STAC "asset name" is NOT `cog_default`.** On the Disasters STAC, collection-level `item_assets`
+  still says `cog_default` (stale vs the ingestion configs), and items carry `rendered_preview_*` /
+  dashboard renders. The real, product-specific name is the item asset whose roles include `data`
+  (`truecolor`, `colorir`, `backscatter`, `blackmarble_hd` …). `sync_stac_assets.py` reads exactly
+  that; never hand-type it.
+- **The `disasters-product-algorithms/dps/` run scripts are DEMO scaffolding** (not yet approved for
+  production; will change). They are not a naming authority — product `id`s stay the `src/` CLI
+  tokens, and naming truth is live STAC → `disasters-data` configs → `src/`. The catalog's
+  `YYYYMM_Hazard_Location` rule and "What this will run" panel were lifted from `dps/` and are
+  therefore provisional too.
+- **Portal images must meet its image standard** (disasters-portal PRs #556, #654): real WebP via
+  `cwebp -q 80 -m 6 -metadata none`, ≤ 1920px, < 500 KB; a compliant WebP is left byte-for-byte;
+  don't cap body images at 1280px (#654 dropped that — it blurred screenshots). A **Google Drive file
+  not shared "Anyone with the link" returns an HTML page** (HTTP 200 or 500) — sniff the bytes,
+  never trust the content type (same trap as the leave sheet).
+
 ## Key files
 `action.yml`, `pr-finder/action.yml`, `pr-finder/generate_pr_finder.py`,
 `.github/scripts/generate_fte_report.py`, `leave/generate_leave_tracker.py`, `leave/action.yml`,
@@ -261,6 +298,11 @@ Algorithm Catalog: `algorithm-catalog/src/{types,rules,data,tabs,App}.{ts,tsx}`,
 `algorithm-catalog/src/{filters,catalog,events,request}/`, `algorithm-catalog/data/*.json`,
 `algorithm-catalog/scripts/{validate_data.py,rules_parity_test.py,compact.mjs}`,
 `.github/workflows/algorithm-catalog-{validate,compact}.yml`, `docs/ALGORITHM_CATALOG.md`.
+Catalog → portal: `algorithm-catalog/src/{portal,places,pageExport}.ts`,
+`algorithm-catalog/src/events/PortalPage.tsx` (+ `src/portal.css`), `algorithm-catalog/src/request/
+{PlacePicker,ProductPicker}.tsx`, `algorithm-catalog/scripts/{portal_pr.mjs,sync_stac_assets.py,
+sync_portal_cards.py,build_places.py,import_xlsx.py}`, `algorithm-catalog/data/{places,places-cities,
+portal-cards}.json`, `.github/workflows/algorithm-catalog-portal-pr.yml`.
 Board Explorer: `board-explorer/src/{types,data,search,filter,urlState,colors,csv,theme,App}.{ts,tsx}`,
 `board-explorer/src/components/{FilterBar,MultiPicker,Chips,ItemDetail,Header}.tsx`,
 `board-explorer/src/views/{Table,Assignee,Timeline}View.tsx`,

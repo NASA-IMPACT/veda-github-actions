@@ -222,3 +222,44 @@ a single hazard, which is noise, not a starting point. The validator enforces `p
 force-add its JSON past the global `*.json` ignore. This app adds explicit `!` lines instead, so a plain
 `git add algorithm-catalog/` is correct and no future contributor (or agent) can silently drop the data
 from a commit. Prefer this route for new apps.
+
+## Algorithm Catalog → Disasters Portal event pages — generate, then prove with the portal's own CI
+
+The public event pages on science.data.nasa.gov were written by hand from a spreadsheet. The catalog
+already held half of each record (event, hazards, layers), so it now holds the page text too, and opens
+the portal PR itself.
+
+**A workflow opens the portal PR, not a token-free "new file" link.** A page needs TWO files changed
+(`event__<id>.ts` + its `index.ts` registration); GitHub's prefilled `new/` URL can create only one, so a
+link-based flow would produce a page that never appears. `.github/workflows/algorithm-catalog-portal-pr.yml`
+runs on the catalog's request PR, generates both files in a real `disasters-portal` checkout, runs the
+portal's **own** Biome `lint:ci` + `tsc` there, and only then pushes and opens the PR — so a generated
+page cannot arrive red. Cost: a cross-org PAT secret, and fork PRs are skipped (no secrets, and they must
+not push into another org).
+
+**One generator for preview and PR.** `src/portal.ts` is pure and type-only so both the browser and Node
+(native type stripping, no build step) run it; the live preview and the committed file cannot disagree.
+The preview replicates the portal page (fonts, tokens and proportions measured off the live site) and
+shows the portal's real gallery cards from a committed snapshot, because the app never fetches at run
+time.
+
+**Individual `DATA__*` imports, not a per-event array.** Hand-made pages use a `DATA__<EVENT>` array in
+`app/site-config/data/index.ts`; generating one would mean editing a second shared file on every PR (merge
+conflicts). Direct module imports have precedent in the portal and are what the end-to-end review
+recommended keeping.
+
+**Never overwrite a hand-written page.** A page file without the generator's marker line is skipped with a
+message — including `.tsx`, which is how most hand-made pages are written.
+
+**Derived, not typed: the page address and the STAC asset names.** The page id is derived from the event
+name (portal convention `<event>-<mon>-<yyyy>`), so the name rule (`… <Month> <YYYY>`) is enforced
+instead of exposing a slug field. Each product's `stacAsset` is pulled from the live STAC (the item asset
+with role `data` — never `cog_default`), rather than renaming product ids: ids are the algorithms' CLI
+tokens and the keys inside saved events, and the DPS scripts they mirror are demo scaffolding that will
+change. Matching collections to products is rule-based with ranked claims; a tie is reported, never
+guessed.
+
+**Every portal product is requestable, even with no algorithm** (`status: "external"`), but never
+auto-selected — a hazard must not propose a layer no job can produce. **One optional image after the
+intro, default masthead** — matching how the existing pages are actually built — re-encoded to the
+portal's image standard (#556/#654) so the automation never adds a non-compliant file.
