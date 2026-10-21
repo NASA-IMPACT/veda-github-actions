@@ -251,24 +251,22 @@ await page.locator("button.req-haz", { hasText: /^Respond$/ }).click();
 await page.locator("#req-intro").fill("Hurricane Isaias brought storm surge to Florida and Alabama.\n\nNASA is sharing maps.");
 await page.locator("#req-govlink").fill("https://www.fema.gov/disaster/hurricane-isaias");
 check(
-  "the page address is inferred, not typed (hurricane-isaias-oct-2026)",
-  (await page.locator("#req-portalid").count()) === 0 &&
-    /\/hurricane-isaias-oct-2026$/.test((await page.locator("#req-pageaddr").innerText()).trim()),
+  "the page address is never asked for — inferred, and shown only in the live preview",
+  (await page.locator("#req-portalid, #req-pageaddr").count()) === 0 &&
+    /\/hurricane-isaias-oct-2026$/.test((await page.locator(".req-live-head code").innerText()).trim()),
 );
-// Images: a Drive FOLDER link is refused with its own message; a file link + alt text is accepted.
-await page.locator("button", { hasText: "Add image" }).click();
-const imgUrl = page.locator('input[aria-label="Image 1 Google Drive link"]');
+// The one image after the intro: a Drive FOLDER link is refused; a file link + alt text is accepted.
+const imgUrl = page.locator("#req-image-url");
 await imgUrl.fill("https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp");
 await imgUrl.blur();
 await page.waitForTimeout(200);
 check("a Drive folder link is refused", /FOLDER link/.test(await page.locator(".req-form").innerText()));
 await imgUrl.fill("https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQrSt/view?usp=sharing");
-await page.locator('select[aria-label="Image 1 placement"]').selectOption("overview");
-await page.locator('input[aria-label="Image 1 alt text"]').fill("Flooding in Mobile, Alabama");
-await page.locator('input[aria-label="Image 1 caption"]').fill("Sentinel-2 view of Mobile Bay, Oct. 10, 2026.");
+await page.locator("#req-image-alt").fill("Flooding in Mobile, Alabama");
+await page.locator("#req-image-caption").fill("Sentinel-2 view of Mobile Bay, Oct. 10, 2026. Credit: NASA");
 await page.waitForTimeout(1500); // the Drive thumbnail request fails for this made-up id
 check(
-  "the preview shows the Overview image — or says plainly it can't load it",
+  "the preview shows the image after the intro — or says plainly it can't load it",
   (await page.locator(".req-live .pp-figure").count()) === 1 &&
     /Sentinel-2 view of Mobile Bay/.test(await page.locator(".req-live .pp-figure").innerText()),
 );
@@ -308,8 +306,7 @@ check(
     doc.page?.needs?.[0] === "respond" &&
     doc.event?.places?.length === 2 &&
     !("end" in (doc.event ?? {})) &&
-    doc.page?.images?.[0]?.placement === "overview" &&
-    doc.page?.images?.[0]?.alt === "Flooding in Mobile, Alabama",
+    doc.page?.image?.alt === "Flooding in Mobile, Alabama",
   opened ? new URL(opened).searchParams.get("filename") : "no window.open",
 );
 

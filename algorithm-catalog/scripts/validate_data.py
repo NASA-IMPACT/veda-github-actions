@@ -94,9 +94,6 @@ PLACE_ID_RE = r'^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$'
 #: A Google Drive FILE link; group 1 is the file id. Folder links are rejected with their own message.
 DRIVE_FILE_RE = r'^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[a-z]+&)?id=)([A-Za-z0-9_-]{10,})'
 
-#: Where a page image goes: the masthead (also the card thumbnail), or inline in the Overview.
-IMAGE_PLACEMENTS_TEXT = "hero|overview"
-
 #: A Disasters Portal content id: its URL slug and file name.
 PORTAL_ID_RE = r'^[a-z0-9]+(-[a-z0-9]+)*$'
 
@@ -389,20 +386,15 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
     """The event page's own text. All optional; only a bad value is an error. Once a page is
     started, the Disasters Portal's own type rules apply too."""
     out: list[Violation] = []
-    images = _dicts(p, "images")
-    for i, img in enumerate(images):
-        n = f"Image {i + 1}"
+    img = _obj(p, "image") if _s(_obj(p, "image"), "url").strip() else None
+    if img:
         url = _s(img, "url").strip()
         if _DRIVE_FOLDER.search(url):
-            out.append(_err("images", "drive-folder", f"{n} is a Drive FOLDER link — link each image file instead (right-click the file → Share → Copy link)."))
+            out.append(_err("image", "drive-folder", "That is a Drive FOLDER link — link the image file itself (right-click it → Share → Copy link)."))
         elif not drive_file_id(url):
-            out.append(_err("images", "drive-link", f"{n} must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."))
-        if _s(img, "placement") not in IMAGE_PLACEMENTS_TEXT.split("|"):
-            out.append(_err("images", "placement", f"{n}: placement must be one of {', '.join(IMAGE_PLACEMENTS_TEXT.split('|'))}."))
+            out.append(_err("image", "drive-link", "The image must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."))
         if not _s(img, "alt").strip():
-            out.append(_err("images", "alt-required", f"{n} needs alt text — a short description of the image for screen readers."))
-    if sum(1 for img in images if _s(img, "placement") == "hero") > 1:
-        out.append(_err("images", "hero-count", "Only one image can be the hero (the masthead) — set the others to Overview."))
+            out.append(_err("image", "alt-required", "The image needs alt text — a short description of it for screen readers."))
     needs = _strs(p, "needs")
     for n in needs:
         if n not in NEEDS:
@@ -415,7 +407,7 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
         out.append(
             _err("portalId", "format", f'"{portal_id}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.')
         )
-    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id or images)
+    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id or img)
     if not started:
         return out
     name = _s(p, "name").strip()
@@ -509,7 +501,7 @@ RULE_EXAMPLES = {
     "places": '"places": ["US-AL"]  or  ["US-AL-c51000"]  (ids from data/places*.json)',
     "needs": '"needs": ["respond"]  (portal theme ids: prepare, respond, recover, resilience)',
     "govLink": '"govLink": "https://www.usa.gov/disasters-and-emergencies"',
-    "images": '"images": [{"url": "https://drive.google.com/file/d/<id>/view", "placement": "overview", "alt": "…"}]',
+    "image": '"image": {"url": "https://drive.google.com/file/d/<id>/view", "alt": "…", "caption": "… Credit: NASA"}',
     "ts": '"ts": "2025-01-08T17:04:11.284Z"',
     "<file>": "a JSON array of records, e.g. []",
 }
@@ -895,7 +887,7 @@ def check_requests(
                 "govLink": _s(page, "govLink"),
                 "needs": _strs(page, "needs"),
                 "portalId": _s(page, "portalId"),
-                "images": _dicts(page, "images"),
+                "image": _obj(page, "image"),
             }
             for v in validate_request(shape, hazards):
                 rep.add(file, where, v)

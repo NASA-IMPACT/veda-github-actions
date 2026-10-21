@@ -70,9 +70,6 @@ export const PLACE_ID_RE = /^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$/;
  */
 export const DRIVE_FILE_RE = /^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[a-z]+&)?id=)([A-Za-z0-9_-]{10,})/;
 
-/** Where a page image goes: the masthead (also the card thumbnail), or inline in the Overview. */
-export const IMAGE_PLACEMENTS_TEXT = "hero|overview";
-
 /** The Drive file id in a link, or null when it is not a Drive file link. */
 export function driveFileId(url: string): string | null {
   return DRIVE_FILE_RE.exec(url.trim())?.[1] ?? null;
@@ -392,30 +389,23 @@ export function checkPage(
     portalId: string;
     start: string;
     hazards: string[];
-    images?: { url: string; placement: string; alt: string }[];
+    image?: { url: string; alt: string };
     name?: string;
   },
   vocabulary: Hazard[] = [],
 ): Violation[] {
   const out: Violation[] = [];
-  const images = p.images ?? [];
-  images.forEach((img, i) => {
-    const n = `Image ${i + 1}`;
+  const img = p.image?.url.trim() ? p.image : undefined;
+  if (img) {
     const url = img.url.trim();
     if (/^https:\/\/drive\.google\.com\/drive\/(u\/[0-9]+\/)?folders\//.test(url)) {
-      out.push(err("images", "drive-folder", `${n} is a Drive FOLDER link — link each image file instead (right-click the file → Share → Copy link).`));
+      out.push(err("image", "drive-folder", "That is a Drive FOLDER link — link the image file itself (right-click it → Share → Copy link)."));
     } else if (!driveFileId(url)) {
-      out.push(err("images", "drive-link", `${n} must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view.`));
-    }
-    if (!IMAGE_PLACEMENTS_TEXT.split("|").includes(img.placement)) {
-      out.push(err("images", "placement", `${n}: placement must be one of ${IMAGE_PLACEMENTS_TEXT.split("|").join(", ")}.`));
+      out.push(err("image", "drive-link", "The image must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."));
     }
     if (!img.alt.trim()) {
-      out.push(err("images", "alt-required", `${n} needs alt text — a short description of the image for screen readers.`));
+      out.push(err("image", "alt-required", "The image needs alt text — a short description of it for screen readers."));
     }
-  });
-  if (images.filter((img) => img.placement === "hero").length > 1) {
-    out.push(err("images", "hero-count", "Only one image can be the hero (the masthead) — set the others to Overview."));
   }
   for (const n of p.needs) {
     if (!(NEEDS as string[]).includes(n)) {
@@ -433,7 +423,7 @@ export function checkPage(
     );
   }
   const started = Boolean(
-    p.subtitle.trim() || p.intro.trim() || link || p.needs.length > 0 || portalId || (p.images ?? []).length > 0,
+    p.subtitle.trim() || p.intro.trim() || link || p.needs.length > 0 || portalId || img,
   );
   if (!started) return out;
   // A new page's address comes from its name, so the name must follow the portal's convention.
@@ -512,7 +502,7 @@ export interface RequestShape {
   govLink: string;
   needs: string[];
   portalId: string;
-  images: { url: string; placement: string; alt: string }[];
+  image?: { url: string; alt: string };
 }
 
 export function validateRequest(r: RequestShape, vocabulary: Hazard[]): Violation[] {

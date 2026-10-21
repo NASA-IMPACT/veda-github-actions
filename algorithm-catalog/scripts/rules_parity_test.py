@@ -35,7 +35,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate_data import (  # noqa: E402
     BBOX_MIN_LAT_SPAN,
     DRIVE_FILE_RE,
-    IMAGE_PLACEMENTS_TEXT,
     HTTPS_URL_RE,
     ISO_DATE_RE,
     MGRS_TILE_RE,
@@ -101,7 +100,6 @@ PY_CONSTANTS = {
     "PORTAL_NAME_RE": PORTAL_NAME_RE,
     "PORTAL_CATEGORIES_TEXT": PORTAL_CATEGORIES_TEXT,
     "DRIVE_FILE_RE": DRIVE_FILE_RE,
-    "IMAGE_PLACEMENTS_TEXT": IMAGE_PLACEMENTS_TEXT,
 }
 
 
@@ -284,27 +282,18 @@ FIXTURES: list[tuple[str, object, bool, str | None, str]] = [
     ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias", "start": "2026-10-09"}, False, "portal-name", "no month/year"),
     ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias Oct 2026", "start": "2026-10-09"}, False, "portal-name", "month spelled out"),
     ("page", {"intro": "x", "needs": ["respond"], "name": "California Fires", "portalId": "southern-california-fire-jan-2025"}, True, None, "an existing portal page keeps its id — exempt"),
-    # --- page images (Google Drive links) --------------------------------------------------------
+    # --- the page's one image (a Google Drive link) --------------------------------------------------------
     *[
-        ("page", {"intro": "x", "needs": ["respond"], "images": [img]}, ok, rule, note)
+        ("page", {"intro": "x", "needs": ["respond"], "image": img}, ok, rule, note)
         for img, ok, rule, note in [
-            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view?usp=sharing", "placement": "overview", "alt": "Burn scar"}, True, None, "a shared Drive file link"),
-            ({"url": "https://drive.google.com/open?id=1AbCdEfGhIjKlMnOp", "placement": "hero", "alt": "Fire"}, True, None, "the open?id= form"),
-            ({"url": "https://drive.google.com/uc?export=view&id=1AbCdEfGhIjKlMnOp", "placement": "hero", "alt": "Fire"}, True, None, "the uc?export=view form"),
-            ({"url": "https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp", "placement": "overview", "alt": "x"}, False, "drive-folder", "a FOLDER is not an image"),
-            ({"url": "https://example.com/fire.jpg", "placement": "overview", "alt": "x"}, False, "drive-link", "not Google Drive"),
-            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view", "placement": "sidebar", "alt": "x"}, False, "placement", "hero or overview only"),
-            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view", "placement": "overview", "alt": " "}, False, "alt-required", "alt text is required"),
+            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view?usp=sharing", "alt": "Burn scar"}, True, None, "a shared Drive file link"),
+            ({"url": "https://drive.google.com/open?id=1AbCdEfGhIjKlMnOp", "alt": "Fire"}, True, None, "the open?id= form"),
+            ({"url": "https://drive.google.com/uc?export=view&id=1AbCdEfGhIjKlMnOp", "alt": "Fire"}, True, None, "the uc?export=view form"),
+            ({"url": "https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp", "alt": "x"}, False, "drive-folder", "a FOLDER is not an image"),
+            ({"url": "https://example.com/fire.jpg", "alt": "x"}, False, "drive-link", "not Google Drive"),
+            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view", "alt": " "}, False, "alt-required", "alt text is required"),
         ]
     ],
-    (
-        "page",
-        {"intro": "x", "needs": ["respond"], "images": [
-            {"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view", "placement": "hero", "alt": "a"},
-            {"url": "https://drive.google.com/file/d/1ZyXwVuTsRqPoNmLk/view", "placement": "hero", "alt": "b"},
-        ]},
-        False, "hero-count", "only one hero",
-    ),
     ("page", {"govLink": "http://www.usa.gov/x"}, False, "format", "http is refused"),
     ("page", {"govLink": "https://usa"}, False, "format", "a host needs a dot"),
     ("page", {"govLink": "www.usa.gov"}, False, "format", "no scheme"),

@@ -100,22 +100,25 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
   when the portal's cards change or a `portalData` mapping is added. Layers with no portal card are
   listed under the preview, since the real page will not show them.
 - **Export:** **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
-- **Images from Google Drive** (`page.images`): each row is a Drive **file** link + placement
-  (**hero** = masthead and card thumbnail, max one; **overview** = inline after the intro) + alt text
-  (required) + optional caption. `rules.ts` `DRIVE_FILE_RE` accepts `/file/d/<id>`, `open?id=` and
-  `uc?…id=`; a `/drive/folders/` link gets its own error. The preview loads each through Drive's
-  thumbnail endpoint and says plainly when it can't (file not shared "Anyone with the link").
-  `portal_pr.mjs` downloads each one into the portal's `public/img/event/<id>__hero.<ext>` /
-  `<id>__overview-<n>.<ext>`, **sniffs the bytes** (an unshared file comes back as an HTML page with
-  a 200/500, so the content type can't be trusted), reads the real width/height the portal's `image`
-  block requires (PNG/JPEG/WebP/GIF, stdlib), caps at 8 MB, and emits `image` blocks. A failed image
-  never breaks the PR: it is listed in the PR body and as a comment in the page file.
-  `DRIVE_DOWNLOAD_URL` overrides the endpoint for testing against a local server.
-- **The page address is never typed.** A new page's id is derived from the event name
+- **One optional image after the intro** (`page.image`), as on the Venezuela / Typhoon Sinlaku
+  pages: a Google Drive **file** link + alt text (required) + optional caption (end it with the
+  credit). It becomes the portal's `image` block between the Overview text and the Event Data
+  Gallery. There is **no masthead option** — every generated page uses the portal's default event
+  image (`/img/event/template-hero.webp`) for the hero and card thumbnail. `rules.ts` `DRIVE_FILE_RE`
+  accepts `/file/d/<id>`, `open?id=` and `uc?…id=`; a `/drive/folders/` link gets its own error.
+  The preview loads it through Drive's thumbnail endpoint (caption styled as measured on the live
+  portal: 12px, base-dark, narrow measure) and says plainly when it can't — the file isn't shared
+  "Anyone with the link". `portal_pr.mjs` downloads it to `public/img/event/<id>__overview.<ext>`,
+  **sniffs the bytes** (an unshared file comes back as an HTML page, so the content type can't be
+  trusted), reads the real width/height the `image` block requires (PNG/JPEG/WebP/GIF, stdlib) and
+  caps it at 8 MB. A failed download never breaks the PR: it is listed in the PR body and as a
+  comment in the page file. `DRIVE_DOWNLOAD_URL` overrides the endpoint for testing.
+- **The page address is never asked for.** A new page's id is derived from the event name
   (`derivePortalId`: "Hurricane Isaias October 2026" → `hurricane-isaias-oct-2026`, "U.S." → "us"),
   so once a page is started the name must end "<Month> <YYYY>" (`PORTAL_NAME_RE`, error
   `name.portal-name`; a name/start-date month mismatch warns). Existing portal pages keep their
-  recorded `portalId` (set by the import) and are exempt. The form shows the address read-only.
+  recorded `portalId` (set by the import) and are exempt. The form has no address field at all; the
+  address appears only in the live preview's header.
 - **Import:** `scripts/import_xlsx.py` is **one-time** and reads **sheet 1 only**; the Google Sheet
   is being retired. It reports, never invents: unmapped hazards/locations/layers are listed, a Layers
   cell that only points at another sheet imports no layers. Per-layer pipeline status (STAC / GIBS /

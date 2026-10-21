@@ -72,20 +72,18 @@ function Tags({ items }: { items: string[] }) {
  * A Drive file as an <img>, via Drive's thumbnail endpoint (works for "Anyone with the link"
  * files). A file that is not shared fails to load — say so plainly instead of a broken icon.
  */
-function DriveImage({ image, className, width = 1600 }: { image: PageImage; className?: string; width?: number }) {
+function DriveImage({ image, width = 1600 }: { image: PageImage; width?: number }) {
   const id = driveFileId(image.url);
   const [failed, setFailed] = useState(false);
   if (!id || failed) {
     return (
-      // `<class>-missing`, not `<class>`: a failed hero must not cover the masthead like the image would.
-      <div className={`pp-img-missing${className ? ` ${className}-missing` : ""}`}>
+      <div className="pp-img-missing">
         {id ? "Can't load this image from Google Drive — set its sharing to “Anyone with the link”." : "Not a Google Drive file link."}
       </div>
     );
   }
   return (
     <img
-      className={className}
       src={`https://drive.google.com/thumbnail?id=${id}&sz=w${width}`}
       alt={image.alt}
       referrerPolicy="no-referrer"
@@ -113,8 +111,7 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
   const { cards } = portalGallery(ev, algorithms);
   const categories = [...new Set(ev.hazards.map((h) => hazards.find((v) => v.id === h)?.portal).filter(Boolean))] as string[];
   const region = page?.region?.trim() || ev.locations.join("; ");
-  const hero = page?.images?.find((i) => i.placement === "hero" && i.url.trim());
-  const figures = (page?.images ?? []).filter((i) => i.placement === "overview" && i.url.trim());
+  const image = page?.image?.url.trim() ? page.image : undefined;
   const paragraphs = (page?.intro ?? "")
     .split(/\n\s*\n/)
     .map((p) => p.trim())
@@ -140,7 +137,6 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
       </header>
 
       <section className="pp-hero" style={{ backgroundImage: `url(${HERO})` }}>
-        {hero && <DriveImage key={hero.url} image={hero} className="pp-hero-img" width={2000} />}
         <div className="pp-hero-text">
           <h1 className={ev.name ? "" : "pp-placeholder"}>{ev.name ? typographic(ev.name) : "Activation event name"}</h1>
           {page?.subtitle?.trim() ? (
@@ -208,12 +204,12 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
           ) : (
             <p className="pp-placeholder">Your intro paragraph appears here. Leave a blank line between paragraphs.</p>
           )}
-          {figures.map((img, i) => (
-            <figure key={`${i}-${img.url}`} className="pp-figure">
-              <DriveImage image={img} />
-              {img.caption && <figcaption>{typographic(img.caption)}</figcaption>}
+          {image && (
+            <figure className="pp-figure">
+              <DriveImage key={image.url} image={image} />
+              {image.caption && <figcaption>{typographic(image.caption)}</figcaption>}
             </figure>
-          ))}
+          )}
 
           {cards.length > 0 && (
             <>

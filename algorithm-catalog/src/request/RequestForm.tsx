@@ -37,7 +37,7 @@ import { unionBbox } from "../places";
 import { takeNavIntent } from "../tabs";
 import type { CatalogEvent } from "../data";
 import PortalPage, { PortalFrame, portalGallery } from "../events/PortalPage";
-import { derivePortalId, NEED_LABELS, PORTAL_REPO, portalEventFile, portalIdOf } from "../portal";
+import { NEED_LABELS, PORTAL_REPO, portalEventFile, portalIdOf } from "../portal";
 
 /** Whether the live portal preview is docked beside the form — remembered per browser. */
 const LIVE_KEY = "algorithm-catalog:livePreview";
@@ -320,19 +320,6 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
     setBboxNote(draft.bboxAuto ? u.note : "");
     setDraft((d) => ({ ...d, places, ...(d.bboxAuto && u.bbox !== null ? { bbox: u.bbox } : {}) }));
   }
-  const setImage = (i: number, p: Partial<RequestDraft["images"][number]>) =>
-    setDraft((d) => ({ ...d, images: d.images.map((img, j) => (j === i ? { ...img, ...p } : img)) }));
-  const addImage = () =>
-    setDraft((d) => ({
-      ...d,
-      // The first image defaults to the hero — the masthead is the one every page has.
-      images: [...d.images, { url: "", placement: d.images.some((x) => x.placement === "hero") ? "overview" : "hero", alt: "", caption: "" }],
-    }));
-  const rmImage = (i: number) => {
-    touch("images");
-    setDraft((d) => ({ ...d, images: d.images.filter((_, j) => j !== i) }));
-  };
-
   function toggleNeed(n: (typeof NEEDS)[number]) {
     touch("needs");
     setDraft((d) => ({ ...d, needs: d.needs.includes(n) ? d.needs.filter((x) => x !== n) : [...d.needs, n] }));
@@ -618,54 +605,45 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
         </div>
 
         <div className="field">
-          <label>
-            Images <span className="opt">(optional — Google Drive links)</span>
+          <label htmlFor="req-image-url">
+            Image after the intro <span className="opt">(optional — a Google Drive link)</span>
           </label>
+          <input
+            id="req-image-url"
+            className="req-mono"
+            value={draft.imageUrl}
+            onChange={(e) => patch({ imageUrl: e.target.value })}
+            onBlur={() => touch("image")}
+            placeholder="https://drive.google.com/file/d/…/view?usp=sharing"
+          />
           <div className="req-help">
-            Paste a Drive <b>file</b> link (Share → Copy link) and set its sharing to <b>Anyone with
-            the link</b>. <b>Hero</b> is the big masthead image (and the page's card thumbnail);{" "}
-            <b>Overview</b> images sit after the intro. Each is copied into the portal when its PR opens.
+            One image shown right after the intro, like the Venezuela earthquake page. Paste the Drive{" "}
+            <b>file</b> link (Share → Copy link) with sharing set to <b>Anyone with the link</b>; it is
+            copied into the portal when the PR opens.
           </div>
-          {draft.images.map((img, i) => (
-            <div className="req-img-row" key={i}>
+          {draft.imageUrl.trim() && (
+            <>
               <input
-                className="req-mono req-img-url"
-                value={img.url}
-                onChange={(e) => setImage(i, { url: e.target.value })}
-                onBlur={() => touch("images")}
-                placeholder="https://drive.google.com/file/d/…/view?usp=sharing"
-                aria-label={`Image ${i + 1} Google Drive link`}
-              />
-              <select
-                value={img.placement}
-                onChange={(e) => setImage(i, { placement: e.target.value as "hero" | "overview" })}
-                aria-label={`Image ${i + 1} placement`}
-              >
-                <option value="overview">Overview</option>
-                <option value="hero">Hero (masthead)</option>
-              </select>
-              <button className="rm" type="button" onClick={() => rmImage(i)} aria-label={`Remove image ${i + 1}`} title="Remove">
-                ×
-              </button>
-              <input
-                value={img.alt}
-                onChange={(e) => setImage(i, { alt: e.target.value })}
-                onBlur={() => touch("images")}
+                id="req-image-alt"
+                className="req-img-extra"
+                value={draft.imageAlt}
+                onChange={(e) => patch({ imageAlt: e.target.value })}
+                onBlur={() => touch("image")}
                 placeholder="Alt text — what the image shows (required)"
-                aria-label={`Image ${i + 1} alt text`}
+                aria-label="Image alt text"
               />
-              <input
-                value={img.caption}
-                onChange={(e) => setImage(i, { caption: e.target.value })}
-                placeholder="Caption (optional)"
-                aria-label={`Image ${i + 1} caption`}
+              <textarea
+                id="req-image-caption"
+                className="req-img-extra"
+                rows={2}
+                value={draft.imageCaption}
+                onChange={(e) => patch({ imageCaption: e.target.value })}
+                placeholder="Caption (optional) — what it shows, then the credit, e.g. “… Credit: NASA”"
+                aria-label="Image caption"
               />
-            </div>
-          ))}
-          <button className="btn" type="button" onClick={addImage}>
-            ＋ Add image
-          </button>
-          <Issues all={violations} field="images" show={shown("images")} />
+            </>
+          )}
+          <Issues all={violations} field="image" show={shown("image")} />
         </div>
 
         <div className="field">
@@ -681,31 +659,20 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           <Issues all={violations} field="govLink" show={shown("govLink")} />
         </div>
 
-        <div className="field two">
-          <div>
-            <label htmlFor="req-region">
-              Region <span className="opt">(optional)</span>
-            </label>
-            <input
-              id="req-region"
-              value={draft.region}
-              onChange={(e) => patch({ region: e.target.value })}
-              placeholder={allLocations(draft).join("; ") || "Los Angeles County, North America"}
-            />
-            <div className="req-help">As printed on the page. Blank = your locations.</div>
-          </div>
-          <div>
-            <label>Page address</label>
-            <div className="req-pageaddr" id="req-pageaddr">
-              …/news-events-stories/<b>{draft.portalId || derivePortalId(draft.name) || "…"}</b>
-            </div>
-            <div className="req-help">
-              {draft.portalId
-                ? "This event's existing page on the portal — fixed."
-                : "Set automatically from the event name, the portal's convention: “Hurricane Isaias October 2026” → hurricane-isaias-oct-2026."}
-            </div>
-            <Issues all={violations} field="portalId" show={shown("portalId")} />
-          </div>
+        <div className="field">
+          <label htmlFor="req-region">
+            Region <span className="opt">(optional)</span>
+          </label>
+          <input
+            id="req-region"
+            value={draft.region}
+            onChange={(e) => patch({ region: e.target.value })}
+            placeholder={allLocations(draft).join("; ") || "Los Angeles County, North America"}
+          />
+          <div className="req-help">As printed on the page. Blank = your locations.</div>
+          {/* The page address is never asked for: it is derived from the event name (portal
+              convention, enforced by rules.ts PORTAL_NAME_RE) and shown in the live preview. */}
+          <Issues all={violations} field="portalId" show={shown("portalId")} />
         </div>
       </section>
 

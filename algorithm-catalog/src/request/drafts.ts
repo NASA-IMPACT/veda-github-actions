@@ -9,7 +9,7 @@
 // in src/rules.ts sees the same text the user sees. Nothing is coerced or "fixed up" behind their
 // back — a bad date stays bad until they fix it, and the error says why.
 
-import type { ActivationEvent, Algorithm, AlgorithmRequest, EventPage, Need, PageImage, RequestProduct } from "../types";
+import type { ActivationEvent, Algorithm, AlgorithmRequest, EventPage, Need, RequestProduct } from "../types";
 import type { RequestShape } from "../rules";
 import { splitTiles } from "../rules";
 
@@ -34,8 +34,10 @@ export interface RequestDraft {
   intro: string;
   govLink: string;
   needs: Need[];
-  /** Google Drive image links, as typed. A row with a blank link is dropped on submit. */
-  images: { url: string; placement: PageImage["placement"]; alt: string; caption: string }[];
+  /** The one optional image after the intro — a Google Drive file link, its alt text and caption. */
+  imageUrl: string;
+  imageAlt: string;
+  imageCaption: string;
   region: string; // optional override of the page's Region; blank = the locations
   portalId: string; // optional override of the portal page id; blank = derived from the name
   // --- repeatable / multi-select ---
@@ -65,7 +67,9 @@ export function newDraft(): RequestDraft {
     intro: "",
     govLink: "",
     needs: [],
-    images: [],
+    imageUrl: "",
+    imageAlt: "",
+    imageCaption: "",
     region: "",
     portalId: "",
     hazards: [],
@@ -106,25 +110,23 @@ function draftPage(d: RequestDraft): EventPage | undefined {
   if (d.subtitle.trim()) page.subtitle = d.subtitle.trim();
   if (d.intro.trim()) page.intro = d.intro.trim();
   if (d.govLink.trim()) page.govLink = d.govLink.trim();
-  const images = cleanImages(d);
-  if (images.length) page.images = images;
+  const image = draftImage(d);
+  if (image) page.image = image;
   if (d.region.trim()) page.region = d.region.trim();
   if (d.portalId.trim()) page.portalId = d.portalId.trim();
-  return page.subtitle || page.intro || page.govLink || page.needs.length || page.portalId || page.images
+  return page.subtitle || page.intro || page.govLink || page.needs.length || page.portalId || page.image
     ? page
     : undefined;
 }
 
-/** Image rows with a link, trimmed; an empty caption is left off. */
-function cleanImages(d: RequestDraft): PageImage[] {
-  return d.images
-    .filter((i) => i.url.trim())
-    .map((i) => ({
-      url: i.url.trim(),
-      placement: i.placement,
-      alt: i.alt.trim(),
-      ...(i.caption.trim() ? { caption: i.caption.trim() } : {}),
-    }));
+/** The image, or undefined without a link; an empty caption is left off. */
+function draftImage(d: RequestDraft): EventPage["image"] {
+  if (!d.imageUrl.trim()) return undefined;
+  return {
+    url: d.imageUrl.trim(),
+    alt: d.imageAlt.trim(),
+    ...(d.imageCaption.trim() ? { caption: d.imageCaption.trim() } : {}),
+  };
 }
 
 /** What src/rules.ts validates. Kept separate so the form can validate WITHOUT building a record. */
@@ -146,7 +148,7 @@ export function draftToShape(d: RequestDraft): RequestShape {
     govLink: d.govLink,
     needs: d.needs,
     portalId: d.portalId,
-    images: cleanImages(d),
+    image: draftImage(d),
   };
 }
 
@@ -231,7 +233,9 @@ export function requestToDraft(r: AlgorithmRequest): RequestDraft {
   d.intro = r.page?.intro ?? "";
   d.govLink = r.page?.govLink ?? "";
   d.needs = [...(r.page?.needs ?? [])];
-  d.images = (r.page?.images ?? []).map((i) => ({ ...i, caption: i.caption ?? "" }));
+  d.imageUrl = r.page?.image?.url ?? "";
+  d.imageAlt = r.page?.image?.alt ?? "";
+  d.imageCaption = r.page?.image?.caption ?? "";
   d.region = r.page?.region ?? "";
   d.portalId = r.page?.portalId ?? "";
   return d;

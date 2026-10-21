@@ -7,7 +7,7 @@
 //        [--title <pr title>] [--source-pr <url>] [--dry-run] <request.json>...
 //
 // For each request with a `page`, in the portal checkout:
-//   0. download its Google Drive images into public/img/event/ (hero + overview), sniffing the bytes
+//   0. download its one Google Drive image into public/img/event/, sniffing the bytes
 //      — a file that isn't shared "Anyone with the link" comes back as an HTML page, not an image
 //   1. write app/site-config/event/event__<id>.ts       (src/portal.ts — the same code the app previews)
 //   2. register it in app/site-config/event/index.ts    (import + EVENTS entry, newest startDate first)
@@ -67,7 +67,7 @@ export function sniffImage(b) {
 }
 
 /** Download one page image into the portal checkout. Returns the resolved image or a reason. */
-async function downloadImage(portal, id, img, n) {
+async function downloadImage(portal, id, img) {
   const fileId = driveFileId(img.url);
   if (!fileId) return { error: "not a Google Drive file link" };
   let bytes;
@@ -81,7 +81,7 @@ async function downloadImage(portal, id, img, n) {
   const kind = sniffImage(bytes);
   if (!kind) return { error: "Drive returned a page, not an image — set its sharing to “Anyone with the link”" };
   if (bytes.length > MAX_IMAGE_BYTES) return { error: `${(bytes.length / 1048576).toFixed(1)} MB — compress it under 8 MB` };
-  const name = img.placement === "hero" ? `${id}__hero.${kind.ext}` : `${id}__overview-${n}.${kind.ext}`;
+  const name = `${id}__overview.${kind.ext}`;
   mkdirSync(join(portal, IMG_DIR), { recursive: true });
   writeFileSync(join(portal, IMG_DIR, name), bytes);
   return { image: { ...img, src: `/img/event/${name}`, width: kind.width, height: kind.height }, path: `${IMG_DIR}/${name}` };
@@ -183,17 +183,16 @@ async function main() {
       );
       continue;
     }
-    // Images first: the page file's blocks need each one's real path and pixel size.
+    // The image first: its block needs the real path and pixel size.
     const resolved = [];
-    let n = 0;
-    for (const img of r.page.images ?? []) {
-      const got = await downloadImage(opts.portal, f0.id, img, img.placement === "overview" ? ++n : 0);
+    for (const img of r.page.image?.url?.trim() ? [r.page.image] : []) {
+      const got = await downloadImage(opts.portal, f0.id, img);
       if (got.image) {
         resolved.push(got.image);
         imageFiles.push(got.path);
         console.log(`image ${got.path} (${got.image.width}×${got.image.height})`);
       } else {
-        imageFailures.push(`${r.event.name} — ${img.placement} image ${img.url}: ${got.error}`);
+        imageFailures.push(`${r.event.name} — image ${img.url}: ${got.error}`);
         console.log(`image FAILED ${img.url}: ${got.error}`);
       }
     }
@@ -223,11 +222,10 @@ async function main() {
     "",
     ...(imageFiles.length ? [`Images downloaded from Google Drive: ${imageFiles.map((p) => `\`${p}\``).join(", ")}.`] : []),
     ...(imageFailures.length
-      ? ["", "⚠ **Could not download these images** — they are listed in the page file as a comment; add them by hand:", ...imageFailures.map((m) => `- ${m}`)]
+      ? ["", "⚠ **Could not download the image** — it is listed in the page file as a comment; add it by hand:", ...imageFailures.map((m) => `- ${m}`)]
       : []),
-    ...(written.some((w) => w.source.includes("template-hero.webp"))
-      ? ["", "Pages without a hero image use the portal's placeholder (`/img/event/template-hero.webp`) — swap in the real one before merging."]
-      : []),
+    "",
+    "The masthead and card thumbnail use the portal's default event image (`/img/event/template-hero.webp`).",
     ...(opts.sourcePr ? ["", `Source request: ${opts.sourcePr}`] : []),
     "",
     "Lint (`pnpm lint:ci`) and typecheck (`pnpm typecheck`) were run against this branch before the PR was opened.",

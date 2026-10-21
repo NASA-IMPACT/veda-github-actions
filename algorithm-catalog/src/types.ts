@@ -115,13 +115,13 @@ export type Need = "prepare" | "respond" | "recover" | "resilience";
  * hazard, region and start date come from the event itself; the data gallery from its layers.
  */
 /**
- * An image for the page, given as a Google Drive link (the team's images live in Drive). It is
- * downloaded into the portal repo when the portal PR is opened (scripts/portal_pr.mjs).
- * hero = the masthead + card thumbnail; overview = shown inline after the intro.
+ * The page's one optional image, shown right after the intro text (as on the Venezuela and Typhoon
+ * Sinlaku pages), given as a Google Drive link — the team's images live in Drive. Downloaded into
+ * the portal repo when the portal PR is opened (scripts/portal_pr.mjs). The masthead is never set
+ * here: every event page uses the portal's default masthead image.
  */
 export interface PageImage {
   url: string;
-  placement: "hero" | "overview";
   alt: string;
   caption?: string;
 }
@@ -133,7 +133,7 @@ export interface EventPage {
   /** The "What the U.S. government is doing — Learn more" link. https only. */
   govLink?: string;
   needs: Need[];
-  images?: PageImage[];
+  image?: PageImage;
   /** The page's sidebar "Region", e.g. "Los Angeles County, North America". Defaults to the locations. */
   region?: string;
   /**
