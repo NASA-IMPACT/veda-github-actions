@@ -86,6 +86,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           URL: ${{ steps.portal.outputs.url }}
+          REPO: ${{ github.repository }}
         run: |
-          body="🌐 Disasters Portal page PR: ${URL} — regenerated automatically on every push to this PR."
-          gh pr comment "$PR_NUMBER" --edit-last --body "$body" || gh pr comment "$PR_NUMBER" --body "$body"
+          prefix="🌐 Disasters Portal page PR:"
+          body="${prefix} ${URL} — regenerated automatically on every push to this PR."
+          # Update OUR earlier link comment, found by its prefix — never "the bot's last comment"
+          # (--edit-last): algorithm-catalog-reviewers.yml comments as the same github-actions bot,
+          # and --edit-last overwrote its cc comment (seen live on #256).
+          id=$(gh api "repos/${REPO}/issues/${PR_NUMBER}/comments" --paginate \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"${prefix}\"))) | .id" | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/${REPO}/issues/comments/${id}" -f body="$body" > /dev/null
+          else
+            gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$body"
+          fi
