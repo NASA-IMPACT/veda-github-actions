@@ -226,8 +226,8 @@ input[aria-invalid="true"] {
 }
 
 .req-prod-group {
-  border-left: 3px solid var(--base-lighter);
-  padding-left: 0.7rem;
+  border-left: 4px solid var(--base-lighter);
+  padding-left: 0.8rem;
 }
 
 /* Header row: algorithm name, count, then "Remove all" pushed to the right. Without the flex
@@ -239,10 +239,19 @@ input[aria-invalid="true"] {
   margin-bottom: 0.4rem;
 }
 
+/* The sensor heading must read as a heading, not as one more chip: display face, bigger, heavier,
+   ink — while the product chips under it step down (see .req-chip-prod). */
+.req-prod-group-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .req-prod-group-name {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--base-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink, #1b1b1b);
+  letter-spacing: -0.01em;
 }
 
 .req-prod-group-n {
@@ -295,8 +304,9 @@ input[aria-invalid="true"] {
 }
 
 .req-chip-prod {
-  color: var(--ink, #1b1b1b);
-  font-weight: 600;
+  color: var(--base-dark, #3d4551);
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 
 .req-badge {
@@ -574,8 +584,23 @@ input[aria-invalid="true"] {
 }
 
 .req-picker-row.is-added {
-  cursor: default;
   color: var(--base-light, #a9aeb1);
+}
+
+/* An added row is a toggle: its ✓ turns into a red − on hover/focus, i.e. "click to remove". */
+.req-picker-off {
+  display: none;
+  color: var(--error, #d54309);
+}
+
+.req-picker-row.is-added:hover .req-picker-on,
+.req-picker-row.is-added:focus-visible .req-picker-on {
+  display: none;
+}
+
+.req-picker-row.is-added:hover .req-picker-off,
+.req-picker-row.is-added:focus-visible .req-picker-off {
+  display: inline;
 }
 
 .req-picker-plus {
@@ -987,12 +1012,6 @@ input[aria-invalid="true"] {
   white-space: nowrap;
   color: var(--base, #565c65);
   font-size: 0.75rem;
-}
-
-.req-live-note {
-  margin: 0;
-  padding: 0.5rem 0.75rem;
-  border-top: 1px solid var(--base-lighter, #dfe1e2);
 }
 
 .req-live-toggle {

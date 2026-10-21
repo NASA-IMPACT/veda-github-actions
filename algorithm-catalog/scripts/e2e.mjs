@@ -454,6 +454,29 @@ check(
 );
 await shot(page, "12-external-product");
 
+// --- 10. Picker rows toggle; a product with no portal card shows as a draft gallery card ----------
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("button", { hasText: "Add products" }).click();
+const pk = page.locator(".req-prodpick");
+await pk.locator('[role="tab"]').filter({ has: page.locator(".req-picker-stitle", { hasText: /^Umbra SAR$/ }) }).click();
+const gammaRow = pk.locator('[role="tabpanel"] .req-picker-row', { hasText: "Gamma-naught" });
+await gammaRow.click();
+await page.waitForTimeout(200);
+check("picker: ＋ adds the product (row becomes a pressed ✓)", (await gammaRow.getAttribute("aria-pressed")) === "true");
+check(
+  "…a picked product with no portal card shows as a draft gallery card, not silently dropped",
+  (await page.locator(".req-live .pp-card-ghost h3").allInnerTexts()).some((t) => /Gamma-naught/.test(t)),
+);
+await gammaRow.click();
+await page.waitForTimeout(200);
+check(
+  "picker: clicking the ✓ again removes it (chip and draft card gone)",
+  (await gammaRow.getAttribute("aria-pressed")) === "false" &&
+    !(await page.locator(".req-chip-prod").allInnerTexts()).some((t) => /Gamma/.test(t)) &&
+    (await page.locator(".req-live .pp-card-ghost").count()) === 0,
+);
+await page.keyboard.press("Escape");
+
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 
 await browser.close();

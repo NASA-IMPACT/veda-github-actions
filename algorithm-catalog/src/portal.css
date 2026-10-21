@@ -114,3 +114,13 @@
   border: 2px dashed var(--pp-base-light); background: #f6f6f6; color: var(--pp-base-dark);
   padding: 28px 24px; font-size: 15px; text-align: center;
 }
+
+/* A picked product with no Data Gallery card: a draft card, so it is visibly NOT on the real page. */
+.pp-card-ghost { opacity: 0.75; }
+.pp-card-ghost-img {
+  width: 200px; height: 300px; border: 2px dashed var(--pp-base-light); background: #f6f6f6;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px;
+  font-size: 14px; color: var(--pp-base-dark);
+}
+.pp-card-ghost h3 { color: var(--pp-base-dark); }
+.pp-card-ghost p { font-style: italic; color: var(--pp-base-dark); }

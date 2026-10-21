@@ -34,9 +34,10 @@ import {
 import ProductPicker from "./ProductPicker";
 import PlacePicker from "./PlacePicker";
 import { unionBbox } from "../places";
+import { modality as modalityStyle } from "../colors";
 import { takeNavIntent } from "../tabs";
 import type { CatalogEvent } from "../data";
-import PortalPage, { PortalFrame, portalGallery } from "../events/PortalPage";
+import PortalPage, { PortalFrame } from "../events/PortalPage";
 import { NEED_LABELS, PORTAL_REPO, portalEventFile, portalIdOf } from "../portal";
 
 /** Whether the live portal preview is docked beside the form — remembered per browser. */
@@ -428,8 +429,6 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
 
   const autoCount = draft.products.filter((p) => p.via === "hazard").length;
   const manualCount = draft.products.length - autoCount;
-
-  const gallery = portalGallery(previewEvent, algorithms);
 
   return (
     <div className={live ? "req-layout is-live" : "req-layout"}>
@@ -874,9 +873,17 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           {groupedProducts.map(([algId, rows]) => {
             const algMeta = productLabel.get(productKey(rows[0]));
             const algLabel = algMeta?.alg ?? algId;
+            // The sensor is the group's heading, so it carries the sensor's modality accent (the
+            // same icon + colour as the picker and catalog) and outranks the product chips below.
+            const m = algMeta ? modalityStyle(algMeta.modality) : null;
             return (
-              <div className="req-prod-group" key={algId}>
+              <div className="req-prod-group" key={algId} style={m ? { borderLeftColor: m.color } : undefined}>
                 <div className="req-prod-group-hd">
+                  {m && (
+                    <span className="req-prod-group-icon" aria-hidden="true">
+                      {m.icon}
+                    </span>
+                  )}
                   <span className="req-prod-group-name">{algLabel}</span>
                   {algMeta?.external && <span className="req-badge req-badge-warn">no algorithm yet</span>}
                   <span className="req-prod-group-n">
@@ -937,6 +944,10 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
               algorithms={algorithms}
               selected={selectedKeys}
               onAdd={addProduct}
+              onRemove={(algorithm, product) => {
+                const p = draft.products.find((x) => x.algorithm === algorithm && x.product === product);
+                if (p) removeProduct(p);
+              }}
               onClose={() => setPickerOpen(false)}
             />
           )}
@@ -1046,11 +1057,6 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
         <PortalFrame>
           <PortalPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
         </PortalFrame>
-        {gallery.unmapped.length > 0 && (
-          <p className="hint req-live-note">
-            Not in the portal's Data Gallery yet, so not shown: {gallery.unmapped.join(", ")}.
-          </p>
-        )}
       </aside>
     )}
     </div>

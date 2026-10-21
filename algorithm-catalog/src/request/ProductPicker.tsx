@@ -22,9 +22,10 @@ import { productKey } from "./drafts";
 
 interface Props {
   algorithms: Algorithm[];
-  /** productKey()s already on the request — shown as "added" and not clickable. */
+  /** productKey()s already on the request — shown ✓; clicking one again removes it. */
   selected: Set<string>;
   onAdd: (algorithm: string, product: string) => void;
+  onRemove: (algorithm: string, product: string) => void;
   onClose: () => void;
 }
 
@@ -50,7 +51,7 @@ interface Group {
   products: Product[];
 }
 
-export default function ProductPicker({ algorithms, selected, onAdd, onClose }: Props) {
+export default function ProductPicker({ algorithms, selected, onAdd, onRemove, onClose }: Props) {
   const [q, setQ] = useState("");
   const [picked, setPicked] = useState<string>(algorithms[0]?.id ?? ALL);
   const uid = useId();
@@ -172,20 +173,21 @@ export default function ProductPicker({ algorithms, selected, onAdd, onClose }: 
         key={key}
         type="button"
         className={already ? "req-picker-row is-added" : "req-picker-row"}
-        disabled={already}
-        onClick={(e) => {
-          // The row disables itself once added, which would drop focus to <body>; hand it to the
-          // next addable row instead so a keyboard user can keep adding.
-          const rows = enabledRows();
-          const i = rows.indexOf(e.currentTarget);
-          const next = rows[i + 1] ?? rows[i - 1];
-          onAdd(alg.id, p.id);
-          (next ?? panelRef.current)?.focus();
-        }}
-        title={p.note ?? p.label}
+        // A toggle: ＋ adds the product, clicking its ✓ again removes it. The row never disables,
+        // so focus stays on it either way.
+        aria-pressed={already}
+        onClick={() => (already ? onRemove(alg.id, p.id) : onAdd(alg.id, p.id))}
+        title={already ? `Remove ${p.label}` : (p.note ?? p.label)}
       >
         <span className="req-picker-plus" aria-hidden="true">
-          {already ? "✓" : "＋"}
+          {already ? (
+            <>
+              <span className="req-picker-on">✓</span>
+              <span className="req-picker-off">−</span>
+            </>
+          ) : (
+            "＋"
+          )}
         </span>
         <span className="req-picker-name">{p.label}</span>
         {/* The STAC asset name, pasted from the live STAC by scripts/sync_stac_assets.py; a product
@@ -360,6 +362,7 @@ export default function ProductPicker({ algorithms, selected, onAdd, onClose }: 
 
       <p className="req-picker-foot">
         Added here counts as <b>manual</b> — it stays on the request even if you change hazards.
+        Click a ✓ to remove it.
       </p>
     </div>
   );

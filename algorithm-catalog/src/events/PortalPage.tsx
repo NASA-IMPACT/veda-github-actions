@@ -108,7 +108,7 @@ interface Props {
 
 export default function PortalPage({ event: ev, algorithms, hazards, published }: Props) {
   const page = ev.page;
-  const { cards } = portalGallery(ev, algorithms);
+  const { cards, unmapped } = portalGallery(ev, algorithms);
   const categories = [...new Set(ev.hazards.map((h) => hazards.find((v) => v.id === h)?.portal).filter(Boolean))] as string[];
   const region = page?.region?.trim() || ev.locations.join("; ");
   const image = page?.image?.url.trim() ? page.image : undefined;
@@ -153,7 +153,7 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
           <div className="pp-label">On this page</div>
           <ul className="pp-toc">
             <li>Overview</li>
-            {cards.length > 0 && <li>Event Data Gallery</li>}
+            {cards.length + unmapped.length > 0 && <li>Event Data Gallery</li>}
           </ul>
 
           <dl className="pp-meta">
@@ -211,7 +211,7 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
             </figure>
           )}
 
-          {cards.length > 0 && (
+          {cards.length + unmapped.length > 0 && (
             <>
               <div className="pp-gallery-head">
                 <h2>Event Data Gallery</h2>
@@ -229,6 +229,22 @@ export default function PortalPage({ event: ev, algorithms, hazards, published }
                     <span className="pp-viewdata">
                       View Data <Arrow />
                     </span>
+                  </div>
+                </article>
+              ))}
+              {/* Picked, but the portal has no Data Gallery card for it, so the published page will
+                  not show it. Shown here as a draft card so nothing silently disappears. */}
+              {unmapped.map((title) => (
+                <article key={title} className="pp-card pp-card-ghost">
+                  <div className="pp-card-ghost-img" aria-hidden="true">
+                    Not in the Data Gallery
+                  </div>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>
+                      Not in the Disasters Portal Data Gallery yet, so the published page will not show
+                      this layer until the portal adds a Data Gallery entry for it.
+                    </p>
                   </div>
                 </article>
               ))}
