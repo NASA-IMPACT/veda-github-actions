@@ -111,8 +111,19 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
   "Anyone with the link". `portal_pr.mjs` downloads it to `public/img/event/<id>__overview.<ext>`,
   **sniffs the bytes** (an unshared file comes back as an HTML page, so the content type can't be
   trusted), reads the real width/height the `image` block requires (PNG/JPEG/WebP/GIF, stdlib) and
-  caps it at 8 MB. A failed download never breaks the PR: it is listed in the PR body and as a
-  comment in the page file. `DRIVE_DOWNLOAD_URL` overrides the endpoint for testing.
+  then brings it to the **portal's image standard** (below). A failed download never breaks the PR:
+  it is listed in the PR body and as a comment in the page file. `DRIVE_DOWNLOAD_URL` overrides the
+  endpoint for testing.
+- **The portal's image standard** (disasters-portal PRs #556 and #654, applied by
+  `portal_pr.mjs` `toPortalWebp`): every image is a **real WebP** (`cwebp -q 80 -m 6 -metadata
+  none` — a PNG/JPEG renamed `.webp` was #654's main offender), **≤ 1920px wide**, **< 500 KB**. A
+  WebP that already meets it is kept byte for byte (re-encoding lossy WebP only loses quality); one
+  still over 500 KB at q80 is stepped down in width (×0.85, floor 640px) rather than dropped below
+  q80, as #654 did for `landsat-natural-color`. Body images are **not** capped at 1280px — #654
+  dropped that rule because it blurred high-DPI screenshots. GIFs are refused (export PNG/JPEG).
+  The PR body lists each conversion (e.g. `11,594 KB PNG → 292 KB WebP (q80, 3943 → 1920px)`). The
+  workflow installs `cwebp` (`apt-get install webp`); locally `brew install webp`.
+  `sync_portal_cards.py` encodes the preview's card thumbnails the same way (480px WebP).
 - **The page address is never asked for.** A new page's id is derived from the event name
   (`derivePortalId`: "Hurricane Isaias October 2026" → `hurricane-isaias-oct-2026`, "U.S." → "us"),
   so once a page is started the name must end "<Month> <YYYY>" (`PORTAL_NAME_RE`, error

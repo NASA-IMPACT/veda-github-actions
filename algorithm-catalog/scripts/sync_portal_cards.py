@@ -7,7 +7,9 @@ cards live in the portal repo, and this app never fetches at run time, so their 
 downsized thumbnail are copied in here:
 
     data/portal-cards.json            {"DATA__X": {title, description, themes, categories, image}}
-    public/portal/cards/<slug>.jpg    thumbnails, downsized to 480px with macOS `sips` (else copied)
+    public/portal/cards/<slug>.webp   thumbnails at 480px, encoded the portal's own way (its PRs
+                                      #556/#654: `cwebp -q 80 -m 6 -metadata none`) — needs `cwebp`
+                                      (brew install webp)
     public/portal/template-hero.webp  the portal's placeholder hero (every generated page uses it)
     public/portal/disasters-logo.svg  the header logo
 
@@ -53,7 +55,10 @@ def main(argv: list[str]) -> int:
     wanted = sorted({p["portalData"] for a in algorithms for p in a["products"] if p.get("portalData")})
 
     (OUT_PUBLIC / "cards").mkdir(parents=True, exist_ok=True)
-    have_sips = shutil.which("sips") is not None
+    if shutil.which("cwebp") is None:
+        print("cwebp is required (brew install webp / apt-get install webp)")
+        return 2
+    written: set[str] = set()
     cards: dict[str, dict] = {}
     for const in wanted:
         slug = const.removeprefix("DATA__").lower().replace("_", "-")
@@ -66,13 +71,11 @@ def main(argv: list[str]) -> int:
         image = ""
         if thumb:
             source = portal / "public" / thumb.group(1).lstrip("/")
-            dest = OUT_PUBLIC / "cards" / f"{slug}.jpg"
-            if have_sips:
-                subprocess.run(["sips", "-Z", "480", "-s", "format", "jpeg", "-s", "formatOptions", "70",
-                                str(source), "--out", str(dest)], check=True, capture_output=True)
-            else:
-                dest = dest.with_suffix(source.suffix)
-                shutil.copyfile(source, dest)
+            dest = OUT_PUBLIC / "cards" / f"{slug}.webp"
+            # 480px is plenty: the card image is 200px wide in the 1280px preview.
+            subprocess.run(["cwebp", "-q", "80", "-m", "6", "-metadata", "none", "-resize", "480", "0",
+                            str(source), "-o", str(dest)], check=True, capture_output=True)
+            written.add(dest.name)
             image = f"/portal/cards/{dest.name}"
         cards[const] = {
             "title": field(src, "title"),
@@ -83,6 +86,9 @@ def main(argv: list[str]) -> int:
         }
         print(f"ok       {const}: {cards[const]['title']}")
 
+    for stale in (OUT_PUBLIC / "cards").iterdir():
+        if stale.name not in written:
+            stale.unlink()  # a card no longer referenced, or an older format
     for name, rel in (("template-hero.webp", "img/event/template-hero.webp"), ("disasters-logo.svg", "img/disasters-logo.svg")):
         shutil.copyfile(portal / "public" / rel, OUT_PUBLIC / name)
     OUT_JSON.write_text(json.dumps(cards, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

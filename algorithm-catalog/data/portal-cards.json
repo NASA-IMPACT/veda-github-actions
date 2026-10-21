@@ -14,7 +14,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/black-marble-hd.jpg"
+    "image": "/portal/cards/black-marble-hd.webp"
   },
   "DATA__CAPELLA_BACKSCATTER": {
     "title": "Capella SAR Backscatter",
@@ -32,7 +32,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/capella-backscatter.jpg"
+    "image": "/portal/cards/capella-backscatter.webp"
   },
   "DATA__ICEYE_BACKSCATTER": {
     "title": "ICEYE SAR Backscatter",
@@ -50,7 +50,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/iceye-backscatter.jpg"
+    "image": "/portal/cards/iceye-backscatter.webp"
   },
   "DATA__LANDSAT_COLOR_INFRARED": {
     "title": "Landsat Color Infrared Imagery",
@@ -70,7 +70,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/landsat-color-infrared.jpg"
+    "image": "/portal/cards/landsat-color-infrared.webp"
   },
   "DATA__LANDSAT_MNDWI": {
     "title": "Landsat Modified Normalized Difference Water Index (MNDWI)",
@@ -87,7 +87,7 @@
       "tropical cyclone",
       "winter weather"
     ],
-    "image": "/portal/cards/landsat-mndwi.jpg"
+    "image": "/portal/cards/landsat-mndwi.webp"
   },
   "DATA__LANDSAT_NATURAL_COLOR": {
     "title": "Landsat Natural Color Imagery",
@@ -113,7 +113,7 @@
       "tsunami",
       "winter weather"
     ],
-    "image": "/portal/cards/landsat-natural-color.jpg"
+    "image": "/portal/cards/landsat-natural-color.webp"
   },
   "DATA__LANDSAT_NBR": {
     "title": "Landsat Normalized Burn Ratio (NBR)",
@@ -125,7 +125,7 @@
     "categories": [
       "fire"
     ],
-    "image": "/portal/cards/landsat-nbr.jpg"
+    "image": "/portal/cards/landsat-nbr.webp"
   },
   "DATA__LANDSAT_NDVI": {
     "title": "Landsat Normalized Difference Vegetation Index (NDVI)",
@@ -151,7 +151,7 @@
       "tsunami",
       "winter weather"
     ],
-    "image": "/portal/cards/landsat-ndvi.jpg"
+    "image": "/portal/cards/landsat-ndvi.webp"
   },
   "DATA__LANDSAT_TRUE_COLOR": {
     "title": "Landsat True Color Imagery",
@@ -171,7 +171,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/landsat-true-color.jpg"
+    "image": "/portal/cards/landsat-true-color.webp"
   },
   "DATA__SATELLOGIC_COLOR_INFRARED": {
     "title": "Satellogic Color Infrared Imagery",
@@ -191,7 +191,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/satellogic-color-infrared.jpg"
+    "image": "/portal/cards/satellogic-color-infrared.webp"
   },
   "DATA__SATELLOGIC_TRUE_COLOR": {
     "title": "Satellogic True Color Imagery",
@@ -211,7 +211,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/satellogic-true-color.jpg"
+    "image": "/portal/cards/satellogic-true-color.webp"
   },
   "DATA__SENTINEL_2_COLOR_INFRARED": {
     "title": "Sentinel-2 Color Infrared Imagery",
@@ -231,7 +231,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-color-infrared.jpg"
+    "image": "/portal/cards/sentinel-2-color-infrared.webp"
   },
   "DATA__SENTINEL_2_MNDWI": {
     "title": "Sentinel-2 Modified Normalized Difference Water Index (MNDWI)",
@@ -248,7 +248,7 @@
       "tropical cyclone",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-mndwi.jpg"
+    "image": "/portal/cards/sentinel-2-mndwi.webp"
   },
   "DATA__SENTINEL_2_NATURAL_COLOR": {
     "title": "Sentinel-2 Natural Color",
@@ -274,7 +274,7 @@
       "tsunami",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-natural-color.jpg"
+    "image": "/portal/cards/sentinel-2-natural-color.webp"
   },
   "DATA__SENTINEL_2_NBR": {
     "title": "Sentinel-2 Normalized Burn Ratio (NBR)",
@@ -286,7 +286,7 @@
     "categories": [
       "fire"
     ],
-    "image": "/portal/cards/sentinel-2-nbr.jpg"
+    "image": "/portal/cards/sentinel-2-nbr.webp"
   },
   "DATA__SENTINEL_2_NDVI": {
     "title": "Sentinel-2 Normalized Difference Vegetation Index (NDVI)",
@@ -312,7 +312,7 @@
       "tsunami",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-ndvi.jpg"
+    "image": "/portal/cards/sentinel-2-ndvi.webp"
   },
   "DATA__SENTINEL_2_SWIR": {
     "title": "Sentinel-2 Shortwave Infrared Imagery",
@@ -332,7 +332,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-swir.jpg"
+    "image": "/portal/cards/sentinel-2-swir.webp"
   },
   "DATA__SENTINEL_2_TRUE_COLOR": {
     "title": "Sentinel-2 True Color Imagery",
@@ -352,7 +352,7 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/sentinel-2-true-color.jpg"
+    "image": "/portal/cards/sentinel-2-true-color.webp"
   },
   "DATA__UMBRA_SIGMA_NAUGHT": {
     "title": "Umbra Backscatter",
@@ -370,6 +370,6 @@
       "earthquake",
       "winter weather"
     ],
-    "image": "/portal/cards/umbra-sigma-naught.jpg"
+    "image": "/portal/cards/umbra-sigma-naught.webp"
   }
 }

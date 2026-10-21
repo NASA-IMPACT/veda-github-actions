@@ -7,8 +7,10 @@
 //        [--title <pr title>] [--source-pr <url>] [--dry-run] <request.json>...
 //
 // For each request with a `page`, in the portal checkout:
-//   0. download its one Google Drive image into public/img/event/, sniffing the bytes
-//      — a file that isn't shared "Anyone with the link" comes back as an HTML page, not an image
+//   0. download its one Google Drive image, sniffing the bytes — a file that isn't shared "Anyone
+//      with the link" comes back as an HTML page, not an image — and bring it to the PORTAL'S IMAGE
+//      STANDARD (disasters-portal #556, refined by #654) before it goes in public/img/event/:
+//      real WebP via `cwebp -q 80 -m 6 -metadata none`, at most 1920px wide, under 500 KB.
 //   1. write app/site-config/event/event__<id>.ts       (src/portal.ts — the same code the app previews)
 //   2. register it in app/site-config/event/index.ts    (import + EVENTS entry, newest startDate first)
 //   3. run the portal's OWN gates — `biome check --write` on the touched files, then the full
@@ -21,7 +23,8 @@
 // Plain Node (>= 22.18, which strips TypeScript types natively) + git + pnpm + gh. No npm deps.
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PORTAL_BRANCH, PORTAL_MARKER, PORTAL_REPO, portalEventFile } from "../src/portal.ts";
@@ -33,8 +36,57 @@ const INDEX = "app/site-config/event/index.ts";
 const IMG_DIR = "public/img/event";
 // Overridable so the download path can be tested against a local server.
 const DRIVE_DOWNLOAD = process.env.DRIVE_DOWNLOAD_URL ?? "https://drive.usercontent.google.com/download?export=download&id=";
-/** The portal's own event images are a few hundred KB; anything this big needs compressing first. */
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+/** What we will download at all — originals are compressed below, so this only stops absurd files. */
+const MAX_DOWNLOAD_BYTES = 40 * 1024 * 1024;
+
+// The portal's image standard (disasters-portal PR #556, refined by #654).
+const PORTAL_MAX_WIDTH = 1920;
+const PORTAL_MAX_BYTES = 500 * 1024;
+const CWEBP_ARGS = ["-q", "80", "-m", "6", "-metadata", "none"];
+/** #654 stepped an over-budget image's width down rather than drop below q80; this is the floor. */
+const MIN_STEP_WIDTH = 640;
+
+const kb = (n) => `${Math.round(n / 1024).toLocaleString("en-US")} KB`;
+
+/**
+ * Bring an image to the portal's standard. Per #654: a WebP that ALREADY meets it is kept byte for
+ * byte (re-encoding lossy WebP only loses quality); anything else is encoded with cwebp at q80,
+ * capped at 1920px, and — only if still over 500 KB — stepped down in width until it fits. Body
+ * images are NOT capped at 1280px: #654 dropped that rule because it blurred high-DPI screenshots.
+ */
+export function toPortalWebp(bytes, kind) {
+  if (kind.ext === "webp" && bytes.length <= PORTAL_MAX_BYTES && kind.width <= PORTAL_MAX_WIDTH) {
+    return { bytes, width: kind.width, height: kind.height, note: `${kb(bytes.length)} WebP, ${kind.width}px — already meets the portal standard, kept as is` };
+  }
+  if (kind.ext === "gif") return { error: "GIF can't be converted to the portal's WebP standard — export it as PNG or JPEG" };
+  const dir = mkdtempSync(join(tmpdir(), "portal-img-"));
+  try {
+    const src = join(dir, `source.${kind.ext}`);
+    const out = join(dir, "out.webp");
+    writeFileSync(src, bytes);
+    let width = Math.min(kind.width, PORTAL_MAX_WIDTH);
+    let encoded;
+    for (;;) {
+      const resize = width < kind.width ? ["-resize", String(width), "0"] : [];
+      try {
+        execFileSync("cwebp", [...CWEBP_ARGS, ...resize, src, "-o", out], { stdio: "pipe" });
+      } catch (e) {
+        if (e.code === "ENOENT") return { error: "cwebp is not installed (brew install webp / apt-get install webp)" };
+        return { error: `cwebp could not encode it (${String(e.stderr || e.message).trim().split("\n").pop()})` };
+      }
+      encoded = readFileSync(out);
+      if (encoded.length <= PORTAL_MAX_BYTES || width <= MIN_STEP_WIDTH) break;
+      width = Math.max(MIN_STEP_WIDTH, Math.round(width * 0.85));
+    }
+    const got = sniffImage(encoded);
+    if (got?.ext !== "webp") return { error: "the encoded file is not a real WebP" };
+    if (encoded.length > PORTAL_MAX_BYTES) return { error: `still ${kb(encoded.length)} at ${got.width}px — over the portal's 500 KB limit; crop or simplify it` };
+    const resized = got.width !== kind.width ? `, ${kind.width} → ${got.width}px` : `, ${got.width}px`;
+    return { bytes: encoded, width: got.width, height: got.height, note: `${kb(bytes.length)} ${kind.ext.toUpperCase()} → ${kb(encoded.length)} WebP (q80${resized})` };
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
 
 /**
  * Format + pixel size from the file's own bytes (the portal's `image` block needs width/height).
@@ -80,11 +132,13 @@ async function downloadImage(portal, id, img) {
   }
   const kind = sniffImage(bytes);
   if (!kind) return { error: "Drive returned a page, not an image — set its sharing to “Anyone with the link”" };
-  if (bytes.length > MAX_IMAGE_BYTES) return { error: `${(bytes.length / 1048576).toFixed(1)} MB — compress it under 8 MB` };
-  const name = `${id}__overview.${kind.ext}`;
+  if (bytes.length > MAX_DOWNLOAD_BYTES) return { error: `${(bytes.length / 1048576).toFixed(1)} MB — too large to process; export a smaller original` };
+  const web = toPortalWebp(bytes, kind);
+  if (web.error) return { error: web.error };
+  const name = `${id}__overview.webp`;
   mkdirSync(join(portal, IMG_DIR), { recursive: true });
-  writeFileSync(join(portal, IMG_DIR, name), bytes);
-  return { image: { ...img, src: `/img/event/${name}`, width: kind.width, height: kind.height }, path: `${IMG_DIR}/${name}` };
+  writeFileSync(join(portal, IMG_DIR, name), web.bytes);
+  return { image: { ...img, src: `/img/event/${name}`, width: web.width, height: web.height }, path: `${IMG_DIR}/${name}`, note: web.note };
 }
 
 function parseArgs(argv) {
@@ -169,6 +223,7 @@ async function main() {
   const skipped = [];
   const imageFiles = [];
   const imageFailures = [];
+  const imageNotes = [];
   for (const r of requests) {
     const input = { ...r.event, layers: r.products.map(({ algorithm, product }) => ({ algorithm, product })), page: r.page };
     const f0 = portalEventFile(input, algorithms, hazards, today);
@@ -190,7 +245,8 @@ async function main() {
       if (got.image) {
         resolved.push(got.image);
         imageFiles.push(got.path);
-        console.log(`image ${got.path} (${got.image.width}×${got.image.height})`);
+        imageNotes.push(`\`${got.path}\` — ${got.note}`);
+        console.log(`image ${got.path} (${got.image.width}×${got.image.height}) — ${got.note}`);
       } else {
         imageFailures.push(`${r.event.name} — image ${img.url}: ${got.error}`);
         console.log(`image FAILED ${img.url}: ${got.error}`);
@@ -220,7 +276,9 @@ async function main() {
     "",
     ...written.map((w) => `- **${w.name}** (\`${w.stacName}\`) → \`${w.path}\`${w.unmapped.length ? ` — no data-gallery card yet for: ${w.unmapped.join(", ")}` : ""}`),
     "",
-    ...(imageFiles.length ? [`Images downloaded from Google Drive: ${imageFiles.map((p) => `\`${p}\``).join(", ")}.`] : []),
+    ...(imageNotes.length
+      ? ["", "Image from Google Drive, brought to the portal's image standard (#556/#654: real WebP, q80, ≤ 1920px, < 500 KB):", ...imageNotes.map((n) => `- ${n}`)]
+      : []),
     ...(imageFailures.length
       ? ["", "⚠ **Could not download the image** — it is listed in the page file as a comment; add it by hand:", ...imageFailures.map((m) => `- ${m}`)]
       : []),

@@ -65,6 +65,8 @@ jobs:
           git config user.name "veda-algorithm-catalog"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp .env.example .env.local
+          # cwebp: page images are re-encoded to the portal's image standard (its PRs #556/#654).
+          sudo apt-get install -y --no-install-recommends webp > /dev/null
           corepack enable
           pnpm install --frozen-lockfile --ignore-scripts
 
