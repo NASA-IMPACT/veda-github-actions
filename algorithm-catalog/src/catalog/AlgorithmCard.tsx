@@ -77,6 +77,14 @@ export default function AlgorithmCard({
               prototype
             </span>
           )}
+          {a.status === "external" && (
+            <span
+              className="proto-badge"
+              title="Made outside this catalog and published on the Disasters Portal; no DPS job is created"
+            >
+              no algorithm yet
+            </span>
+          )}
         </div>
 
         <p className="acard-vendor">{a.vendor}</p>

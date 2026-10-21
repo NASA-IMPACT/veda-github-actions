@@ -21,6 +21,8 @@ const SELECTOR_LABEL: Record<string, string> = {
 
 export default function AlgorithmDetail({ algorithm: a, hazards, matchedIds, onClose }: Props) {
   const m = modalityStyle(a.modality);
+  // A product made outside this catalog has no DPS job: no config, inputs or resources to show.
+  const external = a.status === "external";
 
   return (
     <div className="overlay" onClick={onClose}>
@@ -40,6 +42,8 @@ export default function AlgorithmDetail({ algorithm: a, hazards, matchedIds, onC
           </span>
           {a.status === "prototype" ? (
             <span className="proto-badge">prototype — no DPS algorithm registered</span>
+          ) : a.status === "external" ? (
+            <span className="proto-badge">no algorithm yet — produced outside this catalog</span>
           ) : (
             <span className="prod-badge">production</span>
           )}
@@ -51,7 +55,13 @@ export default function AlgorithmDetail({ algorithm: a, hazards, matchedIds, onC
         <dl className="detail-grid">
           <dt>DPS algorithm</dt>
           <dd>
-            <code>{a.algorithmName}</code> @ <code>{a.version}</code>
+            {external ? (
+              <span className="opt">none — produced outside this catalog, no DPS job is created</span>
+            ) : (
+              <>
+                <code>{a.algorithmName}</code> @ <code>{a.version}</code>
+              </>
+            )}
           </dd>
           <dt>Resolution</dt>
           <dd>{a.resolution}</dd>
@@ -63,13 +73,17 @@ export default function AlgorithmDetail({ algorithm: a, hazards, matchedIds, onC
               <span className="opt"> (mission launch — approximate record start)</span>
             )}
           </dd>
-          <dt>Spatial input</dt>
-          <dd>{SELECTOR_LABEL[a.spatialSelector] ?? a.spatialSelector}</dd>
-          <dt>Resources</dt>
-          <dd>
-            {a.resources.ramMin} GB RAM · {a.resources.coresMin} cores · {a.resources.outdirMax} GB
-            output
-          </dd>
+          {!external && (
+            <>
+              <dt>Spatial input</dt>
+              <dd>{SELECTOR_LABEL[a.spatialSelector] ?? a.spatialSelector}</dd>
+              <dt>Resources</dt>
+              <dd>
+                {a.resources.ramMin} GB RAM · {a.resources.coresMin} cores · {a.resources.outdirMax} GB
+                output
+              </dd>
+            </>
+          )}
           {a.keywords.length > 0 && (
             <>
               <dt>Keywords</dt>
@@ -103,45 +117,56 @@ export default function AlgorithmDetail({ algorithm: a, hazards, matchedIds, onC
           ))}
         </ul>
 
-        <h3 className="detail-h">
-          Job inputs <span className="count">({a.inputs.length})</span>
-        </h3>
-        <div className="inputs-wrap">
-          <table className="inputs">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Required</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              {a.inputs.map((i) => (
-                <tr key={i.name}>
-                  <td>
-                    <code>{i.name}</code>
-                    <div className="in-label">{i.label}</div>
-                    {i.doc && <div className="in-doc">{i.doc}</div>}
-                  </td>
-                  <td>{i.type}</td>
-                  <td>{i.required ? <b className="req">yes</b> : "no"}</td>
-                  <td>{i.default ? <code>{i.default}</code> : <span className="opt">—</span>}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {!external && (
+          <>
+            <h3 className="detail-h">
+              Job inputs <span className="count">({a.inputs.length})</span>
+            </h3>
+            <div className="inputs-wrap">
+              <table className="inputs">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Default</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {a.inputs.map((i) => (
+                    <tr key={i.name}>
+                      <td>
+                        <code>{i.name}</code>
+                        <div className="in-label">{i.label}</div>
+                        {i.doc && <div className="in-doc">{i.doc}</div>}
+                      </td>
+                      <td>{i.type}</td>
+                      <td>{i.required ? <b className="req">yes</b> : "no"}</td>
+                      <td>{i.default ? <code>{i.default}</code> : <span className="opt">—</span>}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
 
         <h3 className="detail-h">Resources</h3>
-        <p className="hint">
-          Thumbnail: {a.thumbCredit}. Every figure above mirrors the algorithm's upstream
-          <code> algorithm_config.yaml</code> — it is what DPS will actually enforce at run time.
-        </p>
+        {external ? (
+          <p className="hint">
+            Thumbnail: {a.thumbCredit}. These products are made outside this catalog; their text comes
+            from their Disasters Portal data-gallery cards.
+          </p>
+        ) : (
+          <p className="hint">
+            Thumbnail: {a.thumbCredit}. Every figure above mirrors the algorithm's upstream
+            <code> algorithm_config.yaml</code> — it is what DPS will actually enforce at run time.
+          </p>
+        )}
 
         <div className="foot">
           <a className="btn primary" href={a.configUrl} target="_blank" rel="noreferrer">
-            algorithm_config.yaml ↗
+            {external ? "Disasters Portal data page ↗" : "algorithm_config.yaml ↗"}
           </a>
           <button className="btn" onClick={onClose}>
             Close

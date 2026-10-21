@@ -14,15 +14,23 @@
 // record covers both the website and the algorithm layers — that page used to be written from a
 // spreadsheet kept by hand. See docs/ALGORITHM_CATALOG.md "Event pages".
 
-/** Sensing modality — drives the modality filter and the card accent color. */
-export type Modality = "optical" | "sar" | "nightlights" | "utility";
+/**
+ * Sensing modality — drives the modality filter and the card accent color. "model" is a modeled or
+ * multi-sensor merged dataset that is neither one optical nor one SAR sensor (GAIA building
+ * exposure, GPM IMERG precipitation).
+ */
+export type Modality = "optical" | "sar" | "nightlights" | "model" | "utility";
 
 /**
  * Whether the algorithm is actually registered and runnable.
  * - production: a real dps/<name>/algorithm_config.yaml exists on dev
  * - prototype:  code exists in src/ but there is no DPS algorithm (e.g. iceye)
+ * - external:   no algorithm here yet. The product is made OUTSIDE this catalog and published on
+ *               the Disasters Portal data gallery (OPERA, UAVSAR, Planet…). It is listed so a
+ *               request can ask for it and the event page can link its card. No DPS job is ever
+ *               created, and it is never auto-selected by a hazard.
  */
-export type AlgorithmStatus = "production" | "prototype";
+export type AlgorithmStatus = "production" | "prototype" | "external";
 
 /**
  * How the algorithm is pointed at a place. These are mutually incompatible across algorithms —

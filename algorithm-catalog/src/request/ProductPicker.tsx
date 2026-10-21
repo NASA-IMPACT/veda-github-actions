@@ -21,6 +21,7 @@ const MODALITY_ICON: Record<string, string> = {
   optical: "🛰️",
   sar: "📡",
   nightlights: "🌃",
+  model: "🧮",
   utility: "🧰",
 };
 
@@ -79,6 +80,14 @@ export default function ProductPicker({ algorithms, selected, onAdd, onClose }: 
                 {g.alg.modality}
                 {g.alg.status === "prototype" ? " · prototype" : ""}
               </span>
+              {g.alg.status === "external" && (
+                <span
+                  className="req-badge req-badge-warn"
+                  title="Made outside this catalog and published on the Disasters Portal. No DPS job is created."
+                >
+                  no algorithm yet
+                </span>
+              )}
             </div>
             {g.products.map((p) => {
               const key = productKey({ algorithm: g.alg.id, product: p.id });
