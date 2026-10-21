@@ -289,7 +289,7 @@
       "type": "date"
     }
   ],
-  "generated": "2026-10-20T18:09:52Z",
+  "generated": "2026-10-21T00:19:39Z",
   "items": [
     {
       "archived": false,
@@ -8361,7 +8361,7 @@
       "assignees": [],
       "author": "kyle-lesinger",
       "body_excerpt": "Tracking issue for the PORTAL Content Review – Sept 2026 (notes updated 9/11/26). Review site: PR #403 preview (https://pr-403.d1cvmssihw8emg.amplifyapp.com).\nEach page section below will be addressed in its own PR and linked here for review. 🔴 marks items flagged during the review meeting as needing a decision or dev-team follow-up.\n\n1. Home page — /disasters\nPR: #477\n\n Under Let's Connect → Contact Our Team, replace the email address with disasters@nasa.gov\n Data visualization caption: change \"Yellow represents the presence of more light; dark blue less lights.\" to \"Yellow represents more li",
-      "closed": null,
+      "closed": "2026-10-20T20:09:21Z",
       "comments": 0,
       "created": "2026-09-15T14:31:33Z",
       "draft": false,
@@ -8375,7 +8375,8 @@
           "duration": 21,
           "startDate": "2026-08-30",
           "title": "26.4.3"
-        }
+        },
+        "Status": "Done"
       },
       "id": "PVTI_lADODdLRP84BMP5Rzg7EY34",
       "issue_type": null,
@@ -8384,10 +8385,10 @@
       "milestone": null,
       "number": 479,
       "repo": "Disasters-Learning-Portal/disasters-portal",
-      "state": "open",
-      "state_reason": null,
+      "state": "closed",
+      "state_reason": "completed",
       "title": "PORTAL Content Review Sept 2026 — soft-launch page fixes",
-      "updated": "2026-09-17T13:47:08Z",
+      "updated": "2026-10-20T20:09:21Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/479"
     },
     {
@@ -8423,6 +8424,11 @@
       ],
       "milestone": null,
       "number": 481,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Soft Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -8498,6 +8504,11 @@
       ],
       "milestone": null,
       "number": 484,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Soft Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
       "repo": "Disasters-Learning-Portal/disasters-portal",
       "state": "open",
       "state_reason": null,
@@ -10099,7 +10110,7 @@
       "state_reason": null,
       "sub": {
         "completed": 3,
-        "total": 13
+        "total": 16
       },
       "title": "🏈 [27.1] Epic - Post Soft Launch Backlog",
       "updated": "2026-10-15T16:40:39Z",
@@ -11466,6 +11477,45 @@
       "title": "Event banner to inform users of activation state",
       "updated": "2026-10-16T16:42:22Z",
       "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/657"
+    },
+    {
+      "archived": false,
+      "assignees": [],
+      "author": "kyle-lesinger",
+      "body_excerpt": "Info\nSee original PR #596\nToDo\nWork with Disasters to identify the priority for this new feature.",
+      "closed": null,
+      "comments": 0,
+      "created": "2026-10-20T20:10:46Z",
+      "draft": false,
+      "fields": {
+        "Program Increment": {
+          "duration": 91,
+          "startDate": "2026-10-18",
+          "title": "PI 27.1"
+        },
+        "Sprint": {
+          "duration": 20,
+          "startDate": "2026-10-26",
+          "title": "27.1.1"
+        }
+      },
+      "id": "PVTI_lADODdLRP84BMP5RzhCONQI",
+      "issue_type": null,
+      "kind": "issue",
+      "labels": [],
+      "milestone": null,
+      "number": 658,
+      "parent": {
+        "number": 575,
+        "title": "🏈 [27.1] Epic - Post Soft Launch Backlog",
+        "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/575"
+      },
+      "repo": "Disasters-Learning-Portal/disasters-portal",
+      "state": "open",
+      "state_reason": null,
+      "title": "Scope new component: Highlight boxes",
+      "updated": "2026-10-20T20:10:46Z",
+      "url": "https://github.com/Disasters-Learning-Portal/disasters-portal/issues/658"
     },
     {
       "archived": false,
@@ -22577,10 +22627,10 @@
   ],
   "schemaVersion": 1,
   "stats": {
-    "closed": 505,
+    "closed": 506,
     "drafts": 0,
-    "issues": 538,
-    "items": 556,
+    "issues": 539,
+    "items": 557,
     "open": 51,
     "prs": 18
   }
