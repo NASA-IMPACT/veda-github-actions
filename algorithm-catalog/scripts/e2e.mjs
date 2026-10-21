@@ -343,8 +343,20 @@ check(
   (await sensorTabs.first().getAttribute("aria-selected")) === "true" &&
     (await panel.locator(".req-picker-group-head").innerText()).includes("Landsat"),
 );
+const tokenOf = async (label) =>
+  panel.locator(".req-picker-row", { hasText: label }).first().locator(".req-picker-token");
+check(
+  "product tokens are the LIVE STAC asset names (Landsat True color → truecolor)",
+  (await (await tokenOf("True color")).innerText()) === "truecolor" &&
+    (await (await tokenOf("Color infrared")).innerText()) === "colorir",
+);
+check(
+  "…and a product no STAC collection carries yet is marked as such (Panchromatic)",
+  (await (await tokenOf("Panchromatic")).getAttribute("class")).includes("is-nostac"),
+);
 await shot(page, "11-picker");
-await sensorTabs.filter({ hasText: "Sentinel-2" }).click();
+// Exact title: "Sentinel-2" also appears in "Sentinel-2 change products" and the S1+S2 burn severity.
+await sensorTabs.filter({ has: page.locator(".req-picker-stitle", { hasText: /^Sentinel-2$/ }) }).click();
 const s2Panel = await panel.innerText();
 check(
   "clicking Sentinel-2 shows its products on the right — and not Landsat's",

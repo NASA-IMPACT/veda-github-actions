@@ -188,7 +188,17 @@ export default function ProductPicker({ algorithms, selected, onAdd, onClose }: 
           {already ? "✓" : "＋"}
         </span>
         <span className="req-picker-name">{p.label}</span>
-        <code className="req-picker-token">{p.id}</code>
+        {/* The STAC asset name, pasted from the live STAC by scripts/sync_stac_assets.py; a product
+            no live collection carries yet shows its own token, marked as such. Read-only. */}
+        {p.stacAsset ? (
+          <code className="req-picker-token" title={`STAC asset “${p.stacAsset}” in ${p.stacCollections?.join(", ")}`}>
+            {p.stacAsset}
+          </code>
+        ) : (
+          <code className="req-picker-token is-nostac" title="Not in the Disasters STAC yet — this is the product's own token">
+            {p.id}
+          </code>
+        )}
         {p.hazards.length > 0 && (
           <span className="req-picker-haz" title={p.hazards.join(" · ")}>
             {p.hazards.join(" · ")}

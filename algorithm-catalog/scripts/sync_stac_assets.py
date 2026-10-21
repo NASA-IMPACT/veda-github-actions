@@ -11,13 +11,19 @@ script instead. `cog_default` (the collections' generic item_assets entry) and t
 `rendered_preview_*` / dashboard renders are NOT asset names and are never used.
 
 Which collection belongs to which product is decided by rule, and an unsure match is reported,
-never guessed. A collection matches a product when BOTH hold:
+never guessed. A product CLAIMS a collection when:
   * its sensor (the id's first segment, e.g. "sentinel2", "umbra") is the product's algorithm id
-    or appears in the product's portal card title, and
-  * its live asset key equals the product's token or output folder, or appears in the product's
-    portal card title (that is how "Umbra Backscatter" finds `backscatter` and "Black Marble HD"
-    finds `blackmarble_hd`).
-A collection that two products both claim is assigned to neither and listed for a human.
+    [strong] or appears in the product's portal card title [weak], and
+  * its live asset key equals the product's token or output folder [strong], or appears in the
+    product's portal card title [weak] — that is how "Umbra Backscatter" finds `backscatter` and
+    "Black Marble HD" finds `blackmarble_hd`;
+  * or, regardless of sensor, the asset key equals the product's token/folder AND no other live
+    collection uses that key (an exact, unique name cannot be ambiguous: `burnseverity`).
+A product with any strong-sensor claim drops its weak-sensor ones: SkySat's card says "Planet", but
+SkySat has its own skysat-* collections, so it must not also take planet-colorir-daily.
+Each collection goes to its single highest-scoring claimant (strong = 2, weak = 1). A tie at the
+top is assigned to nobody and listed for a human — so "Planet NDVI Change" mentioning NDVI never
+steals `planet-ndvi-daily` from Planet NDVI, but two equally good claims are never guessed.
 
 Run (needs network; stdlib only):
     python3 -I algorithm-catalog/scripts/sync_stac_assets.py            # update algorithms.json
@@ -75,25 +81,40 @@ def main(argv: list[str] | None = None) -> int:
     assets = live_assets(args.api)
     print(f"{len(assets)} live collections with a product-specific asset ({args.api})")
 
-    claims: dict[str, list[tuple[dict, dict]]] = {}
+    key_uses: dict[str, int] = {}
+    for key in assets.values():
+        key_uses[norm(key)] = key_uses.get(norm(key), 0) + 1
+
+    claims: dict[str, list[tuple[int, dict, dict]]] = {}
     for a in algorithms:
         for p in a["products"]:
             title = norm(cards.get(p.get("portalData", ""), {}).get("title", ""))
             names = {norm(p["id"]), norm(p.get("folder", ""))}
+            mine: list[tuple[str, int, int]] = []  # (collection, sensor score, total score)
             for cid, key in assets.items():
                 sensor = norm(cid.split("-")[0])
-                if sensor != norm(a["id"]) and sensor not in title:
-                    continue
-                if norm(key) in names or (title and norm(key) in title):
-                    claims.setdefault(cid, []).append((a, p))
+                k = norm(key)
+                sensor_score = 2 if sensor == norm(a["id"]) else 1 if sensor in title else 0
+                name_score = 2 if k in names else 1 if (title and k in title) else 0
+                if sensor_score and name_score:
+                    mine.append((cid, sensor_score, sensor_score + name_score))
+                elif name_score == 2 and key_uses[k] == 1:
+                    mine.append((cid, 0, 2))
+            strong_sensor = any(ss == 2 for _, ss, _ in mine)
+            for cid, ss, score in mine:
+                if strong_sensor and ss == 1:
+                    continue  # a sensor only named in the card title, when the product has its own
+                claims.setdefault(cid, []).append((score, a, p))
 
     found: dict[int, set[str]] = {}
     ambiguous = []
     for cid, who in sorted(claims.items()):
-        if len(who) > 1:
-            ambiguous.append(f"{cid} ({assets[cid]}) — claimed by {', '.join(f'{a['id']}:{p['id']}' for a, p in who)}")
+        top = max(score for score, _, _ in who)
+        best = [(a, p) for score, a, p in who if score == top]
+        if len(best) > 1:
+            ambiguous.append(f"{cid} ({assets[cid]}) — equally claimed by {', '.join(f'{a['id']}:{p['id']}' for a, p in best)}")
             continue
-        found.setdefault(id(who[0][1]), set()).add(cid)
+        found.setdefault(id(best[0][1]), set()).add(cid)
 
     changes = []
     for a in algorithms:

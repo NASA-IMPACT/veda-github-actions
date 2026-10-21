@@ -135,6 +135,29 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
   cell that only points at another sheet imports no layers. Per-layer pipeline status (STAC / GIBS /
   EGIS / staging) is deferred.
 
+## Every Disasters Portal data product, and its live STAC name
+- **All 59 Data Gallery products can be requested.** The 40 with no algorithm here are entries with
+  `status: "external"` ("no algorithm yet"), grouped by source (OPERA, UAVSAR, AVIRIS-3, Planet,
+  Vantor, SkySat, …). Each links to its real portal card via `portalData`. They are picked by hand
+  only: `autoProducts` never selects them from a hazard, and "What this will run" says no DPS job is
+  created. `validate_data.py` requires `inputs: []` for them. Modality `"model"` covers GAIA and GPM.
+- **"＋ Add products" is a two-column picker** (`src/request/ProductPicker.tsx`, `.req-prodpick`):
+  sensors on the left (catalog order, selected/total counts, status badge from a generic
+  `STATUS_LABEL` map), the selected sensor's products on the right. Search spans both columns, with
+  an "All matches" entry. Keyboard: ↓ into sensors, ↑/↓/Home/End, → or Enter into products, Esc.
+- **`stacAsset` / `stacCollections` are GENERATED from the live Disasters STAC** by
+  `scripts/sync_stac_assets.py`, never hand-edited, and the app offers no way to edit them. The
+  asset name is the item asset whose roles include `data`; `cog_default` and the
+  `rendered_preview_*` / dashboard renders are NOT asset names. Collections are matched to products
+  by rule (sensor = algorithm id or named in the card title; asset key = the product token, its
+  folder, or named in its card title; or an exact name unique across all of STAC). Claims are
+  ranked, a product with its own-sensor collections ignores title-only sensors, and a tie is
+  assigned to nobody and reported. The picker shows `stacAsset` as the product token; a product no
+  live collection carries shows its own token, dashed. `validate_data.py` checks the shape only (CI
+  has no network); `sync_stac_assets.py --check` exits 1 when the file is stale against live STAC.
+  The product `id` stays the algorithm's CLI token — the DPS run scripts are demo scaffolding and
+  will change, so they are not a naming authority.
+
 ## Locations at any level of interest
 `src/request/PlacePicker.tsx` over a bundled gazetteer (`src/places.ts`): pick **Alabama**, or
 **Narrow** it to *Montgomery, Alabama* (or a county); **Broaden** goes back up. Picking places fills

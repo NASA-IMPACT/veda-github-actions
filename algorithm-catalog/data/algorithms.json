@@ -52,7 +52,11 @@
           "Landslide",
           "Volcano"
         ],
-        "portalData": "DATA__LANDSAT_TRUE_COLOR"
+        "portalData": "DATA__LANDSAT_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "landsat-truecolor-daily"
+        ]
       },
       {
         "id": "pan",
@@ -78,7 +82,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__LANDSAT_NATURAL_COLOR"
+        "portalData": "DATA__LANDSAT_NATURAL_COLOR",
+        "stacAsset": "naturalcolor",
+        "stacCollections": [
+          "landsat-naturalcolor-daily"
+        ]
       },
       {
         "id": "colorIR",
@@ -96,7 +104,11 @@
           "Fire",
           "Landslide"
         ],
-        "portalData": "DATA__LANDSAT_COLOR_INFRARED"
+        "portalData": "DATA__LANDSAT_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "landsat-colorir-daily"
+        ]
       },
       {
         "id": "ndvi",
@@ -114,7 +126,11 @@
           "Drought",
           "Heat"
         ],
-        "portalData": "DATA__LANDSAT_NDVI"
+        "portalData": "DATA__LANDSAT_NDVI",
+        "stacAsset": "ndvi",
+        "stacCollections": [
+          "landsat-ndvi-daily"
+        ]
       },
       {
         "id": "ndwi",
@@ -140,7 +156,11 @@
           "Flood",
           "TropicalCyclone"
         ],
-        "portalData": "DATA__LANDSAT_MNDWI"
+        "portalData": "DATA__LANDSAT_MNDWI",
+        "stacAsset": "mndwi",
+        "stacCollections": [
+          "landsat-mndwi-daily"
+        ]
       },
       {
         "id": "evi",
@@ -164,7 +184,11 @@
         "primaryHazards": [
           "Fire"
         ],
-        "portalData": "DATA__LANDSAT_NBR"
+        "portalData": "DATA__LANDSAT_NBR",
+        "stacAsset": "nbr",
+        "stacCollections": [
+          "landsat-nbr-daily"
+        ]
       },
       {
         "id": "we",
@@ -334,7 +358,12 @@
           "Volcano",
           "WinterWx"
         ],
-        "portalData": "DATA__SENTINEL_2_TRUE_COLOR"
+        "portalData": "DATA__SENTINEL_2_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "sentinel2-truecolor-daily",
+          "sentinel2-truecolor-subdaily"
+        ]
       },
       {
         "id": "nat",
@@ -347,7 +376,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_2_NATURAL_COLOR"
+        "portalData": "DATA__SENTINEL_2_NATURAL_COLOR",
+        "stacAsset": "naturalcolor",
+        "stacCollections": [
+          "sentinel2-naturalcolor-daily"
+        ]
       },
       {
         "id": "swir",
@@ -363,7 +396,12 @@
           "Fire",
           "Volcano"
         ],
-        "portalData": "DATA__SENTINEL_2_SWIR"
+        "portalData": "DATA__SENTINEL_2_SWIR",
+        "stacAsset": "swir",
+        "stacCollections": [
+          "sentinel2-swir-daily",
+          "sentinel2-swir-subdaily"
+        ]
       },
       {
         "id": "colorIR",
@@ -381,7 +419,12 @@
           "Fire",
           "Flood"
         ],
-        "portalData": "DATA__SENTINEL_2_COLOR_INFRARED"
+        "portalData": "DATA__SENTINEL_2_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "sentinel2-colorir-daily",
+          "sentinel2-colorir-subdaily"
+        ]
       },
       {
         "id": "ndvi",
@@ -425,7 +468,11 @@
           "Flood",
           "TropicalCyclone"
         ],
-        "portalData": "DATA__SENTINEL_2_MNDWI"
+        "portalData": "DATA__SENTINEL_2_MNDWI",
+        "stacAsset": "mndwi",
+        "stacCollections": [
+          "sentinel2-mndwi-subdaily"
+        ]
       },
       {
         "id": "nbr",
@@ -437,7 +484,11 @@
         "primaryHazards": [
           "Fire"
         ],
-        "portalData": "DATA__SENTINEL_2_NBR"
+        "portalData": "DATA__SENTINEL_2_NBR",
+        "stacAsset": "nbr",
+        "stacCollections": [
+          "sentinel2-nbr-daily"
+        ]
       },
       {
         "id": "we",
@@ -572,7 +623,11 @@
           "TropicalCyclone",
           "Landslide"
         ],
-        "portalData": "DATA__SATELLOGIC_TRUE_COLOR"
+        "portalData": "DATA__SATELLOGIC_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "satellogic-truecolor-subdaily"
+        ]
       },
       {
         "id": "colorir",
@@ -586,7 +641,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SATELLOGIC_COLOR_INFRARED"
+        "portalData": "DATA__SATELLOGIC_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "satellogic-colorir-subdaily"
+        ]
       },
       {
         "id": "ndvi",
@@ -733,7 +792,11 @@
           "Earthquake",
           "Storm"
         ],
-        "portalData": "DATA__UMBRA_SIGMA_NAUGHT"
+        "portalData": "DATA__UMBRA_SIGMA_NAUGHT",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "umbra-gec-subdaily"
+        ]
       },
       {
         "id": "beta",
@@ -890,7 +953,11 @@
           "Earthquake",
           "Storm"
         ],
-        "portalData": "DATA__CAPELLA_BACKSCATTER"
+        "portalData": "DATA__CAPELLA_BACKSCATTER",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "capella-backscatter-subdaily"
+        ]
       }
     ],
     "inputs": [
@@ -976,7 +1043,12 @@
           "Storm",
           "WinterWx"
         ],
-        "portalData": "DATA__BLACK_MARBLE_HD"
+        "portalData": "DATA__BLACK_MARBLE_HD",
+        "stacAsset": "blackmarble_hd",
+        "stacCollections": [
+          "blackmarble-hd-composite",
+          "blackmarble-hd-daily"
+        ]
       },
       {
         "id": "hdnightlightscolored",
@@ -1216,7 +1288,11 @@
         ],
         "note": "Prototype — produced via notebook, not DPS.",
         "primaryHazards": [],
-        "portalData": "DATA__ICEYE_BACKSCATTER"
+        "portalData": "DATA__ICEYE_BACKSCATTER",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "iceye-backscatter-subdaily"
+        ]
       }
     ],
     "inputs": [
@@ -1278,7 +1354,11 @@
           "Earthquake"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DISP_S1_COHERENCE"
+        "portalData": "DATA__OPERA_DISP_S1_COHERENCE",
+        "stacAsset": "coherence",
+        "stacCollections": [
+          "opera-disp-s1-coherence-daily"
+        ]
       },
       {
         "id": "dispRng",
@@ -1288,7 +1368,11 @@
           "Earthquake"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DISP_S1_RNG"
+        "portalData": "DATA__OPERA_DISP_S1_RNG",
+        "stacAsset": "rng",
+        "stacCollections": [
+          "opera-disp-s1-rng-daily"
+        ]
       },
       {
         "id": "dispUnw",
@@ -1298,7 +1382,11 @@
           "Earthquake"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DISP_S1_UNW"
+        "portalData": "DATA__OPERA_DISP_S1_UNW",
+        "stacAsset": "unw",
+        "stacCollections": [
+          "opera-disp-s1-unw-daily"
+        ]
       },
       {
         "id": "dispWrp",
@@ -1308,7 +1396,11 @@
           "Earthquake"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DISP_S1_WRP"
+        "portalData": "DATA__OPERA_DISP_S1_WRP",
+        "stacAsset": "wrp",
+        "stacCollections": [
+          "opera-disp-s1-wrp-daily"
+        ]
       },
       {
         "id": "distVegAnom",
@@ -1320,7 +1412,11 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_ANOM"
+        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_ANOM",
+        "stacAsset": "veg-anom-max",
+        "stacCollections": [
+          "opera-distalert-veg-anom-max-daily"
+        ]
       },
       {
         "id": "distVegStatus",
@@ -1332,7 +1428,11 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_STATUS"
+        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_STATUS",
+        "stacAsset": "veg-dist-status",
+        "stacCollections": [
+          "opera-distalert-veg-dist-status-daily"
+        ]
       },
       {
         "id": "genDistStatus",
@@ -1344,7 +1444,11 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DIST_ALERT_GEN_DIST_STATUS"
+        "portalData": "DATA__OPERA_DIST_ALERT_GEN_DIST_STATUS",
+        "stacAsset": "gen-dist-status",
+        "stacCollections": [
+          "opera-distalert-gen-dist-status-daily"
+        ]
       },
       {
         "id": "distS1",
@@ -1354,7 +1458,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_DIST_S1"
+        "portalData": "DATA__OPERA_DIST_S1",
+        "stacAsset": "dist-s1",
+        "stacCollections": [
+          "opera-distalert-s1-daily"
+        ]
       },
       {
         "id": "dswx",
@@ -1379,7 +1487,11 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__OPERA_RTC_RGB_MOSAIC"
+        "portalData": "DATA__OPERA_RTC_RGB_MOSAIC",
+        "stacAsset": "rgb",
+        "stacCollections": [
+          "opera-rtc-mosaic-rgb-daily"
+        ]
       }
     ],
     "inputs": []
@@ -1426,7 +1538,12 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__UAVSAR_RGB"
+        "portalData": "DATA__UAVSAR_RGB",
+        "stacAsset": "rgb",
+        "stacCollections": [
+          "uavsar-rgb-composite",
+          "uavsar-rgb-subdaily"
+        ]
       },
       {
         "id": "quicklookClassified",
@@ -1438,7 +1555,11 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__UAVSAR_QUICKLOOK_CLASSIFIED"
+        "portalData": "DATA__UAVSAR_QUICKLOOK_CLASSIFIED",
+        "stacAsset": "quicklookclassified",
+        "stacCollections": [
+          "uavsar-quicklookclassified-subdaily"
+        ]
       },
       {
         "id": "unetClassified",
@@ -1450,7 +1571,12 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED"
+        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED",
+        "stacAsset": "unetclassified",
+        "stacCollections": [
+          "uavsar-unetclassified-composite",
+          "uavsar-unetclassified-daily"
+        ]
       },
       {
         "id": "unetGrayscale",
@@ -1462,7 +1588,12 @@
           "Storm"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED_GRAYSCALE"
+        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED_GRAYSCALE",
+        "stacAsset": "unetclassifiedgrayscale",
+        "stacCollections": [
+          "uavsar-unetclassifiedgrayscale-composite",
+          "uavsar-unetclassifiedgrayscale-daily"
+        ]
       },
       {
         "id": "displacement",
@@ -1474,7 +1605,11 @@
           "Volcano"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__UAVSAR_DISPLACEMENT"
+        "portalData": "DATA__UAVSAR_DISPLACEMENT",
+        "stacAsset": "displacement",
+        "stacCollections": [
+          "uavsar-displacement-daily"
+        ]
       }
     ],
     "inputs": []
@@ -1529,7 +1664,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__AVIRIS_3_CHAR_AND_ASH"
+        "portalData": "DATA__AVIRIS_3_CHAR_AND_ASH",
+        "stacAsset": "charash",
+        "stacCollections": [
+          "aviris3-charash-daily"
+        ]
       },
       {
         "id": "dnbr",
@@ -1539,7 +1678,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__AVIRIS_3_DNBR"
+        "portalData": "DATA__AVIRIS_3_DNBR",
+        "stacAsset": "dnbr",
+        "stacCollections": [
+          "aviris3-dnbr-daily"
+        ]
       },
       {
         "id": "pca",
@@ -1549,7 +1692,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__AVIRIS_3_PCA"
+        "portalData": "DATA__AVIRIS_3_PCA",
+        "stacAsset": "pca",
+        "stacCollections": [
+          "aviris3-pca-daily"
+        ]
       }
     ],
     "inputs": []
@@ -1600,7 +1747,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__PLANET_TRUE_COLOR"
+        "portalData": "DATA__PLANET_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "planet-truecolor-daily"
+        ]
       },
       {
         "id": "ndvi",
@@ -1616,7 +1767,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__PLANET_NDVI"
+        "portalData": "DATA__PLANET_NDVI",
+        "stacAsset": "ndvi",
+        "stacCollections": [
+          "planet-ndvi-daily"
+        ]
       },
       {
         "id": "ndviChange",
@@ -1632,7 +1787,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__PLANET_NDVI_CHANGE"
+        "portalData": "DATA__PLANET_NDVI_CHANGE",
+        "stacAsset": "ndvichange",
+        "stacCollections": [
+          "planet-ndvichange-composite"
+        ]
       },
       {
         "id": "ndwi",
@@ -1648,7 +1807,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__PLANET_NDWI"
+        "portalData": "DATA__PLANET_NDWI",
+        "stacAsset": "ndwi",
+        "stacCollections": [
+          "planet-ndwi-daily"
+        ]
       }
     ],
     "inputs": []
@@ -1697,7 +1860,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__VANTOR_TRUE_COLOR"
+        "portalData": "DATA__VANTOR_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "vantor-truecolor-subdaily"
+        ]
       },
       {
         "id": "colorIR",
@@ -1713,7 +1880,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__VANTOR_COLOR_INFRARED"
+        "portalData": "DATA__VANTOR_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "vantor-colorir-subdaily"
+        ]
       },
       {
         "id": "pan",
@@ -1729,7 +1900,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__VANTOR_PANCHROMATIC"
+        "portalData": "DATA__VANTOR_PANCHROMATIC",
+        "stacAsset": "panchromatic",
+        "stacCollections": [
+          "vantor-panchromatic-subdaily"
+        ]
       }
     ],
     "inputs": []
@@ -1777,7 +1952,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SKYSAT_TRUE_COLOR"
+        "portalData": "DATA__SKYSAT_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "skysat-truecolor-subdaily"
+        ]
       },
       {
         "id": "colorIR",
@@ -1793,7 +1972,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SKYSAT_COLOR_INFRARED"
+        "portalData": "DATA__SKYSAT_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "skysat-colorir-subdaily"
+        ]
       }
     ],
     "inputs": []
@@ -1838,7 +2021,11 @@
           "Heat"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__ECOSTRESS_LAND_SURFACE_TEMPERATURE"
+        "portalData": "DATA__ECOSTRESS_LAND_SURFACE_TEMPERATURE",
+        "stacAsset": "lst",
+        "stacCollections": [
+          "ecostress-lst-subdaily"
+        ]
       }
     ],
     "inputs": []
@@ -1885,7 +2072,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__GPM_IMERG_PRECIPITATION"
+        "portalData": "DATA__GPM_IMERG_PRECIPITATION",
+        "stacAsset": "precipitation",
+        "stacCollections": [
+          "gpm-imerg-daily"
+        ]
       }
     ],
     "inputs": []
@@ -1975,7 +2166,11 @@
           "Earthquake"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__NISAR_GUNW_DISPLACEMENT"
+        "portalData": "DATA__NISAR_GUNW_DISPLACEMENT",
+        "stacAsset": "gunw",
+        "stacCollections": [
+          "nisar-gunw-composite"
+        ]
       }
     ],
     "inputs": []
@@ -2145,7 +2340,12 @@
           "Volcano"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__BLACK_MARBLE_BRDF"
+        "portalData": "DATA__BLACK_MARBLE_BRDF",
+        "stacAsset": "blackmarble_brdf",
+        "stacCollections": [
+          "blackmarble-brdf-composite",
+          "blackmarble-brdf-daily"
+        ]
       }
     ],
     "inputs": []
@@ -2188,7 +2388,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_1_DAMAGE_ASSESSMENT"
+        "portalData": "DATA__SENTINEL_1_DAMAGE_ASSESSMENT",
+        "stacAsset": "damage",
+        "stacCollections": [
+          "sentinel1-dmgassessment-daily"
+        ]
       }
     ],
     "inputs": []
@@ -2230,7 +2434,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_1_SENTINEL_2_BURN_SEVERITY"
+        "portalData": "DATA__SENTINEL_1_SENTINEL_2_BURN_SEVERITY",
+        "stacAsset": "burnseverity",
+        "stacCollections": [
+          "sentinel1_2-burnseverity-daily"
+        ]
       }
     ],
     "inputs": []
@@ -2273,7 +2481,11 @@
           "Fire"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_2_DNBR"
+        "portalData": "DATA__SENTINEL_2_DNBR",
+        "stacAsset": "dnbr",
+        "stacCollections": [
+          "sentinel2-dnbr-daily"
+        ]
       },
       {
         "id": "ndviChangeBinary",
@@ -2289,7 +2501,11 @@
           "WinterWx"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_2_NDVI_CHANGE_BINARY"
+        "portalData": "DATA__SENTINEL_2_NDVI_CHANGE_BINARY",
+        "stacAsset": "ndvichange",
+        "stacCollections": [
+          "sentinel2-ndvichange-daily"
+        ]
       }
     ],
     "inputs": []

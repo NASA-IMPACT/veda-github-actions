@@ -81,6 +81,15 @@ export interface Product {
    * (app/site-config/data/data__sentinel-2-true-color.ts). None = no card on the portal yet.
    */
   portalData?: string;
+  /**
+   * GENERATED from the live Disasters STAC by scripts/sync_stac_assets.py — never hand-edited, and
+   * the app offers no way to edit it. The product-specific asset key on the live items (the asset
+   * whose roles include "data"; never `cog_default` or a rendered preview), e.g. "truecolor",
+   * "colorir", "backscatter", "blackmarble_hd". Absent = no live STAC collection carries it yet.
+   */
+  stacAsset?: string;
+  /** GENERATED with stacAsset: every live collection carrying it, e.g. sentinel2-truecolor-daily. */
+  stacCollections?: string[];
 }
 
 export interface Algorithm {

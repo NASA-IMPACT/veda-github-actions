@@ -1027,3 +1027,9 @@ input[aria-invalid="true"] {
   background: var(--base-lightest, #f0f0f0);
   overflow-wrap: anywhere;
 }
+
+/* A product no live STAC collection carries yet: its own token, visibly not a STAC asset name. */
+.req-picker-token.is-nostac {
+  opacity: 0.55;
+  border: 1px dashed var(--base-light, #a9aeb1);
+}
