@@ -83,7 +83,13 @@ const cards = await page.locator(".acard").count();
 check("algorithm cards render", cards >= 8, `${cards} cards`);
 
 // naturalWidth > 0 is the only honest proof an <img> actually decoded — a 200 on the URL does
-// not mean the browser rendered it.
+// not mean the browser rendered it. Card thumbs are loading="lazy", so scroll each one into view
+// first; otherwise a card below the fold is measured before it was ever requested.
+for (const img of await page.locator("img.acard-thumb").all()) await img.scrollIntoViewIfNeeded();
+await page
+  .waitForFunction(() => [...document.querySelectorAll("img.acard-thumb")].every((i) => i.complete), null, { timeout: 5000 })
+  .catch(() => {});
+await page.evaluate(() => window.scrollTo(0, 0));
 const thumbs = (
   await page.locator("img").evaluateAll((els) =>
     els.map((e) => ({ src: e.getAttribute("src") || "", w: e.naturalWidth })),
@@ -235,10 +241,10 @@ check(
 await page.locator("button", { hasText: "Reset" }).click();
 await page.locator(".ecard", { hasText: "Hurricane Isaias October 2026" }).click();
 await page.locator('[role="tab"]', { hasText: "Page preview" }).click();
-const preview = await page.locator(".page-preview").innerText();
+const preview = await page.locator(".overlay .pp").innerText();
 check(
   "Page preview follows the portal's section order",
-  /Hurricane Isaias October 2026[\s\S]*Type[\s\S]*Need[\s\S]*Hazard[\s\S]*Region[\s\S]*Start Date[\s\S]*Overview[\s\S]*Event Data Gallery/.test(preview),
+  /Hurricane Isaias October 2026[\s\S]*PUBLISHED:[\s\S]*Type[\s\S]*Region[\s\S]*Start Date[\s\S]*Overview/i.test(preview),
 );
 await shot(page, "09-page-preview");
 await page.locator("button", { hasText: "Edit page" }).click();
@@ -250,12 +256,45 @@ await page.locator("#req-subtitle").fill('As Hurricane Isaias made landfall, NAS
 await page.locator("button.req-haz", { hasText: /^Respond$/ }).click();
 await page.locator("#req-intro").fill("Hurricane Isaias brought storm surge to Florida and Alabama.\n\nNASA is sharing maps.");
 await page.locator("#req-govlink").fill("https://www.fema.gov/disaster/hurricane-isaias");
+check(
+  "the page address is never asked for — inferred, and shown only in the live preview",
+  (await page.locator("#req-portalid, #req-pageaddr").count()) === 0 &&
+    /\/hurricane-isaias-oct-2026$/.test((await page.locator(".req-live-head code").innerText()).trim()),
+);
+// The one image after the intro: a Drive FOLDER link is refused; a file link + alt text is accepted.
+const imgUrl = page.locator("#req-image-url");
+await imgUrl.fill("https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp");
+await imgUrl.blur();
+await page.waitForTimeout(200);
+check("a Drive folder link is refused", /FOLDER link/.test(await page.locator(".req-form").innerText()));
+await imgUrl.fill("https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQrSt/view?usp=sharing");
+await page.locator("#req-image-alt").fill("Flooding in Mobile, Alabama");
+await page.locator("#req-image-caption").fill("Sentinel-2 view of Mobile Bay, Oct. 10, 2026. Credit: NASA");
+await page.waitForTimeout(1500); // the Drive thumbnail request fails for this made-up id
+check(
+  "the preview shows the image after the intro — or says plainly it can't load it",
+  (await page.locator(".req-live .pp-figure").count()) === 1 &&
+    /Sentinel-2 view of Mobile Bay/.test(await page.locator(".req-live .pp-figure").innerText()),
+);
 await page.locator("button", { hasText: "Add products" }).click();
 await page.locator(".req-picker-row", { hasText: "True color" }).first().click();
 await page.keyboard.press("Escape");
 await page.waitForTimeout(300);
 const review = await page.locator(".req-form").innerText();
-check("Review shows the live page preview", /Hurricane Isaias brought storm surge/.test(review));
+const live = page.locator(".req-live .pp");
+check("the live portal preview is docked beside the form", (await live.count()) === 1);
+check(
+  "…and updates as you type (sub-title, Need, intro)",
+  // curly, exactly as the generated portal file will carry it — not the straight quotes typed
+  (await live.locator(".pp-hero p").innerText()).includes("NASA “activated” to support FEMA") &&
+    (await live.locator(".pp-meta").innerText()).includes("RESPOND") &&
+    (await live.locator(".pp-main").innerText()).includes("Hurricane Isaias brought storm surge"),
+);
+check(
+  "…and shows the REAL portal gallery card for the product",
+  (await live.locator(".pp-card h3").allInnerTexts()).includes("Landsat True Color Imagery") &&
+    (await live.locator(".pp-card img").first().evaluate((i) => i.complete && i.naturalWidth > 0)),
+);
 check("Review shows the portal file path", /app\/site-config\/event\/event__hurricane-isaias-oct-2026\.ts/.test(review));
 const portalSrc = await page.locator(".req-whatruns pre.urlbox").last().textContent();
 check("portal file uses curly quotes (Biome-safe)", portalSrc.includes("NASA “activated”") && !portalSrc.includes('\\"'));
@@ -272,9 +311,210 @@ check(
   doc.page?.intro?.startsWith("Hurricane Isaias") &&
     doc.page?.needs?.[0] === "respond" &&
     doc.event?.places?.length === 2 &&
-    !("end" in (doc.event ?? {})),
+    !("end" in (doc.event ?? {})) &&
+    doc.page?.image?.alt === "Flooding in Mobile, Alabama",
   opened ? new URL(opened).searchParams.get("filename") : "no window.open",
 );
+
+// --- 7. a NEW page's name must carry the portal convention, since it becomes the address ----------
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("#req-name").fill("Hurricane Isaias");
+await page.locator("#req-subtitle").fill("Test");
+await page.locator("#req-name").blur();
+await page.waitForTimeout(200);
+check(
+  "a new page's name must end with Month YYYY",
+  /End the name with the month and year/.test(await page.locator(".req-form").innerText()),
+);
+
+// --- 8. "＋ Add products": sensors on the left, the picked sensor's products on the right ---------
+await page.goto(BASE, { waitUntil: "networkidle" });
+const picker = page.locator(".req-prodpick");
+const sensorTabs = picker.locator('[role="tablist"] [role="tab"]');
+const panel = picker.locator('[role="tabpanel"]');
+await page.locator("button", { hasText: "Add products" }).click();
+check(
+  "picker lists every algorithm as a sensor on the left",
+  (await sensorTabs.count()) === cards,
+  `${await sensorTabs.count()} sensors, ${cards} algorithm cards`,
+);
+check(
+  "…the first sensor is selected by default",
+  (await sensorTabs.first().getAttribute("aria-selected")) === "true" &&
+    (await panel.locator(".req-picker-group-head").innerText()).includes("Landsat"),
+);
+const tokenOf = async (label) =>
+  panel.locator(".req-picker-row", { hasText: label }).first().locator(".req-picker-token");
+check(
+  "product tokens are the LIVE STAC asset names (Landsat True color → truecolor)",
+  (await (await tokenOf("True color")).innerText()) === "truecolor" &&
+    (await (await tokenOf("Color infrared")).innerText()) === "colorir",
+);
+check(
+  "…and a product no STAC collection carries yet is marked as such (Panchromatic)",
+  (await (await tokenOf("Panchromatic")).getAttribute("class")).includes("is-nostac"),
+);
+await shot(page, "11-picker");
+// Exact title: "Sentinel-2" also appears in "Sentinel-2 change products" and the S1+S2 burn severity.
+await sensorTabs.filter({ has: page.locator(".req-picker-stitle", { hasText: /^Sentinel-2$/ }) }).click();
+const s2Panel = await panel.innerText();
+check(
+  "clicking Sentinel-2 shows its products on the right — and not Landsat's",
+  /Shortwave infrared/.test(s2Panel) && !/Panchromatic/.test(s2Panel) && !/Landsat/.test(s2Panel),
+);
+await picker.locator(".req-picker-search").fill("swir");
+await page.waitForTimeout(150);
+const swirTabs = await sensorTabs.allInnerTexts();
+check(
+  "searching “swir” narrows the sensor list (plus an All matches entry)",
+  swirTabs.length > 1 && swirTabs.length < cards + 1 && /All matches/.test(swirTabs[0]),
+  swirTabs.map((t) => t.replace(/\s+/g, " ")).join(" | "),
+);
+await panel.locator(".req-picker-row", { hasText: "Shortwave infrared" }).click();
+check(
+  "…and the match can still be added",
+  (await panel.locator(".req-picker-row.is-added", { hasText: "Shortwave infrared" }).count()) === 1,
+);
+await picker.locator(".req-picker-search").fill("");
+await picker.locator(".req-picker-search").press("ArrowDown"); // into the sensor list
+await page.keyboard.press("Home"); // -> Landsat (first)
+await page.keyboard.press("ArrowDown"); // -> Sentinel-2
+const kbTab = await page.evaluate(() => document.activeElement?.textContent ?? "");
+await page.keyboard.press("Enter"); // -> into its products
+const kbRow = await page.evaluate(() =>
+  document.activeElement?.classList.contains("req-picker-row")
+    ? document.activeElement.querySelector(".req-picker-name")?.textContent
+    : null,
+);
+await page.keyboard.press("Enter"); // add it
+check(
+  "keyboard: ↓ Home ↓ Enter Enter adds a Sentinel-2 product",
+  /Sentinel-2/.test(kbTab) &&
+    !!kbRow &&
+    (await panel.locator(".req-picker-row.is-added", { hasText: kbRow }).count()) === 1,
+  `${kbTab.replace(/\s+/g, " ")} → ${kbRow}`,
+);
+await page.keyboard.press("Escape");
+check("Esc closes the picker", (await picker.count()) === 0);
+
+// --- 9. Portal products with no algorithm yet (status "external") ------------------------------
+// Every Disasters Portal product can be requested, even one no algorithm here makes. Those are
+// added by hand only: a hazard must never auto-select a layer that has no DPS job behind it.
+await page.goto(BASE, { waitUntil: "networkidle" });
+const hazButtons = page.locator(".req-haz:not(.req-need)");
+const nHaz = await hazButtons.count();
+for (let i = 0; i < nHaz; i++) await hazButtons.nth(i).click();
+await page.waitForTimeout(300);
+const autoHeads = await page.locator(".req-prod-group-hd").allInnerTexts();
+check(
+  "every hazard on: nothing with no algorithm yet is auto-selected",
+  nHaz >= 10 && autoHeads.length > 0 && !autoHeads.some((t) => /no algorithm yet/i.test(t)),
+  `${nHaz} hazards → ${autoHeads.length} auto groups`,
+);
+check(
+  "…so OPERA DSWx is not auto-selected",
+  !(await page.locator(".req-chip-prod").allInnerTexts()).some((t) => /DSWx/.test(t)),
+);
+await page.locator("button", { hasText: "Add products" }).click();
+await page.locator(".req-prodpick .req-picker-search").fill("DSWx");
+await page.waitForTimeout(200);
+// Two-column picker: the OPERA sensor on the left, its products on the right.
+const operaTab = page.locator('.req-prodpick [role="tab"]').filter({ hasText: /OPERA/ }).first();
+await operaTab.click();
+const operaPanel = page.locator('.req-prodpick [role="tabpanel"]');
+const dswxRow = operaPanel.locator(".req-picker-row", { hasText: "Dynamic Surface Water Extent" }).first();
+check(
+  "the picker offers OPERA DSWx, labelled “no algorithm yet”",
+  /no algorithm yet/i.test(await operaTab.innerText()) &&
+    /no algorithm yet/i.test(await operaPanel.locator(".req-picker-group-head").innerText()) &&
+    (await dswxRow.count()) === 1,
+);
+await dswxRow.click();
+await page.keyboard.press("Escape");
+await page.waitForTimeout(300);
+// Anchored on the exact title: a bare hasText "OPERA" is case-insensitive and also hits "operator".
+const operaGroup = page.locator(".req-prod-group").filter({
+  has: page.locator(".req-prod-group-name", { hasText: /^OPERA$/ }),
+});
+check(
+  "…adding it puts a manual OPERA DSWx chip under a “no algorithm yet” group",
+  (await operaGroup.count()) === 1 &&
+    /no algorithm yet/i.test(await operaGroup.locator(".req-prod-group-hd").innerText()) &&
+    /OPERA Dynamic Surface Water Extent \(DSWx\)\s*manual/i.test(await operaGroup.locator(".req-chip").innerText()),
+);
+const runs = page.locator(".req-runblock").filter({ has: page.locator(".req-runblock-head b", { hasText: /^OPERA$/ }) });
+check(
+  "“What this will run” says it is produced outside the catalog, with no DPS job",
+  // textContent, not innerText: the panel is a closed <details>, whose body innerText hides.
+  (await runs.count()) === 1 && /produced outside this catalog[\s\S]*No DPS job is created/.test(await runs.textContent()),
+);
+check(
+  "…and the live portal preview shows the REAL DSWx gallery card",
+  (await page.locator(".req-live .pp-card h3").allInnerTexts()).includes("OPERA Dynamic Surface Water Extent (DSWx)"),
+);
+await shot(page, "12-external-product");
+
+// --- 10. Picker rows toggle; a product with no portal card shows as a draft gallery card ----------
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("button", { hasText: "Add products" }).click();
+const pk = page.locator(".req-prodpick");
+await pk.locator('[role="tab"]').filter({ has: page.locator(".req-picker-stitle", { hasText: /^Umbra SAR$/ }) }).click();
+const gammaRow = pk.locator('[role="tabpanel"] .req-picker-row', { hasText: "Gamma-naught" });
+await gammaRow.click();
+await page.waitForTimeout(200);
+check("picker: ＋ adds the product (row becomes a pressed ✓)", (await gammaRow.getAttribute("aria-pressed")) === "true");
+check(
+  "…a picked product with no portal card shows as a draft gallery card, not silently dropped",
+  (await page.locator(".req-live .pp-card-ghost h3").allInnerTexts()).some((t) => /Gamma-naught/.test(t)),
+);
+await gammaRow.click();
+await page.waitForTimeout(200);
+check(
+  "picker: clicking the ✓ again removes it (chip and draft card gone)",
+  (await gammaRow.getAttribute("aria-pressed")) === "false" &&
+    !(await page.locator(".req-chip-prod").allInnerTexts()).some((t) => /Gamma/.test(t)) &&
+    (await page.locator(".req-live .pp-card-ghost").count()) === 0,
+);
+await page.keyboard.press("Escape");
+
+// --- 11. Adding from the open picker must not shove it off screen --------------------------------
+// The selected list sits ABOVE the picker, so each new sensor group grows the page above it. The
+// picker must stay put across each add/remove itself. (Clicking a sensor tab that is half below
+// the window may scroll it into view — that is the browser doing its job, so drift is measured
+// from just before each add, not from when the picker opened.)
+// A sensor title's textContent runs straight into its status badge ("Vantorno algorithm yet"), so
+// match the name optionally followed by exactly that badge.
+const sensorTitle = (name) => new RegExp(`^${name}(?:no algorithm yet|prototype)?$`);
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("button", { hasText: "Add products" }).click();
+const pk11 = page.locator(".req-prodpick");
+const pickTop = async () => (await pk11.boundingBox()).y;
+const scroll0 = await page.evaluate(() => window.scrollY);
+const toggle = async (sensor, product) => {
+  await pk11.locator('[role="tab"]').filter({ has: page.locator(".req-picker-stitle", { hasText: sensorTitle(sensor) }) }).click();
+  await page.waitForTimeout(100);
+  const before = await pickTop();
+  await pk11.locator('[role="tabpanel"] .req-picker-row', { hasText: product }).first().click();
+  await page.waitForTimeout(150);
+  return Math.round((await pickTop()) - before);
+};
+const drift = [];
+for (const [sensor, product] of [
+  ["Umbra SAR", "Gamma-naught"],
+  ["Capella SAR", "Sigma-naught"],
+  ["Vantor", "Vantor True Color"],
+  ["GPM IMERG", "GPM"],
+]) {
+  drift.push(await toggle(sensor, product));
+}
+check(
+  "the open picker stays put on screen as each product is added above it",
+  drift.every((d) => Math.abs(d) <= 1),
+  `picker drift per add: ${drift.join(", ")} px; page scrolled ${Math.round((await page.evaluate(() => window.scrollY)) - scroll0)} px to compensate`,
+);
+const removeDrift = await toggle("Vantor", "Vantor True Color"); // its ✓ — removes it
+check("…and when one is removed", Math.abs(removeDrift) <= 1, `${removeDrift} px`);
+await page.keyboard.press("Escape");
 
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 

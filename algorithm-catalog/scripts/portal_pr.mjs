@@ -7,6 +7,10 @@
 //        [--title <pr title>] [--source-pr <url>] [--dry-run] <request.json>...
 //
 // For each request with a `page`, in the portal checkout:
+//   0. download its one Google Drive image, sniffing the bytes — a file that isn't shared "Anyone
+//      with the link" comes back as an HTML page, not an image — and bring it to the PORTAL'S IMAGE
+//      STANDARD (disasters-portal #556, refined by #654) before it goes in public/img/event/:
+//      real WebP via `cwebp -q 80 -m 6 -metadata none`, at most 1920px wide, under 500 KB.
 //   1. write app/site-config/event/event__<id>.ts       (src/portal.ts — the same code the app previews)
 //   2. register it in app/site-config/event/index.ts    (import + EVENTS entry, newest startDate first)
 //   3. run the portal's OWN gates — `biome check --write` on the touched files, then the full
@@ -19,14 +23,123 @@
 // Plain Node (>= 22.18, which strips TypeScript types natively) + git + pnpm + gh. No npm deps.
 
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PORTAL_BRANCH, PORTAL_MARKER, PORTAL_REPO, portalEventFile } from "../src/portal.ts";
+import { driveFileId } from "../src/rules.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DATA = join(HERE, "..", "data");
 const INDEX = "app/site-config/event/index.ts";
+const IMG_DIR = "public/img/event";
+// Overridable so the download path can be tested against a local server.
+const DRIVE_DOWNLOAD = process.env.DRIVE_DOWNLOAD_URL ?? "https://drive.usercontent.google.com/download?export=download&id=";
+/** What we will download at all — originals are compressed below, so this only stops absurd files. */
+const MAX_DOWNLOAD_BYTES = 40 * 1024 * 1024;
+
+// The portal's image standard (disasters-portal PR #556, refined by #654).
+const PORTAL_MAX_WIDTH = 1920;
+const PORTAL_MAX_BYTES = 500 * 1024;
+const CWEBP_ARGS = ["-q", "80", "-m", "6", "-metadata", "none"];
+/** #654 stepped an over-budget image's width down rather than drop below q80; this is the floor. */
+const MIN_STEP_WIDTH = 640;
+
+const kb = (n) => `${Math.round(n / 1024).toLocaleString("en-US")} KB`;
+
+/**
+ * Bring an image to the portal's standard. Per #654: a WebP that ALREADY meets it is kept byte for
+ * byte (re-encoding lossy WebP only loses quality); anything else is encoded with cwebp at q80,
+ * capped at 1920px, and — only if still over 500 KB — stepped down in width until it fits. Body
+ * images are NOT capped at 1280px: #654 dropped that rule because it blurred high-DPI screenshots.
+ */
+export function toPortalWebp(bytes, kind) {
+  if (kind.ext === "webp" && bytes.length <= PORTAL_MAX_BYTES && kind.width <= PORTAL_MAX_WIDTH) {
+    return { bytes, width: kind.width, height: kind.height, note: `${kb(bytes.length)} WebP, ${kind.width}px — already meets the portal standard, kept as is` };
+  }
+  if (kind.ext === "gif") return { error: "GIF can't be converted to the portal's WebP standard — export it as PNG or JPEG" };
+  const dir = mkdtempSync(join(tmpdir(), "portal-img-"));
+  try {
+    const src = join(dir, `source.${kind.ext}`);
+    const out = join(dir, "out.webp");
+    writeFileSync(src, bytes);
+    let width = Math.min(kind.width, PORTAL_MAX_WIDTH);
+    let encoded;
+    for (;;) {
+      const resize = width < kind.width ? ["-resize", String(width), "0"] : [];
+      try {
+        execFileSync("cwebp", [...CWEBP_ARGS, ...resize, src, "-o", out], { stdio: "pipe" });
+      } catch (e) {
+        if (e.code === "ENOENT") return { error: "cwebp is not installed (brew install webp / apt-get install webp)" };
+        return { error: `cwebp could not encode it (${String(e.stderr || e.message).trim().split("\n").pop()})` };
+      }
+      encoded = readFileSync(out);
+      if (encoded.length <= PORTAL_MAX_BYTES || width <= MIN_STEP_WIDTH) break;
+      width = Math.max(MIN_STEP_WIDTH, Math.round(width * 0.85));
+    }
+    const got = sniffImage(encoded);
+    if (got?.ext !== "webp") return { error: "the encoded file is not a real WebP" };
+    if (encoded.length > PORTAL_MAX_BYTES) return { error: `still ${kb(encoded.length)} at ${got.width}px — over the portal's 500 KB limit; crop or simplify it` };
+    const resized = got.width !== kind.width ? `, ${kind.width} → ${got.width}px` : `, ${got.width}px`;
+    return { bytes: encoded, width: got.width, height: got.height, note: `${kb(bytes.length)} ${kind.ext.toUpperCase()} → ${kb(encoded.length)} WebP (q80${resized})` };
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Format + pixel size from the file's own bytes (the portal's `image` block needs width/height).
+ * Returns null for anything that is not a PNG, JPEG, WebP or GIF — e.g. Drive's HTML sign-in page.
+ */
+export function sniffImage(b) {
+  if (b.length > 24 && b.readUInt32BE(0) === 0x89504e47) return { ext: "png", width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+  if (b.length > 10 && b.toString("latin1", 0, 3) === "GIF") return { ext: "gif", width: b.readUInt16LE(6), height: b.readUInt16LE(8) };
+  if (b.length > 30 && b.toString("latin1", 0, 4) === "RIFF" && b.toString("latin1", 8, 12) === "WEBP") {
+    const chunk = b.toString("latin1", 12, 16);
+    if (chunk === "VP8 ") return { ext: "webp", width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+    if (chunk === "VP8L") {
+      const bits = b.readUInt32LE(21);
+      return { ext: "webp", width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === "VP8X") return { ext: "webp", width: b.readUIntLE(24, 3) + 1, height: b.readUIntLE(27, 3) + 1 };
+  }
+  if (b.length > 4 && b[0] === 0xff && b[1] === 0xd8) {
+    let o = 2;
+    while (o + 9 < b.length && b[o] === 0xff) {
+      const marker = b[o + 1];
+      // SOF0-3, 5-7, 9-11, 13-15 carry the frame size; everything else is skipped by its length.
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return { ext: "jpg", width: b.readUInt16BE(o + 7), height: b.readUInt16BE(o + 5) };
+      }
+      o += 2 + b.readUInt16BE(o + 2);
+    }
+  }
+  return null;
+}
+
+/** Download one page image into the portal checkout. Returns the resolved image or a reason. */
+async function downloadImage(portal, id, img) {
+  const fileId = driveFileId(img.url);
+  if (!fileId) return { error: "not a Google Drive file link" };
+  let bytes;
+  try {
+    const res = await fetch(DRIVE_DOWNLOAD + encodeURIComponent(fileId), { redirect: "follow" });
+    if (!res.ok) return { error: `Drive answered HTTP ${res.status} — is it shared “Anyone with the link”?` };
+    bytes = Buffer.from(await res.arrayBuffer());
+  } catch (e) {
+    return { error: `download failed (${e.message})` };
+  }
+  const kind = sniffImage(bytes);
+  if (!kind) return { error: "Drive returned a page, not an image — set its sharing to “Anyone with the link”" };
+  if (bytes.length > MAX_DOWNLOAD_BYTES) return { error: `${(bytes.length / 1048576).toFixed(1)} MB — too large to process; export a smaller original` };
+  const web = toPortalWebp(bytes, kind);
+  if (web.error) return { error: web.error };
+  const name = `${id}__overview.webp`;
+  mkdirSync(join(portal, IMG_DIR), { recursive: true });
+  writeFileSync(join(portal, IMG_DIR, name), web.bytes);
+  return { image: { ...img, src: `/img/event/${name}`, width: web.width, height: web.height }, path: `${IMG_DIR}/${name}`, note: web.note };
+}
 
 function parseArgs(argv) {
   const opts = { files: [], dryRun: false };
@@ -94,7 +207,7 @@ export function registerInIndex(portal, constName, id, startDate) {
   return true;
 }
 
-function main() {
+async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const algorithms = JSON.parse(readFileSync(join(DATA, "algorithms.json"), "utf8"));
   const hazards = JSON.parse(readFileSync(join(DATA, "hazards.json"), "utf8"));
@@ -108,24 +221,38 @@ function main() {
 
   const written = [];
   const skipped = [];
+  const imageFiles = [];
+  const imageFailures = [];
+  const imageNotes = [];
   for (const r of requests) {
-    const f = portalEventFile(
-      { ...r.event, layers: r.products.map(({ algorithm, product }) => ({ algorithm, product })), page: r.page },
-      algorithms,
-      hazards,
-      today,
-    );
-    const target = join(opts.portal, f.path);
+    const input = { ...r.event, layers: r.products.map(({ algorithm, product }) => ({ algorithm, product })), page: r.page };
+    const f0 = portalEventFile(input, algorithms, hazards, today);
+    const target = join(opts.portal, f0.path);
     // Hand-written pages are often .tsx (they embed JSX), so check BOTH extensions — and treat a
     // page already registered in index.ts under this constant as existing too.
     const existing = [target, target.replace(/\.ts$/, ".tsx")].find(existsSync);
-    const registered = new RegExp(`\\b${f.constName}\\b`).test(readFileSync(join(opts.portal, INDEX), "utf8"));
+    const registered = new RegExp(`\\b${f0.constName}\\b`).test(readFileSync(join(opts.portal, INDEX), "utf8"));
     if ((existing && !readFileSync(existing, "utf8").startsWith(PORTAL_MARKER)) || (registered && !existing)) {
       skipped.push(
-        `${f.id} already exists on the portal and was written by hand — not overwritten. Edit it there directly.`,
+        `${f0.id} already exists on the portal and was written by hand — not overwritten. Edit it there directly.`,
       );
       continue;
     }
+    // The image first: its block needs the real path and pixel size.
+    const resolved = [];
+    for (const img of r.page.image?.url?.trim() ? [r.page.image] : []) {
+      const got = await downloadImage(opts.portal, f0.id, img);
+      if (got.image) {
+        resolved.push(got.image);
+        imageFiles.push(got.path);
+        imageNotes.push(`\`${got.path}\` — ${got.note}`);
+        console.log(`image ${got.path} (${got.image.width}×${got.image.height}) — ${got.note}`);
+      } else {
+        imageFailures.push(`${r.event.name} — image ${img.url}: ${got.error}`);
+        console.log(`image FAILED ${img.url}: ${got.error}`);
+      }
+    }
+    const f = portalEventFile(input, algorithms, hazards, today, resolved);
     writeFileSync(target, f.source);
     registerInIndex(opts.portal, f.constName, f.id, r.event.start);
     written.push({ ...f, name: r.event.name, stacName: r.event.stacName });
@@ -138,6 +265,7 @@ function main() {
   // difference can never be what fails the PR; then the real checks over the WHOLE repo.
   const touched = [...written.map((w) => w.path), INDEX];
   run(opts.portal, "pnpm", ["exec", "biome", "check", "--write", ...touched]);
+  touched.push(...imageFiles); // committed, but not Biome's business
   run(opts.portal, "pnpm", ["lint:ci"]);
   run(opts.portal, "pnpm", ["typecheck"]);
   console.log("portal lint:ci + typecheck passed");
@@ -148,7 +276,14 @@ function main() {
     "",
     ...written.map((w) => `- **${w.name}** (\`${w.stacName}\`) → \`${w.path}\`${w.unmapped.length ? ` — no data-gallery card yet for: ${w.unmapped.join(", ")}` : ""}`),
     "",
-    "The hero and thumbnail use the portal's placeholder image (`/img/event/template-hero.webp`) — swap in the real one before merging.",
+    ...(imageNotes.length
+      ? ["", "Image from Google Drive, brought to the portal's image standard (#556/#654: real WebP, q80, ≤ 1920px, < 500 KB):", ...imageNotes.map((n) => `- ${n}`)]
+      : []),
+    ...(imageFailures.length
+      ? ["", "⚠ **Could not download the image** — it is listed in the page file as a comment; add it by hand:", ...imageFailures.map((m) => `- ${m}`)]
+      : []),
+    "",
+    "The masthead and card thumbnail use the portal's default event image (`/img/event/template-hero.webp`).",
     ...(opts.sourcePr ? ["", `Source request: ${opts.sourcePr}`] : []),
     "",
     "Lint (`pnpm lint:ci`) and typecheck (`pnpm typecheck`) were run against this branch before the PR was opened.",
@@ -175,4 +310,4 @@ function main() {
   if (process.env.GITHUB_OUTPUT) writeFileSync(process.env.GITHUB_OUTPUT, `url=${url}\n`, { flag: "a" });
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

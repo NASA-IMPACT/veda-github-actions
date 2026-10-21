@@ -52,7 +52,11 @@
           "Landslide",
           "Volcano"
         ],
-        "portalData": "DATA__LANDSAT_TRUE_COLOR"
+        "portalData": "DATA__LANDSAT_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "landsat-truecolor-daily"
+        ]
       },
       {
         "id": "pan",
@@ -78,7 +82,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__LANDSAT_NATURAL_COLOR"
+        "portalData": "DATA__LANDSAT_NATURAL_COLOR",
+        "stacAsset": "naturalcolor",
+        "stacCollections": [
+          "landsat-naturalcolor-daily"
+        ]
       },
       {
         "id": "colorIR",
@@ -96,7 +104,11 @@
           "Fire",
           "Landslide"
         ],
-        "portalData": "DATA__LANDSAT_COLOR_INFRARED"
+        "portalData": "DATA__LANDSAT_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "landsat-colorir-daily"
+        ]
       },
       {
         "id": "ndvi",
@@ -114,7 +126,11 @@
           "Drought",
           "Heat"
         ],
-        "portalData": "DATA__LANDSAT_NDVI"
+        "portalData": "DATA__LANDSAT_NDVI",
+        "stacAsset": "ndvi",
+        "stacCollections": [
+          "landsat-ndvi-daily"
+        ]
       },
       {
         "id": "ndwi",
@@ -140,7 +156,11 @@
           "Flood",
           "TropicalCyclone"
         ],
-        "portalData": "DATA__LANDSAT_MNDWI"
+        "portalData": "DATA__LANDSAT_MNDWI",
+        "stacAsset": "mndwi",
+        "stacCollections": [
+          "landsat-mndwi-daily"
+        ]
       },
       {
         "id": "evi",
@@ -164,7 +184,11 @@
         "primaryHazards": [
           "Fire"
         ],
-        "portalData": "DATA__LANDSAT_NBR"
+        "portalData": "DATA__LANDSAT_NBR",
+        "stacAsset": "nbr",
+        "stacCollections": [
+          "landsat-nbr-daily"
+        ]
       },
       {
         "id": "we",
@@ -334,7 +358,12 @@
           "Volcano",
           "WinterWx"
         ],
-        "portalData": "DATA__SENTINEL_2_TRUE_COLOR"
+        "portalData": "DATA__SENTINEL_2_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "sentinel2-truecolor-daily",
+          "sentinel2-truecolor-subdaily"
+        ]
       },
       {
         "id": "nat",
@@ -347,7 +376,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SENTINEL_2_NATURAL_COLOR"
+        "portalData": "DATA__SENTINEL_2_NATURAL_COLOR",
+        "stacAsset": "naturalcolor",
+        "stacCollections": [
+          "sentinel2-naturalcolor-daily"
+        ]
       },
       {
         "id": "swir",
@@ -363,7 +396,12 @@
           "Fire",
           "Volcano"
         ],
-        "portalData": "DATA__SENTINEL_2_SWIR"
+        "portalData": "DATA__SENTINEL_2_SWIR",
+        "stacAsset": "swir",
+        "stacCollections": [
+          "sentinel2-swir-daily",
+          "sentinel2-swir-subdaily"
+        ]
       },
       {
         "id": "colorIR",
@@ -381,7 +419,12 @@
           "Fire",
           "Flood"
         ],
-        "portalData": "DATA__SENTINEL_2_COLOR_INFRARED"
+        "portalData": "DATA__SENTINEL_2_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "sentinel2-colorir-daily",
+          "sentinel2-colorir-subdaily"
+        ]
       },
       {
         "id": "ndvi",
@@ -425,7 +468,11 @@
           "Flood",
           "TropicalCyclone"
         ],
-        "portalData": "DATA__SENTINEL_2_MNDWI"
+        "portalData": "DATA__SENTINEL_2_MNDWI",
+        "stacAsset": "mndwi",
+        "stacCollections": [
+          "sentinel2-mndwi-subdaily"
+        ]
       },
       {
         "id": "nbr",
@@ -437,7 +484,11 @@
         "primaryHazards": [
           "Fire"
         ],
-        "portalData": "DATA__SENTINEL_2_NBR"
+        "portalData": "DATA__SENTINEL_2_NBR",
+        "stacAsset": "nbr",
+        "stacCollections": [
+          "sentinel2-nbr-daily"
+        ]
       },
       {
         "id": "we",
@@ -572,7 +623,11 @@
           "TropicalCyclone",
           "Landslide"
         ],
-        "portalData": "DATA__SATELLOGIC_TRUE_COLOR"
+        "portalData": "DATA__SATELLOGIC_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "satellogic-truecolor-subdaily"
+        ]
       },
       {
         "id": "colorir",
@@ -586,7 +641,11 @@
           "Landslide"
         ],
         "primaryHazards": [],
-        "portalData": "DATA__SATELLOGIC_COLOR_INFRARED"
+        "portalData": "DATA__SATELLOGIC_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "satellogic-colorir-subdaily"
+        ]
       },
       {
         "id": "ndvi",
@@ -733,7 +792,11 @@
           "Earthquake",
           "Storm"
         ],
-        "portalData": "DATA__UMBRA_SIGMA_NAUGHT"
+        "portalData": "DATA__UMBRA_SIGMA_NAUGHT",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "umbra-gec-subdaily"
+        ]
       },
       {
         "id": "beta",
@@ -890,7 +953,11 @@
           "Earthquake",
           "Storm"
         ],
-        "portalData": "DATA__CAPELLA_BACKSCATTER"
+        "portalData": "DATA__CAPELLA_BACKSCATTER",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "capella-backscatter-subdaily"
+        ]
       }
     ],
     "inputs": [
@@ -976,7 +1043,12 @@
           "Storm",
           "WinterWx"
         ],
-        "portalData": "DATA__BLACK_MARBLE_HD"
+        "portalData": "DATA__BLACK_MARBLE_HD",
+        "stacAsset": "blackmarble_hd",
+        "stacCollections": [
+          "blackmarble-hd-composite",
+          "blackmarble-hd-daily"
+        ]
       },
       {
         "id": "hdnightlightscolored",
@@ -1216,7 +1288,11 @@
         ],
         "note": "Prototype — produced via notebook, not DPS.",
         "primaryHazards": [],
-        "portalData": "DATA__ICEYE_BACKSCATTER"
+        "portalData": "DATA__ICEYE_BACKSCATTER",
+        "stacAsset": "backscatter",
+        "stacCollections": [
+          "iceye-backscatter-subdaily"
+        ]
       }
     ],
     "inputs": [
@@ -1235,5 +1311,1203 @@
         "doc": "Activation event, e.g. 202511_Flood_TX."
       }
     ]
+  },
+  {
+    "id": "opera",
+    "algorithmName": "",
+    "version": "",
+    "title": "OPERA",
+    "modality": "sar",
+    "status": "external",
+    "vendor": "NASA JPL OPERA (Sentinel-1 / HLS)",
+    "resolution": "30 m",
+    "temporalStart": "2014-04-03",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/opera.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — OPERA RTC RGB Mosaic",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/opera-disp-s1-coherence",
+    "description": "NASA JPL's OPERA analysis-ready products: surface displacement (DISP-S1), surface disturbance (DIST-S1, DIST-ALERT), dynamic surface water extent (DSWx) and terrain-corrected backscatter (RTC). Most are derived from Sentinel-1 C-band SAR; DSWx and DIST-ALERT also use Harmonized Landsat Sentinel-2 (HLS) optical observations. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "opera",
+      "jpl",
+      "sentinel-1",
+      "hls",
+      "sar",
+      "insar",
+      "displacement",
+      "disturbance",
+      "surface-water",
+      "flood"
+    ],
+    "products": [
+      {
+        "id": "dispCoherence",
+        "label": "OPERA Displacement Coherence (DISP-S1)",
+        "folder": "dispCoherence",
+        "hazards": [
+          "Earthquake"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DISP_S1_COHERENCE",
+        "stacAsset": "coherence",
+        "stacCollections": [
+          "opera-disp-s1-coherence-daily"
+        ]
+      },
+      {
+        "id": "dispRng",
+        "label": "OPERA Displacement Range Change (DISP-S1 RNG)",
+        "folder": "dispRangeChange",
+        "hazards": [
+          "Earthquake"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DISP_S1_RNG",
+        "stacAsset": "rng",
+        "stacCollections": [
+          "opera-disp-s1-rng-daily"
+        ]
+      },
+      {
+        "id": "dispUnw",
+        "label": "OPERA Unwrapped Interferometric Phase (DISP-S1 UNW)",
+        "folder": "dispUnwrappedPhase",
+        "hazards": [
+          "Earthquake"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DISP_S1_UNW",
+        "stacAsset": "unw",
+        "stacCollections": [
+          "opera-disp-s1-unw-daily"
+        ]
+      },
+      {
+        "id": "dispWrp",
+        "label": "OPERA Wrapped Interferometric Phase (DISP-S1 WRP)",
+        "folder": "dispWrappedPhase",
+        "hazards": [
+          "Earthquake"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DISP_S1_WRP",
+        "stacAsset": "wrp",
+        "stacCollections": [
+          "opera-disp-s1-wrp-daily"
+        ]
+      },
+      {
+        "id": "distVegAnom",
+        "label": "OPERA Maximum Vegetation Anomaly (DIST-ALERT VEG-ANOM-MAX)",
+        "folder": "distAlertVegAnom",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_ANOM",
+        "stacAsset": "veg-anom-max",
+        "stacCollections": [
+          "opera-distalert-veg-anom-max-daily"
+        ]
+      },
+      {
+        "id": "distVegStatus",
+        "label": "OPERA Vegetation Disturbance Status (DIST-ALERT VEG-DIST-STATUS)",
+        "folder": "distAlertVegStatus",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DIST_ALERT_DIST_VEG_STATUS",
+        "stacAsset": "veg-dist-status",
+        "stacCollections": [
+          "opera-distalert-veg-dist-status-daily"
+        ]
+      },
+      {
+        "id": "genDistStatus",
+        "label": "OPERA Surface Disturbance Status (DIST-ALERT GEN-DIST-STATUS)",
+        "folder": "distAlertGenStatus",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DIST_ALERT_GEN_DIST_STATUS",
+        "stacAsset": "gen-dist-status",
+        "stacCollections": [
+          "opera-distalert-gen-dist-status-daily"
+        ]
+      },
+      {
+        "id": "distS1",
+        "label": "OPERA Surface Disturbance from Sentinel-1 (DIST-S1)",
+        "folder": "distS1",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DIST_S1",
+        "stacAsset": "dist-s1",
+        "stacCollections": [
+          "opera-distalert-s1-daily"
+        ]
+      },
+      {
+        "id": "dswx",
+        "label": "OPERA Dynamic Surface Water Extent (DSWx)",
+        "folder": "dswx",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_DSWX"
+      },
+      {
+        "id": "rtcRgb",
+        "label": "OPERA RTC RGB Mosaic",
+        "folder": "rtcRgbMosaic",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__OPERA_RTC_RGB_MOSAIC",
+        "stacAsset": "rgb",
+        "stacCollections": [
+          "opera-rtc-mosaic-rgb-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "uavsar",
+    "algorithmName": "",
+    "version": "",
+    "title": "UAVSAR",
+    "modality": "sar",
+    "status": "external",
+    "vendor": "NASA JPL (airborne)",
+    "resolution": "~6 m (airborne; varies by product)",
+    "temporalStart": "2009-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/uavsar.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — UAVSAR Polarimetric False Color Imagery",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/uavsar-rgb",
+    "description": "NASA JPL's Uninhabited Aerial Vehicle Synthetic Aperture Radar: an airborne L-band, fully polarimetric SAR flown on a Gulfstream III. Products include polarimetric false color, flood classifications (quicklook and U-Net) and repeat-pass surface displacement. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "uavsar",
+      "jpl",
+      "airborne",
+      "l-band",
+      "sar",
+      "polarimetric",
+      "flood",
+      "displacement"
+    ],
+    "products": [
+      {
+        "id": "rgb",
+        "label": "UAVSAR Polarimetric False Color Imagery",
+        "folder": "polarimetricRgb",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__UAVSAR_RGB",
+        "stacAsset": "rgb",
+        "stacCollections": [
+          "uavsar-rgb-composite",
+          "uavsar-rgb-subdaily"
+        ]
+      },
+      {
+        "id": "quicklookClassified",
+        "label": "UAVSAR Quicklook Flood Classification",
+        "folder": "quicklookClassified",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__UAVSAR_QUICKLOOK_CLASSIFIED",
+        "stacAsset": "quicklookclassified",
+        "stacCollections": [
+          "uavsar-quicklookclassified-subdaily"
+        ]
+      },
+      {
+        "id": "unetClassified",
+        "label": "UAVSAR U-Net Flood Classification",
+        "folder": "unetClassified",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED",
+        "stacAsset": "unetclassified",
+        "stacCollections": [
+          "uavsar-unetclassified-composite",
+          "uavsar-unetclassified-daily"
+        ]
+      },
+      {
+        "id": "unetGrayscale",
+        "label": "UAVSAR U-Net Flood Classification (Grayscale)",
+        "folder": "unetClassifiedGrayscale",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__UAVSAR_UNET_CLASSIFIED_GRAYSCALE",
+        "stacAsset": "unetclassifiedgrayscale",
+        "stacCollections": [
+          "uavsar-unetclassifiedgrayscale-composite",
+          "uavsar-unetclassifiedgrayscale-daily"
+        ]
+      },
+      {
+        "id": "displacement",
+        "label": "UAVSAR Surface Displacement",
+        "folder": "displacement",
+        "hazards": [
+          "Earthquake",
+          "Storm",
+          "Volcano"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__UAVSAR_DISPLACEMENT",
+        "stacAsset": "displacement",
+        "stacCollections": [
+          "uavsar-displacement-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "aviris3",
+    "algorithmName": "",
+    "version": "",
+    "title": "AVIRIS-3",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "NASA JPL (airborne)",
+    "resolution": "sub-meter to 13 m (airborne; varies with altitude)",
+    "temporalStart": "2023-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/aviris3.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — AVIRIS-3 Principal Component Analysis (PCA)",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/aviris-3-quicklook-color-imagery",
+    "description": "NASA JPL's Airborne Visible/Infrared Imaging Spectrometer 3rd-Generation: airborne imaging spectroscopy across 284 wavelengths, visible to shortwave infrared. Products map char and ash, burn severity (dNBR), spectral differences (PCA) and quicklook false color. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "aviris-3",
+      "aviris",
+      "jpl",
+      "airborne",
+      "imaging-spectroscopy",
+      "hyperspectral",
+      "fire",
+      "burn-severity"
+    ],
+    "products": [
+      {
+        "id": "quicklook",
+        "label": "AVIRIS-3 Quicklook False Color Imagery",
+        "folder": "quicklookFalseColor",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__AVIRIS_3_QUICKLOOK_COLOR_IMAGERY"
+      },
+      {
+        "id": "charAsh",
+        "label": "AVIRIS-3 Relative Char and Ash",
+        "folder": "charAndAsh",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__AVIRIS_3_CHAR_AND_ASH",
+        "stacAsset": "charash",
+        "stacCollections": [
+          "aviris3-charash-daily"
+        ]
+      },
+      {
+        "id": "dnbr",
+        "label": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+        "folder": "dnbr",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__AVIRIS_3_DNBR",
+        "stacAsset": "dnbr",
+        "stacCollections": [
+          "aviris3-dnbr-daily"
+        ]
+      },
+      {
+        "id": "pca",
+        "label": "AVIRIS-3 Principal Component Analysis (PCA)",
+        "folder": "pca",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__AVIRIS_3_PCA",
+        "stacAsset": "pca",
+        "stacCollections": [
+          "aviris3-pca-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "planet",
+    "algorithmName": "",
+    "version": "",
+    "title": "PlanetScope",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "Planet Labs PBC (NASA CSDA)",
+    "resolution": "~3 m",
+    "temporalStart": "2016-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/planet.png",
+    "thumbCredit": "Planet Labs PBC (NASA CSDA), via the NASA Disasters Portal data gallery — Planet True Color Imagery",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/planet-true-color",
+    "description": "PlanetScope Dove and SuperDove optical imagery from Planet Labs PBC, acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program: true color plus NDVI, NDVI change and NDWI. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "planet",
+      "planetscope",
+      "commercial",
+      "csda",
+      "ndvi",
+      "ndwi",
+      "flood",
+      "fire"
+    ],
+    "products": [
+      {
+        "id": "true",
+        "label": "Planet True Color Imagery",
+        "folder": "trueColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__PLANET_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "planet-truecolor-daily"
+        ]
+      },
+      {
+        "id": "ndvi",
+        "label": "Planet Normalized Difference Vegetation Index (NDVI)",
+        "folder": "ndvi",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__PLANET_NDVI",
+        "stacAsset": "ndvi",
+        "stacCollections": [
+          "planet-ndvi-daily"
+        ]
+      },
+      {
+        "id": "ndviChange",
+        "label": "Planet NDVI Change",
+        "folder": "ndviChange",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__PLANET_NDVI_CHANGE",
+        "stacAsset": "ndvichange",
+        "stacCollections": [
+          "planet-ndvichange-composite"
+        ]
+      },
+      {
+        "id": "ndwi",
+        "label": "Planet Normalized Difference Water Index (NDWI)",
+        "folder": "ndwi",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__PLANET_NDWI",
+        "stacAsset": "ndwi",
+        "stacCollections": [
+          "planet-ndwi-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "vantor",
+    "algorithmName": "",
+    "version": "",
+    "title": "Vantor",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "Vantor, formerly Maxar (WorldView-2/3)",
+    "resolution": "30 cm panchromatic; ~35 cm multispectral",
+    "temporalStart": "2009-10-08",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/vantor.png",
+    "thumbCredit": "Vantor (formerly Maxar), via the NASA Disasters Portal data gallery — Vantor True Color",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/vantor-true-color",
+    "description": "Very high resolution WorldView-2 and WorldView-3 optical imagery from Vantor (formerly Maxar): true color, color infrared and 30 cm panchromatic, for building-scale damage assessment. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "vantor",
+      "maxar",
+      "worldview",
+      "commercial",
+      "very-high-resolution",
+      "damage"
+    ],
+    "products": [
+      {
+        "id": "true",
+        "label": "Vantor True Color",
+        "folder": "trueColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__VANTOR_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "vantor-truecolor-subdaily"
+        ]
+      },
+      {
+        "id": "colorIR",
+        "label": "Vantor Color Infrared",
+        "folder": "colorInfrared",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__VANTOR_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "vantor-colorir-subdaily"
+        ]
+      },
+      {
+        "id": "pan",
+        "label": "Vantor Panchromatic",
+        "folder": "panchromatic",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__VANTOR_PANCHROMATIC",
+        "stacAsset": "panchromatic",
+        "stacCollections": [
+          "vantor-panchromatic-subdaily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "skysat",
+    "algorithmName": "",
+    "version": "",
+    "title": "SkySat",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "Planet Labs PBC (NASA CSDA)",
+    "resolution": "~50 cm",
+    "temporalStart": "2013-11-21",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/skysat.png",
+    "thumbCredit": "Planet Labs PBC (NASA CSDA), via the NASA Disasters Portal data gallery — Planet SkySat True Color Imagery",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/skysat-true-color",
+    "description": "Very high resolution optical imagery from Planet's SkySat constellation, acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program: true color and color infrared. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "skysat",
+      "planet",
+      "commercial",
+      "csda",
+      "very-high-resolution"
+    ],
+    "products": [
+      {
+        "id": "true",
+        "label": "Planet SkySat True Color Imagery",
+        "folder": "trueColor",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SKYSAT_TRUE_COLOR",
+        "stacAsset": "truecolor",
+        "stacCollections": [
+          "skysat-truecolor-subdaily"
+        ]
+      },
+      {
+        "id": "colorIR",
+        "label": "Planet SkySat Color Infrared Imagery",
+        "folder": "colorInfrared",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SKYSAT_COLOR_INFRARED",
+        "stacAsset": "colorir",
+        "stacCollections": [
+          "skysat-colorir-subdaily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "ecostress",
+    "algorithmName": "",
+    "version": "",
+    "title": "ECOSTRESS",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "NASA JPL (ISS)",
+    "resolution": "70 m",
+    "temporalStart": "2018-06-29",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/ecostress.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — ECOSTRESS Land Surface Temperature",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/ecostress-land-surface-temperature",
+    "description": "Atmospherically corrected land surface temperature from the ECOSTRESS thermal infrared radiometer on the International Space Station. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "ecostress",
+      "jpl",
+      "iss",
+      "thermal-infrared",
+      "land-surface-temperature",
+      "heat",
+      "fire"
+    ],
+    "products": [
+      {
+        "id": "lst",
+        "label": "ECOSTRESS Land Surface Temperature",
+        "folder": "landSurfaceTemperature",
+        "hazards": [
+          "Fire",
+          "Heat"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__ECOSTRESS_LAND_SURFACE_TEMPERATURE",
+        "stacAsset": "lst",
+        "stacCollections": [
+          "ecostress-lst-subdaily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "gpm_imerg",
+    "algorithmName": "",
+    "version": "",
+    "title": "GPM IMERG",
+    "modality": "model",
+    "status": "external",
+    "vendor": "NASA GSFC / GES DISC",
+    "resolution": "0.1° (~10 km), daily accumulation",
+    "temporalStart": "2000-06-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/gpm_imerg.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — GPM IMERG Accumulated Precipitation",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/gpm-imerg-precipitation",
+    "description": "Daily accumulated precipitation from NASA's Integrated Multi-satellitE Retrievals for GPM (IMERG): a near-real-time global rainfall estimate blending passive microwave, radar and infrared satellite observations onto a 0.1° grid. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "gpm",
+      "imerg",
+      "precipitation",
+      "rainfall",
+      "giovanni",
+      "flood",
+      "storm"
+    ],
+    "products": [
+      {
+        "id": "precip",
+        "label": "GPM IMERG Accumulated Precipitation",
+        "folder": "accumulatedPrecipitation",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__GPM_IMERG_PRECIPITATION",
+        "stacAsset": "precipitation",
+        "stacCollections": [
+          "gpm-imerg-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "hydrosar",
+    "algorithmName": "",
+    "version": "",
+    "title": "HydroSAR",
+    "modality": "sar",
+    "status": "external",
+    "vendor": "ASF DAAC / University of Alaska Fairbanks",
+    "resolution": "30 m",
+    "temporalStart": "2014-04-03",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/hydrosar.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — HydroSAR Sentinel-1 Water Extent Classifications",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/hydrosar-s1-classifications",
+    "description": "HydroSAR water extent classifications from Sentinel-1 C-band SAR: post-event open water and inundated developed, vegetated and agricultural areas. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "hydrosar",
+      "asf",
+      "sentinel-1",
+      "sar",
+      "flood",
+      "water-extent"
+    ],
+    "products": [
+      {
+        "id": "classifications",
+        "label": "HydroSAR Sentinel-1 Water Extent Classifications",
+        "folder": "waterExtentClassifications",
+        "hazards": [
+          "Flood",
+          "TropicalCyclone",
+          "Storm"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__HYDROSAR_S1_CLASSIFICATIONS"
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "nisar",
+    "algorithmName": "",
+    "version": "",
+    "title": "NISAR",
+    "modality": "sar",
+    "status": "external",
+    "vendor": "NASA JPL / ISRO",
+    "resolution": "80 m",
+    "temporalStart": "2025-07-30",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/nisar.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — NISAR GUNW Surface Displacement",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/nisar-gunw-displacement",
+    "description": "Surface displacement along the radar line of sight from the NASA-ISRO NISAR L-band SAR Geocoded Unwrapped Interferogram (GUNW) product. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "nisar",
+      "isro",
+      "jpl",
+      "l-band",
+      "sar",
+      "insar",
+      "displacement",
+      "earthquake"
+    ],
+    "products": [
+      {
+        "id": "gunwDisplacement",
+        "label": "NISAR GUNW Surface Displacement",
+        "folder": "gunwDisplacement",
+        "hazards": [
+          "Earthquake"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__NISAR_GUNW_DISPLACEMENT",
+        "stacAsset": "gunw",
+        "stacCollections": [
+          "nisar-gunw-composite"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "gaia",
+    "algorithmName": "",
+    "version": "",
+    "title": "GAIA",
+    "modality": "model",
+    "status": "external",
+    "vendor": "ImageCat, Inc. (NASA Disasters Program)",
+    "resolution": "100 m grid",
+    "temporalStart": "2025-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/gaia.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — Global Assessment of Infrastructure Assets (GAIA)",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/gaia-infrastructure-assets",
+    "description": "The Global Assessment of Infrastructure Assets: an open, global, modeled gridded building exposure dataset (built-up area per 100 m cell) for disaster risk assessment, response and recovery. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "gaia",
+      "imagecat",
+      "infrastructure",
+      "buildings",
+      "exposure",
+      "risk"
+    ],
+    "products": [
+      {
+        "id": "buildingExposure",
+        "label": "Global Assessment of Infrastructure Assets (GAIA)",
+        "folder": "buildingExposure",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Heat",
+          "WinterWx",
+          "Volcano"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__GAIA"
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "wb57_dynamite",
+    "algorithmName": "",
+    "version": "",
+    "title": "WB-57 DyNAMITE",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "NASA Johnson Space Center (airborne)",
+    "resolution": "~10 cm (varies with altitude)",
+    "temporalStart": "2025-01-01",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/wb57_dynamite.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — WB-57 DyNAMITE Airborne Imagery",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/wb57-dynamite",
+    "description": "High-resolution visible and infrared imagery from the DyNAMITE instrument aboard NASA's WB-57 high-altitude aircraft, streamed to responders during flight. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "wb-57",
+      "dynamite",
+      "jsc",
+      "airborne",
+      "visible",
+      "infrared"
+    ],
+    "products": [
+      {
+        "id": "imagery",
+        "label": "WB-57 DyNAMITE Airborne Imagery",
+        "folder": "airborneImagery",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Volcano"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__WB57_DYNAMITE"
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "blackmarble_composites",
+    "algorithmName": "",
+    "version": "",
+    "title": "Black Marble composites",
+    "modality": "nightlights",
+    "status": "external",
+    "vendor": "NASA GSFC / LANCE / U.S. Naval Research Laboratory",
+    "resolution": "~500 m",
+    "temporalStart": "2012-01-19",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/blackmarble_composites.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — Black Marble Nighttime Blue/Yellow Composite",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/black-marble-blue-yellow",
+    "description": "VIIRS nighttime composites made outside the blackmarble DPS algorithms: the LANCE/NRL blue/yellow composite (lights, fires and clouds) and BRDF-corrected daily nighttime lights with a cloud-free monthly pre-event composite, for power outage and recovery assessment. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "black-marble",
+      "viirs",
+      "nighttime-lights",
+      "lance",
+      "nrl",
+      "brdf",
+      "power-outage"
+    ],
+    "products": [
+      {
+        "id": "blueYellow",
+        "label": "Black Marble Nighttime Blue/Yellow Composite",
+        "folder": "blueYellowComposite",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Heat",
+          "WinterWx",
+          "Volcano"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__BLACK_MARBLE_BLUE_YELLOW"
+      },
+      {
+        "id": "brdf",
+        "label": "Black Marble BRDF-Corrected Nighttime Lights",
+        "folder": "brdfCorrected",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Landslide",
+          "Heat",
+          "WinterWx",
+          "Volcano"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__BLACK_MARBLE_BRDF",
+        "stacAsset": "blackmarble_brdf",
+        "stacCollections": [
+          "blackmarble-brdf-composite",
+          "blackmarble-brdf-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "s1_damage",
+    "algorithmName": "",
+    "version": "",
+    "title": "Sentinel-1 damage assessment",
+    "modality": "sar",
+    "status": "external",
+    "vendor": "CUNY Graduate Center / Oregon State University",
+    "resolution": "40 m",
+    "temporalStart": "2014-04-03",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/s1_damage.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — Sentinel-1 Likely Damaged Areas",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/sentinel-1-damage-assessment",
+    "description": "Likely damaged or destroyed built-up areas from Sentinel-1 interferometric coherence change detection. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "sentinel-1",
+      "sar",
+      "insar",
+      "coherence",
+      "damage",
+      "fire"
+    ],
+    "products": [
+      {
+        "id": "damage",
+        "label": "Sentinel-1 Likely Damaged Areas",
+        "folder": "likelyDamagedAreas",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SENTINEL_1_DAMAGE_ASSESSMENT",
+        "stacAsset": "damage",
+        "stacCollections": [
+          "sentinel1-dmgassessment-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "s1s2_burn",
+    "algorithmName": "",
+    "version": "",
+    "title": "Sentinel-1 + Sentinel-2 burn severity",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "NASA Ames Research Center",
+    "resolution": "~10 m",
+    "temporalStart": "2015-06-23",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/s1s2_burn.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — Sentinel-1 and Sentinel-2 Burn Severity",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/sentinel-1-sentinel-2-burn-severity",
+    "description": "Burned vegetation and urban areas with relative burn severity, combining Sentinel-2 optical reflectance change with Sentinel-1 SAR backscatter change. No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "sentinel-1",
+      "sentinel-2",
+      "sar",
+      "burn-severity",
+      "fire"
+    ],
+    "products": [
+      {
+        "id": "burnSeverity",
+        "label": "Sentinel-1 and Sentinel-2 Burn Severity",
+        "folder": "burnSeverity",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SENTINEL_1_SENTINEL_2_BURN_SEVERITY",
+        "stacAsset": "burnseverity",
+        "stacCollections": [
+          "sentinel1_2-burnseverity-daily"
+        ]
+      }
+    ],
+    "inputs": []
+  },
+  {
+    "id": "sentinel2_change",
+    "algorithmName": "",
+    "version": "",
+    "title": "Sentinel-2 change products",
+    "modality": "optical",
+    "status": "external",
+    "vendor": "NASA GSFC / USGS / ESA Copernicus",
+    "resolution": "10 m",
+    "temporalStart": "2015-06-23",
+    "temporalStartApprox": true,
+    "spatialSelector": "none",
+    "resources": {
+      "ramMin": 0,
+      "coresMin": 0,
+      "outdirMax": 0
+    },
+    "thumb": "/thumbs/sentinel2_change.png",
+    "thumbCredit": "NASA Disasters Portal data gallery — Sentinel-2 Differenced Normalized Burn Ratio (dNBR)",
+    "configUrl": "https://science.data.nasa.gov/disasters/data-gallery/sentinel-2-dnbr",
+    "description": "Two-date Sentinel-2 change products not made by the sentinel2 DPS algorithm: differenced Normalized Burn Ratio (dNBR) and binary NDVI change (a decrease of 0.25 or more). No algorithm in this catalog produces these layers yet: they are made outside it and published on the Disasters Portal, so a request records the need but creates no DPS job.",
+    "keywords": [
+      "sentinel-2",
+      "change-detection",
+      "dnbr",
+      "ndvi",
+      "burn-severity",
+      "fire"
+    ],
+    "products": [
+      {
+        "id": "dnbr",
+        "label": "Sentinel-2 Differenced Normalized Burn Ratio (dNBR)",
+        "folder": "dnbr",
+        "hazards": [
+          "Fire"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SENTINEL_2_DNBR",
+        "stacAsset": "dnbr",
+        "stacCollections": [
+          "sentinel2-dnbr-daily"
+        ]
+      },
+      {
+        "id": "ndviChangeBinary",
+        "label": "Sentinel-2 Binary NDVI Change",
+        "folder": "ndviChangeBinary",
+        "hazards": [
+          "Fire",
+          "Flood",
+          "Earthquake",
+          "TropicalCyclone",
+          "Storm",
+          "Heat",
+          "WinterWx"
+        ],
+        "primaryHazards": [],
+        "portalData": "DATA__SENTINEL_2_NDVI_CHANGE_BINARY",
+        "stacAsset": "ndvichange",
+        "stacCollections": [
+          "sentinel2-ndvichange-daily"
+        ]
+      }
+    ],
+    "inputs": []
   }
 ]

@@ -19,18 +19,20 @@ export interface ModalityStyle {
 }
 
 /**
- * The four sensing modalities. Blue = optical (visible/reflective), purple = SAR (active
+ * The five sensing modalities. Blue = optical (visible/reflective), purple = SAR (active
  * microwave, nothing like a photograph), amber-on-indigo = night lights (city glow against a night
- * sky), grey = utility (list_dates and friends: no imagery at all).
+ * sky), teal = modeled (a model or multi-sensor merge, e.g. GAIA, GPM IMERG), grey = utility
+ * (list_dates and friends: no imagery at all).
  */
 export const MODALITY: Record<Modality, ModalityStyle> = {
   optical: { color: "#0076d6", tint: "#e1f0fb", ink: "#0b3d6b", label: "Optical", icon: "🛰️" },
   sar: { color: "#8544ba", tint: "#f1e7f9", ink: "#4b1f6f", label: "SAR", icon: "📡" },
   nightlights: { color: "#c2830a", tint: "#fbf1d6", ink: "#3f2a8c", label: "Night lights", icon: "🌃" },
+  model: { color: "#008480", tint: "#e0f4f3", ink: "#0b4a47", label: "Modeled", icon: "🧮" },
   utility: { color: "#71767a", tint: "#f0f0f0", ink: "#3d4551", label: "Utility", icon: "🧰" },
 };
 
-export const MODALITY_ORDER: Modality[] = ["optical", "sar", "nightlights", "utility"];
+export const MODALITY_ORDER: Modality[] = ["optical", "sar", "nightlights", "model", "utility"];
 
 const UNKNOWN_MODALITY: ModalityStyle = {
   color: "#71767a",

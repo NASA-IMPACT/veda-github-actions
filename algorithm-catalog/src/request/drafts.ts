@@ -34,6 +34,10 @@ export interface RequestDraft {
   intro: string;
   govLink: string;
   needs: Need[];
+  /** The one optional image after the intro — a Google Drive file link, its alt text and caption. */
+  imageUrl: string;
+  imageAlt: string;
+  imageCaption: string;
   region: string; // optional override of the page's Region; blank = the locations
   portalId: string; // optional override of the portal page id; blank = derived from the name
   // --- repeatable / multi-select ---
@@ -63,6 +67,9 @@ export function newDraft(): RequestDraft {
     intro: "",
     govLink: "",
     needs: [],
+    imageUrl: "",
+    imageAlt: "",
+    imageCaption: "",
     region: "",
     portalId: "",
     hazards: [],
@@ -103,9 +110,23 @@ function draftPage(d: RequestDraft): EventPage | undefined {
   if (d.subtitle.trim()) page.subtitle = d.subtitle.trim();
   if (d.intro.trim()) page.intro = d.intro.trim();
   if (d.govLink.trim()) page.govLink = d.govLink.trim();
+  const image = draftImage(d);
+  if (image) page.image = image;
   if (d.region.trim()) page.region = d.region.trim();
   if (d.portalId.trim()) page.portalId = d.portalId.trim();
-  return page.subtitle || page.intro || page.govLink || page.needs.length || page.portalId ? page : undefined;
+  return page.subtitle || page.intro || page.govLink || page.needs.length || page.portalId || page.image
+    ? page
+    : undefined;
+}
+
+/** The image, or undefined without a link; an empty caption is left off. */
+function draftImage(d: RequestDraft): EventPage["image"] {
+  if (!d.imageUrl.trim()) return undefined;
+  return {
+    url: d.imageUrl.trim(),
+    alt: d.imageAlt.trim(),
+    ...(d.imageCaption.trim() ? { caption: d.imageCaption.trim() } : {}),
+  };
 }
 
 /** What src/rules.ts validates. Kept separate so the form can validate WITHOUT building a record. */
@@ -127,6 +148,7 @@ export function draftToShape(d: RequestDraft): RequestShape {
     govLink: d.govLink,
     needs: d.needs,
     portalId: d.portalId,
+    image: draftImage(d),
   };
 }
 
@@ -211,6 +233,9 @@ export function requestToDraft(r: AlgorithmRequest): RequestDraft {
   d.intro = r.page?.intro ?? "";
   d.govLink = r.page?.govLink ?? "";
   d.needs = [...(r.page?.needs ?? [])];
+  d.imageUrl = r.page?.image?.url ?? "";
+  d.imageAlt = r.page?.image?.alt ?? "";
+  d.imageCaption = r.page?.image?.caption ?? "";
   d.region = r.page?.region ?? "";
   d.portalId = r.page?.portalId ?? "";
   return d;
@@ -230,9 +255,10 @@ export function autoProducts(algorithms: Algorithm[], hazardIds: string[]): Requ
   const want = new Set(hazardIds);
   const out: RequestProduct[] = [];
   for (const a of algorithms) {
-    // Prototype algorithms have no DPS job — never propose them automatically; the user can
-    // still add them by hand from the picker if they really want manual processing.
-    if (a.status === "prototype") continue;
+    // Prototype and external algorithms have no DPS job — never propose them automatically; the
+    // user can still add them by hand from the picker (manual processing, or a layer made outside
+    // this catalog that the event page should link).
+    if (a.status === "prototype" || a.status === "external") continue;
     for (const p of a.products) {
       // primaryHazards, NOT hazards. `hazards` is the broad discovery set (every product that
       // could conceivably help); auto-selecting from it produced ~28 chips for a single hazard,

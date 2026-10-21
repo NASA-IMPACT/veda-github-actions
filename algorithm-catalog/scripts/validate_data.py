@@ -91,8 +91,14 @@ HTTPS_URL_RE = r'^https:\/\/[^\s/]+\.[^\s]+$'
 #: A gazetteer id: country, state, county FIPS, or "c" + city FIPS. A parent prefixes its children.
 PLACE_ID_RE = r'^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$'
 
+#: A Google Drive FILE link; group 1 is the file id. Folder links are rejected with their own message.
+DRIVE_FILE_RE = r'^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[a-z]+&)?id=)([A-Za-z0-9_-]{10,})'
+
 #: A Disasters Portal content id: its URL slug and file name.
 PORTAL_ID_RE = r'^[a-z0-9]+(-[a-z0-9]+)*$'
+
+#: A NEW portal page's id is derived from the event name, so the name must end "<Month> <YYYY>".
+PORTAL_NAME_RE = r'\s(January|February|March|April|May|June|July|August|September|October|November|December)\s(20[0-9]{2})$'
 
 #: The portal's CONTENT_CATEGORIES (disasters-portal app/site-config/types.ts), pipe-joined.
 PORTAL_CATEGORIES_TEXT = "cyclone|earthquake|fire|flood|heat|hurricane|landslide|severe weather|tropical cyclone|tsunami|typhoon|volcano|winter weather"
@@ -105,6 +111,16 @@ _STAC_EVENT = re.compile(STAC_EVENT_RE)
 _HTTPS_URL = re.compile(HTTPS_URL_RE)
 _PLACE_ID = re.compile(PLACE_ID_RE)
 _PORTAL_ID = re.compile(PORTAL_ID_RE)
+_PORTAL_NAME = re.compile(PORTAL_NAME_RE)
+_MONTH_NAMES = PORTAL_NAME_RE.split("(")[1].split(")")[0].split("|")
+_DRIVE_FILE = re.compile(DRIVE_FILE_RE)
+_DRIVE_FOLDER = re.compile(r'^https:\/\/drive\.google\.com\/drive\/(u\/[0-9]+\/)?folders\/')
+
+
+def drive_file_id(url: str) -> str | None:
+    """The Drive file id in a link, or None. Mirrors rules.ts driveFileId."""
+    m = _DRIVE_FILE.search(url.strip()) if "\n" not in url else None
+    return m.group(1) if m else None
 _ISO_DATE = re.compile(ISO_DATE_RE)
 _YEARMONTH = re.compile(r'^[0-9]{6}$')
 _MONTH = re.compile(r'^(0[1-9]|1[0-2])$')
@@ -370,6 +386,15 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
     """The event page's own text. All optional; only a bad value is an error. Once a page is
     started, the Disasters Portal's own type rules apply too."""
     out: list[Violation] = []
+    img = _obj(p, "image") if _s(_obj(p, "image"), "url").strip() else None
+    if img:
+        url = _s(img, "url").strip()
+        if _DRIVE_FOLDER.search(url):
+            out.append(_err("image", "drive-folder", "That is a Drive FOLDER link — link the image file itself (right-click it → Share → Copy link)."))
+        elif not drive_file_id(url):
+            out.append(_err("image", "drive-link", "The image must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."))
+        if not _s(img, "alt").strip():
+            out.append(_err("image", "alt-required", "The image needs alt text — a short description of it for screen readers."))
     needs = _strs(p, "needs")
     for n in needs:
         if n not in NEEDS:
@@ -382,9 +407,18 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
         out.append(
             _err("portalId", "format", f'"{portal_id}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.')
         )
-    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id)
+    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id or img)
     if not started:
         return out
+    name = _s(p, "name").strip()
+    if not portal_id and name:
+        m = _PORTAL_NAME.search(name) if "\n" not in name else None
+        if not m:
+            out.append(_err("name", "portal-name", 'End the name with the month and year, e.g. "Hurricane Isaias October 2026" — it becomes the page\'s web address.'))
+        elif re.match(r"^[0-9]{4}-[0-9]{2}", _s(p, "start")):
+            mm = f"{_MONTH_NAMES.index(m.group(1)) + 1:02d}"
+            if f"{m.group(2)}-{mm}" != _s(p, "start")[:7]:
+                out.append(_warn("name", "name-date", f"The name says {m.group(1)} {m.group(2)} but the event starts {_s(p, 'start')}."))
     if not _s(p, "intro").strip():
         out.append(_warn("intro", "missing", "The page has no intro paragraph, so its Overview section will be empty."))
     if not needs:
@@ -467,6 +501,7 @@ RULE_EXAMPLES = {
     "places": '"places": ["US-AL"]  or  ["US-AL-c51000"]  (ids from data/places*.json)',
     "needs": '"needs": ["respond"]  (portal theme ids: prepare, respond, recover, resilience)',
     "govLink": '"govLink": "https://www.usa.gov/disasters-and-emergencies"',
+    "image": '"image": {"url": "https://drive.google.com/file/d/<id>/view", "alt": "…", "caption": "… Credit: NASA"}',
     "ts": '"ts": "2025-01-08T17:04:11.284Z"',
     "<file>": "a JSON array of records, e.g. []",
 }
@@ -641,12 +676,29 @@ def check_hazard_vocabulary(rep: Report, hazards: list[dict[str, Any]]) -> None:
             )
 
 
+#: src/types.ts `AlgorithmStatus`. "external" = no algorithm here yet: the product is made outside
+#: this catalog and only linked to its Disasters Portal card, so it has no DPS inputs to declare.
+ALGORITHM_STATUSES = ("production", "prototype", "external")
+
+
 def check_algorithms(rep: Report, algorithms: list[dict[str, Any]], hazard_ids: set[str]) -> None:
     file = "data/algorithms.json"
     dup_check(rep, file, algorithms, "id", "Algorithm")
     for i, a in enumerate(algorithms):
         aid = _s(a, "id")
         where = f"[{i}] id={aid or '?'}"
+
+        status = _s(a, "status")
+        if status not in ALGORITHM_STATUSES:
+            rep.error(
+                file, where, "status", "vocabulary",
+                f'status "{status}" must be one of: {", ".join(ALGORITHM_STATUSES)}.',
+            )
+        elif status == "external" and _dicts(a, "inputs"):
+            rep.error(
+                file, where, "inputs", "external-inputs",
+                'An "external" algorithm creates no DPS job, so it must declare no inputs.',
+            )
 
         start = _s(a, "temporalStart")
         if not start:
@@ -683,6 +735,17 @@ def check_algorithms(rep: Report, algorithms: list[dict[str, Any]], hazard_ids: 
             if not pid:
                 rep.error(file, pwhere, "products", "required", "Product is missing an id.",
                           example=ALGORITHM_PRODUCT_EXAMPLE)
+            # stacAsset/stacCollections are GENERATED by scripts/sync_stac_assets.py from the live
+            # STAC. Only their shape is checked here (CI has no network); `sync_stac_assets.py
+            # --check` is what proves they still match the live STAC.
+            stac_asset, stac_cols = p.get("stacAsset"), p.get("stacCollections")
+            if (stac_asset is None) != (stac_cols is None):
+                rep.error(file, pwhere, "stacAsset", "pair", "stacAsset and stacCollections come together (re-run scripts/sync_stac_assets.py).")
+            elif stac_asset is not None and not (
+                isinstance(stac_asset, str) and re.fullmatch(r"[a-z0-9_-]+", stac_asset)
+                and isinstance(stac_cols, list) and stac_cols and all(isinstance(c, str) and c for c in stac_cols)
+            ):
+                rep.error(file, pwhere, "stacAsset", "shape", "stacAsset must be a lowercase STAC asset key with a non-empty stacCollections list — re-run scripts/sync_stac_assets.py, never edit by hand.")
             portal_data = p.get("portalData")
             if portal_data is not None and not (isinstance(portal_data, str) and PORTAL_DATA_RE.match(portal_data)):
                 rep.error(
@@ -744,7 +807,7 @@ def check_events(
             rep.add(file, where, v)
         check_place_refs(rep, file, where, _strs(e, "places"), place_ids)
         if "page" in e:
-            page = {**_obj(e, "page"), "start": _s(e, "start"), "hazards": _strs(e, "hazards")}
+            page = {**_obj(e, "page"), "start": _s(e, "start"), "hazards": _strs(e, "hazards"), "name": _s(e, "name")}
             for v in check_page(page, hazards):
                 rep.add(file, where, v)
 
@@ -852,6 +915,7 @@ def check_requests(
                 "govLink": _s(page, "govLink"),
                 "needs": _strs(page, "needs"),
                 "portalId": _s(page, "portalId"),
+                "image": _obj(page, "image"),
             }
             for v in validate_request(shape, hazards):
                 rep.add(file, where, v)

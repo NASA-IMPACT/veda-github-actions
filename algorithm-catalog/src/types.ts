@@ -14,15 +14,23 @@
 // record covers both the website and the algorithm layers — that page used to be written from a
 // spreadsheet kept by hand. See docs/ALGORITHM_CATALOG.md "Event pages".
 
-/** Sensing modality — drives the modality filter and the card accent color. */
-export type Modality = "optical" | "sar" | "nightlights" | "utility";
+/**
+ * Sensing modality — drives the modality filter and the card accent color. "model" is a modeled or
+ * multi-sensor merged dataset that is neither one optical nor one SAR sensor (GAIA building
+ * exposure, GPM IMERG precipitation).
+ */
+export type Modality = "optical" | "sar" | "nightlights" | "model" | "utility";
 
 /**
  * Whether the algorithm is actually registered and runnable.
  * - production: a real dps/<name>/algorithm_config.yaml exists on dev
  * - prototype:  code exists in src/ but there is no DPS algorithm (e.g. iceye)
+ * - external:   no algorithm here yet. The product is made OUTSIDE this catalog and published on
+ *               the Disasters Portal data gallery (OPERA, UAVSAR, Planet…). It is listed so a
+ *               request can ask for it and the event page can link its card. No DPS job is ever
+ *               created, and it is never auto-selected by a hazard.
  */
-export type AlgorithmStatus = "production" | "prototype";
+export type AlgorithmStatus = "production" | "prototype" | "external";
 
 /**
  * How the algorithm is pointed at a place. These are mutually incompatible across algorithms —
@@ -73,6 +81,15 @@ export interface Product {
    * (app/site-config/data/data__sentinel-2-true-color.ts). None = no card on the portal yet.
    */
   portalData?: string;
+  /**
+   * GENERATED from the live Disasters STAC by scripts/sync_stac_assets.py — never hand-edited, and
+   * the app offers no way to edit it. The product-specific asset key on the live items (the asset
+   * whose roles include "data"; never `cog_default` or a rendered preview), e.g. "truecolor",
+   * "colorir", "backscatter", "blackmarble_hd". Absent = no live STAC collection carries it yet.
+   */
+  stacAsset?: string;
+  /** GENERATED with stacAsset: every live collection carrying it, e.g. sentinel2-truecolor-daily. */
+  stacCollections?: string[];
 }
 
 export interface Algorithm {
@@ -114,6 +131,18 @@ export type Need = "prepare" | "respond" | "recover" | "resilience";
  * The public event page's own text — everything on it that is NOT already event data. Title,
  * hazard, region and start date come from the event itself; the data gallery from its layers.
  */
+/**
+ * The page's one optional image, shown right after the intro text (as on the Venezuela and Typhoon
+ * Sinlaku pages), given as a Google Drive link — the team's images live in Drive. Downloaded into
+ * the portal repo when the portal PR is opened (scripts/portal_pr.mjs). The masthead is never set
+ * here: every event page uses the portal's default masthead image.
+ */
+export interface PageImage {
+  url: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface EventPage {
   subtitle?: string;
   /** Overview narrative. Plain text; a blank line separates paragraphs. */
@@ -121,6 +150,7 @@ export interface EventPage {
   /** The "What the U.S. government is doing — Learn more" link. https only. */
   govLink?: string;
   needs: Need[];
+  image?: PageImage;
   /** The page's sidebar "Region", e.g. "Los Angeles County, North America". Defaults to the locations. */
   region?: string;
   /**

@@ -15,7 +15,7 @@
 // noise, not help. "Show all problems" reveals everything at once, which is the answer to "why is
 // the submit button greyed out?" (a disabled button can't tell you itself — it emits no click).
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import "../request.css";
 import type { Algorithm, AlgorithmInput, Hazard, RequestProduct } from "../types";
 import type { Violation } from "../rules";
@@ -34,10 +34,16 @@ import {
 import ProductPicker from "./ProductPicker";
 import PlacePicker from "./PlacePicker";
 import { unionBbox } from "../places";
+import { modality as modalityStyle } from "../colors";
 import { takeNavIntent } from "../tabs";
 import type { CatalogEvent } from "../data";
-import EventPage from "../events/EventPage";
-import { derivePortalId, NEED_LABELS, PORTAL_REPO, portalEventFile } from "../portal";
+import PortalPage, { PortalFrame } from "../events/PortalPage";
+import { NEED_LABELS, PORTAL_REPO, portalEventFile, portalIdOf } from "../portal";
+
+/** Whether the live portal preview is docked beside the form — remembered per browser. */
+const LIVE_KEY = "algorithm-catalog:livePreview";
+/** Below this the form and preview can't both be readable side by side, so it starts closed. */
+const LIVE_MIN_WIDTH = 1200;
 
 /** Remembers the requester handle across visits — see the note where the draft is initialised. */
 const REQUESTER_KEY = "algorithm-catalog:requester";
@@ -148,6 +154,22 @@ function WhatWillRun({
       {rows.length === 0 && <p className="req-picker-empty">Pick some products first.</p>}
       {rows.map((a) => {
         const tokens = byAlg.get(a.id) ?? [];
+        if (a.status === "external") {
+          const labels = a.products.filter((p) => tokens.includes(p.id)).map((p) => p.label);
+          return (
+            <div key={a.id} className="req-runblock">
+              <div className="req-runblock-head">
+                <b>{a.title}</b>
+                <span className="req-badge req-badge-warn">no algorithm yet</span>
+              </div>
+              <p className="req-muted">
+                {labels.join(", ")}: produced outside this catalog and published on the Disasters
+                Portal. No DPS job is created; the request records that the event needs this layer,
+                and the event page links its data-gallery card.
+              </p>
+            </div>
+          );
+        }
         return (
           <div key={a.id} className="req-runblock">
             <div className="req-runblock-head">
@@ -222,6 +244,25 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
   // Set when the form was opened from an event's "Edit page" — names what is being edited.
   const [editing, setEditing] = useState<string | null>(null);
   const [bboxNote, setBboxNote] = useState("");
+  const [live, setLive] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem(LIVE_KEY);
+      if (saved !== null) return saved === "1";
+    } catch {
+      /* ignore */
+    }
+    return window.innerWidth >= LIVE_MIN_WIDTH;
+  });
+  function toggleLive() {
+    setLive((v) => {
+      try {
+        localStorage.setItem(LIVE_KEY, v ? "0" : "1");
+      } catch {
+        /* ignore */
+      }
+      return !v;
+    });
+  }
 
   // Events → "Edit page" parks {tab:"submit", event} and switches here (src/tabs.ts navigate).
   useEffect(() => {
@@ -239,13 +280,14 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
 
   // Labels for the product chips.
   const productLabel = useMemo(() => {
-    const m = new Map<string, { alg: string; product: string; modality: string }>();
+    const m = new Map<string, { alg: string; product: string; modality: string; external: boolean }>();
     for (const a of algorithms) {
       for (const p of a.products) {
         m.set(productKey({ algorithm: a.id, product: p.id }), {
           alg: a.title,
           product: p.label,
           modality: a.modality,
+          external: a.status === "external",
         });
       }
     }
@@ -353,6 +395,25 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
     }));
   }
 
+  // The selected products are listed ABOVE the "Add products" button, so every add or remove made
+  // from the open picker grows/shrinks the page above it and shoves the picker off screen. Record
+  // where the picker sits just before the change and scroll by exactly the difference after it, so
+  // it stays put under the cursor. Only these picker edits are compensated — a scroll the user
+  // makes themselves is never undone.
+  const addWrapRef = useRef<HTMLDivElement>(null);
+  const pickerTopBefore = useRef<number | null>(null);
+  const holdPicker = () => {
+    pickerTopBefore.current = addWrapRef.current?.getBoundingClientRect().top ?? null;
+  };
+  useLayoutEffect(() => {
+    const before = pickerTopBefore.current;
+    pickerTopBefore.current = null;
+    const el = addWrapRef.current;
+    if (before === null || !el) return;
+    const shift = el.getBoundingClientRect().top - before;
+    if (shift !== 0) window.scrollBy(0, shift);
+  }, [draft.products]);
+
   function addProduct(algorithm: string, product: string) {
     touch("products");
     const key = productKey({ algorithm, product });
@@ -389,6 +450,7 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
   const manualCount = draft.products.length - autoCount;
 
   return (
+    <div className={live ? "req-layout is-live" : "req-layout"}>
     <div className="req-form" onClick={() => pickerOpen && setPickerOpen(false)}>
       <div className="req-intro">
         <h2>📝 Request an activation</h2>
@@ -519,6 +581,9 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
       <section className="panel req-section">
         <h3>
           2 · Page content <span className="opt">(optional — the event's page on the Disasters Portal)</span>
+          <button className="btn req-live-toggle" type="button" onClick={toggleLive} aria-pressed={live}>
+            {live ? "Hide live preview" : "👁 Live preview"}
+          </button>
         </h3>
         <div className="req-help">
           The text of the public page on science.data.nasa.gov. Title, hazards, locations and start
@@ -575,6 +640,48 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
         </div>
 
         <div className="field">
+          <label htmlFor="req-image-url">
+            Image after the intro <span className="opt">(optional — a Google Drive link)</span>
+          </label>
+          <input
+            id="req-image-url"
+            className="req-mono"
+            value={draft.imageUrl}
+            onChange={(e) => patch({ imageUrl: e.target.value })}
+            onBlur={() => touch("image")}
+            placeholder="https://drive.google.com/file/d/…/view?usp=sharing"
+          />
+          <div className="req-help">
+            One image shown right after the intro, like the Venezuela earthquake page. Paste the Drive{" "}
+            <b>file</b> link (Share → Copy link) with sharing set to <b>Anyone with the link</b>; it is
+            copied into the portal when the PR opens.
+          </div>
+          {draft.imageUrl.trim() && (
+            <>
+              <input
+                id="req-image-alt"
+                className="req-img-extra"
+                value={draft.imageAlt}
+                onChange={(e) => patch({ imageAlt: e.target.value })}
+                onBlur={() => touch("image")}
+                placeholder="Alt text — what the image shows (required)"
+                aria-label="Image alt text"
+              />
+              <textarea
+                id="req-image-caption"
+                className="req-img-extra"
+                rows={2}
+                value={draft.imageCaption}
+                onChange={(e) => patch({ imageCaption: e.target.value })}
+                placeholder="Caption (optional) — what it shows, then the credit, e.g. “… Credit: NASA”"
+                aria-label="Image caption"
+              />
+            </>
+          )}
+          <Issues all={violations} field="image" show={shown("image")} />
+        </div>
+
+        <div className="field">
           <label htmlFor="req-govlink">“What the U.S. government is doing” link</label>
           <input
             id="req-govlink"
@@ -587,34 +694,20 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           <Issues all={violations} field="govLink" show={shown("govLink")} />
         </div>
 
-        <div className="field two">
-          <div>
-            <label htmlFor="req-region">
-              Region <span className="opt">(optional)</span>
-            </label>
-            <input
-              id="req-region"
-              value={draft.region}
-              onChange={(e) => patch({ region: e.target.value })}
-              placeholder={allLocations(draft).join("; ") || "Los Angeles County, North America"}
-            />
-            <div className="req-help">As printed on the page. Blank = your locations.</div>
-          </div>
-          <div>
-            <label htmlFor="req-portalid">
-              Portal page id <span className="opt">(optional)</span>
-            </label>
-            <input
-              id="req-portalid"
-              className="req-mono"
-              value={draft.portalId}
-              onChange={(e) => patch({ portalId: e.target.value })}
-              onBlur={() => touch("portalId")}
-              placeholder={derivePortalId(draft.name) || "southern-california-fire-jan-2025"}
-            />
-            <div className="req-help">The page's URL slug. Blank = derived from the event name.</div>
-            <Issues all={violations} field="portalId" show={shown("portalId")} />
-          </div>
+        <div className="field">
+          <label htmlFor="req-region">
+            Region <span className="opt">(optional)</span>
+          </label>
+          <input
+            id="req-region"
+            value={draft.region}
+            onChange={(e) => patch({ region: e.target.value })}
+            placeholder={allLocations(draft).join("; ") || "Los Angeles County, North America"}
+          />
+          <div className="req-help">As printed on the page. Blank = your locations.</div>
+          {/* The page address is never asked for: it is derived from the event name (portal
+              convention, enforced by rules.ts PORTAL_NAME_RE) and shown in the live preview. */}
+          <Issues all={violations} field="portalId" show={shown("portalId")} />
         </div>
       </section>
 
@@ -797,11 +890,21 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
 
         <div className="req-prod-groups">
           {groupedProducts.map(([algId, rows]) => {
-            const algLabel = productLabel.get(productKey(rows[0]))?.alg ?? algId;
+            const algMeta = productLabel.get(productKey(rows[0]));
+            const algLabel = algMeta?.alg ?? algId;
+            // The sensor is the group's heading, so it carries the sensor's modality accent (the
+            // same icon + colour as the picker and catalog) and outranks the product chips below.
+            const m = algMeta ? modalityStyle(algMeta.modality) : null;
             return (
-              <div className="req-prod-group" key={algId}>
+              <div className="req-prod-group" key={algId} style={m ? { borderLeftColor: m.color } : undefined}>
                 <div className="req-prod-group-hd">
+                  {m && (
+                    <span className="req-prod-group-icon" aria-hidden="true">
+                      {m.icon}
+                    </span>
+                  )}
                   <span className="req-prod-group-name">{algLabel}</span>
+                  {algMeta?.external && <span className="req-badge req-badge-warn">no algorithm yet</span>}
                   <span className="req-prod-group-n">
                     {rows.length} product{rows.length === 1 ? "" : "s"}
                   </span>
@@ -851,7 +954,7 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           )}
         </div>
 
-        <div className="control req-addwrap" onClick={(e) => e.stopPropagation()}>
+        <div className="control req-addwrap" ref={addWrapRef} onClick={(e) => e.stopPropagation()}>
           <button className="btn" type="button" onClick={() => setPickerOpen((v) => !v)}>
             ＋ Add products
           </button>
@@ -859,7 +962,16 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
             <ProductPicker
               algorithms={algorithms}
               selected={selectedKeys}
-              onAdd={addProduct}
+              onAdd={(algorithm, product) => {
+                holdPicker();
+                addProduct(algorithm, product);
+              }}
+              onRemove={(algorithm, product) => {
+                const p = draft.products.find((x) => x.algorithm === algorithm && x.product === product);
+                if (!p) return;
+                holdPicker();
+                removeProduct(p);
+              }}
               onClose={() => setPickerOpen(false)}
             />
           )}
@@ -874,10 +986,12 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
       <section className="panel req-section">
         <h3>6 · Review &amp; submit</h3>
 
-        {request.page && (
+        {request.page && !live && (
           <details className="req-whatruns panel" open>
-            <summary>🌐 Page preview — how it will read on the Disasters Portal</summary>
-            <EventPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+            <summary>🌐 Page preview — how it will look on the Disasters Portal</summary>
+            <PortalFrame>
+              <PortalPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+            </PortalFrame>
           </details>
         )}
         {portalFile && (
@@ -951,6 +1065,24 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           </div>
         </div>
       </section>
+    </div>
+
+    {live && (
+      <aside className="req-live" aria-label="Live Disasters Portal preview">
+        <div className="req-live-head">
+          <b>👁 Live preview</b>
+          <code title="Where the page will be published">
+            …/disasters/news-events-stories/{portalIdOf(previewEvent) || "…"}
+          </code>
+          <button className="req-modal-x" type="button" onClick={toggleLive} aria-label="Hide live preview">
+            ×
+          </button>
+        </div>
+        <PortalFrame>
+          <PortalPage event={previewEvent} algorithms={algorithms} hazards={hazards} />
+        </PortalFrame>
+      </aside>
+    )}
     </div>
   );
 }

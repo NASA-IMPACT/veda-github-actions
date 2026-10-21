@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from validate_data import (  # noqa: E402
     BBOX_MIN_LAT_SPAN,
+    DRIVE_FILE_RE,
     HTTPS_URL_RE,
     ISO_DATE_RE,
     MGRS_TILE_RE,
@@ -41,6 +42,7 @@ from validate_data import (  # noqa: E402
     PLACE_ID_RE,
     PORTAL_CATEGORIES_TEXT,
     PORTAL_ID_RE,
+    PORTAL_NAME_RE,
     STAC_EVENT_RE,
     STAC_EXAMPLE,
     STAC_PART_COUNT,
@@ -95,7 +97,9 @@ PY_CONSTANTS = {
     "HTTPS_URL_RE": HTTPS_URL_RE,
     "PLACE_ID_RE": PLACE_ID_RE,
     "PORTAL_ID_RE": PORTAL_ID_RE,
+    "PORTAL_NAME_RE": PORTAL_NAME_RE,
     "PORTAL_CATEGORIES_TEXT": PORTAL_CATEGORIES_TEXT,
+    "DRIVE_FILE_RE": DRIVE_FILE_RE,
 }
 
 
@@ -273,6 +277,23 @@ FIXTURES: list[tuple[str, object, bool, str | None, str]] = [
     ("page", {"portalId": "southern-california-fire-jan-2025", "intro": "x", "needs": ["respond"]}, True, None, "a real portal id"),
     ("page", {"portalId": "Southern_California"}, False, "format", "portal ids are lowercase-hyphenated"),
     ("page", {"intro": "x", "needs": ["respond"], "start": "1999-12-31"}, False, "portal-year", "portal DateString is 20xx only"),
+    # --- the page address is derived from the name, so a NEW page's name must end "<Month> <YYYY>" --
+    ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias October 2026", "start": "2026-10-09"}, True, None, "month + year"),
+    ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias", "start": "2026-10-09"}, False, "portal-name", "no month/year"),
+    ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias Oct 2026", "start": "2026-10-09"}, False, "portal-name", "month spelled out"),
+    ("page", {"intro": "x", "needs": ["respond"], "name": "California Fires", "portalId": "southern-california-fire-jan-2025"}, True, None, "an existing portal page keeps its id — exempt"),
+    # --- the page's one image (a Google Drive link) --------------------------------------------------------
+    *[
+        ("page", {"intro": "x", "needs": ["respond"], "image": img}, ok, rule, note)
+        for img, ok, rule, note in [
+            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view?usp=sharing", "alt": "Burn scar"}, True, None, "a shared Drive file link"),
+            ({"url": "https://drive.google.com/open?id=1AbCdEfGhIjKlMnOp", "alt": "Fire"}, True, None, "the open?id= form"),
+            ({"url": "https://drive.google.com/uc?export=view&id=1AbCdEfGhIjKlMnOp", "alt": "Fire"}, True, None, "the uc?export=view form"),
+            ({"url": "https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp", "alt": "x"}, False, "drive-folder", "a FOLDER is not an image"),
+            ({"url": "https://example.com/fire.jpg", "alt": "x"}, False, "drive-link", "not Google Drive"),
+            ({"url": "https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view", "alt": " "}, False, "alt-required", "alt text is required"),
+        ]
+    ],
     ("page", {"govLink": "http://www.usa.gov/x"}, False, "format", "http is refused"),
     ("page", {"govLink": "https://usa"}, False, "format", "a host needs a dot"),
     ("page", {"govLink": "www.usa.gov"}, False, "format", "no scheme"),
@@ -304,6 +325,7 @@ SOFT_FIXTURES: list[tuple[str, object, list[str], str]] = [
     ("places", ["US-AL-c51000", "US-GA"], [], "a city and a different state — fine"),
     ("page", {"needs": ["respond"]}, ["missing"], "a page was started but has no intro"),
     ("page", {"intro": "x"}, ["missing"], "a page with no Need"),
+    ("page", {"intro": "x", "needs": ["respond"], "name": "Hurricane Isaias September 2026", "start": "2026-10-09"}, ["name-date"], "name month ≠ start month"),
     ("page", {}, [], "no page started — no nag"),
 ]
 

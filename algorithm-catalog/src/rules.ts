@@ -64,8 +64,27 @@ export const HTTPS_URL_RE = /^https:\/\/[^\s/]+\.[^\s]+$/;
  */
 export const PLACE_ID_RE = /^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$/;
 
+/**
+ * A Google Drive FILE link — /file/d/<id>/…, open?id=<id> or uc?…id=<id>. Group 1 is the file id.
+ * A folder link (/drive/folders/…) is not an image and is rejected with its own message.
+ */
+export const DRIVE_FILE_RE = /^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[a-z]+&)?id=)([A-Za-z0-9_-]{10,})/;
+
+/** The Drive file id in a link, or null when it is not a Drive file link. */
+export function driveFileId(url: string): string | null {
+  return DRIVE_FILE_RE.exec(url.trim())?.[1] ?? null;
+}
+
 /** A Disasters Portal content id: its URL slug and file name, e.g. southern-california-fire-jan-2025. */
 export const PORTAL_ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/**
+ * A NEW portal page's id is never typed — it is derived from the event name (src/portal.ts
+ * derivePortalId), so the NAME must carry the portal's convention: "<Event> <Month> <YYYY>",
+ * e.g. "Hurricane Isaias October 2026" -> hurricane-isaias-oct-2026. Group 1 = month, 2 = year.
+ */
+export const PORTAL_NAME_RE = /\s(January|February|March|April|May|June|July|August|September|October|November|December)\s(20[0-9]{2})$/;
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /** The portal's CONTENT_CATEGORIES (disasters-portal app/site-config/types.ts), pipe-joined. */
 export const PORTAL_CATEGORIES_TEXT = "cyclone|earthquake|fire|flood|heat|hurricane|landslide|severe weather|tropical cyclone|tsunami|typhoon|volcano|winter weather";
@@ -362,10 +381,32 @@ export function checkPlaces(ids: string[]): Violation[] {
  * page files under the categories of its hazards).
  */
 export function checkPage(
-  p: { subtitle: string; intro: string; govLink: string; needs: string[]; portalId: string; start: string; hazards: string[] },
+  p: {
+    subtitle: string;
+    intro: string;
+    govLink: string;
+    needs: string[];
+    portalId: string;
+    start: string;
+    hazards: string[];
+    image?: { url: string; alt: string };
+    name?: string;
+  },
   vocabulary: Hazard[] = [],
 ): Violation[] {
   const out: Violation[] = [];
+  const img = p.image?.url.trim() ? p.image : undefined;
+  if (img) {
+    const url = img.url.trim();
+    if (/^https:\/\/drive\.google\.com\/drive\/(u\/[0-9]+\/)?folders\//.test(url)) {
+      out.push(err("image", "drive-folder", "That is a Drive FOLDER link — link the image file itself (right-click it → Share → Copy link)."));
+    } else if (!driveFileId(url)) {
+      out.push(err("image", "drive-link", "The image must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."));
+    }
+    if (!img.alt.trim()) {
+      out.push(err("image", "alt-required", "The image needs alt text — a short description of it for screen readers."));
+    }
+  }
   for (const n of p.needs) {
     if (!(NEEDS as string[]).includes(n)) {
       out.push(err("needs", "vocabulary", `"${n}" is not a Need. Use one of: ${NEEDS.join(", ")}.`));
@@ -381,8 +422,26 @@ export function checkPage(
       err("portalId", "format", `"${portalId}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.`),
     );
   }
-  const started = Boolean(p.subtitle.trim() || p.intro.trim() || link || p.needs.length > 0 || portalId);
+  const started = Boolean(
+    p.subtitle.trim() || p.intro.trim() || link || p.needs.length > 0 || portalId || img,
+  );
   if (!started) return out;
+  // A new page's address comes from its name, so the name must follow the portal's convention.
+  // (An existing portal page keeps its recorded portalId and is exempt.)
+  const name = (p.name ?? "").trim();
+  if (!portalId && name) {
+    const m = PORTAL_NAME_RE.exec(name);
+    if (!m) {
+      out.push(
+        err("name", "portal-name", `End the name with the month and year, e.g. "Hurricane Isaias October 2026" — it becomes the page's web address.`),
+      );
+    } else if (/^[0-9]{4}-[0-9]{2}/.test(p.start)) {
+      const mm = String(MONTH_NAMES.indexOf(m[1]) + 1).padStart(2, "0");
+      if (`${m[2]}-${mm}` !== p.start.slice(0, 7)) {
+        out.push(warn("name", "name-date", `The name says ${m[1]} ${m[2]} but the event starts ${p.start}.`));
+      }
+    }
+  }
   // Started a page but left out its body — the Overview is the one section a reader comes for.
   if (!p.intro.trim()) {
     out.push(warn("intro", "missing", "The page has no intro paragraph, so its Overview section will be empty."));
@@ -443,6 +502,7 @@ export interface RequestShape {
   govLink: string;
   needs: string[];
   portalId: string;
+  image?: { url: string; alt: string };
 }
 
 export function validateRequest(r: RequestShape, vocabulary: Hazard[]): Violation[] {

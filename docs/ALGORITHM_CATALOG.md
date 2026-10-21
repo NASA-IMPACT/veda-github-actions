@@ -86,12 +86,77 @@ hand-kept `hazard_event_info.xlsx`; the Submit form's **2 · Page content** sect
 - **Merge rule:** page text is **newest-wins** — `loadEventCatalog` shows the newest submission's
   `page` over the published one (Events → **Edit page** submits a request for an existing event).
   Layers stay published-owns-row.
-- **Preview / export:** Events → event → **Page preview** (`src/events/EventPage.tsx`, the portal's
-  section order), **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
+- **Live preview — as it will look ON the portal:** `src/events/PortalPage.tsx` replicates the
+  portal page (its header, hero masthead, sidebar tags, Overview, Event Data Gallery; fonts, colors
+  and proportions measured off the live California page) at its 1280px desktop width, and
+  `<PortalFrame>` scales it to fit. It is docked beside the Submit form (👁 **Live preview**, sticky,
+  remembered per browser in `localStorage algorithm-catalog:livePreview`; default open ≥1200px) and
+  updates on every keystroke; Events → event → **Page preview** shows the same. Text goes through
+  `src/portal.ts` `typographic()` — the same transform the generated file uses — so the preview
+  shows exactly what the portal will (curly quotes included).
+- **The gallery shows the portal's REAL cards** (title, description, tags, thumbnail) for each
+  product's `portalData`, snapshotted by `scripts/sync_portal_cards.py <portal checkout>` into
+  `data/portal-cards.json` + `public/portal/` (thumbnails downsized with macOS `sips`). Re-run it
+  when the portal's cards change or a `portalData` mapping is added. Layers with no portal card are
+  listed under the preview, since the real page will not show them.
+- **Export:** **Copy Markdown**, **Page JSON** (`src/pageExport.ts`).
+- **One optional image after the intro** (`page.image`), as on the Venezuela / Typhoon Sinlaku
+  pages: a Google Drive **file** link + alt text (required) + optional caption (end it with the
+  credit). It becomes the portal's `image` block between the Overview text and the Event Data
+  Gallery. There is **no masthead option** — every generated page uses the portal's default event
+  image (`/img/event/template-hero.webp`) for the hero and card thumbnail. `rules.ts` `DRIVE_FILE_RE`
+  accepts `/file/d/<id>`, `open?id=` and `uc?…id=`; a `/drive/folders/` link gets its own error.
+  The preview loads it through Drive's thumbnail endpoint (caption styled as measured on the live
+  portal: 12px, base-dark, narrow measure) and says plainly when it can't — the file isn't shared
+  "Anyone with the link". `portal_pr.mjs` downloads it to `public/img/event/<id>__overview.<ext>`,
+  **sniffs the bytes** (an unshared file comes back as an HTML page, so the content type can't be
+  trusted), reads the real width/height the `image` block requires (PNG/JPEG/WebP/GIF, stdlib) and
+  then brings it to the **portal's image standard** (below). A failed download never breaks the PR:
+  it is listed in the PR body and as a comment in the page file. `DRIVE_DOWNLOAD_URL` overrides the
+  endpoint for testing.
+- **The portal's image standard** (disasters-portal PRs #556 and #654, applied by
+  `portal_pr.mjs` `toPortalWebp`): every image is a **real WebP** (`cwebp -q 80 -m 6 -metadata
+  none` — a PNG/JPEG renamed `.webp` was #654's main offender), **≤ 1920px wide**, **< 500 KB**. A
+  WebP that already meets it is kept byte for byte (re-encoding lossy WebP only loses quality); one
+  still over 500 KB at q80 is stepped down in width (×0.85, floor 640px) rather than dropped below
+  q80, as #654 did for `landsat-natural-color`. Body images are **not** capped at 1280px — #654
+  dropped that rule because it blurred high-DPI screenshots. GIFs are refused (export PNG/JPEG).
+  The PR body lists each conversion (e.g. `11,594 KB PNG → 292 KB WebP (q80, 3943 → 1920px)`). The
+  workflow installs `cwebp` (`apt-get install webp`); locally `brew install webp`.
+  `sync_portal_cards.py` encodes the preview's card thumbnails the same way (480px WebP).
+- **The page address is never asked for.** A new page's id is derived from the event name
+  (`derivePortalId`: "Hurricane Isaias October 2026" → `hurricane-isaias-oct-2026`, "U.S." → "us"),
+  so once a page is started the name must end "<Month> <YYYY>" (`PORTAL_NAME_RE`, error
+  `name.portal-name`; a name/start-date month mismatch warns). Existing portal pages keep their
+  recorded `portalId` (set by the import) and are exempt. The form has no address field at all; the
+  address appears only in the live preview's header.
 - **Import:** `scripts/import_xlsx.py` is **one-time** and reads **sheet 1 only**; the Google Sheet
   is being retired. It reports, never invents: unmapped hazards/locations/layers are listed, a Layers
   cell that only points at another sheet imports no layers. Per-layer pipeline status (STAC / GIBS /
   EGIS / staging) is deferred.
+
+## Every Disasters Portal data product, and its live STAC name
+- **All 59 Data Gallery products can be requested.** The 40 with no algorithm here are entries with
+  `status: "external"` ("no algorithm yet"), grouped by source (OPERA, UAVSAR, AVIRIS-3, Planet,
+  Vantor, SkySat, …). Each links to its real portal card via `portalData`. They are picked by hand
+  only: `autoProducts` never selects them from a hazard, and "What this will run" says no DPS job is
+  created. `validate_data.py` requires `inputs: []` for them. Modality `"model"` covers GAIA and GPM.
+- **"＋ Add products" is a two-column picker** (`src/request/ProductPicker.tsx`, `.req-prodpick`):
+  sensors on the left (catalog order, selected/total counts, status badge from a generic
+  `STATUS_LABEL` map), the selected sensor's products on the right. Search spans both columns, with
+  an "All matches" entry. Keyboard: ↓ into sensors, ↑/↓/Home/End, → or Enter into products, Esc.
+- **`stacAsset` / `stacCollections` are GENERATED from the live Disasters STAC** by
+  `scripts/sync_stac_assets.py`, never hand-edited, and the app offers no way to edit them. The
+  asset name is the item asset whose roles include `data`; `cog_default` and the
+  `rendered_preview_*` / dashboard renders are NOT asset names. Collections are matched to products
+  by rule (sensor = algorithm id or named in the card title; asset key = the product token, its
+  folder, or named in its card title; or an exact name unique across all of STAC). Claims are
+  ranked, a product with its own-sensor collections ignores title-only sensors, and a tie is
+  assigned to nobody and reported. The picker shows `stacAsset` as the product token; a product no
+  live collection carries shows its own token, dashed. `validate_data.py` checks the shape only (CI
+  has no network); `sync_stac_assets.py --check` exits 1 when the file is stale against live STAC.
+  The product `id` stays the algorithm's CLI token — the DPS run scripts are demo scaffolding and
+  will change, so they are not a naming authority.
 
 ## Locations at any level of interest
 `src/request/PlacePicker.tsx` over a bundled gazetteer (`src/places.ts`): pick **Alabama**, or
