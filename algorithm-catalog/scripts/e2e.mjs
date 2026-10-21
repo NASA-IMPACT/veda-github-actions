@@ -321,6 +321,64 @@ check(
   /End the name with the month and year/.test(await page.locator(".req-form").innerText()),
 );
 
+// --- 8. "＋ Add products": sensors on the left, the picked sensor's products on the right ---------
+await page.goto(BASE, { waitUntil: "networkidle" });
+const picker = page.locator(".req-prodpick");
+const sensorTabs = picker.locator('[role="tablist"] [role="tab"]');
+const panel = picker.locator('[role="tabpanel"]');
+await page.locator("button", { hasText: "Add products" }).click();
+check(
+  "picker lists every algorithm as a sensor on the left",
+  (await sensorTabs.count()) === cards,
+  `${await sensorTabs.count()} sensors, ${cards} algorithm cards`,
+);
+check(
+  "…the first sensor is selected by default",
+  (await sensorTabs.first().getAttribute("aria-selected")) === "true" &&
+    (await panel.locator(".req-picker-group-head").innerText()).includes("Landsat"),
+);
+await shot(page, "11-picker");
+await sensorTabs.filter({ hasText: "Sentinel-2" }).click();
+const s2Panel = await panel.innerText();
+check(
+  "clicking Sentinel-2 shows its products on the right — and not Landsat's",
+  /Shortwave infrared/.test(s2Panel) && !/Panchromatic/.test(s2Panel) && !/Landsat/.test(s2Panel),
+);
+await picker.locator(".req-picker-search").fill("swir");
+await page.waitForTimeout(150);
+const swirTabs = await sensorTabs.allInnerTexts();
+check(
+  "searching “swir” narrows the sensor list (plus an All matches entry)",
+  swirTabs.length > 1 && swirTabs.length < cards + 1 && /All matches/.test(swirTabs[0]),
+  swirTabs.map((t) => t.replace(/\s+/g, " ")).join(" | "),
+);
+await panel.locator(".req-picker-row", { hasText: "Shortwave infrared" }).click();
+check(
+  "…and the match can still be added",
+  (await panel.locator(".req-picker-row.is-added", { hasText: "Shortwave infrared" }).count()) === 1,
+);
+await picker.locator(".req-picker-search").fill("");
+await picker.locator(".req-picker-search").press("ArrowDown"); // into the sensor list
+await page.keyboard.press("Home"); // -> Landsat (first)
+await page.keyboard.press("ArrowDown"); // -> Sentinel-2
+const kbTab = await page.evaluate(() => document.activeElement?.textContent ?? "");
+await page.keyboard.press("Enter"); // -> into its products
+const kbRow = await page.evaluate(() =>
+  document.activeElement?.classList.contains("req-picker-row")
+    ? document.activeElement.querySelector(".req-picker-name")?.textContent
+    : null,
+);
+await page.keyboard.press("Enter"); // add it
+check(
+  "keyboard: ↓ Home ↓ Enter Enter adds a Sentinel-2 product",
+  /Sentinel-2/.test(kbTab) &&
+    !!kbRow &&
+    (await panel.locator(".req-picker-row.is-added", { hasText: kbRow }).count()) === 1,
+  `${kbTab.replace(/\s+/g, " ")} → ${kbRow}`,
+);
+await page.keyboard.press("Escape");
+check("Esc closes the picker", (await picker.count()) === 0);
+
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 
 await browser.close();
