@@ -15,7 +15,7 @@
 // noise, not help. "Show all problems" reveals everything at once, which is the answer to "why is
 // the submit button greyed out?" (a disabled button can't tell you itself — it emits no click).
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import "../request.css";
 import type { Algorithm, AlgorithmInput, Hazard, RequestProduct } from "../types";
 import type { Violation } from "../rules";
@@ -394,6 +394,25 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
       dismissed: p.via === "hazard" && !d.dismissed.includes(key) ? [...d.dismissed, key] : d.dismissed,
     }));
   }
+
+  // The selected products are listed ABOVE the "Add products" button, so every add or remove made
+  // from the open picker grows/shrinks the page above it and shoves the picker off screen. Record
+  // where the picker sits just before the change and scroll by exactly the difference after it, so
+  // it stays put under the cursor. Only these picker edits are compensated — a scroll the user
+  // makes themselves is never undone.
+  const addWrapRef = useRef<HTMLDivElement>(null);
+  const pickerTopBefore = useRef<number | null>(null);
+  const holdPicker = () => {
+    pickerTopBefore.current = addWrapRef.current?.getBoundingClientRect().top ?? null;
+  };
+  useLayoutEffect(() => {
+    const before = pickerTopBefore.current;
+    pickerTopBefore.current = null;
+    const el = addWrapRef.current;
+    if (before === null || !el) return;
+    const shift = el.getBoundingClientRect().top - before;
+    if (shift !== 0) window.scrollBy(0, shift);
+  }, [draft.products]);
 
   function addProduct(algorithm: string, product: string) {
     touch("products");
@@ -935,7 +954,7 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
           )}
         </div>
 
-        <div className="control req-addwrap" onClick={(e) => e.stopPropagation()}>
+        <div className="control req-addwrap" ref={addWrapRef} onClick={(e) => e.stopPropagation()}>
           <button className="btn" type="button" onClick={() => setPickerOpen((v) => !v)}>
             ＋ Add products
           </button>
@@ -943,10 +962,15 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
             <ProductPicker
               algorithms={algorithms}
               selected={selectedKeys}
-              onAdd={addProduct}
+              onAdd={(algorithm, product) => {
+                holdPicker();
+                addProduct(algorithm, product);
+              }}
               onRemove={(algorithm, product) => {
                 const p = draft.products.find((x) => x.algorithm === algorithm && x.product === product);
-                if (p) removeProduct(p);
+                if (!p) return;
+                holdPicker();
+                removeProduct(p);
               }}
               onClose={() => setPickerOpen(false)}
             />

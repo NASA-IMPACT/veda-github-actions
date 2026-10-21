@@ -477,6 +477,45 @@ check(
 );
 await page.keyboard.press("Escape");
 
+// --- 11. Adding from the open picker must not shove it off screen --------------------------------
+// The selected list sits ABOVE the picker, so each new sensor group grows the page above it. The
+// picker must stay put across each add/remove itself. (Clicking a sensor tab that is half below
+// the window may scroll it into view — that is the browser doing its job, so drift is measured
+// from just before each add, not from when the picker opened.)
+// A sensor title's textContent runs straight into its status badge ("Vantorno algorithm yet"), so
+// match the name optionally followed by exactly that badge.
+const sensorTitle = (name) => new RegExp(`^${name}(?:no algorithm yet|prototype)?$`);
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("button", { hasText: "Add products" }).click();
+const pk11 = page.locator(".req-prodpick");
+const pickTop = async () => (await pk11.boundingBox()).y;
+const scroll0 = await page.evaluate(() => window.scrollY);
+const toggle = async (sensor, product) => {
+  await pk11.locator('[role="tab"]').filter({ has: page.locator(".req-picker-stitle", { hasText: sensorTitle(sensor) }) }).click();
+  await page.waitForTimeout(100);
+  const before = await pickTop();
+  await pk11.locator('[role="tabpanel"] .req-picker-row', { hasText: product }).first().click();
+  await page.waitForTimeout(150);
+  return Math.round((await pickTop()) - before);
+};
+const drift = [];
+for (const [sensor, product] of [
+  ["Umbra SAR", "Gamma-naught"],
+  ["Capella SAR", "Sigma-naught"],
+  ["Vantor", "Vantor True Color"],
+  ["GPM IMERG", "GPM"],
+]) {
+  drift.push(await toggle(sensor, product));
+}
+check(
+  "the open picker stays put on screen as each product is added above it",
+  drift.every((d) => Math.abs(d) <= 1),
+  `picker drift per add: ${drift.join(", ")} px; page scrolled ${Math.round((await page.evaluate(() => window.scrollY)) - scroll0)} px to compensate`,
+);
+const removeDrift = await toggle("Vantor", "Vantor True Color"); // its ✓ — removes it
+check("…and when one is removed", Math.abs(removeDrift) <= 1, `${removeDrift} px`);
+await page.keyboard.press("Escape");
+
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 
 await browser.close();
