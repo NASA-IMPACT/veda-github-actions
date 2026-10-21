@@ -14,7 +14,7 @@
 //   cards       = existing DATA__* gallery cards, via data/algorithms.json `portalData`
 //   format      = Biome: 2-space, double quotes, trailing commas, 100 columns
 
-import type { Algorithm, EventLayer, EventPage, Hazard, Need } from "./types";
+import type { Algorithm, EventLayer, EventPage, Hazard, Need, PageImage } from "./types";
 
 export const PORTAL_REPO = "Disasters-Learning-Portal/disasters-portal";
 export const PORTAL_BRANCH = "develop";
@@ -38,6 +38,14 @@ export interface PortalInput {
   locations: string[];
   layers: EventLayer[];
   page?: EventPage;
+}
+
+/** A page image once scripts/portal_pr.mjs has downloaded it into the portal checkout. */
+export interface ResolvedImage extends PageImage {
+  /** Site path inside the portal, e.g. /img/event/<id>__overview-1.jpg */
+  src: string;
+  width: number;
+  height: number;
 }
 
 export interface PortalFile {
@@ -67,6 +75,7 @@ const MONTH_ABBR: Record<string, string> = {
 export function derivePortalId(name: string): string {
   return name
     .toLowerCase()
+    .replace(/[.'’]/g, "") // "U.S." -> "us", not "u-s" (us-winter-storm-jan-2026)
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .split("-")
@@ -113,11 +122,17 @@ function arr(indent: string, key: string, items: string[]): string {
   return [`${indent}${key}: [`, ...items.map((i) => `${indent}  ${i},`), `${indent}],`].join("\n");
 }
 
+/**
+ * `resolved` = the page's Drive images after scripts/portal_pr.mjs downloaded them. Omitted (the
+ * app's preview), every image is listed as a comment saying it will be downloaded; given, the
+ * downloaded ones become real blocks and any that failed are listed for a human to add.
+ */
 export function portalEventFile(
   ev: PortalInput,
   algorithms: Algorithm[],
   hazards: Hazard[],
   datePublished: string,
+  resolved?: ResolvedImage[],
 ): PortalFile {
   const id = portalIdOf(ev);
   const constName = portalConstName(id);
@@ -143,7 +158,10 @@ export function portalEventFile(
     .split(/\n\s*\n/)
     .map((p) => p.trim())
     .filter(Boolean);
-  const alt = lit(`Placeholder hero image for ${ev.name}`);
+  const heroImg = resolved?.find((i) => i.placement === "hero");
+  const heroSrc = heroImg?.src ?? PORTAL_PLACEHOLDER_IMAGE;
+  const alt = lit(heroImg?.alt ?? `Placeholder hero image for ${ev.name}`);
+  const pending = (page?.images ?? []).filter((i) => !resolved?.some((r) => r.url === i.url));
 
   const imports = [
     ...cards
@@ -160,6 +178,18 @@ export function portalEventFile(
     arr("      ", "paragraphs", (paragraphs.length ? paragraphs : ["Overview to come."]).map(lit)),
     "    },",
   ];
+  for (const img of resolved?.filter((i) => i.placement === "overview") ?? []) {
+    body.push(
+      "    {",
+      `      type: "image",`,
+      prop("      ", "src", lit(img.src)),
+      prop("      ", "alt", lit(img.alt)),
+      `      width: ${img.width},`,
+      `      height: ${img.height},`,
+      ...(img.caption ? [prop("      ", "caption", lit(img.caption))] : []),
+      "    },",
+    );
+  }
   if (cards.length > 0) {
     body.push(
       "    {",
@@ -193,12 +223,12 @@ export function portalEventFile(
     prop("  ", "datePublished", lit(datePublished)),
     "",
     "  thumbnailImage: {",
-    `    src: "${PORTAL_PLACEHOLDER_IMAGE}",`,
+    `    src: "${heroSrc}",`,
     prop("    ", "alt", alt),
     "  },",
     "",
     "  mastheadImage: {",
-    `    src: "${PORTAL_PLACEHOLDER_IMAGE}",`,
+    `    src: "${heroSrc}",`,
     prop("    ", "alt", alt),
     "  },",
     "",
@@ -216,6 +246,14 @@ export function portalEventFile(
   }
   if (unmapped.length > 0) {
     lines.push("  // No portal data-gallery card yet for:", ...unmapped.map((u) => `  //   - ${u}`));
+  }
+  if (pending.length > 0) {
+    lines.push(
+      resolved
+        ? "  // Could not download these Google Drive images — check their sharing, then add by hand:"
+        : "  // Google Drive images — downloaded into public/img/event/ when the portal PR is opened:",
+      ...pending.map((i) => `  //   - ${i.placement}: ${i.url}`),
+    );
   }
   lines.push("  body: [", ...body, "  ],", "};", "");
 

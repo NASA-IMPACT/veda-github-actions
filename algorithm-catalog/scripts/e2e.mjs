@@ -250,6 +250,28 @@ await page.locator("#req-subtitle").fill('As Hurricane Isaias made landfall, NAS
 await page.locator("button.req-haz", { hasText: /^Respond$/ }).click();
 await page.locator("#req-intro").fill("Hurricane Isaias brought storm surge to Florida and Alabama.\n\nNASA is sharing maps.");
 await page.locator("#req-govlink").fill("https://www.fema.gov/disaster/hurricane-isaias");
+check(
+  "the page address is inferred, not typed (hurricane-isaias-oct-2026)",
+  (await page.locator("#req-portalid").count()) === 0 &&
+    /\/hurricane-isaias-oct-2026$/.test((await page.locator("#req-pageaddr").innerText()).trim()),
+);
+// Images: a Drive FOLDER link is refused with its own message; a file link + alt text is accepted.
+await page.locator("button", { hasText: "Add image" }).click();
+const imgUrl = page.locator('input[aria-label="Image 1 Google Drive link"]');
+await imgUrl.fill("https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOp");
+await imgUrl.blur();
+await page.waitForTimeout(200);
+check("a Drive folder link is refused", /FOLDER link/.test(await page.locator(".req-form").innerText()));
+await imgUrl.fill("https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQrSt/view?usp=sharing");
+await page.locator('select[aria-label="Image 1 placement"]').selectOption("overview");
+await page.locator('input[aria-label="Image 1 alt text"]').fill("Flooding in Mobile, Alabama");
+await page.locator('input[aria-label="Image 1 caption"]').fill("Sentinel-2 view of Mobile Bay, Oct. 10, 2026.");
+await page.waitForTimeout(1500); // the Drive thumbnail request fails for this made-up id
+check(
+  "the preview shows the Overview image — or says plainly it can't load it",
+  (await page.locator(".req-live .pp-figure").count()) === 1 &&
+    /Sentinel-2 view of Mobile Bay/.test(await page.locator(".req-live .pp-figure").innerText()),
+);
 await page.locator("button", { hasText: "Add products" }).click();
 await page.locator(".req-picker-row", { hasText: "True color" }).first().click();
 await page.keyboard.press("Escape");
@@ -285,8 +307,21 @@ check(
   doc.page?.intro?.startsWith("Hurricane Isaias") &&
     doc.page?.needs?.[0] === "respond" &&
     doc.event?.places?.length === 2 &&
-    !("end" in (doc.event ?? {})),
+    !("end" in (doc.event ?? {})) &&
+    doc.page?.images?.[0]?.placement === "overview" &&
+    doc.page?.images?.[0]?.alt === "Flooding in Mobile, Alabama",
   opened ? new URL(opened).searchParams.get("filename") : "no window.open",
+);
+
+// --- 7. a NEW page's name must carry the portal convention, since it becomes the address ----------
+await page.goto(BASE, { waitUntil: "networkidle" });
+await page.locator("#req-name").fill("Hurricane Isaias");
+await page.locator("#req-subtitle").fill("Test");
+await page.locator("#req-name").blur();
+await page.waitForTimeout(200);
+check(
+  "a new page's name must end with Month YYYY",
+  /End the name with the month and year/.test(await page.locator(".req-form").innerText()),
 );
 
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));

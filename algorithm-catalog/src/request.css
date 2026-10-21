@@ -819,3 +819,34 @@ input[aria-invalid="true"] {
     max-height: none;
   }
 }
+
+/* --- page images: link + placement + remove on one line, alt + caption under it ------------ */
+
+.req-img-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--base-lighter, #dfe1e2);
+}
+
+.req-img-row > input:nth-of-type(2),
+.req-img-row > input:nth-of-type(3) {
+  grid-column: 1 / -1;
+}
+
+.req-img-row + .btn {
+  margin-top: 0.5rem;
+}
+
+/* The derived (read-only) portal page address. */
+.req-pageaddr {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px dashed var(--base-lighter, #dfe1e2);
+  border-radius: 4px;
+  background: var(--base-lightest, #f0f0f0);
+  overflow-wrap: anywhere;
+}

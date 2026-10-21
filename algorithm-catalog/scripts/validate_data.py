@@ -91,8 +91,17 @@ HTTPS_URL_RE = r'^https:\/\/[^\s/]+\.[^\s]+$'
 #: A gazetteer id: country, state, county FIPS, or "c" + city FIPS. A parent prefixes its children.
 PLACE_ID_RE = r'^[A-Z]{2}(-[A-Z]{2}(-([0-9]{3}|c[0-9]{5}))?)?$'
 
+#: A Google Drive FILE link; group 1 is the file id. Folder links are rejected with their own message.
+DRIVE_FILE_RE = r'^https:\/\/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[a-z]+&)?id=)([A-Za-z0-9_-]{10,})'
+
+#: Where a page image goes: the masthead (also the card thumbnail), or inline in the Overview.
+IMAGE_PLACEMENTS_TEXT = "hero|overview"
+
 #: A Disasters Portal content id: its URL slug and file name.
 PORTAL_ID_RE = r'^[a-z0-9]+(-[a-z0-9]+)*$'
+
+#: A NEW portal page's id is derived from the event name, so the name must end "<Month> <YYYY>".
+PORTAL_NAME_RE = r'\s(January|February|March|April|May|June|July|August|September|October|November|December)\s(20[0-9]{2})$'
 
 #: The portal's CONTENT_CATEGORIES (disasters-portal app/site-config/types.ts), pipe-joined.
 PORTAL_CATEGORIES_TEXT = "cyclone|earthquake|fire|flood|heat|hurricane|landslide|severe weather|tropical cyclone|tsunami|typhoon|volcano|winter weather"
@@ -105,6 +114,16 @@ _STAC_EVENT = re.compile(STAC_EVENT_RE)
 _HTTPS_URL = re.compile(HTTPS_URL_RE)
 _PLACE_ID = re.compile(PLACE_ID_RE)
 _PORTAL_ID = re.compile(PORTAL_ID_RE)
+_PORTAL_NAME = re.compile(PORTAL_NAME_RE)
+_MONTH_NAMES = PORTAL_NAME_RE.split("(")[1].split(")")[0].split("|")
+_DRIVE_FILE = re.compile(DRIVE_FILE_RE)
+_DRIVE_FOLDER = re.compile(r'^https:\/\/drive\.google\.com\/drive\/(u\/[0-9]+\/)?folders\/')
+
+
+def drive_file_id(url: str) -> str | None:
+    """The Drive file id in a link, or None. Mirrors rules.ts driveFileId."""
+    m = _DRIVE_FILE.search(url.strip()) if "\n" not in url else None
+    return m.group(1) if m else None
 _ISO_DATE = re.compile(ISO_DATE_RE)
 _YEARMONTH = re.compile(r'^[0-9]{6}$')
 _MONTH = re.compile(r'^(0[1-9]|1[0-2])$')
@@ -370,6 +389,20 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
     """The event page's own text. All optional; only a bad value is an error. Once a page is
     started, the Disasters Portal's own type rules apply too."""
     out: list[Violation] = []
+    images = _dicts(p, "images")
+    for i, img in enumerate(images):
+        n = f"Image {i + 1}"
+        url = _s(img, "url").strip()
+        if _DRIVE_FOLDER.search(url):
+            out.append(_err("images", "drive-folder", f"{n} is a Drive FOLDER link — link each image file instead (right-click the file → Share → Copy link)."))
+        elif not drive_file_id(url):
+            out.append(_err("images", "drive-link", f"{n} must be a Google Drive file link, e.g. https://drive.google.com/file/d/…/view."))
+        if _s(img, "placement") not in IMAGE_PLACEMENTS_TEXT.split("|"):
+            out.append(_err("images", "placement", f"{n}: placement must be one of {', '.join(IMAGE_PLACEMENTS_TEXT.split('|'))}."))
+        if not _s(img, "alt").strip():
+            out.append(_err("images", "alt-required", f"{n} needs alt text — a short description of the image for screen readers."))
+    if sum(1 for img in images if _s(img, "placement") == "hero") > 1:
+        out.append(_err("images", "hero-count", "Only one image can be the hero (the masthead) — set the others to Overview."))
     needs = _strs(p, "needs")
     for n in needs:
         if n not in NEEDS:
@@ -382,9 +415,18 @@ def check_page(p: dict[str, Any], vocabulary: list[dict[str, Any]] | None = None
         out.append(
             _err("portalId", "format", f'"{portal_id}" must be lowercase words joined by hyphens, e.g. southern-california-fire-jan-2025.')
         )
-    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id)
+    started = bool(_s(p, "subtitle").strip() or _s(p, "intro").strip() or link or needs or portal_id or images)
     if not started:
         return out
+    name = _s(p, "name").strip()
+    if not portal_id and name:
+        m = _PORTAL_NAME.search(name) if "\n" not in name else None
+        if not m:
+            out.append(_err("name", "portal-name", 'End the name with the month and year, e.g. "Hurricane Isaias October 2026" — it becomes the page\'s web address.'))
+        elif re.match(r"^[0-9]{4}-[0-9]{2}", _s(p, "start")):
+            mm = f"{_MONTH_NAMES.index(m.group(1)) + 1:02d}"
+            if f"{m.group(2)}-{mm}" != _s(p, "start")[:7]:
+                out.append(_warn("name", "name-date", f"The name says {m.group(1)} {m.group(2)} but the event starts {_s(p, 'start')}."))
     if not _s(p, "intro").strip():
         out.append(_warn("intro", "missing", "The page has no intro paragraph, so its Overview section will be empty."))
     if not needs:
@@ -467,6 +509,7 @@ RULE_EXAMPLES = {
     "places": '"places": ["US-AL"]  or  ["US-AL-c51000"]  (ids from data/places*.json)',
     "needs": '"needs": ["respond"]  (portal theme ids: prepare, respond, recover, resilience)',
     "govLink": '"govLink": "https://www.usa.gov/disasters-and-emergencies"',
+    "images": '"images": [{"url": "https://drive.google.com/file/d/<id>/view", "placement": "overview", "alt": "…"}]',
     "ts": '"ts": "2025-01-08T17:04:11.284Z"',
     "<file>": "a JSON array of records, e.g. []",
 }
@@ -744,7 +787,7 @@ def check_events(
             rep.add(file, where, v)
         check_place_refs(rep, file, where, _strs(e, "places"), place_ids)
         if "page" in e:
-            page = {**_obj(e, "page"), "start": _s(e, "start"), "hazards": _strs(e, "hazards")}
+            page = {**_obj(e, "page"), "start": _s(e, "start"), "hazards": _strs(e, "hazards"), "name": _s(e, "name")}
             for v in check_page(page, hazards):
                 rep.add(file, where, v)
 
@@ -852,6 +895,7 @@ def check_requests(
                 "govLink": _s(page, "govLink"),
                 "needs": _strs(page, "needs"),
                 "portalId": _s(page, "portalId"),
+                "images": _dicts(page, "images"),
             }
             for v in validate_request(shape, hazards):
                 rep.add(file, where, v)
