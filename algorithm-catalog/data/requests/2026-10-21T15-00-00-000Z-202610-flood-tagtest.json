@@ -1,0 +1,24 @@
+[
+  {
+    "kind": "algorithm-request",
+    "id": "202610-flood-tagtest",
+    "ts": "2026-10-21T15:00:00.000Z",
+    "event": {
+      "name": "Tagging Test October 2026",
+      "stacName": "202610_Flood_TagTest",
+      "start": "2026-10-21",
+      "hazards": ["Flood"],
+      "locations": ["Alabama"],
+      "places": ["US-AL"],
+      "bbox": "-88.474,30.223,-84.889,35.009"
+    },
+    "products": [{ "algorithm": "sentinel2", "product": "true", "via": "manual" }],
+    "page": {
+      "subtitle": "Temporary live test of reviewer tagging. Will be closed, not merged.",
+      "intro": "This is a temporary request used to verify that new Algorithm Catalog PRs tag their reviewers. It will be closed without merging.",
+      "needs": ["respond"]
+    },
+    "requester": "tagging-live-test",
+    "notes": "Temporary live test of reviewer tagging — will be closed, not merged."
+  }
+]
