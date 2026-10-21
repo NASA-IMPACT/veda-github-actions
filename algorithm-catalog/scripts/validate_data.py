@@ -676,12 +676,29 @@ def check_hazard_vocabulary(rep: Report, hazards: list[dict[str, Any]]) -> None:
             )
 
 
+#: src/types.ts `AlgorithmStatus`. "external" = no algorithm here yet: the product is made outside
+#: this catalog and only linked to its Disasters Portal card, so it has no DPS inputs to declare.
+ALGORITHM_STATUSES = ("production", "prototype", "external")
+
+
 def check_algorithms(rep: Report, algorithms: list[dict[str, Any]], hazard_ids: set[str]) -> None:
     file = "data/algorithms.json"
     dup_check(rep, file, algorithms, "id", "Algorithm")
     for i, a in enumerate(algorithms):
         aid = _s(a, "id")
         where = f"[{i}] id={aid or '?'}"
+
+        status = _s(a, "status")
+        if status not in ALGORITHM_STATUSES:
+            rep.error(
+                file, where, "status", "vocabulary",
+                f'status "{status}" must be one of: {", ".join(ALGORITHM_STATUSES)}.',
+            )
+        elif status == "external" and _dicts(a, "inputs"):
+            rep.error(
+                file, where, "inputs", "external-inputs",
+                'An "external" algorithm creates no DPS job, so it must declare no inputs.',
+            )
 
         start = _s(a, "temporalStart")
         if not start:

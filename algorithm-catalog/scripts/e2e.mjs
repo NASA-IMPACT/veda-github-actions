@@ -83,7 +83,13 @@ const cards = await page.locator(".acard").count();
 check("algorithm cards render", cards >= 8, `${cards} cards`);
 
 // naturalWidth > 0 is the only honest proof an <img> actually decoded — a 200 on the URL does
-// not mean the browser rendered it.
+// not mean the browser rendered it. Card thumbs are loading="lazy", so scroll each one into view
+// first; otherwise a card below the fold is measured before it was ever requested.
+for (const img of await page.locator("img.acard-thumb").all()) await img.scrollIntoViewIfNeeded();
+await page
+  .waitForFunction(() => [...document.querySelectorAll("img.acard-thumb")].every((i) => i.complete), null, { timeout: 5000 })
+  .catch(() => {});
+await page.evaluate(() => window.scrollTo(0, 0));
 const thumbs = (
   await page.locator("img").evaluateAll((els) =>
     els.map((e) => ({ src: e.getAttribute("src") || "", w: e.naturalWidth })),
@@ -378,6 +384,63 @@ check(
 );
 await page.keyboard.press("Escape");
 check("Esc closes the picker", (await picker.count()) === 0);
+
+// --- 9. Portal products with no algorithm yet (status "external") ------------------------------
+// Every Disasters Portal product can be requested, even one no algorithm here makes. Those are
+// added by hand only: a hazard must never auto-select a layer that has no DPS job behind it.
+await page.goto(BASE, { waitUntil: "networkidle" });
+const hazButtons = page.locator(".req-haz:not(.req-need)");
+const nHaz = await hazButtons.count();
+for (let i = 0; i < nHaz; i++) await hazButtons.nth(i).click();
+await page.waitForTimeout(300);
+const autoHeads = await page.locator(".req-prod-group-hd").allInnerTexts();
+check(
+  "every hazard on: nothing with no algorithm yet is auto-selected",
+  nHaz >= 10 && autoHeads.length > 0 && !autoHeads.some((t) => /no algorithm yet/i.test(t)),
+  `${nHaz} hazards → ${autoHeads.length} auto groups`,
+);
+check(
+  "…so OPERA DSWx is not auto-selected",
+  !(await page.locator(".req-chip-prod").allInnerTexts()).some((t) => /DSWx/.test(t)),
+);
+await page.locator("button", { hasText: "Add products" }).click();
+await page.locator(".req-prodpick .req-picker-search").fill("DSWx");
+await page.waitForTimeout(200);
+// Two-column picker: the OPERA sensor on the left, its products on the right.
+const operaTab = page.locator('.req-prodpick [role="tab"]').filter({ hasText: /OPERA/ }).first();
+await operaTab.click();
+const operaPanel = page.locator('.req-prodpick [role="tabpanel"]');
+const dswxRow = operaPanel.locator(".req-picker-row", { hasText: "Dynamic Surface Water Extent" }).first();
+check(
+  "the picker offers OPERA DSWx, labelled “no algorithm yet”",
+  /no algorithm yet/i.test(await operaTab.innerText()) &&
+    /no algorithm yet/i.test(await operaPanel.locator(".req-picker-group-head").innerText()) &&
+    (await dswxRow.count()) === 1,
+);
+await dswxRow.click();
+await page.keyboard.press("Escape");
+await page.waitForTimeout(300);
+// Anchored on the exact title: a bare hasText "OPERA" is case-insensitive and also hits "operator".
+const operaGroup = page.locator(".req-prod-group").filter({
+  has: page.locator(".req-prod-group-name", { hasText: /^OPERA$/ }),
+});
+check(
+  "…adding it puts a manual OPERA DSWx chip under a “no algorithm yet” group",
+  (await operaGroup.count()) === 1 &&
+    /no algorithm yet/i.test(await operaGroup.locator(".req-prod-group-hd").innerText()) &&
+    /OPERA Dynamic Surface Water Extent \(DSWx\)\s*manual/i.test(await operaGroup.locator(".req-chip").innerText()),
+);
+const runs = page.locator(".req-runblock").filter({ has: page.locator(".req-runblock-head b", { hasText: /^OPERA$/ }) });
+check(
+  "“What this will run” says it is produced outside the catalog, with no DPS job",
+  // textContent, not innerText: the panel is a closed <details>, whose body innerText hides.
+  (await runs.count()) === 1 && /produced outside this catalog[\s\S]*No DPS job is created/.test(await runs.textContent()),
+);
+check(
+  "…and the live portal preview shows the REAL DSWx gallery card",
+  (await page.locator(".req-live .pp-card h3").allInnerTexts()).includes("OPERA Dynamic Surface Water Extent (DSWx)"),
+);
+await shot(page, "12-external-product");
 
 check("no console/page errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" ¶ "));
 

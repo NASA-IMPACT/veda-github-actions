@@ -255,9 +255,10 @@ export function autoProducts(algorithms: Algorithm[], hazardIds: string[]): Requ
   const want = new Set(hazardIds);
   const out: RequestProduct[] = [];
   for (const a of algorithms) {
-    // Prototype algorithms have no DPS job — never propose them automatically; the user can
-    // still add them by hand from the picker if they really want manual processing.
-    if (a.status === "prototype") continue;
+    // Prototype and external algorithms have no DPS job — never propose them automatically; the
+    // user can still add them by hand from the picker (manual processing, or a layer made outside
+    // this catalog that the event page should link).
+    if (a.status === "prototype" || a.status === "external") continue;
     for (const p of a.products) {
       // primaryHazards, NOT hazards. `hazards` is the broad discovery set (every product that
       // could conceivably help); auto-selecting from it produced ~28 chips for a single hazard,

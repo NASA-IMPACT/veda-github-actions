@@ -153,6 +153,22 @@ function WhatWillRun({
       {rows.length === 0 && <p className="req-picker-empty">Pick some products first.</p>}
       {rows.map((a) => {
         const tokens = byAlg.get(a.id) ?? [];
+        if (a.status === "external") {
+          const labels = a.products.filter((p) => tokens.includes(p.id)).map((p) => p.label);
+          return (
+            <div key={a.id} className="req-runblock">
+              <div className="req-runblock-head">
+                <b>{a.title}</b>
+                <span className="req-badge req-badge-warn">no algorithm yet</span>
+              </div>
+              <p className="req-muted">
+                {labels.join(", ")}: produced outside this catalog and published on the Disasters
+                Portal. No DPS job is created; the request records that the event needs this layer,
+                and the event page links its data-gallery card.
+              </p>
+            </div>
+          );
+        }
         return (
           <div key={a.id} className="req-runblock">
             <div className="req-runblock-head">
@@ -263,13 +279,14 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
 
   // Labels for the product chips.
   const productLabel = useMemo(() => {
-    const m = new Map<string, { alg: string; product: string; modality: string }>();
+    const m = new Map<string, { alg: string; product: string; modality: string; external: boolean }>();
     for (const a of algorithms) {
       for (const p of a.products) {
         m.set(productKey({ algorithm: a.id, product: p.id }), {
           alg: a.title,
           product: p.label,
           modality: a.modality,
+          external: a.status === "external",
         });
       }
     }
@@ -855,11 +872,13 @@ export default function RequestForm({ algorithms, hazards, events }: Props) {
 
         <div className="req-prod-groups">
           {groupedProducts.map(([algId, rows]) => {
-            const algLabel = productLabel.get(productKey(rows[0]))?.alg ?? algId;
+            const algMeta = productLabel.get(productKey(rows[0]));
+            const algLabel = algMeta?.alg ?? algId;
             return (
               <div className="req-prod-group" key={algId}>
                 <div className="req-prod-group-hd">
                   <span className="req-prod-group-name">{algLabel}</span>
+                  {algMeta?.external && <span className="req-badge req-badge-warn">no algorithm yet</span>}
                   <span className="req-prod-group-n">
                     {rows.length} product{rows.length === 1 ? "" : "s"}
                   </span>

@@ -1,4 +1,98 @@
 {
+  "DATA__AVIRIS_3_CHAR_AND_ASH": {
+    "title": "AVIRIS-3 Relative Char and Ash",
+    "description": "The AVIRIS-3 Relative Char and Ash product estimates the fraction of each pixel covered by char and ash, using spectral unmixing of airborne imaging spectroscopy measurements.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/aviris-3-char-and-ash.webp"
+  },
+  "DATA__AVIRIS_3_DNBR": {
+    "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+    "description": "The AVIRIS-3 Differenced Normalized Burn Ratio (dNBR) product uses high-resolution imaging spectroscopy to identify vegetation change associated with wildfire and provide a proxy for burn severity.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/aviris-3-dnbr.webp"
+  },
+  "DATA__AVIRIS_3_PCA": {
+    "title": "AVIRIS-3 Principal Component Analysis (PCA)",
+    "description": "The AVIRIS-3 Principal Component Analysis (PCA) product compresses 284 bands of imaging spectroscopy into a three-color image, so surfaces that share a spectral signature — such as burned structures — share a color.",
+    "themes": [
+      "respond"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/aviris-3-pca.webp"
+  },
+  "DATA__AVIRIS_3_QUICKLOOK_COLOR_IMAGERY": {
+    "title": "AVIRIS-3 Quicklook False Color Imagery",
+    "description": "The AVIRIS-3 false color quicklook imagery provides at-sensor radiance data from high resolution, hyperspectral sensor which can provide a snapshot of burned areas, ash distribution and smoke emissions. ",
+    "themes": [
+      "respond"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/aviris-3-quicklook-color-imagery.webp"
+  },
+  "DATA__BLACK_MARBLE_BLUE_YELLOW": {
+    "title": "Black Marble Nighttime Blue/Yellow Composite",
+    "description": "The Black Marble Nighttime Blue/Yellow Composite uses VIIRS nighttime observations to visualize artificial lights, fires, and clouds, supporting assessment of potential power outages and other disaster impacts.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/black-marble-blue-yellow.webp"
+  },
+  "DATA__BLACK_MARBLE_BRDF": {
+    "title": "Black Marble BRDF-Corrected Nighttime Lights",
+    "description": "Daily VIIRS nighttime lights corrected for moonlight, atmosphere, and viewing geometry (BRDF), delivered with a cloud-free monthly pre-event composite and a daily cloud mask for assessing power outages and recovery after disasters.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/black-marble-brdf.webp"
+  },
   "DATA__BLACK_MARBLE_HD": {
     "title": "Black Marble HD",
     "description": "HD Black Marble combines VIIRS nighttime lights with Landsat-derived land surface information and OpenStreetMap road networks to create enhanced 30-meter nighttime light imagery for disaster impact assessment.",
@@ -33,6 +127,75 @@
       "winter weather"
     ],
     "image": "/portal/cards/capella-backscatter.webp"
+  },
+  "DATA__ECOSTRESS_LAND_SURFACE_TEMPERATURE": {
+    "title": "ECOSTRESS Land Surface Temperature",
+    "description": "Atmospherically corrected land surface temperature measured from the International Space Station by the ECOSTRESS thermal infrared radiometer, showing how hot the ground, vegetation, rooftops, and other surfaces actually are.",
+    "themes": [
+      "respond",
+      "prepare",
+      "resilience"
+    ],
+    "categories": [
+      "fire",
+      "heat"
+    ],
+    "image": "/portal/cards/ecostress-land-surface-temperature.webp"
+  },
+  "DATA__GAIA": {
+    "title": "Global Assessment of Infrastructure Assets (GAIA)",
+    "description": "The Global Assessment of Infrastructure Assets (GAIA) provides gridded building exposure data to support disaster risk assessment, response, and recovery.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "heat",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "hurricane",
+      "typhoon",
+      "cyclone",
+      "volcano",
+      "tsunami",
+      "winter weather"
+    ],
+    "image": "/portal/cards/gaia.webp"
+  },
+  "DATA__GPM_IMERG_PRECIPITATION": {
+    "title": "GPM IMERG Accumulated Precipitation",
+    "description": "Daily accumulated precipitation from NASA's Integrated Multi-satellitE Retrievals for GPM (IMERG), a near-real-time global rainfall estimate that blends passive microwave, radar, and infrared satellite observations onto a 0.1 degree grid.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "flood",
+      "tropical cyclone",
+      "winter weather"
+    ],
+    "image": "/portal/cards/gpm-imerg-precipitation.webp"
+  },
+  "DATA__HYDROSAR_S1_CLASSIFICATIONS": {
+    "title": "HydroSAR Sentinel-1 Water Extent Classifications",
+    "description": "HydroSAR Sentinel-1 Water Extent Classifications identify post-event open water and inundated developed, vegetated, and agricultural areas from synthetic aperture radar observations.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/hydrosar-s1-classifications.webp"
   },
   "DATA__ICEYE_BACKSCATTER": {
     "title": "ICEYE SAR Backscatter",
@@ -173,6 +336,235 @@
     ],
     "image": "/portal/cards/landsat-true-color.webp"
   },
+  "DATA__NISAR_GUNW_DISPLACEMENT": {
+    "title": "NISAR GUNW Surface Displacement",
+    "description": "The NISAR Geocoded Unwrapped Interferogram (GUNW) displacement product uses L-band synthetic aperture radar observations from two acquisitions to measure changes in the Earth's surface along the radar line of sight.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake"
+    ],
+    "image": "/portal/cards/nisar-gunw-displacement.webp"
+  },
+  "DATA__OPERA_DISP_S1_COHERENCE": {
+    "title": "OPERA Displacement Coherence (DISP-S1)",
+    "description": "The OPERA Displacement Coherence product provides interferometric coherence imagery from Sentinel-1 acquisition pairs to indicate the consistency and reliability of radar measurements used for surface displacement analysis.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake"
+    ],
+    "image": "/portal/cards/opera-disp-s1-coherence.webp"
+  },
+  "DATA__OPERA_DISP_S1_RNG": {
+    "title": "OPERA Displacement Range Change (DISP-S1 RNG)",
+    "description": "The OPERA DISP-S1 Range Change product provides Sentinel-1 interferometric measurements of relative surface motion along the radar line of sight between reference and secondary satellite acquisitions.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake"
+    ],
+    "image": "/portal/cards/opera-disp-s1-rng.webp"
+  },
+  "DATA__OPERA_DISP_S1_UNW": {
+    "title": "OPERA Unwrapped Interferometric Phase (DISP-S1 UNW)",
+    "description": "The OPERA DISP-S1 Unwrapped Phase product provides a continuous representation of Sentinel-1 interferometric phase differences used to derive radar line-of-sight surface displacement.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake"
+    ],
+    "image": "/portal/cards/opera-disp-s1-unw.webp"
+  },
+  "DATA__OPERA_DISP_S1_WRP": {
+    "title": "OPERA Wrapped Interferometric Phase (DISP-S1 WRP)",
+    "description": "The OPERA DISP-S1 Wrapped Phase product displays Sentinel-1 interferometric phase differences between acquisition pairs before phase unwrapping, highlighting spatial patterns associated with surface deformation.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake"
+    ],
+    "image": "/portal/cards/opera-disp-s1-wrp.webp"
+  },
+  "DATA__OPERA_DIST_ALERT_DIST_VEG_ANOM": {
+    "title": "OPERA Maximum Vegetation Anomaly (DIST-ALERT VEG-ANOM-MAX)",
+    "description": "The OPERA Land Surface Disturbance Alert (DIST-ALERT) VEG-ANOM-MAX layer reports the maximum observed decrease in vegetation cover relative to a historical baseline using Harmonized Landsat Sentinel-2 observations.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "fire",
+      "severe weather"
+    ],
+    "image": "/portal/cards/opera-dist-alert-dist-veg-anom.webp"
+  },
+  "DATA__OPERA_DIST_ALERT_DIST_VEG_STATUS": {
+    "title": "OPERA Vegetation Disturbance Status (DIST-ALERT VEG-DIST-STATUS)",
+    "description": "The OPERA Land Surface Disturbance Alert (DIST-ALERT) VEG-DIST-STATUS layer identifies vegetation disturbance, its detection stage, and whether the maximum observed vegetation loss is below or at least 50%.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "fire",
+      "severe weather"
+    ],
+    "image": "/portal/cards/opera-dist-alert-dist-veg-status.webp"
+  },
+  "DATA__OPERA_DIST_ALERT_GEN_DIST_STATUS": {
+    "title": "OPERA Surface Disturbance Status (DIST-ALERT GEN-DIST-STATUS)",
+    "description": "The OPERA Land Surface Disturbance Alert (DIST-ALERT) GEN-DIST-STATUS layer reports, for every pixel, whether a change to the land surface has been detected and how confident that detection is, from Sentinel-1 radar or Harmonized Landsat Sentinel-2 optical observations compared against a pre-event baseline.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "fire",
+      "severe weather"
+    ],
+    "image": "/portal/cards/opera-dist-alert-gen-dist-status.webp"
+  },
+  "DATA__OPERA_DIST_S1": {
+    "title": "OPERA Surface Disturbance from Sentinel-1 (DIST-S1)",
+    "description": "The OPERA Surface Disturbance from Sentinel-1 (DIST-S1) product provides maps of surface disturbance detected from Sentinel-1 synthetic aperture radar (SAR) observations, with per-pixel classifications indicating the confidence of detected disturbance.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/opera-dist-s1.webp"
+  },
+  "DATA__OPERA_DSWX": {
+    "title": "OPERA Dynamic Surface Water Extent (DSWx)",
+    "description": "The OPERA Dynamic Surface Water Extent (DSWx) product maps the presence of surface water, derived from both optical Harmonized Landsat Sentinel-2 observations and Sentinel-1 synthetic aperture radar, to support flood mapping and monitoring of open water.",
+    "themes": [
+      "respond",
+      "recover",
+      "prepare"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/opera-dswx.webp"
+  },
+  "DATA__OPERA_RTC_RGB_MOSAIC": {
+    "title": "OPERA RTC RGB Mosaic",
+    "description": "The OPERA RTC RGB Mosaic is a false-color mosaic derived from radiometrically terrain-corrected Sentinel-1 radar backscatter and designed to support visual interpretation of land and water surface conditions during disasters.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "fire",
+      "severe weather",
+      "tropical cyclone"
+    ],
+    "image": "/portal/cards/opera-rtc-rgb-mosaic.webp"
+  },
+  "DATA__PLANET_NDVI": {
+    "title": "Planet Normalized Difference Vegetation Index (NDVI)",
+    "description": "Normalized Difference Vegetation Index (NDVI) derived from PlanetScope observations, using near-infrared and red reflectance to indicate the presence and relative condition of green vegetation at high spatial resolution.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/planet-ndvi.webp"
+  },
+  "DATA__PLANET_NDVI_CHANGE": {
+    "title": "Planet NDVI Change",
+    "description": "Change in Normalized Difference Vegetation Index (NDVI) between two PlanetScope acquisitions, highlighting where vegetation has been lost, stressed, or has recovered between a pre-event baseline and a later observation.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/planet-ndvi-change.webp"
+  },
+  "DATA__PLANET_NDWI": {
+    "title": "Planet Normalized Difference Water Index (NDWI)",
+    "description": "Normalized Difference Water Index (NDWI) derived from PlanetScope observations, using green and near-infrared reflectance to highlight surface water and water-related changes at high spatial resolution.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/planet-ndwi.webp"
+  },
+  "DATA__PLANET_TRUE_COLOR": {
+    "title": "Planet True Color Imagery",
+    "description": "Planet True Color imagery combines red, green, and blue PlanetScope observations to provide a high-resolution, natural-looking view of the Earth's surface for disaster response and assessment.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/planet-true-color.webp"
+  },
   "DATA__SATELLOGIC_COLOR_INFRARED": {
     "title": "Satellogic Color Infrared Imagery",
     "description": "Satellogic Color Infrared imagery combines near-infrared, red, and green observations from Satellogic's high-resolution multispectral satellites to highlight vegetation, water, and burned or damaged areas affected by floods, storms, fires, and other hazards.",
@@ -213,6 +605,30 @@
     ],
     "image": "/portal/cards/satellogic-true-color.webp"
   },
+  "DATA__SENTINEL_1_DAMAGE_ASSESSMENT": {
+    "title": "Sentinel-1 Likely Damaged Areas",
+    "description": "The Sentinel-1 Likely Damaged Areas product uses coherent change detection from interferometric SAR imagery to identify urban and built-up areas likely damaged or destroyed by the January 2025 Southern California wildfires.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/sentinel-1-damage-assessment.webp"
+  },
+  "DATA__SENTINEL_1_SENTINEL_2_BURN_SEVERITY": {
+    "title": "Sentinel-1 and Sentinel-2 Burn Severity",
+    "description": "This combined Sentinel-1 and Sentinel-2 product maps burned vegetation and urban areas and provides relative burn severity information using changes in optical reflectance and synthetic aperture radar backscatter.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/sentinel-1-sentinel-2-burn-severity.webp"
+  },
   "DATA__SENTINEL_2_COLOR_INFRARED": {
     "title": "Sentinel-2 Color Infrared Imagery",
     "description": "Created using near-infrared, red, and green channels to highlight vegetation, water, burned areas, and other surface changes associated with floods, fires, and other hazards.",
@@ -232,6 +648,18 @@
       "winter weather"
     ],
     "image": "/portal/cards/sentinel-2-color-infrared.webp"
+  },
+  "DATA__SENTINEL_2_DNBR": {
+    "title": "Sentinel-2 Differenced Normalized Burn Ratio (dNBR)",
+    "description": "Differenced Normalized Burn Ratio (dNBR) compares pre- and post-fire Sentinel-2 observations to highlight changes in vegetation associated with burning and provide a proxy for relative vegetation burn severity.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "fire"
+    ],
+    "image": "/portal/cards/sentinel-2-dnbr.webp"
   },
   "DATA__SENTINEL_2_MNDWI": {
     "title": "Sentinel-2 Modified Normalized Difference Water Index (MNDWI)",
@@ -314,6 +742,24 @@
     ],
     "image": "/portal/cards/sentinel-2-ndvi.webp"
   },
+  "DATA__SENTINEL_2_NDVI_CHANGE_BINARY": {
+    "title": "Sentinel-2 Binary NDVI Change",
+    "description": "Binary vegetation change derived from Sentinel-2 Normalized Difference Vegetation Index (NDVI), identifying locations where NDVI decreased by 0.25 or more between two observation dates.",
+    "themes": [
+      "respond",
+      "prepare"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/sentinel-2-ndvi-change-binary.webp"
+  },
   "DATA__SENTINEL_2_SWIR": {
     "title": "Sentinel-2 Shortwave Infrared Imagery",
     "description": "A false color composite created from Sentinel-2 shortwave infrared, near-infrared, and red observations to highlight differences among water, vegetation, burned areas, snow, bare ground, and developed surfaces.",
@@ -354,6 +800,116 @@
     ],
     "image": "/portal/cards/sentinel-2-true-color.webp"
   },
+  "DATA__SKYSAT_COLOR_INFRARED": {
+    "title": "Planet SkySat Color Infrared Imagery",
+    "description": "Planet SkySat Color Infrared imagery combines near-infrared, red, and green observations from Planet's SkySat constellation to highlight vegetation, water, and burned areas at very high resolution.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/skysat-color-infrared.webp"
+  },
+  "DATA__SKYSAT_TRUE_COLOR": {
+    "title": "Planet SkySat True Color Imagery",
+    "description": "Planet SkySat True Color imagery combines red, green, and blue observations from Planet's SkySat constellation to provide very-high-resolution, natural-looking views of the Earth's surface for disaster response and assessment.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/skysat-true-color.webp"
+  },
+  "DATA__UAVSAR_DISPLACEMENT": {
+    "title": "UAVSAR Surface Displacement",
+    "description": "Ground displacement measured along the radar line of sight from repeat-pass UAVSAR interferometry, produced by the ARIA and UAVSAR teams at NASA's Jet Propulsion Laboratory to identify areas of significant surface motion.",
+    "themes": [
+      "respond",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "earthquake",
+      "volcano",
+      "severe weather"
+    ],
+    "image": "/portal/cards/uavsar-displacement.webp"
+  },
+  "DATA__UAVSAR_QUICKLOOK_CLASSIFIED": {
+    "title": "UAVSAR Quicklook Flood Classification",
+    "description": "Preliminary flood classification generated from UAVSAR radar imagery within hours of a flight, providing an early view of open water and inundated areas while the fully processed classification is still being produced.",
+    "themes": [
+      "respond"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/uavsar-quicklook-classified.webp"
+  },
+  "DATA__UAVSAR_RGB": {
+    "title": "UAVSAR Polarimetric False Color Imagery",
+    "description": "Fully polarimetric L-band radar imagery from NASA's airborne UAVSAR instrument, rendered as a false color composite of the HH, HV, and VV polarization channels to reveal flooding and inundation beneath tree canopy that optical imagery cannot see.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/uavsar-rgb.webp"
+  },
+  "DATA__UAVSAR_UNET_CLASSIFIED": {
+    "title": "UAVSAR U-Net Flood Classification",
+    "description": "Machine learning flood maps derived from UAVSAR polarimetric radar using a U-Net algorithm, identifying open water flooding and inundation beneath tree canopy and labeling the type of land cover that was flooded.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/uavsar-unet-classified.webp"
+  },
+  "DATA__UAVSAR_UNET_CLASSIFIED_GRAYSCALE": {
+    "title": "UAVSAR U-Net Flood Classification (Grayscale)",
+    "description": "A single-band grayscale rendering of the UAVSAR U-Net flood classification, intended for use as an analysis-ready input layer or as a neutral underlay beneath other thematic map layers.",
+    "themes": [
+      "respond",
+      "recover"
+    ],
+    "categories": [
+      "flood",
+      "tropical cyclone",
+      "severe weather"
+    ],
+    "image": "/portal/cards/uavsar-unet-classified-grayscale.webp"
+  },
   "DATA__UMBRA_SIGMA_NAUGHT": {
     "title": "Umbra Backscatter",
     "description": "Sigma Naught backscatter derived from high-resolution Umbra synthetic aperture radar (SAR) imagery acquired through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
@@ -371,5 +927,82 @@
       "winter weather"
     ],
     "image": "/portal/cards/umbra-sigma-naught.webp"
+  },
+  "DATA__VANTOR_COLOR_INFRARED": {
+    "title": "Vantor Color Infrared",
+    "description": "Vantor Color Infrared imagery combines the near-infrared, red, and green bands of the WorldView eight-band multispectral sensors into a false-color view in which healthy vegetation glows red and water reads near-black, sharpening the distinction between damaged and intact ground cover.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/vantor-color-infrared.webp"
+  },
+  "DATA__VANTOR_PANCHROMATIC": {
+    "title": "Vantor Panchromatic",
+    "description": "Vantor Panchromatic imagery collects all visible light into a single grayscale band at 30 centimeters per pixel, the sharpest view in the delivery, for reading structural damage where fine detail matters more than color.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "landslide",
+      "winter weather"
+    ],
+    "image": "/portal/cards/vantor-panchromatic.webp"
+  },
+  "DATA__VANTOR_TRUE_COLOR": {
+    "title": "Vantor True Color",
+    "description": "Vantor True Color imagery combines the red, green, and blue bands of the WorldView eight-band multispectral sensors into a natural-looking view of the surface at roughly a third of a meter per pixel, supporting visual assessment at the scale of individual buildings.",
+    "themes": [
+      "respond",
+      "resilience",
+      "prepare",
+      "recover"
+    ],
+    "categories": [
+      "severe weather",
+      "fire",
+      "heat",
+      "flood",
+      "tropical cyclone",
+      "earthquake",
+      "winter weather"
+    ],
+    "image": "/portal/cards/vantor-true-color.webp"
+  },
+  "DATA__WB57_DYNAMITE": {
+    "title": "WB-57 DyNAMITE Airborne Imagery",
+    "description": "High-resolution visible and infrared imagery collected by the DyNAMITE instrument aboard NASA's WB-57 high-altitude aircraft, streamed to responders during flight.",
+    "themes": [
+      "respond"
+    ],
+    "categories": [
+      "earthquake",
+      "fire",
+      "flood",
+      "landslide",
+      "severe weather",
+      "tropical cyclone",
+      "volcano"
+    ],
+    "image": "/portal/cards/wb57-dynamite.webp"
   }
 }
