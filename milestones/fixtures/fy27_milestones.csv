@@ -1,0 +1,66 @@
+Project,Task,Owner,Deadline
+VEDA core,"Rapid Visualization Framework released
+Tool Builder UI
+Marketplace with 10 plugins",Sijan/Sandesh,May 2027
+,Multi-tenancy solution in production (EIC STAC used for tenant portals),"Jennifer, Alexandra",October 2026
+,Data governance framework finalized,,
+,Keycloak migration to ODSI,"Jennifer, Alexandra",January 2027
+,System monitoring (Grafana) migration to ODSI,"Jennifer, Alexandra",January 2027
+,Guardrails around resource usage (quotas and data lifecycle management) on JupyterHubs,"April, Tarashish (JH team)",October 2026
+,Cost monitoring and usage analytics for JupyterHubs,"April, Tarashish (JH team)",February 2027
+,Social & technical guidance for improving resource utilization on JupyterHubs,"April, Tarashish (JH team)",June 2027
+,Improve start up experience on JupyterHubs,"April, Tarashish (JH team)",February 2027
+,Define the role of MyST in VEDA,"Sanjay, Chris (JH/JB team)",January 2027
+,Define and implement workflows for publishing and sharing of computational material created in the hubs,"Sanjay, Chris, Angus (JH / JB team)",June 2027
+,Unified framework for JupyterHub usage across ESDS,"April, Alex (JH/Science Support)",January 2027
+,TinaCMS implementation (Disasters and Air4US),,April 2027
+,Improved support for GIS users in visualization tools,,Jan 2027
+Disasters PORTAL,"Disasters Portal Beta Release
+(includes: NextJS site w/o CMS, Search and Filters, MVP HDS compliance)",Kyle (PM) / Simi / Alexandra / Fanny,October 2026
+,"Disasters Portal Features (post-Hard Launch requests)
+(includes must have features - event search, single data store, content components, TBD on additions to be included)","Kyle? (PM) / Need Dashboard, Design and Data Services lead",Iteratively through FY27
+,Portal site CMS integration,Kyle? (PM) Need Dashboard Eng,June 2027
+,HDS compliance final,Fanny (design) / Simi (eng),January 2027
+,Disasters staff task ownership handoff complete,Kyle + Disasters staff,October 2027
+,DAAC datasets integrated into Disasters STAC,Kyle/Andrew,July 2027
+,New Disasters visualization components released,Slesa/Sijan,Iteratively through FY
+,Workflow automations implemented,Kyle/Andrew,January 2027
+,CSDA tasking data integration,Andrew,March 2027
+,"Disasters Portal Features (pre- Hard Launch requests)
+(includes must have features - event search, single data store, content components, TBD on additions to be included)","Kyle? (PM) / Need Dashboard, Design and Data Services lead",January 2027
+MAAP,ADE → 2i2c Hub migration complete,Alex,Dec 2026
+,Federated Search release with UX improvements and AI integration,Brianna,January 2027
+,BIOMASS + GEDI + NISAR data integrated end-to-end,Rajat/Henry,"Dec 2026, Depends on Users"
+,Shared group storage released,,"Completed, this feature is called Org/Team Buckets"
+,Sync'd Team Storage with ESA,?,Late 2027
+,OGC Stage-In across NASA/ESA,?,Early 2027
+,MAAP User Meeting,Rajat?,Oct 2026
+,MAAP Face to Face (F2F) with ESA,Brian?,Oct 2026
+,MIO Roses Application Support,Alex/Zac,Depends on when Roses call is released
+,DPS to STAC automated Publication with user control,"Jennifer, Alexandra, Jamison",January 2027 (contingent on plan being done in October 2026)
+,Biomass Dashboard Remake,?,Late 2027
+,Self Published User Stories,?,Late 2027
+WaterInsights,Prototype AWS-deployed services with Azure-hosted data,,December 2026
+,water-insight initiate portal frontend,Sid,February 2027
+EIE/WaterInsights,Water-Insight CoPilot integrated with EIE,Sid/Gjore,August 2027 (TBD)
+AIR4US,"AIR4US beta release for internal testing
+(includes: Interagency data products onboarded and integrated into visualization tool)",Jeanne',"October 1, 2026"
+,"High-value Datasets Virtualized
+(for beta release)",Aimee,"October 1, 2026"
+,AIR4US Beta Release for Stakeholder Testing,Jeanne',"October 26, 2026"
+,AIR4US Multi-agency Review/Approvals,Jeanne',November 2026
+,AIR4US Public Release,Jeanne',~Dec / Jan 2027 (exact date TBD)
+,AIR4US Post-Beta Release 1,Jeanne',~May 2027
+,AIR4US Post-Beta Release Update 2,Jeanne',~September 2027
+US GHG Center,GHG Center JupyterHub decommissioned,Sheyenne,TBD
+,Switch MiCASA to use TiTiler-CMR,TBD,TBD
+EIE (SOW),User Prioritization and Curated Use Case Scenarios,Drishtie (Georgina),Q1 FY27 - December 2026
+,Internal release of EIE with chat capabilities,,Nov 2026
+,Manual EIE public release,,Mar 2027
+,Onboard selected partners,Drishtie (Eleanor),Q2 FY27 - March 2027
+,Open EIE Tool to Public,Drishtie,Q3 FH27 - June 2027 ? (TBD with stakeholders)
+EODC/ODD,Performance improvements to zarr-python,Aimee,XXX
+,Colormap customization for HLS imagery in WV (GEANE),,Dec 2026
+,White paper on cloud-native data access (GEANE),,Dec 2026
+,TEMPO virtual data store pipeline start handoff (GEANE),,Jan 2027
+Inference-as-Data (AI Innovation),Prototype delivery,Slesa,August 2027

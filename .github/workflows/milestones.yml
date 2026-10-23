@@ -1,0 +1,53 @@
+name: Milestone sync
+
+# Turns the FY27 Milestones Slack canvas (or a CSV of it) into GitHub milestones. Manual only, and a
+# dry run unless `apply` is ticked — the plan table lands in the job summary. See docs/MILESTONES.md.
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        # Switch to the canvas URL (https://developmentseed.slack.com/docs/T025QMQE3/F0BPJER9L8H)
+        # once the SLACK_CANVAS_TOKEN secret exists; until then the CSV transcript is the source.
+        description: 'Slack canvas URL, or a repo path to a .csv/.html of the table'
+        type: string
+        required: true
+        default: 'milestones/fixtures/fy27_milestones.csv'
+      repo:
+        description: 'Repo that receives the milestones'
+        type: string
+        required: true
+        default: 'NASA-IMPACT/veda-architecture'
+      project:
+        description: 'Only rows whose Project contains this (empty = all)'
+        type: string
+        required: false
+        default: 'Disasters'
+      apply:
+        description: 'Create/update milestones (unticked = dry run)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Sync milestones
+    runs-on: ubuntu-latest
+    steps:
+      - name: "1 · Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "2 · Parser self-test (offline)"
+        run: python3 milestones/test_sync.py
+
+      - name: "3 · Sync"
+        uses: ./milestones
+        with:
+          source: ${{ inputs.source }}
+          repo: ${{ inputs.repo }}
+          project: ${{ inputs.project }}
+          apply: ${{ inputs.apply }}
+          # Writing milestones on another repo needs the PAT (classic `repo` scope covers it).
+          token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+          slack-token: ${{ secrets.SLACK_CANVAS_TOKEN }}

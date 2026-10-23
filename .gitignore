@@ -97,3 +97,6 @@ leave-dashboard/dist/
 !app-catalog/package.json
 !app-catalog/package-lock.json
 !app-catalog/tsconfig.json
+
+# Milestone sync: the FY27 canvas transcript the offline test reads.
+!milestones/fixtures/*.csv

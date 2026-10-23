@@ -1,0 +1,62 @@
+name: "Milestone Sync"
+description: "Turn a milestone table (Slack canvas or CSV: Project / Task / Owner / Deadline) into GitHub milestones on one repo."
+author: "NASA-IMPACT"
+branding:
+  icon: "flag"
+  color: "blue"
+
+# Import from another repo:
+#   - uses: NASA-IMPACT/veda-github-actions/milestones@v1
+#     with:
+#       source: https://developmentseed.slack.com/docs/T025QMQE3/F0BPJER9L8H
+#       repo: NASA-IMPACT/veda-architecture
+#       project: Disasters
+#       apply: "true"
+#       token: ${{ secrets.PROJECT_TOKEN_FOR_BOARD_READS }}
+#       slack-token: ${{ secrets.SLACK_CANVAS_TOKEN }}
+# Milestones are matched by title (first line of Task): existing ones are updated, new ones created,
+# none deleted or closed. The plan table goes to the job summary either way.
+inputs:
+  source:
+    description: "Slack canvas URL (https://<ws>.slack.com/docs/<team>/<F...>), or a path to a .csv/.html of the table."
+    required: true
+  repo:
+    description: "OWNER/NAME that receives the milestones."
+    required: true
+  project:
+    description: 'Only rows whose Project contains this text, e.g. "Disasters" (case-insensitive). Empty = all rows.'
+    required: false
+    default: ""
+  apply:
+    description: '"true" creates/updates milestones; anything else is a dry run.'
+    required: false
+    default: "false"
+  token:
+    description: "Token with write access to `repo` (the default GITHUB_TOKEN only reaches the calling repo)."
+    required: true
+  slack-token:
+    description: "Slack token with files:read that can see the canvas (only for a canvas source)."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Set up Python 3.12"
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: "Sync milestones"
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        SLACK_TOKEN: ${{ inputs.slack-token }}
+        SOURCE: ${{ inputs.source }}
+        REPO: ${{ inputs.repo }}
+        PROJECT: ${{ inputs.project }}
+      run: |
+        APPLY=()
+        [ "${{ inputs.apply }}" = "true" ] && APPLY=(--apply)
+        python "${{ github.action_path }}/sync_milestones.py" \
+          --source "$SOURCE" --repo "$REPO" --project "$PROJECT" "${APPLY[@]}"
