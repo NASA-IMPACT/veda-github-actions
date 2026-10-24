@@ -946,6 +946,56 @@
         "memoryGiB": 8.0,
         "vcpu": 4
       },
+      "c8gb.12xlarge": {
+        "hourlyUSD": 3.21264,
+        "memoryGiB": 96.0,
+        "vcpu": 48
+      },
+      "c8gb.16xlarge": {
+        "hourlyUSD": 4.28352,
+        "memoryGiB": 128.0,
+        "vcpu": 64
+      },
+      "c8gb.24xlarge": {
+        "hourlyUSD": 6.42528,
+        "memoryGiB": 192.0,
+        "vcpu": 96
+      },
+      "c8gb.2xlarge": {
+        "hourlyUSD": 0.53544,
+        "memoryGiB": 16.0,
+        "vcpu": 8
+      },
+      "c8gb.48xlarge": {
+        "hourlyUSD": 12.85056,
+        "memoryGiB": 384.0,
+        "vcpu": 192
+      },
+      "c8gb.4xlarge": {
+        "hourlyUSD": 1.07088,
+        "memoryGiB": 32.0,
+        "vcpu": 16
+      },
+      "c8gb.8xlarge": {
+        "hourlyUSD": 2.14176,
+        "memoryGiB": 64.0,
+        "vcpu": 32
+      },
+      "c8gb.large": {
+        "hourlyUSD": 0.13386,
+        "memoryGiB": 4.0,
+        "vcpu": 2
+      },
+      "c8gb.medium": {
+        "hourlyUSD": 0.06693,
+        "memoryGiB": 2.0,
+        "vcpu": 1
+      },
+      "c8gb.xlarge": {
+        "hourlyUSD": 0.26772,
+        "memoryGiB": 8.0,
+        "vcpu": 4
+      },
       "c8gd.12xlarge": {
         "hourlyUSD": 2.66976,
         "memoryGiB": 96.0,
@@ -3431,6 +3481,106 @@
         "memoryGiB": 16.0,
         "vcpu": 4
       },
+      "m9g.12xlarge": {
+        "hourlyUSD": 2.61696,
+        "memoryGiB": 192.0,
+        "vcpu": 48
+      },
+      "m9g.16xlarge": {
+        "hourlyUSD": 3.48928,
+        "memoryGiB": 256.0,
+        "vcpu": 64
+      },
+      "m9g.24xlarge": {
+        "hourlyUSD": 5.23392,
+        "memoryGiB": 384.0,
+        "vcpu": 96
+      },
+      "m9g.2xlarge": {
+        "hourlyUSD": 0.43616,
+        "memoryGiB": 32.0,
+        "vcpu": 8
+      },
+      "m9g.48xlarge": {
+        "hourlyUSD": 10.46784,
+        "memoryGiB": 768.0,
+        "vcpu": 192
+      },
+      "m9g.4xlarge": {
+        "hourlyUSD": 0.87232,
+        "memoryGiB": 64.0,
+        "vcpu": 16
+      },
+      "m9g.8xlarge": {
+        "hourlyUSD": 1.74464,
+        "memoryGiB": 128.0,
+        "vcpu": 32
+      },
+      "m9g.large": {
+        "hourlyUSD": 0.10904,
+        "memoryGiB": 8.0,
+        "vcpu": 2
+      },
+      "m9g.medium": {
+        "hourlyUSD": 0.05452,
+        "memoryGiB": 4.0,
+        "vcpu": 1
+      },
+      "m9g.xlarge": {
+        "hourlyUSD": 0.21808,
+        "memoryGiB": 16.0,
+        "vcpu": 4
+      },
+      "m9gd.12xlarge": {
+        "hourlyUSD": 3.36432,
+        "memoryGiB": 192.0,
+        "vcpu": 48
+      },
+      "m9gd.16xlarge": {
+        "hourlyUSD": 4.48576,
+        "memoryGiB": 256.0,
+        "vcpu": 64
+      },
+      "m9gd.24xlarge": {
+        "hourlyUSD": 6.72864,
+        "memoryGiB": 384.0,
+        "vcpu": 96
+      },
+      "m9gd.2xlarge": {
+        "hourlyUSD": 0.56072,
+        "memoryGiB": 32.0,
+        "vcpu": 8
+      },
+      "m9gd.48xlarge": {
+        "hourlyUSD": 13.45728,
+        "memoryGiB": 768.0,
+        "vcpu": 192
+      },
+      "m9gd.4xlarge": {
+        "hourlyUSD": 1.12144,
+        "memoryGiB": 64.0,
+        "vcpu": 16
+      },
+      "m9gd.8xlarge": {
+        "hourlyUSD": 2.24288,
+        "memoryGiB": 128.0,
+        "vcpu": 32
+      },
+      "m9gd.large": {
+        "hourlyUSD": 0.14018,
+        "memoryGiB": 8.0,
+        "vcpu": 2
+      },
+      "m9gd.medium": {
+        "hourlyUSD": 0.07009,
+        "memoryGiB": 4.0,
+        "vcpu": 1
+      },
+      "m9gd.xlarge": {
+        "hourlyUSD": 0.28036,
+        "memoryGiB": 16.0,
+        "vcpu": 4
+      },
       "p2.16xlarge": {
         "hourlyUSD": 15.552,
         "memoryGiB": 732.0,
@@ -4631,6 +4781,61 @@
         "memoryGiB": 32.0,
         "vcpu": 4
       },
+      "r8id.12xlarge": {
+        "hourlyUSD": 4.4352,
+        "memoryGiB": 384.0,
+        "vcpu": 48
+      },
+      "r8id.16xlarge": {
+        "hourlyUSD": 5.9136,
+        "memoryGiB": 512.0,
+        "vcpu": 64
+      },
+      "r8id.24xlarge": {
+        "hourlyUSD": 8.8704,
+        "memoryGiB": 768.0,
+        "vcpu": 96
+      },
+      "r8id.2xlarge": {
+        "hourlyUSD": 0.7392,
+        "memoryGiB": 64.0,
+        "vcpu": 8
+      },
+      "r8id.32xlarge": {
+        "hourlyUSD": 11.8272,
+        "memoryGiB": 1024.0,
+        "vcpu": 128
+      },
+      "r8id.48xlarge": {
+        "hourlyUSD": 17.7408,
+        "memoryGiB": 1536.0,
+        "vcpu": 192
+      },
+      "r8id.4xlarge": {
+        "hourlyUSD": 1.4784,
+        "memoryGiB": 128.0,
+        "vcpu": 16
+      },
+      "r8id.8xlarge": {
+        "hourlyUSD": 2.9568,
+        "memoryGiB": 256.0,
+        "vcpu": 32
+      },
+      "r8id.96xlarge": {
+        "hourlyUSD": 35.4816,
+        "memoryGiB": 3072.0,
+        "vcpu": 384
+      },
+      "r8id.large": {
+        "hourlyUSD": 0.1848,
+        "memoryGiB": 16.0,
+        "vcpu": 2
+      },
+      "r8id.xlarge": {
+        "hourlyUSD": 0.3696,
+        "memoryGiB": 32.0,
+        "vcpu": 4
+      },
       "r8idb.12xlarge": {
         "hourlyUSD": 6.26736,
         "memoryGiB": 384.0,
@@ -4940,6 +5145,26 @@
         "hourlyUSD": 0.1472,
         "memoryGiB": 16.0,
         "vcpu": 4
+      },
+      "t8i.medium": {
+        "hourlyUSD": 0.05472,
+        "memoryGiB": 4.0,
+        "vcpu": 2
+      },
+      "t8i.micro": {
+        "hourlyUSD": 0.01368,
+        "memoryGiB": 1.0,
+        "vcpu": 2
+      },
+      "t8i.nano": {
+        "hourlyUSD": 0.00684,
+        "memoryGiB": 0.5,
+        "vcpu": 2
+      },
+      "t8i.small": {
+        "hourlyUSD": 0.02736,
+        "memoryGiB": 2.0,
+        "vcpu": 2
       },
       "u-12tb1.112xlarge": {
         "hourlyUSD": 122.2,
@@ -5343,7 +5568,7 @@
       }
     }
   },
-  "generated": "2026-07-31T13:32:40Z",
+  "generated": "2026-10-20T00:38:53Z",
   "label": "EU (Ireland)",
   "lambda": {
     "gbSecondUsd": 1.66667e-05,
@@ -5408,12 +5633,12 @@
       },
       "Aurora MySQL|db.r5.12xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 9.984,
+        "hourlyUSD": 7.68,
         "instanceType": "db.r5.12xlarge"
       },
       "Aurora MySQL|db.r5.16xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 13.312,
+        "hourlyUSD": 10.24,
         "instanceType": "db.r5.16xlarge"
       },
       "Aurora MySQL|db.r5.24xlarge": {
@@ -5433,7 +5658,7 @@
       },
       "Aurora MySQL|db.r5.8xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 6.656,
+        "hourlyUSD": 5.12,
         "instanceType": "db.r5.8xlarge"
       },
       "Aurora MySQL|db.r5.large": {
@@ -5443,7 +5668,7 @@
       },
       "Aurora MySQL|db.r5.xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.832,
+        "hourlyUSD": 0.64,
         "instanceType": "db.r5.xlarge"
       },
       "Aurora MySQL|db.r6g.12xlarge": {
@@ -5468,7 +5693,7 @@
       },
       "Aurora MySQL|db.r6g.8xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 5.957,
+        "hourlyUSD": 4.582,
         "instanceType": "db.r6g.8xlarge"
       },
       "Aurora MySQL|db.r6g.large": {
@@ -5478,7 +5703,7 @@
       },
       "Aurora MySQL|db.r6g.xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.745,
+        "hourlyUSD": 0.573,
         "instanceType": "db.r6g.xlarge"
       },
       "Aurora MySQL|db.r6i.12xlarge": {
@@ -5503,7 +5728,7 @@
       },
       "Aurora MySQL|db.r6i.32xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 26.624,
+        "hourlyUSD": 20.48,
         "instanceType": "db.r6i.32xlarge"
       },
       "Aurora MySQL|db.r6i.4xlarge": {
@@ -5518,12 +5743,12 @@
       },
       "Aurora MySQL|db.r6i.large": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.32,
+        "hourlyUSD": 0.416,
         "instanceType": "db.r6i.large"
       },
       "Aurora MySQL|db.r6i.xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.832,
+        "hourlyUSD": 0.64,
         "instanceType": "db.r6i.xlarge"
       },
       "Aurora MySQL|db.r7g.12xlarge": {
@@ -5533,7 +5758,7 @@
       },
       "Aurora MySQL|db.r7g.16xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 12.647,
+        "hourlyUSD": 9.729,
         "instanceType": "db.r7g.16xlarge"
       },
       "Aurora MySQL|db.r7g.2xlarge": {
@@ -5553,7 +5778,7 @@
       },
       "Aurora MySQL|db.r7g.large": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.395,
+        "hourlyUSD": 0.304,
         "instanceType": "db.r7g.large"
       },
       "Aurora MySQL|db.r7g.xlarge": {
@@ -5588,12 +5813,12 @@
       },
       "Aurora MySQL|db.r7i.4xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 3.328,
+        "hourlyUSD": 2.56,
         "instanceType": "db.r7i.4xlarge"
       },
       "Aurora MySQL|db.r7i.8xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 5.12,
+        "hourlyUSD": 6.656,
         "instanceType": "db.r7i.8xlarge"
       },
       "Aurora MySQL|db.r7i.large": {
@@ -5606,6 +5831,51 @@
         "hourlyUSD": 0.64,
         "instanceType": "db.r7i.xlarge"
       },
+      "Aurora MySQL|db.r8a.12xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 9.2736,
+        "instanceType": "db.r8a.12xlarge"
+      },
+      "Aurora MySQL|db.r8a.16xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 16.0736,
+        "instanceType": "db.r8a.16xlarge"
+      },
+      "Aurora MySQL|db.r8a.24xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 24.1104,
+        "instanceType": "db.r8a.24xlarge"
+      },
+      "Aurora MySQL|db.r8a.2xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 1.5456,
+        "instanceType": "db.r8a.2xlarge"
+      },
+      "Aurora MySQL|db.r8a.48xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 37.0944,
+        "instanceType": "db.r8a.48xlarge"
+      },
+      "Aurora MySQL|db.r8a.4xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 3.0912,
+        "instanceType": "db.r8a.4xlarge"
+      },
+      "Aurora MySQL|db.r8a.8xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 6.1824,
+        "instanceType": "db.r8a.8xlarge"
+      },
+      "Aurora MySQL|db.r8a.large": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 0.5023,
+        "instanceType": "db.r8a.large"
+      },
+      "Aurora MySQL|db.r8a.xlarge": {
+        "engine": "Aurora MySQL",
+        "hourlyUSD": 1.0046,
+        "instanceType": "db.r8a.xlarge"
+      },
       "Aurora MySQL|db.r8g.12xlarge": {
         "engine": "Aurora MySQL",
         "hourlyUSD": 9.48,
@@ -5613,7 +5883,7 @@
       },
       "Aurora MySQL|db.r8g.16xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 12.64,
+        "hourlyUSD": 9.728,
         "instanceType": "db.r8g.16xlarge"
       },
       "Aurora MySQL|db.r8g.24xlarge": {
@@ -5628,7 +5898,7 @@
       },
       "Aurora MySQL|db.r8g.48xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 37.92,
+        "hourlyUSD": 29.184,
         "instanceType": "db.r8g.48xlarge"
       },
       "Aurora MySQL|db.r8g.4xlarge": {
@@ -5648,7 +5918,7 @@
       },
       "Aurora MySQL|db.r8g.xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.79,
+        "hourlyUSD": 0.608,
         "instanceType": "db.r8g.xlarge"
       },
       "Aurora MySQL|db.t2.medium": {
@@ -5673,12 +5943,12 @@
       },
       "Aurora MySQL|db.t3.small": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.057,
+        "hourlyUSD": 0.044,
         "instanceType": "db.t3.small"
       },
       "Aurora MySQL|db.t4g.large": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.203,
+        "hourlyUSD": 0.156,
         "instanceType": "db.t4g.large"
       },
       "Aurora MySQL|db.t4g.medium": {
@@ -5698,7 +5968,7 @@
       },
       "Aurora MySQL|db.x2g.2xlarge": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 2.309,
+        "hourlyUSD": 1.776,
         "instanceType": "db.x2g.2xlarge"
       },
       "Aurora MySQL|db.x2g.4xlarge": {
@@ -5713,7 +5983,7 @@
       },
       "Aurora MySQL|db.x2g.large": {
         "engine": "Aurora MySQL",
-        "hourlyUSD": 0.444,
+        "hourlyUSD": 0.577,
         "instanceType": "db.x2g.large"
       },
       "Aurora MySQL|db.x2g.xlarge": {
@@ -5768,12 +6038,12 @@
       },
       "Aurora PostgreSQL|db.r5.2xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 1.664,
+        "hourlyUSD": 1.28,
         "instanceType": "db.r5.2xlarge"
       },
       "Aurora PostgreSQL|db.r5.4xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 3.328,
+        "hourlyUSD": 2.56,
         "instanceType": "db.r5.4xlarge"
       },
       "Aurora PostgreSQL|db.r5.8xlarge": {
@@ -5788,17 +6058,17 @@
       },
       "Aurora PostgreSQL|db.r5.xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 0.832,
+        "hourlyUSD": 0.64,
         "instanceType": "db.r5.xlarge"
       },
       "Aurora PostgreSQL|db.r6g.12xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 6.874,
+        "hourlyUSD": 8.936,
         "instanceType": "db.r6g.12xlarge"
       },
       "Aurora PostgreSQL|db.r6g.16xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 11.915,
+        "hourlyUSD": 9.165,
         "instanceType": "db.r6g.16xlarge"
       },
       "Aurora PostgreSQL|db.r6g.2xlarge": {
@@ -5863,7 +6133,7 @@
       },
       "Aurora PostgreSQL|db.r6i.16xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 13.312,
+        "hourlyUSD": 10.24,
         "instanceType": "db.r6i.16xlarge"
       },
       "Aurora PostgreSQL|db.r6i.24xlarge": {
@@ -5873,7 +6143,7 @@
       },
       "Aurora PostgreSQL|db.r6i.2xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 1.28,
+        "hourlyUSD": 1.664,
         "instanceType": "db.r6i.2xlarge"
       },
       "Aurora PostgreSQL|db.r6i.32xlarge": {
@@ -5888,7 +6158,7 @@
       },
       "Aurora PostgreSQL|db.r6i.8xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 6.656,
+        "hourlyUSD": 5.12,
         "instanceType": "db.r6i.8xlarge"
       },
       "Aurora PostgreSQL|db.r6i.large": {
@@ -5923,7 +6193,7 @@
       },
       "Aurora PostgreSQL|db.r7g.2xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 1.581,
+        "hourlyUSD": 1.216,
         "instanceType": "db.r7g.2xlarge"
       },
       "Aurora PostgreSQL|db.r7g.4xlarge": {
@@ -5938,12 +6208,12 @@
       },
       "Aurora PostgreSQL|db.r7g.large": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 0.395,
+        "hourlyUSD": 0.304,
         "instanceType": "db.r7g.large"
       },
       "Aurora PostgreSQL|db.r7g.xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 0.79,
+        "hourlyUSD": 0.608,
         "instanceType": "db.r7g.xlarge"
       },
       "Aurora PostgreSQL|db.r7i.12xlarge": {
@@ -5953,7 +6223,7 @@
       },
       "Aurora PostgreSQL|db.r7i.16xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 10.24,
+        "hourlyUSD": 13.312,
         "instanceType": "db.r7i.16xlarge"
       },
       "Aurora PostgreSQL|db.r7i.24xlarge": {
@@ -5963,12 +6233,12 @@
       },
       "Aurora PostgreSQL|db.r7i.2xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 1.664,
+        "hourlyUSD": 1.28,
         "instanceType": "db.r7i.2xlarge"
       },
       "Aurora PostgreSQL|db.r7i.48xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 39.936,
+        "hourlyUSD": 30.72,
         "instanceType": "db.r7i.48xlarge"
       },
       "Aurora PostgreSQL|db.r7i.4xlarge": {
@@ -5978,7 +6248,7 @@
       },
       "Aurora PostgreSQL|db.r7i.8xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 5.12,
+        "hourlyUSD": 6.656,
         "instanceType": "db.r7i.8xlarge"
       },
       "Aurora PostgreSQL|db.r7i.large": {
@@ -5990,6 +6260,51 @@
         "engine": "Aurora PostgreSQL",
         "hourlyUSD": 0.832,
         "instanceType": "db.r7i.xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.12xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 12.0552,
+        "instanceType": "db.r8a.12xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.16xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 12.3648,
+        "instanceType": "db.r8a.16xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.24xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 18.5472,
+        "instanceType": "db.r8a.24xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.2xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 2.0092,
+        "instanceType": "db.r8a.2xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.48xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 48.2208,
+        "instanceType": "db.r8a.48xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.4xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 3.0912,
+        "instanceType": "db.r8a.4xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.8xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 8.0368,
+        "instanceType": "db.r8a.8xlarge"
+      },
+      "Aurora PostgreSQL|db.r8a.large": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 0.3864,
+        "instanceType": "db.r8a.large"
+      },
+      "Aurora PostgreSQL|db.r8a.xlarge": {
+        "engine": "Aurora PostgreSQL",
+        "hourlyUSD": 0.7728,
+        "instanceType": "db.r8a.xlarge"
       },
       "Aurora PostgreSQL|db.r8g.12xlarge": {
         "engine": "Aurora PostgreSQL",
@@ -6018,7 +6333,7 @@
       },
       "Aurora PostgreSQL|db.r8g.4xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 2.432,
+        "hourlyUSD": 3.16,
         "instanceType": "db.r8g.4xlarge"
       },
       "Aurora PostgreSQL|db.r8g.8xlarge": {
@@ -6028,7 +6343,7 @@
       },
       "Aurora PostgreSQL|db.r8g.large": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 0.395,
+        "hourlyUSD": 0.304,
         "instanceType": "db.r8g.large"
       },
       "Aurora PostgreSQL|db.r8g.xlarge": {
@@ -6038,7 +6353,7 @@
       },
       "Aurora PostgreSQL|db.r8gd.12xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 10.7081,
+        "hourlyUSD": 8.237,
         "instanceType": "db.r8gd.12xlarge"
       },
       "Aurora PostgreSQL|db.r8gd.16xlarge": {
@@ -6113,17 +6428,17 @@
       },
       "Aurora PostgreSQL|db.x2g.4xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 4.618,
+        "hourlyUSD": 3.552,
         "instanceType": "db.x2g.4xlarge"
       },
       "Aurora PostgreSQL|db.x2g.8xlarge": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 9.235,
+        "hourlyUSD": 7.104,
         "instanceType": "db.x2g.8xlarge"
       },
       "Aurora PostgreSQL|db.x2g.large": {
         "engine": "Aurora PostgreSQL",
-        "hourlyUSD": 0.577,
+        "hourlyUSD": 0.444,
         "instanceType": "db.x2g.large"
       },
       "Aurora PostgreSQL|db.x2g.xlarge": {
@@ -6590,6 +6905,51 @@
         "engine": "MariaDB",
         "hourlyUSD": 0.394,
         "instanceType": "db.m7i.xlarge"
+      },
+      "MariaDB|db.m8a.12xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 5.7096,
+        "instanceType": "db.m8a.12xlarge"
+      },
+      "MariaDB|db.m8a.16xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 7.6128,
+        "instanceType": "db.m8a.16xlarge"
+      },
+      "MariaDB|db.m8a.24xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 11.4192,
+        "instanceType": "db.m8a.24xlarge"
+      },
+      "MariaDB|db.m8a.2xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 0.9516,
+        "instanceType": "db.m8a.2xlarge"
+      },
+      "MariaDB|db.m8a.48xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 22.8384,
+        "instanceType": "db.m8a.48xlarge"
+      },
+      "MariaDB|db.m8a.4xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 1.9032,
+        "instanceType": "db.m8a.4xlarge"
+      },
+      "MariaDB|db.m8a.8xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 3.8064,
+        "instanceType": "db.m8a.8xlarge"
+      },
+      "MariaDB|db.m8a.large": {
+        "engine": "MariaDB",
+        "hourlyUSD": 0.2379,
+        "instanceType": "db.m8a.large"
+      },
+      "MariaDB|db.m8a.xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 0.4758,
+        "instanceType": "db.m8a.xlarge"
       },
       "MariaDB|db.m8g.12xlarge": {
         "engine": "MariaDB",
@@ -7145,6 +7505,51 @@
         "engine": "MariaDB",
         "hourlyUSD": 0.56,
         "instanceType": "db.r7i.xlarge"
+      },
+      "MariaDB|db.r8a.12xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 8.1144,
+        "instanceType": "db.r8a.12xlarge"
+      },
+      "MariaDB|db.r8a.16xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 10.8192,
+        "instanceType": "db.r8a.16xlarge"
+      },
+      "MariaDB|db.r8a.24xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 16.2288,
+        "instanceType": "db.r8a.24xlarge"
+      },
+      "MariaDB|db.r8a.2xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 1.3524,
+        "instanceType": "db.r8a.2xlarge"
+      },
+      "MariaDB|db.r8a.48xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 32.4576,
+        "instanceType": "db.r8a.48xlarge"
+      },
+      "MariaDB|db.r8a.4xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 2.7048,
+        "instanceType": "db.r8a.4xlarge"
+      },
+      "MariaDB|db.r8a.8xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 5.4096,
+        "instanceType": "db.r8a.8xlarge"
+      },
+      "MariaDB|db.r8a.large": {
+        "engine": "MariaDB",
+        "hourlyUSD": 0.3381,
+        "instanceType": "db.r8a.large"
+      },
+      "MariaDB|db.r8a.xlarge": {
+        "engine": "MariaDB",
+        "hourlyUSD": 0.6762,
+        "instanceType": "db.r8a.xlarge"
       },
       "MariaDB|db.r8g.12xlarge": {
         "engine": "MariaDB",
@@ -7906,6 +8311,51 @@
         "hourlyUSD": 0.394,
         "instanceType": "db.m7i.xlarge"
       },
+      "MySQL|db.m8a.12xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 5.7096,
+        "instanceType": "db.m8a.12xlarge"
+      },
+      "MySQL|db.m8a.16xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 7.6128,
+        "instanceType": "db.m8a.16xlarge"
+      },
+      "MySQL|db.m8a.24xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 11.4192,
+        "instanceType": "db.m8a.24xlarge"
+      },
+      "MySQL|db.m8a.2xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 0.9516,
+        "instanceType": "db.m8a.2xlarge"
+      },
+      "MySQL|db.m8a.48xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 22.8384,
+        "instanceType": "db.m8a.48xlarge"
+      },
+      "MySQL|db.m8a.4xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 1.9032,
+        "instanceType": "db.m8a.4xlarge"
+      },
+      "MySQL|db.m8a.8xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 3.8064,
+        "instanceType": "db.m8a.8xlarge"
+      },
+      "MySQL|db.m8a.large": {
+        "engine": "MySQL",
+        "hourlyUSD": 0.2379,
+        "instanceType": "db.m8a.large"
+      },
+      "MySQL|db.m8a.xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 0.4758,
+        "instanceType": "db.m8a.xlarge"
+      },
       "MySQL|db.m8g.12xlarge": {
         "engine": "MySQL",
         "hourlyUSD": 4.464,
@@ -8460,6 +8910,51 @@
         "engine": "MySQL",
         "hourlyUSD": 0.56,
         "instanceType": "db.r7i.xlarge"
+      },
+      "MySQL|db.r8a.12xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 8.1144,
+        "instanceType": "db.r8a.12xlarge"
+      },
+      "MySQL|db.r8a.16xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 10.8192,
+        "instanceType": "db.r8a.16xlarge"
+      },
+      "MySQL|db.r8a.24xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 16.2288,
+        "instanceType": "db.r8a.24xlarge"
+      },
+      "MySQL|db.r8a.2xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 1.3524,
+        "instanceType": "db.r8a.2xlarge"
+      },
+      "MySQL|db.r8a.48xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 32.4576,
+        "instanceType": "db.r8a.48xlarge"
+      },
+      "MySQL|db.r8a.4xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 2.7048,
+        "instanceType": "db.r8a.4xlarge"
+      },
+      "MySQL|db.r8a.8xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 5.4096,
+        "instanceType": "db.r8a.8xlarge"
+      },
+      "MySQL|db.r8a.large": {
+        "engine": "MySQL",
+        "hourlyUSD": 0.3381,
+        "instanceType": "db.r8a.large"
+      },
+      "MySQL|db.r8a.xlarge": {
+        "engine": "MySQL",
+        "hourlyUSD": 0.6762,
+        "instanceType": "db.r8a.xlarge"
       },
       "MySQL|db.r8g.12xlarge": {
         "engine": "MySQL",
@@ -9461,6 +9956,51 @@
         "hourlyUSD": 0.394,
         "instanceType": "db.m7i.xlarge"
       },
+      "PostgreSQL|db.m8a.12xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 5.7096,
+        "instanceType": "db.m8a.12xlarge"
+      },
+      "PostgreSQL|db.m8a.16xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 7.6128,
+        "instanceType": "db.m8a.16xlarge"
+      },
+      "PostgreSQL|db.m8a.24xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 11.4192,
+        "instanceType": "db.m8a.24xlarge"
+      },
+      "PostgreSQL|db.m8a.2xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.9516,
+        "instanceType": "db.m8a.2xlarge"
+      },
+      "PostgreSQL|db.m8a.48xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 22.8384,
+        "instanceType": "db.m8a.48xlarge"
+      },
+      "PostgreSQL|db.m8a.4xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 1.9032,
+        "instanceType": "db.m8a.4xlarge"
+      },
+      "PostgreSQL|db.m8a.8xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 3.8064,
+        "instanceType": "db.m8a.8xlarge"
+      },
+      "PostgreSQL|db.m8a.large": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.2379,
+        "instanceType": "db.m8a.large"
+      },
+      "PostgreSQL|db.m8a.xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.4758,
+        "instanceType": "db.m8a.xlarge"
+      },
       "PostgreSQL|db.m8g.12xlarge": {
         "engine": "PostgreSQL",
         "hourlyUSD": 4.464,
@@ -10016,6 +10556,51 @@
         "hourlyUSD": 0.56,
         "instanceType": "db.r7i.xlarge"
       },
+      "PostgreSQL|db.r8a.12xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 8.1144,
+        "instanceType": "db.r8a.12xlarge"
+      },
+      "PostgreSQL|db.r8a.16xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 10.8192,
+        "instanceType": "db.r8a.16xlarge"
+      },
+      "PostgreSQL|db.r8a.24xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 16.2288,
+        "instanceType": "db.r8a.24xlarge"
+      },
+      "PostgreSQL|db.r8a.2xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 1.3524,
+        "instanceType": "db.r8a.2xlarge"
+      },
+      "PostgreSQL|db.r8a.48xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 32.4576,
+        "instanceType": "db.r8a.48xlarge"
+      },
+      "PostgreSQL|db.r8a.4xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 2.7048,
+        "instanceType": "db.r8a.4xlarge"
+      },
+      "PostgreSQL|db.r8a.8xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 5.4096,
+        "instanceType": "db.r8a.8xlarge"
+      },
+      "PostgreSQL|db.r8a.large": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.3381,
+        "instanceType": "db.r8a.large"
+      },
+      "PostgreSQL|db.r8a.xlarge": {
+        "engine": "PostgreSQL",
+        "hourlyUSD": 0.6762,
+        "instanceType": "db.r8a.xlarge"
+      },
       "PostgreSQL|db.r8g.12xlarge": {
         "engine": "PostgreSQL",
         "hourlyUSD": 6.432,
@@ -10288,7 +10873,7 @@
       },
       "SQL Server|db.m4.10xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 12.6,
+        "hourlyUSD": 23.634,
         "instanceType": "db.m4.10xlarge"
       },
       "SQL Server|db.m4.16xlarge": {
@@ -10323,7 +10908,7 @@
       },
       "SQL Server|db.m5.16xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 20.16,
+        "hourlyUSD": 37.808,
         "instanceType": "db.m5.16xlarge"
       },
       "SQL Server|db.m5.24xlarge": {
@@ -10333,7 +10918,7 @@
       },
       "SQL Server|db.m5.2xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.174,
+        "hourlyUSD": 4.727,
         "instanceType": "db.m5.2xlarge"
       },
       "SQL Server|db.m5.4xlarge": {
@@ -10343,7 +10928,7 @@
       },
       "SQL Server|db.m5.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 18.904,
+        "hourlyUSD": 10.08,
         "instanceType": "db.m5.8xlarge"
       },
       "SQL Server|db.m5.large": {
@@ -10353,12 +10938,12 @@
       },
       "SQL Server|db.m5.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.576,
+        "hourlyUSD": 1.26,
         "instanceType": "db.m5.xlarge"
       },
       "SQL Server|db.m5d.12xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 29.04,
+        "hourlyUSD": 15.938,
         "instanceType": "db.m5d.12xlarge"
       },
       "SQL Server|db.m5d.16xlarge": {
@@ -10378,7 +10963,7 @@
       },
       "SQL Server|db.m5d.4xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 9.68,
+        "hourlyUSD": 5.313,
         "instanceType": "db.m5d.4xlarge"
       },
       "SQL Server|db.m5d.8xlarge": {
@@ -10388,7 +10973,7 @@
       },
       "SQL Server|db.m5d.large": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.358,
+        "hourlyUSD": 1.012,
         "instanceType": "db.m5d.large"
       },
       "SQL Server|db.m5d.xlarge": {
@@ -10413,7 +10998,7 @@
       },
       "SQL Server|db.m6i.2xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 4.727,
+        "hourlyUSD": 2.62,
         "instanceType": "db.m6i.2xlarge"
       },
       "SQL Server|db.m6i.32xlarge": {
@@ -10423,12 +11008,12 @@
       },
       "SQL Server|db.m6i.4xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 9.454,
+        "hourlyUSD": 5.193,
         "instanceType": "db.m6i.4xlarge"
       },
       "SQL Server|db.m6i.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 10.08,
+        "hourlyUSD": 18.904,
         "instanceType": "db.m6i.8xlarge"
       },
       "SQL Server|db.m6i.large": {
@@ -10438,7 +11023,7 @@
       },
       "SQL Server|db.m6i.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.576,
+        "hourlyUSD": 2.363,
         "instanceType": "db.m6i.xlarge"
       },
       "SQL Server|db.m7i.12xlarge": {
@@ -10488,12 +11073,12 @@
       },
       "SQL Server|db.r4.16xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 24.56,
+        "hourlyUSD": 40.768,
         "instanceType": "db.r4.16xlarge"
       },
       "SQL Server|db.r4.2xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.79,
+        "hourlyUSD": 3.07,
         "instanceType": "db.r4.2xlarge"
       },
       "SQL Server|db.r4.4xlarge": {
@@ -10503,7 +11088,7 @@
       },
       "SQL Server|db.r4.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 20.384,
+        "hourlyUSD": 12.28,
         "instanceType": "db.r4.8xlarge"
       },
       "SQL Server|db.r4.large": {
@@ -10513,7 +11098,7 @@
       },
       "SQL Server|db.r4.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.535,
+        "hourlyUSD": 0.895,
         "instanceType": "db.r4.xlarge"
       },
       "SQL Server|db.r5.12xlarge": {
@@ -10523,7 +11108,7 @@
       },
       "SQL Server|db.r5.16xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 40.768,
+        "hourlyUSD": 24.56,
         "instanceType": "db.r5.16xlarge"
       },
       "SQL Server|db.r5.24xlarge": {
@@ -10543,7 +11128,7 @@
       },
       "SQL Server|db.r5.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 12.28,
+        "hourlyUSD": 20.384,
         "instanceType": "db.r5.8xlarge"
       },
       "SQL Server|db.r5.large": {
@@ -10563,7 +11148,7 @@
       },
       "SQL Server|db.r5b.16xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 26.3472,
+        "hourlyUSD": 41.9744,
         "instanceType": "db.r5b.16xlarge"
       },
       "SQL Server|db.r5b.24xlarge": {
@@ -10578,7 +11163,7 @@
       },
       "SQL Server|db.r5b.4xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 10.4936,
+        "hourlyUSD": 6.5868,
         "instanceType": "db.r5b.4xlarge"
       },
       "SQL Server|db.r5b.8xlarge": {
@@ -10588,12 +11173,12 @@
       },
       "SQL Server|db.r5b.large": {
         "engine": "SQL Server",
-        "hourlyUSD": 2.2867,
+        "hourlyUSD": 0.57155,
         "instanceType": "db.r5b.large"
       },
       "SQL Server|db.r5b.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 2.6234,
+        "hourlyUSD": 1.6467,
         "instanceType": "db.r5b.xlarge"
       },
       "SQL Server|db.r5d.12xlarge": {
@@ -10618,7 +11203,7 @@
       },
       "SQL Server|db.r5d.4xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 4.001,
+        "hourlyUSD": 10.421,
         "instanceType": "db.r5d.4xlarge"
       },
       "SQL Server|db.r5d.8xlarge": {
@@ -10628,12 +11213,12 @@
       },
       "SQL Server|db.r5d.large": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.208,
+        "hourlyUSD": 0.56,
         "instanceType": "db.r5d.large"
       },
       "SQL Server|db.r5d.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.001,
+        "hourlyUSD": 1.624,
         "instanceType": "db.r5d.xlarge"
       },
       "SQL Server|db.r6i.12xlarge": {
@@ -10668,12 +11253,12 @@
       },
       "SQL Server|db.r6i.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 12.28,
+        "hourlyUSD": 20.384,
         "instanceType": "db.r6i.8xlarge"
       },
       "SQL Server|db.r6i.large": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.025,
+        "hourlyUSD": 0.465,
         "instanceType": "db.r6i.large"
       },
       "SQL Server|db.r6i.xlarge": {
@@ -10783,7 +11368,7 @@
       },
       "SQL Server|db.t2.medium": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.093,
+        "hourlyUSD": 0.293,
         "instanceType": "db.t2.medium"
       },
       "SQL Server|db.t2.micro": {
@@ -10798,17 +11383,17 @@
       },
       "SQL Server|db.t3.2xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.841,
+        "hourlyUSD": 4.566,
         "instanceType": "db.t3.2xlarge"
       },
       "SQL Server|db.t3.large": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.173,
+        "hourlyUSD": 0.242,
         "instanceType": "db.t3.large"
       },
       "SQL Server|db.t3.medium": {
         "engine": "SQL Server",
-        "hourlyUSD": 0.093,
+        "hourlyUSD": 0.171,
         "instanceType": "db.t3.medium"
       },
       "SQL Server|db.t3.micro": {
@@ -10838,7 +11423,7 @@
       },
       "SQL Server|db.x1e.16xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 43.93,
+        "hourlyUSD": 55.827,
         "instanceType": "db.x1e.16xlarge"
       },
       "SQL Server|db.x1e.2xlarge": {
@@ -10888,12 +11473,12 @@
       },
       "SQL Server|db.x2iedn.4xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 14.4162,
+        "hourlyUSD": 11.622,
         "instanceType": "db.x2iedn.4xlarge"
       },
       "SQL Server|db.x2iedn.8xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 28.8324,
+        "hourlyUSD": 23.245,
         "instanceType": "db.x2iedn.8xlarge"
       },
       "SQL Server|db.x2iedn.xlarge": {
@@ -10938,7 +11523,7 @@
       },
       "SQL Server|db.z1d.12xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 21.384,
+        "hourlyUSD": 32.76,
         "instanceType": "db.z1d.12xlarge"
       },
       "SQL Server|db.z1d.2xlarge": {
@@ -10948,12 +11533,12 @@
       },
       "SQL Server|db.z1d.3xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 3.505,
+        "hourlyUSD": 5.346,
         "instanceType": "db.z1d.3xlarge"
       },
       "SQL Server|db.z1d.6xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 10.692,
+        "hourlyUSD": 16.38,
         "instanceType": "db.z1d.6xlarge"
       },
       "SQL Server|db.z1d.large": {
@@ -10963,7 +11548,7 @@
       },
       "SQL Server|db.z1d.xlarge": {
         "engine": "SQL Server",
-        "hourlyUSD": 1.169,
+        "hourlyUSD": 1.782,
         "instanceType": "db.z1d.xlarge"
       }
     },
@@ -10984,10 +11569,10 @@
     "standardStorageUsdPerGBMonth": 0.023
   },
   "sourceVersions": {
-    "ec2": "20260728175247",
-    "lambda": "20260717075216",
-    "rds": "20260729234248",
-    "s3": "20260728131000"
+    "ec2": "20261015191316",
+    "lambda": "20261016182359",
+    "rds": "20261020001325",
+    "s3": "20261015173540"
   },
   "sources": {
     "bulkApiDoc": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api.html",
@@ -10996,25 +11581,25 @@
         "offerCode": "AmazonEC2",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/ec2/pricing/on-demand/",
-        "version": "20260728175247"
+        "version": "20261015191316"
       },
       "lambda": {
         "offerCode": "AWSLambda",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/lambda/pricing/",
-        "version": "20260717075216"
+        "version": "20261016182359"
       },
       "rds": {
         "offerCode": "AmazonRDS",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/rds/pricing/",
-        "version": "20260729234248"
+        "version": "20261020001325"
       },
       "s3": {
         "offerCode": "AmazonS3",
         "priceListUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
         "pricingPage": "https://aws.amazon.com/s3/pricing/",
-        "version": "20260728131000"
+        "version": "20261015173540"
       }
     }
   }
