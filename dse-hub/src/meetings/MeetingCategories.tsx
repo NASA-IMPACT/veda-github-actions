@@ -13,6 +13,7 @@ import { piCalendar } from "./data";
 interface Props {
   meetings: Meeting[];
   onEdit?: (m: Meeting) => void;
+  onDelete?: (m: Meeting) => void;
 }
 
 function matchWithin(m: Meeting, q: string): boolean {
@@ -22,7 +23,7 @@ function matchWithin(m: Meeting, q: string): boolean {
   return hay.includes(q.toLowerCase());
 }
 
-export default function MeetingCategories({ meetings, onEdit }: Props) {
+export default function MeetingCategories({ meetings, onEdit, onDelete }: Props) {
   const { tz: viewTz } = useViewTz();
   const today = toISO(new Date());
   const [selected, setSelected] = useState<string | null>(null);
@@ -120,7 +121,11 @@ export default function MeetingCategories({ meetings, onEdit }: Props) {
                 </button>
                 {isOpen && (
                   <div className="pop-day-item-detail">
-                    <MeetingDetail meeting={m} onEdit={onEdit ? () => onEdit(m) : undefined} />
+                    <MeetingDetail
+                      meeting={m}
+                      onEdit={onEdit ? () => onEdit(m) : undefined}
+                      onDelete={onDelete ? () => onDelete(m) : undefined}
+                    />
                   </div>
                 )}
               </div>

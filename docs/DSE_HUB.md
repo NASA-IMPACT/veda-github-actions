@@ -15,14 +15,16 @@ in-app **prefilled PRs** (no backend, no token, no runtime fetch).
 ## Data model (GitHub-only, merged at BUILD)
 - Source of truth = compact **`data/meetings.json`** and **`data/pis.json`** (single JSON arrays, empty
   optional fields omitted). Bundled at build via `import.meta.glob` — no runtime fetch, no CDN staleness.
-- Every add/edit (meeting or PI) is a **`ChangeDoc`** `{ kind:"meeting"|"pi", op:"upsert", ts, data, label }`
-  staged in the in-app **Changes cart** (`src/ChangesContext.tsx`, `localStorage dse-hub:changes`).
+- Every add/edit/**delete** (meeting or PI) is a **`ChangeDoc`** `{ kind:"meeting"|"pi", op:"upsert"|"delete", ts, data, label }`
+  staged in the in-app **Changes cart** (`src/ChangesContext.tsx`, `localStorage dse-hub:changes`). A
+  **delete** keeps the full record in `data` so loaders/compact can read its `id`; the "🗑 Delete meeting"
+  button (shared `MeetingDetail`) stages one after a confirm.
 - **Submit PR** builds ONE file `data/changes/<ts>-<n>.json` (array of ChangeDocs) and opens the prefilled
   `github.com/NASA-IMPACT/veda-github-actions/new/main?filename=&value=` page — the same token-free flow as
   leave-dashboard's overrides. The user just clicks *commit* on GitHub.
 - Loaders (`src/meetings/data.ts`, `src/pi/data.ts`) import the canonical arrays + glob `data/changes/*.json`
-  (`src/changesData.ts`) and **merge**: upsert by `data.id`, newest `ts` wins. So a merged PR shows up on the
-  next Netlify build.
+  (`src/changesData.ts`) and **merge** by `data.id`, newest `ts` wins: `upsert` sets the record, `delete`
+  removes it. So a merged PR shows up on the next Netlify build.
 - `scripts/compact.mjs` + `.github/workflows/dse-hub-compact.yml` **fold** change files back into the
   canonical arrays on merge to `main` (and delete the folded files) — keeps `data/changes/` small at scale.
 - **Why single canonical files, not one-per-record:** scales to hundreds without hundreds of files, and gzip
@@ -59,6 +61,14 @@ schedule (via the app: **Sprints & PIs → Edit → Add to changes → Submit PR
   border or the columns go ragged.
 - Netlify: set **base directory = `dse-hub`**; the first deploy fails if run before `dse-hub/` exists on the
   built branch ("base directory not found") — deploy after the merge lands on `main`.
+- **Light-only ⇒ pin native controls.** `<meta name="color-scheme" content="light">` (index.html) +
+  `:root { color-scheme: light }` (styles.css) stop a dark-mode OS from rendering `<select>`/date-picker
+  popups dark. The native **`<datalist>` popup ignores `color-scheme` in Chrome** (renders dark + misaligned),
+  so Team/Category use a custom light **`Combobox`** (`src/meetings/Combobox.tsx`) instead — free text still
+  allowed. If you add another autocomplete, use `Combobox`, not `<datalist>`.
+- **Deleting a meeting is a press-and-HOLD (2s) gesture** (`src/meetings/HoldToDelete.tsx`), not a click —
+  a fill bar sweeps in `--hold-ms`; releasing early aborts. It only *stages* a `delete` ChangeDoc in the
+  Changes cart (reviewable, PR-gated), never an instant removal.
 
 ## Run / test
 ```bash
